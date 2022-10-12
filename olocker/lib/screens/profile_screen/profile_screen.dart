@@ -5,12 +5,13 @@ import 'package:olocker/controllers/index_screen_controller.dart';
 import 'package:olocker/screens/index_screen/index_screen_widgets.dart';
 
 import '../../controllers/home_screen_controller.dart';
+import '../../controllers/profile_screen_controller.dart';
 import '../../widgets/custom_drawer.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
+class ProfileScreen extends StatelessWidget {
+  ProfileScreen({Key? key}) : super(key: key);
 
-  final homeScreenController = Get.put(HomeScreenController());
+  final profileScreenController = Get.put(ProfileScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class HomeScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Text("Home Screen"),
+            child: Text("Profile Screen"),
           )
         ],
       ),

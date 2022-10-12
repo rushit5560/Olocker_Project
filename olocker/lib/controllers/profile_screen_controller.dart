@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class HomeScreenController extends GetxController {
+class ProfileScreenController extends GetxController {
   final size = Get.size;
 
   @override
