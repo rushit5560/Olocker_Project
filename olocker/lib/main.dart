@@ -4,8 +4,6 @@ import 'package:olocker/screens/splash_screen/splash_screen.dart';
 import 'package:olocker/utils/themes.dart';
 import 'package:sizer/sizer.dart';
 
-
-
 void main() {
   runApp(const MyApp());
 }
@@ -19,7 +17,8 @@ class MyApp extends StatelessWidget {
       return GetMaterialApp(
         title: 'Olocker',
         debugShowCheckedModeBanner: false,
-        defaultTransition: Transition.cupertino,
+        defaultTransition: Transition.fade,
+        transitionDuration: const Duration(milliseconds: 200),
         theme: ThemeData(
           primarySwatch: generateMaterialColor(
             const Color(0xffed6660),

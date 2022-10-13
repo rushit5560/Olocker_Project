@@ -14,8 +14,4 @@ class AppColors {
 
   static const Color greyTextColor = Color(0xFF999999);
   static const Color blackTextColor = Color.fromARGB(255, 59, 59, 59);
-
-  //theme colors
-  static const Color darkThemeColor = Color.fromARGB(255, 30, 30, 31);
-  static const Color darkThemeBoxColor = Color.fromARGB(255, 45, 44, 47);
 }
