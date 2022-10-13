@@ -18,8 +18,8 @@ class IndexScreen extends StatelessWidget {
         () => Scaffold(
           key: indexScreenController.scaffoldKey,
           backgroundColor: AppColors.whiteColor,
-          appBar: MainAppBar(),
-          drawer: const CustomDrawer(),
+          // appBar: MainAppBar(),
+          // drawer: const CustomDrawer(),
           bottomNavigationBar: BottomNavBar(),
           body: indexScreenController
               .pagesList[indexScreenController.currentBottomIndex.value],
