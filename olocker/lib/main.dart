@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:olocker/screens/index_screen/index_screen.dart';
 import 'package:olocker/screens/splash_screen/splash_screen.dart';
 import 'package:olocker/utils/themes.dart';
 import 'package:sizer/sizer.dart';

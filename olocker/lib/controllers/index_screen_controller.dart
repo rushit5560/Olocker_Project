@@ -28,33 +28,32 @@ class IndexScreenController extends GetxController {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-
   Future<void> getNotificationCountFunction() async {
-    String url = "${ApiUrl.getNotificationCountApi}?customerId=${UserDetails.customerId}";
+    String url =
+        "${ApiUrl.getNotificationCountApi}?customerId=${UserDetails.customerId}";
     log("Get Notification Count Api Url : $url");
 
     try {
-       http.Response response = await http.get(
-         Uri.parse(url),
-         headers: apiHeader.headers,
-       );
+      http.Response response = await http.get(
+        Uri.parse(url),
+        headers: apiHeader.headers,
+      );
 
-       NotificationCountModel notificationCountModel = NotificationCountModel.fromJson(json.decode(response.body));
-       isSuccessStatus = notificationCountModel.success.obs;
+      NotificationCountModel notificationCountModel =
+          NotificationCountModel.fromJson(json.decode(response.body));
+      isSuccessStatus = notificationCountModel.success.obs;
 
-       if(isSuccessStatus.value) {
-         notificationCount = notificationCountModel.parNotificationCount.numberofNotification.obs;
-         log('notificationCount : ${notificationCount.value}');
-       } else {
-         log('getNotificationCountFunction Else');
-       }
-
-
-    }catch(e) {
+      if (isSuccessStatus.value) {
+        notificationCount = notificationCountModel
+            .parNotificationCount.numberofNotification.obs;
+        log('notificationCount : ${notificationCount.value}');
+      } else {
+        log('getNotificationCountFunction Else');
+      }
+    } catch (e) {
       log("getNotificationCountFunction Error :$e");
       rethrow;
     }
-
   }
 
   @override
@@ -62,6 +61,4 @@ class IndexScreenController extends GetxController {
     getNotificationCountFunction();
     super.onInit();
   }
-
-
 }

@@ -64,12 +64,53 @@ class OtpScreenController extends GetxController {
 
           if (isSuccessStatus == true) {
             UserPrefsData().setCustomerPrefsData(
-              userMobileNo: loginModel.userRequestValidateOtp[0].mobileNo,
-              customerId: loginModel.userRequestValidateOtp[0].custSrNo,
-              customerFname: loginModel.userRequestValidateOtp[0].firstName,
-              customerLname: loginModel.userRequestValidateOtp[0].lastName,
-              customerEmail: loginModel.userRequestValidateOtp[0].userEmail,
-              customerSalutation: loginModel.userRequestValidateOtp[0].gender,
+              customerMobileNo:
+                  loginModel.userRequestValidateOtp[0].mobileNo == null
+                      ? ""
+                      : loginModel.userRequestValidateOtp[0].mobileNo,
+              customerId: loginModel.userRequestValidateOtp[0].custSrNo == null
+                  ? ""
+                  : loginModel.userRequestValidateOtp[0].custSrNo,
+              customerUsername:
+                  loginModel.userRequestValidateOtp[0].userName == null
+                      ? ""
+                      : loginModel.userRequestValidateOtp[0].userName,
+              customerFname:
+                  loginModel.userRequestValidateOtp[0].firstName == null
+                      ? ""
+                      : loginModel.userRequestValidateOtp[0].firstName,
+              customerLname:
+                  loginModel.userRequestValidateOtp[0].lastName == null
+                      ? ""
+                      : loginModel.userRequestValidateOtp[0].lastName,
+              customerEmail:
+                  loginModel.userRequestValidateOtp[0].userEmail == null
+                      ? ""
+                      : loginModel.userRequestValidateOtp[0].userEmail,
+              customerGender:
+                  loginModel.userRequestValidateOtp[0].gender == null
+                      ? ""
+                      : loginModel.userRequestValidateOtp[0].gender,
+              customerAddress:
+                  loginModel.userRequestValidateOtp[0].address == null
+                      ? ""
+                      : loginModel.userRequestValidateOtp[0].address,
+              customerCity: loginModel.userRequestValidateOtp[0].city == null
+                  ? ""
+                  : loginModel.userRequestValidateOtp[0].city,
+              customerPin: loginModel.userRequestValidateOtp[0].pin == null
+                  ? ""
+                  : loginModel.userRequestValidateOtp[0].pin,
+              customerState: loginModel.userRequestValidateOtp[0].state == null
+                  ? ""
+                  : loginModel.userRequestValidateOtp[0].state,
+              customerCountry:
+                  loginModel.userRequestValidateOtp[0].country == null
+                      ? ""
+                      : loginModel.userRequestValidateOtp[0].country,
+              customerDob: loginModel.userRequestValidateOtp[0].dob == null
+                  ? ""
+                  : loginModel.userRequestValidateOtp[0].dob,
             );
             Get.off(() => IndexScreen());
           } else {

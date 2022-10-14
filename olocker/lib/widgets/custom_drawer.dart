@@ -63,16 +63,19 @@ class CustomDrawer extends StatelessWidget {
   // My Jeweller
   Widget _myJewellerModule() {
     return ExpandablePanel(
-      header: Row(
-        children: [
-          Image.asset(
-            AppIcons.drawerJewellerIcon,
-            height: homeScreenController.size.width * 0.014.w,
-          ),
-          SizedBox(width: homeScreenController.size.width * 0.008.w),
-          const Text('My Jeweller'),
-        ],
-      ).commonSymmetricPadding(vertical: 8),
+      header: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Row(
+          children: [
+            Image.asset(
+              AppIcons.drawerJewellerIcon,
+              height: homeScreenController.size.width * 0.014.w,
+            ),
+            SizedBox(width: homeScreenController.size.width * 0.008.w),
+            const Text('My Jeweller'),
+          ],
+        ).commonSymmetricPadding(vertical: 8),
+      ),
       collapsed: Container(),
       expanded: Column(
         children: [
@@ -106,22 +109,25 @@ class CustomDrawer extends StatelessWidget {
           ),
         ],
       ),
-    ).commonSymmetricPadding(horizontal: 15);
+    );
   }
 
   // My Olocker
   Widget _myOlockerModule() {
     return ExpandablePanel(
-      header: Row(
-        children: [
-          Image.asset(
-            AppIcons.drawerOlockerIcon,
-            height: homeScreenController.size.width * 0.014.w,
-          ),
-          SizedBox(width: homeScreenController.size.width * 0.008.w),
-          const Text('My Olocker'),
-        ],
-      ).commonSymmetricPadding(vertical: 8),
+      header: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Row(
+          children: [
+            Image.asset(
+              AppIcons.drawerOlockerIcon,
+              height: homeScreenController.size.width * 0.014.w,
+            ),
+            SizedBox(width: homeScreenController.size.width * 0.008.w),
+            const Text('My Olocker'),
+          ],
+        ).commonSymmetricPadding(vertical: 8),
+      ),
       collapsed: Container(),
       expanded: Column(
         children: [
@@ -155,7 +161,7 @@ class CustomDrawer extends StatelessWidget {
           ),
         ],
       ),
-    ).commonSymmetricPadding(horizontal: 15);
+    );
   }
 
   // My Saving Scheme Module
