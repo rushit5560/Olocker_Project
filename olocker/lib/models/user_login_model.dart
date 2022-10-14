@@ -54,7 +54,7 @@ class ErrorInfo {
         errorType: json["error_type"] ?? 0,
         extraInfo: json["extra_info"] ?? "",
         description: json["description"] ?? "",
-        errorData: json["error_data"],
+        errorData: json["error_data"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {

@@ -19,13 +19,13 @@ class MyApp extends StatelessWidget {
         title: 'Olocker',
         debugShowCheckedModeBanner: false,
         defaultTransition: Transition.fade,
-        transitionDuration: const Duration(milliseconds: 200),
+        transitionDuration: const Duration(milliseconds: 400),
         theme: ThemeData(
           primarySwatch: generateMaterialColor(
             const Color(0xffed6660),
           ),
         ),
-        home: IndexScreen(),
+        home: SplashScreen(),
       );
     });
   }

@@ -1,10 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/signup_screen_controller.dart';
+import 'package:olocker/utils/field_validation.dart';
 import 'package:sizer/sizer.dart';
+
+class RegisterHeaderModule extends StatelessWidget {
+  RegisterHeaderModule({Key? key}) : super(key: key);
+
+  final signUpScreenController = Get.find<SignUpScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          flex: 7,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Please fill up the form",
+                maxLines: null,
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 17.sp,
+                  color: AppColors.blackColor,
+                  letterSpacing: 0.6,
+                ),
+              ),
+              Text(
+                "to complete registration",
+                maxLines: null,
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 28.sp,
+                  color: AppColors.blackColor,
+                  letterSpacing: 0.8,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          flex: 3,
+          child: Image.asset(
+            AppImages.registrationImage,
+          ),
+        ),
+      ],
+    );
+  }
+}
 
 class NameFieldRow extends StatelessWidget {
   NameFieldRow({Key? key}) : super(key: key);
@@ -71,7 +123,9 @@ class NameFieldRow extends StatelessWidget {
           Expanded(
             child: TextFormField(
               controller: signUpScreenController.fnameController,
+              textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
+              validator: (value) => FieldValidator().validateFirstName(value!),
               decoration: InputDecoration(
                 isDense: true,
                 isCollapsed: true,
@@ -88,6 +142,8 @@ class NameFieldRow extends StatelessWidget {
             child: TextFormField(
               controller: signUpScreenController.lnameController,
               keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.next,
+              validator: (value) => FieldValidator().validateLastName(value!),
               decoration: InputDecoration(
                 isDense: true,
                 isCollapsed: true,
@@ -139,6 +195,9 @@ class EmailField extends StatelessWidget {
           Expanded(
             child: TextFormField(
               keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.next,
+              validator: (value) => FieldValidator().validateEmail(value!),
+              controller: signUpScreenController.emailController,
               decoration: InputDecoration(
                 isDense: true,
                 isCollapsed: true,
@@ -180,16 +239,31 @@ class MobileNumberField extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(
-            AppIcons.mobileIcon,
-            color: AppColors.blackColor,
-            height: 24,
-            width: 24,
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            child: Image.asset(
+              AppIcons.mobileIcon,
+              color: AppColors.blackColor,
+              // height: 24,
+              width: 24,
+            ),
           ),
           SizedBox(width: 5.w),
           Expanded(
             child: TextFormField(
               keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.next,
+              validator: (value) =>
+                  FieldValidator().validateMobileNumber(value!),
+              controller: signUpScreenController.numberController,
+              inputFormatters: [
+                LengthLimitingTextInputFormatter(10),
+              ],
+              onEditingComplete: () async {
+                if (signUpScreenController.numberController.text.length == 10) {
+                  await signUpScreenController.checkMobileNumber(context);
+                }
+              },
               decoration: InputDecoration(
                 isDense: true,
                 isCollapsed: true,
@@ -231,8 +305,8 @@ class EnterCodeField extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SvgPicture.asset(
-            AppIcons.codeImage,
+          Image.asset(
+            AppIcons.codeIcon,
             color: AppColors.blackColor,
             height: 24,
             width: 24,
@@ -241,6 +315,10 @@ class EnterCodeField extends StatelessWidget {
           Expanded(
             child: TextFormField(
               keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.done,
+              validator: (value) =>
+                  FieldValidator().validateRefferalCodeNumber(value!),
+              controller: signUpScreenController.codeController,
               decoration: InputDecoration(
                 isDense: true,
                 isCollapsed: true,
@@ -253,6 +331,30 @@ class EnterCodeField extends StatelessWidget {
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class RegisterForm extends StatelessWidget {
+  RegisterForm({Key? key}) : super(key: key);
+
+  final signUpScreenController = Get.find<SignUpScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: signUpScreenController.formKey,
+      child: Column(
+        children: [
+          NameFieldRow(),
+          SizedBox(height: 2.h),
+          EmailField(),
+          SizedBox(height: 2.h),
+          MobileNumberField(),
+          SizedBox(height: 2.h),
+          EnterCodeField(),
         ],
       ),
     );

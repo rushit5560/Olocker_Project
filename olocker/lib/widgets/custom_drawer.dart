@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/home_screen_controller.dart';
+import 'package:olocker/screens/auth_screen/auth_screen.dart';
 import 'package:olocker/utils/extensions.dart';
+import 'package:olocker/utils/user_prefs_data.dart';
 import 'package:sizer/sizer.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -16,9 +18,7 @@ class CustomDrawer extends StatelessWidget {
     return Drawer(
       child: Column(
         children: [
-
           _profileHeaderModule(),
-
           Expanded(
             child: SingleChildScrollView(
               child: Column(
@@ -39,9 +39,7 @@ class CustomDrawer extends StatelessWidget {
               ),
             ),
           ),
-
           _logoutButton(),
-
         ],
       ),
     );
@@ -57,7 +55,6 @@ class CustomDrawer extends StatelessWidget {
           height: homeScreenController.size.width * 0.010.w,
         ),
         SizedBox(width: homeScreenController.size.width * 0.008.w),
-
         const Text('Home'),
       ],
     ).commonSymmetricPadding(horizontal: 15, vertical: 12);
@@ -171,7 +168,6 @@ class CustomDrawer extends StatelessWidget {
           height: homeScreenController.size.width * 0.010.w,
         ),
         SizedBox(width: homeScreenController.size.width * 0.008.w),
-
         const Text('My Saving Scheme'),
       ],
     ).commonSymmetricPadding(horizontal: 15, vertical: 12);
@@ -187,7 +183,6 @@ class CustomDrawer extends StatelessWidget {
           height: homeScreenController.size.width * 0.010.w,
         ),
         SizedBox(width: homeScreenController.size.width * 0.008.w),
-
         const Text('My Deals'),
       ],
     ).commonSymmetricPadding(horizontal: 15, vertical: 12);
@@ -203,7 +198,6 @@ class CustomDrawer extends StatelessWidget {
           height: homeScreenController.size.width * 0.010.w,
         ),
         SizedBox(width: homeScreenController.size.width * 0.008.w),
-
         const Text('My points'),
       ],
     ).commonSymmetricPadding(horizontal: 15, vertical: 12);
@@ -219,8 +213,6 @@ class CustomDrawer extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(width: homeScreenController.size.width * 0.010.w),
-
-
           Container(
             width: homeScreenController.size.width * 0.040.w,
             height: homeScreenController.size.width * 0.040.w,
@@ -229,9 +221,7 @@ class CustomDrawer extends StatelessWidget {
               color: AppColors.whiteColor,
             ),
           ),
-
           SizedBox(width: homeScreenController.size.width * 0.012.w),
-
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -245,7 +235,6 @@ class CustomDrawer extends StatelessWidget {
                   fontSize: 10.sp,
                 ),
               ),
-
               Text(
                 'Rushit Patel',
                 maxLines: 1,
@@ -263,33 +252,39 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 
-
   // Logout Button
   Widget _logoutButton() {
-    return Container(
-      decoration: const BoxDecoration(
-        color: AppColors.accentColor,
-      ),
-      child: Row(
-        children: [
-          const Icon(
-            Icons.power_settings_new_rounded,
-            color: AppColors.whiteColor,
-          ),
-          const SizedBox(width: 5),
-          Text(
-            'Logout',
-            style: TextStyle(
+    return GestureDetector(
+      onTap: () {
+        UserPrefsData().clearDataFromPrefs();
+        Get.offAll(() => AuthScreen());
+      },
+      child: Container(
+        decoration: const BoxDecoration(
+          color: AppColors.accentColor,
+        ),
+        child: Row(
+          children: [
+            Icon(
+              Icons.power_settings_new_rounded,
               color: AppColors.whiteColor,
-              fontSize: 12.sp,
+              size: 6.w,
             ),
-          ),
-        ],
-      ).commonAllSidePadding(8),
+            SizedBox(width: 5.w),
+            Text(
+              'Logout',
+              style: TextStyle(
+                color: AppColors.whiteColor,
+                fontSize: 13.sp,
+              ),
+            ),
+          ],
+        ).commonAllSidePadding(8),
+      ),
     );
   }
 
   Widget _divider() {
-    return Divider(height: 1, thickness: 1);
+    return const Divider(height: 1, thickness: 1);
   }
 }

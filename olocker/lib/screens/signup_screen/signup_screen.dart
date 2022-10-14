@@ -4,6 +4,7 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/screens/index_screen/index_screen.dart';
 import 'package:olocker/screens/signup_screen/signup_screen_widgets.dart';
+import 'package:olocker/widgets/common_loader.dart';
 
 import 'package:sizer/sizer.dart';
 
@@ -32,77 +33,39 @@ class SignUpScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    flex: 7,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Please fill up the form",
-                          maxLines: null,
-                          textAlign: TextAlign.start,
+      body: Obx(
+        () => signUpScreenController.isLoading.value
+            ? CommonLoader().showCircularLoader()
+            : SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(
+                    children: [
+                      RegisterHeaderModule(),
+                      SizedBox(height: 4.h),
+                      RegisterForm(),
+                      SizedBox(height: 3.h),
+                      RectangleRoundedButton(
+                        buttonColor: AppColors.accentColor,
+                        onPressed: () async {
+                          await signUpScreenController
+                              .userRegisterFunction(context);
+                          // Get.to(() => IndexScreen());
+                        },
+                        centerChild: Text(
+                          "Sign up",
                           style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 17.sp,
-                            color: AppColors.blackColor,
-                            letterSpacing: 0.6,
+                            color: AppColors.whiteColor,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
-                        Text(
-                          "to complete registration",
-                          maxLines: null,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 28.sp,
-                            color: AppColors.blackColor,
-                            letterSpacing: 0.8,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: Image.asset(
-                      AppImages.registrationImage,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 4.h),
-              NameFieldRow(),
-              SizedBox(height: 2.h),
-              EmailField(),
-              SizedBox(height: 2.h),
-              MobileNumberField(),
-              SizedBox(height: 2.h),
-              EnterCodeField(),
-              SizedBox(height: 3.h),
-              RectangleRoundedButton(
-                buttonColor: AppColors.accentColor,
-                onPressed: () {
-                  Get.to(() => IndexScreen());
-                },
-                centerChild: Text(
-                  "Sign up",
-                  style: TextStyle(
-                    color: AppColors.whiteColor,
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w400,
+                      ),
+                      SizedBox(height: 2.h),
+                    ],
                   ),
                 ),
               ),
-            ],
-          ),
-        ),
       ),
     );
   }

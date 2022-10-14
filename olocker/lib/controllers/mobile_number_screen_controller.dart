@@ -8,6 +8,7 @@ import 'package:olocker/screens/index_screen/index_screen.dart';
 import 'package:olocker/screens/otp_screen/otp_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:olocker/screens/signup_screen/signup_screen.dart';
+import 'package:olocker/utils/user_prefs_data.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/api_url.dart';
@@ -31,12 +32,16 @@ class MobileNumberScreenController extends GetxController {
 
     if (formKey.currentState!.validate()) {
       isLoading(true);
-      String url = "${ApiUrl.checkUserByMobileApi}?mobileNo=$mobNumber";
+      String url = ApiUrl.userLoginApi;
       log(" checkMobileNumber url: $url");
 
       try {
-        http.Response response = await http.get(
+        var formData = {
+          "MobileNo": mobNumber,
+        };
+        http.Response response = await http.post(
           Uri.parse(url),
+          body: json.encode(formData),
           headers: apiHeader.headers,
         );
 
@@ -55,50 +60,46 @@ class MobileNumberScreenController extends GetxController {
 
         if (isCustomerExist == true) {
           log("mobile number is verfied");
+          prefs.setString(
+              UserPrefsData().customerMobileNoKey, numberController.text);
           Get.off(() => OtpScreen());
         } else {
+          log("mobile number is new");
           final snackBar = SnackBar(
             backgroundColor: AppColors.whiteColor,
-            elevation: 5,
+            elevation: 8,
             behavior: SnackBarBehavior.floating,
-            margin: EdgeInsets.only(
-              left: 5,
-              right: 5,
-              bottom: 5,
-            ),
+            margin: const EdgeInsets.all(8),
             content: Text(
               userLoginModel.errorInfo.extraInfo.isEmpty
                   ? "User Not Registered"
                   : userLoginModel.errorInfo.extraInfo,
-              style: TextStyle(
+              style: const TextStyle(
                 color: AppColors.blackColor,
               ),
             ),
           );
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-          log("mobile number is new");
-
-          // Get.to(() => SignUpScreen());
+          Get.to(() => SignUpScreen());
         }
+        isLoading(false);
       } catch (e) {
         log("checkMobileNumber Error ::: $e");
         rethrow;
-      } finally {
-        isLoading(false);
       }
     }
   }
 
-  /*@override
+  @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-  }*/
+  }
 
-  /*@override
+  @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-  }*/
+  }
 }

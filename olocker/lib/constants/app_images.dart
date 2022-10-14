@@ -23,7 +23,7 @@ class AppIcons {
   static const String iconRootPath = "assets/icons";
 
   static const String mobileIcon = '$iconRootPath/phone.png';
-  static const String codeImage = "$iconRootPath/code_new.png";
+  static const String codeIcon = "$iconRootPath/code_new.png";
 
   static const String drawerHomeIcon = '$iconRootPath/drawer_home.png';
   static const String drawerJewellerIcon = '$iconRootPath/drawer_jeweller.png';
