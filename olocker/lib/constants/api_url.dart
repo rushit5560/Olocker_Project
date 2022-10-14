@@ -12,7 +12,9 @@ class ApiUrl {
   // Home Screen Api
   static const String myJewellersApi = "${apiMainPath}api/user/GetMyJewellers";
 
-  static const String checkUserByMobileApi = "api/User/CheckUserByMobile";
-  static const String validateOtpApi = "api/user/ValidateOtp/";
-  static const String registerApi = "api/User/Register";
+  static const String userLoginApi = "${apiMainPath}api/User/UserLogin/";
+  static const String validateOtpApi = "${apiMainPath}api/user/ValidateOtp/";
+  static const String checkUserByMobileApi =
+      "${apiMainPath}api/User/CheckUserByMobile";
+  static const String registerApi = "${apiMainPath}api/User/Register";
 }
