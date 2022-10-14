@@ -78,12 +78,14 @@ class OtpScreen extends StatelessWidget {
                     FieldValidator().validateOtpNumber(value!),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 autofocus: true,
+                style: const TextStyle(letterSpacing: 8),
                 decoration: InputDecoration(
                   hintText: "Enter Otp",
                   hintStyle: TextStyle(
                     color: AppColors.greyColor,
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
+
                   ),
                 ),
               ).commonSymmetricPadding(
@@ -95,7 +97,7 @@ class OtpScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Don't recieve the OTP ? ",
+                  "Don't receive the OTP ? ",
                   style: TextStyle(
                     color: AppColors.greyColor,
                     fontSize: 11.sp,

@@ -34,19 +34,16 @@ class HomeScreenController extends GetxController {
 
     } catch(e) {
      log('getMyJewellersFunction Error :$e');
+     rethrow;
     }
-
-
 
   }
 
   @override
   void onInit() {
+    getMyJewellersFunction();
     super.onInit();
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
+
 }

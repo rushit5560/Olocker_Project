@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:olocker/screens/index_screen/index_screen.dart';
 import 'package:olocker/screens/otp_screen/otp_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:olocker/screens/signup_screen/signup_screen.dart';
@@ -18,19 +19,18 @@ class MobileNumberScreenController extends GetxController {
   final formKey = GlobalKey<FormState>();
 
   ApiHeader apiHeader = ApiHeader();
-  submitMobileNumber() {
+  submitMobileNumber() async {
     if (formKey.currentState!.validate()) {
       try {
-        checkMobileNumber();
-        // Get.to(() => OtpScreen());
+        await checkMobileNumber();
       } catch (e) {
-        log("${e.toString()}");
+        log(e.toString());
         rethrow;
       }
     }
   }
 
-  checkMobileNumber() async {
+  Future<void> checkMobileNumber() async {
     String mobNumber = numberController.text.toString();
     isLoading(true);
     String url =
@@ -58,6 +58,7 @@ class MobileNumberScreenController extends GetxController {
         // Get.to(() => SignUpScreen());
       } else {
         log("mobile number is verfied");
+        Get.off(()=> OtpScreen());
       }
 
       // GetFcmTokeModel getFcmTokeModel = GetFcmTokeModel.fromJson(
@@ -96,15 +97,15 @@ class MobileNumberScreenController extends GetxController {
     }
   }
 
-  @override
+  /*@override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-  }
+  }*/
 
-  @override
+  /*@override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-  }
+  }*/
 }

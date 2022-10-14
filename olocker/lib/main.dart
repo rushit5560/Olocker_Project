@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:olocker/screens/index_screen/index_screen.dart';
 import 'package:olocker/screens/splash_screen/splash_screen.dart';
 import 'package:olocker/utils/themes.dart';
 import 'package:sizer/sizer.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
             const Color(0xffed6660),
           ),
         ),
-        home: SplashScreen(),
+        home: IndexScreen(),
       );
     });
   }

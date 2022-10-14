@@ -9,7 +9,8 @@ class ApiUrl {
   static const String apiMainPath = "https://devappapi.olocker.in/";
   static const String apiImagePath = "https://devappapi.olocker.in/";
 
-  static const String myJewellersApi = "api/user/GetMyJewellers";
+  // Home Screen Api
+  static const String myJewellersApi = "${apiMainPath}api/user/GetMyJewellers";
 
   static const String checkUserByMobileApi = "api/User/CheckUserByMobile";
   static const String validateOtpApi = "api/user/ValidateOtp/";
