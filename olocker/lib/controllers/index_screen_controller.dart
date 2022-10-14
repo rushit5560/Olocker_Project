@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
+import 'package:olocker/constants/user_details.dart';
 import 'package:olocker/models/index_screen_models/get_notification_model.dart';
 import 'package:olocker/screens/home_screen/home_screen.dart';
 import 'package:olocker/screens/notification_screen/notification_screen.dart';
@@ -29,7 +30,7 @@ class IndexScreenController extends GetxController {
 
 
   Future<void> getNotificationCountFunction() async {
-    String url = "${ApiUrl.getNotificationCountApi}?customerId=904076";
+    String url = "${ApiUrl.getNotificationCountApi}?customerId=${UserDetails.customerId}";
     log("Get Notification Count Api Url : $url");
 
     try {

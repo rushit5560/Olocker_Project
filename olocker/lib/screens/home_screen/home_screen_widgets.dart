@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,10 +9,13 @@ import 'package:olocker/controllers/home_screen_controller.dart';
 import 'package:olocker/models/home_screen_models/banner_model.dart';
 import 'package:olocker/models/home_screen_models/my_jewellers_model.dart';
 import 'package:olocker/models/home_screen_models/smart_deals_online_model.dart';
-import 'package:olocker/my_jewellers_screen/my_jewellers_screen.dart';
 import 'package:olocker/screens/add_new_jeweller_screen/add_new_jeweller_screen.dart';
+import 'package:olocker/screens/my_jewellers_screen/my_jewellers_screen.dart';
+import 'package:olocker/screens/online_deals_screen/online_deals_screen.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
+
+
 
 
 class MainAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -269,9 +271,11 @@ class SmartDealsModule extends StatelessWidget {
                             activeColor: AppColors.accentColor,
                             inactiveThumbColor: AppColors.accentColor,
                             onChanged: (value) {
+                              screenController.isLoading(true);
                               screenController.smartDealsSwitch.value =
                               !screenController.smartDealsSwitch.value;
                               log('${screenController.smartDealsSwitch.value}');
+                              screenController.isLoading(false);
                             },
                         ),
                       ),
@@ -292,10 +296,19 @@ class SmartDealsModule extends StatelessWidget {
             ).commonSymmetricPadding(horizontal: 8),
           ),
 
-          OnlineDealsListModule(),
-
+          screenController.smartDealsSwitch.value == false
+              ? OnlineDealsListModule()
+              : const Text(
+                  'Keep checking this space for exciting deals',
+                  style: TextStyle(
+                    color: AppColors.whiteColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
           SizedBox(height: screenController.size.height * 0.015),
-          ViewAllButtonModule(),
+          screenController.smartDealsSwitch.value == false
+          ? ViewAllButtonModule()
+          : Container(),
           SizedBox(height: screenController.size.height * 0.015),
 
         ],
@@ -341,22 +354,29 @@ class OnlineDealsListModule extends StatelessWidget {
 }
 
 class ViewAllButtonModule extends StatelessWidget {
-  const ViewAllButtonModule({Key? key}) : super(key: key);
+  ViewAllButtonModule({Key? key}) : super(key: key);
+  final screenController = Get.find<HomeScreenController>();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        color: AppColors.accentColor,
+    return GestureDetector(
+      onTap: () => Get.to(
+              ()=> OnlineDealsScreen(),
+        arguments: screenController.smartDealsOnlineList,
       ),
-      child: const Text(
-        'VIEW ALL',
-        style: TextStyle(
-          color: AppColors.whiteColor,
-          fontWeight: FontWeight.w500,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25),
+          color: AppColors.accentColor,
         ),
-      ).commonSymmetricPadding(horizontal: 20, vertical: 10),
+        child: const Text(
+          'VIEW ALL',
+          style: TextStyle(
+            color: AppColors.whiteColor,
+            fontWeight: FontWeight.w500,
+          ),
+        ).commonSymmetricPadding(horizontal: 20, vertical: 10),
+      ),
     );
   }
 }

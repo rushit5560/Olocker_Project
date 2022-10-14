@@ -28,7 +28,7 @@ class HomeScreenController extends GetxController {
   Future<void> getMyJewellersFunction() async {
     isLoading(true);
     // String url = '${ApiUrl.myJewellersApi}?customerId=${UserDetails.customerId}';
-    String url = '${ApiUrl.myJewellersApi}?customerId=904076';
+    String url = '${ApiUrl.myJewellersApi}?customerId=${UserDetails.customerId}';
     log('My Jewellers Api Url : $url');
 
     try {
@@ -87,7 +87,7 @@ class HomeScreenController extends GetxController {
 
   Future<void> getSmartDealsOnlineFunction() async {
     isLoading(true);
-    String url = "${ApiUrl.smartDealsOnlineApi}?customerId=904076";
+    String url = "${ApiUrl.smartDealsOnlineApi}?customerId=${UserDetails.customerId}";
     log('Smart Deals Online Api Url : $url');
 
     try {
