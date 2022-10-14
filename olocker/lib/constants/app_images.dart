@@ -17,6 +17,7 @@ class AppImages {
   static const String olockerServiceLogo2Image =
       '$imageRootPath/olocker_logo_homebx2.png';
   static const String addJewelleryImage = '$imageRootPath/add_jeweller.png';
+  static const String jewellersShapeImage = '$imageRootPath/myjeweller_shape1.png';
 }
 
 class AppIcons {

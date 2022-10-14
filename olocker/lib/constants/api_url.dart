@@ -11,6 +11,11 @@ class ApiUrl {
 
   // Home Screen Api
   static const String myJewellersApi = "${apiMainPath}api/user/GetMyJewellers";
+  static const String smartDealsOnlineApi = "${apiMainPath}api/user/GetOnlineDeals";
+  static const String bannerApi = "${apiMainPath}api/User/GetGraphicalNotifications";
+
+  // Index Screen Api
+  static const String getNotificationCountApi = "${apiMainPath}api/User/GetNotificationCount";
 
   static const String userLoginApi = "${apiMainPath}api/User/UserLogin/";
   static const String validateOtpApi = "${apiMainPath}api/user/ValidateOtp/";

@@ -1,7 +1,12 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:http/http.dart' as http;
+import 'package:olocker/constants/user_details.dart';
+import 'package:olocker/models/home_screen_models/banner_model.dart';
+import 'package:olocker/models/home_screen_models/my_jewellers_model.dart';
+import 'package:olocker/models/home_screen_models/smart_deals_online_model.dart';
 
 
 
@@ -15,29 +20,103 @@ class HomeScreenController extends GetxController {
 
   RxBool smartDealsSwitch = false.obs;
 
+  List<JewellerData> myAllJewellersList = [];
+  List<VendorDealsList> smartDealsOnlineList = [];
+  List<NotificationBanner> bannerList = [];
+
 
   Future<void> getMyJewellersFunction() async {
     isLoading(true);
-    String url = '${ApiUrl.myJewellersApi}?customerId=1';
+    // String url = '${ApiUrl.myJewellersApi}?customerId=${UserDetails.customerId}';
+    String url = '${ApiUrl.myJewellersApi}?customerId=904076';
+    log('My Jewellers Api Url : $url');
 
     try {
-
-      Map<String, dynamic> bodyData = {};
-
-      http.Response response = await http.post(
+      http.Response response = await http.get(
         Uri.parse(url),
         headers: apiHeader.headers,
-        body: bodyData,
       );
 
-      log('response :${response.body}');
+      MyJewellersModel myJewellersModel = MyJewellersModel.fromJson(json.decode(response.body));
+
+      isSuccessStatus = myJewellersModel.success.obs;
+
+      if(isSuccessStatus.value) {
+        myAllJewellersList.clear();
+        myAllJewellersList.addAll(myJewellersModel.addMyJewellerdata);
+
+      } else {
+        log('getMyJewellersFunction Else');
+      }
 
     } catch(e) {
      log('getMyJewellersFunction Error :$e');
      rethrow;
     }
 
+    await getBannerFunction();
   }
+
+  Future<void> getBannerFunction() async {
+    isLoading(true);
+    String url = ApiUrl.bannerApi;
+    log('Banner Api Url : $url');
+
+    try {
+      http.Response response = await http.get(
+        Uri.parse(url), headers: apiHeader.headers);
+
+      BannerModel bannerModel = BannerModel.fromJson(json.decode(response.body));
+      isSuccessStatus = bannerModel.success.obs;
+
+      if(isSuccessStatus.value) {
+        bannerList.clear();
+        bannerList.addAll(bannerModel.notifications);
+      } else {
+        log('getBannerFunction Else');
+      }
+
+    } catch(e) {
+      log('getBannerFunction Error : $e');
+      rethrow;
+    }
+
+
+    await getSmartDealsOnlineFunction();
+  }
+
+  Future<void> getSmartDealsOnlineFunction() async {
+    isLoading(true);
+    String url = "${ApiUrl.smartDealsOnlineApi}?customerId=904076";
+    log('Smart Deals Online Api Url : $url');
+
+    try {
+      http.Response response = await http.get(
+        Uri.parse(url),
+        headers: apiHeader.headers,
+      );
+
+      SmartDealsOnlineModel smartDealsOnlineModel = SmartDealsOnlineModel.fromJson(json.decode(response.body));
+
+      isSuccessStatus = smartDealsOnlineModel.success.obs;
+
+      if(isSuccessStatus.value) {
+        smartDealsOnlineList.clear();
+        smartDealsOnlineList.addAll(smartDealsOnlineModel.vendorDealsList);
+      } else {
+        log('getSmartDealsOnline Else');
+      }
+
+
+    } catch(e) {
+      log('getSmartDealsOnline Error :$e');
+      rethrow;
+    }
+
+    isLoading(false);
+
+  }
+
 
   @override
   void onInit() {

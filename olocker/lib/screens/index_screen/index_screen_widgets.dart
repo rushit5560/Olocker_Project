@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/index_screen_controller.dart';
+import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
 
@@ -24,6 +27,10 @@ class BottomNavBar extends StatelessWidget {
       showSelectedLabels: true,
       onTap: (index) {
         indexScreenController.currentBottomIndex.value = index;
+
+        if(index == 2) {
+          indexScreenController.notificationCount.value = 0;
+        }
       },
       backgroundColor: AppColors.accentColor,
       selectedLabelStyle: TextStyle(
@@ -68,13 +75,40 @@ class BottomNavBar extends StatelessWidget {
         BottomNavigationBarItem(
           icon: Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
-            child: SvgPicture.asset(
-              "assets/svgs/message.svg",
-              color: AppColors.whiteColor,
-              height:
+            child: Stack(
+              alignment: Alignment.topCenter,
+              clipBehavior: Clip.none,
+              children: [
+                SvgPicture.asset(
+                  "assets/svgs/message.svg",
+                  color: AppColors.whiteColor,
+                  height:
                   indexScreenController.currentBottomIndex.value == 2 ? 24 : 23,
-              width:
+                  width:
                   indexScreenController.currentBottomIndex.value == 2 ? 24 : 23,
+                ),
+                indexScreenController.notificationCount.value == 0
+                ? Container()
+                : Positioned(
+                  top: -5,
+                  right: -5,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.whiteColor,
+                    ),
+                    child: Center(
+                      child: Text(
+                        '${indexScreenController.notificationCount.value}',
+                        style: TextStyle(
+                          color: AppColors.accentColor,
+                          fontSize: 9.sp,
+                        ),
+                      ).commonAllSidePadding(3),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           label: "NOTIFICATION",

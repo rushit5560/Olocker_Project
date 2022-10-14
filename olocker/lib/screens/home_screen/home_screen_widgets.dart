@@ -3,10 +3,15 @@ import 'dart:developer';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:olocker/add_new_jeweller_screen/add_new_jeweller_screen.dart';
+import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/home_screen_controller.dart';
+import 'package:olocker/models/home_screen_models/banner_model.dart';
+import 'package:olocker/models/home_screen_models/my_jewellers_model.dart';
+import 'package:olocker/models/home_screen_models/smart_deals_online_model.dart';
+import 'package:olocker/my_jewellers_screen/my_jewellers_screen.dart';
+import 'package:olocker/screens/add_new_jeweller_screen/add_new_jeweller_screen.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
@@ -115,7 +120,13 @@ class MyJewellersListModule extends StatelessWidget {
             ),
 
             GestureDetector(
-              onTap: () {},
+              onTap: () => Get.to(
+                () => MyJewellersScreen(),
+                arguments: [
+                  screenController.bannerList,
+                  screenController.myAllJewellersList,
+                ],
+              ),
               child: const Icon(
                 Icons.view_module_rounded,
                 color: AppColors.accentColor,
@@ -124,23 +135,29 @@ class MyJewellersListModule extends StatelessWidget {
           ],
         ).commonSymmetricPadding(horizontal: 10),
 
-        SizedBox(
-          height: screenController.size.height * 0.023.h,
-          child: ListView.builder(
-            itemCount: 5,
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, i) {
-              return _jewellerListTile();
-            },
-          ),
-        ),
+        screenController.myAllJewellersList.isEmpty
+        ? Container(height: screenController.size.height * 0.005.h)
+        :
+            SizedBox(
+              height: screenController.size.height * 0.023.h,
+              child: ListView.builder(
+                itemCount: screenController.myAllJewellersList.length,
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, i) {
+                  JewellerData jewellerData = screenController.myAllJewellersList[i];
+                  return _jewellerListTile(jewellerData);
+                },
+              ),
+            ),
+
       ],
     );
   }
 
 
-  Widget _jewellerListTile() {
+  Widget _jewellerListTile(JewellerData jewellerData) {
+    String imgUrl = ApiUrl.apiImagePath + jewellerData.logoFileName;
     return Column(
       children: [
         Container(
@@ -148,12 +165,16 @@ class MyJewellersListModule extends StatelessWidget {
           height: screenController.size.height * 0.015.h,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: AppColors.greyColor
+            // color: AppColors.greyColor,
+            image: DecorationImage(
+              image: NetworkImage(imgUrl),
+              fit: BoxFit.fill,
+            ),
           ),
         ),
         SizedBox(height: screenController.size.height * 0.001.h),
         Text(
-          'Kruti Diamonds',
+          jewellerData.companyName,
           style: TextStyle(
             fontSize: 9.sp,
           ),
@@ -171,21 +192,31 @@ class BannerModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CarouselSlider.builder(
-      itemCount: 4,
-      itemBuilder: (context, index, realIndex) {
-        return _imageModule()/*.commonSymmetricPadding(horizontal: 5)*/;
+      itemCount: screenController.bannerList.length,
+      itemBuilder: (context, i, realIndex) {
+        NotificationBanner singleBanner = screenController.bannerList[i];
+        return _imageModule(singleBanner)/*.commonSymmetricPadding(horizontal: 5)*/;
       },
       options: CarouselOptions(
-        height: screenController.size.height * 0.045.h,
+        height: screenController.size.height * 0.050.h,
         autoPlay: true,
         viewportFraction: 1,
+        // autoPlayAnimationDuration: const Duration(seconds: 10),
+        autoPlayInterval: const Duration(seconds: 10),
       ),
     );
   }
 
-  Widget _imageModule() {
+  Widget _imageModule(NotificationBanner singleBanner) {
+    String imgUrl = ApiUrl.apiImagePath + singleBanner.imageLocation +
+    singleBanner.imageName;
     return Container(
-      color: AppColors.greyColor,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: NetworkImage(imgUrl),
+          fit: BoxFit.fill,
+        ),
+      ),
     );
   }
 }
@@ -282,27 +313,29 @@ class OnlineDealsListModule extends StatelessWidget {
     return SizedBox(
       height: screenController.size.height * 0.016.h,
       child: ListView.builder(
-        itemCount: 5,
+        itemCount: screenController.smartDealsOnlineList.length,
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
         itemBuilder: (context, i){
-          return _onlineDealsListTile();
+          VendorDealsList vendorDeals = screenController.smartDealsOnlineList[i];
+          return _onlineDealsListTile(vendorDeals);
         },
       ),
     );
   }
 
-  Widget _onlineDealsListTile() {
+  Widget _onlineDealsListTile(VendorDealsList vendorDeals) {
+    String imgUrl = vendorDeals.categoryImage;
     return Container(
       width: screenController.size.height * 0.016.h,
       decoration: BoxDecoration(
         color: AppColors.whiteColor,
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Image.asset(
-        AppImages.dealLogoImage,
+      child: Image.network(
+        imgUrl,
         fit: BoxFit.contain,
-      ).commonAllSidePadding(10),
+      ).commonAllSidePadding(8),
     ).commonAllSidePadding(2);
   }
 }
