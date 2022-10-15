@@ -15,7 +15,7 @@ class SplashScreenController extends GetxController {
 
     // Get Prefs Data in Local Variable
     UserDetails.customerLoggedIn =
-        prefs.getBool(userPrefsData.customerLoggedInKey)!;
+        prefs.getBool(userPrefsData.customerLoggedInKey) ?? false;
 
     log(" UserDetails.customerLoggedIn is ::: ${UserDetails.customerLoggedIn}");
 
@@ -24,9 +24,9 @@ class SplashScreenController extends GetxController {
     // UserDetails.customerId = prefs.getString(userPrefsData.customerIdKey) ?? '';
 
     if (UserDetails.customerLoggedIn == false) {
-      userPrefsData.getCustomerFromPrefs();
       Get.off(() => AuthScreen());
     } else if (UserDetails.customerLoggedIn == true) {
+      userPrefsData.getCustomerFromPrefs();
       Get.off(() => IndexScreen());
     }
   }

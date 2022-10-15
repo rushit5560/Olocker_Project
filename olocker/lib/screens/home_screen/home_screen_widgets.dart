@@ -15,8 +15,7 @@ import 'package:olocker/screens/online_deals_screen/online_deals_screen.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
-
-
+import '../online_deals_list_screen/online_deals_list_screen.dart';
 
 class MainAppBar extends StatelessWidget with PreferredSizeWidget {
   MainAppBar({Key? key}) : super(key: key);
@@ -30,8 +29,8 @@ class MainAppBar extends StatelessWidget with PreferredSizeWidget {
       backgroundColor: AppColors.whiteColor,
       leading: GestureDetector(
         onTap: () {
-          // homeScreenController.scaffoldKey.currentState!.openDrawer();
-          Scaffold.of(context).openDrawer();
+          homeScreenController.scaffoldKey.currentState!.openDrawer();
+          // Scaffold.of(context).openDrawer();
         },
         child: const Icon(
           Icons.menu_rounded,
@@ -78,7 +77,7 @@ class AddNewJewellerButtonModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(()=> AddNewJewellerScreen());
+        Get.to(() => AddNewJewellerScreen());
       },
       child: Container(
         width: screenController.size.width,
@@ -101,7 +100,6 @@ class AddNewJewellerButtonModule extends StatelessWidget {
   }
 }
 
-
 class MyJewellersListModule extends StatelessWidget {
   MyJewellersListModule({Key? key}) : super(key: key);
   final screenController = Get.find<HomeScreenController>();
@@ -120,7 +118,6 @@ class MyJewellersListModule extends StatelessWidget {
                 color: AppColors.accentColor,
               ),
             ),
-
             GestureDetector(
               onTap: () => Get.to(
                 () => MyJewellersScreen(),
@@ -136,27 +133,24 @@ class MyJewellersListModule extends StatelessWidget {
             ),
           ],
         ).commonSymmetricPadding(horizontal: 10),
-
         screenController.myAllJewellersList.isEmpty
-        ? Container(height: screenController.size.height * 0.005.h)
-        :
-            SizedBox(
-              height: screenController.size.height * 0.023.h,
-              child: ListView.builder(
-                itemCount: screenController.myAllJewellersList.length,
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, i) {
-                  JewellerData jewellerData = screenController.myAllJewellersList[i];
-                  return _jewellerListTile(jewellerData);
-                },
+            ? Container(height: screenController.size.height * 0.005.h)
+            : SizedBox(
+                height: screenController.size.height * 0.023.h,
+                child: ListView.builder(
+                  itemCount: screenController.myAllJewellersList.length,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, i) {
+                    JewellerData jewellerData =
+                        screenController.myAllJewellersList[i];
+                    return _jewellerListTile(jewellerData);
+                  },
+                ),
               ),
-            ),
-
       ],
     );
   }
-
 
   Widget _jewellerListTile(JewellerData jewellerData) {
     String imgUrl = ApiUrl.apiImagePath + jewellerData.logoFileName;
@@ -184,7 +178,6 @@ class MyJewellersListModule extends StatelessWidget {
       ],
     ).commonAllSidePadding(8);
   }
-
 }
 
 class BannerModule extends StatelessWidget {
@@ -197,7 +190,8 @@ class BannerModule extends StatelessWidget {
       itemCount: screenController.bannerList.length,
       itemBuilder: (context, i, realIndex) {
         NotificationBanner singleBanner = screenController.bannerList[i];
-        return _imageModule(singleBanner)/*.commonSymmetricPadding(horizontal: 5)*/;
+        return _imageModule(
+            singleBanner) /*.commonSymmetricPadding(horizontal: 5)*/;
       },
       options: CarouselOptions(
         height: screenController.size.height * 0.050.h,
@@ -210,8 +204,9 @@ class BannerModule extends StatelessWidget {
   }
 
   Widget _imageModule(NotificationBanner singleBanner) {
-    String imgUrl = ApiUrl.apiImagePath + singleBanner.imageLocation +
-    singleBanner.imageName;
+    String imgUrl = ApiUrl.apiImagePath +
+        singleBanner.imageLocation +
+        singleBanner.imageName;
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -239,7 +234,7 @@ class SmartDealsModule extends StatelessWidget {
       child: Column(
         children: [
           Obx(
-          ()=> Row(
+            () => Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
@@ -249,53 +244,48 @@ class SmartDealsModule extends StatelessWidget {
                     fontSize: 12.sp,
                   ),
                 ),
-
                 Row(
                   children: [
                     Text(
                       'Online',
                       style: TextStyle(
                         color: screenController.smartDealsSwitch.value
-                            ? Colors.white70 : Colors.white,
+                            ? Colors.white70
+                            : Colors.white,
                         fontSize: 9.sp,
                       ),
                     ),
-
-
                     Transform.scale(
-                        scale: 0.8,
-                        child: Switch(
-                            value: screenController.smartDealsSwitch.value,
-                            activeTrackColor: AppColors.whiteColor,
-                            inactiveTrackColor: AppColors.whiteColor,
-                            activeColor: AppColors.accentColor,
-                            inactiveThumbColor: AppColors.accentColor,
-                            onChanged: (value) {
-                              screenController.isLoading(true);
-                              screenController.smartDealsSwitch.value =
+                      scale: 0.8,
+                      child: Switch(
+                        value: screenController.smartDealsSwitch.value,
+                        activeTrackColor: AppColors.whiteColor,
+                        inactiveTrackColor: AppColors.whiteColor,
+                        activeColor: AppColors.accentColor,
+                        inactiveThumbColor: AppColors.accentColor,
+                        onChanged: (value) {
+                          screenController.isLoading(true);
+                          screenController.smartDealsSwitch.value =
                               !screenController.smartDealsSwitch.value;
-                              log('${screenController.smartDealsSwitch.value}');
-                              screenController.isLoading(false);
-                            },
-                        ),
+                          log('${screenController.smartDealsSwitch.value}');
+                          screenController.isLoading(false);
+                        },
                       ),
-
-
+                    ),
                     Text(
                       'Local',
                       style: TextStyle(
                         color: screenController.smartDealsSwitch.value
-                            ? Colors.white : Colors.white70,
+                            ? Colors.white
+                            : Colors.white70,
                         fontSize: 9.sp,
                       ),
                     ),
-
                   ],
                 ),
               ],
             ).commonSymmetricPadding(horizontal: 8),
           ),
-
           screenController.smartDealsSwitch.value == false
               ? OnlineDealsListModule()
               : const Text(
@@ -307,10 +297,9 @@ class SmartDealsModule extends StatelessWidget {
                 ),
           SizedBox(height: screenController.size.height * 0.015),
           screenController.smartDealsSwitch.value == false
-          ? ViewAllButtonModule()
-          : Container(),
+              ? ViewAllButtonModule()
+              : Container(),
           SizedBox(height: screenController.size.height * 0.015),
-
         ],
       ),
     );
@@ -329,8 +318,9 @@ class OnlineDealsListModule extends StatelessWidget {
         itemCount: screenController.smartDealsOnlineList.length,
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
-        itemBuilder: (context, i){
-          VendorDealsList vendorDeals = screenController.smartDealsOnlineList[i];
+        itemBuilder: (context, i) {
+          VendorDealsList vendorDeals =
+              screenController.smartDealsOnlineList[i];
           return _onlineDealsListTile(vendorDeals);
         },
       ),
@@ -339,17 +329,25 @@ class OnlineDealsListModule extends StatelessWidget {
 
   Widget _onlineDealsListTile(VendorDealsList vendorDeals) {
     String imgUrl = vendorDeals.categoryImage;
-    return Container(
-      width: screenController.size.height * 0.016.h,
-      decoration: BoxDecoration(
-        color: AppColors.whiteColor,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Image.network(
-        imgUrl,
-        fit: BoxFit.contain,
-      ).commonAllSidePadding(8),
-    ).commonAllSidePadding(2);
+    return GestureDetector(
+      onTap: () {
+        Get.to(
+          () => OnlineDealsListScreen(),
+          arguments: vendorDeals,
+        );
+      },
+      child: Container(
+        width: screenController.size.height * 0.016.h,
+        decoration: BoxDecoration(
+          color: AppColors.whiteColor,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Image.network(
+          imgUrl,
+          fit: BoxFit.contain,
+        ).commonAllSidePadding(8),
+      ).commonAllSidePadding(2),
+    );
   }
 }
 
@@ -361,7 +359,7 @@ class ViewAllButtonModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Get.to(
-              ()=> OnlineDealsScreen(),
+        () => OnlineDealsScreen(),
         arguments: screenController.smartDealsOnlineList,
       ),
       child: Container(
@@ -380,7 +378,6 @@ class ViewAllButtonModule extends StatelessWidget {
     );
   }
 }
-
 
 class OlockerServiceModule extends StatelessWidget {
   OlockerServiceModule({Key? key}) : super(key: key);
@@ -436,9 +433,7 @@ class OlockerServiceModule extends StatelessWidget {
                     title: 'Jewellery Insurance',
                     image: AppImages.olockerServiceLogo1Image,
                   ),
-
                   SizedBox(width: screenController.size.width * 0.008.w),
-
                   _serviceModule(
                     width: screenController.size.width * 0.07.w,
                     height: screenController.size.height * 0.025.h,
@@ -446,7 +441,6 @@ class OlockerServiceModule extends StatelessWidget {
                     title: 'Personal Loans',
                     image: AppImages.olockerServiceLogo2Image,
                   ),
-
                 ],
               ),
             ],
@@ -550,8 +544,3 @@ class OlockerServiceModule extends StatelessWidget {
     );
   }
 }
-
-
-
-
-

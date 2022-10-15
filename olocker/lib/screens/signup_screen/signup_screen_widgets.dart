@@ -69,7 +69,7 @@ class NameFieldRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
       ),
-      height: 55,
+      height: 60,
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.3),
@@ -173,7 +173,7 @@ class EmailField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
       ),
-      height: 55,
+      height: 60,
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.3),
@@ -227,7 +227,7 @@ class MobileNumberField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
       ),
-      height: 55,
+      height: 60,
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.3),
@@ -293,7 +293,7 @@ class EnterCodeField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
       ),
-      height: 55,
+      height: 60,
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.3),

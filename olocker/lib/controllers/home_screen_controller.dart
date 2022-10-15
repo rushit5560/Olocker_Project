@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:http/http.dart' as http;
@@ -8,13 +9,11 @@ import 'package:olocker/models/home_screen_models/banner_model.dart';
 import 'package:olocker/models/home_screen_models/my_jewellers_model.dart';
 import 'package:olocker/models/home_screen_models/smart_deals_online_model.dart';
 
-
-
 class HomeScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
-  // final scaffoldKey = GlobalKey<ScaffoldState>();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   ApiHeader apiHeader = ApiHeader();
 
@@ -24,11 +23,11 @@ class HomeScreenController extends GetxController {
   List<VendorDealsList> smartDealsOnlineList = [];
   List<NotificationBanner> bannerList = [];
 
-
   Future<void> getMyJewellersFunction() async {
     isLoading(true);
     // String url = '${ApiUrl.myJewellersApi}?customerId=${UserDetails.customerId}';
-    String url = '${ApiUrl.myJewellersApi}?customerId=${UserDetails.customerId}';
+    String url =
+        '${ApiUrl.myJewellersApi}?customerId=${UserDetails.customerId}';
     log('My Jewellers Api Url : $url');
 
     try {
@@ -37,21 +36,20 @@ class HomeScreenController extends GetxController {
         headers: apiHeader.headers,
       );
 
-      MyJewellersModel myJewellersModel = MyJewellersModel.fromJson(json.decode(response.body));
+      MyJewellersModel myJewellersModel =
+          MyJewellersModel.fromJson(json.decode(response.body));
 
       isSuccessStatus = myJewellersModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         myAllJewellersList.clear();
         myAllJewellersList.addAll(myJewellersModel.addMyJewellerdata);
-
       } else {
         log('getMyJewellersFunction Else');
       }
-
-    } catch(e) {
-     log('getMyJewellersFunction Error :$e');
-     rethrow;
+    } catch (e) {
+      log('getMyJewellersFunction Error :$e');
+      rethrow;
     }
 
     await getBannerFunction();
@@ -63,31 +61,31 @@ class HomeScreenController extends GetxController {
     log('Banner Api Url : $url');
 
     try {
-      http.Response response = await http.get(
-        Uri.parse(url), headers: apiHeader.headers);
+      http.Response response =
+          await http.get(Uri.parse(url), headers: apiHeader.headers);
 
-      BannerModel bannerModel = BannerModel.fromJson(json.decode(response.body));
+      BannerModel bannerModel =
+          BannerModel.fromJson(json.decode(response.body));
       isSuccessStatus = bannerModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         bannerList.clear();
         bannerList.addAll(bannerModel.notifications);
       } else {
         log('getBannerFunction Else');
       }
-
-    } catch(e) {
+    } catch (e) {
       log('getBannerFunction Error : $e');
       rethrow;
     }
-
 
     await getSmartDealsOnlineFunction();
   }
 
   Future<void> getSmartDealsOnlineFunction() async {
     isLoading(true);
-    String url = "${ApiUrl.smartDealsOnlineApi}?customerId=${UserDetails.customerId}";
+    String url =
+        "${ApiUrl.smartDealsOnlineApi}?customerId=${UserDetails.customerId}";
     log('Smart Deals Online Api Url : $url');
 
     try {
@@ -96,33 +94,28 @@ class HomeScreenController extends GetxController {
         headers: apiHeader.headers,
       );
 
-      SmartDealsOnlineModel smartDealsOnlineModel = SmartDealsOnlineModel.fromJson(json.decode(response.body));
+      SmartDealsOnlineModel smartDealsOnlineModel =
+          SmartDealsOnlineModel.fromJson(json.decode(response.body));
 
       isSuccessStatus = smartDealsOnlineModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         smartDealsOnlineList.clear();
         smartDealsOnlineList.addAll(smartDealsOnlineModel.vendorDealsList);
       } else {
         log('getSmartDealsOnline Else');
       }
-
-
-    } catch(e) {
+    } catch (e) {
       log('getSmartDealsOnline Error :$e');
       rethrow;
     }
 
     isLoading(false);
-
   }
-
 
   @override
   void onInit() {
     getMyJewellersFunction();
     super.onInit();
   }
-
-
 }

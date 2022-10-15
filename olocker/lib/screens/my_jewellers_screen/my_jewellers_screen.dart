@@ -4,7 +4,9 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/my_jewellers_screen_controller.dart';
 import 'package:olocker/utils/extensions.dart';
+import 'package:sizer/sizer.dart';
 
+import '../my_favourites_screen/my_favourites_screen.dart';
 import 'my_jewellers_screen_widgets.dart';
 
 class MyJewellersScreen extends StatelessWidget {
@@ -18,19 +20,25 @@ class MyJewellersScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => Get.back(),
-          icon: const Icon(Icons.arrow_back_ios, color: AppColors.blackColor),
+          icon:
+              const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor),
         ),
-        title: const Text(
-            'My Jewellers',
+        titleSpacing: 0,
+        title: Text(
+          'My Jewellers',
           style: TextStyle(
-            color: AppColors.blackColor,
+            color: AppColors.blackTextColor,
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w400,
           ),
         ),
         actions: [
           IconButton(
-            onPressed: (){},
+            onPressed: () {
+              Get.to(() => MyFavouritesScreen());
+            },
             icon: const Icon(
-                Icons.favorite_border_rounded,
+              Icons.favorite_border_rounded,
               color: AppColors.greyColor,
             ),
           ),
@@ -38,16 +46,14 @@ class MyJewellersScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: AppColors.whiteColor,
       ),
-
       body: Stack(
         children: [
           BackGroundModule(),
-
           Column(
             children: [
               BannerSliderModule(),
-
-              Expanded(child: AllJewellersListModule().commonAllSidePadding(10)),
+              Expanded(
+                  child: AllJewellersListModule().commonAllSidePadding(10)),
             ],
           ),
         ],

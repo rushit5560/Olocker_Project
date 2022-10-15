@@ -11,9 +11,7 @@ class SplashScreen extends StatelessWidget {
     return const Scaffold(
       body: SafeArea(
         child: Center(
-          child: Text(
-            'Splash Screen'
-          ),
+          child: Text('Splash Screen'),
         ),
       ),
     );

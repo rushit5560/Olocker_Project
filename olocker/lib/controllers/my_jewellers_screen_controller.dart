@@ -18,6 +18,4 @@ class MyJewellersScreenController extends GetxController {
     log('allJewellersList : ${allJewellersList.length}');
     super.onInit();
   }
-
-
 }

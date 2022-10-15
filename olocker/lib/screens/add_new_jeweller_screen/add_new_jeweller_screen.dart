@@ -10,7 +10,8 @@ import 'add_new_jeweller_screen_widgets.dart';
 
 class AddNewJewellerScreen extends StatelessWidget {
   AddNewJewellerScreen({Key? key}) : super(key: key);
-  final addNewJewellerScreenController = Get.put(AddNewJewellerScreenController());
+  final addNewJewellerScreenController =
+      Get.put(AddNewJewellerScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,6 @@ class AddNewJewellerScreen extends StatelessWidget {
           ),
         ),
       ),
-
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
@@ -46,7 +46,6 @@ class AddNewJewellerScreen extends StatelessWidget {
               ),
             ),
           ),
-
           SizedBox(
             height: addNewJewellerScreenController.size.height * 0.036.h,
             child: Column(
@@ -59,10 +58,7 @@ class AddNewJewellerScreen extends StatelessWidget {
                       color: AppColors.whiteColor,
                       boxShadow: const [
                         BoxShadow(
-                          color: Colors.grey,
-                          spreadRadius: 1,
-                          blurRadius: 5
-                        ),
+                            color: Colors.grey, spreadRadius: 1, blurRadius: 5),
                       ],
                     ),
                     child: Column(
@@ -76,10 +72,8 @@ class AddNewJewellerScreen extends StatelessWidget {
                             color: AppColors.blackColor,
                           ),
                         ),
-
                         RetailerCodeFieldModule(),
                         ReferralCodeFieldModule(),
-
                       ],
                     ).commonAllSidePadding(10),
                   ),

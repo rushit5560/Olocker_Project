@@ -76,28 +76,36 @@ class OtpScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Don't receive the OTP ? ",
+                          "Don't receive the OTP?",
                           style: TextStyle(
                             color: AppColors.greyColor,
-                            fontSize: 12.sp,
+                            fontSize: 11.sp,
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                        Text(
-                          "RESEND OTP",
-                          style: TextStyle(
-                            color: AppColors.accentTextColor,
-                            fontSize: 11.sp,
-                            fontWeight: FontWeight.w500,
+                        const SizedBox(width: 10),
+                        GestureDetector(
+                          onTap: () async {
+                            await otpScreenController
+                                .userResendOtpFunction(context);
+                          },
+                          child: Text(
+                            "RESEND OTP",
+                            style: TextStyle(
+                              color: AppColors.accentTextColor,
+                              fontSize: 11.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 2.h),
+                    SizedBox(height: 3.h),
                     RectangleRoundedButton(
                       buttonColor: AppColors.accentColor,
-                      onPressed: () {
-                        otpScreenController.validateOtpNumberFunction(context);
+                      onPressed: () async {
+                        await otpScreenController
+                            .validateOtpNumberFunction(context);
                       },
                       centerChild: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

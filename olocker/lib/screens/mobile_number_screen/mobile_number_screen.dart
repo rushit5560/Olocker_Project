@@ -87,6 +87,7 @@ class MobileNumberScreen extends StatelessWidget {
                         validator: (value) =>
                             FieldValidator().validateMobileNumber(value!),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
+                        textInputAction: TextInputAction.done,
                         decoration: InputDecoration(
                           hintText: "Enter your mobile number",
                           hintStyle: TextStyle(

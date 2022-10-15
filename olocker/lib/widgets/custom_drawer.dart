@@ -4,10 +4,15 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/home_screen_controller.dart';
+import 'package:olocker/screens/add_new_jeweller_screen/add_new_jeweller_screen.dart';
 import 'package:olocker/screens/auth_screen/auth_screen.dart';
+import 'package:olocker/screens/my_insured_jewellery_screen/my_insured_jewellery_screen.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/utils/user_prefs_data.dart';
 import 'package:sizer/sizer.dart';
+
+import '../screens/my_jewellers_screen/my_jewellers_screen.dart';
+import '../screens/my_jewellery_portfolio_screen/my_jewellery_portfolio_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
   CustomDrawer({Key? key}) : super(key: key);
@@ -47,17 +52,24 @@ class CustomDrawer extends StatelessWidget {
 
   // Home Module
   Widget _homeModule() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Image.asset(
-          AppIcons.drawerHomeIcon,
-          height: homeScreenController.size.width * 0.010.w,
-        ),
-        SizedBox(width: homeScreenController.size.width * 0.008.w),
-        const Text('Home'),
-      ],
-    ).commonSymmetricPadding(horizontal: 15, vertical: 12);
+    return GestureDetector(
+      onTap: () {
+        homeScreenController.scaffoldKey.currentState!.closeDrawer();
+        Get.back();
+      },
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Image.asset(
+            AppIcons.drawerHomeIcon,
+            height: homeScreenController.size.width * 0.010.w,
+          ),
+          SizedBox(width: homeScreenController.size.width * 0.008.w),
+          const Text('Home'),
+        ],
+      ).commonSymmetricPadding(horizontal: 15, vertical: 12),
+    );
   }
 
   // My Jeweller
@@ -79,33 +91,51 @@ class CustomDrawer extends StatelessWidget {
       collapsed: Container(),
       expanded: Column(
         children: [
-          Container(
-            color: AppColors.accentBGColor,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(
-                  AppIcons.drawerRetailerIcon,
-                  height: homeScreenController.size.width * 0.010.w,
-                ),
-                SizedBox(width: homeScreenController.size.width * 0.008.w),
-                const Text("Retailer's Home"),
-              ],
-            ).commonSymmetricPadding(horizontal: 30, vertical: 14),
+          GestureDetector(
+            onTap: () {
+              homeScreenController.scaffoldKey.currentState!.closeDrawer();
+              Get.to(
+                () => MyJewellersScreen(),
+                arguments: [
+                  homeScreenController.bannerList,
+                  homeScreenController.myAllJewellersList,
+                ],
+              );
+            },
+            child: Container(
+              color: AppColors.accentBGColor.withOpacity(0.5),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    AppIcons.drawerRetailerIcon,
+                    height: homeScreenController.size.width * 0.010.w,
+                  ),
+                  SizedBox(width: homeScreenController.size.width * 0.008.w),
+                  const Text("Retailer's Home"),
+                ],
+              ).commonSymmetricPadding(horizontal: 30, vertical: 14),
+            ),
           ),
-          Container(
-            color: AppColors.accentBGColor,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(
-                  AppIcons.drawerAddJewellerIcon,
-                  height: homeScreenController.size.width * 0.010.w,
-                ),
-                SizedBox(width: homeScreenController.size.width * 0.008.w),
-                const Text("Add Jeweller"),
-              ],
-            ).commonSymmetricPadding(horizontal: 30, vertical: 14),
+          GestureDetector(
+            onTap: () {
+              homeScreenController.scaffoldKey.currentState!.closeDrawer();
+              Get.to(() => AddNewJewellerScreen());
+            },
+            child: Container(
+              color: AppColors.accentBGColor.withOpacity(0.5),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    AppIcons.drawerAddJewellerIcon,
+                    height: homeScreenController.size.width * 0.010.w,
+                  ),
+                  SizedBox(width: homeScreenController.size.width * 0.008.w),
+                  const Text("Add Jeweller"),
+                ],
+              ).commonSymmetricPadding(horizontal: 30, vertical: 14),
+            ),
           ),
         ],
       ),
@@ -131,33 +161,45 @@ class CustomDrawer extends StatelessWidget {
       collapsed: Container(),
       expanded: Column(
         children: [
-          Container(
-            color: AppColors.accentBGColor,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(
-                  AppIcons.drawerInsuredJewelleryIcon,
-                  height: homeScreenController.size.width * 0.010.w,
-                ),
-                SizedBox(width: homeScreenController.size.width * 0.008.w),
-                const Text("My insured Jewellery"),
-              ],
-            ).commonSymmetricPadding(horizontal: 30, vertical: 14),
+          GestureDetector(
+            onTap: () {
+              homeScreenController.scaffoldKey.currentState!.closeDrawer();
+              Get.to(() => MyInsuredJewelleryScreen());
+            },
+            child: Container(
+              color: AppColors.accentBGColor.withOpacity(0.5),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    AppIcons.drawerInsuredJewelleryIcon,
+                    height: homeScreenController.size.width * 0.010.w,
+                  ),
+                  SizedBox(width: homeScreenController.size.width * 0.008.w),
+                  const Text("My insured Jewellery"),
+                ],
+              ).commonSymmetricPadding(horizontal: 30, vertical: 14),
+            ),
           ),
-          Container(
-            color: AppColors.accentBGColor,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(
-                  AppIcons.drawerInsuredJewelleryPortfolioIcon,
-                  height: homeScreenController.size.width * 0.010.w,
-                ),
-                SizedBox(width: homeScreenController.size.width * 0.008.w),
-                const Text("My Jewellery portfolio"),
-              ],
-            ).commonSymmetricPadding(horizontal: 30, vertical: 14),
+          GestureDetector(
+            onTap: () {
+              homeScreenController.scaffoldKey.currentState!.closeDrawer();
+              Get.to(() => MyJewelleryPortFolioScreen());
+            },
+            child: Container(
+              color: AppColors.accentBGColor.withOpacity(0.5),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    AppIcons.drawerInsuredJewelleryPortfolioIcon,
+                    height: homeScreenController.size.width * 0.010.w,
+                  ),
+                  SizedBox(width: homeScreenController.size.width * 0.008.w),
+                  const Text("My Jewellery portfolio"),
+                ],
+              ).commonSymmetricPadding(horizontal: 30, vertical: 14),
+            ),
           ),
         ],
       ),
