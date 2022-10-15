@@ -1,28 +1,28 @@
 import 'dart:convert';
 
-SmartDealsOnlineModel smartDealsOnlineModelFromJson(String str) => SmartDealsOnlineModel.fromJson(json.decode(str));
+FavouriteOnlineDealsModel smartDealsOnlineModelFromJson(String str) => FavouriteOnlineDealsModel.fromJson(json.decode(str));
 
-String smartDealsOnlineModelToJson(SmartDealsOnlineModel data) => json.encode(data.toJson());
+String smartDealsOnlineModelToJson(FavouriteOnlineDealsModel data) => json.encode(data.toJson());
 
-class SmartDealsOnlineModel {
-  SmartDealsOnlineModel({
+class FavouriteOnlineDealsModel {
+  FavouriteOnlineDealsModel({
     required this.vendorDealsList,
     required this.success,
     required this.errorInfo,
   });
 
-  List<VendorDealsList> vendorDealsList;
+  List<VendorDealsList1> vendorDealsList;
   bool success;
   ErrorInfo errorInfo;
 
-  factory SmartDealsOnlineModel.fromJson(Map<String, dynamic> json) => SmartDealsOnlineModel(
-    vendorDealsList: List<VendorDealsList>.from((json["VendorDealsList"] ?? []).map((x) => VendorDealsList.fromJson(x))),
+  factory FavouriteOnlineDealsModel.fromJson(Map<String, dynamic> json) => FavouriteOnlineDealsModel(
+    vendorDealsList: List<VendorDealsList1>.from((json["FavDealList"] ?? []).map((x) => VendorDealsList1.fromJson(x))),
     success: json["success"] ?? false,
     errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
   );
 
   Map<String, dynamic> toJson() => {
-    "VendorDealsList": List<dynamic>.from(vendorDealsList.map((x) => x.toJson())),
+    "FavDealList": List<dynamic>.from(vendorDealsList.map((x) => x.toJson())),
     "success": success,
     "error_info": errorInfo.toJson(),
   };
@@ -56,8 +56,8 @@ class ErrorInfo {
   };
 }
 
-class VendorDealsList {
-  VendorDealsList({
+class VendorDealsList1 {
+  VendorDealsList1({
     required this.category,
     required this.categoryImage,
     required this.onLineDeals,
@@ -67,7 +67,7 @@ class VendorDealsList {
   String categoryImage;
   List<OnLineDeal> onLineDeals;
 
-  factory VendorDealsList.fromJson(Map<String, dynamic> json) => VendorDealsList(
+  factory VendorDealsList1.fromJson(Map<String, dynamic> json) => VendorDealsList1(
     category: json["Category"] ?? "",
     categoryImage: json["CategoryImage"] ?? "",
     onLineDeals: List<OnLineDeal>.from(json["OnLineDeals"].map((x) => OnLineDeal.fromJson(x ?? {}))),

@@ -18,6 +18,7 @@ class AppImages {
       '$imageRootPath/olocker_logo_homebx2.png';
   static const String addJewelleryImage = '$imageRootPath/add_jeweller.png';
   static const String jewellersShapeImage = '$imageRootPath/myjeweller_shape1.png';
+  static const String dealsBgShapeImage = '$imageRootPath/deal_bg.png';
 }
 
 class AppIcons {
@@ -39,6 +40,7 @@ class AppIcons {
   static const String drawerSavingSchemeIcon =
       '$iconRootPath/drawer_my_deals.png';
   static const String drawerMyPointsIcon = '$iconRootPath/drawer_my_points.png';
+  static const String grabOnIcon = '$iconRootPath/grabon_icon.png';
 }
 
 class AppSvgs {

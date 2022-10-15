@@ -37,11 +37,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.5
   sizer: ^2.0.15
-  flutter_svg: ^1.1.5
+  flutter_svg: ^0.23.0
   carousel_slider: ^4.1.1
   http: ^0.13.5
   expandable: ^5.0.1
   shared_preferences: ^2.0.15
+  flutter_html: ^2.1.5
 
 dev_dependencies:
   flutter_test:

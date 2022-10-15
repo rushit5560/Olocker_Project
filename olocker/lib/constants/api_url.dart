@@ -17,6 +17,15 @@ class ApiUrl {
   // Index Screen Api
   static const String getNotificationCountApi = "${apiMainPath}api/User/GetNotificationCount";
 
+  // Online Deal Details Screen Api
+  static const String addCustomerFavouriteDealsApi = "${apiMainPath}api/User/InsertCustomerFavDeal";
+
+  // Online Deal Favourite Screen Api
+  static const String getCustomerFavouriteDealsApi = "${apiMainPath}api/User/GetFavDeals";
+
+  //favourites apis
+  static const String getFavProductApi = "${apiMainPath}api/User/GetFavProduct";
+
   static const String userLoginApi = "${apiMainPath}api/User/UserLogin/";
   static const String validateOtpApi = "${apiMainPath}api/user/ValidateOtp/";
   static const String checkUserByMobileApi =

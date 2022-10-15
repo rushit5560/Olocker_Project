@@ -16,7 +16,7 @@ class MyJewellersModel {
   ErrorInfo errorInfo;
 
   factory MyJewellersModel.fromJson(Map<String, dynamic> json) => MyJewellersModel(
-    addMyJewellerdata: List<JewellerData>.from(json["AddMyJewellerdata"].map((x) => JewellerData.fromJson(x ?? {}))),
+    addMyJewellerdata: List<JewellerData>.from((json["AddMyJewellerdata"]! ?? []).map((x) => JewellerData.fromJson(x ?? {}))),
     success: json["success"] ?? false,
     errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
   );
