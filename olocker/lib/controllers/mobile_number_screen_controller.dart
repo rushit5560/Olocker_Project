@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:olocker/models/auth_screen_models/user_login_model.dart';
 import 'package:olocker/screens/otp_screen/otp_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:olocker/screens/signup_screen/signup_screen.dart';
@@ -10,7 +11,6 @@ import 'package:olocker/utils/user_prefs_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/api_url.dart';
 import '../constants/app_colors.dart';
-import '../models/auth_models/user_login_model.dart';
 
 class MobileNumberScreenController extends GetxController {
   final size = Get.size;
@@ -88,6 +88,4 @@ class MobileNumberScreenController extends GetxController {
       }
     }
   }
-
-
 }

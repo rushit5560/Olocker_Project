@@ -56,4 +56,32 @@ class FieldValidator {
     }
     return null;
   }
+
+  String? validateGrossWeight(String value) {
+    if (value.isEmpty) {
+      return 'Enter Gross Weight';
+    }
+    return null;
+  }
+
+  String? validatePurchasedFrom(String value) {
+    if (value.isEmpty) {
+      return 'Enter Purchased From Shop Name';
+    }
+    return null;
+  }
+
+  String? validatePurchasedDate(String value) {
+    if (value.isEmpty) {
+      return 'Enter Purchased Date';
+    }
+    return null;
+  }
+
+  String? validatePurchasedPrice(String value) {
+    if (value.isEmpty) {
+      return 'Enter Purchased Price';
+    }
+    return null;
+  }
 }

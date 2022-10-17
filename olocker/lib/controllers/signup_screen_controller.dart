@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../constants/api_url.dart';
 import '../constants/app_colors.dart';
-import '../models/auth_models/register_model.dart';
+import '../models/auth_screen_models/register_model.dart';
 
 class SignUpScreenController extends GetxController {
   final size = Get.size;

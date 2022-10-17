@@ -11,17 +11,26 @@ class ApiUrl {
 
   // Home Screen Api
   static const String myJewellersApi = "${apiMainPath}api/user/GetMyJewellers";
-  static const String smartDealsOnlineApi = "${apiMainPath}api/user/GetOnlineDeals";
-  static const String bannerApi = "${apiMainPath}api/User/GetGraphicalNotifications";
+  static const String smartDealsOnlineApi =
+      "${apiMainPath}api/user/GetOnlineDeals";
+  static const String bannerApi =
+      "${apiMainPath}api/User/GetGraphicalNotifications";
 
   // Index Screen Api
-  static const String getNotificationCountApi = "${apiMainPath}api/User/GetNotificationCount";
+  static const String getNotificationCountApi =
+      "${apiMainPath}api/User/GetNotificationCount";
 
   // Online Deal Details Screen Api
-  static const String addCustomerFavouriteDealsApi = "${apiMainPath}api/User/InsertCustomerFavDeal";
+  static const String addCustomerFavouriteDealsApi =
+      "${apiMainPath}api/User/InsertCustomerFavDeal";
 
   // Online Deal Favourite Screen Api
-  static const String getCustomerFavouriteDealsApi = "${apiMainPath}api/User/GetFavDeals";
+  static const String getCustomerFavouriteDealsApi =
+      "${apiMainPath}api/User/GetFavDeals";
+
+  // Add uninsured jewellery Screen Api
+  static const String getAllDataAddOrnamentApi =
+      "${apiMainPath}api/Info/GetAllDataAddOrnament";
 
   //favourites apis
   static const String getFavProductApi = "${apiMainPath}api/User/GetFavProduct";

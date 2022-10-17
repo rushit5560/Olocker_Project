@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
+import 'package:olocker/screens/add_uninsured_jewellery_screen/add_uninsured_jewellery_screen.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/my_jewellery_portfolio_controller.dart';
@@ -178,7 +179,7 @@ class MyUnInsuredJewelleryModule extends StatelessWidget {
         Container(
           width: double.infinity,
           margin:
-              const EdgeInsets.only(top: 10, left: 12, right: 12, bottom: 18),
+              const EdgeInsets.only(top: 10, left: 12, right: 12, bottom: 16),
           padding:
               const EdgeInsets.only(top: 10, left: 12, right: 12, bottom: 30),
           decoration: BoxDecoration(
@@ -235,24 +236,29 @@ class MyUnInsuredJewelleryModule extends StatelessWidget {
           ),
         ),
         Align(
-          child: Container(
-            height: 35,
-            width: jewellPortFolioController.size.width * 0.75,
-            decoration: const BoxDecoration(
-              color: AppColors.accentColor,
-              borderRadius: BorderRadius.all(
-                Radius.circular(
-                  28,
+          child: GestureDetector(
+            onTap: () {
+              Get.to(() => AddUnInsuredJewelleryScreen());
+            },
+            child: Container(
+              height: 35,
+              width: jewellPortFolioController.size.width * 0.75,
+              decoration: const BoxDecoration(
+                color: AppColors.accentColor,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(
+                    28,
+                  ),
                 ),
               ),
-            ),
-            child: Center(
-              child: Text(
-                "ADD NEW JEWELLERY",
-                style: TextStyle(
-                  color: AppColors.whiteColor,
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w500,
+              child: Center(
+                child: Text(
+                  "ADD NEW JEWELLERY",
+                  style: TextStyle(
+                    color: AppColors.whiteColor,
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ),

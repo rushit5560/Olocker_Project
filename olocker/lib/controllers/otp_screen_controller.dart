@@ -9,8 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/api_url.dart';
 import '../constants/app_colors.dart';
-import '../models/auth_models/login_response_model.dart';
-import '../models/auth_models/user_login_model.dart';
+import '../models/auth_screen_models/login_response_model.dart';
+import '../models/auth_screen_models/user_login_model.dart';
 import '../utils/user_prefs_data.dart';
 
 class OtpScreenController extends GetxController {
