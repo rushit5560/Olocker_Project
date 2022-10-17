@@ -27,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
 
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: []
+        children: const []
       ),
     );
   }

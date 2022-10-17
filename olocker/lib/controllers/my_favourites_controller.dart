@@ -53,9 +53,4 @@ class MyFavouritesScreenController extends GetxController {
     super.onInit();
   }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-  }
 }

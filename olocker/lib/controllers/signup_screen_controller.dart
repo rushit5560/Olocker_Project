@@ -3,7 +3,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:olocker/screens/index_screen/index_screen.dart';
 import 'package:olocker/screens/otp_screen/otp_screen.dart';
 import 'package:olocker/utils/user_prefs_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -60,8 +59,8 @@ class SignUpScreenController extends GetxController {
         var isSuccessStatus = resBody["success"];
         var isCustomerExist = resBody["UserMobile"]["IsExist"];
 
-        log("checkMobileNumber success  : ${isSuccessStatus}");
-        log("is customer exist : ${isCustomerExist}");
+        log("checkMobileNumber success  : $isSuccessStatus");
+        log("is customer exist : $isCustomerExist");
 
         if (isCustomerExist == true) {
           log("mobile number is verfied");
@@ -128,7 +127,7 @@ class SignUpScreenController extends GetxController {
 
         var isSuccessStatus = registerModel.success;
 
-        log("checkMobileNumber success  : ${isSuccessStatus}");
+        log("checkMobileNumber success  : $isSuccessStatus");
 
         if (isSuccessStatus == true) {
           prefs.setString(
@@ -141,8 +140,7 @@ class SignUpScreenController extends GetxController {
             behavior: SnackBarBehavior.floating,
             margin: const EdgeInsets.all(8),
             content: Text(
-              "${registerModel.errorInfo.extraInfo} | " +
-                  "${registerModel.errorInfo.description}",
+              "${registerModel.errorInfo.extraInfo} | ${registerModel.errorInfo.description}",
               style: const TextStyle(
                 color: AppColors.blackColor,
               ),
@@ -158,17 +156,5 @@ class SignUpScreenController extends GetxController {
         rethrow;
       }
     }
-  }
-
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
   }
 }

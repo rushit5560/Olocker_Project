@@ -39,7 +39,7 @@ class MyJewelleryPortFolioScreen extends StatelessWidget {
         () => jewellPortFolioController.isLoading.value
             ? CommonLoader().showCircularLoader()
             : SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Stack(
                   children: [
                     Image.asset(
@@ -48,7 +48,7 @@ class MyJewelleryPortFolioScreen extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         TotalJewelleryPortfolioModule(),
                         MyInsuredJewelleryModule(),
                         MyUnInsuredJewelleryModule(),

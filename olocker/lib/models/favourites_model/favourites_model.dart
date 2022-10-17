@@ -223,7 +223,7 @@ class ProductDetails {
         "ItemType": itemType,
         "ItemTypeName": itemTypeName,
         "ProductTypeName": productTypeName,
-        "PartnerName": partnerName == null ? null : partnerName,
+        "PartnerName": partnerName,
         "Description": description,
         "Weight": weight,
         "Width": width,

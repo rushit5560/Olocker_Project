@@ -95,7 +95,7 @@ class NameFieldRow extends StatelessWidget {
                 isDense: true,
                 icon: const SizedBox(),
                 hint: Text(
-                  "${signUpScreenController.namePrefixDDvalue.value}",
+                  signUpScreenController.namePrefixDDvalue.value,
                   style: TextStyle(
                     color: AppColors.greyColor,
                     fontSize: 11.sp,

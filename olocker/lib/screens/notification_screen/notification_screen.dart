@@ -15,7 +15,7 @@ class NotificationScreen extends StatelessWidget {
       backgroundColor: AppColors.whiteColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: const [
           Center(
             child: Text("Notification Screen"),
           )

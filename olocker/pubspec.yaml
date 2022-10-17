@@ -42,7 +42,7 @@ dependencies:
   http: ^0.13.5
   expandable: ^5.0.1
   shared_preferences: ^2.0.15
-  flutter_html: ^2.1.5
+  flutter_html: ^3.0.0-alpha.3
 
 dev_dependencies:
   flutter_test:

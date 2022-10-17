@@ -114,7 +114,7 @@ class MyInsuredJewelleryModule extends StatelessWidget {
           color: AppColors.blackColor,
           width: 0.5,
         ),
-        borderRadius: BorderRadius.all(
+        borderRadius: const BorderRadius.all(
           Radius.circular(
             12,
           ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
-import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/my_jewellers_screen_controller.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
@@ -48,7 +47,7 @@ class MyJewellersScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          BackGroundModule(),
+          const BackGroundModule(),
           Column(
             children: [
               BannerSliderModule(),

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/online_favourite_deals_screen_controller.dart';
 import 'package:olocker/models/online_favourite_deals_screen_model/get_favourite_deals_model.dart';
-import 'package:olocker/screens/online_deals_list_screen/online_deals_list_screen.dart';
 import 'package:olocker/screens/online_favourite_deals_list_screen/online_favourite_deals_list_screen.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/widgets/common_loader.dart';

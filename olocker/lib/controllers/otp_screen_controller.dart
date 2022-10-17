@@ -55,8 +55,8 @@ class OtpScreenController extends GetxController {
         var isSuccessStatus = userLoginModel.success;
         var isCustomerExist = userLoginModel.isCustomer;
 
-        log("checkMobileNumber success  : ${isSuccessStatus}");
-        log("is customer exist : ${isCustomerExist}");
+        log("checkMobileNumber success  : $isSuccessStatus");
+        log("is customer exist : $isCustomerExist");
 
         if (isCustomerExist == true) {
           log("mobile number is verified");
@@ -141,55 +141,53 @@ class OtpScreenController extends GetxController {
 
           var isSuccessStatus = loginModel.success;
 
-          log("validateOtpNumberFunction success  : ${isSuccessStatus}");
+          log("validateOtpNumberFunction success  : $isSuccessStatus");
 
           if (isSuccessStatus == true) {
             UserPrefsData().setCustomerPrefsData(
               customerMobileNo:
-                  loginModel.userRequestValidateOtp[0].mobileNo == null
+                  loginModel.userRequestValidateOtp[0].mobileNo == ""
                       ? ""
                       : loginModel.userRequestValidateOtp[0].mobileNo,
-              customerId: loginModel.userRequestValidateOtp[0].custSrNo == null
+              customerId: loginModel.userRequestValidateOtp[0].custSrNo == ""
                   ? ""
                   : loginModel.userRequestValidateOtp[0].custSrNo,
               customerUsername:
-                  loginModel.userRequestValidateOtp[0].userName == null
+                  loginModel.userRequestValidateOtp[0].userName == ""
                       ? ""
                       : loginModel.userRequestValidateOtp[0].userName,
               customerFname:
-                  loginModel.userRequestValidateOtp[0].firstName == null
+                  loginModel.userRequestValidateOtp[0].firstName == ""
                       ? ""
                       : loginModel.userRequestValidateOtp[0].firstName,
-              customerLname:
-                  loginModel.userRequestValidateOtp[0].lastName == null
-                      ? ""
-                      : loginModel.userRequestValidateOtp[0].lastName,
+              customerLname: loginModel.userRequestValidateOtp[0].lastName == ""
+                  ? ""
+                  : loginModel.userRequestValidateOtp[0].lastName,
               customerEmail:
-                  loginModel.userRequestValidateOtp[0].userEmail == null
+                  loginModel.userRequestValidateOtp[0].userEmail == ""
                       ? ""
                       : loginModel.userRequestValidateOtp[0].userEmail,
-              customerGender:
-                  loginModel.userRequestValidateOtp[0].gender == null
-                      ? ""
-                      : loginModel.userRequestValidateOtp[0].gender,
+              customerGender: loginModel.userRequestValidateOtp[0].gender == ""
+                  ? ""
+                  : loginModel.userRequestValidateOtp[0].gender,
               customerAddress:
-                  loginModel.userRequestValidateOtp[0].address == null
+                  loginModel.userRequestValidateOtp[0].address == ""
                       ? ""
                       : loginModel.userRequestValidateOtp[0].address,
-              customerCity: loginModel.userRequestValidateOtp[0].city == null
+              customerCity: loginModel.userRequestValidateOtp[0].city == ""
                   ? ""
                   : loginModel.userRequestValidateOtp[0].city,
-              customerPin: loginModel.userRequestValidateOtp[0].pin == null
+              customerPin: loginModel.userRequestValidateOtp[0].pin == ""
                   ? ""
                   : loginModel.userRequestValidateOtp[0].pin,
-              customerState: loginModel.userRequestValidateOtp[0].state == null
+              customerState: loginModel.userRequestValidateOtp[0].state == ""
                   ? ""
                   : loginModel.userRequestValidateOtp[0].state,
               customerCountry:
-                  loginModel.userRequestValidateOtp[0].country == null
+                  loginModel.userRequestValidateOtp[0].country == ""
                       ? ""
                       : loginModel.userRequestValidateOtp[0].country,
-              customerDob: loginModel.userRequestValidateOtp[0].dob == null
+              customerDob: loginModel.userRequestValidateOtp[0].dob == ""
                   ? ""
                   : loginModel.userRequestValidateOtp[0].dob,
             );
@@ -221,17 +219,5 @@ class OtpScreenController extends GetxController {
         rethrow;
       }
     }
-  }
-
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
   }
 }

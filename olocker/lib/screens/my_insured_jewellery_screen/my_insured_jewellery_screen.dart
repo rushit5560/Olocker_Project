@@ -5,7 +5,6 @@ import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/app_colors.dart';
-import '../../controllers/my_jewellery_portfolio_controller.dart';
 
 class MyInsuredJewelleryScreen extends StatelessWidget {
   MyInsuredJewelleryScreen({Key? key}) : super(key: key);
@@ -41,8 +40,8 @@ class MyInsuredJewelleryScreen extends StatelessWidget {
             : SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Column(
-                  children: [
-                    const SizedBox(height: 10),
+                  children: const [
+                    SizedBox(height: 10),
                   ],
                 ),
               ),

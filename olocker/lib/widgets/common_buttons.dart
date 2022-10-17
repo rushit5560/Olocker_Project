@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:olocker/constants/app_colors.dart';
-import 'package:olocker/utils/extensions.dart';
 
 import 'package:sizer/sizer.dart';
 
