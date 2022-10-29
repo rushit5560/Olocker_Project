@@ -8,9 +8,9 @@ class FieldValidator {
 
   String? validateMobileNumber(String value) {
     if (value.isEmpty) {
-      return 'Mobile Number is required';
+      return 'Mobile number is required';
     } else if (value.length < 10) {
-      return 'Enter Atleast 10 digit Mobile Number';
+      return 'Enter atleast 10 digit mobile number';
     }
     return null;
   }
@@ -19,21 +19,21 @@ class FieldValidator {
     if (value.isEmpty) {
       return 'Otp number is required';
     } else if (value.length < 6) {
-      return 'Enter valid Otp Number';
+      return 'Enter valid otp number';
     }
     return null;
   }
 
   String? validateFirstName(String value) {
     if (value.isEmpty) {
-      return 'First Name is required';
+      return 'First name is required';
     }
     return null;
   }
 
   String? validateLastName(String value) {
     if (value.isEmpty) {
-      return 'Last Name is required';
+      return 'Last name is required';
     }
     return null;
   }
@@ -52,36 +52,96 @@ class FieldValidator {
 
   String? validateRefferalCodeNumber(String value) {
     if (value.isEmpty) {
-      return 'Refferal code is required';
+      return 'Referral code is required';
     }
     return null;
   }
 
   String? validateGrossWeight(String value) {
     if (value.isEmpty) {
-      return 'Enter Gross Weight';
+      return 'Enter gross weight';
     }
     return null;
   }
 
   String? validatePurchasedFrom(String value) {
     if (value.isEmpty) {
-      return 'Enter Purchased From Shop Name';
+      return 'Enter purchased from shop name';
     }
     return null;
   }
 
   String? validatePurchasedDate(String value) {
     if (value.isEmpty) {
-      return 'Enter Purchased Date';
+      return 'Enter purchased date';
     }
     return null;
   }
 
   String? validatePurchasedPrice(String value) {
     if (value.isEmpty) {
-      return 'Enter Purchased Price';
+      return 'Enter purchased price';
     }
     return null;
   }
+
+  String? validateDob(String value) {
+    if (value.isEmpty) {
+      return 'Enter birthdate';
+    }
+    return null;
+  }
+
+  String? validatePinCode(String value) {
+    if (value.isEmpty) {
+      return 'Enter pincode';
+    } else if(!RegExp("^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}").hasMatch(value)) {
+      return 'Enter valid pincode';
+    }
+    return null;
+  }
+
+  String? validatePanCard(String value) {
+    // regex = "[A-Z]{5}[0-9]{4}[A-Z]{1}";
+
+    if (value.isEmpty) {
+      return 'Enter pancard';
+    } else if(!RegExp("[A-Z]{5}[0-9]{4}[A-Z]{1}").hasMatch(value)) {
+      {
+        return 'Invalid pan number';
+      }
+    }
+    return null;
+  }
+
+  String? validateMonthlyIncome(String value) {
+    if (value.isEmpty) {
+      return 'Enter monthly income';
+    }
+    return null;
+  }
+
+  String? validateEmployerName(String value) {
+    if (value.isEmpty) {
+      return 'Enter employer name';
+    }
+    return null;
+  }
+
+  String? validateCurrentTotalEmi(String value) {
+    if (value.isEmpty) {
+      return 'Enter current total emi';
+    }
+    return null;
+  }
+
+  String? validateWhichBank(String value) {
+    if (value.isEmpty) {
+      return 'Enter bank name';
+    }
+    return null;
+  }
+
+
+
 }

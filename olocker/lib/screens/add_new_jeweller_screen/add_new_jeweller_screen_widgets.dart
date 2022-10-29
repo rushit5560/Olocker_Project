@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
@@ -11,9 +13,12 @@ class RetailerCodeFieldModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: screenController.retailerCodeFieldController,
-      decoration: const InputDecoration(hintText: 'Retailer Code'),
+    return Obx(
+      ()=> TextFormField(
+        controller: screenController.retailerCodeFieldController,
+        readOnly: screenController.isTypeEnable.value,
+        decoration: const InputDecoration(hintText: 'Retailer Code'),
+      ),
     );
   }
 }
@@ -27,6 +32,26 @@ class ReferralCodeFieldModule extends StatelessWidget {
     return TextFormField(
       controller: screenController.referralCodeFieldController,
       decoration: const InputDecoration(hintText: 'Enter Referral Code If Any'),
+      onChanged: (value) {
+        screenController.isLoading(true);
+        if(value.isEmpty) {
+          screenController.isTypeEnable.value = false;
+        } else if(value.isNotEmpty) {
+          screenController.isTypeEnable.value = true;
+          screenController.retailerCodeFieldController.clear();
+
+          if(screenController.referralCodeFieldController.text.contains('-')) {
+            List codeList = screenController.referralCodeFieldController.text
+                .split('-');
+            screenController.refferalCode = codeList[0];
+            screenController.retailerCodeFieldController.text = codeList[1];
+            log('refferalCode :${screenController.refferalCode}');
+            log('retailorCode :${screenController.retailerCodeFieldController.text}');
+          }
+
+        }
+        screenController.isLoading(false);
+      },
     );
   }
 }
@@ -40,7 +65,24 @@ class SubmitButtonModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return GestureDetector(
+      onTap: () async => await screenController.addMyJewellerFunction(),
+      child: Container(
+        // width: screenController.size.width * 0.70,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25),
+          color: AppColors.accentColor,
+        ),
+        child: const Text(
+          'SUBMIT',
+          style: TextStyle(
+            color: AppColors.whiteColor,
+            fontWeight: FontWeight.w500,
+          ),
+        ).commonSymmetricPadding(vertical: 10, horizontal: 120),
+      ),
+    );
+    /*return Stack(
       clipBehavior: Clip.none,
       alignment: Alignment.topCenter,
       children: [
@@ -65,6 +107,6 @@ class SubmitButtonModule extends StatelessWidget {
           ),
         ),
       ],
-    );
+    );*/
   }
 }

@@ -41,7 +41,8 @@ class OnlineFavouriteDealsScreen extends StatelessWidget {
             crossAxisSpacing: 18,
           ),
           itemBuilder: (context, i){
-            VendorDealsList1 singleDeal = onlineFavouriteDealsScreenController.favouriteDealsList[i];
+            VendorDealsList1 singleDeal = onlineFavouriteDealsScreenController
+                .favouriteDealsList[i];
             return _onlineDealsGridTile(singleDeal);
           },
         ).commonAllSidePadding(10),

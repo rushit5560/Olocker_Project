@@ -39,6 +39,8 @@ class HomeScreenController extends GetxController {
       MyJewellersModel myJewellersModel =
           MyJewellersModel.fromJson(json.decode(response.body));
 
+      log('response.body : ${response.body}');
+
       isSuccessStatus = myJewellersModel.success.obs;
 
       if (isSuccessStatus.value) {

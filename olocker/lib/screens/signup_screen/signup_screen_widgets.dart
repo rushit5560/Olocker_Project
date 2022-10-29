@@ -66,9 +66,7 @@ class NameFieldRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 15,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       height: 60,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -259,7 +257,7 @@ class MobileNumberField extends StatelessWidget {
               inputFormatters: [
                 LengthLimitingTextInputFormatter(10),
               ],
-              onEditingComplete: () async {
+              onChanged: (val) async {
                 if (signUpScreenController.numberController.text.length == 10) {
                   await signUpScreenController.checkMobileNumber(context);
                 }

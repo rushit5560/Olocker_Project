@@ -33,12 +33,12 @@ class AddNewJewellerScreen extends StatelessWidget {
           ),
         ),
       ),
+
       body: Stack(
-        alignment: Alignment.topCenter,
+        // alignment: Alignment.topCenter,
         children: [
+          // Bg Image Module
           Container(
-            // height: addNewJewellerScreenController.size.height,
-            // width: addNewJewellerScreenController.size.width,
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(AppImages.addJewelleryImage),
@@ -46,45 +46,132 @@ class AddNewJewellerScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: addNewJewellerScreenController.size.height * 0.036.h,
-            child: Column(
+
+          Padding(
+            padding: const EdgeInsets.only(top: 150, right: 15, left: 15),
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              clipBehavior: Clip.none,
               children: [
-                Expanded(
-                  flex: 80,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: AppColors.whiteColor,
-                      boxShadow: const [
-                        BoxShadow(
-                            color: Colors.grey, spreadRadius: 1, blurRadius: 5),
-                      ],
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'RETAILER CODE',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.blackColor,
-                          ),
-                        ),
-                        RetailerCodeFieldModule(),
-                        ReferralCodeFieldModule(),
-                      ],
-                    ).commonAllSidePadding(10),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColors.whiteColor,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.grey,
+                        spreadRadius: 1,
+                        blurRadius: 5,
+                      ),
+                    ],
                   ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'RETAILER CODE',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.blackColor,
+                        ),
+                      ),
+                      RetailerCodeFieldModule(),
+                      ReferralCodeFieldModule(),
+                      const SizedBox(height: 25),
+                    ],
+                  ).commonAllSidePadding(10),
                 ),
-                Expanded(
-                  flex: 20,
+                Positioned(
+                  bottom: -20,
                   child: SubmitButtonModule(),
                 ),
               ],
             ),
-          ).commonSymmetricPadding(horizontal: 15, vertical: 150),
+          ),
+
+          // SizedBox(
+          //   // height: addNewJewellerScreenController.size.height * 0.036.h,
+          //   child: Column(
+          //     children: [
+          //       Container(
+          //         decoration: BoxDecoration(
+          //           borderRadius: BorderRadius.circular(10),
+          //           color: AppColors.whiteColor,
+          //           boxShadow: const [
+          //             BoxShadow(
+          //                 color: Colors.grey, spreadRadius: 1, blurRadius: 5),
+          //           ],
+          //         ),
+          //         child: Stack(
+          //           alignment: Alignment.bottomCenter,
+          //           children: [
+          //             Column(
+          //               // mainAxisSize: MainAxisSize.min,
+          //               crossAxisAlignment: CrossAxisAlignment.start,
+          //               children: [
+          //                 const Text(
+          //                   'RETAILER CODE',
+          //                   style: TextStyle(
+          //                     fontWeight: FontWeight.bold,
+          //                     color: AppColors.blackColor,
+          //                   ),
+          //                 ),
+          //                 RetailerCodeFieldModule(),
+          //                 ReferralCodeFieldModule(),
+          //               ],
+          //             ).commonAllSidePadding(10),
+          //             Positioned(
+          //               bottom: -10,
+          //               child: SubmitButtonModule(),
+          //             ),
+          //           ],
+          //         ),
+          //       ),
+          //       /*Expanded(
+          //         // flex: 80,
+          //         child: Container(
+          //           decoration: BoxDecoration(
+          //             borderRadius: BorderRadius.circular(10),
+          //             color: AppColors.whiteColor,
+          //             boxShadow: const [
+          //               BoxShadow(
+          //                   color: Colors.grey, spreadRadius: 1, blurRadius: 5),
+          //             ],
+          //           ),
+          //           child: Stack(
+          //             alignment: Alignment.bottomCenter,
+          //             children: [
+          //               Column(
+          //                 // mainAxisSize: MainAxisSize.min,
+          //                 crossAxisAlignment: CrossAxisAlignment.start,
+          //                 children: [
+          //                   const Text(
+          //                     'RETAILER CODE',
+          //                     style: TextStyle(
+          //                       fontWeight: FontWeight.bold,
+          //                       color: AppColors.blackColor,
+          //                     ),
+          //                   ),
+          //                   RetailerCodeFieldModule(),
+          //                   ReferralCodeFieldModule(),
+          //                 ],
+          //               ).commonAllSidePadding(10),
+          //               Positioned(
+          //                 bottom: -10,
+          //                 child: SubmitButtonModule(),
+          //               ),
+          //             ],
+          //           ),
+          //         ),
+          //       ),*/
+          //       /*Expanded(
+          //         flex: 20,
+          //         child: SubmitButtonModule(),
+          //       ),*/
+          //     ],
+          //   ),
+          // ).commonSymmetricPadding(horizontal: 15, vertical: 150),
         ],
       ),
     );

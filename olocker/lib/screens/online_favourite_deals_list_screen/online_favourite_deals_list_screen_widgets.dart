@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/online_favourite_deals_list_screen_controller.dart';
+import 'package:olocker/screens/online_favourite_deals_details_screen/online_favourite_deals_details_screen.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
@@ -74,10 +75,10 @@ class AllFavDealsListModule extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, i) {
         return GestureDetector(
-          // onTap: () => Get.to(
-          //       () => OnlinefavouriteDealsDetailsScreen(),
-          //   arguments: screenController.singleDealList.onLineDeals[i],
-          // ),
+          onTap: () => Get.to(
+                () => OnlineFavouriteDealsDetailsScreen(),
+            arguments: screenController.singleDealList.onLineDeals[i],
+          ),
           child: Stack(
             children: [
               Row(

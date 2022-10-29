@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:olocker/models/auth_screen_models/user_login_model.dart';
 import 'package:olocker/screens/otp_screen/otp_screen.dart';
 import 'package:olocker/utils/user_prefs_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -38,57 +39,119 @@ class SignUpScreenController extends GetxController {
 
     String mobNumber = numberController.text.toString();
 
-    if (formKey.currentState!.validate()) {
-      isLoading(true);
-      String url = "${ApiUrl.checkUserByMobileApi}?mobileNo=$mobNumber";
-      log(" checkMobileNumber url: $url");
+    // if (formKey.currentState!.validate()) {
+    //   isLoading(true);
+    String url = "${ApiUrl.checkUserByMobileApi}?mobileNo=$mobNumber";
+    log(" checkMobileNumber url: $url");
 
-      try {
-        http.Response response = await http.get(
-          Uri.parse(url),
-          headers: apiHeader.headers,
-        );
+    try {
+      http.Response response = await http.get(
+        Uri.parse(url),
+        headers: apiHeader.headers,
+      );
 
-        log("checkMobileNumber st code is : ${response.statusCode}");
-        log("checkMobileNumber res body : ${response.body}");
+      log("checkMobileNumber st code is : ${response.statusCode}");
+      log("checkMobileNumber res body : ${response.body}");
 
-        var resBody = json.decode(response.body);
+      var resBody = json.decode(response.body);
 
-        // registerModel registerModel = registerModel.fromJson(resBody);
+      // registerModel registerModel = registerModel.fromJson(resBody);
 
-        var isSuccessStatus = resBody["success"];
-        var isCustomerExist = resBody["UserMobile"]["IsExist"];
+      var isSuccessStatus = resBody["success"];
+      var isCustomerExist = resBody["UserMobile"]["IsExist"];
 
-        log("checkMobileNumber success  : $isSuccessStatus");
-        log("is customer exist : $isCustomerExist");
+      log("checkMobileNumber success  : $isSuccessStatus");
+      log("is customer exist : $isCustomerExist");
 
-        if (isCustomerExist == true) {
-          log("mobile number is verfied");
-          prefs.setString(
-              UserPrefsData().customerMobileNoKey, numberController.text);
-          Get.off(() => OtpScreen());
-          var snackBar = const SnackBar(
-            backgroundColor: AppColors.whiteColor,
-            elevation: 8,
-            behavior: SnackBarBehavior.floating,
-            margin: EdgeInsets.all(8),
-            content: Text(
-              "User Is Already Registered",
-              style: TextStyle(
-                color: AppColors.blackColor,
-              ),
+      if (isCustomerExist == true) {
+        log("mobile number is verfied");
+        prefs.setString(
+            UserPrefsData().customerMobileNoKey, numberController.text);
+
+        await userLoginFunction(context);
+        Get.off(() => OtpScreen());
+        var snackBar = const SnackBar(
+          // backgroundColor: AppColors.whiteColor,
+          elevation: 8,
+          behavior: SnackBarBehavior.floating,
+          margin: EdgeInsets.all(8),
+          content: Text(
+            "User Is Already Registered",
+            style: TextStyle(
+              color: AppColors.whiteColor,
             ),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        } else {
-          log("mobile number is new");
-          //do nothing
-        }
-        isLoading(false);
-      } catch (e) {
-        log("checkMobileNumber Error ::: $e");
-        rethrow;
+          ),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      } else {
+        log("mobile number is new");
+        //do nothing
       }
+      // isLoading(false);
+    } catch (e) {
+      log("checkMobileNumber Error ::: $e");
+      rethrow;
+    }
+    // }
+  }
+
+  Future<void> userLoginFunction(BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String mobNumber = numberController.text.toString();
+
+    String url = ApiUrl.userLoginApi;
+    log(" checkMobileNumber url: $url");
+
+    try {
+      var formData = {
+        "MobileNo": mobNumber,
+      };
+      http.Response response = await http.post(
+        Uri.parse(url),
+        body: json.encode(formData),
+        headers: apiHeader.headers,
+      );
+
+      log("checkMobileNumber st code is : ${response.statusCode}");
+      log("checkMobileNumber res body : ${response.body}");
+
+      var resBody = json.decode(response.body);
+
+      UserLoginModel userLoginModel = UserLoginModel.fromJson(resBody);
+
+      var isSuccessStatus = userLoginModel.success;
+      var isCustomerExist = userLoginModel.isCustomer;
+
+      log("checkMobileNumber success  : $isSuccessStatus");
+      log("is customer exist : $isCustomerExist");
+
+      if (isCustomerExist == true) {
+        log("mobile number is verfied");
+        prefs.setString(
+            UserPrefsData().customerMobileNoKey, numberController.text);
+        Get.off(() => OtpScreen());
+      } else {
+        log("mobile number is new");
+        final snackBar = SnackBar(
+          // backgroundColor: AppColors.whiteColor,
+          elevation: 8,
+          behavior: SnackBarBehavior.floating,
+          margin: const EdgeInsets.all(8),
+          content: Text(
+            userLoginModel.errorInfo.extraInfo.isEmpty
+                ? "User Not Registered"
+                : userLoginModel.errorInfo.extraInfo,
+            style: const TextStyle(
+              color: AppColors.whiteColor,
+            ),
+          ),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+    } catch (e) {
+      log("checkMobileNumber Error ::: $e");
+      rethrow;
     }
   }
 
@@ -106,7 +169,7 @@ class SignUpScreenController extends GetxController {
           "LastName": lnameController.text.trim(),
           "MobileNo": numberController.text.trim(),
           "UserEmail": emailController.text.trim(),
-          "ReferralCode": null,
+          "ReferralCode": codeController.text.trim(),
           "Salutation": namePrefixDDvalue.value
         };
 

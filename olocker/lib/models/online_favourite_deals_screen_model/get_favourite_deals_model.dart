@@ -65,12 +65,12 @@ class VendorDealsList1 {
 
   String category;
   String categoryImage;
-  List<OnLineDeal> onLineDeals;
+  List<OnLineDealFav> onLineDeals;
 
   factory VendorDealsList1.fromJson(Map<String, dynamic> json) => VendorDealsList1(
     category: json["Category"] ?? "",
     categoryImage: json["CategoryImage"] ?? "",
-    onLineDeals: List<OnLineDeal>.from(json["OnLineDeals"].map((x) => OnLineDeal.fromJson(x ?? {}))),
+    onLineDeals: List<OnLineDealFav>.from(json["OnLineDeals"].map((x) => OnLineDealFav.fromJson(x ?? {}))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -80,8 +80,8 @@ class VendorDealsList1 {
   };
 }
 
-class OnLineDeal {
-  OnLineDeal({
+class OnLineDealFav {
+  OnLineDealFav({
     required this.srNo,
     required this.validTillDate,
     required this.dealCode,
@@ -133,7 +133,7 @@ class OnLineDeal {
   bool isThirdPartyDeal;
   // List<Imagelist> imagelist;
 
-  factory OnLineDeal.fromJson(Map<String, dynamic> json) => OnLineDeal(
+  factory OnLineDealFav.fromJson(Map<String, dynamic> json) => OnLineDealFav(
     srNo: json["SrNo"] ?? 0,
     validTillDate: json["ValidTillDate"].toString(),
     dealCode: json["DealCode"] ?? "",

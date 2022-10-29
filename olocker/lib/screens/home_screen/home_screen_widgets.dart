@@ -11,7 +11,9 @@ import 'package:olocker/models/home_screen_models/my_jewellers_model.dart';
 import 'package:olocker/models/home_screen_models/smart_deals_online_model.dart';
 import 'package:olocker/screens/add_new_jeweller_screen/add_new_jeweller_screen.dart';
 import 'package:olocker/screens/my_jewellers_screen/my_jewellers_screen.dart';
+import 'package:olocker/screens/my_jewellery_portfolio_screen/my_jewellery_portfolio_screen.dart';
 import 'package:olocker/screens/online_deals_screen/online_deals_screen.dart';
+import 'package:olocker/screens/personal_loans_screen/personal_loans_screen.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
@@ -107,6 +109,7 @@ class MyJewellersListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -427,17 +430,21 @@ class OlockerServiceModule extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   _serviceModule(
-                    width: screenController.size.width * 0.07.w,
-                    height: screenController.size.height * 0.025.h,
-                    onTap: () {},
+                    width: screenController.size.width * 0.090.w,
+                    height: screenController.size.height * 0.027.h,
+                    onTap: () {
+                      Get.to(()=> MyJewelleryPortFolioScreen());
+                    },
                     title: 'Jewellery Insurance',
                     image: AppImages.olockerServiceLogo1Image,
                   ),
                   SizedBox(width: screenController.size.width * 0.008.w),
                   _serviceModule(
-                    width: screenController.size.width * 0.07.w,
-                    height: screenController.size.height * 0.025.h,
-                    onTap: () {},
+                    width: screenController.size.width * 0.090.w,
+                    height: screenController.size.height * 0.027.h,
+                    onTap: () {
+                      Get.to(()=> PersonalLoansScreen());
+                    },
                     title: 'Personal Loans',
                     image: AppImages.olockerServiceLogo2Image,
                   ),
@@ -510,7 +517,7 @@ class OlockerServiceModule extends StatelessWidget {
                             title,
                             style: TextStyle(
                               color: AppColors.whiteColor,
-                              fontSize: 6.5.sp,
+                              fontSize: 8.sp,
                             ),
                           ),
                         ),

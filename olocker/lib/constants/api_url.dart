@@ -40,4 +40,11 @@ class ApiUrl {
   static const String checkUserByMobileApi =
       "${apiMainPath}api/User/CheckUserByMobile";
   static const String registerApi = "${apiMainPath}api/User/Register";
+
+  static const String checkEligibilityApi = "${apiMainPath}api/Partner/CheckEMIEligibility";
+  static const String emiScheduleApi = "${apiMainPath}api/Partner/EMISchedule";
+  static const String uploadDocumentApi = "${apiMainPath}api/Partner/UploadEMIDocument";
+
+  static const String addMyJewellerApi = "${apiMainPath}api/User/AddMyJeweller";
+
 }

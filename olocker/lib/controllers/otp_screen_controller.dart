@@ -29,9 +29,9 @@ class OtpScreenController extends GetxController {
 
     String mobNumber = prefs.getString(UserPrefsData().customerMobileNoKey)!;
 
-    if (formKey.currentState!.validate()) {
+    // if (formKey.currentState!.validate()) {
       try {
-        isLoading(true);
+        // isLoading(true);
         String url = ApiUrl.userLoginApi;
         log(" checkMobileNumber url: $url");
         var formData = {
@@ -97,12 +97,12 @@ class OtpScreenController extends GetxController {
           // Get.to(() => SignUpScreen());
         }
         otpController.clear();
-        isLoading(false);
+        // isLoading(false);
       } catch (e) {
         log("checkMobileNumber Error ::: $e");
         rethrow;
       }
-    }
+    // }
   }
 
   Future<void> validateOtpNumberFunction(BuildContext context) async {

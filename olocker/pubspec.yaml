@@ -43,6 +43,10 @@ dependencies:
   expandable: ^5.0.1
   shared_preferences: ^2.0.15
   flutter_html: ^3.0.0-alpha.3
+  im_stepper: ^1.0.1+1
+  another_stepper: ^1.0.4
+  image_picker: ^0.8.5+3
+  file_picker: ^5.0.1
 
 dev_dependencies:
   flutter_test:
