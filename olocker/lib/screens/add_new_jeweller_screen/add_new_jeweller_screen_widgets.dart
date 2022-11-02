@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/add_new_jeweller_screen_controller.dart';
 import 'package:olocker/utils/extensions.dart';
-
+import 'package:olocker/utils/field_validation.dart';
+import 'package:sizer/sizer.dart';
 
 class RetailerCodeFieldModule extends StatelessWidget {
   RetailerCodeFieldModule({Key? key}) : super(key: key);
@@ -14,9 +15,10 @@ class RetailerCodeFieldModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      ()=> TextFormField(
+      () => TextFormField(
         controller: screenController.retailerCodeFieldController,
         readOnly: screenController.isTypeEnable.value,
+        validator: (val) => FieldValidator().validateRetailerCodeNumber(val!),
         decoration: const InputDecoration(hintText: 'Retailer Code'),
       ),
     );
@@ -31,33 +33,30 @@ class ReferralCodeFieldModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: screenController.referralCodeFieldController,
+      validator: (val) => FieldValidator().validateRefferalCodeNumber(val!),
       decoration: const InputDecoration(hintText: 'Enter Referral Code If Any'),
       onChanged: (value) {
         screenController.isLoading(true);
-        if(value.isEmpty) {
+        if (value.isEmpty) {
           screenController.isTypeEnable.value = false;
-        } else if(value.isNotEmpty) {
+        } else if (value.isNotEmpty) {
           screenController.isTypeEnable.value = true;
           screenController.retailerCodeFieldController.clear();
 
-          if(screenController.referralCodeFieldController.text.contains('-')) {
-            List codeList = screenController.referralCodeFieldController.text
-                .split('-');
+          if (screenController.referralCodeFieldController.text.contains('-')) {
+            List codeList =
+                screenController.referralCodeFieldController.text.split('-');
             screenController.refferalCode = codeList[0];
             screenController.retailerCodeFieldController.text = codeList[1];
             log('refferalCode :${screenController.refferalCode}');
             log('retailorCode :${screenController.retailerCodeFieldController.text}');
           }
-
         }
         screenController.isLoading(false);
       },
     );
   }
 }
-
-
-
 
 class SubmitButtonModule extends StatelessWidget {
   SubmitButtonModule({Key? key}) : super(key: key);
@@ -73,13 +72,14 @@ class SubmitButtonModule extends StatelessWidget {
           borderRadius: BorderRadius.circular(25),
           color: AppColors.accentColor,
         ),
-        child: const Text(
+        child: Text(
           'SUBMIT',
           style: TextStyle(
             color: AppColors.whiteColor,
+            fontSize: 13.sp,
             fontWeight: FontWeight.w500,
           ),
-        ).commonSymmetricPadding(vertical: 10, horizontal: 120),
+        ).commonSymmetricPadding(vertical: 8, horizontal: 120),
       ),
     );
     /*return Stack(

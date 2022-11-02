@@ -50,9 +50,25 @@ class FieldValidator {
     }
   }
 
+  String? validateRetailerCodeNumber(String value) {
+    if (value.isEmpty) {
+      return 'Retailer code is required';
+    }
+    return null;
+  }
+
   String? validateRefferalCodeNumber(String value) {
     if (value.isEmpty) {
       return 'Referral code is required';
+    }
+    return null;
+  }
+
+  String? validateProductName(String value) {
+    if (value.isEmpty) {
+      return 'Enter product name';
+    } else if (value.contains("SELECT PRODUCT NAME")) {
+      return 'Please select product name';
     }
     return null;
   }
@@ -68,12 +84,15 @@ class FieldValidator {
     if (value.isEmpty) {
       return 'Enter purchased from shop name';
     }
+
     return null;
   }
 
   String? validatePurchasedDate(String value) {
     if (value.isEmpty) {
       return 'Enter purchased date';
+    } else if (value.contains("Select Purchased Date")) {
+      return 'Please select product purchased date';
     }
     return null;
   }
@@ -81,6 +100,69 @@ class FieldValidator {
   String? validatePurchasedPrice(String value) {
     if (value.isEmpty) {
       return 'Enter purchased price';
+    }
+    return null;
+  }
+
+  // metal details formfields
+  String? validateMetalType(String value) {
+    if (value.isEmpty) {
+      return 'Please select metal type name';
+    } else if (value.contains("SELECT METAL TYPE")) {
+      return 'Please select metal type name';
+    }
+    return null;
+  }
+
+  String? validateMetalPurity(String value) {
+    if (value.isEmpty) {
+      return 'Please select metal purity';
+    } else if (value.contains("SELECT PURITY")) {
+      return 'Please select product purchased date';
+    }
+    return null;
+  }
+
+  String? validateMetalWeight(String value) {
+    if (value.isEmpty) {
+      return 'Enter metal weight';
+    }
+    return null;
+  }
+
+  // stone details formfields
+  String? validateStoneName(String value) {
+    if (value.isEmpty) {
+      return 'Please select stone name';
+    }
+    return null;
+  }
+
+  String? validateStoneWeight(String value) {
+    if (value.isEmpty) {
+      return 'Enter stone weight';
+    }
+    return null;
+  }
+
+  String? validateUnitOfWeight(String value) {
+    if (value.isEmpty) {
+      return 'Select or Enter unit of weight';
+    }
+    return null;
+  }
+
+  // deco details formfields
+  String? validateDecoItemName(String value) {
+    if (value.isEmpty) {
+      return 'Enter decorative item name';
+    }
+    return null;
+  }
+
+  String? validateDecoItemWeight(String value) {
+    if (value.isEmpty) {
+      return 'Enter decorative item weight';
     }
     return null;
   }
@@ -95,7 +177,7 @@ class FieldValidator {
   String? validatePinCode(String value) {
     if (value.isEmpty) {
       return 'Enter pincode';
-    } else if(!RegExp("^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}").hasMatch(value)) {
+    } else if (!RegExp("^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}").hasMatch(value)) {
       return 'Enter valid pincode';
     }
     return null;
@@ -106,7 +188,7 @@ class FieldValidator {
 
     if (value.isEmpty) {
       return 'Enter pancard';
-    } else if(!RegExp("[A-Z]{5}[0-9]{4}[A-Z]{1}").hasMatch(value)) {
+    } else if (!RegExp("[A-Z]{5}[0-9]{4}[A-Z]{1}").hasMatch(value)) {
       {
         return 'Invalid pan number';
       }
@@ -141,7 +223,4 @@ class FieldValidator {
     }
     return null;
   }
-
-
-
 }

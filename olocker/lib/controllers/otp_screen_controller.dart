@@ -30,78 +30,78 @@ class OtpScreenController extends GetxController {
     String mobNumber = prefs.getString(UserPrefsData().customerMobileNoKey)!;
 
     // if (formKey.currentState!.validate()) {
-      try {
-        // isLoading(true);
-        String url = ApiUrl.userLoginApi;
-        log(" checkMobileNumber url: $url");
-        var formData = {
-          "MobileNo": mobNumber,
-        };
+    try {
+      // isLoading(true);
+      String url = ApiUrl.userLoginApi;
+      log(" checkMobileNumber url: $url");
+      var formData = {
+        "MobileNo": mobNumber,
+      };
 
-        log("formdata mobile  is : $formData");
-        http.Response response = await http.post(
-          Uri.parse(url),
-          body: json.encode(formData),
-          headers: apiHeader.headers,
+      log("formdata mobile  is : $formData");
+      http.Response response = await http.post(
+        Uri.parse(url),
+        body: json.encode(formData),
+        headers: apiHeader.headers,
+      );
+
+      log("checkMobileNumber st code is : ${response.statusCode}");
+      log("checkMobileNumber res body : ${response.body}");
+
+      var resBody = json.decode(response.body);
+
+      UserLoginModel userLoginModel = UserLoginModel.fromJson(resBody);
+
+      var isSuccessStatus = userLoginModel.success;
+      var isCustomerExist = userLoginModel.isCustomer;
+
+      log("checkMobileNumber success  : $isSuccessStatus");
+      log("is customer exist : $isCustomerExist");
+
+      if (isCustomerExist == true) {
+        log("mobile number is verified");
+        var snackBar = const SnackBar(
+          backgroundColor: AppColors.whiteColor,
+          elevation: 8,
+          behavior: SnackBarBehavior.floating,
+          margin: EdgeInsets.all(8),
+          content: Text(
+            "Otp sent to your mobile number",
+            style: TextStyle(
+              color: AppColors.blackColor,
+            ),
+          ),
         );
-
-        log("checkMobileNumber st code is : ${response.statusCode}");
-        log("checkMobileNumber res body : ${response.body}");
-
-        var resBody = json.decode(response.body);
-
-        UserLoginModel userLoginModel = UserLoginModel.fromJson(resBody);
-
-        var isSuccessStatus = userLoginModel.success;
-        var isCustomerExist = userLoginModel.isCustomer;
-
-        log("checkMobileNumber success  : $isSuccessStatus");
-        log("is customer exist : $isCustomerExist");
-
-        if (isCustomerExist == true) {
-          log("mobile number is verified");
-          var snackBar = const SnackBar(
-            backgroundColor: AppColors.whiteColor,
-            elevation: 8,
-            behavior: SnackBarBehavior.floating,
-            margin: EdgeInsets.all(8),
-            content: Text(
-              "Otp sent to your mobile number",
-              style: TextStyle(
-                color: AppColors.blackColor,
-              ),
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        // prefs.setString(
+        //     UserPrefsData().customerMobileNoKey, numberController.text);
+        // Get.off(() => OtpScreen());
+      } else {
+        log("mobile number is new");
+        final snackBar = SnackBar(
+          backgroundColor: AppColors.whiteColor,
+          elevation: 8,
+          behavior: SnackBarBehavior.floating,
+          margin: const EdgeInsets.all(8),
+          content: Text(
+            userLoginModel.errorInfo.extraInfo.isEmpty
+                ? "User Not Registered"
+                : userLoginModel.errorInfo.extraInfo,
+            style: const TextStyle(
+              color: AppColors.blackColor,
             ),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          // prefs.setString(
-          //     UserPrefsData().customerMobileNoKey, numberController.text);
-          // Get.off(() => OtpScreen());
-        } else {
-          log("mobile number is new");
-          final snackBar = SnackBar(
-            backgroundColor: AppColors.whiteColor,
-            elevation: 8,
-            behavior: SnackBarBehavior.floating,
-            margin: const EdgeInsets.all(8),
-            content: Text(
-              userLoginModel.errorInfo.extraInfo.isEmpty
-                  ? "User Not Registered"
-                  : userLoginModel.errorInfo.extraInfo,
-              style: const TextStyle(
-                color: AppColors.blackColor,
-              ),
-            ),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          ),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-          // Get.to(() => SignUpScreen());
-        }
-        otpController.clear();
-        // isLoading(false);
-      } catch (e) {
-        log("checkMobileNumber Error ::: $e");
-        rethrow;
+        // Get.to(() => SignUpScreen());
       }
+      otpController.clear();
+      // isLoading(false);
+    } catch (e) {
+      log("checkMobileNumber Error ::: $e");
+      rethrow;
+    }
     // }
   }
 
@@ -205,11 +205,11 @@ class OtpScreenController extends GetxController {
                 ),
               ),
             );
+            // ignore: use_build_context_synchronously
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
             // Get.to(() => SignUpScreen());
           }
-          isLoading(false);
         } catch (e) {
           log("validateOtpNumberFunction Error ::: $e");
           rethrow;
@@ -217,6 +217,8 @@ class OtpScreenController extends GetxController {
       } catch (e) {
         log(e.toString());
         rethrow;
+      } finally {
+        isLoading(false);
       }
     }
   }

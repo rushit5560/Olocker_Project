@@ -16,6 +16,7 @@ class AddNewJewellerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: AppColors.whiteColor,
         elevation: 0,
@@ -33,7 +34,6 @@ class AddNewJewellerScreen extends StatelessWidget {
           ),
         ),
       ),
-
       body: Stack(
         // alignment: Alignment.topCenter,
         children: [
@@ -53,34 +53,39 @@ class AddNewJewellerScreen extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               clipBehavior: Clip.none,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColors.whiteColor,
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.grey,
-                        spreadRadius: 1,
-                        blurRadius: 5,
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'RETAILER CODE',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.blackColor,
+                SingleChildScrollView(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: AppColors.whiteColor,
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.grey,
+                          spreadRadius: 1,
+                          blurRadius: 5,
                         ),
-                      ),
-                      RetailerCodeFieldModule(),
-                      ReferralCodeFieldModule(),
-                      const SizedBox(height: 25),
-                    ],
-                  ).commonAllSidePadding(10),
+                      ],
+                    ),
+                    child: Form(
+                      key: addNewJewellerScreenController.retailerFormKey,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'RETAILER CODE',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.blackColor,
+                            ),
+                          ),
+                          RetailerCodeFieldModule(),
+                          ReferralCodeFieldModule(),
+                          const SizedBox(height: 25),
+                        ],
+                      ).commonAllSidePadding(10),
+                    ),
+                  ),
                 ),
                 Positioned(
                   bottom: -20,

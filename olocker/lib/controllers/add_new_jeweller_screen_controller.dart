@@ -11,6 +11,7 @@ class AddNewJewellerScreenController extends GetxController {
   RxBool isSuccessStatus = false.obs;
 
   ApiHeader apiHeader = ApiHeader();
+  final retailerFormKey = GlobalKey<FormState>();
 
   TextEditingController retailerCodeFieldController = TextEditingController();
   TextEditingController referralCodeFieldController = TextEditingController();
@@ -18,35 +19,29 @@ class AddNewJewellerScreenController extends GetxController {
   RxBool isTypeEnable = false.obs;
   String refferalCode = "";
 
-
   Future<void> addMyJewellerFunction() async {
     isLoading(true);
-    String url = ApiUrl.addMyJewellerApi;
-    log('Add Jeweller Api Url : $url');
 
-    try {
-      Map<String, dynamic> bodyData = {
-        "PartnerId": retailerCodeFieldController.text,
-        "CustomerID": UserDetails.customerId,
-        "ReferralCode": refferalCode
-      };
-      log('bodyData : $bodyData');
+    if (retailerFormKey.currentState!.validate()) {
+      String url = ApiUrl.addMyJewellerApi;
+      log('Add Jeweller Api Url : $url');
 
-      http.Response response = await http.post(
-        Uri.parse(url),
-        headers: apiHeader.headers,
-        body: bodyData
-      );
+      try {
+        Map<String, dynamic> bodyData = {
+          "PartnerId": retailerCodeFieldController.text,
+          "CustomerID": UserDetails.customerId,
+          "ReferralCode": refferalCode
+        };
+        log('bodyData : $bodyData');
 
-      log('response11111 : ${response.body}');
+        http.Response response = await http.post(Uri.parse(url),
+            headers: apiHeader.headers, body: bodyData);
 
-
-
-    } catch(e) {
-      log('addMyJewellerFunction Error :$e');
-      rethrow;
+        log('response11111 : ${response.body}');
+      } catch (e) {
+        log('addMyJewellerFunction Error :$e');
+        rethrow;
+      }
     }
   }
-
-
 }

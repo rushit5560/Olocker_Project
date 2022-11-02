@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/screens/add_uninsured_jewellery_screen/add_uninsured_jewellery_screen.dart';
+import 'package:olocker/screens/my_insured_jewellery_screen/my_insured_jewellery_screen.dart';
+import 'package:olocker/screens/my_uninsured_jewellery_screen/my_uninsured_jewellery_screen.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/my_jewellery_portfolio_controller.dart';
@@ -136,14 +138,19 @@ class MyInsuredJewelleryModule extends StatelessWidget {
                   fontSize: 12.sp,
                 ),
               ),
-              Text(
-                "VIEW ALL",
-                style: TextStyle(
-                  color: AppColors.accentDarkColor,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12.sp,
-                  decoration: TextDecoration.underline,
-                  height: 1,
+              GestureDetector(
+                onTap: () {
+                  Get.to(() => MyInsuredJewelleryScreen());
+                },
+                child: Text(
+                  "VIEW ALL",
+                  style: TextStyle(
+                    color: AppColors.accentDarkColor,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 12.sp,
+                    decoration: TextDecoration.underline,
+                    height: 1,
+                  ),
                 ),
               ),
             ],
@@ -197,6 +204,7 @@ class MyUnInsuredJewelleryModule extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
+            
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -209,14 +217,19 @@ class MyUnInsuredJewelleryModule extends StatelessWidget {
                       fontSize: 12.sp,
                     ),
                   ),
-                  Text(
-                    "VIEW ALL",
-                    style: TextStyle(
-                      color: AppColors.accentDarkColor,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12.sp,
-                      decoration: TextDecoration.underline,
-                      height: 1,
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => MyUnInsuredJewelleryScreen());
+                    },
+                    child: Text(
+                      "VIEW ALL",
+                      style: TextStyle(
+                        color: AppColors.accentDarkColor,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12.sp,
+                        decoration: TextDecoration.underline,
+                        height: 1,
+                      ),
                     ),
                   ),
                 ],
