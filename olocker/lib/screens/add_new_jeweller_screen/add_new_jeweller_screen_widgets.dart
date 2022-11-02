@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/add_new_jeweller_screen_controller.dart';
 import 'package:olocker/utils/extensions.dart';
+import 'package:olocker/utils/field_validation.dart';
 
 
 class RetailerCodeFieldModule extends StatelessWidget {
@@ -18,6 +19,7 @@ class RetailerCodeFieldModule extends StatelessWidget {
         controller: screenController.retailerCodeFieldController,
         readOnly: screenController.isTypeEnable.value,
         decoration: const InputDecoration(hintText: 'Retailer Code'),
+        validator: (value) => FieldValidator().validateRetailerCode(value!),
       ),
     );
   }
@@ -34,22 +36,25 @@ class ReferralCodeFieldModule extends StatelessWidget {
       decoration: const InputDecoration(hintText: 'Enter Referral Code If Any'),
       onChanged: (value) {
         screenController.isLoading(true);
+
+        // If referral code field contain any value then retailer code field disable.
         if(value.isEmpty) {
           screenController.isTypeEnable.value = false;
         } else if(value.isNotEmpty) {
           screenController.isTypeEnable.value = true;
           screenController.retailerCodeFieldController.clear();
 
+          // After "-" value text in retailer code field text
           if(screenController.referralCodeFieldController.text.contains('-')) {
             List codeList = screenController.referralCodeFieldController.text
                 .split('-');
             screenController.refferalCode = codeList[0];
             screenController.retailerCodeFieldController.text = codeList[1];
             log('refferalCode :${screenController.refferalCode}');
-            log('retailorCode :${screenController.retailerCodeFieldController.text}');
+            log('retailerCode :${screenController.retailerCodeFieldController.text}');
           }
-
         }
+
         screenController.isLoading(false);
       },
     );
@@ -66,7 +71,11 @@ class SubmitButtonModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async => await screenController.addMyJewellerFunction(),
+      onTap: () async {
+        if(screenController.formKey.currentState!.validate()) {
+          await screenController.addMyJewellerFunction();
+        }
+      },
       child: Container(
         // width: screenController.size.width * 0.70,
         decoration: BoxDecoration(

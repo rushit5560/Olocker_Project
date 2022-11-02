@@ -65,22 +65,25 @@ class AddNewJewellerScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'RETAILER CODE',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.blackColor,
+                  child: Form(
+                    key: addNewJewellerScreenController.formKey,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'RETAILER CODE',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.blackColor,
+                          ),
                         ),
-                      ),
-                      RetailerCodeFieldModule(),
-                      ReferralCodeFieldModule(),
-                      const SizedBox(height: 25),
-                    ],
-                  ).commonAllSidePadding(10),
+                        RetailerCodeFieldModule(),
+                        ReferralCodeFieldModule(),
+                        const SizedBox(height: 25),
+                      ],
+                    ).commonAllSidePadding(10),
+                  ),
                 ),
                 Positioned(
                   bottom: -20,

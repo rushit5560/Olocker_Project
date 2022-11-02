@@ -142,6 +142,13 @@ class FieldValidator {
     return null;
   }
 
+  String? validateRetailerCode(String value) {
+    if (value.isEmpty) {
+      return 'Enter retailer code';
+    }
+    return null;
+  }
+
 
 
 }
