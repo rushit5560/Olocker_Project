@@ -18,8 +18,8 @@ class RetailerCodeFieldModule extends StatelessWidget {
       () => TextFormField(
         controller: screenController.retailerCodeFieldController,
         readOnly: screenController.isTypeEnable.value,
-        validator: (val) => FieldValidator().validateRetailerCodeNumber(val!),
         decoration: const InputDecoration(hintText: 'Retailer Code'),
+        validator: (value) => FieldValidator().validateRetailerCode(value!),
       ),
     );
   }
@@ -37,6 +37,8 @@ class ReferralCodeFieldModule extends StatelessWidget {
       decoration: const InputDecoration(hintText: 'Enter Referral Code If Any'),
       onChanged: (value) {
         screenController.isLoading(true);
+
+        // If referral code field contain any value then retailer code field disable.
         if (value.isEmpty) {
           screenController.isTypeEnable.value = false;
         } else if (value.isNotEmpty) {
@@ -49,9 +51,10 @@ class ReferralCodeFieldModule extends StatelessWidget {
             screenController.refferalCode = codeList[0];
             screenController.retailerCodeFieldController.text = codeList[1];
             log('refferalCode :${screenController.refferalCode}');
-            log('retailorCode :${screenController.retailerCodeFieldController.text}');
+            log('retailerCode :${screenController.retailerCodeFieldController.text}');
           }
         }
+
         screenController.isLoading(false);
       },
     );
@@ -65,7 +68,11 @@ class SubmitButtonModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async => await screenController.addMyJewellerFunction(),
+      onTap: () async {
+        if (screenController.formKey.currentState!.validate()) {
+          await screenController.addMyJewellerFunction();
+        }
+      },
       child: Container(
         // width: screenController.size.width * 0.70,
         decoration: BoxDecoration(
