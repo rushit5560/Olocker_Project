@@ -7,13 +7,11 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/user_details.dart';
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
 import 'package:olocker/models/personal_loans_screen_model/check_availability_model.dart';
 import 'package:olocker/models/personal_loans_screen_model/emi_schedule_model.dart';
 
-
 class PersonalLoansScreenController extends GetxController {
-
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
@@ -24,25 +22,24 @@ class PersonalLoansScreenController extends GetxController {
 
   GlobalKey<FormState> stepOneFormKey = GlobalKey<FormState>();
 
-  TextEditingController fnameController =TextEditingController();
-  TextEditingController lnameController =TextEditingController();
-  TextEditingController dobController =TextEditingController();
-  TextEditingController mobileNoController =TextEditingController();
-  TextEditingController emailController =TextEditingController();
-  TextEditingController pinCodeController =TextEditingController();
-  TextEditingController panCardController =TextEditingController();
+  TextEditingController fnameController = TextEditingController();
+  TextEditingController lnameController = TextEditingController();
+  TextEditingController dobController = TextEditingController();
+  TextEditingController mobileNoController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController pinCodeController = TextEditingController();
+  TextEditingController panCardController = TextEditingController();
   RxDouble loanAmount = 0.0.obs;
-  TextEditingController monthlyIncomeController =TextEditingController();
-  TextEditingController employerNameController =TextEditingController();
-  TextEditingController currentTotalEmiController =TextEditingController();
-  TextEditingController whichBankController =TextEditingController();
+  TextEditingController monthlyIncomeController = TextEditingController();
+  TextEditingController employerNameController = TextEditingController();
+  TextEditingController currentTotalEmiController = TextEditingController();
+  TextEditingController whichBankController = TextEditingController();
 
   String tempSelectedDate = "";
   RxString salariedValue = "Salaried".obs;
   RxString homeLoanValue = "no".obs;
   int tempSelectedYear = 0;
   String apiDobDate = "";
-
 
   RxString namePrefixDDValue = 'Mr.'.obs;
   int namePrefixNumberValue = 1;
@@ -58,14 +55,12 @@ class PersonalLoansScreenController extends GetxController {
   List<EmiTenorOption> emiScheduleList = [];
   int selectedListItem = 0;
 
-
   File panCardFile = File('');
   File aadhaarCardFile = File('');
   File addressProofFile = File('');
   File bankStatementFile = File('');
   File salarySlipsFile = File('');
   File rentAgreementFile = File('');
-
 
   /// Check Eligibility Api Function - Step 1
   Future<void> checkEligibilityFunction() async {
@@ -74,7 +69,6 @@ class PersonalLoansScreenController extends GetxController {
     log('Check Eligibility Api Url : $url');
 
     try {
-
       Map<String, dynamic> bodyData = {
         "titleid": "$namePrefixNumberValue",
         "firstname": fnameController.text.trim(),
@@ -105,10 +99,11 @@ class PersonalLoansScreenController extends GetxController {
 
       log('response : ${response.body}');
 
-      CheckEligibilityModel checkEligibilityModel = CheckEligibilityModel.fromJson(json.decode(response.body));
+      CheckEligibilityModel checkEligibilityModel =
+          CheckEligibilityModel.fromJson(json.decode(response.body));
       isSuccessStatus = checkEligibilityModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         emiScheduleList.clear();
         emiScheduleList.addAll(checkEligibilityModel.emiTenorOptions);
         emiSrNo = checkEligibilityModel.emiSrNo;
@@ -120,15 +115,13 @@ class PersonalLoansScreenController extends GetxController {
       } else {
         log('checkEligibilityFunction Else');
       }
-
-    } catch(e) {
+    } catch (e) {
       log('checkEligibilityFunction Error :$e');
       rethrow;
     }
 
     isLoading(false);
   }
-
 
   /// EMI Schedule Api Function - Step 2
   Future<void> emiScheduleFunction() async {
@@ -137,7 +130,6 @@ class PersonalLoansScreenController extends GetxController {
     log('Emi Schedule Api Url : $url');
 
     try {
-
       Map<String, dynamic> bodyData = {
         "EMISrNo": emiSrNo,
         "SelectedTenorMonth": selectedMonth,
@@ -145,22 +137,23 @@ class PersonalLoansScreenController extends GetxController {
       };
       log('bodyData : $bodyData');
 
-      http.Response response = await http.post(Uri.parse(url),
-      headers: apiHeader.headers,
-      body: jsonEncode(bodyData),
+      http.Response response = await http.post(
+        Uri.parse(url),
+        headers: apiHeader.headers,
+        body: jsonEncode(bodyData),
       );
 
       log('response : ${response.body}');
 
-      EmiScheduleModel emiScheduleModel = EmiScheduleModel.fromJson(json.decode(response.body));
+      EmiScheduleModel emiScheduleModel =
+          EmiScheduleModel.fromJson(json.decode(response.body));
       isSuccessStatus = emiScheduleModel.success.obs;
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         currentStep++;
       } else {
         log('emiScheduleFunction Else');
       }
-
-    } catch(e) {
+    } catch (e) {
       log('emiScheduleFunction Error : $e');
       rethrow;
     }
@@ -179,39 +172,68 @@ class PersonalLoansScreenController extends GetxController {
         'MobileAppKey': "EED26D5A-711D-49BD-8999-38D8A60329C5",
       };*/
 
-      var request = http.MultipartRequest('POST', Uri.parse(url));
-      request.headers.addAll(apiHeader.headers);
+      var requestMap = {
+        "emiSrNo": "$emiSrNo",
+        "PanCard_Base64": panCardFile.path.toString(),
+        "AadharCard_Base64": aadhaarCardFile.path.toString(),
+        "AddressProof_Base64": addressProofFile.path.toString(),
+        "BankStatement_Base64": bankStatementFile.path.toString(),
+        "SalarySlip_Base64": salarySlipsFile.path.toString(),
+        "RentAgreement_Base64": rentAgreementFile.path.toString(),
+      };
+      // requestMap["Base64"]
 
-      request.fields['emiSrNo'] = "$emiSrNo";
-      request.files.add(await http.MultipartFile.fromPath("PanCard_Base64", panCardFile.path));
-      request.files.add(await http.MultipartFile.fromPath("AadharCard_Base64", aadhaarCardFile.path));
-      request.files.add(await http.MultipartFile.fromPath("AddressProof_Base64", addressProofFile.path));
-      request.files.add(await http.MultipartFile.fromPath("BankStatement_Base64", bankStatementFile.path));
-      request.files.add(await http.MultipartFile.fromPath("SalarySlip_Base64", salarySlipsFile.path));
-      request.files.add(await http.MultipartFile.fromPath("RentAgreement_Base64", rentAgreementFile.path));
+      // log("updateImageOfJewelleryFunction api req body :: $requestMap");
+      http.Response response = await http.post(
+        Uri.parse(url),
+        body: jsonEncode(requestMap),
+        headers: {
+          'Content-Type': "application/json",
+          'MobileAppKey': "EED26D5A-711D-49BD-8999-38D8A60329C5",
+        },
+      );
 
-      log('Fields : ${request.fields}');
-      log('files : ${request.files}');
+      log("updateImageOfJewelleryFunction api response body :: ${response.body}");
+      log("updateImageOfJewelleryFunction api response st code :: ${response.statusCode}");
 
-      var response = await request.send();
-      log('response: ${response.request}');
+      //multipart formdata api calll
+      // var request = http.MultipartRequest('POST', Uri.parse(url));
+      // request.headers.addAll({
+      //   'MobileAppKey': "EED26D5A-711D-49BD-8999-38D8A60329C5",
+      // });
+      // request.fields['emiSrNo'] = "$emiSrNo";
+      // request.files.add(await http.MultipartFile.fromPath(
+      //     "PanCard_Base64", panCardFile.path));
+      // request.files.add(await http.MultipartFile.fromPath(
+      //     "AadharCard_Base64", aadhaarCardFile.path));
+      // request.files.add(await http.MultipartFile.fromPath(
+      //     "AddressProof_Base64", addressProofFile.path));
+      // request.files.add(await http.MultipartFile.fromPath(
+      //     "BankStatement_Base64", bankStatementFile.path));
+      // request.files.add(await http.MultipartFile.fromPath(
+      //     "SalarySlip_Base64", salarySlipsFile.path));
+      // request.files.add(await http.MultipartFile.fromPath(
+      //     "RentAgreement_Base64", rentAgreementFile.path));
 
-      response.stream
-          .transform(const Utf8Decoder())
-          .transform(const LineSplitter())
-          .listen((value) async {
-        log('value: $value');
+      // log('Fields : ${request.fields}');
+      // log('files : ${request.files}');
 
-      });
+      // var response = await request.send();
+      // log('response: ${response.request}');
 
-    } catch(e) {
+      // response.stream
+      //     .transform(const Utf8Decoder())
+      //     .transform(const LineSplitter())
+      //     .listen((value) async {
+      //   log('value: $value');
+      // });
+    } catch (e) {
       log('uploadEmiDocumentsFunction Error :$e');
       rethrow;
     }
 
     isLoading(false);
   }
-
 
   loadUI() {
     isLoading(true);

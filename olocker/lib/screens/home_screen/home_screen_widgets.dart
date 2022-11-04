@@ -88,10 +88,11 @@ class AddNewJewellerButtonModule extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           color: AppColors.accentColor,
         ),
-        child: const Center(
+        child: Center(
           child: Text(
             'Add New Jeweller',
             style: TextStyle(
+              fontSize: 12.5.sp,
               color: AppColors.whiteColor,
               fontWeight: FontWeight.w500,
             ),
@@ -389,7 +390,7 @@ class OlockerServiceModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: screenController.size.height * 0.040.h,
+      height: screenController.size.height * 0.041.h,
       child: Stack(
         children: [
           Column(
@@ -430,20 +431,20 @@ class OlockerServiceModule extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   _serviceModule(
-                    width: screenController.size.width * 0.090.w,
-                    height: screenController.size.height * 0.027.h,
+                    width: screenController.size.width * 0.105.w,
+                    height: screenController.size.height * 0.03.h,
                     onTap: () {
-                      Get.to(()=> MyJewelleryPortFolioScreen());
+                      Get.to(() => MyJewelleryPortFolioScreen());
                     },
                     title: 'Jewellery Insurance',
                     image: AppImages.olockerServiceLogo1Image,
                   ),
                   SizedBox(width: screenController.size.width * 0.008.w),
                   _serviceModule(
-                    width: screenController.size.width * 0.090.w,
-                    height: screenController.size.height * 0.027.h,
+                    width: screenController.size.width * 0.105.w,
+                    height: screenController.size.height * 0.03.h,
                     onTap: () {
-                      Get.to(()=> PersonalLoansScreen());
+                      Get.to(() => PersonalLoansScreen());
                     },
                     title: 'Personal Loans',
                     image: AppImages.olockerServiceLogo2Image,
@@ -517,7 +518,7 @@ class OlockerServiceModule extends StatelessWidget {
                             title,
                             style: TextStyle(
                               color: AppColors.whiteColor,
-                              fontSize: 8.sp,
+                              fontSize: 9.5.sp,
                             ),
                           ),
                         ),
@@ -526,8 +527,8 @@ class OlockerServiceModule extends StatelessWidget {
                         top: -15,
                         right: 5,
                         child: Container(
-                          width: screenController.size.width * 0.015.w,
-                          height: screenController.size.width * 0.015.w,
+                          width: screenController.size.width * 0.018.w,
+                          height: screenController.size.width * 0.018.w,
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: AppColors.whiteColor,
@@ -536,6 +537,7 @@ class OlockerServiceModule extends StatelessWidget {
                             child: Icon(
                               Icons.keyboard_arrow_right,
                               color: AppColors.accentColor,
+                              size: 18,
                             ),
                           ),
                         ),

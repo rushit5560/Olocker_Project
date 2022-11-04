@@ -17,8 +17,10 @@ class AppImages {
   static const String olockerServiceLogo2Image =
       '$imageRootPath/olocker_logo_homebx2.png';
   static const String addJewelleryImage = '$imageRootPath/add_jeweller.png';
-  static const String jewellersShapeImage = '$imageRootPath/myjeweller_shape1.png';
+  static const String jewellersShapeImage =
+      '$imageRootPath/myjeweller_shape1.png';
   static const String dealsBgShapeImage = '$imageRootPath/deal_bg.png';
+  static const String ornamentBgShapeImage = '$imageRootPath/ornament.png';
 }
 
 class AppIcons {
@@ -44,5 +46,7 @@ class AppIcons {
 }
 
 class AppSvgs {
-  static const String iconRootPath = "assets/svgs";
+  static const String svgRootPath = "assets/svgs";
+
+  static const String editSvgIcon = '$svgRootPath/edit_icon.svg';
 }

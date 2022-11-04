@@ -4,6 +4,7 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/add_new_jeweller_screen_controller.dart';
 import 'package:olocker/utils/extensions.dart';
+import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 import 'add_new_jeweller_screen_widgets.dart';
@@ -47,50 +48,37 @@ class AddNewJewellerScreen extends StatelessWidget {
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.only(top: 150, right: 15, left: 15),
-            child: Stack(
-              alignment: Alignment.bottomCenter,
-              clipBehavior: Clip.none,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColors.whiteColor,
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.grey,
-                        spreadRadius: 1,
-                        blurRadius: 5,
-                      ),
-                    ],
-                  ),
-                  child: Form(
-                    key: addNewJewellerScreenController.formKey,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+          Obx(
+            () => addNewJewellerScreenController.isLoading.value
+                ? CommonLoader().showCircularLoader()
+                : Padding(
+                    padding:
+                        const EdgeInsets.only(top: 150, right: 15, left: 15),
+                    child: Stack(
+                      alignment: Alignment.bottomCenter,
+                      clipBehavior: Clip.none,
                       children: [
-                        const Text(
-                          'RETAILER CODE',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.blackColor,
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: AppColors.whiteColor,
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.grey,
+                                spreadRadius: 1,
+                                blurRadius: 5,
+                              ),
+                            ],
                           ),
+                          child: RetailerCodeFormModule(),
                         ),
-                        RetailerCodeFieldModule(),
-                        ReferralCodeFieldModule(),
-                        const SizedBox(height: 25),
+                        Positioned(
+                          bottom: -18,
+                          child: SubmitButtonModule(),
+                        ),
                       ],
-                    ).commonAllSidePadding(10),
+                    ),
                   ),
-                ),
-                Positioned(
-                  bottom: -20,
-                  child: SubmitButtonModule(),
-                ),
-              ],
-            ),
           ),
 
           // SizedBox(

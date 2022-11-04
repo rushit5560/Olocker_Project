@@ -7,7 +7,7 @@ class ApiHeader {
 
 class ApiUrl {
   static const String apiMainPath = "https://devappapi.olocker.in/";
-  static const String apiImagePath = "https://devappapi.olocker.in/";
+  static const String apiImagePath = "https://devappapi.olocker.in";
 
   // Home Screen Api
   static const String myJewellersApi = "${apiMainPath}api/user/GetMyJewellers";
@@ -31,6 +31,11 @@ class ApiUrl {
   // Add uninsured jewellery Screen Api
   static const String getAllDataAddOrnamentApi =
       "${apiMainPath}api/Info/GetAllDataAddOrnament";
+  static const String addOrnamentApi = "${apiMainPath}api/User/AddOrnament";
+  static const String getAllUnInsuredOrnamentApi =
+      "${apiMainPath}api/User/GetAllUnInsuredOrnament";
+  static const String updateUnInsuredOrnamentImageApi =
+      "${apiMainPath}api/User/UpdateUnInsuredOrnamentImage";
 
   //favourites apis
   static const String getFavProductApi = "${apiMainPath}api/User/GetFavProduct";
@@ -41,10 +46,11 @@ class ApiUrl {
       "${apiMainPath}api/User/CheckUserByMobile";
   static const String registerApi = "${apiMainPath}api/User/Register";
 
-  static const String checkEligibilityApi = "${apiMainPath}api/Partner/CheckEMIEligibility";
+  static const String checkEligibilityApi =
+      "${apiMainPath}api/Partner/CheckEMIEligibility";
   static const String emiScheduleApi = "${apiMainPath}api/Partner/EMISchedule";
-  static const String uploadDocumentApi = "${apiMainPath}api/Partner/UploadEMIDocument";
+  static const String uploadDocumentApi =
+      "${apiMainPath}api/Partner/UploadEMIDocument";
 
   static const String addMyJewellerApi = "${apiMainPath}api/User/AddMyJeweller";
-
 }

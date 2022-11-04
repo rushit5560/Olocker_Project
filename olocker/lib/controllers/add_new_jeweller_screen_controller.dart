@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/user_details.dart';
 import 'package:olocker/models/add_jeweller_screen_models/add_jeweller_model.dart';
+import 'package:olocker/widgets/common_widgets.dart';
 
 class AddNewJewellerScreenController extends GetxController {
   final size = Get.size;
@@ -13,7 +14,6 @@ class AddNewJewellerScreenController extends GetxController {
   RxBool isSuccessStatus = false.obs;
 
   ApiHeader apiHeader = ApiHeader();
-  final retailerFormKey = GlobalKey<FormState>();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController retailerCodeFieldController = TextEditingController();
@@ -23,11 +23,10 @@ class AddNewJewellerScreenController extends GetxController {
   String refferalCode = "";
 
   Future<void> addMyJewellerFunction() async {
-    isLoading(true);
-
-    if (retailerFormKey.currentState!.validate()) {
+    if (formKey.currentState!.validate()) {
+      isLoading(true);
       String url = ApiUrl.addMyJewellerApi;
-      log('Add Jeweller Api Url : $url');
+      log('addMyJewellerFunction Api Url : $url');
 
       try {
         Map<String, dynamic> bodyData = {
@@ -37,31 +36,50 @@ class AddNewJewellerScreenController extends GetxController {
         };
         log('bodyData : $bodyData');
 
-        http.Response response = await http.post(Uri.parse(url),
-            headers: apiHeader.headers, body: bodyData);
+        http.Response response = await http.post(
+          Uri.parse(url),
+          headers: apiHeader.headers,
+          body: jsonEncode(bodyData),
+        );
+        log("addMyJewellerFunction res body :: ${response.body}");
 
         AddJewellerModel addJewellerModel =
-            AddJewellerModel.fromJson(json.decode(response.body));
+            AddJewellerModel.fromJson(jsonDecode(response.body));
         isSuccessStatus = addJewellerModel.success.obs;
 
         if (isSuccessStatus.value) {
           //todo - Success Snackbar "Jeweller Added"
+          CommonWidgets().showBorderSnackBar(
+            context: Get.context!,
+            displayText:
+                "${addJewellerModel.retailerDetail.retailerName} Added",
+          );
+
+          Get.back();
+
           log('${addJewellerModel.retailerDetail.retailerName} Added');
         } else {
-          if (addJewellerModel.errorInfo.extraInfo
-              .toString()
-              .contains('Jeweller code not found or invalid')) {
-            //todo - snackbar "Jeweller code not found or invalid"
-            log('Jeweller code not found or invalid');
-          } else {
-            log('addMyJewellerFunction Else');
-          }
+          CommonWidgets().showBorderSnackBar(
+            context: Get.context!,
+            displayText: addJewellerModel.errorInfo.extraInfo,
+          );
+          log('addMyJewellerFunction ${addJewellerModel.errorInfo.extraInfo}');
+          // if (addJewellerModel.errorInfo.extraInfo
+          //     .toString()
+          //     .contains('Jeweller code not found or invalid')) {
+          //   //todo - snackbar "Jeweller code not found or invalid"
+          //   log('Jeweller code not found or invalid');
+          // } else {
+          //   log('addMyJewellerFunction Else');
+          // }
         }
       } catch (e) {
         log('addMyJewellerFunction Error :$e');
         rethrow;
+      } finally {
+        isLoading(false);
       }
-      isLoading(true);
     }
+    // isLoading(false);
   }
 }

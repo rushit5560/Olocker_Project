@@ -147,7 +147,7 @@ class MyInsuredJewelleryModule extends StatelessWidget {
                   style: TextStyle(
                     color: AppColors.accentDarkColor,
                     fontWeight: FontWeight.w500,
-                    fontSize: 12.sp,
+                    fontSize: 11.sp,
                     decoration: TextDecoration.underline,
                     height: 1,
                   ),
@@ -204,7 +204,6 @@ class MyUnInsuredJewelleryModule extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-            
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -226,7 +225,7 @@ class MyUnInsuredJewelleryModule extends StatelessWidget {
                       style: TextStyle(
                         color: AppColors.accentDarkColor,
                         fontWeight: FontWeight.w500,
-                        fontSize: 12.sp,
+                        fontSize: 11.sp,
                         decoration: TextDecoration.underline,
                         height: 1,
                       ),

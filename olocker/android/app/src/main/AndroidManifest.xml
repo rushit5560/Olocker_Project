@@ -2,6 +2,7 @@
     package="com.example.olocker">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
+        android:requestLegacyExternalStorage="true"
         android:label="olocker"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

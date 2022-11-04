@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:olocker/controllers/my_insured_jewellery_screen_controller.dart';
 import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/app_colors.dart';
+import '../../controllers/my_uninsured_jewellery_screen_controller.dart';
+import 'my_uninsured_jewellery_screen_widgets.dart';
 
 class MyUnInsuredJewelleryScreen extends StatelessWidget {
   MyUnInsuredJewelleryScreen({Key? key}) : super(key: key);
 
-  final myInsuredJewelleryScreen =
-      Get.put(MyInsuredJewelleryScreenController());
+  final unInsuredJewelleryController =
+      Get.put(MyUnInsuredJewelleryScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +36,14 @@ class MyUnInsuredJewelleryScreen extends StatelessWidget {
         backgroundColor: AppColors.whiteColor,
       ),
       body: Obx(
-        () => myInsuredJewelleryScreen.isLoading.value
+        () => unInsuredJewelleryController.isLoading.value
             ? CommonLoader().showCircularLoader()
             : SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Column(
-                  children: const [
-                    SizedBox(height: 10),
+                  children: [
+                    const SizedBox(height: 10),
+                    UnInsuredJewelleryListModule(),
                   ],
                 ),
               ),
