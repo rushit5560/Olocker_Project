@@ -44,6 +44,7 @@ class MyUnInsuredJewelleryScreen extends StatelessWidget {
                   children: [
                     const SizedBox(height: 10),
                     UnInsuredJewelleryListModule(),
+                    const SizedBox(height: 10),
                   ],
                 ),
               ),

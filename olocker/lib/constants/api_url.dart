@@ -34,12 +34,15 @@ class ApiUrl {
   static const String addOrnamentApi = "${apiMainPath}api/User/AddOrnament";
   static const String getAllUnInsuredOrnamentApi =
       "${apiMainPath}api/User/GetAllUnInsuredOrnament";
+  static const String getOrnamentDetailApi =
+      "${apiMainPath}api/User/GetOrnamentDetail";
   static const String updateUnInsuredOrnamentImageApi =
       "${apiMainPath}api/User/UpdateUnInsuredOrnamentImage";
 
   //favourites apis
   static const String getFavProductApi = "${apiMainPath}api/User/GetFavProduct";
 
+  //authentication apis
   static const String userLoginApi = "${apiMainPath}api/User/UserLogin/";
   static const String validateOtpApi = "${apiMainPath}api/user/ValidateOtp/";
   static const String checkUserByMobileApi =

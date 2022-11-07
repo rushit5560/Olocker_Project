@@ -87,10 +87,7 @@ class MyUnInsuredJewelleryScreenController extends GetxController {
       http.Response response = await http.post(
         Uri.parse(url),
         body: jsonEncode(requestMap),
-        headers: {
-          // 'Content-Type': "application/json",
-          'MobileAppKey': "EED26D5A-711D-49BD-8999-38D8A60329C5",
-        },
+        headers: apiHeader.headers,
       );
 
       log("updateImageOfJewelleryFunction api response body :: ${response.body}");
@@ -113,7 +110,7 @@ class MyUnInsuredJewelleryScreenController extends GetxController {
       //   log('get updateImageOfJewelleryFunction Else');
       // }
     } catch (e) {
-      log("get updateImageOfJewelleryFunction Error :$e");
+      log("updateImageOfJewelleryFunction Error :$e");
       rethrow;
     } finally {
       isLoading(false);

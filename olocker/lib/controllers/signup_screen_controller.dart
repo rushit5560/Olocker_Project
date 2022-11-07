@@ -40,11 +40,11 @@ class SignUpScreenController extends GetxController {
     String mobNumber = numberController.text.toString();
 
     // if (formKey.currentState!.validate()) {
-    //   isLoading(true);
     String url = "${ApiUrl.checkUserByMobileApi}?mobileNo=$mobNumber";
     log(" checkMobileNumber url: $url");
 
     try {
+      isLoading(true);
       http.Response response = await http.get(
         Uri.parse(url),
         headers: apiHeader.headers,
@@ -87,10 +87,11 @@ class SignUpScreenController extends GetxController {
         log("mobile number is new");
         //do nothing
       }
-      // isLoading(false);
     } catch (e) {
       log("checkMobileNumber Error ::: $e");
       rethrow;
+    } finally {
+      isLoading(false);
     }
     // }
   }

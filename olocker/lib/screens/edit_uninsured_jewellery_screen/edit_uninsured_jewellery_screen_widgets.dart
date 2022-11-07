@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
+import 'package:olocker/controllers/edit_uninsured_jewellery_screen_controller.dart';
 import 'package:olocker/models/portfolio_screen_models/get_all_data_ornament_model.dart';
 import 'package:olocker/utils/field_validation.dart';
 import 'package:olocker/widgets/common_loader.dart';
@@ -13,7 +14,7 @@ import '../../controllers/add_uninsured_jewellery_screen_controller.dart';
 class ProductDetailsFormModule extends StatelessWidget {
   ProductDetailsFormModule({Key? key}) : super(key: key);
   final unInsuredJewelController =
-      Get.find<AddUnInsuredJewelleryScreenController>();
+      Get.find<EditUnInsuredJewelleryScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -222,7 +223,7 @@ class ProductDetailsFormModule extends StatelessWidget {
 class MetalDetailsFormModule extends StatelessWidget {
   MetalDetailsFormModule({Key? key}) : super(key: key);
   final unInsuredJewelController =
-      Get.find<AddUnInsuredJewelleryScreenController>();
+      Get.find<EditUnInsuredJewelleryScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -379,7 +380,7 @@ class MetalDetailsFormModule extends StatelessWidget {
                     SizedBox(height: 1.h),
                     unInsuredJewelController.metalDataMapList.isNotEmpty
                         ? Container(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 6, vertical: 5),
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -458,7 +459,7 @@ class MetalDetailsFormModule extends StatelessWidget {
 class StoneDetailsFormModule extends StatelessWidget {
   StoneDetailsFormModule({Key? key}) : super(key: key);
   final unInsuredJewelController =
-      Get.find<AddUnInsuredJewelleryScreenController>();
+      Get.find<EditUnInsuredJewelleryScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -688,7 +689,7 @@ class StoneDetailsFormModule extends StatelessWidget {
 class DecorativeItemDetailsFormModule extends StatelessWidget {
   DecorativeItemDetailsFormModule({Key? key}) : super(key: key);
   final unInsuredJewelController =
-      Get.find<AddUnInsuredJewelleryScreenController>();
+      Get.find<EditUnInsuredJewelleryScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -923,7 +924,7 @@ class DecorativeItemDetailsFormModule extends StatelessWidget {
 class UploadImageFileFormModule extends StatelessWidget {
   UploadImageFileFormModule({Key? key}) : super(key: key);
   final unInsuredJewelController =
-      Get.find<AddUnInsuredJewelleryScreenController>();
+      Get.find<EditUnInsuredJewelleryScreenController>();
 
   @override
   Widget build(BuildContext context) {

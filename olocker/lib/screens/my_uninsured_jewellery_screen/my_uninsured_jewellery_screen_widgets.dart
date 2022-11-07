@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
+import 'package:olocker/screens/edit_uninsured_jewellery_screen/edit_uninsured_jewellery_screen.dart';
 import 'package:olocker/screens/ornament_recordings_list_screen/ornament_recordings_list_screen.dart';
 import 'package:sizer/sizer.dart';
 
@@ -272,7 +273,16 @@ class JewelleryListItem extends StatelessWidget {
             top: 0,
             right: 0,
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(
+                  () => EditUnInsuredJewelleryScreen(),
+                  arguments: [
+                    unInsuredJewelleryController
+                        .getOrnamentList[index].custOraSrNo
+                        .toString(),
+                  ],
+                );
+              },
               icon: SvgPicture.asset(
                 AppSvgs.editSvgIcon,
                 color: AppColors.accentColor,
