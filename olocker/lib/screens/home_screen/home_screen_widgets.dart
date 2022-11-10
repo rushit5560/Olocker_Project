@@ -10,6 +10,7 @@ import 'package:olocker/models/home_screen_models/banner_model.dart';
 import 'package:olocker/models/home_screen_models/my_jewellers_model.dart';
 import 'package:olocker/models/home_screen_models/smart_deals_online_model.dart';
 import 'package:olocker/screens/add_new_jeweller_screen/add_new_jeweller_screen.dart';
+import 'package:olocker/screens/jeweller_details_screen/jeweller_details_screen.dart';
 import 'package:olocker/screens/my_jewellers_screen/my_jewellers_screen.dart';
 import 'package:olocker/screens/my_jewellery_portfolio_screen/my_jewellery_portfolio_screen.dart';
 import 'package:olocker/screens/online_deals_screen/online_deals_screen.dart';
@@ -160,7 +161,9 @@ class MyJewellersListModule extends StatelessWidget {
     String imgUrl = ApiUrl.apiImagePath + jewellerData.logoFileName;
     return GestureDetector(
       onTap: () {
-        Get.to(() => JewellerDetailsScreen());
+        Get.to(() => JewellerDetailsScreen(),
+        arguments: [jewellerData.partnerSrNo,
+        jewellerData.companyName]);
       },
       child: Column(
         children: [
