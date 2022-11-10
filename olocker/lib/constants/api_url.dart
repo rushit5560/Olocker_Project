@@ -71,4 +71,20 @@ class ApiUrl {
   static const String emiScheduleApi = "${apiMainPath}api/Partner/EMISchedule";
   static const String uploadDocumentApi =
       "${apiMainPath}api/Partner/UploadEMIDocument";
+
+  /// Jeweller Details Screen Api's
+  static const String getSpecialFeaturesApi =
+      "${apiMainPath}api/Partner/GetSpecialFeatures";
+  static const String getAnnouncementOfferApi =
+      "${apiMainPath}api/Partner/GetAnnouncementOffer";
+  static const String getJewelleryCategoryApi =
+      "${apiMainPath}api/Partner/GetPushToAppData";
+  static const String getJewelleryTypeApi =
+      "${apiMainPath}api/Partner/GetUniqueList";
+  static const String getBestSellerApi =
+      "${apiMainPath}api/Partner/GetBestSellerProducts";
+  static const String getClientTestimonialsApi =
+      "${apiMainPath}api/Partner/GetClientTestimonials";
+  static const String getGoldPriceApi =
+      "${apiMainPath}api/Partner/GetIBJARatesByPartnerId";
 }

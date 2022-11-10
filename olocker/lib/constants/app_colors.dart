@@ -22,4 +22,8 @@ class AppColors {
 
   static const Color greyTextColor = Color(0xFF999999);
   static const Color blackTextColor = Color.fromARGB(255, 59, 59, 59);
+
+  static const Color darkPeachColor = Color(0xff482b2f);
+  static const Color darkCoffeeColor = Color(0xff523620);
+  static const Color goldColor = Color(0xffc6a148);
 }

@@ -17,10 +17,33 @@ class AppImages {
   static const String olockerServiceLogo2Image =
       '$imageRootPath/olocker_logo_homebx2.png';
   static const String addJewelleryImage = '$imageRootPath/add_jeweller.png';
+  static const String unInsuredBgImage = '$imageRootPath/uninsured_bg.png';
   static const String jewellersShapeImage =
       '$imageRootPath/myjeweller_shape1.png';
   static const String dealsBgShapeImage = '$imageRootPath/deal_bg.png';
   static const String ornamentBgShapeImage = '$imageRootPath/ornament.png';
+
+  //add ornament screen images
+  static const String addOrnamentTitleBgImage = '$imageRootPath/bg_h.png"';
+
+  //recordings screen images
+  static const String recordingsTitleBgImage =
+      '$imageRootPath/recordings_bg.png';
+  static const String addRecordingsBgImage =
+      '$imageRootPath/add_ornamentbg.png';
+
+  static const String referOffer1Image = '$imageRootPath/referoffer1.png';
+  static const String referOffer2Image = '$imageRootPath/referoffer2.png';
+  static const String referOfferBgImage = '$imageRootPath/referbg.png';
+  static const String womenJewelleryImage = '$imageRootPath/womenjewellery.jpg';
+  static const String menJewelleryImage = '$imageRootPath/menjewellery.png';
+  static const String bestSellerBgImage = '$imageRootPath/best_seller.jpg';
+  static const String customerSpeakBgImage =
+      '$imageRootPath/customer_speak.png';
+  static const String goldNameIconImage = '$imageRootPath/gold_nameicon.png';
+  static const String goldIcon18Image = '$imageRootPath/icon_gold18.jpg';
+  static const String goldIcon22Image = '$imageRootPath/icon_gold22.jpg';
+  static const String goldIcon24Image = '$imageRootPath/icon_gold24.jpg';
 }
 
 class AppIcons {

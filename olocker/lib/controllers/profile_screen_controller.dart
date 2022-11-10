@@ -15,6 +15,7 @@ import '../constants/api_url.dart';
 import '../constants/app_colors.dart';
 import '../models/user_profile_models/city_state_get_model.dart';
 import '../models/user_profile_models/user_profile_get_model.dart';
+import '../utils/user_prefs_data.dart';
 
 class ProfileScreenController extends GetxController {
   final size = Get.size;
@@ -91,6 +92,9 @@ class ProfileScreenController extends GetxController {
 
   Future<void> getUserProfileDetailsFunction() async {
     // if (formKey.currentState!.validate()) {
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
     String url =
         "${ApiUrl.getUserProfileApi}?customerId=${UserDetails.customerId}";
     log(" getUserProfleDetailsFunction url: $url");
@@ -114,8 +118,6 @@ class ProfileScreenController extends GetxController {
 
       if (isSuccessResult.value) {
         log("user profile get success");
-        // prefs.setString(
-        //     UserPrefsData().customerMobileNoKey, numberController.text);
 
         isEditable.value = true;
         apiGetProfileImage = File(ApiUrl.apiImagePath +
@@ -124,7 +126,7 @@ class ProfileScreenController extends GetxController {
         userName.value = userProfileGetModel.customerProfile.firstName;
         // namePrefixDDvalue.value = userProfileGetModel.customerProfile.gender == "Male" ? "" :;
         fnameController.text = userProfileGetModel.customerProfile.firstName;
-        fnameController.text = userProfileGetModel.customerProfile.firstName;
+
         lnameController.text = userProfileGetModel.customerProfile.lastName;
         emailController.text = userProfileGetModel.customerProfile.userEmail;
         log("getting date is :: ${userProfileGetModel.customerProfile.dob}");
@@ -134,6 +136,31 @@ class ProfileScreenController extends GetxController {
         var datePassingFormat = DateFormat("d-MM-yyyy");
 
         datePassingvalue.value = datePassingFormat.format(dateGetPassing);
+
+        //set user data in prefs data
+        prefs.setString(UserPrefsData().customerUserNameKey,
+            userProfileGetModel.customerProfile.firstName);
+
+        prefs.setString(UserPrefsData().customerFirstNameKey,
+            userProfileGetModel.customerProfile.firstName);
+        prefs.setString(UserPrefsData().customerLastNameKey,
+            userProfileGetModel.customerProfile.lastName);
+        prefs.setString(UserPrefsData().customerUserEmailKey,
+            userProfileGetModel.customerProfile.userEmail);
+        prefs.setString(UserPrefsData().customerMobileNoKey,
+            userProfileGetModel.customerProfile.mobileNo);
+
+        prefs.setString(UserPrefsData().customerAddressKey,
+            userProfileGetModel.customerProfile.address1);
+        prefs.setString(UserPrefsData().customerCityKey,
+            userProfileGetModel.customerProfile.city);
+        prefs.setString(UserPrefsData().customerPinKey,
+            userProfileGetModel.customerProfile.pin);
+        prefs.setString(UserPrefsData().customerStateKey,
+            userProfileGetModel.customerProfile.state);
+        prefs.setString(UserPrefsData().customerCountryKey,
+            userProfileGetModel.customerProfile.country);
+        prefs.setString(UserPrefsData().customerDOBKey, datePassingvalue.value);
 
         log("datePassingvalue.value :: ${datePassingvalue.value}");
         numberController.text = userProfileGetModel.customerProfile.mobileNo;

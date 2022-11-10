@@ -6,7 +6,9 @@ import 'package:olocker/controllers/ornament_recordings_list_screen_controller.d
 import 'package:olocker/models/home_screen_models/smart_deals_online_model.dart';
 import 'package:olocker/screens/online_deals_list_screen/online_deals_list_screen.dart';
 import 'package:olocker/screens/online_favourite_deals_screen/online_favourite_deals_screen.dart';
+import 'package:olocker/screens/ornament_recordings_list_screen/ornament_recordings_list_screen_widgets.dart';
 import 'package:olocker/utils/extensions.dart';
+import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 class OrnamentRecordingsListScreen extends StatelessWidget {
@@ -44,9 +46,31 @@ class OrnamentRecordingsListScreen extends StatelessWidget {
               AppImages.ornamentBgShapeImage,
             ),
           ),
-          Column(
-            children: [],
-          ).commonAllSidePadding(10),
+          Obx(
+            () => ornamentRecordingsListScreenController.isLoading.value
+                ? CommonLoader().showCircularLoader()
+                : SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 5),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          OrnamentDetailsModule(),
+                          const SizedBox(height: 20),
+                          AddRecordingButton(),
+                          const SizedBox(height: 20),
+                          ornamentRecordingsListScreenController
+                                  .ornamentHistoryDetailList.isEmpty
+                              ? const SizedBox()
+                              : OrnamentRecordingDetailsList(),
+                        ],
+                      ).commonAllSidePadding(10),
+                    ),
+                  ),
+          ),
         ],
       ),
     );

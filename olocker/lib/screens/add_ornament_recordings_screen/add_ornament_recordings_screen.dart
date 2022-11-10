@@ -5,14 +5,14 @@ import 'package:olocker/constants/app_images.dart';
 
 import 'package:sizer/sizer.dart';
 
-import '../../controllers/add_uninsured_jewellery_screen_controller.dart';
+import '../../controllers/add_ornament_recordings_screen_controller.dart';
 import '../../widgets/common_loader.dart';
-import 'add_uninsured_jewellery_screen_widgets.dart';
+import 'add_ornament_recordings_screen_widgets.dart';
 
-class AddUnInsuredJewelleryScreen extends StatelessWidget {
-  AddUnInsuredJewelleryScreen({Key? key}) : super(key: key);
-  final addUnInsuredJewelleryScreenController =
-      Get.put(AddUnInsuredJewelleryScreenController());
+class AddOrnamentRecordingsScreen extends StatelessWidget {
+  AddOrnamentRecordingsScreen({Key? key}) : super(key: key);
+  final addOrnamentRecordingsController =
+      Get.put(AddOrnamentRecordingsScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -37,25 +37,28 @@ class AddUnInsuredJewelleryScreen extends StatelessWidget {
         backgroundColor: AppColors.whiteColor,
       ),
       body: Obx(
-        () => addUnInsuredJewelleryScreenController.isLoading.value
+        () => addOrnamentRecordingsController.isLoading.value
             ? CommonLoader().showCircularLoader()
             : SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
                 child: Stack(
                   children: [
                     Image.asset(
-                      AppImages.unInsuredBgImage,
-                      width: addUnInsuredJewelleryScreenController.size.width,
+                      AppImages.addRecordingsBgImage,
+                      width: addOrnamentRecordingsController.size.width,
+                      height: addOrnamentRecordingsController.size.height -
+                          (addOrnamentRecordingsController.size.height * 0.11),
+                      fit: BoxFit.cover,
                     ),
                     Column(
                       children: [
                         const SizedBox(height: 10),
-                        ProductDetailsFormModule(),
-                        MetalDetailsFormModule(),
-                        StoneDetailsFormModule(),
-                        DecorativeItemDetailsFormModule(),
-                        UploadImageFileFormModule(),
-                        SizedBox(height: 1.h),
+                        AddRecordingDetailsFormModule(),
+                        // MetalDetailsFormModule(),
+                        // StoneDetailsFormModule(),
+                        // DecorativeItemDetailsFormModule(),
+                        // UploadImageFileFormModule(),
+                        // SizedBox(height: 1.h),
                       ],
                     ),
                   ],

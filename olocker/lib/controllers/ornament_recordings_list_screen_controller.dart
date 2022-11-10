@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../constants/api_url.dart';
 import '../constants/user_details.dart';
+import '../models/ornament_recording_models/get_ornament_recording_model.dart';
 
 class OrnamentRecordingsListScreenController extends GetxController {
   final size = Get.size;
@@ -15,64 +16,33 @@ class OrnamentRecordingsListScreenController extends GetxController {
 
   ApiHeader apiHeader = ApiHeader();
 
+  List<OrnamentHistoryDetail> ornamentHistoryDetailList = [];
+  TrackingDetail? trackingDetail;
   Future<void> getOrnamentRecordingsListFunction() async {
-    // if (formKey.currentState!.validate()) {
-
-    log(" ornamentSrNo is ::  ${ornamentSrNo}");
-    log(" customerOraSrNo is ::  ${customerOraSrNo}");
-    String url =
-        "${ApiUrl.getOrnamentTrackingApi}?customerId=${UserDetails.customerId}?OrnamentSrNo=$ornamentSrNo?CustOraSrNo=$customerOraSrNo";
-    log(" getOrnamentRecordingsListFunction url: $url");
-
     try {
       isLoading(true);
       http.Response response = await http.get(
         Uri.parse(
-            "https://devappapi.olocker.in/api/User/GetOrnamentTracking?customerId=939308&OrnamentSrNo=53&CustOraSrNo=1007175"),
+            // url),
+            "https://devappapi.olocker.in/api/User/GetOrnamentTracking?customerId=${UserDetails.customerId}&OrnamentSrNo=$ornamentSrNo&CustOraSrNo=$customerOraSrNo"),
         headers: apiHeader.headers,
       );
+      log(" getOrnamentRecordingsListFunction url: ${response.request}");
 
       log("getOrnamentRecordingsListFunction st code is : ${response.statusCode}");
       log("getOrnamentRecordingsListFunction res body : ${response.body}");
 
-      // var resBody = jsonDecode(response.body);
+      var resBody = jsonDecode(response.body);
 
-      // UserProfileGetModel userProfileGetModel =
-      //     UserProfileGetModel.fromJson(resBody);
-
-      // isSuccessResult.value = userProfileGetModel.success;
+      GetOrnamentRecordingsModel getOrnamentRecordingsModel =
+          GetOrnamentRecordingsModel.fromJson(resBody);
 
       if (response.statusCode == 200) {
         log("getOrnamentRecordingsListFunction get success");
-        // prefs.setString(
-        //     UserPrefsData().customerMobileNoKey, numberController.text);
 
-        // isEditable.value = true;
-        // apiGetProfileImage = File(ApiUrl.apiImagePath +
-        //     userProfileGetModel.customerProfile.imageLocation);
-
-        // userName.value = userProfileGetModel.customerProfile.firstName;
-        // // namePrefixDDvalue.value = userProfileGetModel.customerProfile.gender == "Male" ? "" :;
-        // fnameController.text = userProfileGetModel.customerProfile.firstName;
-        // fnameController.text = userProfileGetModel.customerProfile.firstName;
-        // lnameController.text = userProfileGetModel.customerProfile.lastName;
-        // emailController.text = userProfileGetModel.customerProfile.userEmail;
-        // log("getting date is :: ${userProfileGetModel.customerProfile.dob}");
-        // var dateGetPassing = DateFormat("MMM dd, yyyy")
-        //     .parse(userProfileGetModel.customerProfile.dob);
-        // log("getting formatted date is :: $dateGetPassing");
-        // var datePassingFormat = DateFormat("d-MM-yyyy");
-
-        // datePassingvalue.value = datePassingFormat.format(dateGetPassing);
-
-        // log("datePassingvalue.value :: ${datePassingvalue.value}");
-        // numberController.text = userProfileGetModel.customerProfile.mobileNo;
-        // pinCodeController.text = userProfileGetModel.customerProfile.pin;
-        // cityController.text = userProfileGetModel.customerProfile.city;
-        // stateController.text = userProfileGetModel.customerProfile.state;
-        // selectedDobNumber.value = userProfileGetModel.customerProfile.dob == ""
-        //     ? "Select Date Of Birth"
-        //     : userProfileGetModel.customerProfile.dob;
+        ornamentHistoryDetailList =
+            getOrnamentRecordingsModel.ornamentHistoryDetails;
+        trackingDetail = getOrnamentRecordingsModel.trackingDetails[0];
       } else {
         log("getOrnamentRecordingsListFunction not success");
         //do nothing
@@ -80,13 +50,9 @@ class OrnamentRecordingsListScreenController extends GetxController {
     } catch (e) {
       log("getOrnamentRecordingsListFunction Error ::: $e");
       rethrow;
-    } 
-    // finally {
-    //   isLoading(false);
-    // }
-    // }
-
-    isLoading(false);
+    } finally {
+      isLoading(false);
+    }
   }
 
   @override
