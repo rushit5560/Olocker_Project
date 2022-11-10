@@ -71,6 +71,7 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
     "Cts.",
   ];
 
+  File? apiJewelleryImageFile;
   File? jewellerySelectedImageFile;
 
   addMetalToMetalsList() {
@@ -268,20 +269,21 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
       if (isSuccessStatus) {
         // log("ornament name is a :: ${getOrnamentDetailsModel.name}");
 
-        // for (int i = 0; i < ornamentTypeNameList.length; i++) {
-
-        //   if (ornamentTypeNameList[i].value == getOrnamentDetailsModel.name) {
-        //     selectedOrnamentName = ornamentTypeNameList[i];
-        //   }
-        // }
+        for (int i = 0; i < ornamentTypeNameList.length; i++) {
+          if (ornamentTypeNameList[i].value == getOrnamentDetailsModel.name) {
+            selectedOrnamentName = ornamentTypeNameList[i];
+          }
+        }
 
         ornamentGrossWeightController.text = getOrnamentDetailsModel.grosswt;
         ornamentPurchasedFromController.text =
             getOrnamentDetailsModel.purchasedFrom;
         selectedOrnamentPurchaseDate.value =
-            getOrnamentDetailsModel.purchaseDate;
+            getOrnamentDetailsModel.purchaseDate.toString().split(" ")[0];
         ornamentPurchasedPriceController.text =
             getOrnamentDetailsModel.purchasePrice.toString().split(".")[0];
+        apiJewelleryImageFile = File(
+            ApiUrl.apiImagePath + getOrnamentDetailsModel.ornamentimage.path);
 
         if (getOrnamentDetailsModel.metaldetails != []) {
           for (int i = 0;

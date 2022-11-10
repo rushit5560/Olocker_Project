@@ -943,15 +943,32 @@ class UploadImageFileFormModule extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
+              SizedBox(
                 height: unInsuredJewelController.size.height * 0.15,
                 width: unInsuredJewelController.size.width * 0.4,
-                child: unInsuredJewelController.jewellerySelectedImageFile ==
-                        null
-                    ? Image.asset("assets/images/select-image.png")
-                    : Image.file(
-                        unInsuredJewelController.jewellerySelectedImageFile!,
+                child: unInsuredJewelController.apiJewelleryImageFile == null
+                    ? unInsuredJewelController.jewellerySelectedImageFile ==
+                            null
+                        ? Image.asset(
+                            "assets/images/select-image.png",
+                            fit: BoxFit.cover,
+                          )
+                        : Image.file(
+                            unInsuredJewelController
+                                .jewellerySelectedImageFile!,
+                            fit: BoxFit.cover,
+                          )
+                    : Image.network(
+                        unInsuredJewelController.apiJewelleryImageFile!.path,
                         fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            color: AppColors.greyTextColor.withOpacity(0.5),
+                            child: const Center(
+                              child: Text("Image Not Loaded"),
+                            ),
+                          );
+                        },
                       ),
               ),
               SizedBox(width: 1.w),

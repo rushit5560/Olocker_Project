@@ -127,7 +127,14 @@ class AddUnInsuredJewelleryScreenController extends GetxController {
     if (productFormKey.currentState!.validate()) {
       //api call
 
-      await addOrnamentFunction();
+      if (jewellerySelectedImageFile != null) {
+        await addOrnamentFunction();
+      } else {
+        CommonWidgets().showBorderSnackBar(
+          context: Get.context!,
+          displayText: "Please Upload Jewellery Image.",
+        );
+      }
     } else {
       log("full form not submitting");
     }
@@ -249,6 +256,9 @@ class AddUnInsuredJewelleryScreenController extends GetxController {
     log('addOrnamentFunction Api url : $url');
 
     try {
+      List<int> imageBytes = jewellerySelectedImageFile!.readAsBytesSync();
+      String base64Image = base64Encode(imageBytes);
+
       var requestMap = {
         'CustSrNo': UserDetails.customerId,
         'name': selectedOrnamentName!.value,
@@ -256,11 +266,12 @@ class AddUnInsuredJewelleryScreenController extends GetxController {
         'purchased_from': ornamentPurchasedFromController.text.toString(),
         'purchase_date': selectedOrnamentPurchaseDate.toString(),
         'purchase_price': ornamentPurchasedPriceController.text.toString(),
-        'ornamentimage': jewellerySelectedImageFile == null
-            ? []
-            : [
-                jewellerySelectedImageFile!.path,
-              ],
+        'ornamentimage': [
+          {
+            "name": "jewelleryImageData",
+            "Base64": base64Image,
+          },
+        ],
         'metaldetails': metalDataMapList,
         'stonedetails': stoneDataMapList,
         'decorativeitem': decoItemsDataMapList,

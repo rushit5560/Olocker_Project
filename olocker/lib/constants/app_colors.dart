@@ -11,10 +11,12 @@ class AppColors {
   static const Color greenColor = Colors.green;
   static const Color lightBrownBgColor = Color(0xFFffdac1);
 
+  static const Color creamBgColor = Color(0xfffdf3da);
   // static const Color redColor = Color(0xFFFF0000);
   static const Color accentColor = Color(0xffed6660);
   static const Color accentBGColor = Color(0xffff8a86);
   static const Color greenButtonColor = Color(0xff22b6a8);
+  static const Color pinkBGColor = Color(0xfff65c78);
   static const Color accentDarkColor = Color.fromARGB(255, 126, 65, 63);
   static const Color accentTextColor = Color.fromARGB(255, 235, 73, 65);
 

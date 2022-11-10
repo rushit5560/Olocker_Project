@@ -4,35 +4,35 @@
 
 import 'dart:convert';
 
-GetUnInsuredOrnamentModel getUnInsuredOrnamentModelFromJson(String str) =>
-    GetUnInsuredOrnamentModel.fromJson(json.decode(str));
+GetInsuredOrnamentModel getUnInsuredOrnamentModelFromJson(String str) =>
+    GetInsuredOrnamentModel.fromJson(json.decode(str));
 
-String getUnInsuredOrnamentModelToJson(GetUnInsuredOrnamentModel data) =>
+String getUnInsuredOrnamentModelToJson(GetInsuredOrnamentModel data) =>
     json.encode(data.toJson());
 
-class GetUnInsuredOrnamentModel {
-  GetUnInsuredOrnamentModel({
-    required this.unInsuredOrnament,
+class GetInsuredOrnamentModel {
+  GetInsuredOrnamentModel({
+    required this.insuredOrnament,
     required this.success,
     required this.errorInfo,
   });
 
-  final List<UnInsuredOrnament> unInsuredOrnament;
+  final List<InsuredOrnament> insuredOrnament;
   final bool success;
   final ErrorInfo errorInfo;
 
-  factory GetUnInsuredOrnamentModel.fromJson(Map<String, dynamic> json) =>
-      GetUnInsuredOrnamentModel(
-        unInsuredOrnament: List<UnInsuredOrnament>.from(
-            (json["UnInsuredOrnament"] ?? [])
-                .map((x) => UnInsuredOrnament.fromJson(x))),
+  factory GetInsuredOrnamentModel.fromJson(Map<String, dynamic> json) =>
+      GetInsuredOrnamentModel(
+        insuredOrnament: List<InsuredOrnament>.from(
+            (json["insuredOrnament"] ?? [])
+                .map((x) => InsuredOrnament.fromJson(x))),
         success: json["success"] ?? false,
         errorInfo: ErrorInfo.fromJson((json["error_info"] ?? {})),
       );
 
   Map<String, dynamic> toJson() => {
-        "UnInsuredOrnament":
-            List<dynamic>.from(unInsuredOrnament.map((x) => x.toJson())),
+        "insuredOrnament":
+            List<dynamic>.from(insuredOrnament.map((x) => x.toJson())),
         "success": success,
         "error_info": errorInfo.toJson(),
       };
@@ -66,8 +66,8 @@ class ErrorInfo {
       };
 }
 
-class UnInsuredOrnament {
-  UnInsuredOrnament({
+class InsuredOrnament {
+  InsuredOrnament({
     required this.srNo,
     required this.custSrNo,
     required this.custOraSrNo,
@@ -99,8 +99,8 @@ class UnInsuredOrnament {
   final String purchaseDate;
   final double estValue;
 
-  factory UnInsuredOrnament.fromJson(Map<String, dynamic> json) =>
-      UnInsuredOrnament(
+  factory InsuredOrnament.fromJson(Map<String, dynamic> json) =>
+      InsuredOrnament(
           srNo: json["SrNo"] ?? 0,
           custSrNo: json["CustSrNo"] ?? 0,
           custOraSrNo: json["CustOraSrNo"] ?? 0,

@@ -183,7 +183,15 @@ class JewelleryListItem extends StatelessWidget {
                               primary: AppColors.whiteColor,
                             ),
                             onPressed: () {
-                              Get.to(() => OrnamentRecordingsListScreen());
+                              Get.to(
+                                () => OrnamentRecordingsListScreen(),
+                                arguments: [
+                                  unInsuredJewelleryController
+                                      .getOrnamentList[index].srNo,
+                                  unInsuredJewelleryController
+                                      .getOrnamentList[index].custOraSrNo,
+                                ],
+                              );
                             },
                             child: Text(
                               "TRACKING",
@@ -277,8 +285,7 @@ class JewelleryListItem extends StatelessWidget {
                 Get.to(
                   () => EditUnInsuredJewelleryScreen(),
                   arguments: [
-                    unInsuredJewelleryController
-                        .getOrnamentList[index].custOraSrNo
+                    unInsuredJewelleryController.getOrnamentList[index].srNo
                         .toString(),
                   ],
                 );

@@ -249,7 +249,7 @@ class MobileNumberField extends StatelessWidget {
           SizedBox(width: 5.w),
           Expanded(
             child: TextFormField(
-              keyboardType: TextInputType.text,
+              keyboardType: TextInputType.number,
               textInputAction: TextInputAction.next,
               validator: (value) =>
                   FieldValidator().validateMobileNumber(value!),

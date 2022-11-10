@@ -15,6 +15,7 @@ class ApiUrl {
       "${apiMainPath}api/user/GetOnlineDeals";
   static const String bannerApi =
       "${apiMainPath}api/User/GetGraphicalNotifications";
+  static const String addMyJewellerApi = "${apiMainPath}api/User/AddMyJeweller";
 
   // Index Screen Api
   static const String getNotificationCountApi =
@@ -28,16 +29,32 @@ class ApiUrl {
   static const String getCustomerFavouriteDealsApi =
       "${apiMainPath}api/User/GetFavDeals";
 
-  // Add uninsured jewellery Screen Api
+  // profile Screen Api
+  static const String getUserProfileApi =
+      "${apiMainPath}api/User/GetUserProfile";
+  static const String updateUserProfileApi =
+      "${apiMainPath}api/User/UpdateProfile";
+  static const String getCityStateByPincodeApi =
+      "${apiMainPath}api/User/GetCityStateByPincode";
+
+  // manage jewellery portfolio Screen Api
   static const String getAllDataAddOrnamentApi =
       "${apiMainPath}api/Info/GetAllDataAddOrnament";
   static const String addOrnamentApi = "${apiMainPath}api/User/AddOrnament";
   static const String getAllUnInsuredOrnamentApi =
       "${apiMainPath}api/User/GetAllUnInsuredOrnament";
+  static const String getAllInsuredOrnamentApi =
+      "${apiMainPath}api/User/GetAllInsuredOrnament";
   static const String getOrnamentDetailApi =
       "${apiMainPath}api/User/GetOrnamentDetail";
   static const String updateUnInsuredOrnamentImageApi =
       "${apiMainPath}api/User/UpdateUnInsuredOrnamentImage";
+  static const String getJewelleryPortfolioApi =
+      "${apiMainPath}api/User/GetJewelleryPortfolio";
+
+  // manage ornament recordings Screen Api
+  static const String getOrnamentTrackingApi =
+      "${apiMainPath}api/User/GetOrnamentTracking";
 
   //favourites apis
   static const String getFavProductApi = "${apiMainPath}api/User/GetFavProduct";
@@ -54,6 +71,4 @@ class ApiUrl {
   static const String emiScheduleApi = "${apiMainPath}api/Partner/EMISchedule";
   static const String uploadDocumentApi =
       "${apiMainPath}api/Partner/UploadEMIDocument";
-
-  static const String addMyJewellerApi = "${apiMainPath}api/User/AddMyJeweller";
 }

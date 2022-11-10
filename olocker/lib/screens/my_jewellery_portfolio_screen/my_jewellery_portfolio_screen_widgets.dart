@@ -47,12 +47,14 @@ class TotalJewelleryPortfolioModule extends StatelessWidget {
           const SizedBox(height: 15),
           DetailsRowWidget(
             titleText: "Number of Items",
-            valueText: "0",
+            valueText:
+                "${jewellPortFolioController.totalJewelleryPortfolioList[0].noofItems}",
           ),
           const SizedBox(height: 15),
           DetailsRowWidget(
             titleText: "Insured Input value",
-            valueText: "0",
+            valueText:
+                "${jewellPortFolioController.totalJewelleryPortfolioList[0].insuredInputValue}",
           ),
           const SizedBox(height: 5),
         ],
@@ -158,12 +160,14 @@ class MyInsuredJewelleryModule extends StatelessWidget {
           const SizedBox(height: 15),
           DetailsRowWidget(
             titleText: "Number of Items",
-            valueText: "0",
+            valueText:
+                "${jewellPortFolioController.insuredOrnamentsList[0].noofItems}",
           ),
           const SizedBox(height: 15),
           DetailsRowWidget(
             titleText: "Insured Input value",
-            valueText: "₹0.00",
+            valueText:
+                "₹ ${jewellPortFolioController.insuredOrnamentsList[0].insuredValue}",
           ),
           const SizedBox(height: 5),
         ],
@@ -236,12 +240,14 @@ class MyUnInsuredJewelleryModule extends StatelessWidget {
               const SizedBox(height: 15),
               DetailsRowWidget(
                 titleText: "Number of Items",
-                valueText: "0",
+                valueText:
+                    "${jewellPortFolioController.unInsuredOrnamentsList[0].noofItems}",
               ),
               const SizedBox(height: 15),
               DetailsRowWidget(
                 titleText: "Insured Input value",
-                valueText: "0",
+                valueText:
+                    "${jewellPortFolioController.unInsuredOrnamentsList[0].inputValue}",
               ),
               const SizedBox(height: 5),
             ],

@@ -74,16 +74,17 @@ class MyUnInsuredJewelleryScreenController extends GetxController {
     try {
       isLoading(true);
       // final bytes = await File(jewellerySelectedImageFile!.).readAsBytes();
-      // // List<int> imageBytes = jewellerySelectedImageFile!.readAsBytesSync();
-      // String base64Image = base64Encode(bytes);
+      List<int> imageBytes = jewellerySelectedImageFile!.readAsBytesSync();
+      String base64Image = base64Encode(imageBytes);
 
       var requestMap = {
-        "Base64": base64Encode(jewellerySelectedImageFile!.readAsBytesSync()),
+        "Base64": base64Image,
         "OrnamentSrNo": ornamentSrNo,
       };
       // requestMap["Base64"]
 
-      log("updateImageOfJewelleryFunction api req body :: $requestMap");
+      log("ornamentSrNo is :: $ornamentSrNo");
+      // log("updateImageOfJewelleryFunction api req body :: $requestMap");
       http.Response response = await http.post(
         Uri.parse(url),
         body: jsonEncode(requestMap),
@@ -130,7 +131,7 @@ class MyUnInsuredJewelleryScreenController extends GetxController {
     if (pickedFile != null) {
       jewellerySelectedImageFile = File(pickedFile.path);
       await updateImageOfJewelleryFunction(
-        ornamentSrNo: getOrnamentList[index].custOraSrNo,
+        ornamentSrNo: getOrnamentList[index].srNo,
       ).whenComplete(() {
         getMyUnInsuredAllJewelleryFunction();
       });
@@ -151,7 +152,7 @@ class MyUnInsuredJewelleryScreenController extends GetxController {
     if (pickedFile != null) {
       jewellerySelectedImageFile = File(pickedFile.path);
       updateImageOfJewelleryFunction(
-        ornamentSrNo: getOrnamentList[index].custOraSrNo,
+        ornamentSrNo: getOrnamentList[index].srNo,
       ).whenComplete(() {
         getMyUnInsuredAllJewelleryFunction();
       });

@@ -191,7 +191,7 @@ class OtpScreenController extends GetxController {
                   ? ""
                   : loginModel.userRequestValidateOtp[0].dob,
             );
-            Get.off(() => IndexScreen());
+            Get.offAll(() => IndexScreen());
           } else {
             final snackBar = SnackBar(
               backgroundColor: AppColors.whiteColor,

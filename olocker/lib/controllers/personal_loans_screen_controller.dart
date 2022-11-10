@@ -10,6 +10,8 @@ import 'package:olocker/constants/user_details.dart';
 import 'package:http/http.dart' as http;
 import 'package:olocker/models/personal_loans_screen_model/check_availability_model.dart';
 import 'package:olocker/models/personal_loans_screen_model/emi_schedule_model.dart';
+import 'package:olocker/models/personal_loans_screen_model/upload_emi_document_model.dart';
+import 'package:olocker/widgets/common_widgets.dart';
 
 class PersonalLoansScreenController extends GetxController {
   RxBool isLoading = false.obs;
@@ -172,18 +174,23 @@ class PersonalLoansScreenController extends GetxController {
         'MobileAppKey': "EED26D5A-711D-49BD-8999-38D8A60329C5",
       };*/
 
+      // List<int> imageBytes = selectedProfileImage!.readAsBytesSync();
+      // String base64Image = base64Encode(imageBytes);
+
       var requestMap = {
         "emiSrNo": "$emiSrNo",
-        "PanCard_Base64": panCardFile.path.toString(),
-        "AadharCard_Base64": aadhaarCardFile.path.toString(),
-        "AddressProof_Base64": addressProofFile.path.toString(),
-        "BankStatement_Base64": bankStatementFile.path.toString(),
-        "SalarySlip_Base64": salarySlipsFile.path.toString(),
-        "RentAgreement_Base64": rentAgreementFile.path.toString(),
+        "PanCard_Base64": base64Encode(panCardFile.readAsBytesSync()),
+        "AadharCard_Base64": base64Encode(aadhaarCardFile.readAsBytesSync()),
+        "AddressProof_Base64": base64Encode(addressProofFile.readAsBytesSync()),
+        "BankStatement_Base64":
+            base64Encode(bankStatementFile.readAsBytesSync()),
+        "SalarySlip_Base64": base64Encode(salarySlipsFile.readAsBytesSync()),
+        "RentAgreement_Base64":
+            base64Encode(rentAgreementFile.readAsBytesSync()),
       };
       // requestMap["Base64"]
 
-      // log("updateImageOfJewelleryFunction api req body :: $requestMap");
+      // log("uploadEmiDocumentsFunction api req body :: $requestMap");
       http.Response response = await http.post(
         Uri.parse(url),
         body: jsonEncode(requestMap),
@@ -193,40 +200,22 @@ class PersonalLoansScreenController extends GetxController {
         },
       );
 
-      log("updateImageOfJewelleryFunction api response body :: ${response.body}");
-      log("updateImageOfJewelleryFunction api response st code :: ${response.statusCode}");
+      log("uploadEmiDocumentsFunction api response body :: ${response.body}");
+      log("uploadEmiDocumentsFunction api response st code :: ${response.statusCode}");
 
-      //multipart formdata api calll
-      // var request = http.MultipartRequest('POST', Uri.parse(url));
-      // request.headers.addAll({
-      //   'MobileAppKey': "EED26D5A-711D-49BD-8999-38D8A60329C5",
-      // });
-      // request.fields['emiSrNo'] = "$emiSrNo";
-      // request.files.add(await http.MultipartFile.fromPath(
-      //     "PanCard_Base64", panCardFile.path));
-      // request.files.add(await http.MultipartFile.fromPath(
-      //     "AadharCard_Base64", aadhaarCardFile.path));
-      // request.files.add(await http.MultipartFile.fromPath(
-      //     "AddressProof_Base64", addressProofFile.path));
-      // request.files.add(await http.MultipartFile.fromPath(
-      //     "BankStatement_Base64", bankStatementFile.path));
-      // request.files.add(await http.MultipartFile.fromPath(
-      //     "SalarySlip_Base64", salarySlipsFile.path));
-      // request.files.add(await http.MultipartFile.fromPath(
-      //     "RentAgreement_Base64", rentAgreementFile.path));
+      var resbody = jsonDecode(response.body);
 
-      // log('Fields : ${request.fields}');
-      // log('files : ${request.files}');
-
-      // var response = await request.send();
-      // log('response: ${response.request}');
-
-      // response.stream
-      //     .transform(const Utf8Decoder())
-      //     .transform(const LineSplitter())
-      //     .listen((value) async {
-      //   log('value: $value');
-      // });
+      UploadEmiDocumentModel uploadEmiDocumentModel =
+          UploadEmiDocumentModel.fromJson(resbody);
+      isSuccessStatus.value = uploadEmiDocumentModel.success;
+      if (isSuccessStatus.value) {
+        log('uploadEmiDocumentsFunction success call ::: ${uploadEmiDocumentModel.message}');
+        CommonWidgets().showBorderSnackBar(
+          context: Get.context!,
+          displayText: uploadEmiDocumentModel.message,
+        );
+        Get.back();
+      }
     } catch (e) {
       log('uploadEmiDocumentsFunction Error :$e');
       rethrow;

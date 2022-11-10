@@ -5,58 +5,61 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:olocker/models/jewellery_models/get_all_insured_jewellery_model.dart';
 
 import '../constants/api_url.dart';
 import '../constants/app_colors.dart';
+import '../constants/user_details.dart';
+import '../widgets/common_widgets.dart';
 
 class MyInsuredJewelleryScreenController extends GetxController {
   final size = Get.size;
 
   RxBool isLoading = false.obs;
 
-  // List<UnInsuredOrnament> getOrnamentList = [];
+  List<InsuredOrnament> getInsuredOrnamentList = [];
 
   ApiHeader apiHeader = ApiHeader();
 
   File? jewellerySelectedImageFile;
 
-  Future<void> getMyUnInsuredAllJewelleryFunction() async {
-    String url = ApiUrl.getAllUnInsuredOrnamentApi;
-    log("getMyUnInsuredAllJewelleryFunction Api Url : $url");
+  Future<void> getMyInsuredAllJewelleryFunction() async {
+    String url = ApiUrl.getAllInsuredOrnamentApi;
+    log("getMyInsuredAllJewelleryFunction Api Url : $url");
 
     try {
-      //   isLoading(true);
-      //   var requestMap = {
-      //     "CustSrNo": UserDetails.customerId,
-      //   };
-      //   http.Response response = await http.post(
-      //     Uri.parse(url),
-      //     body: jsonEncode(requestMap),
-      //     headers: apiHeader.headers,
-      //   );
+      isLoading(true);
+      var requestMap = {
+        "CustSrNo": UserDetails.customerId,
+      };
+      http.Response response = await http.post(
+        Uri.parse(url),
+        body: jsonEncode(requestMap),
+        headers: apiHeader.headers,
+      );
 
-      //   log("getMyUnInsuredAllJewelleryFunction api response body :: ${response.body}");
-      //   log("getMyUnInsuredAllJewelleryFunction api response st code :: ${response.statusCode}");
+      log("getMyInsuredAllJewelleryFunction api response body :: ${response.body}");
+      log("getMyInsuredAllJewelleryFunction api response st code :: ${response.statusCode}");
 
-      //   GetUnInsuredOrnamentModel getUnInsuredOrnamentModel =
-      //       GetUnInsuredOrnamentModel.fromJson(json.decode(response.body));
+      GetInsuredOrnamentModel getInsuredOrnamentModel =
+          GetInsuredOrnamentModel.fromJson(json.decode(response.body));
 
-      //   var isSuccessStatus = getUnInsuredOrnamentModel.success.obs;
+      // var isSuccessStatus = getInsuredOrnamentModel.success.obs;
 
-      //   if (isSuccessStatus.value) {
-      //     // favouriteProductsList = favouritesModel.favProduct;
-      //     getOrnamentList = getUnInsuredOrnamentModel.unInsuredOrnament;
-      //     log('getMyUnInsuredAllJewelleryFunction list is  : ${getUnInsuredOrnamentModel.unInsuredOrnament.length.toString()}');
-      //   } else {
-      //     CommonWidgets().showBorderSnackBar(
-      //       context: Get.context!,
-      //       displayText: getUnInsuredOrnamentModel.errorInfo.extraInfo,
-      //     );
-      //     log('get getMyUnInsuredAllJewelleryFunction Else');
-      //   }
+      if (response.statusCode == 200) {
+        // favouriteProductsList = favouritesModel.favProduct;
+        getInsuredOrnamentList = getInsuredOrnamentModel.insuredOrnament;
+        log('getMyInsuredAllJewelleryFunction list is  : ${getInsuredOrnamentList.length.toString()}');
+      } else {
+        CommonWidgets().showBorderSnackBar(
+          context: Get.context!,
+          displayText: getInsuredOrnamentModel.errorInfo.extraInfo,
+        );
+        log('get getMyInsuredAllJewelleryFunction Else');
+      }
       isLoading(false);
     } catch (e) {
-      log("get getMyUnInsuredAllJewelleryFunction Error :$e");
+      log("get getMyInsuredAllJewelleryFunction Error :$e");
       rethrow;
     }
   }
@@ -128,7 +131,7 @@ class MyInsuredJewelleryScreenController extends GetxController {
       // await updateImageOfJewelleryFunction(
       //   ornamentSrNo: getOrnamentList[index].custOraSrNo,
       // ).whenComplete(() {
-      //   getMyUnInsuredAllJewelleryFunction();
+      //   getMyInsuredAllJewelleryFunction();
       // });
     }
     // isLoading(false);
@@ -149,7 +152,7 @@ class MyInsuredJewelleryScreenController extends GetxController {
       // updateImageOfJewelleryFunction(
       //   ornamentSrNo: getOrnamentList[index].custOraSrNo,
       // ).whenComplete(() {
-      //   getMyUnInsuredAllJewelleryFunction();
+      //   getMyInsuredAllJewelleryFunction();
       // });
     }
     // isLoading(false);
@@ -240,7 +243,7 @@ class MyInsuredJewelleryScreenController extends GetxController {
   @override
   void onInit() {
     // TODO: implement onInit
-    getMyUnInsuredAllJewelleryFunction();
+    getMyInsuredAllJewelleryFunction();
     super.onInit();
   }
 }

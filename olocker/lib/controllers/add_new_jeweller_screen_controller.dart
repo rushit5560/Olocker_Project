@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/user_details.dart';
+import 'package:olocker/controllers/home_screen_controller.dart';
 import 'package:olocker/models/add_jeweller_screen_models/add_jeweller_model.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 
@@ -56,6 +57,9 @@ class AddNewJewellerScreenController extends GetxController {
           );
 
           Get.back();
+          final homeScreenController = Get.find<HomeScreenController>();
+
+          homeScreenController.getMyJewellersFunction();
 
           log('${addJewellerModel.retailerDetail.retailerName} Added');
         } else {

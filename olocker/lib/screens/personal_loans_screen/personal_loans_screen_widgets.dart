@@ -12,8 +12,6 @@ import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/utils/field_validation.dart';
 import 'package:sizer/sizer.dart';
 
-
-
 class StepOneFormModule extends StatelessWidget {
   StepOneFormModule({Key? key}) : super(key: key);
   final screenController = Get.find<PersonalLoansScreenController>();
@@ -85,8 +83,8 @@ class StepOneFormModule extends StatelessWidget {
 
   Widget _fLNameModule() {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      height: 45,
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      // height: 45,
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.3),
@@ -125,9 +123,10 @@ class StepOneFormModule extends StatelessWidget {
                     .toList(),
                 onChanged: (val) {
                   screenController.namePrefixDDValue.value = val!;
-                  if(screenController.namePrefixDDValue.value == "Mr.") {
+                  if (screenController.namePrefixDDValue.value == "Mr.") {
                     screenController.namePrefixNumberValue = 1;
-                  } else if(screenController.namePrefixDDValue.value == "Mrs.") {
+                  } else if (screenController.namePrefixDDValue.value ==
+                      "Mrs.") {
                     screenController.namePrefixNumberValue = 2;
                   } else {
                     screenController.namePrefixNumberValue = 3;
@@ -142,6 +141,7 @@ class StepOneFormModule extends StatelessWidget {
               controller: screenController.fnameController,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) => FieldValidator().validateFirstName(value!),
               decoration: InputDecoration(
                 isDense: true,
@@ -159,6 +159,7 @@ class StepOneFormModule extends StatelessWidget {
             child: TextFormField(
               controller: screenController.lnameController,
               keyboardType: TextInputType.text,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               textInputAction: TextInputAction.next,
               validator: (value) => FieldValidator().validateLastName(value!),
               decoration: InputDecoration(
@@ -179,33 +180,31 @@ class StepOneFormModule extends StatelessWidget {
   }
 
   Widget _birthDateModule(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        log('value');
-        showDatePicker(context);
-      },
-      child: Container(
-        height: 45,
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: AppColors.greyColor.withOpacity(0.3),
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-        ),
-        child: Center(
-          child: TextFormField(
-            controller: screenController.dobController,
-            readOnly: true,
-            validator: (value) => FieldValidator().validateDob(value!),
-            decoration: InputDecoration(
-              isDense: true,
-              isCollapsed: true,
-              hintText: "Birthdate (DD/MM/YYYY)",
-              border: InputBorder.none,
-              enabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
-            ),
+    return Container(
+      // height: 45,
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: AppColors.greyColor.withOpacity(0.3),
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
+      ),
+      child: Center(
+        child: TextFormField(
+          controller: screenController.dobController,
+          readOnly: true,
+          onTap: () {
+            showDatePicker(context);
+          },
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: (value) => FieldValidator().validateDob(value!),
+          decoration: InputDecoration(
+            isDense: true,
+            isCollapsed: true,
+            hintText: "Birthdate (DD/MM/YYYY)",
+            border: InputBorder.none,
+            enabledBorder: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
           ),
         ),
       ),
@@ -275,7 +274,8 @@ class StepOneFormModule extends StatelessWidget {
                         "${value.day}/${value.month}/${value.year}";
                     // log('value : ${screenController.tempSelectedDate}');
 
-                    screenController.apiDobDate = "${value.year}-${value.month}-${value.day}";
+                    screenController.apiDobDate =
+                        "${value.year}-${value.month}-${value.day}";
 
                     screenController.tempSelectedYear = value.year;
                     log('tempSelectedYear :${screenController.tempSelectedYear}');
@@ -291,8 +291,8 @@ class StepOneFormModule extends StatelessWidget {
 
   Widget _mobileNumberModule() {
     return Container(
-      height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      // height: 45,
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.3),
@@ -304,6 +304,7 @@ class StepOneFormModule extends StatelessWidget {
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
           maxLength: 10,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) => FieldValidator().validateMobileNumber(value!),
           decoration: InputDecoration(
             isDense: true,
@@ -322,8 +323,8 @@ class StepOneFormModule extends StatelessWidget {
 
   Widget _emailIdModule() {
     return Container(
-      height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      // height: 45,
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.3),
@@ -334,6 +335,7 @@ class StepOneFormModule extends StatelessWidget {
           controller: screenController.emailController,
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.emailAddress,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) => FieldValidator().validateEmail(value!),
           decoration: InputDecoration(
             isDense: true,
@@ -351,8 +353,8 @@ class StepOneFormModule extends StatelessWidget {
 
   Widget _residentialPinCodeModule() {
     return Container(
-      height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      // height: 45,
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.3),
@@ -363,6 +365,7 @@ class StepOneFormModule extends StatelessWidget {
           controller: screenController.pinCodeController,
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.number,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) => FieldValidator().validatePinCode(value!),
           decoration: InputDecoration(
             isDense: true,
@@ -380,8 +383,8 @@ class StepOneFormModule extends StatelessWidget {
 
   Widget _panNumberModule() {
     return Container(
-      height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      // height: 45,
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.3),
@@ -392,6 +395,7 @@ class StepOneFormModule extends StatelessWidget {
           controller: screenController.panCardController,
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.text,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           textCapitalization: TextCapitalization.characters,
           validator: (value) => FieldValidator().validatePanCard(value!),
           decoration: InputDecoration(
@@ -410,8 +414,8 @@ class StepOneFormModule extends StatelessWidget {
 
   Widget _loanNeededModule() {
     return Container(
-      height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      // height: 45,
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       width: double.infinity,
       // decoration: BoxDecoration(
       //   color: AppColors.greyColor.withOpacity(0.3),
@@ -432,7 +436,8 @@ class StepOneFormModule extends StatelessWidget {
           Expanded(
             flex: 65,
             child: Container(
-              height: 45,
+              // height: 45,
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: Colors.grey.shade500),
@@ -475,7 +480,7 @@ class StepOneFormModule extends StatelessWidget {
   Widget _loanAmountSliderModule() {
     return SizedBox(
       // height: 30,
-      // padding: const EdgeInsets.symmetric(horizontal: 15),
+      // padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       width: double.infinity,
       child: Column(
         children: [
@@ -529,8 +534,8 @@ class StepOneFormModule extends StatelessWidget {
 
   Widget _monthlyIncomeModule() {
     return Container(
-      height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      // height: 45,
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.3),
@@ -541,6 +546,7 @@ class StepOneFormModule extends StatelessWidget {
           controller: screenController.monthlyIncomeController,
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.number,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) => FieldValidator().validateMonthlyIncome(value!),
           decoration: InputDecoration(
             isDense: true,
@@ -558,8 +564,8 @@ class StepOneFormModule extends StatelessWidget {
 
   Widget _employerNameModule() {
     return Container(
-      height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      // height: 45,
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.3),
@@ -570,6 +576,7 @@ class StepOneFormModule extends StatelessWidget {
           controller: screenController.employerNameController,
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.text,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) => FieldValidator().validateEmployerName(value!),
           decoration: InputDecoration(
             isDense: true,
@@ -587,8 +594,8 @@ class StepOneFormModule extends StatelessWidget {
 
   Widget _currentTotalEmiModule() {
     return Container(
-      height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      // height: 45,
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.3),
@@ -599,7 +606,9 @@ class StepOneFormModule extends StatelessWidget {
           controller: screenController.currentTotalEmiController,
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.number,
-          validator: (value) => FieldValidator().validateCurrentTotalEmi(value!),
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: (value) =>
+              FieldValidator().validateCurrentTotalEmi(value!),
           decoration: InputDecoration(
             isDense: true,
             isCollapsed: true,
@@ -616,8 +625,8 @@ class StepOneFormModule extends StatelessWidget {
 
   Widget _whichBankModule() {
     return Container(
-      height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      // height: 45,
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.3),
@@ -628,7 +637,7 @@ class StepOneFormModule extends StatelessWidget {
           controller: screenController.whichBankController,
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.text,
-
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) => FieldValidator().validateWhichBank(value!),
           decoration: InputDecoration(
             isDense: true,
@@ -694,18 +703,17 @@ class StepOneFormModule extends StatelessWidget {
             DateTime date = DateTime.now();
             int tempYear = date.year;
 
-            if(tempYear - screenController.tempSelectedYear < 21) {
+            if (tempYear - screenController.tempSelectedYear < 21) {
               const snackBar = SnackBar(
                 content: Text('Minimum age should be 21 years'),
               );
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            } else if(tempYear - screenController.tempSelectedYear > 58) {
+            } else if (tempYear - screenController.tempSelectedYear > 58) {
               const snackBar = SnackBar(
                 content: Text('Maximum age should be 58 years'),
               );
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            }
-            else {
+            } else {
               await screenController.checkEligibilityFunction();
             }
           }
@@ -747,8 +755,10 @@ class StepTwoFormModule extends StatelessWidget {
               onTap: () {
                 screenController.isLoading(true);
                 screenController.selectedListItem = i;
-                screenController.selectedMonth = singleItem.tenorMonth.toString();
-                screenController.selectedEligibleEmiAmount = singleItem.emiEligibleAmount.toString();
+                screenController.selectedMonth =
+                    singleItem.tenorMonth.toString();
+                screenController.selectedEligibleEmiAmount =
+                    singleItem.emiEligibleAmount.toString();
                 screenController.isLoading(false);
               },
               child: Container(
@@ -756,7 +766,9 @@ class StepTwoFormModule extends StatelessWidget {
                   color: AppColors.whiteColor,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    color: screenController.selectedListItem == i ? AppColors.accentColor : Colors.transparent,
+                    color: screenController.selectedListItem == i
+                        ? AppColors.accentColor
+                        : Colors.transparent,
                     width: screenController.selectedListItem == i ? 2 : 0,
                   ),
                 ),
@@ -825,7 +837,6 @@ class StepTwoFormModule extends StatelessWidget {
         GestureDetector(
           onTap: () async {
             await screenController.emiScheduleFunction();
-
           },
           child: Container(
             decoration: BoxDecoration(
@@ -954,7 +965,6 @@ class StepThreeFormModule extends StatelessWidget {
       screenController.panCardFile = File(pickedFile.path);
       screenController.loadUI();
     } else {}
-
   }
 
   Widget _aadhaarCardModule() {
@@ -1028,7 +1038,6 @@ class StepThreeFormModule extends StatelessWidget {
       screenController.aadhaarCardFile = File(pickedFile.path);
       screenController.loadUI();
     } else {}
-
   }
 
   Widget _addressProofModule() {
@@ -1070,8 +1079,9 @@ class StepThreeFormModule extends StatelessWidget {
                   ),
                 )
               : GestureDetector(
-            onTap: () async => await selectAddressProofFromGalleryFunction(),
-                child: Container(
+                  onTap: () async =>
+                      await selectAddressProofFromGalleryFunction(),
+                  child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: AppColors.accentColor,
@@ -1086,7 +1096,7 @@ class StepThreeFormModule extends StatelessWidget {
                       ).commonSymmetricPadding(vertical: 12),
                     ),
                   ),
-              ),
+                ),
         ),
       ],
     );
@@ -1101,7 +1111,6 @@ class StepThreeFormModule extends StatelessWidget {
       screenController.addressProofFile = File(pickedFile.path);
       screenController.loadUI();
     } else {}
-
   }
 
   Widget _bankStatementModule() {
@@ -1157,8 +1166,9 @@ class StepThreeFormModule extends StatelessWidget {
                       ),
                     )
                   : GestureDetector(
-                onTap: () async => await selectBankStatementFromStorageFunction(),
-                    child: Container(
+                      onTap: () async =>
+                          await selectBankStatementFromStorageFunction(),
+                      child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: AppColors.accentColor,
@@ -1173,7 +1183,7 @@ class StepThreeFormModule extends StatelessWidget {
                           ).commonSymmetricPadding(vertical: 12),
                         ),
                       ),
-                  ),
+                    ),
             ),
           ],
         ),
@@ -1339,23 +1349,23 @@ class StepThreeFormModule extends StatelessWidget {
             children: [
               screenController.rentAgreementFile.path.isNotEmpty
                   ? Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: Container(
-                  width: screenController.size.width * 0.032,
-                  height: screenController.size.width * 0.032,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.greenColor,
-                  ),
-                  child: const Center(
-                    child: Icon(
-                      Icons.check_rounded,
-                      color: AppColors.whiteColor,
-                      size: 10,
-                    ),
-                  ),
-                ),
-              )
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: Container(
+                        width: screenController.size.width * 0.032,
+                        height: screenController.size.width * 0.032,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.greenColor,
+                        ),
+                        child: const Center(
+                          child: Icon(
+                            Icons.check_rounded,
+                            color: AppColors.whiteColor,
+                            size: 10,
+                          ),
+                        ),
+                      ),
+                    )
                   : Container(),
               const Text('Rent Agreement'),
             ],
@@ -1364,11 +1374,11 @@ class StepThreeFormModule extends StatelessWidget {
         Expanded(
           child: screenController.rentAgreementFile.path.isNotEmpty
               ? const Text(
-            'Successful',
-            style: TextStyle(
-              color: AppColors.greenColor,
-            ),
-          )
+                  'Successful',
+                  style: TextStyle(
+                    color: AppColors.greenColor,
+                  ),
+                )
               : GestureDetector(
                   onTap: () async =>
                       await selectRentAgreementFromGalleryFunction(),
@@ -1402,7 +1412,5 @@ class StepThreeFormModule extends StatelessWidget {
       screenController.rentAgreementFile = File(pickedFile.path);
       screenController.loadUI();
     } else {}
-
   }
-
 }

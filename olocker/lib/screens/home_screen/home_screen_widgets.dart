@@ -158,29 +158,49 @@ class MyJewellersListModule extends StatelessWidget {
 
   Widget _jewellerListTile(JewellerData jewellerData) {
     String imgUrl = ApiUrl.apiImagePath + jewellerData.logoFileName;
-    return Column(
-      children: [
-        Container(
-          width: screenController.size.width * 0.11.w,
-          height: screenController.size.height * 0.015.h,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            // color: AppColors.greyColor,
-            image: DecorationImage(
-              image: NetworkImage(imgUrl),
-              fit: BoxFit.fill,
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => JewellerDetailsScreen());
+      },
+      child: Column(
+        children: [
+          Container(
+            width: screenController.size.width * 0.11.w,
+            height: screenController.size.height * 0.015.h,
+            decoration: BoxDecoration( 
+              borderRadius: BorderRadius.circular(8),
+              // color: AppColors.greyColor,
+              // image: DecorationImage(
+              //   image: NetworkImage(imgUrl),
+              //   fit: BoxFit.fill,
+              // ),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                imgUrl,
+                fit: BoxFit.fill,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    color: AppColors.greyTextColor.withOpacity(0.5),
+                    child: const Center(
+                      child: Text("No Image"),
+                    ),
+                  );
+                },
+              ),
             ),
           ),
-        ),
-        SizedBox(height: screenController.size.height * 0.001.h),
-        Text(
-          jewellerData.companyName,
-          style: TextStyle(
-            fontSize: 9.sp,
+          SizedBox(height: screenController.size.height * 0.001.h),
+          Text(
+            jewellerData.companyName,
+            style: TextStyle(
+              fontSize: 9.sp,
+            ),
           ),
-        ),
-      ],
-    ).commonAllSidePadding(8);
+        ],
+      ).commonAllSidePadding(8),
+    );
   }
 }
 
