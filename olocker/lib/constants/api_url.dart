@@ -55,6 +55,8 @@ class ApiUrl {
   // manage ornament recordings Screen Api
   static const String getOrnamentTrackingApi =
       "${apiMainPath}api/User/GetOrnamentTracking";
+  static const String addTrackingDataApi =
+      "${apiMainPath}api/User/AddTrackingData";
 
   //favourites apis
   static const String getFavProductApi = "${apiMainPath}api/User/GetFavProduct";
@@ -88,5 +90,6 @@ class ApiUrl {
   static const String getGoldPriceApi =
       "${apiMainPath}api/Partner/GetIBJARatesByPartnerId";
 
-  static const String getFeedbackFormApi = "${apiMainPath}api/Partner/GetRatingQuestions";
+  static const String getFeedbackFormApi =
+      "${apiMainPath}api/Partner/GetRatingQuestions";
 }

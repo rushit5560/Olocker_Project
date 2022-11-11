@@ -47,18 +47,13 @@ class AddOrnamentRecordingsScreen extends StatelessWidget {
                       AppImages.addRecordingsBgImage,
                       width: addOrnamentRecordingsController.size.width,
                       height: addOrnamentRecordingsController.size.height -
-                          (addOrnamentRecordingsController.size.height * 0.11),
+                          (addOrnamentRecordingsController.size.height * 0.1),
                       fit: BoxFit.cover,
                     ),
                     Column(
                       children: [
                         const SizedBox(height: 10),
                         AddRecordingDetailsFormModule(),
-                        // MetalDetailsFormModule(),
-                        // StoneDetailsFormModule(),
-                        // DecorativeItemDetailsFormModule(),
-                        // UploadImageFileFormModule(),
-                        // SizedBox(height: 1.h),
                       ],
                     ),
                   ],

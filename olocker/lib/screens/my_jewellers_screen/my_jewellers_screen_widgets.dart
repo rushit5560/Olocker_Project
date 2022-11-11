@@ -1,4 +1,3 @@
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -170,17 +169,19 @@ class AllJewellersListModule extends StatelessWidget {
                     imgUrl,
                   fit: BoxFit.fitWidth,
                 ),*/
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(imgUrl),
-                      fit: BoxFit.fill
-                    ),
-                  ),
-                  // child: Image.network(imgUrl),
+                child: Image.network(
+                  imgUrl,
+                  fit: BoxFit.fill,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      color: AppColors.greyTextColor.withOpacity(0.5),
+                      child: const Center(
+                        child: Text("No Image"),
+                      ),
+                    );
+                  },
                 ).commonAllSidePadding(5),
               ),
-
               Text(
                 screenController.allJewellersList[i].companyName.toUpperCase(),
                 style: TextStyle(

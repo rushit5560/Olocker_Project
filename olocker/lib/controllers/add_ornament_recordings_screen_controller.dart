@@ -6,12 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:olocker/widgets/common_widgets.dart';
 import '../constants/api_url.dart';
 import '../constants/user_details.dart';
+import '../models/ornament_recording_models/add_recording_response_model.dart';
 import '../models/ornament_recording_models/get_ornament_recording_model.dart';
 
 class AddOrnamentRecordingsScreenController extends GetxController {
   final size = Get.size;
+  final custOraSrNo = Get.arguments[0];
 
   RxBool isLoading = false.obs;
 
@@ -25,13 +28,13 @@ class AddOrnamentRecordingsScreenController extends GetxController {
   TextEditingController activityDateController = TextEditingController();
   TextEditingController otherLocationOfJewelleryController =
       TextEditingController();
-  TextEditingController exchangedAtShopNameController = TextEditingController();
-  TextEditingController giftedToPersonController = TextEditingController();
+  TextEditingController changeAtNameController = TextEditingController();
+  TextEditingController ornamentWeightController = TextEditingController();
   TextEditingController reasonForController = TextEditingController();
   TextEditingController relevantDocumentkeptController =
       TextEditingController();
   TextEditingController amountController = TextEditingController();
-  // TextEditingController notesController = TextEditingController();
+  TextEditingController rateOfInterestController = TextEditingController();
   TextEditingController notesController = TextEditingController();
 
   List<FormDDValue> selectActivityTypeList = [
@@ -127,40 +130,100 @@ class AddOrnamentRecordingsScreenController extends GetxController {
     );
   }
 
-  // Future<void> addOrnamentRecordingsFunction() async {
-  //   try {
-  //     isLoading(true);
-  //     http.Response response = await http.get(
-  //       Uri.parse(""),
-  //       headers: apiHeader.headers,
-  //     );
-  //     log(" getOrnamentRecordingsListFunction url: ${response.request}");
+  Future<void> addOrnamentRecordingsFunction() async {
+    if (ornamentRecordingFormKey.currentState!.validate()) {
+      var url = ApiUrl.addTrackingDataApi;
+      try {
+        isLoading(true);
+        Map<String, dynamic> requestMap = {
+          "CustOraSrNo": custOraSrNo,
+          "CustSrNo": UserDetails.customerId,
+          "ActivityType": "${selectedActivityTypeName!.id}",
+          "ActivityDate": activityDateController.text,
+          "Giventoname": selectedActivityTypeName!.id == 8
+              ? ""
+              : changeAtNameController.text,
+          "Reasonforexchange":
+              selectedActivityTypeName!.id == 8 ? "" : reasonForController.text,
+          "Weight": selectedActivityTypeName!.id == 5
+              ? ornamentWeightController.text
+              : selectedActivityTypeName!.id == 6
+                  ? ornamentWeightController.text
+                  : selectedActivityTypeName!.id == 7
+                      ? ornamentWeightController.text
+                      : null,
+          "ReleventDocuments": selectedActivityTypeName!.id == 3
+              ? ""
+              : selectedActivityTypeName!.id == 8
+                  ? ""
+                  : relevantDocumentkeptController.text,
+          "Notes": notesController.text,
+          "RateOfInterest": selectedActivityTypeName!.id == 1
+              ? 0
+              : selectedActivityTypeName!.id == 2
+                  ? 0
+                  : selectedActivityTypeName!.id == 3
+                      ? 0
+                      : selectedActivityTypeName!.id == 5
+                          ? 0
+                          : selectedActivityTypeName!.id == 6
+                              ? 0
+                              : selectedActivityTypeName!.id == 7
+                                  ? 0
+                                  : selectedActivityTypeName!.id == 8
+                                      ? 0
+                                      : int.parse(
+                                          rateOfInterestController.text),
+          "Amountexchange": selectedActivityTypeName!.id == 3
+              ? 0
+              : selectedActivityTypeName!.id == 6
+                  ? 0
+                  : selectedActivityTypeName!.id == 7
+                      ? 0
+                      : selectedActivityTypeName!.id == 8
+                          ? 0
+                          : int.parse(amountController.text),
+          "CurrentJewelleryLocation": selectedlocationOfJewellery!.id,
+          "OtherLocation": selectedlocationOfJewellery!.id == 3
+              ? otherLocationOfJewelleryController.text
+              : ""
+        };
 
-  //     log("getOrnamentRecordingsListFunction st code is : ${response.statusCode}");
-  //     log("getOrnamentRecordingsListFunction res body : ${response.body}");
+        http.Response response = await http.post(
+          Uri.parse(url),
+          headers: apiHeader.headers,
+          body: jsonEncode(requestMap),
+        );
 
-  //     var resBody = jsonDecode(response.body);
+        log("addOrnamentRecordingsFunction st code is : ${response.statusCode}");
+        log("addOrnamentRecordingsFunction res body : ${response.body}");
 
-  //     GetOrnamentRecordingsModel getOrnamentRecordingsModel =
-  //         GetOrnamentRecordingsModel.fromJson(resBody);
+        var resBody = jsonDecode(response.body);
 
-  //     if (response.statusCode == 200) {
-  //       log("getOrnamentRecordingsListFunction get success");
+        AddRecordingResponseModel addRecordingResponseModel =
+            AddRecordingResponseModel.fromJson(resBody);
 
-  //       ornamentHistoryDetailList =
-  //           getOrnamentRecordingsModel.ornamentHistoryDetails;
-  //       trackingDetail = getOrnamentRecordingsModel.trackingDetails[0];
-  //     } else {
-  //       log("getOrnamentRecordingsListFunction not success");
-  //       //do nothing
-  //     }
-  //   } catch (e) {
-  //     log("getOrnamentRecordingsListFunction Error ::: $e");
-  //     rethrow;
-  //   } finally {
-  //     isLoading(false);
-  //   }
-  // }
+        if (response.statusCode == 200) {
+          log("addOrnamentRecordingsFunction get success");
+
+          Get.back();
+
+          CommonWidgets().showBorderSnackBar(
+            context: Get.context!,
+            displayText: "Ornament Recording Added Successfully.",
+          );
+        } else {
+          log("addOrnamentRecordingsFunction not success");
+          //do nothing
+        }
+      } catch (e) {
+        log("addOrnamentRecordingsFunction Error ::: $e");
+        rethrow;
+      } finally {
+        isLoading(false);
+      }
+    }
+  }
 
   @override
   void onInit() {

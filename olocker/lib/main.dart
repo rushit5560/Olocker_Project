@@ -14,6 +14,9 @@ void main() {
       statusBarIconBrightness: Brightness.dark,
     ),
   );
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   runApp(const MyApp());
 }
 

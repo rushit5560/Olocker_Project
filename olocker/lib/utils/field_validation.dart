@@ -231,6 +231,38 @@ class FieldValidator {
     return null;
   }
 
+  String? validateCurrentLocation(String value) {
+    if (value.isEmpty) {
+      return 'Please select current location type';
+    }
+    return null;
+  }
 
+  String? validateOtherLocation(String value) {
+    if (value.isEmpty) {
+      return 'Please enter other location';
+    }
+    return null;
+  }
 
+  String? validateActivityDate(String value) {
+    if (value.isEmpty) {
+      return 'Please select activity date';
+    }
+    return null;
+  }
+
+  String? validateRelevantDocument(String value) {
+    if (value.isEmpty) {
+      return 'Please enter relevant document data';
+    }
+    return null;
+  }
+
+  String? validateNotes(String value) {
+    if (value.isEmpty) {
+      return 'Please enter some notes about your jewellery';
+    }
+    return null;
+  }
 }

@@ -7,6 +7,7 @@ import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/models/portfolio_screen_models/get_all_data_ornament_model.dart';
 import 'package:olocker/utils/field_validation.dart';
 import 'package:olocker/widgets/common_loader.dart';
+import 'package:olocker/widgets/common_widgets.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/add_ornament_recordings_screen_controller.dart';
@@ -52,12 +53,8 @@ class _AddRecordingDetailsFormModuleState
                         // SizedBox(height: 2.h),
                         DropdownButtonFormField<FormDDValue>(
                           isExpanded: true,
-
                           value: addOrnamentRecordingsController
                               .selectedActivityTypeName,
-
-                          // validator: (value) => FieldValidator()
-                          //     .validateProductName(value.toString()),
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 5),
@@ -98,11 +95,10 @@ class _AddRecordingDetailsFormModuleState
                         SizedBox(height: 1.h),
                         DropdownButtonFormField<FormDDValue>(
                           isExpanded: true,
-
                           value: addOrnamentRecordingsController
                               .selectedlocationOfJewellery,
-                          // validator: (value) => FieldValidator()
-                          //     .validateProductName(value.toString()),
+                          validator: (value) => FieldValidator()
+                              .validateCurrentLocation(value.toString()),
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 5),
@@ -140,23 +136,13 @@ class _AddRecordingDetailsFormModuleState
                             : addOrnamentRecordingsController
                                         .selectedlocationOfJewellery!.id ==
                                     3
-                                ? SizedBox(height: 1.h)
-                                : const SizedBox(),
-
-                        addOrnamentRecordingsController
-                                    .selectedlocationOfJewellery ==
-                                null
-                            ? const SizedBox()
-                            : addOrnamentRecordingsController
-                                        .selectedlocationOfJewellery!.id ==
-                                    3
                                 ? TextFormField(
                                     controller: addOrnamentRecordingsController
                                         .otherLocationOfJewelleryController,
-                                    // textInputAction: TextInputAction.next,
-                                    // keyboardType: TextInputType.number,
-                                    // validator: (value) =>
-                                    //     FieldValidator().validateGrossWeight(value!),
+                                    textInputAction: TextInputAction.next,
+                                    keyboardType: TextInputType.text,
+                                    validator: (value) => FieldValidator()
+                                        .validateOtherLocation(value!),
                                     decoration: InputDecoration(
                                       contentPadding:
                                           const EdgeInsets.symmetric(
@@ -189,8 +175,8 @@ class _AddRecordingDetailsFormModuleState
                               .activityDateController,
                           // textInputAction: TextInputAction.next,
                           // keyboardType: TextInputType.number,
-                          // validator: (value) =>
-                          //     FieldValidator().validateGrossWeight(value!),
+                          validator: (value) =>
+                              FieldValidator().validateActivityDate(value!),
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 5),
@@ -210,21 +196,66 @@ class _AddRecordingDetailsFormModuleState
                             ? const SizedBox()
                             : addOrnamentRecordingsController
                                         .selectedActivityTypeName!.id ==
-                                    1
-                                ? TextFormField(
+                                    8
+                                ? const SizedBox()
+                                : TextFormField(
                                     controller: addOrnamentRecordingsController
-                                        .exchangedAtShopNameController,
+                                        .changeAtNameController,
                                     // textInputAction: TextInputAction.next,
                                     // keyboardType: TextInputType.number,
-                                    validator: (value) => FieldValidator()
-                                        .validateGrossWeight(value!),
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'Please Enter ${addOrnamentRecordingsController.selectedActivityTypeName!.id == 1 ? "Exchanged At (Shopkeeper's name)" : addOrnamentRecordingsController.selectedActivityTypeName!.id == 2 ? "Gifted To (Person's Name)" : addOrnamentRecordingsController.selectedActivityTypeName!.id == 3 ? "Given To (Person's Name)" : addOrnamentRecordingsController.selectedActivityTypeName!.id == 4 ? "Given To (broker's Name)" : addOrnamentRecordingsController.selectedActivityTypeName!.id == 5 ? "Given At (Shopkeeper's name)" : addOrnamentRecordingsController.selectedActivityTypeName!.id == 6 ? "received from (name)" : addOrnamentRecordingsController.selectedActivityTypeName!.id == 7 ? "Given To (Person's Name)" : ""}';
+                                      }
+                                      return null;
+                                    },
                                     decoration: InputDecoration(
                                       contentPadding:
                                           const EdgeInsets.symmetric(
                                               horizontal: 16, vertical: 5),
-                                      labelText:
-                                          "Exchanged At (Shopkeeper's name)"
-                                              .toUpperCase(),
+                                      labelText: addOrnamentRecordingsController
+                                                  .selectedActivityTypeName!
+                                                  .id ==
+                                              1
+                                          ? "Exchanged At (Shopkeeper's name)"
+                                              .toUpperCase()
+                                          : addOrnamentRecordingsController
+                                                      .selectedActivityTypeName!
+                                                      .id ==
+                                                  2
+                                              ? "Gifted To (Person's Name)"
+                                                  .toUpperCase()
+                                              : addOrnamentRecordingsController
+                                                          .selectedActivityTypeName!
+                                                          .id ==
+                                                      3
+                                                  ? "Given To (Person's Name)"
+                                                      .toUpperCase()
+                                                  : addOrnamentRecordingsController
+                                                              .selectedActivityTypeName!
+                                                              .id ==
+                                                          4
+                                                      ? "Given To (broker's Name)"
+                                                          .toUpperCase()
+                                                      : addOrnamentRecordingsController
+                                                                  .selectedActivityTypeName!
+                                                                  .id ==
+                                                              5
+                                                          ? "Given At (Shopkeeper's name)"
+                                                              .toUpperCase()
+                                                          : addOrnamentRecordingsController
+                                                                      .selectedActivityTypeName!
+                                                                      .id ==
+                                                                  6
+                                                              ? "received from (name)"
+                                                                  .toUpperCase()
+                                                              : addOrnamentRecordingsController
+                                                                          .selectedActivityTypeName!
+                                                                          .id ==
+                                                                      7
+                                                                  ? "Given To (Person's Name)"
+                                                                      .toUpperCase()
+                                                                  : "",
                                       labelStyle: TextStyle(
                                         color: AppColors.blackColor,
                                         fontSize: 10.sp,
@@ -237,28 +268,72 @@ class _AddRecordingDetailsFormModuleState
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                  )
-                                : const SizedBox(),
+                                  ),
                         addOrnamentRecordingsController
                                     .selectedActivityTypeName ==
                                 null
                             ? const SizedBox()
                             : addOrnamentRecordingsController
                                         .selectedActivityTypeName!.id ==
-                                    1
-                                ? TextFormField(
+                                    8
+                                ? const SizedBox()
+                                : TextFormField(
                                     controller: addOrnamentRecordingsController
                                         .reasonForController,
                                     // textInputAction: TextInputAction.next,
                                     // keyboardType: TextInputType.number,
-                                    validator: (value) => FieldValidator()
-                                        .validateGrossWeight(value!),
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'Please enter ${addOrnamentRecordingsController.selectedActivityTypeName!.id == 1 ? "Reason for an Exchange" : addOrnamentRecordingsController.selectedActivityTypeName!.id == 2 ? "reason for gifting" : addOrnamentRecordingsController.selectedActivityTypeName!.id == 3 ? "Reason for giving/lending" : addOrnamentRecordingsController.selectedActivityTypeName!.id == 4 ? "reason" : addOrnamentRecordingsController.selectedActivityTypeName!.id == 5 ? "reason" : addOrnamentRecordingsController.selectedActivityTypeName!.id == 6 ? "received after" : addOrnamentRecordingsController.selectedActivityTypeName!.id == 7 ? "repair note" : ""}';
+                                      }
+                                      return null;
+                                    },
                                     decoration: InputDecoration(
                                       contentPadding:
                                           const EdgeInsets.symmetric(
                                               horizontal: 16, vertical: 5),
-                                      labelText: "Reason for an Exchange"
-                                          .toUpperCase(),
+                                      labelText: addOrnamentRecordingsController
+                                                  .selectedActivityTypeName!
+                                                  .id ==
+                                              1
+                                          ? "Reason for an Exchange"
+                                              .toUpperCase()
+                                          : addOrnamentRecordingsController
+                                                      .selectedActivityTypeName!
+                                                      .id ==
+                                                  2
+                                              ? "reason for gifting"
+                                                  .toUpperCase()
+                                              : addOrnamentRecordingsController
+                                                          .selectedActivityTypeName!
+                                                          .id ==
+                                                      3
+                                                  ? "Reason for giving/lending"
+                                                      .toUpperCase()
+                                                  : addOrnamentRecordingsController
+                                                              .selectedActivityTypeName!
+                                                              .id ==
+                                                          4
+                                                      ? "reason".toUpperCase()
+                                                      : addOrnamentRecordingsController
+                                                                  .selectedActivityTypeName!
+                                                                  .id ==
+                                                              5
+                                                          ? "reason"
+                                                              .toUpperCase()
+                                                          : addOrnamentRecordingsController
+                                                                      .selectedActivityTypeName!
+                                                                      .id ==
+                                                                  6
+                                                              ? "received after"
+                                                                  .toUpperCase()
+                                                              : addOrnamentRecordingsController
+                                                                          .selectedActivityTypeName!
+                                                                          .id ==
+                                                                      7
+                                                                  ? "repair note"
+                                                                      .toUpperCase()
+                                                                  : "",
                                       labelStyle: TextStyle(
                                         color: AppColors.blackColor,
                                         fontSize: 10.sp,
@@ -271,309 +346,59 @@ class _AddRecordingDetailsFormModuleState
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                  )
-                                : const SizedBox(),
-                        addOrnamentRecordingsController
-                                    .selectedActivityTypeName ==
-                                null
-                            ? const SizedBox()
-                            : addOrnamentRecordingsController
-                                        .selectedActivityTypeName!.id ==
-                                    2
-                                ? TextFormField(
-                                    controller: addOrnamentRecordingsController
-                                        .exchangedAtShopNameController,
-                                    // textInputAction: TextInputAction.next,
-                                    // keyboardType: TextInputType.number,
-                                    validator: (value) => FieldValidator()
-                                        .validateGrossWeight(value!),
-                                    decoration: InputDecoration(
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                              horizontal: 16, vertical: 5),
-                                      labelText: "Gifted To (Person's Name)"
-                                          .toUpperCase(),
-                                      labelStyle: TextStyle(
-                                        color: AppColors.blackColor,
-                                        fontSize: 10.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                      hintText: 'name',
-                                      hintStyle: TextStyle(
-                                        color: AppColors.greyColor,
-                                        fontSize: 10.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  )
-                                : const SizedBox(),
-                        addOrnamentRecordingsController
-                                    .selectedActivityTypeName ==
-                                null
-                            ? const SizedBox()
-                            : addOrnamentRecordingsController
-                                        .selectedActivityTypeName!.id ==
-                                    2
-                                ? TextFormField(
-                                    controller: addOrnamentRecordingsController
-                                        .exchangedAtShopNameController,
-                                    // textInputAction: TextInputAction.next,
-                                    // keyboardType: TextInputType.number,
-                                    validator: (value) => FieldValidator()
-                                        .validateGrossWeight(value!),
-                                    decoration: InputDecoration(
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                              horizontal: 16, vertical: 5),
-                                      labelText:
-                                          "reason for gifting".toUpperCase(),
-                                      labelStyle: TextStyle(
-                                        color: AppColors.blackColor,
-                                        fontSize: 10.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                      hintText: 'reason',
-                                      hintStyle: TextStyle(
-                                        color: AppColors.greyColor,
-                                        fontSize: 10.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  )
-                                : const SizedBox(),
-                        addOrnamentRecordingsController
-                                    .selectedActivityTypeName ==
-                                null
-                            ? const SizedBox()
-                            : addOrnamentRecordingsController
-                                        .selectedActivityTypeName!.id ==
-                                    3
-                                ? TextFormField(
-                                    controller: addOrnamentRecordingsController
-                                        .exchangedAtShopNameController,
-                                    // textInputAction: TextInputAction.next,
-                                    // keyboardType: TextInputType.number,
-                                    validator: (value) => FieldValidator()
-                                        .validateGrossWeight(value!),
-                                    decoration: InputDecoration(
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                              horizontal: 16, vertical: 5),
-                                      labelText: "Given To (Person's Name)"
-                                          .toUpperCase(),
-                                      labelStyle: TextStyle(
-                                        color: AppColors.blackColor,
-                                        fontSize: 10.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                      hintText: 'name',
-                                      hintStyle: TextStyle(
-                                        color: AppColors.greyColor,
-                                        fontSize: 10.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  )
-                                : const SizedBox(),
-                        addOrnamentRecordingsController
-                                    .selectedActivityTypeName ==
-                                null
-                            ? const SizedBox()
-                            : addOrnamentRecordingsController
-                                        .selectedActivityTypeName!.id ==
-                                    4
-                                ? TextFormField(
-                                    controller: addOrnamentRecordingsController
-                                        .exchangedAtShopNameController,
-                                    // textInputAction: TextInputAction.next,
-                                    // keyboardType: TextInputType.number,
-                                    validator: (value) => FieldValidator()
-                                        .validateGrossWeight(value!),
-                                    decoration: InputDecoration(
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                              horizontal: 16, vertical: 5),
-                                      labelText: "Given To (broker's Name)"
-                                          .toUpperCase(),
-                                      labelStyle: TextStyle(
-                                        color: AppColors.blackColor,
-                                        fontSize: 10.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                      hintText: 'name',
-                                      hintStyle: TextStyle(
-                                        color: AppColors.greyColor,
-                                        fontSize: 10.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  )
-                                : const SizedBox(),
-                        addOrnamentRecordingsController
-                                    .selectedActivityTypeName ==
-                                null
-                            ? const SizedBox()
-                            : addOrnamentRecordingsController
-                                        .selectedActivityTypeName!.id ==
-                                    5
-                                ? TextFormField(
-                                    controller: addOrnamentRecordingsController
-                                        .exchangedAtShopNameController,
-                                    // textInputAction: TextInputAction.next,
-                                    // keyboardType: TextInputType.number,
-                                    validator: (value) => FieldValidator()
-                                        .validateGrossWeight(value!),
-                                    decoration: InputDecoration(
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                              horizontal: 16, vertical: 5),
-                                      labelText: "Given To (shopkeeper's Name)"
-                                          .toUpperCase(),
-                                      labelStyle: TextStyle(
-                                        color: AppColors.blackColor,
-                                        fontSize: 10.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                      hintText: 'name',
-                                      hintStyle: TextStyle(
-                                        color: AppColors.greyColor,
-                                        fontSize: 10.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  )
-                                : const SizedBox(),
-                        addOrnamentRecordingsController
-                                    .selectedActivityTypeName ==
-                                null
-                            ? const SizedBox()
-                            : addOrnamentRecordingsController
-                                            .selectedActivityTypeName!.id ==
-                                        4 ||
-                                    addOrnamentRecordingsController
-                                            .selectedActivityTypeName!.id ==
-                                        5
-                                ? TextFormField(
-                                    controller: addOrnamentRecordingsController
-                                        .exchangedAtShopNameController,
-                                    // textInputAction: TextInputAction.next,
-                                    // keyboardType: TextInputType.number,
-                                    validator: (value) => FieldValidator()
-                                        .validateGrossWeight(value!),
-                                    decoration: InputDecoration(
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                              horizontal: 16, vertical: 5),
-                                      labelText: "Reason".toUpperCase(),
-                                      labelStyle: TextStyle(
-                                        color: AppColors.blackColor,
-                                        fontSize: 10.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                      hintText: 'reason',
-                                      hintStyle: TextStyle(
-                                        color: AppColors.greyColor,
-                                        fontSize: 10.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  )
-                                : const SizedBox(),
+                                  ),
 
                         addOrnamentRecordingsController
                                     .selectedActivityTypeName ==
                                 null
                             ? const SizedBox()
                             : addOrnamentRecordingsController
-                                        .selectedActivityTypeName!.id ==
-                                    6
+                                            .selectedActivityTypeName!.id ==
+                                        5 ||
+                                    addOrnamentRecordingsController
+                                            .selectedActivityTypeName!.id ==
+                                        6 ||
+                                    addOrnamentRecordingsController
+                                            .selectedActivityTypeName!.id ==
+                                        7
                                 ? TextFormField(
                                     controller: addOrnamentRecordingsController
-                                        .exchangedAtShopNameController,
+                                        .ornamentWeightController,
                                     // textInputAction: TextInputAction.next,
                                     // keyboardType: TextInputType.number,
-                                    validator: (value) => FieldValidator()
-                                        .validateGrossWeight(value!),
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'Please enter ${addOrnamentRecordingsController.selectedActivityTypeName!.id == 5 ? "balance wt. (recd.)" : addOrnamentRecordingsController.selectedActivityTypeName!.id == 6 ? "ornament weight" : addOrnamentRecordingsController.selectedActivityTypeName!.id == 7 ? "ornament weight" : ""}';
+                                      }
+                                      return null;
+                                    },
                                     decoration: InputDecoration(
                                       contentPadding:
                                           const EdgeInsets.symmetric(
                                               horizontal: 16, vertical: 5),
-                                      labelText:
-                                          "received from (name)".toUpperCase(),
+                                      labelText: addOrnamentRecordingsController
+                                                  .selectedActivityTypeName!
+                                                  .id ==
+                                              5
+                                          ? "balance wt. (recd.)".toUpperCase()
+                                          : addOrnamentRecordingsController
+                                                      .selectedActivityTypeName!
+                                                      .id ==
+                                                  6
+                                              ? "ornament weight".toUpperCase()
+                                              : addOrnamentRecordingsController
+                                                          .selectedActivityTypeName!
+                                                          .id ==
+                                                      7
+                                                  ? "ornament weight"
+                                                      .toUpperCase()
+                                                  : "",
                                       labelStyle: TextStyle(
                                         color: AppColors.blackColor,
                                         fontSize: 10.sp,
                                         fontWeight: FontWeight.w400,
                                       ),
-                                      hintText: 'name',
-                                      hintStyle: TextStyle(
-                                        color: AppColors.greyColor,
-                                        fontSize: 10.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  )
-                                : const SizedBox(),
-                        addOrnamentRecordingsController
-                                    .selectedActivityTypeName ==
-                                null
-                            ? const SizedBox()
-                            : addOrnamentRecordingsController
-                                        .selectedActivityTypeName!.id ==
-                                    5
-                                ? TextFormField(
-                                    controller: addOrnamentRecordingsController
-                                        .exchangedAtShopNameController,
-                                    // textInputAction: TextInputAction.next,
-                                    // keyboardType: TextInputType.number,
-                                    validator: (value) => FieldValidator()
-                                        .validateGrossWeight(value!),
-                                    decoration: InputDecoration(
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                              horizontal: 16, vertical: 5),
-                                      labelText:
-                                          "balance wt. (recd.)".toUpperCase(),
-                                      labelStyle: TextStyle(
-                                        color: AppColors.blackColor,
-                                        fontSize: 10.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                      hintText: 'weight',
-                                      hintStyle: TextStyle(
-                                        color: AppColors.greyColor,
-                                        fontSize: 10.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  )
-                                : const SizedBox(),
-                        addOrnamentRecordingsController
-                                    .selectedActivityTypeName ==
-                                null
-                            ? const SizedBox()
-                            : addOrnamentRecordingsController
-                                        .selectedActivityTypeName!.id ==
-                                    3
-                                ? TextFormField(
-                                    controller: addOrnamentRecordingsController
-                                        .exchangedAtShopNameController,
-                                    // textInputAction: TextInputAction.next,
-                                    // keyboardType: TextInputType.number,
-                                    validator: (value) => FieldValidator()
-                                        .validateGrossWeight(value!),
-                                    decoration: InputDecoration(
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                              horizontal: 16, vertical: 5),
-                                      labelText: "Reason for giving/lending"
-                                          .toUpperCase(),
-                                      labelStyle: TextStyle(
-                                        color: AppColors.blackColor,
-                                        fontSize: 10.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                      hintText: 'reason',
+                                      hintText: 'Weight',
                                       hintStyle: TextStyle(
                                         color: AppColors.greyColor,
                                         fontSize: 10.sp,
@@ -592,15 +417,15 @@ class _AddRecordingDetailsFormModuleState
                                         3 ||
                                     addOrnamentRecordingsController
                                             .selectedActivityTypeName!.id ==
-                                        7
+                                        8
                                 ? const SizedBox()
                                 : TextFormField(
                                     controller: addOrnamentRecordingsController
                                         .relevantDocumentkeptController,
-                                    // textInputAction: TextInputAction.next,
+                                    textInputAction: TextInputAction.next,
                                     // keyboardType: TextInputType.number,
                                     validator: (value) => FieldValidator()
-                                        .validateGrossWeight(value!),
+                                        .validateRelevantDocument(value!),
                                     decoration: InputDecoration(
                                       contentPadding:
                                           const EdgeInsets.symmetric(
@@ -621,7 +446,7 @@ class _AddRecordingDetailsFormModuleState
                                       ),
                                     ),
                                   ),
-                        // SizedBox(height: 1.h),
+
                         addOrnamentRecordingsController
                                     .selectedActivityTypeName ==
                                 null
@@ -631,11 +456,15 @@ class _AddRecordingDetailsFormModuleState
                                     4
                                 ? TextFormField(
                                     controller: addOrnamentRecordingsController
-                                        .amountController,
+                                        .rateOfInterestController,
                                     textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.number,
-                                    validator: (value) => FieldValidator()
-                                        .validateGrossWeight(value!),
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'Please enter applied rate of interest (%)';
+                                      }
+                                      return null;
+                                    },
                                     decoration: InputDecoration(
                                       contentPadding:
                                           const EdgeInsets.symmetric(
@@ -647,8 +476,7 @@ class _AddRecordingDetailsFormModuleState
                                         fontSize: 10.sp,
                                         fontWeight: FontWeight.w400,
                                       ),
-                                      hintText:
-                                          'Document Type (Invoice/Recpt/Challan) & Kept at',
+                                      hintText: '0',
                                       hintStyle: TextStyle(
                                         color: AppColors.greyColor,
                                         fontSize: 10.sp,
@@ -657,6 +485,7 @@ class _AddRecordingDetailsFormModuleState
                                     ),
                                   )
                                 : const SizedBox(),
+
                         addOrnamentRecordingsController
                                     .selectedActivityTypeName ==
                                 null
@@ -679,8 +508,12 @@ class _AddRecordingDetailsFormModuleState
                                         .amountController,
                                     textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.number,
-                                    validator: (value) => FieldValidator()
-                                        .validateGrossWeight(value!),
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'Please enter amount';
+                                      }
+                                      return null;
+                                    },
                                     decoration: InputDecoration(
                                       contentPadding:
                                           const EdgeInsets.symmetric(
@@ -691,8 +524,7 @@ class _AddRecordingDetailsFormModuleState
                                         fontSize: 10.sp,
                                         fontWeight: FontWeight.w400,
                                       ),
-                                      hintText:
-                                          'Document Type (Invoice/Recpt/Challan) & Kept at',
+                                      hintText: '0',
                                       hintStyle: TextStyle(
                                         color: AppColors.greyColor,
                                         fontSize: 10.sp,
@@ -711,8 +543,8 @@ class _AddRecordingDetailsFormModuleState
                                     .notesController,
                                 // textInputAction: TextInputAction.next,
                                 // keyboardType: TextInputType.number,
-                                validator: (value) => FieldValidator()
-                                    .validateGrossWeight(value!),
+                                validator: (value) =>
+                                    FieldValidator().validateNotes(value!),
                                 decoration: InputDecoration(
                                   contentPadding: const EdgeInsets.symmetric(
                                       horizontal: 16, vertical: 5),
@@ -741,7 +573,9 @@ class _AddRecordingDetailsFormModuleState
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.back();
+                      },
                       style: ElevatedButton.styleFrom(
                         primary: AppColors.blackTextColor,
                         shape: const RoundedRectangleBorder(
@@ -759,7 +593,18 @@ class _AddRecordingDetailsFormModuleState
                     ),
                     SizedBox(width: 5.w),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        if (addOrnamentRecordingsController
+                                .selectedActivityTypeName ==
+                            null) {
+                          CommonWidgets().showBorderSnackBar(
+                              context: context,
+                              displayText: "Please select activity type");
+                        } else {
+                          addOrnamentRecordingsController
+                              .addOrnamentRecordingsFunction();
+                        }
+                      },
                       style: ElevatedButton.styleFrom(
                         primary: AppColors.accentColor,
                         shape: const RoundedRectangleBorder(

@@ -98,7 +98,12 @@ class AddRecordingButton extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            Get.to(() => AddOrnamentRecordingsScreen());
+            Get.to(
+              () => AddOrnamentRecordingsScreen(),
+              arguments: [
+                ornamentRecordingsController.customerOraSrNo,
+              ],
+            );
           },
           child: Text(
             "ADD RECORDINGS",
