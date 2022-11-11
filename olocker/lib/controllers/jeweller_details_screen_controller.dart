@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:http/http.dart' as http;
+import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/models/jeweller_details_screen_model/announcement_offer_model.dart';
 import 'package:olocker/models/jeweller_details_screen_model/best_seller_model.dart';
 import 'package:olocker/models/jeweller_details_screen_model/client_testimonials_model.dart';
@@ -33,8 +34,11 @@ class JewellerDetailsScreenController extends GetxController {
   String goldPrice1 = '';
   String goldPrice2 = '';
   String goldPrice3 = '';
-
-
+  List<String> goldCaratImagesList = [
+    AppImages.goldIcon24Image,
+    AppImages.goldIcon22Image,
+    AppImages.goldIcon18Image,
+  ];
 
   Future<void> getSpecialFeaturesFunction() async {
     isLoading(true);
@@ -267,9 +271,7 @@ class JewellerDetailsScreenController extends GetxController {
       log('getGoldPriceFunction Error :$e');
       rethrow;
     }
-
     isLoading(false);
-
   }
 
   @override

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +10,9 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/jeweller_details_screen_controller.dart';
 import 'package:olocker/models/jeweller_details_screen_model/best_seller_model.dart';
+import 'package:olocker/models/jeweller_details_screen_model/client_testimonials_model.dart';
 import 'package:olocker/models/jeweller_details_screen_model/jewellery_type_model.dart';
+import 'package:olocker/screens/jeweller_feedback_screen/jeweller_feedback_screen.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
@@ -69,7 +73,8 @@ class JewellerBannerModule extends StatelessWidget {
     return CarouselSlider.builder(
       itemCount: screenController.announcementOfferList.length,
       itemBuilder: (context, i, realIndex) {
-        String imgUrl = ApiUrl.apiMainPath + screenController.announcementOfferList[i].imageurl;
+        String imgUrl = ApiUrl.apiMainPath +
+            screenController.announcementOfferList[i].imageurl;
         return _imageModule(imgUrl) /*.commonSymmetricPadding(horizontal: 5)*/;
       },
       options: CarouselOptions(
@@ -87,14 +92,10 @@ class JewellerBannerModule extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Colors.grey,
-        image: DecorationImage(
-          image: NetworkImage(imgUrl),
-          fit: BoxFit.cover
-        ),
+        image: DecorationImage(image: NetworkImage(imgUrl), fit: BoxFit.cover),
       ),
     ).commonSymmetricPadding(horizontal: 5);
   }
-
 }
 
 class FourFunctionalModule extends StatelessWidget {
@@ -106,7 +107,7 @@ class FourFunctionalModule extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: SizedBox(
-      height: screenController.size.height * 0.015.h,
+        height: screenController.size.height * 0.015.h,
         child: Row(
           children: [
             Expanded(
@@ -170,24 +171,30 @@ class FourFunctionalModule extends StatelessWidget {
               ).commonAllSidePadding(5),
             ),
             Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: AppColors.accentColor,
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: Text(
-                    'Feedback',
-                    maxLines: 2,
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: AppColors.whiteColor,
-                      fontSize: 10.sp,
+              child: GestureDetector(
+                onTap: () => Get.to(()=>
+                    JewellerFeedbackScreen(),
+                    arguments: screenController.jewellerId,
+                    transition: Transition.zoom),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: AppColors.accentColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Feedback',
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: AppColors.whiteColor,
+                        fontSize: 10.sp,
+                      ),
                     ),
                   ),
-                ),
-              ).commonAllSidePadding(5),
+                ).commonAllSidePadding(5),
+              ),
             ),
           ],
         ),
@@ -207,23 +214,21 @@ class JewelleryCategoryListModule extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, i) {
-        String imgUrl = ApiUrl.apiMainPath + screenController.jewelleryCategoryList[i].imageurl;
+        String imgUrl = ApiUrl.apiMainPath +
+            screenController.jewelleryCategoryList[i].imageurl;
         return Container(
           height: screenController.size.height * 0.023.h,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: Colors.grey,
-            image: DecorationImage(
-                image: NetworkImage(imgUrl),
-                fit: BoxFit.cover
-            ),
+            image:
+                DecorationImage(image: NetworkImage(imgUrl), fit: BoxFit.cover),
           ),
         ).commonSymmetricPadding(horizontal: 5, vertical: 5);
       },
     );
   }
 }
-
 
 class ReferAndJewellerEmiModule extends StatelessWidget {
   ReferAndJewellerEmiModule({Key? key}) : super(key: key);
@@ -368,8 +373,6 @@ class MenWomenJewelleryListModule extends StatelessWidget {
       ),
     );
   }
-
-
 }
 
 class BestSellersListModule extends StatelessWidget {
@@ -397,7 +400,6 @@ class BestSellersListModule extends StatelessWidget {
               fontSize: 15.sp,
             ),
           ).commonSymmetricPadding(vertical: 12),
-
           SizedBox(
             height: screenController.size.height * 0.030.h,
             child: GridView.builder(
@@ -417,18 +419,14 @@ class BestSellersListModule extends StatelessWidget {
               },
             ),
           ),
-
-
         ],
       ),
     );
   }
 
   Widget _bestSellerListTile(ListOfProduct singleItem) {
-    String imgUrl = ApiUrl.apiImagePath + singleItem.productimages[0].imageLocation;
-
-    // var format = NumberFormat.currency(locale: 'HI');
-    // var inrPrice = format.format(singleItem.price);
+    // String imgUrl = ApiUrl.apiImagePath + singleItem.productimages[0].imageLocation;
+    // log('imgUrl111 : $imgUrl');
 
     return Container(
       // height: screenController.size.height * 0.020.h,
@@ -441,13 +439,14 @@ class BestSellersListModule extends StatelessWidget {
           Expanded(
             flex: 8,
             child: Container(
-              decoration: BoxDecoration(
+                    /*decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(imgUrl),
+                  image: NetworkImage(imgUrl.trim()),
                   fit: BoxFit.cover,
                 ),
-              ),
-            ).commonAllSidePadding(20),
+              ),*/
+                    )
+                .commonAllSidePadding(20),
           ),
           Expanded(
             flex: 2,
@@ -466,11 +465,11 @@ class BestSellersListModule extends StatelessWidget {
       ),
     );
   }
-
 }
 
 class CustomerSpeakModule extends StatelessWidget {
-  const CustomerSpeakModule({Key? key}) : super(key: key);
+  CustomerSpeakModule({Key? key}) : super(key: key);
+  final screenController = Get.find<JewellerDetailsScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -502,11 +501,77 @@ class CustomerSpeakModule extends StatelessWidget {
             ),
           ],
         ),
+        SizedBox(
+          height: screenController.size.height * 0.022.h,
+          child: GridView.builder(
+            itemCount: screenController.clientTestimonialsList.length,
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 1,
+              crossAxisSpacing: 10,
+              childAspectRatio: 0.38,
+            ),
+            itemBuilder: (context, i) {
+              Testimonial singleItem =
+                  screenController.clientTestimonialsList[i];
+              return _customerSpeakListTile(singleItem);
+            },
+          ),
+        ).commonSymmetricPadding(vertical: 8),
       ],
     );
   }
-}
 
+  Widget _customerSpeakListTile(Testimonial singleItem) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: AppColors.lightCoffeeColor,
+      ),
+      child: Column(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height: screenController.size.width * 0.030.w,
+                width: screenController.size.width * 0.030.w,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.whiteColor,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Text(
+                singleItem.clientName,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: AppColors.whiteColor,
+                  fontSize: 12.sp,
+                ),
+              ),
+            ],
+          ),
+          Expanded(
+            child: Center(
+              child: Text(
+                singleItem.testimonials,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: AppColors.whiteColor,
+                  fontSize: 10.sp,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ).commonSymmetricPadding(horizontal: 10, vertical: 5),
+    ).commonSymmetricPadding(horizontal: 5);
+  }
+}
 
 class GoldPriceModule extends StatelessWidget {
   GoldPriceModule({Key? key}) : super(key: key);
@@ -515,15 +580,90 @@ class GoldPriceModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: screenController.size.height * 0.04.h,
+      // height: screenController.size.height * 0.035.h,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Gold Price'
-          ),
-
           Row(
+            children: [
+              Image.asset(
+                AppImages.goldNameIconImage,
+                width: screenController.size.width * 0.020.w,
+                height: screenController.size.width * 0.020.w,
+              ),
+              const SizedBox(width: 10),
+              Text(
+                'Gold Price',
+                style: TextStyle(
+                  fontSize: 16.sp,
+                ),
+              ),
+            ],
+          ),
+          GridView.builder(
+            itemCount: 3,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              crossAxisSpacing: 10,
+              childAspectRatio: 0.9,
+            ),
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, i) {
+              return Container(
+                decoration: BoxDecoration(
+                  color: AppColors.goldColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: AppColors.whiteColor,
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                            image: AssetImage(
+                              screenController.goldCaratImagesList[i],
+                            ),
+                            // fit: BoxFit.fill,
+                          ),
+                        ),
+                      ).commonSymmetricPadding(vertical: 20, horizontal: 30),
+                    ),
+                    Text(
+                      i == 0
+                          ? NumberFormat.currency(
+                              symbol: '₹ ',
+                              locale: "HI",
+                              decimalDigits: 0,
+                            ).format(double.parse(screenController.goldPrice1))
+                          : i == 1
+                              ? NumberFormat.currency(
+                                  symbol: '₹ ',
+                                  locale: "HI",
+                                  decimalDigits: 0,
+                                ).format(
+                                  double.parse(screenController.goldPrice2))
+                              : NumberFormat.currency(
+                                  symbol: '₹ ',
+                                  locale: "HI",
+                                  decimalDigits: 0,
+                                ).format(
+                                  double.parse(screenController.goldPrice3)),
+                      style: TextStyle(
+                        color: AppColors.whiteColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.sp,
+                      ),
+                    ).commonAllSidePadding(5),
+                  ],
+                ),
+              );
+            },
+          ).commonSymmetricPadding(vertical: 15),
+
+          /*  Row(
             children: [
 
               Expanded(
@@ -643,16 +783,9 @@ class GoldPriceModule extends StatelessWidget {
               ).commonAllSidePadding(5),
 
             ],
-          ),
+          ),*/
         ],
       ),
-    );
+    ).commonSymmetricPadding(vertical: 10, horizontal: 5);
   }
 }
-
-
-
-
-
-
-

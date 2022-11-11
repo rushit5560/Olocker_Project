@@ -9,9 +9,10 @@ class AppColors {
   static const Color greyColor = Color.fromARGB(255, 117, 117, 117);
   static const Color greyDarkColor = Color.fromARGB(255, 73, 73, 73);
   static const Color greenColor = Colors.green;
-  static const Color lightBrownBgColor = Color(0xFFffdac1);
+  static const Color lightBrownBgColor = Color(0xffffdac1);
 
   static const Color creamBgColor = Color(0xfffdf3da);
+  static const Color darkCreamBgColor = Color(0xffffdac0);
   // static const Color redColor = Color(0xFFFF0000);
   static const Color accentColor = Color(0xffed6660);
   static const Color accentBGColor = Color(0xffff8a86);
@@ -25,5 +26,6 @@ class AppColors {
 
   static const Color darkPeachColor = Color(0xff482b2f);
   static const Color darkCoffeeColor = Color(0xff523620);
+  static const Color lightCoffeeColor = Color(0xffbe8b56);
   static const Color goldColor = Color(0xffc6a148);
 }

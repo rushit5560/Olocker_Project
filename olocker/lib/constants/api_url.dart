@@ -87,4 +87,6 @@ class ApiUrl {
       "${apiMainPath}api/Partner/GetClientTestimonials";
   static const String getGoldPriceApi =
       "${apiMainPath}api/Partner/GetIBJARatesByPartnerId";
+
+  static const String getFeedbackFormApi = "${apiMainPath}api/Partner/GetRatingQuestions";
 }

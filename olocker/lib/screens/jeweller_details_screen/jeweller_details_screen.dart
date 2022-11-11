@@ -76,7 +76,7 @@ class JewellerDetailsScreen extends StatelessWidget {
 
               GoldPriceModule(),
 
-              const SizedBox(height: 20),
+              // const SizedBox(height: 20),
             ],
           ),
         ),
