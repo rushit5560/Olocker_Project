@@ -90,6 +90,22 @@ class ApiUrl {
   static const String getGoldPriceApi =
       "${apiMainPath}api/Partner/GetIBJARatesByPartnerId";
 
+  /// Jewellery Details Screen Api's
+  static const String getJewelleryDetailApi =
+      "${apiMainPath}api/User/GetProductDetail";
+  // static const String getAnnouncementOfferApi =
+  //     "${apiMainPath}api/Partner/GetAnnouncementOffer";
+  // static const String getJewelleryCategoryApi =
+  //     "${apiMainPath}api/Partner/GetPushToAppData";
+  // static const String getJewelleryTypeApi =
+  //     "${apiMainPath}api/Partner/GetUniqueList";
+  // static const String getBestSellerApi =
+  //     "${apiMainPath}api/Partner/GetBestSellerProducts";
+  // static const String getClientTestimonialsApi =
+  //     "${apiMainPath}api/Partner/GetClientTestimonials";
+  // static const String getGoldPriceApi =
+  //     "${apiMainPath}api/Partner/GetIBJARatesByPartnerId";
+
   static const String getFeedbackFormApi =
       "${apiMainPath}api/Partner/GetRatingQuestions";
 

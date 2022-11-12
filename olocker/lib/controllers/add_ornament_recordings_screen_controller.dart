@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:olocker/controllers/ornament_recordings_list_screen_controller.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 import '../constants/api_url.dart';
 import '../constants/user_details.dart';
@@ -198,21 +199,28 @@ class AddOrnamentRecordingsScreenController extends GetxController {
         log("addOrnamentRecordingsFunction st code is : ${response.statusCode}");
         log("addOrnamentRecordingsFunction res body : ${response.body}");
 
-        var resBody = jsonDecode(response.body);
+        final recordingsListController =
+            Get.find<OrnamentRecordingsListScreenController>();
+        // var resBody = jsonDecode(response.body);
 
-        AddRecordingResponseModel addRecordingResponseModel =
-            AddRecordingResponseModel.fromJson(resBody);
+        // AddRecordingResponseModel addRecordingResponseModel =
+        //     AddRecordingResponseModel.fromJson(resBody);
 
         if (response.statusCode == 200) {
           log("addOrnamentRecordingsFunction get success");
 
           Get.back();
+          recordingsListController.getOrnamentRecordingsListFunction();
 
           CommonWidgets().showBorderSnackBar(
             context: Get.context!,
             displayText: "Ornament Recording Added Successfully.",
           );
         } else {
+          CommonWidgets().showBorderSnackBar(
+            context: Get.context!,
+            displayText: "Ornament Recording Failed to add.",
+          );
           log("addOrnamentRecordingsFunction not success");
           //do nothing
         }

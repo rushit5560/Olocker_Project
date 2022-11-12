@@ -18,6 +18,7 @@ import 'package:olocker/screens/personal_loans_screen/personal_loans_screen.dart
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
+import '../my_favourites_screen/my_favourites_screen.dart';
 import '../online_deals_list_screen/online_deals_list_screen.dart';
 
 class MainAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -52,16 +53,23 @@ class MainAppBar extends StatelessWidget with PreferredSizeWidget {
           onPressed: () {},
           icon: Image.asset(
             "assets/icons/gift-box.png",
-            height: 20,
+            height: 18,
             color: AppColors.accentColor,
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(
+              () => MyFavouritesScreen(),
+              arguments: [
+                "undefined",
+              ],
+            );
+          },
           icon: const Icon(
             Icons.favorite_rounded,
             color: AppColors.accentColor,
-            size: 24,
+            size: 22,
           ),
         ),
       ],
@@ -162,15 +170,14 @@ class MyJewellersListModule extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Get.to(() => JewellerDetailsScreen(),
-        arguments: [jewellerData.partnerSrNo,
-        jewellerData.companyName]);
+            arguments: [jewellerData.partnerSrNo, jewellerData.companyName]);
       },
       child: Column(
         children: [
           Container(
             width: screenController.size.width * 0.11.w,
             height: screenController.size.height * 0.015.h,
-            decoration: BoxDecoration( 
+            decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               // color: AppColors.greyColor,
               // image: DecorationImage(

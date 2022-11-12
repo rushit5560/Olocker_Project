@@ -284,7 +284,7 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               Text(
-                'Rushit Patel',
+                'User name',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(

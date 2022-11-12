@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                 onRefresh: homeScreenController.getMyJewellersFunction,
                 showChildOpacityTransition: false,
                 height: 50,
-                child: SingleChildScrollView(
+                child: SingleChildScrollView( 
                   child: Column(
                     children: [
                       AddNewJewellerButtonModule(),

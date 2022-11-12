@@ -17,6 +17,8 @@ import 'package:olocker/screens/jeweller_loyalty_point_screen/jeweller_loyalty_p
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
+import '../my_favourites_screen/my_favourites_screen.dart';
+
 class JewellerFeaturesModule extends StatelessWidget {
   JewellerFeaturesModule({Key? key}) : super(key: key);
   final screenController = Get.find<JewellerDetailsScreenController>();
@@ -112,29 +114,38 @@ class FourFunctionalModule extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: AppColors.accentColor,
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: Text(
-                    'My \nFavourite',
-                    maxLines: 2,
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: AppColors.whiteColor,
-                      fontSize: 10.sp,
+              child: GestureDetector(
+                onTap: () {
+                  Get.to(
+                    () => MyFavouritesScreen(),
+                    arguments: [
+                      screenController.jewellerId.toString(),
+                    ],
+                  );
+                },
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: AppColors.accentColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: Text(
+                      'My \nFavourite',
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: AppColors.whiteColor,
+                        fontSize: 10.sp,
+                      ),
                     ),
                   ),
-                ),
-              ).commonAllSidePadding(5),
+                ).commonAllSidePadding(5),
+              ),
             ),
             Expanded(
               child: GestureDetector(
-                onTap: () => Get.to(()=>
-                    JewellerLoyaltyPointScreen(),
+                onTap: () => Get.to(() => JewellerLoyaltyPointScreen(),
                     transition: Transition.zoom),
                 child: Container(
                   decoration: const BoxDecoration(
@@ -178,8 +189,7 @@ class FourFunctionalModule extends StatelessWidget {
             ),
             Expanded(
               child: GestureDetector(
-                onTap: () => Get.to(()=>
-                    JewellerFeedbackScreen(),
+                onTap: () => Get.to(() => JewellerFeedbackScreen(),
                     arguments: screenController.jewellerId,
                     transition: Transition.zoom),
                 child: Container(

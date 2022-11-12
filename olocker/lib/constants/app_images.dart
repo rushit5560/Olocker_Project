@@ -20,6 +20,8 @@ class AppImages {
   static const String unInsuredBgImage = '$imageRootPath/uninsured_bg.png';
   static const String jewellersShapeImage =
       '$imageRootPath/myjeweller_shape1.png';
+  static const String jewelleryProductBgShapeImage =
+      '$imageRootPath/product_detail.png';
   static const String dealsBgShapeImage = '$imageRootPath/deal_bg.png';
   static const String ornamentBgShapeImage = '$imageRootPath/ornament.png';
 

@@ -35,19 +35,18 @@ class OnlineDealsDetailsScreenController extends GetxController {
         body: bodyData,
       );
 
-      InsertFavouriteDealModel insertFavouriteDealModel = InsertFavouriteDealModel.fromJson(json.decode(response.body));
+      InsertFavouriteDealModel insertFavouriteDealModel =
+          InsertFavouriteDealModel.fromJson(json.decode(response.body));
       isSuccessStatus = insertFavouriteDealModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         log('Insert Favourite Deal Success');
       } else {
         log('addOnlineDealInFavouriteFunction Else');
       }
-    } catch(e) {
+    } catch (e) {
       log('addOnlineDealInFavouriteFunction Error :$e');
       rethrow;
     }
-
   }
-
 }
