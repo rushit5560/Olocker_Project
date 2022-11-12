@@ -12,6 +12,8 @@ class JewellerFeedbackScreenController extends GetxController {
 
   ApiHeader apiHeader = ApiHeader();
 
+  List<RatingQuestionList> feedBackFormList = [];
+
 
   Future<void> getFeedbackFormFunction() async {
     isLoading(true);
@@ -29,7 +31,9 @@ class JewellerFeedbackScreenController extends GetxController {
       isSuccessStatus = feedbackFormModel.success.obs;
 
       if(isSuccessStatus.value) {
-
+        feedBackFormList.clear();
+        feedBackFormList.addAll(feedbackFormModel.ratingQuestionList);
+        log('feedBackFormList : ${feedBackFormList.length}');
       } else {
         log('getFeedbackFormFunction Else');
       }

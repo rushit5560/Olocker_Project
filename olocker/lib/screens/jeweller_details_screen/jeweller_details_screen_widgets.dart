@@ -13,6 +13,7 @@ import 'package:olocker/models/jeweller_details_screen_model/best_seller_model.d
 import 'package:olocker/models/jeweller_details_screen_model/client_testimonials_model.dart';
 import 'package:olocker/models/jeweller_details_screen_model/jewellery_type_model.dart';
 import 'package:olocker/screens/jeweller_feedback_screen/jeweller_feedback_screen.dart';
+import 'package:olocker/screens/jeweller_loyalty_point_screen/jeweller_loyalty_point_screen.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
@@ -131,24 +132,29 @@ class FourFunctionalModule extends StatelessWidget {
               ).commonAllSidePadding(5),
             ),
             Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: AppColors.accentColor,
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: Text(
-                    'Loyalty \nPoints',
-                    maxLines: 2,
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: AppColors.whiteColor,
-                      fontSize: 10.sp,
+              child: GestureDetector(
+                onTap: () => Get.to(()=>
+                    JewellerLoyaltyPointScreen(),
+                    transition: Transition.zoom),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: AppColors.accentColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Loyalty \nPoints',
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: AppColors.whiteColor,
+                        fontSize: 10.sp,
+                      ),
                     ),
                   ),
-                ),
-              ).commonAllSidePadding(5),
+                ).commonAllSidePadding(5),
+              ),
             ),
             Expanded(
               child: Container(

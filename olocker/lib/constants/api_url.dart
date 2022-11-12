@@ -92,4 +92,7 @@ class ApiUrl {
 
   static const String getFeedbackFormApi =
       "${apiMainPath}api/Partner/GetRatingQuestions";
+
+  static const String getLoyaltyPointApi =
+      "${apiMainPath}api/User/GetPartnerPoint";
 }

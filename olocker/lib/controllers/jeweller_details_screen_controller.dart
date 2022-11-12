@@ -146,12 +146,16 @@ class JewellerDetailsScreenController extends GetxController {
 
       if(isSuccessStatus.value) {
         menTypeList.clear();
-        menTypeList.add(ProductTypeItem(name: '', image: ''));
-        menTypeList.addAll(jewelleryTypeModel.productTypeMen);
+        if(jewelleryTypeModel.productTypeMen.isNotEmpty) {
+          menTypeList.add(ProductTypeItem(name: '', image: ''));
+          menTypeList.addAll(jewelleryTypeModel.productTypeMen);
+        }
         log('menTypeList : ${menTypeList.length}');
         womenTypeList.clear();
-        womenTypeList.add(ProductTypeItem(name: '', image: ''));
-        womenTypeList.addAll(jewelleryTypeModel.productTypeWomen);
+        if(jewelleryTypeModel.productTypeWomen.isNotEmpty) {
+          womenTypeList.add(ProductTypeItem(name: '', image: ''));
+          womenTypeList.addAll(jewelleryTypeModel.productTypeWomen);
+        }
         log('womenTypeList : ${womenTypeList.length}');
 
 

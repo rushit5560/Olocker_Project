@@ -50,29 +50,36 @@ class JewellerDetailsScreen extends StatelessWidget {
           child: Column(
             children: [
               JewellerFeaturesModule(),
-              JewellerBannerModule(),
+              jewellerDetailsScreenController.announcementOfferList.isEmpty
+              ? Container() : JewellerBannerModule(),
               FourFunctionalModule(),
               JewelleryCategoryListModule(),
               // NecklaceBannerModule(),
               // BanglesBannerModule(),
               ReferAndJewellerEmiModule(),
-              MenWomenJewelleryListModule(
+              jewellerDetailsScreenController.womenTypeList.isEmpty
+              ? Container()
+              : MenWomenJewelleryListModule(
                 headerName: "WOMEN'S JEWELLERY",
                 headerBgColor: AppColors.darkPeachColor,
                 bgImage: AppImages.womenJewelleryImage,
                 typeList: jewellerDetailsScreenController.womenTypeList,
               ),
 
-              MenWomenJewelleryListModule(
+              jewellerDetailsScreenController.menTypeList.isEmpty
+              ? Container()
+              : MenWomenJewelleryListModule(
                 headerName: "MEN'S JEWELLERY",
                 headerBgColor: AppColors.darkCoffeeColor,
                 bgImage: AppImages.menJewelleryImage,
                 typeList: jewellerDetailsScreenController.menTypeList,
               ),
 
-              BestSellersListModule(),
+              jewellerDetailsScreenController.bestSellerList.isEmpty
+              ? Container() : BestSellersListModule(),
 
-              CustomerSpeakModule(),
+              jewellerDetailsScreenController.clientTestimonialsList.isEmpty
+              ? Container() : CustomerSpeakModule(),
 
               GoldPriceModule(),
 

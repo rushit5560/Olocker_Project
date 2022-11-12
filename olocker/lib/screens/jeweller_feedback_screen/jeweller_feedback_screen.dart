@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/jeweller_feedback_screen_controller.dart';
+import 'package:olocker/models/jeweller_feedback_screen_models/geedback_form_model.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
@@ -33,17 +36,21 @@ class JewellerFeedbackScreen extends StatelessWidget {
             fontWeight: FontWeight.w400,
           ),
         ),
-
-
       ),
 
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            JewellerCollectionModule(),
-          ],
-        ).commonAllSidePadding(10),
-      ),
+      body: ListView.builder(
+        itemCount: jewellerFeedbackScreenController.feedBackFormList.length,
+        shrinkWrap: true,
+        physics: const AlwaysScrollableScrollPhysics(),
+        itemBuilder: (context, i) {
+          String questionType = jewellerFeedbackScreenController.feedBackFormList[i].questionType;
+          log('$i : $questionType');
+          RatingQuestionList singleItem = jewellerFeedbackScreenController.feedBackFormList[i];
+          return questionType == "RadioButton"
+              ? RadioButtonListTileModule(singleItem: singleItem)
+              : Container();
+        },
+      ).commonAllSidePadding(10),
     );
   }
 }
