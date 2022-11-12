@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/jeweller_details_screen_controller.dart';
+import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 import 'jeweller_details_screen_widgets.dart';
@@ -45,7 +46,7 @@ class JewellerDetailsScreen extends StatelessWidget {
       ),
       body: Obx(
         ()=> jewellerDetailsScreenController.isLoading.value
-          ? const Center(child: CircularProgressIndicator())
+          ? CommonLoader().showCircularLoader()
         : SingleChildScrollView(
           child: Column(
             children: [

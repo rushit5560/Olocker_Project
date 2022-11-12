@@ -5,6 +5,8 @@ import 'package:olocker/controllers/jeweller_loyalty_point_screen_controller.dar
 import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
+import 'jeweller_loyalty_point_screen_widgets.dart';
+
 class JewellerLoyaltyPointScreen extends StatelessWidget {
   JewellerLoyaltyPointScreen({Key? key}) : super(key: key);
   final jewellerLoyaltyPointScreenController = Get.put(JewellerLoyaltyPointScreenController());
@@ -46,7 +48,7 @@ class JewellerLoyaltyPointScreen extends StatelessWidget {
                 ),
               ),
           )
-              : Container()
+              : LoyaltyPointListModule()
       ),
     );
   }

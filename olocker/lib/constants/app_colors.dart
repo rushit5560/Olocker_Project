@@ -28,4 +28,7 @@ class AppColors {
   static const Color darkCoffeeColor = Color(0xff523620);
   static const Color lightCoffeeColor = Color(0xffbe8b56);
   static const Color goldColor = Color(0xffc6a148);
+
+  static const Color orangeColor = Color(0xffed6660);
+  static const Color pinkColor = Color(0xfff65c78);
 }

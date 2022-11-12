@@ -88,14 +88,18 @@ class Answer {
   Answer({
     required this.srNo,
     required this.questionAnswer,
+    required this.isSelected,
+
   });
 
   int srNo;
   String questionAnswer;
+  bool isSelected;
 
   factory Answer.fromJson(Map<String, dynamic> json) => Answer(
     srNo: json["SrNo"] ?? 0,
     questionAnswer: json["QuestionAnswer"] ?? "",
+    isSelected : false,
   );
 
   Map<String, dynamic> toJson() => {
