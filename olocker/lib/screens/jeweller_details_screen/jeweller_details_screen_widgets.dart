@@ -13,8 +13,10 @@ import 'package:olocker/models/jeweller_details_screen_model/best_seller_model.d
 import 'package:olocker/models/jeweller_details_screen_model/client_testimonials_model.dart';
 import 'package:olocker/models/jeweller_details_screen_model/jewellery_type_model.dart';
 import 'package:olocker/screens/jeweller_feedback_screen/jeweller_feedback_screen.dart';
+import 'package:olocker/screens/jeweller_jewellery_list_screen/jeweller_jewellery_list_screen.dart';
 import 'package:olocker/screens/jeweller_loyalty_point_screen/jeweller_loyalty_point_screen.dart';
 import 'package:olocker/utils/extensions.dart';
+import 'package:olocker/widgets/common_widgets.dart';
 import 'package:sizer/sizer.dart';
 
 import '../my_favourites_screen/my_favourites_screen.dart';
@@ -145,8 +147,7 @@ class FourFunctionalModule extends StatelessWidget {
             ),
             Expanded(
               child: GestureDetector(
-                onTap: () => Get.to(() => JewellerLoyaltyPointScreen(),
-                    transition: Transition.zoom),
+                onTap: () => Get.to(() => JewellerLoyaltyPointScreen()),
                 child: Container(
                   decoration: const BoxDecoration(
                     color: AppColors.accentColor,
@@ -189,12 +190,17 @@ class FourFunctionalModule extends StatelessWidget {
             ),
             Expanded(
               child: GestureDetector(
-                onTap: () => Get.to(() => JewellerFeedbackScreen(),
-                    arguments: screenController.jewellerId,
-                    transition: Transition.zoom),
+                onTap: () {
+                  if(screenController.isFeedbackValue.value == false) {
+                    Get.to(() => JewellerFeedbackScreen(),
+                        arguments: screenController.jewellerId,);
+                  }
+                },
                 child: Container(
-                  decoration: const BoxDecoration(
-                    color: AppColors.accentColor,
+                  decoration: BoxDecoration(
+                    color:  screenController.isFeedbackValue.value == false
+                        ? AppColors.accentColor
+                        : AppColors.accentColor.withOpacity(0.5),
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -232,15 +238,25 @@ class JewelleryCategoryListModule extends StatelessWidget {
       itemBuilder: (context, i) {
         String imgUrl = ApiUrl.apiMainPath +
             screenController.jewelleryCategoryList[i].imageurl;
-        return Container(
-          height: screenController.size.height * 0.023.h,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.grey,
-            image:
-                DecorationImage(image: NetworkImage(imgUrl), fit: BoxFit.cover),
-          ),
-        ).commonSymmetricPadding(horizontal: 5, vertical: 5);
+        return GestureDetector(
+          onTap: () {
+            Get.to(()=> JewellerJewelleryListScreen(),
+            arguments: [
+              screenController.jewelleryCategoryList[i].name,
+              screenController.jewelleryCategoryList[i].srNo,
+              screenController.jewellerId.toString(),
+            ]);
+          },
+          child: Container(
+            height: screenController.size.height * 0.023.h,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.grey,
+              image:
+                  DecorationImage(image: NetworkImage(imgUrl), fit: BoxFit.cover),
+            ),
+          ).commonSymmetricPadding(horizontal: 5, vertical: 5),
+        );
       },
     );
   }

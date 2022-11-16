@@ -334,4 +334,49 @@ class TextFieldModule extends StatelessWidget {
 }
 
 
+class FeedbackSubmitButtonModule extends StatelessWidget {
+  FeedbackSubmitButtonModule({Key? key}) : super(key: key);
+  final screenController = Get.find<JewellerFeedbackScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () async {
+        screenController.allDataValid = true.obs;
+
+        for(int i=0; i < screenController.finalFeedBackAnsList.length; i++) {
+          if(screenController.finalFeedBackAnsList[i].toString() == "[]") {
+            screenController.allDataValid = false.obs;
+          }
+        }
+
+        if(screenController.allDataValid.value) {
+          await screenController.setFeedbackFormFunction(context);
+        } else {
+          //todo - fail snackbar show here
+        }
+
+
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          color: AppColors.orangeColor,
+        ),
+
+        child: Text(
+          'SUBMIT',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: AppColors.whiteColor,
+            fontSize: 13.sp,
+          ),
+        ).commonSymmetricPadding(horizontal: 50, vertical: 12),
+      ).commonOnlyPadding(bottom: 10),
+    );
+  }
+}
+
+
+
 

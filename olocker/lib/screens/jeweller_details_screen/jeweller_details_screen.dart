@@ -44,6 +44,7 @@ class JewellerDetailsScreen extends StatelessWidget {
           ),
         ],
       ),
+
       body: Obx(
         ()=> jewellerDetailsScreenController.isLoading.value
           ? CommonLoader().showCircularLoader()

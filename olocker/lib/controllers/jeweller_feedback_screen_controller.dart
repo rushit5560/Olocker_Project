@@ -1,14 +1,21 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
+import 'package:olocker/constants/user_details.dart';
+import 'package:olocker/controllers/jeweller_details_screen_controller.dart';
+import 'package:olocker/models/jeweller_feedback_screen_models/add_feedback_form_model.dart';
 import 'package:olocker/models/jeweller_feedback_screen_models/feedback_form_model.dart';
+import 'package:olocker/widgets/common_widgets.dart';
 
 class JewellerFeedbackScreenController extends GetxController {
   var jewellerId = Get.arguments; // Getting from Jeweller Details screen
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
+
+  final jewellerDetailsScreenController = Get.find<JewellerDetailsScreenController>();
 
   ApiHeader apiHeader = ApiHeader();
 
@@ -16,7 +23,10 @@ class JewellerFeedbackScreenController extends GetxController {
   List<List<String>> finalFeedBackAnsList = [];
   List<String> radioButtonValueList = [];
 
+  // RxBool allDataValid = true.obs;
+  RxBool allDataValid = true.obs;
 
+  // Get Feedback Form From Api
   Future<void> getFeedbackFormFunction() async {
     isLoading(true);
     String url = "${ApiUrl.getFeedbackFormApi}?PartnerSrno=$jewellerId";
@@ -27,7 +37,7 @@ class JewellerFeedbackScreenController extends GetxController {
         Uri.parse(url),
         headers: apiHeader.headers,
       );
-      log('response : ${response.body}');
+      log('response1111 : ${response.body}');
 
       FeedbackFormModel feedbackFormModel = FeedbackFormModel.fromJson(json.decode(response.body));
       isSuccessStatus = feedbackFormModel.success.obs;
@@ -61,6 +71,79 @@ class JewellerFeedbackScreenController extends GetxController {
 
     isLoading(false);
   }
+
+  // Set Feedback Form Api
+  Future<void> setFeedbackFormFunction(BuildContext context) async {
+    isLoading(true);
+    String url = ApiUrl.setFeedbackFormApi;
+    log('Set Feedback Form Api Url : $url');
+
+    try {
+      List<Map<String, dynamic>> questionList = [];
+      questionList = makeBodyDataList();
+      // log('questionList123 : $questionList');
+
+      Map<String, String> headers = <String, String>{
+        'Content-Type': "application/json"
+        // 'MobileAppKey': "EED26D5A-711D-49BD-8999-38D8A60329C5"
+      };
+
+      Map<String, dynamic> bodyData = {
+        "CustomerSrNo" : UserDetails.customerId,
+        "PartnerSrNo" : "$jewellerId",
+        "Question": questionList
+      };
+      log('bodyData :$bodyData');
+
+      http.Response response = await http.post(
+        Uri.parse(url),
+        headers: headers,
+        body: jsonEncode(bodyData)
+      );
+      log('response1212 : ${response.body}');
+
+      AddFeedbackFormModel addFeedbackFormModel = AddFeedbackFormModel.fromJson(json.decode(response.body));
+      isSuccessStatus = addFeedbackFormModel.success.obs;
+
+      if(isSuccessStatus.value) {
+        CommonWidgets().showBorderSnackBar(
+          context: context,
+          displayText: "Feedback given successfully",
+        );
+        jewellerDetailsScreenController.isFeedbackValue = true.obs;
+        Get.back();
+      } else {
+        log('setFeedbackFormFunction Else');
+        CommonWidgets().showBorderSnackBar(
+          context: context,
+          displayText: addFeedbackFormModel.errorInfo.description,
+        );
+      }
+
+    } catch(e) {
+      log('setFeedbackFormFunction Error :$e');
+      rethrow;
+    }
+
+    isLoading(false);
+  }
+  makeBodyDataList() {
+    List<Map<String, dynamic>> questionList = [];
+
+    for(int i =0; i < feedBackFormList.length; i++) {
+      Map<String, dynamic> singleData = {
+        "QuestionId" : "${feedBackFormList[i].srNo}",
+        "Answers": finalFeedBackAnsList[i]
+      };
+
+      questionList.add(singleData);
+    }
+
+    // log('questionList : $questionList');
+    return questionList;
+  }
+
+
 
 
   @override

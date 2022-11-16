@@ -74,30 +74,7 @@ class JewellerFeedbackScreen extends StatelessWidget {
                       },
                     ).commonAllSidePadding(10),
 
-                    GestureDetector(
-                      onTap: () {
-                        // for(int i = 0;
-                        // i < jewellerFeedbackScreenController.finalFeedBackAnsList.length;
-                        // i++) {
-                        //
-                        // }
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: AppColors.orangeColor,
-                        ),
-
-                        child: Text(
-                          'SUBMIT',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: AppColors.whiteColor,
-                            fontSize: 13.sp,
-                          ),
-                        ).commonSymmetricPadding(horizontal: 50, vertical: 12),
-                      ).commonOnlyPadding(bottom: 10),
-                    ),
+                    FeedbackSubmitButtonModule(),
                   ],
                 ),
               ),
