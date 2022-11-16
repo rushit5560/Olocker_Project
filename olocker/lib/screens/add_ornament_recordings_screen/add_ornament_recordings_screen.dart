@@ -26,7 +26,7 @@ class AddOrnamentRecordingsScreen extends StatelessWidget {
         ),
         titleSpacing: 0,
         title: Text(
-          'Add Uninsured Jewellery',
+          'Add Ornament Recording',
           style: TextStyle(
             color: AppColors.blackTextColor,
             fontSize: 13.sp,

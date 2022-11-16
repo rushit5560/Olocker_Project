@@ -36,7 +36,7 @@ class ProductDetailsFormModule extends StatelessWidget {
                 alignment: Alignment.center,
                 children: [
                   Image.asset(
-                    AppImages.addOrnamentTitleBgImage,
+                    AppImages.addOrnamentTitleBGImage,
                     width: double.infinity,
                     height: 35,
                     fit: BoxFit.fill,
@@ -249,7 +249,7 @@ class MetalDetailsFormModule extends StatelessWidget {
                       alignment: Alignment.center,
                       children: [
                         Image.asset(
-                          AppImages.addOrnamentTitleBgImage,
+                          AppImages.addOrnamentTitleBGImage,
                           width: double.infinity,
                           height: 35,
                           fit: BoxFit.fill,
@@ -483,7 +483,7 @@ class StoneDetailsFormModule extends StatelessWidget {
                       alignment: Alignment.center,
                       children: [
                         Image.asset(
-                          AppImages.addOrnamentTitleBgImage,
+                          AppImages.addOrnamentTitleBGImage,
                           width: double.infinity,
                           height: 35,
                           fit: BoxFit.fill,
@@ -713,7 +713,7 @@ class DecorativeItemDetailsFormModule extends StatelessWidget {
                       alignment: Alignment.center,
                       children: [
                         Image.asset(
-                          AppImages.addOrnamentTitleBgImage,
+                          AppImages.addOrnamentTitleBGImage,
                           width: double.infinity,
                           height: 35,
                           fit: BoxFit.fill,

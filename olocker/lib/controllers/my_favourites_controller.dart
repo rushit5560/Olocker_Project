@@ -10,6 +10,8 @@ import '../constants/user_details.dart';
 class MyFavouritesScreenController extends GetxController {
   final size = Get.size;
 
+  final String partnerSRno = Get.arguments[0];
+
   RxBool isLoading = false.obs;
 
   List<FavProduct> favouriteProductsList = [];
@@ -18,7 +20,7 @@ class MyFavouritesScreenController extends GetxController {
 
   Future<void> getFavouriteProductsFunction() async {
     String url =
-        "${ApiUrl.getFavProductApi}?customerId=${UserDetails.customerId}&PartnerSRno=575";
+        "${ApiUrl.getFavProductApi}?customerId=${UserDetails.customerId}&PartnerSRno=$partnerSRno";
     log("getFavouriteProducts Api Url : $url");
 
     try {
@@ -31,6 +33,7 @@ class MyFavouritesScreenController extends GetxController {
       FavouritesModel favouritesModel =
           FavouritesModel.fromJson(json.decode(response.body));
 
+      log('getFavouriteProducts response.body is  : ${response.body}');
       var isSuccessStatus = favouritesModel.success.obs;
 
       if (isSuccessStatus.value) {
@@ -52,5 +55,4 @@ class MyFavouritesScreenController extends GetxController {
     getFavouriteProductsFunction();
     super.onInit();
   }
-
 }

@@ -82,51 +82,54 @@ class FavouriteListItem extends StatelessWidget {
                       SizedBox(
                         width: favouritesController.size.width * 0.12,
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 10),
-                          Text(
-                            favouritesController.favouriteProductsList[index]
-                                .productDetails.itemTypeName,
-                            style: TextStyle(
-                              fontSize: 10.sp,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.blackTextColor,
+                      SizedBox(
+                        width: favouritesController.size.width * 0.5,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 10),
+                            Text(
+                              favouritesController.favouriteProductsList[index]
+                                  .productDetails.itemTypeName,
+                              style: TextStyle(
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w400,
+                                color: AppColors.blackTextColor,
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 0.3.h),
-                          Text(
-                            "SKU Code: ${favouritesController.favouriteProductsList[index].productDetails.productSku}",
-                            style: TextStyle(
-                              fontSize: 10.sp,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.blackTextColor,
+                            SizedBox(height: 0.3.h),
+                            Text(
+                              "SKU Code: ${favouritesController.favouriteProductsList[index].productDetails.productSku}",
+                              style: TextStyle(
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.blackTextColor,
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 0.3.h),
-                          Text(
-                            favouritesController.favouriteProductsList[index]
-                                .productDetails.price,
-                            style: TextStyle(
-                              fontSize: 10.sp,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.blackTextColor,
+                            SizedBox(height: 0.3.h),
+                            Text(
+                              favouritesController.favouriteProductsList[index]
+                                  .productDetails.price,
+                              style: TextStyle(
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.blackTextColor,
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 0.3.h),
-                          Text(
-                            favouritesController.favouriteProductsList[index]
-                                .productDetails.partnerName,
-                            style: TextStyle(
-                              fontSize: 10.sp,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.blackTextColor,
+                            SizedBox(height: 0.3.h),
+                            Text(
+                              favouritesController
+                                  .favouriteProductsList[index].partnerName,
+                              style: TextStyle(
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.blackTextColor,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 10),
-                        ],
+                            const SizedBox(height: 10),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -158,8 +161,10 @@ class FavouriteListItem extends StatelessWidget {
                     Radius.circular(60),
                   ),
                   child: CachedNetworkImage(
-                    imageUrl:
-                        "${ApiUrl.apiImagePath}${favouritesController.favouriteProductsList[index].productDetails.productImageList[0].imageLocation}",
+                    imageUrl: favouritesController.favouriteProductsList[index]
+                            .productDetails.productImageList.isEmpty
+                        ? ""
+                        : "${ApiUrl.apiImagePath}${favouritesController.favouriteProductsList[index].productDetails.productImageList[0].imageLocation}",
                     fit: BoxFit.cover,
                     placeholder: (context, url) {
                       return Center(

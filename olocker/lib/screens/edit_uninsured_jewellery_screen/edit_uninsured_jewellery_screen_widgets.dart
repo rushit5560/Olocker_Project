@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
+import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/edit_uninsured_jewellery_screen_controller.dart';
 import 'package:olocker/models/portfolio_screen_models/get_all_data_ornament_model.dart';
 import 'package:olocker/utils/field_validation.dart';
@@ -36,7 +37,7 @@ class ProductDetailsFormModule extends StatelessWidget {
                 alignment: Alignment.center,
                 children: [
                   Image.asset(
-                    "assets/images/bg_h.png",
+                    AppImages.addOrnamentTitleBGImage,
                     width: double.infinity,
                     height: 35,
                     fit: BoxFit.fill,
@@ -249,7 +250,7 @@ class MetalDetailsFormModule extends StatelessWidget {
                       alignment: Alignment.center,
                       children: [
                         Image.asset(
-                          "assets/images/bg_h.png",
+                          AppImages.addOrnamentTitleBGImage,
                           width: double.infinity,
                           height: 35,
                           fit: BoxFit.fill,
@@ -483,7 +484,7 @@ class StoneDetailsFormModule extends StatelessWidget {
                       alignment: Alignment.center,
                       children: [
                         Image.asset(
-                          "assets/images/bg_h.png",
+                          AppImages.addOrnamentTitleBGImage,
                           width: double.infinity,
                           height: 35,
                           fit: BoxFit.fill,
@@ -713,7 +714,7 @@ class DecorativeItemDetailsFormModule extends StatelessWidget {
                       alignment: Alignment.center,
                       children: [
                         Image.asset(
-                          "assets/images/bg_h.png",
+                          AppImages.addOrnamentTitleBGImage,
                           width: double.infinity,
                           height: 35,
                           fit: BoxFit.fill,

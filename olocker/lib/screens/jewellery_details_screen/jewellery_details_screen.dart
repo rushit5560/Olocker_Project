@@ -1,13 +1,16 @@
 import 'dart:developer';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:card_swiper/card_swiper.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
-import 'package:olocker/widgets/common_buttons.dart';
+import 'package:olocker/screens/product_enquire_screen/product_enquire_screen.dart';
 
 import 'package:sizer/sizer.dart';
-
 import '../../controllers/jewellery_details_screen_controller.dart';
 import 'jewellery_details_screen_widgets.dart';
 
@@ -44,50 +47,38 @@ class JewelleryDetailsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Stack(
+                      alignment: Alignment.center,
                       children: [
                         Image.asset(
                           AppImages.jewelleryProductBgShapeImage,
                           width: double.infinity,
-                          height: jewelleryDetailsController.size.height * 0.4,
+                          height: jewelleryDetailsController.size.height * 0.38,
                           fit: BoxFit.cover,
                         ),
-                        Positioned(
-                          left: 15,
-                          top: 10,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: AppColors.whiteColor,
-                              shape: BoxShape.circle,
-                            ),
-                            padding: const EdgeInsets.all(8),
-                            child: const Icon(
-                              Icons.favorite_border,
-                              color: AppColors.accentColor,
-                              size: 24,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          right: 15,
-                          top: 10,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: AppColors.whiteColor,
-                              shape: BoxShape.circle,
-                            ),
-                            padding: const EdgeInsets.all(8),
-                            child: const Icon(
-                              Icons.share_outlined,
-                              color: AppColors.accentColor,
-                              size: 24,
-                            ),
-                          ),
-                        ),
+                        jewelleryDetailsController
+                                .productDetailsData.productImageList.isEmpty
+                            ? Center(
+                                child: Text(
+                                  "No Product Images Available",
+                                  style: TextStyle(
+                                    color: AppColors.blackTextColor,
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              )
+                            : ProductImagesSliderModule(),
+                        FavouriteButtonModule(),
+                        ShareButtonModule(),
                       ],
                     ),
                     Column(
                       children: [
                         JewelleryApproxPriceModule(),
+                        ProductDescriptionModule(),
+                        jewelleryDetailsController.specialFeaturesList.isEmpty
+                            ? const SizedBox()
+                            : JewellerFeaturesAvailableModule(),
                       ],
                     ),
                   ],
@@ -102,7 +93,15 @@ class JewelleryDetailsScreen extends StatelessWidget {
         child: SizedBox(
           height: 45,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(
+                () => ProductEnquireScreen(),
+                arguments: [
+                  jewelleryDetailsController.partnerSrNo,
+                  jewelleryDetailsController.productSrNo,
+                ],
+              );
+            },
             style: ElevatedButton.styleFrom(
               primary: AppColors.accentColor,
               shape: const RoundedRectangleBorder(

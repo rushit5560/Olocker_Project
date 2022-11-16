@@ -16,6 +16,7 @@ class AppImages {
       '$imageRootPath/olocker_logo_homebx1.jpg';
   static const String olockerServiceLogo2Image =
       '$imageRootPath/olocker_logo_homebx2.png';
+  static const String enquireBgImageImage = '$imageRootPath/enquire_msg.png';
   static const String addJewelleryImage = '$imageRootPath/add_jeweller.png';
   static const String unInsuredBgImage = '$imageRootPath/uninsured_bg.png';
   static const String jewellersShapeImage =
@@ -26,7 +27,7 @@ class AppImages {
   static const String ornamentBgShapeImage = '$imageRootPath/ornament.png';
 
   //add ornament screen images
-  static const String addOrnamentTitleBgImage = '$imageRootPath/bg_h.png"';
+  static const String addOrnamentTitleBGImage = 'assets/images/bg_h.png';
 
   //recordings screen images
   static const String recordingsTitleBgImage =
@@ -68,6 +69,8 @@ class AppIcons {
       '$iconRootPath/drawer_my_deals.png';
   static const String drawerMyPointsIcon = '$iconRootPath/drawer_my_points.png';
   static const String grabOnIcon = '$iconRootPath/grabon_icon.png';
+
+  static const String filterIcon = '$iconRootPath/filter_icon.png';
 }
 
 class AppSvgs {

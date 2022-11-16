@@ -20,7 +20,7 @@ class OnlineDealsDetailsScreenController extends GetxController {
 
   Future<void> addOnlineDealInFavouriteFunction() async {
     isLoading(true);
-    String url = ApiUrl.addCustomerFavouriteDealsApi;
+    String url = ApiUrl.insertCustomerFavDealApi;
 
     try {
       Map<String, dynamic> bodyData = {
@@ -28,6 +28,8 @@ class OnlineDealsDetailsScreenController extends GetxController {
         "DealId": onLineDealDetails.srNo,
         "isThirdPartyDeal": true
       };
+
+      log("addOnlineDealInFavouriteFunction bodyData Map :: $bodyData");
 
       http.Response response = await http.post(
         Uri.parse(url),

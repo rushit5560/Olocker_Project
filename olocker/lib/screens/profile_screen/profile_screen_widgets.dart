@@ -129,12 +129,20 @@ class DisplayImageDetailsFieldRow extends StatelessWidget {
 
               log("profileScreenController.isEditable.value is :: ${profileScreenController.isEditable.value.toString()}");
             },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+              decoration: BoxDecoration(
+                color: profileScreenController.isEditable.value
+                    ? AppColors.accentColor
+                    : AppColors.greyTextColor,
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(28),
+                ),
+              ),
               child: Text(
                 "Edit",
                 style: TextStyle(
-                  color: AppColors.blackColor,
+                  color: AppColors.whiteColor,
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w400,
                 ),

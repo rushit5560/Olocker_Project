@@ -7,7 +7,10 @@ class ApiHeader {
 
 class ApiUrl {
   static const String apiMainPath = "https://devappapi.olocker.in/";
-  static const String apiImagePath = "https://devappapi.olocker.in";
+
+  static const String apiImageUrlPath = "https://devappapi.olocker.in/";
+
+  static const String apiImagePath = "https://www.olocker.in";
 
   // Home Screen Api
   static const String myJewellersApi = "${apiMainPath}api/user/GetMyJewellers";
@@ -22,7 +25,7 @@ class ApiUrl {
       "${apiMainPath}api/User/GetNotificationCount";
 
   // Online Deal Details Screen Api
-  static const String addCustomerFavouriteDealsApi =
+  static const String insertCustomerFavDealApi =
       "${apiMainPath}api/User/InsertCustomerFavDeal";
 
   // Online Deal Favourite Screen Api
@@ -90,11 +93,22 @@ class ApiUrl {
   static const String getGoldPriceApi =
       "${apiMainPath}api/Partner/GetIBJARatesByPartnerId";
 
+  static const String getAboutYourSelfApi =
+      "${apiMainPath}api/Partner/GetDetails";
+
   /// Jewellery Details Screen Api's
   static const String getJewelleryDetailApi =
       "${apiMainPath}api/User/GetProductDetail";
-  // static const String getAnnouncementOfferApi =
-  //     "${apiMainPath}api/Partner/GetAnnouncementOffer";
+  static const String removeFavProductApi =
+      "${apiMainPath}api/User/RemoveFavProduct";
+  static const String addFavProductApi = "${apiMainPath}api/User/AddFavProduct";
+
+  /// Enquire Screen Api's
+  static const String sendProductInquiryApi =
+      "${apiMainPath}api/User/SendProductInquiry";
+  static const String getNotificationAllReplyApi =
+      "${apiMainPath}api/Partner/GetNotificationAllReply";
+
   // static const String getJewelleryCategoryApi =
   //     "${apiMainPath}api/Partner/GetPushToAppData";
   // static const String getJewelleryTypeApi =
@@ -111,4 +125,9 @@ class ApiUrl {
 
   static const String getLoyaltyPointApi =
       "${apiMainPath}api/User/GetPartnerPoint";
+
+  static const String setFeedbackFormApi =
+      "${apiMainPath}api/User/AddCustomerFeedback";
+  static const String getJewellerJewelleriesApi =
+      "${apiMainPath}api/Partner/SearchProductList";
 }

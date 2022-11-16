@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
+import 'package:olocker/constants/user_details.dart';
 import 'package:olocker/controllers/home_screen_controller.dart';
+import 'package:olocker/controllers/profile_screen_controller.dart';
 import 'package:olocker/screens/add_new_jeweller_screen/add_new_jeweller_screen.dart';
 import 'package:olocker/screens/auth_screen/auth_screen.dart';
 import 'package:olocker/screens/my_insured_jewellery_screen/my_insured_jewellery_screen.dart';
@@ -17,6 +19,7 @@ import '../screens/my_jewellery_portfolio_screen/my_jewellery_portfolio_screen.d
 class CustomDrawer extends StatelessWidget {
   CustomDrawer({Key? key}) : super(key: key);
   final homeScreenController = Get.find<HomeScreenController>();
+  final profileScreenController = Get.find<ProfileScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -268,6 +271,31 @@ class CustomDrawer extends StatelessWidget {
               shape: BoxShape.circle,
               color: AppColors.whiteColor,
             ),
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(200),
+              ),
+              child: profileScreenController.selectedProfileImage != null
+                  ? Image.file(
+                      profileScreenController.selectedProfileImage!,
+                      height: 75,
+                      width: 75,
+                      fit: BoxFit.cover,
+                    )
+                  : profileScreenController.apiGetProfileImage != null
+                      ? Image.network(
+                          profileScreenController.apiGetProfileImage!.path,
+                          height: 75,
+                          width: 75,
+                          fit: BoxFit.cover,
+                        )
+                      : Image.asset(
+                          AppImages.dealBgImage,
+                          height: 75,
+                          width: 75,
+                          fit: BoxFit.cover,
+                        ),
+            ),
           ),
           SizedBox(width: homeScreenController.size.width * 0.012.w),
           Column(
@@ -284,7 +312,7 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               Text(
-                'User name',
+                "${UserDetails.customerFname.capitalizeFirst!} ${UserDetails.customerLname.capitalizeFirst!}",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(

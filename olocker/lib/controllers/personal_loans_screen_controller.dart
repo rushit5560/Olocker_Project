@@ -66,11 +66,11 @@ class PersonalLoansScreenController extends GetxController {
 
   /// Check Eligibility Api Function - Step 1
   Future<void> checkEligibilityFunction() async {
-    isLoading(true);
     String url = ApiUrl.checkEligibilityApi;
     log('Check Eligibility Api Url : $url');
 
     try {
+      isLoading(true);
       Map<String, dynamic> bodyData = {
         "titleid": "$namePrefixNumberValue",
         "firstname": fnameController.text.trim(),
@@ -120,18 +120,18 @@ class PersonalLoansScreenController extends GetxController {
     } catch (e) {
       log('checkEligibilityFunction Error :$e');
       rethrow;
+    } finally {
+      isLoading(false);
     }
-
-    isLoading(false);
   }
 
   /// EMI Schedule Api Function - Step 2
   Future<void> emiScheduleFunction() async {
-    isLoading(true);
     String url = ApiUrl.emiScheduleApi;
     log('Emi Schedule Api Url : $url');
 
     try {
+      isLoading(true);
       Map<String, dynamic> bodyData = {
         "EMISrNo": emiSrNo,
         "SelectedTenorMonth": selectedMonth,
@@ -158,17 +158,18 @@ class PersonalLoansScreenController extends GetxController {
     } catch (e) {
       log('emiScheduleFunction Error : $e');
       rethrow;
+    } finally {
+      isLoading(false);
     }
-    isLoading(false);
   }
 
   /// Upload Document Api Function - Step 3
   Future<void> uploadEmiDocumentsFunction() async {
-    isLoading(true);
     String url = ApiUrl.uploadDocumentApi;
     log('Upload Emi Documents Api Url : $url');
 
     try {
+      isLoading(true);
       /*Map<String, String> headers = <String, String>{
         'Content-Type': "application/json",
         'MobileAppKey': "EED26D5A-711D-49BD-8999-38D8A60329C5",
@@ -219,9 +220,9 @@ class PersonalLoansScreenController extends GetxController {
     } catch (e) {
       log('uploadEmiDocumentsFunction Error :$e');
       rethrow;
+    } finally {
+      isLoading(false);
     }
-
-    isLoading(false);
   }
 
   loadUI() {

@@ -255,7 +255,7 @@ class JewelleryListItem extends StatelessWidget {
                     Radius.circular(200),
                   ),
                   child: Image.network(
-                    ApiUrl.apiImagePath +
+                    ApiUrl.apiImageUrlPath +
                         unInsuredJewelleryController.getOrnamentList[index].url
                             .toString()
                             .replaceFirst("~", ""),

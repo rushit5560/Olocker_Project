@@ -127,9 +127,9 @@ class ProductDetailsData {
   final List<ProductImageList> productImageList;
   final List<SimilarProductList> similarProductList;
   final List<Metaldetail> metaldetails;
-  final List<dynamic> decorativedetails;
+  final List<Decorativedetail> decorativedetails;
   final List<Stonedetail> stonedetails;
-  final List<dynamic> diamonddetails;
+  final List<Diamonddetail> diamonddetails;
 
   factory ProductDetailsData.fromJson(Map<String, dynamic> json) =>
       ProductDetailsData(
@@ -166,12 +166,13 @@ class ProductDetailsData {
                 .map((x) => SimilarProductList.fromJson(x))),
         metaldetails: List<Metaldetail>.from(
             (json["metaldetails"] ?? []).map((x) => Metaldetail.fromJson(x))),
-        decorativedetails:
-            List<dynamic>.from((json["decorativedetails"] ?? []).map((x) => x)),
+        decorativedetails: List<Decorativedetail>.from(
+            (json["decorativedetails"] ?? [])
+                .map((x) => Decorativedetail.fromJson(x))),
         stonedetails: List<Stonedetail>.from(
             (json["stonedetails"] ?? []).map((x) => Stonedetail.fromJson(x))),
-        diamonddetails:
-            List<dynamic>.from((json["diamonddetails"] ?? []).map((x) => x)),
+        diamonddetails: List<Diamonddetail>.from((json["diamonddetails"] ?? [])
+            .map((x) => Diamonddetail.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -228,11 +229,11 @@ class Metaldetail {
   final bool isHallmarked;
 
   factory Metaldetail.fromJson(Map<String, dynamic> json) => Metaldetail(
-        metalWt: json["MetalWt"],
-        unitMetalWt: json["UnitMetalWt"],
-        metalType: json["MetalType"],
-        metalPurity: json["MetalPurity"],
-        isHallmarked: json["isHallmarked"],
+        metalWt: json["MetalWt"] ?? "",
+        unitMetalWt: json["UnitMetalWt"] ?? "",
+        metalType: json["MetalType"] ?? "",
+        metalPurity: json["MetalPurity"] ?? "",
+        isHallmarked: json["isHallmarked"] ?? false,
       );
 
   Map<String, dynamic> toJson() => {
@@ -241,6 +242,35 @@ class Metaldetail {
         "MetalType": metalType,
         "MetalPurity": metalPurity,
         "isHallmarked": isHallmarked,
+      };
+}
+
+class Decorativedetail {
+  Decorativedetail({
+    required this.decorativeItemName,
+    required this.decorativeItemWt,
+    required this.unitDecoItemWt,
+    // this.decorativeChargeableAmount,
+  });
+
+  final String decorativeItemName;
+  final String decorativeItemWt;
+  final String unitDecoItemWt;
+  // final dynamic decorativeChargeableAmount;
+
+  factory Decorativedetail.fromJson(Map<String, dynamic> json) =>
+      Decorativedetail(
+        decorativeItemName: json["DecorativeItemName"] ?? "",
+        decorativeItemWt: json["DecorativeItemWt"] ?? "",
+        unitDecoItemWt: json["UnitDecoItemWt"] ?? "",
+        // decorativeChargeableAmount: json["DecorativeChargeableAmount"] ,
+      );
+
+  Map<String, dynamic> toJson() => {
+        "DecorativeItemName": decorativeItemName,
+        "DecorativeItemWt": decorativeItemWt,
+        "UnitDecoItemWt": unitDecoItemWt,
+        // "DecorativeChargeableAmount": decorativeChargeableAmount,
       };
 }
 
@@ -257,9 +287,9 @@ class ProductImageList {
 
   factory ProductImageList.fromJson(Map<String, dynamic> json) =>
       ProductImageList(
-        srNo: json["SrNo"],
-        imageName: json["ImageName"],
-        imageLocation: json["ImageLocation"],
+        srNo: json["SrNo"] ?? 0,
+        imageName: json["ImageName"] ?? "",
+        imageLocation: json["ImageLocation"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -284,10 +314,10 @@ class SimilarProductList {
 
   factory SimilarProductList.fromJson(Map<String, dynamic> json) =>
       SimilarProductList(
-        srNo: json["SrNo"],
-        name: json["Name"],
-        price: json["Price"],
-        productImage: json["ProductImage"],
+        srNo: json["SrNo"] ?? 0,
+        name: json["Name"] ?? "",
+        price: json["Price"] ?? "",
+        productImage: json["ProductImage"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -295,6 +325,42 @@ class SimilarProductList {
         "Name": name,
         "Price": price,
         "ProductImage": productImage,
+      };
+}
+
+class Diamonddetail {
+  Diamonddetail({
+    required this.stoneName,
+    required this.stoneWt,
+    required this.unitStoneWt,
+    // this.stoneShape,
+    // this.stoneQuality,
+    // this.stoneChargeableAmount,
+  });
+
+  final String stoneName;
+  final String stoneWt;
+  final String unitStoneWt;
+  // final dynamic stoneShape;
+  // final dynamic stoneQuality;
+  // final dynamic stoneChargeableAmount;
+
+  factory Diamonddetail.fromJson(Map<String, dynamic> json) => Diamonddetail(
+        stoneName: json["StoneName"] ?? "",
+        stoneWt: json["StoneWt"] ?? "",
+        unitStoneWt: json["UnitStoneWt"] ?? "",
+        // stoneShape: json["StoneShape"],
+        // stoneQuality: json["StoneQuality"],
+        // stoneChargeableAmount: json["StoneChargeableAmount"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "StoneName": stoneName,
+        "StoneWt": stoneWt,
+        "UnitStoneWt": unitStoneWt,
+        // "StoneShape": stoneShape,
+        // "StoneQuality": stoneQuality,
+        // "StoneChargeableAmount": stoneChargeableAmount,
       };
 }
 
@@ -312,10 +378,10 @@ class Stonedetail {
   final String stoneChargeableAmount;
 
   factory Stonedetail.fromJson(Map<String, dynamic> json) => Stonedetail(
-        stoneName: json["StoneName"],
-        stoneWt: json["StoneWt"],
-        unitStoneWt: json["UnitStoneWt"],
-        stoneChargeableAmount: json["StoneChargeableAmount"],
+        stoneName: json["StoneName"] ?? "",
+        stoneWt: json["StoneWt"] ?? "",
+        unitStoneWt: json["UnitStoneWt"] ?? "",
+        stoneChargeableAmount: json["StoneChargeableAmount"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
