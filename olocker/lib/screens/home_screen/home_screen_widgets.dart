@@ -286,7 +286,7 @@ class SmartDealsModule extends StatelessWidget {
                         color: screenController.smartDealsSwitch.value
                             ? Colors.white70
                             : Colors.white,
-                        fontSize: 9.sp,
+                        fontSize: 10.sp,
                       ),
                     ),
                     Transform.scale(
@@ -312,7 +312,7 @@ class SmartDealsModule extends StatelessWidget {
                         color: screenController.smartDealsSwitch.value
                             ? Colors.white
                             : Colors.white70,
-                        fontSize: 9.sp,
+                        fontSize: 10.sp,
                       ),
                     ),
                   ],
@@ -347,10 +347,11 @@ class OnlineDealsListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: screenController.size.height * 0.016.h,
+      height: screenController.size.height * 0.022.h,
       child: ListView.builder(
         itemCount: screenController.smartDealsOnlineList.length,
         scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         shrinkWrap: true,
         itemBuilder: (context, i) {
           VendorDealsList vendorDeals =
@@ -371,7 +372,7 @@ class OnlineDealsListModule extends StatelessWidget {
         );
       },
       child: Container(
-        width: screenController.size.height * 0.016.h,
+        width: screenController.size.height * 0.019.h,
         decoration: BoxDecoration(
           color: AppColors.whiteColor,
           borderRadius: BorderRadius.circular(8),
@@ -379,6 +380,8 @@ class OnlineDealsListModule extends StatelessWidget {
         child: Image.network(
           imgUrl,
           fit: BoxFit.contain,
+          width: screenController.size.height * 0.019.h,
+          height: screenController.size.height * 0.019.h,
         ).commonAllSidePadding(8),
       ).commonAllSidePadding(2),
     );

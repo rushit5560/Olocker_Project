@@ -16,7 +16,8 @@ class PinkBackgroundImageModule extends StatelessWidget {
     return Container(
       height: screenController.size.height * 0.025.h,
       alignment: Alignment.topCenter,
-      child: Image.asset(AppImages.dealsBgShapeImage,
+      child: Image.asset(
+        AppImages.dealsBgShapeImage,
         fit: BoxFit.cover,
       ),
     );
@@ -39,7 +40,6 @@ class AllDealsHeaderModule extends StatelessWidget {
             fontSize: 10.sp,
           ),
         ),
-
         Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -110,11 +110,12 @@ class AllDealsListModule extends StatelessWidget {
                           bottom: screenController.size.height * 0.0012.h,
                         ),
                         child: Text(
-                          screenController.singleDealList.onLineDeals[i].couponHeading,
+                          screenController
+                              .singleDealList.onLineDeals[i].couponHeading,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            fontSize: 9.sp,
+                            fontSize: 10.sp,
                           ),
                         ),
                       ),
@@ -122,7 +123,6 @@ class AllDealsListModule extends StatelessWidget {
                   ),
                 ],
               ),
-
               SizedBox(
                 height: screenController.size.height * 0.011.h,
                 child: Row(
@@ -130,10 +130,10 @@ class AllDealsListModule extends StatelessWidget {
                   children: [
                     // Circle Module
                     Expanded(
-                      flex: 20,
+                      flex: 22,
                       child: Container(
-                        height: screenController.size.height * 0.0085.h,
-                        width: screenController.size.height * 0.0085.h,
+                        height: screenController.size.height * 0.009.h,
+                        width: screenController.size.height * 0.009.h,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(color: AppColors.blackColor),
@@ -152,7 +152,7 @@ class AllDealsListModule extends StatelessWidget {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                               image: NetworkImage(
-                                  screenController.singleDealList.categoryImage,
+                                screenController.singleDealList.categoryImage,
                               ),
                             ),
                           ),
@@ -173,4 +173,3 @@ class AllDealsListModule extends StatelessWidget {
     );
   }
 }
-

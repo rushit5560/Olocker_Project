@@ -37,15 +37,47 @@ class MyFavouritesScreenController extends GetxController {
       var isSuccessStatus = favouritesModel.success.obs;
 
       if (isSuccessStatus.value) {
+        favouriteProductsList.clear();
         favouriteProductsList = favouritesModel.favProduct;
         log('getFavouriteProducts list count is  : ${favouriteProductsList.length}');
       } else {
         log('get FavouriteProductsFunction Else');
       }
-      isLoading(false);
     } catch (e) {
       log("get FavouriteProductsFunction Error :$e");
       rethrow;
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  Future<void> deleteFavouriteProductFunction({required int id}) async {
+    String url = "${ApiUrl.deleteFavProductApi}?Id=$id";
+    log("deleteFavouriteProductFunction Api Url : $url");
+
+    try {
+      isLoading(true);
+      http.Response response = await http.get(
+        Uri.parse(url),
+        headers: apiHeader.headers,
+      );
+
+      var resBody = jsonDecode(response.body);
+
+      log('deleteFavouriteProductFunction response.body is  : ${response.body}');
+      var isSuccessStatus = resBody["success"];
+
+      if (isSuccessStatus) {
+        log('deleteFavouriteProductFunction  if success');
+      } else {
+        log('get deleteFavouriteProductFunction Else');
+      }
+    } catch (e) {
+      log("get deleteFavouriteProductFunction Error :$e");
+      rethrow;
+    } finally {
+      getFavouriteProductsFunction();
+      // isLoading(false);
     }
   }
 

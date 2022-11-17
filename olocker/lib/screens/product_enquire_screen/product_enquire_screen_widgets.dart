@@ -9,6 +9,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../constants/user_details.dart';
 import '../../controllers/product_enquire_screen_controller.dart';
+import '../../widgets/common_loader.dart';
 
 class SendMessageTextField extends StatelessWidget {
   SendMessageTextField({Key? key}) : super(key: key);
@@ -97,123 +98,88 @@ class ChatDisplayModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget messageList({
-      required int index,
-    }) {
-      // ignore: unrelated_type_equality_checks
-      return screenController.getNotificationList[index].customerId ==
-              UserDetails.customerId
-          ? Padding(
+    return Column(
+      children: [
+        JewelleryDetailModule(),
+        screenController.getNotificationList.isEmpty
+            ? const Center(child: Text("No message"))
+            : Obx(
+                () => screenController.isChatLoading.value
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.h),
+                        child: CommonLoader().showCircularLoader(),
+                      )
+                    : ListView.builder(
+                        // controller: screenController.scrollController,
+                        // reverse: true,
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        itemCount: screenController.getNotificationList.length,
+                        shrinkWrap: true,
+
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        itemBuilder: (context, ind) {
+                          /// For reverse get message list and scrolling messages
+                          // int index =
+                          //     screenController.getNotificationList.length - 1 - i;
+                          // log('screenController.getNotificationList[i].userid: ${screenController.getNotificationList[i].userid}');
+                          // log('UserDetails.userId: ${UserDetails.userId}');
+                          /*return SingleMessageBubble(
+              isSendByMe: screenController.userChatList[i].isSendByMe,
+              message: screenController.userChatList[i].message,
+            );*/
+                          return SingleMessageModule(
+                            index: ind,
+                          );
+                        },
+                      ),
+              ),
+      ],
+    );
+  }
+}
+
+class SingleMessageModule extends StatelessWidget {
+  SingleMessageModule({Key? key, required this.index}) : super(key: key);
+
+  final int index;
+
+  final screenController = Get.find<ProductEnquireScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    // ignore: unrelated_type_equality_checks
+    return screenController.getNotificationList[index].customerId ==
+            UserDetails.customerId
+        ? SizedBox(
+            width: screenController.size.width * 0.45,
+            child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: Container(
-                width: screenController.size.width * 0.45,
+                // width: screenController.size.width * 0.45,
                 padding: const EdgeInsets.all(12),
                 decoration: const BoxDecoration(color: AppColors.whiteColor),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Column(
+                  //mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    //const SizedBox(width: 50),
-                    Expanded(
-                      flex: 1,
-                      child: Container(),
+                    Text(
+                      screenController.getNotificationList[index].message,
+                      style: const TextStyle(fontSize: 12),
                     ),
-                    Expanded(
-                      flex: 3,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              //mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  screenController
-                                      .getNotificationList[index].message,
-                                  style: const TextStyle(fontSize: 12),
-                                ),
-                                const SizedBox(height: 10),
-                                // screenController
-                                //         .getNotificationList[index]
-                                //         .file
-                                //         .isNotEmpty
-                                //     ? SizedBox(
-                                //         height: 80,
-                                //         width: 80,
-                                //         // decoration: BoxDecoration(
-                                //         //     borderRadius: BorderRadius.circular(10.0),
-                                //         //     //border: Border.all(color: AppColors.colorLightGrey),
-                                //         //     boxShadow: [
-                                //         //       BoxShadow(
-                                //         //           blurRadius: 1,
-                                //         //           blurStyle: BlurStyle.outer,
-                                //         //           color: Colors.grey.shade500
-                                //         //       )
-                                //         //     ]
-                                //         // ),
-                                //         child: ClipRRect(
-                                //           borderRadius:
-                                //               BorderRadius.circular(10.0),
-                                //           child: Image.network(
-                                //             "https://squadgame.omdemo.co.in/asset/uploads/chat/" +
-                                //                 screenController
-                                //                     .getNotificationList[
-                                //                         index]
-                                //                     .file,
-                                //             //     height: 150, width: 150, fit: BoxFit.cover),
-                                //           ),
-                                //         ))
-                                //     : Container()
-                              ],
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          // Container(
-                          //   // height: 150, width: 150,
-                          //   // decoration: BoxDecoration(
-                          //   //     borderRadius: BorderRadius.circular(10.0),
-                          //   //     //border: Border.all(color: AppColors.colorLightGrey),
-                          //   //     boxShadow: [
-                          //   //       BoxShadow(
-                          //   //           blurRadius: 1,
-                          //   //           blurStyle: BlurStyle.outer,
-                          //   //           color: Colors.grey.shade500
-                          //   //       )
-                          //   //     ]
-                          //   // ),
-                          //   child: ClipRRect(
-                          //     borderRadius: BorderRadius.circular(30.0),
-                          //     child: screenController
-                          //             .getNotificationList[index]
-                          //             .profile
-                          //             .isNotEmpty
-                          //         ? Image.network(
-                          //             "https://squadgame.omdemo.co.in/asset/uploads/" +
-                          //                 screenController
-                          //                     .getNotificationList[
-                          //                         index]
-                          //                     .profile,
-                          //             fit: BoxFit.cover,
-                          //             height: 40,
-                          //             width: 40)
-                          //         : Container(),
-                          //   ),
-                          // )
-                        ],
-                      ),
-                    ),
+                    const SizedBox(height: 10),
                   ],
                 ),
               ),
-            )
-          : Padding(
+            ),
+          )
+        : SizedBox(
+            width: screenController.size.width * 0.45,
+            child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: Container(
-                width: screenController.size.width * 0.45,
+                // width: screenController.size.width * 0.45,
                 padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.whiteColor,
                   boxShadow: [
                     BoxShadow(
@@ -222,139 +188,28 @@ class ChatDisplayModule extends StatelessWidget {
                       color: AppColors.greyColor,
                     ),
                   ],
-                  borderRadius: const BorderRadius.only(
+                  borderRadius: BorderRadius.only(
                     topRight: Radius.circular(15),
                     topLeft: Radius.circular(15),
-                    bottomRight: Radius.circular(15),
+                    bottomRight: Radius.circular(0),
                     bottomLeft: Radius.circular(15),
                   ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(
-                      flex: 3,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Container(
-                          //   // height: 150, width: 150,
-                          //   // decoration: BoxDecoration(
-                          //   //     borderRadius: BorderRadius.circular(10.0),
-                          //   //     //border: Border.all(color: AppColors.colorLightGrey),
-                          //   //     boxShadow: [
-                          //   //       BoxShadow(
-                          //   //           blurRadius: 1,
-                          //   //           blurStyle: BlurStyle.outer,
-                          //   //           color: Colors.grey.shade500
-                          //   //       )
-                          //   //     ]
-                          //   // ),
-                          //   child: ClipRRect(
-                          //     borderRadius: BorderRadius.circular(30.0),
-                          //     child: screenController
-                          //             .getNotificationList[index]
-                          //             .profile
-                          //             .isNotEmpty
-                          //         ? Image.network(
-                          //             "https://squadgame.omdemo.co.in/asset/uploads/" +
-                          //                 screenController
-                          //                     .getNotificationList[index]
-                          //                     .profile,
-                          //             fit: BoxFit.cover,
-                          //             height: 40,
-                          //             width: 40)
-                          //         : Container(),
-                          //   ),
-                          // ),
-                          const SizedBox(width: 10),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                screenController
-                                    .getNotificationList[index].message,
-                                style: const TextStyle(fontSize: 12),
-                              ),
-                              const SizedBox(height: 10),
-                              // screenController.getNotificationList[index]
-                              //         .file.isNotEmpty
-                              //     ? SizedBox(
-                              //         height: 80,
-                              //         width: 80,
-                              //         // decoration: BoxDecoration(
-                              //         //     borderRadius: BorderRadius.circular(10.0),
-                              //         //     //border: Border.all(color: AppColors.colorLightGrey),
-                              //         //     boxShadow: [
-                              //         //       BoxShadow(
-                              //         //           blurRadius: 1,
-                              //         //           blurStyle: BlurStyle.outer,
-                              //         //           color: Colors.grey.shade500
-                              //         //       )
-                              //         //     ]
-                              //         // ),
-                              //         child: ClipRRect(
-                              //           borderRadius:
-                              //               BorderRadius.circular(10.0),
-                              //           child: Image.network(
-                              //             "https://squadgame.omdemo.co.in/asset/uploads/chat/" +
-                              //                 screenController
-                              //                     .getNotificationList[
-                              //                         index]
-                              //                     .file,
-                              //             //     height: 150, width: 150, fit: BoxFit.cover),
-                              //           ),
-                              //         ))
-                              //     : Container()
-                            ],
-                          ),
-                        ],
+                    Text(
+                      screenController.getNotificationList[index].message,
+                      style: const TextStyle(
+                        fontSize: 12,
                       ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Container(),
                     ),
                   ],
                 ),
               ),
-            );
-    }
-
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          JewelleryDetailModule(),
-          screenController.getNotificationList.isEmpty
-              ? const Center(child: Text("No message"))
-              : ListView.builder(
-                  // controller: screenController.scrollController,
-                  // reverse: true,
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  itemCount: screenController.getNotificationList.length,
-                  shrinkWrap: true,
-
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  itemBuilder: (context, ind) {
-                    /// For reverse get message list and scrolling messages
-                    // int index =
-                    //     screenController.getNotificationList.length - 1 - i;
-                    // log('screenController.getNotificationList[i].userid: ${screenController.getNotificationList[i].userid}');
-                    // log('UserDetails.userId: ${UserDetails.userId}');
-                    /*return SingleMessageBubble(
-              isSendByMe: screenController.userChatList[i].isSendByMe,
-              message: screenController.userChatList[i].message,
-            );*/
-                    return messageList(
-                      index: ind,
-                    );
-                  },
-                ),
-        ],
-      ),
-    );
+            ),
+          );
   }
 }
 

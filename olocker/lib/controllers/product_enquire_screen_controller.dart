@@ -18,6 +18,7 @@ class ProductEnquireScreenController extends GetxController {
   final size = Get.size;
 
   RxBool isLoading = false.obs;
+  RxBool isChatLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
   TextEditingController sendMsgController = TextEditingController();
@@ -25,8 +26,8 @@ class ProductEnquireScreenController extends GetxController {
   ApiHeader apiHeader = ApiHeader();
   late ProductDetailsData productDetailsData;
 
-  RxInt notificationSrNo = 0.obs;
   RxInt replyMsgId = 0.obs;
+  RxInt threadMsgId = 0.obs;
 
   List<GetNotification> getNotificationList = [];
 
@@ -71,7 +72,7 @@ class ProductEnquireScreenController extends GetxController {
     log(" sendProductInquiryFunction url: $url");
 
     try {
-      // isLoading(true);
+      isChatLoading(true);
 
       var requestMap = {
         "PartnerSrNo": partnerSrNo,
@@ -79,9 +80,9 @@ class ProductEnquireScreenController extends GetxController {
         "Title": "",
         "ProductId": productSrNo,
         "Message": sendMsgController.text.trim(),
-        "ReplyMsgId": replyMsgId.value == 0 ? null : replyMsgId.value,
+        "ReplyMsgId": threadMsgId.value == 0 ? null : threadMsgId.value,
       };
-      log(' sendProductInquiryFunction  request map : ${requestMap}');
+      log(' sendProductInquiryFunction request map : $requestMap');
       http.Response response = await http.post(
         Uri.parse(url),
         headers: apiHeader.headers,
@@ -95,8 +96,9 @@ class ProductEnquireScreenController extends GetxController {
       isSuccessStatus = sendMessageModel.success.obs;
 
       if (response.statusCode == 200) {
+        threadMsgId.value = sendMessageModel.threadId;
         replyMsgId.value = sendMessageModel.msgId;
-        notificationSrNo.value = sendMessageModel.threadId;
+        // notificationSrNo.value = sendMessageModel.msgId;
         getNotificationList.add(
           GetNotification(
             customerId: int.parse(UserDetails.customerId),
@@ -107,7 +109,7 @@ class ProductEnquireScreenController extends GetxController {
             partnerName: "",
             partnerSrNo: partnerSrNo,
             productId: productSrNo,
-            replyMsgId: replyMsgId.value,
+            replyMsgId: threadMsgId.value,
             sentBy: 0,
             srNo: 0,
             timestamp: DateTime.now(),
@@ -116,9 +118,9 @@ class ProductEnquireScreenController extends GetxController {
         );
         sendMsgController.clear();
 
-        log('sendProductInquiryFunction notificationSrNo.value is ::: ${notificationSrNo.value}');
-        if (replyMsgId.value == 0) {
-          log('sendProductInquiryFunction replyMsgId.value == 0 ::: ${replyMsgId.value == 0}');
+        log('sendProductInquiryFunction replyMsgId.value is ::: ${replyMsgId.value}');
+        if (threadMsgId.value == 0) {
+          log('sendProductInquiryFunction threadMsgId.value == 0 ::: ${threadMsgId.value == 0}');
         } else {
           await getAllReplyFunction();
         }
@@ -129,18 +131,18 @@ class ProductEnquireScreenController extends GetxController {
       log("sendProductInquiryFunction Error ::: $e");
       rethrow;
     } finally {
-      // isLoading(false);
+      isChatLoading(false);
     }
   }
 
   Future<void> getAllReplyFunction() async {
     String url =
-        "${ApiUrl.getNotificationAllReplyApi}?partnerSrNo=$partnerSrNo&notifictionSrNo=${notificationSrNo.value}";
+        "${ApiUrl.getNotificationAllReplyApi}?partnerSrNo=$partnerSrNo&notifictionSrNo=${threadMsgId.value}";
 
     log(" getAllReplyFunction url: $url");
 
     try {
-      // isLoading(true);
+      isChatLoading(true);
       http.Response response = await http.get(
         Uri.parse(url),
         headers: apiHeader.headers,
@@ -153,7 +155,7 @@ class ProductEnquireScreenController extends GetxController {
       isSuccessStatus = getAllMessageModel.success.obs;
 
       if (response.statusCode == 200) {
-        getNotificationList = getAllMessageModel.getNotification;
+        getNotificationList.addAll(getAllMessageModel.getNotification);
 
         log('getAllReplyFunction getNotificationList is  : ${getNotificationList.length}');
       } else {
@@ -163,7 +165,7 @@ class ProductEnquireScreenController extends GetxController {
       log("getAllReplyFunction Error ::: $e");
       rethrow;
     } finally {
-      // isLoading(false);
+      isChatLoading(false);
     }
   }
 

@@ -18,7 +18,7 @@ class FavouritesListModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       shrinkWrap: true,
-      physics: const BouncingScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
       itemCount: favouritesController.favouriteProductsList.length,
       itemBuilder: (context, index) {
@@ -44,8 +44,6 @@ class FavouriteListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var similar = false;
-
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
       decoration: const BoxDecoration(
@@ -197,7 +195,12 @@ class FavouriteListItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      favouritesController.deleteFavouriteProductFunction(
+                        id: favouritesController
+                            .favouriteProductsList[index].id,
+                      );
+                    },
                     child: const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 15),
                       child: Icon(

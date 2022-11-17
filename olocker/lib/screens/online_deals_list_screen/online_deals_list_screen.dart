@@ -20,7 +20,10 @@ class OnlineDealsListScreen extends StatelessWidget {
         backgroundColor: AppColors.whiteColor,
         title: Text(
           onlineDealsListScreenController.singleDealList.category,
-          style: const TextStyle(color: AppColors.blackColor),
+          style: const TextStyle(
+            color: AppColors.blackColor,
+            fontWeight: FontWeight.normal,
+          ),
         ),
         leading: IconButton(
           onPressed: () => Get.back(),
@@ -33,7 +36,6 @@ class OnlineDealsListScreen extends StatelessWidget {
         child: Stack(
           children: [
             PinkBackgroundImageModule(),
-
             Container(
               decoration: BoxDecoration(
                 color: AppColors.whiteColor,
@@ -43,12 +45,13 @@ class OnlineDealsListScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   AllDealsHeaderModule(),
-                  SizedBox(height: onlineDealsListScreenController.size.height * 0.001.h),
+                  SizedBox(
+                      height: onlineDealsListScreenController.size.height *
+                          0.001.h),
                   AllDealsListModule(),
                 ],
               ).commonAllSidePadding(10),
             ).commonAllSidePadding(10),
-
           ],
         ),
       ),

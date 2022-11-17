@@ -38,6 +38,7 @@ class MyFavouritesScreen extends StatelessWidget {
         () => myFavouritesScreenController.isLoading.value
             ? CommonLoader().showCircularLoader()
             : SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
                     FavouritesListModule(),

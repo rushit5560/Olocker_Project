@@ -95,6 +95,7 @@ class HomeScreenController extends GetxController {
         Uri.parse(url),
         headers: apiHeader.headers,
       );
+      log('getSmartDealsOnlineFunction response is : ${response.body}');
 
       SmartDealsOnlineModel smartDealsOnlineModel =
           SmartDealsOnlineModel.fromJson(json.decode(response.body));

@@ -63,6 +63,8 @@ class ApiUrl {
 
   //favourites apis
   static const String getFavProductApi = "${apiMainPath}api/User/GetFavProduct";
+  static const String deleteFavProductApi =
+      "${apiMainPath}api/User/RemoveFavProduct";
 
   //authentication apis
   static const String userLoginApi = "${apiMainPath}api/User/UserLogin/";
