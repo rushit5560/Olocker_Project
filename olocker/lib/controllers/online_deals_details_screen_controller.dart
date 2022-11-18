@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:multi_state_button/multi_state_button.dart';
 import 'package:olocker/constants/api_url.dart';
@@ -28,6 +29,15 @@ class OnlineDealsDetailsScreenController extends GetxController {
       MultiStateButtonController(
     initialStateName: activateStart,
   );
+
+  copyCouponCode(String code) {
+    Clipboard.setData(
+      ClipboardData(text: code),
+    );
+
+    CommonWidgets().showBorderSnackBar(
+        context: Get.context!, displayText: "Successfully Copied.");
+  }
 
   Future<void> addOnlineDealInFavouriteFunction() async {
     isLoading(true);

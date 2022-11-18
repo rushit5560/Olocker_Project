@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
+import 'package:olocker/models/enquire_screen_models/get_all_message_model.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/user_details.dart';
@@ -54,6 +56,11 @@ class SendMessageTextField extends StatelessWidget {
                       vertical: 10,
                     ),
                   ),
+                  onFieldSubmitted: (val) async {
+                    if (screenController.sendMsgController.text.isNotEmpty) {
+                      await screenController.sendProductInquiryFunction();
+                    }
+                  },
                 ),
               ),
             ),
@@ -72,7 +79,9 @@ class SendMessageTextField extends StatelessWidget {
                 ),
               ),
               onPressed: () async {
-                await screenController.sendProductInquiryFunction();
+                if (screenController.sendMsgController.text.isNotEmpty) {
+                  await screenController.sendProductInquiryFunction();
+                }
               },
               child: Center(
                 child: Text(
@@ -98,118 +107,128 @@ class ChatDisplayModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        JewelleryDetailModule(),
-        screenController.getNotificationList.isEmpty
-            ? const Center(child: Text("No message"))
-            : Obx(
-                () => screenController.isChatLoading.value
-                    ? Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10.h),
-                        child: CommonLoader().showCircularLoader(),
-                      )
+    return Obx(
+      () => screenController.isChatLoading.value
+          ? Padding(
+              padding: EdgeInsets.symmetric(vertical: 10.h),
+              child: CommonLoader().showCircularLoader(),
+            )
+          : Column(
+              children: [
+                JewelleryDetailModule(),
+                screenController.getNotificationList == []
+                    ? const SizedBox()
                     : ListView.builder(
-                        // controller: screenController.scrollController,
-                        // reverse: true,
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        itemCount: screenController.getNotificationList.length,
                         shrinkWrap: true,
-
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        itemBuilder: (context, ind) {
-                          /// For reverse get message list and scrolling messages
-                          // int index =
-                          //     screenController.getNotificationList.length - 1 - i;
-                          // log('screenController.getNotificationList[i].userid: ${screenController.getNotificationList[i].userid}');
-                          // log('UserDetails.userId: ${UserDetails.userId}');
-                          /*return SingleMessageBubble(
-              isSendByMe: screenController.userChatList[i].isSendByMe,
-              message: screenController.userChatList[i].message,
-            );*/
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        itemCount: screenController.getNotificationList.length,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, i) {
+                          GetNotification singleMsg =
+                              screenController.getNotificationList[i];
+                          log('singleMsg is ::: $singleMsg');
                           return SingleMessageModule(
-                            index: ind,
+                            msg: singleMsg,
                           );
                         },
                       ),
-              ),
-      ],
+                const SizedBox(height: 10),
+              ],
+            ),
     );
   }
 }
 
 class SingleMessageModule extends StatelessWidget {
-  SingleMessageModule({Key? key, required this.index}) : super(key: key);
+  SingleMessageModule({
+    Key? key,
+    required this.msg,
+  }) : super(key: key);
 
-  final int index;
+  final GetNotification msg;
 
   final screenController = Get.find<ProductEnquireScreenController>();
 
   @override
   Widget build(BuildContext context) {
+    bool isSendByMe;
+
     // ignore: unrelated_type_equality_checks
-    return screenController.getNotificationList[index].customerId ==
-            UserDetails.customerId
-        ? SizedBox(
-            width: screenController.size.width * 0.45,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: Container(
-                // width: screenController.size.width * 0.45,
-                padding: const EdgeInsets.all(12),
-                decoration: const BoxDecoration(color: AppColors.whiteColor),
-                child: Column(
-                  //mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      screenController.getNotificationList[index].message,
-                      style: const TextStyle(fontSize: 12),
-                    ),
-                    const SizedBox(height: 10),
-                  ],
-                ),
-              ),
-            ),
-          )
-        : SizedBox(
-            width: screenController.size.width * 0.45,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: Container(
-                // width: screenController.size.width * 0.45,
-                padding: const EdgeInsets.all(12),
-                decoration: const BoxDecoration(
-                  color: AppColors.whiteColor,
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 3,
-                      blurStyle: BlurStyle.outer,
-                      color: AppColors.greyColor,
-                    ),
-                  ],
+    msg.customerId == UserDetails.customerId
+        ? isSendByMe = false
+        : isSendByMe = true;
+
+    var msgTime = DateFormat("HH:mm aa").format(msg.timestamp).toString();
+
+    log("isSendByMe is :: $isSendByMe");
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Column(
+            mainAxisAlignment:
+                isSendByMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+            crossAxisAlignment:
+                isSendByMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: screenController.size.width * 0.45,
+                alignment: Alignment.centerLeft,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                decoration: BoxDecoration(
+                  color: isSendByMe
+                      ? AppColors.creamBgColor
+                      : AppColors.whiteColor,
                   borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(15),
-                    topLeft: Radius.circular(15),
-                    bottomRight: Radius.circular(0),
-                    bottomLeft: Radius.circular(15),
+                    topRight: const Radius.circular(15),
+                    topLeft: const Radius.circular(15),
+                    bottomRight: Radius.circular(isSendByMe ? 0 : 15),
+                    bottomLeft: Radius.circular(isSendByMe ? 15 : 0),
                   ),
                 ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      screenController.getNotificationList[index].message,
-                      style: const TextStyle(
-                        fontSize: 12,
-                      ),
+                    Row(
+                      mainAxisAlignment: isSendByMe
+                          ? MainAxisAlignment.start
+                          : MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          msg.message,
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            color: AppColors.blackColor,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 3),
+                    Row(
+                      mainAxisAlignment: isSendByMe
+                          ? MainAxisAlignment.end
+                          : MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          msgTime,
+                          style: TextStyle(
+                            fontSize: 11.sp,
+                            color: AppColors.greyTextColor,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
-            ),
-          );
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
 

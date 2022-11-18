@@ -130,12 +130,15 @@ class ProfileScreenController extends GetxController {
         lnameController.text = userProfileGetModel.customerProfile.lastName;
         emailController.text = userProfileGetModel.customerProfile.userEmail;
         log("getting date is :: ${userProfileGetModel.customerProfile.dob}");
-        var dateGetPassing = DateFormat("MMM dd, yyyy")
-            .parse(userProfileGetModel.customerProfile.dob);
-        log("getting formatted date is :: $dateGetPassing");
-        var datePassingFormat = DateFormat("d-MM-yyyy");
 
-        datePassingvalue.value = datePassingFormat.format(dateGetPassing);
+        if (userProfileGetModel.customerProfile.dob != "") {
+          var dateGetPassing = DateFormat("MMM dd, yyyy")
+              .parse(userProfileGetModel.customerProfile.dob);
+          log("getting formatted date is :: $dateGetPassing");
+          var datePassingFormat = DateFormat("d-MM-yyyy");
+
+          datePassingvalue.value = datePassingFormat.format(dateGetPassing);
+        }
 
         //set user data in prefs data
         prefs.setString(UserPrefsData().customerUserNameKey,

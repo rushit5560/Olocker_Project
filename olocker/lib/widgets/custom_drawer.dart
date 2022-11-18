@@ -13,8 +13,10 @@ import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/utils/user_prefs_data.dart';
 import 'package:sizer/sizer.dart';
 
+import '../screens/jeweller_loyalty_point_screen/jeweller_loyalty_point_screen.dart';
 import '../screens/my_jewellers_screen/my_jewellers_screen.dart';
 import '../screens/my_jewellery_portfolio_screen/my_jewellery_portfolio_screen.dart';
+import '../screens/online_favourite_deals_screen/online_favourite_deals_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
   CustomDrawer({Key? key}) : super(key: key);
@@ -226,32 +228,44 @@ class CustomDrawer extends StatelessWidget {
 
   // My Deals Module
   Widget _myDealsModule() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Image.asset(
-          AppIcons.drawerSavingSchemeIcon,
-          height: homeScreenController.size.width * 0.010.w,
-        ),
-        SizedBox(width: homeScreenController.size.width * 0.008.w),
-        const Text('My Deals'),
-      ],
-    ).commonSymmetricPadding(horizontal: 15, vertical: 12);
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => OnlineFavouriteDealsScreen());
+      },
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image.asset(
+            AppIcons.drawerSavingSchemeIcon,
+            height: homeScreenController.size.width * 0.010.w,
+          ),
+          SizedBox(width: homeScreenController.size.width * 0.008.w),
+          const Text('My Deals'),
+        ],
+      ).commonSymmetricPadding(horizontal: 15, vertical: 12),
+    );
   }
 
   // My Deals Module
   Widget _myPointsModule() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Image.asset(
-          AppIcons.drawerMyPointsIcon,
-          height: homeScreenController.size.width * 0.010.w,
-        ),
-        SizedBox(width: homeScreenController.size.width * 0.008.w),
-        const Text('My points'),
-      ],
-    ).commonSymmetricPadding(horizontal: 15, vertical: 12);
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => JewellerLoyaltyPointScreen());
+      },
+      child: SizedBox(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              AppIcons.drawerMyPointsIcon,
+              height: homeScreenController.size.width * 0.010.w,
+            ),
+            SizedBox(width: homeScreenController.size.width * 0.008.w),
+            const Text('My points'),
+          ],
+        ).commonSymmetricPadding(horizontal: 15, vertical: 12),
+      ),
+    );
   }
 
   // Profile Header Module
@@ -297,7 +311,7 @@ class CustomDrawer extends StatelessWidget {
                         ),
             ),
           ),
-          SizedBox(width: homeScreenController.size.width * 0.012.w),
+          SizedBox(width: 5.w),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -308,16 +322,17 @@ class CustomDrawer extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: AppColors.whiteColor,
-                  fontSize: 10.sp,
+                  fontSize: 11.sp,
                 ),
               ),
+              SizedBox(height: 0.25.h),
               Text(
                 "${UserDetails.customerFname.capitalizeFirst!} ${UserDetails.customerLname.capitalizeFirst!}",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: AppColors.whiteColor,
-                  fontSize: 11.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.bold,
                 ),
               ),

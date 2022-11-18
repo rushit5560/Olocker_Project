@@ -282,8 +282,8 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
             getOrnamentDetailsModel.purchaseDate.toString().split(" ")[0];
         ornamentPurchasedPriceController.text =
             getOrnamentDetailsModel.purchasePrice.toString().split(".")[0];
-        apiJewelleryImageFile = File(
-            ApiUrl.apiImagePath + getOrnamentDetailsModel.ornamentimage.path);
+        apiJewelleryImageFile = File(ApiUrl.apiImageUrlPath +
+            getOrnamentDetailsModel.ornamentimage.path);
 
         if (getOrnamentDetailsModel.metaldetails != []) {
           for (int i = 0;

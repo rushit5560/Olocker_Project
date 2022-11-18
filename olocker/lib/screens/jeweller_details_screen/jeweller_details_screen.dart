@@ -6,6 +6,7 @@ import 'package:olocker/controllers/jeweller_details_screen_controller.dart';
 import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
+import '../my_inquiries_list_screen/my_inquiries_list_screen.dart';
 import 'jeweller_details_screen_widgets.dart';
 
 class JewellerDetailsScreen extends StatelessWidget {
@@ -23,7 +24,7 @@ class JewellerDetailsScreen extends StatelessWidget {
         leading: IconButton(
           onPressed: () => Get.back(),
           icon:
-          const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor),
+              const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor),
         ),
         title: Text(
           '${jewellerDetailsScreenController.jewellerName}',
@@ -33,10 +34,16 @@ class JewellerDetailsScreen extends StatelessWidget {
             fontWeight: FontWeight.w400,
           ),
         ),
-
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(
+                () => MyInquiriesListScreen(),
+                arguments: [
+                  jewellerDetailsScreenController.jewellerId,
+                ],
+              );
+            },
             icon: const Icon(
               Icons.mail_outline_rounded,
               color: AppColors.accentColor,
@@ -44,51 +51,57 @@ class JewellerDetailsScreen extends StatelessWidget {
           ),
         ],
       ),
-
       body: Obx(
-        ()=> jewellerDetailsScreenController.isLoading.value
-          ? CommonLoader().showCircularLoader()
-        : SingleChildScrollView(
-          child: Column(
-            children: [
-              JewellerFeaturesModule(),
-              jewellerDetailsScreenController.announcementOfferList.isEmpty
-              ? Container() : JewellerBannerModule(),
-              FourFunctionalModule(),
-              JewelleryCategoryListModule(),
-              // NecklaceBannerModule(),
-              // BanglesBannerModule(),
-              ReferAndJewellerEmiModule(),
-              jewellerDetailsScreenController.womenTypeList.isEmpty
-              ? Container()
-              : MenWomenJewelleryListModule(
-                headerName: "WOMEN'S JEWELLERY",
-                headerBgColor: AppColors.darkPeachColor,
-                bgImage: AppImages.womenJewelleryImage,
-                typeList: jewellerDetailsScreenController.womenTypeList,
+        () => jewellerDetailsScreenController.isLoading.value
+            ? CommonLoader().showCircularLoader()
+            : SingleChildScrollView(
+                child: Column(
+                  children: [
+                    JewellerFeaturesModule(),
+                    jewellerDetailsScreenController
+                            .announcementOfferList.isEmpty
+                        ? Container()
+                        : JewellerBannerModule(),
+                    FourFunctionalModule(),
+                    JewelleryCategoryListModule(),
+                    // NecklaceBannerModule(),
+                    // BanglesBannerModule(),
+                    ReferAndJewellerEmiModule(),
+                    jewellerDetailsScreenController.womenTypeList.isEmpty
+                        ? Container()
+                        : MenWomenJewelleryListModule(
+                            headerName: "WOMEN'S JEWELLERY",
+                            headerBgColor: AppColors.darkPeachColor,
+                            bgImage: AppImages.womenJewelleryImage,
+                            typeList:
+                                jewellerDetailsScreenController.womenTypeList,
+                          ),
+
+                    jewellerDetailsScreenController.menTypeList.isEmpty
+                        ? Container()
+                        : MenWomenJewelleryListModule(
+                            headerName: "MEN'S JEWELLERY",
+                            headerBgColor: AppColors.darkCoffeeColor,
+                            bgImage: AppImages.menJewelleryImage,
+                            typeList:
+                                jewellerDetailsScreenController.menTypeList,
+                          ),
+
+                    jewellerDetailsScreenController.bestSellerList.isEmpty
+                        ? Container()
+                        : BestSellersListModule(),
+
+                    jewellerDetailsScreenController
+                            .clientTestimonialsList.isEmpty
+                        ? Container()
+                        : CustomerSpeakModule(),
+
+                    GoldPriceModule(),
+
+                    // const SizedBox(height: 20),
+                  ],
+                ),
               ),
-
-              jewellerDetailsScreenController.menTypeList.isEmpty
-              ? Container()
-              : MenWomenJewelleryListModule(
-                headerName: "MEN'S JEWELLERY",
-                headerBgColor: AppColors.darkCoffeeColor,
-                bgImage: AppImages.menJewelleryImage,
-                typeList: jewellerDetailsScreenController.menTypeList,
-              ),
-
-              jewellerDetailsScreenController.bestSellerList.isEmpty
-              ? Container() : BestSellersListModule(),
-
-              jewellerDetailsScreenController.clientTestimonialsList.isEmpty
-              ? Container() : CustomerSpeakModule(),
-
-              GoldPriceModule(),
-
-              // const SizedBox(height: 20),
-            ],
-          ),
-        ),
       ),
     );
   }

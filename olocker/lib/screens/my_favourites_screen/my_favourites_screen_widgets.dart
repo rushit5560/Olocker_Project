@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
-import 'package:olocker/widgets/common_loader.dart';
+
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/my_favourites_controller.dart';
@@ -61,7 +61,7 @@ class FavouriteListItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  width: favouritesController.size.width * 0.83,
+                  width: favouritesController.size.width * 0.81,
                   decoration: const BoxDecoration(
                     color: AppColors.whiteColor,
                     borderRadius: BorderRadius.all(
@@ -77,11 +77,9 @@ class FavouriteListItem extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
+                      SizedBox(width: favouritesController.size.width * 0.12),
                       SizedBox(
-                        width: favouritesController.size.width * 0.12,
-                      ),
-                      SizedBox(
-                        width: favouritesController.size.width * 0.5,
+                        width: favouritesController.size.width * 0.46,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,

@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:olocker/constants/user_details.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../models/jeweller_details_screen_model/special_features_model.dart';
 import '../models/jewellery_details_screen_model/get_jewellery_detail_model.dart';
@@ -28,22 +29,30 @@ class JewelleryDetailsScreenController extends GetxController {
   late ProductDetailsData productDetailsData;
   List<SpecialFeatureItem> specialFeaturesList = [];
 
-  // List<SpecialFeatureItem> specialFeaturesList = [];
-  // List<GetPushOfferItem> announcementOfferList = [];
-  // List<GetPushCollectionItem> jewelleryCategoryList = [];
-  // List<ProductTypeItem> menTypeList = [];
-  // List<ProductTypeItem> womenTypeList = [];
-  // List<ListOfProduct> bestSellerList = [];
-  // List<Testimonial> clientTestimonialsList = [];
+  launchWhatsappChat({
+    required String mobileNumber,
+    required String msg,
+  }) async {
+    // var whatsapp = mobileNumber;
+    var whatsappAndroid =
+        Uri.parse("whatsapp://send?phone=$mobileNumber&text=$msg");
 
-  // String goldPrice1 = '';
-  // String goldPrice2 = '';
-  // String goldPrice3 = '';
-  // List<String> goldCaratImagesList = [
-  //   AppImages.goldIcon24Image,
-  //   AppImages.goldIcon22Image,
-  //   AppImages.goldIcon18Image,
-  // ];
+    try {
+      await launchUrl(whatsappAndroid);
+    } catch (e) {
+      log("launchWhatsappChat error occured :: ${e.toString()}");
+
+      rethrow;
+
+      // ScaffoldMessenger.of(Get.context!).showSnackBar(
+      //   const SnackBar(
+      //     content: Text("WhatsApp is not installed on the device"),
+      //   ),
+      // );
+    }
+    // if (await canLaunchUrl(whatsappAndroid)) {
+    // } else {}
+  }
 
   Future<void> getJewelleryProductDetailFunction() async {
     isLoading(true);

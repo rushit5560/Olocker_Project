@@ -15,6 +15,9 @@ import '../models/jewellery_details_screen_model/get_jewellery_detail_model.dart
 class ProductEnquireScreenController extends GetxController {
   var partnerSrNo = Get.arguments[0]; // Coming from jewellery details screen
   var productSrNo = Get.arguments[1]; // Coming from jewellery details screen
+  var notificationSrNo =
+      Get.arguments[2]; // Coming from jewellery details screen
+
   final size = Get.size;
 
   RxBool isLoading = false.obs;
@@ -68,12 +71,12 @@ class ProductEnquireScreenController extends GetxController {
   }
 
   Future<void> sendProductInquiryFunction() async {
+    isChatLoading(true);
     String url = ApiUrl.sendProductInquiryApi;
     log(" sendProductInquiryFunction url: $url");
 
+    log("isChatLoading :: ${isChatLoading.value}");
     try {
-      isChatLoading(true);
-
       var requestMap = {
         "PartnerSrNo": partnerSrNo,
         "CustomerId": UserDetails.customerId,
@@ -116,6 +119,7 @@ class ProductEnquireScreenController extends GetxController {
             title: "",
           ),
         );
+        log('sendProductInquiryFunction getNotificationList is ::: ${getNotificationList.length}');
         sendMsgController.clear();
 
         log('sendProductInquiryFunction replyMsgId.value is ::: ${replyMsgId.value}');
@@ -133,11 +137,12 @@ class ProductEnquireScreenController extends GetxController {
     } finally {
       isChatLoading(false);
     }
+    log("isChatLoading :: ${isChatLoading.value}");
   }
 
   Future<void> getAllReplyFunction() async {
     String url =
-        "${ApiUrl.getNotificationAllReplyApi}?partnerSrNo=$partnerSrNo&notifictionSrNo=${threadMsgId.value}";
+        "${ApiUrl.getNotificationAllReplyApi}?partnerSrNo=$partnerSrNo&notifictionSrNo=${notificationSrNo != "" ? notificationSrNo : threadMsgId.value}";
 
     log(" getAllReplyFunction url: $url");
 
@@ -173,6 +178,10 @@ class ProductEnquireScreenController extends GetxController {
   void onInit() {
     super.onInit();
     getProductDetailFunction();
+
+    if (notificationSrNo != "") {
+      getAllReplyFunction();
+    }
   }
 
   @override

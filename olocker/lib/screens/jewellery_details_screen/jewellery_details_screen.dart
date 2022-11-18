@@ -87,38 +87,67 @@ class JewelleryDetailsScreen extends StatelessWidget {
       ),
       bottomNavigationBar: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: jewelleryDetailsController.size.width * 0.25,
+          horizontal: jewelleryDetailsController.size.width * 0.2,
           vertical: 2.h,
         ),
         child: SizedBox(
           height: 45,
-          child: ElevatedButton(
-            onPressed: () {
-              Get.to(
-                () => ProductEnquireScreen(),
-                arguments: [
-                  jewelleryDetailsController.partnerSrNo,
-                  jewelleryDetailsController.productSrNo,
-                ],
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              primary: AppColors.accentColor,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(28),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  Get.to(
+                    () => ProductEnquireScreen(),
+                    arguments: [
+                      jewelleryDetailsController.partnerSrNo,
+                      jewelleryDetailsController.productSrNo,
+                      "",
+                    ],
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: AppColors.accentColor,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(28),
+                    ),
+                  ),
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      "enquire now".toUpperCase(),
+                      style: TextStyle(
+                        color: AppColors.whiteColor,
+                        fontSize: 13.sp,
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ),
-            child: Center(
-              child: Text(
-                "enquire now".toUpperCase(),
-                style: TextStyle(
+              Container(
+                decoration: const BoxDecoration(
+                  color: AppColors.waGreenColor,
+                  shape: BoxShape.circle,
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    jewelleryDetailsController.launchWhatsappChat(
+                      mobileNumber: "+919662298453",
+                      msg:
+                          "share this jewellery to a person https://example.com",
+                    );
+                  },
                   color: AppColors.whiteColor,
-                  fontSize: 13.sp,
+                  icon: Icon(
+                    Icons.whatsapp_rounded,
+                    size: 20.sp,
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
         ),
       ),

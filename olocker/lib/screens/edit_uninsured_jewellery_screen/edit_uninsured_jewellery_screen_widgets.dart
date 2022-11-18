@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/edit_uninsured_jewellery_screen_controller.dart';
@@ -947,18 +948,12 @@ class UploadImageFileFormModule extends StatelessWidget {
               SizedBox(
                 height: unInsuredJewelController.size.height * 0.15,
                 width: unInsuredJewelController.size.width * 0.4,
-                child: unInsuredJewelController.apiJewelleryImageFile == null
-                    ? unInsuredJewelController.jewellerySelectedImageFile ==
-                            null
-                        ? Image.asset(
-                            "assets/images/select-image.png",
-                            fit: BoxFit.cover,
-                          )
-                        : Image.file(
-                            unInsuredJewelController
-                                .jewellerySelectedImageFile!,
-                            fit: BoxFit.cover,
-                          )
+                child: unInsuredJewelController.jewellerySelectedImageFile !=
+                        null
+                    ? Image.file(
+                        unInsuredJewelController.jewellerySelectedImageFile!,
+                        fit: BoxFit.cover,
+                      )
                     : Image.network(
                         unInsuredJewelController.apiJewelleryImageFile!.path,
                         fit: BoxFit.cover,

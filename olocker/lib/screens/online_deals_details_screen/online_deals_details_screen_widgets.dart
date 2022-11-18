@@ -117,9 +117,10 @@ class ActivateDealButtonModule extends StatelessWidget {
                 color: AppColors.accentColor,
               ),
               onPressed: () {
-                // onlineDealsDetailsScreenController
-                //         .multiStateButtonController.setButtonState =
-                //     onlineDealsDetailsScreenController.activateStart;
+                onlineDealsDetailsScreenController.copyCouponCode(
+                  onlineDealsDetailsScreenController.onLineDealDetails.dealCode
+                      .trim(),
+                );
               },
             ),
           ],
