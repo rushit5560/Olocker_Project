@@ -35,6 +35,10 @@ class AppImages {
   static const String addRecordingsBgImage =
       '$imageRootPath/add_ornamentbg.png';
 
+  //about us screen images
+  static const String noLogoImage = '$imageRootPath/noLogoimage.png';
+  static const String aboutTileBGImage = '$imageRootPath/about_bg.png';
+
   static const String referOffer1Image = '$imageRootPath/referoffer1.png';
   static const String referOffer2Image = '$imageRootPath/referoffer2.png';
   static const String referOfferBgImage = '$imageRootPath/referbg.png';

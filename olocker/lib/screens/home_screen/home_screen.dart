@@ -27,6 +27,7 @@ class HomeScreen extends StatelessWidget {
                 // key: _refreshIndicatorKey, // key if you want to add
                 onRefresh: homeScreenController.getMyJewellersFunction,
                 showChildOpacityTransition: false,
+                springAnimationDurationInMilliseconds: 500,
                 height: 50,
                 child: SingleChildScrollView(
                   child: Column(

@@ -40,11 +40,15 @@ class ApiUrl {
   static const String getCityStateByPincodeApi =
       "${apiMainPath}api/User/GetCityStateByPincode";
 
-      //notification screen apis\
+  //ABOUT US screen apis
+  static const String getAboutUsJewellerDetailsApi =
+      "${apiMainPath}api/Partner/GetDetails";
+
+  //notification screen apis\
   static const String getAllNotificationApi =
       "${apiMainPath}api/User/GetAllNotification";
-
-
+  static const String readMarkUserNotificationApi =
+      "${apiMainPath}api/User/ReadMarkUserNotification";
 
   // manage jewellery portfolio Screen Api
   static const String getAllDataAddOrnamentApi =

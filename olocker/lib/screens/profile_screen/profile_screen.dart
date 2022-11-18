@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/screens/profile_screen/profile_screen_widgets.dart';
 import 'package:olocker/widgets/common_loader.dart';
+import 'package:sizer/sizer.dart';
 import '../../controllers/profile_screen_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -15,10 +16,12 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.pinkBGColor,
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Profile',
           style: TextStyle(
             color: AppColors.blackColor,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.normal,
           ),
         ),
         backgroundColor: AppColors.whiteColor,

@@ -19,8 +19,8 @@ class JewellerLoyaltyPointScreenController extends GetxController {
 
   Future<void> getLoyaltyPointFunction() async {
     isLoading(true);
-    String url = "${ApiUrl.getLoyaltyPointApi}?customerId=${UserDetails.customerId}";
-    // String url = "${ApiUrl.getLoyaltyPointApi}?customerId=415785";
+    // String url = "${ApiUrl.getLoyaltyPointApi}?customerId=${UserDetails.customerId}";
+    String url = "${ApiUrl.getLoyaltyPointApi}?customerId=415785";
     log('getLoyaltyPointFunction Api Url : $url');
 
     try {
@@ -30,18 +30,18 @@ class JewellerLoyaltyPointScreenController extends GetxController {
       );
       // log('response : ${response.body}');
 
-      LoyaltyPointsModel loyaltyPointsModel = LoyaltyPointsModel.fromJson(json.decode(response.body));
+      LoyaltyPointsModel loyaltyPointsModel =
+          LoyaltyPointsModel.fromJson(json.decode(response.body));
       isSuccessStatus = loyaltyPointsModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         loyaltyPointList.clear();
         loyaltyPointList.addAll(loyaltyPointsModel.partnerPoint);
         log('loyaltyPointList : ${loyaltyPointList.length}');
       } else {
         log('getLoyaltyPointFunction Else');
       }
-
-    } catch(e) {
+    } catch (e) {
       log('getLoyaltyPointFunction Error :$e');
       rethrow;
     }
@@ -49,10 +49,12 @@ class JewellerLoyaltyPointScreenController extends GetxController {
     isLoading(false);
   }
 
+
+
+  
   @override
   void onInit() {
     getLoyaltyPointFunction();
     super.onInit();
   }
-
 }

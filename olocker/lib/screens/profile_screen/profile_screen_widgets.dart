@@ -84,31 +84,36 @@ class DisplayImageDetailsFieldRow extends StatelessWidget {
                     profileScreenController.showImagePickerBottomSheet(
                         context: context);
                   },
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(200),
+                  child: SizedBox(
+                    height: 75,
+                    width: 75,
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(200),
+                      ),
+                      child: profileScreenController.selectedProfileImage !=
+                              null
+                          ? Image.file(
+                              profileScreenController.selectedProfileImage!,
+                              height: 75,
+                              width: 75,
+                              fit: BoxFit.cover,
+                            )
+                          : profileScreenController.apiGetProfileImage != null
+                              ? Image.network(
+                                  profileScreenController
+                                      .apiGetProfileImage!.path,
+                                  height: 75,
+                                  width: 75,
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.asset(
+                                  AppImages.dealBgImage,
+                                  height: 75,
+                                  width: 75,
+                                  fit: BoxFit.cover,
+                                ),
                     ),
-                    child: profileScreenController.selectedProfileImage != null
-                        ? Image.file(
-                            profileScreenController.selectedProfileImage!,
-                            height: 75,
-                            width: 75,
-                            fit: BoxFit.cover,
-                          )
-                        : profileScreenController.apiGetProfileImage != null
-                            ? Image.network(
-                                profileScreenController
-                                    .apiGetProfileImage!.path,
-                                height: 75,
-                                width: 75,
-                                fit: BoxFit.cover,
-                              )
-                            : Image.asset(
-                                AppImages.dealBgImage,
-                                height: 75,
-                                width: 75,
-                                fit: BoxFit.cover,
-                              ),
                   ),
                 ),
               ),

@@ -10,8 +10,8 @@ import 'package:sizer/sizer.dart';
 
 class OnlineFavouriteDealsScreen extends StatelessWidget {
   OnlineFavouriteDealsScreen({Key? key}) : super(key: key);
-  final onlineFavouriteDealsScreenController
-  = Get.put(OnlineFavouriteDealsScreenController());
+  final onlineFavouriteDealsScreenController =
+      Get.put(OnlineFavouriteDealsScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -20,34 +20,38 @@ class OnlineFavouriteDealsScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: AppColors.whiteColor,
-        title: const Text(
+        title: Text(
           'Favourite Deals',
-          style: TextStyle(color: AppColors.blackColor),
+          style: TextStyle(
+            color: AppColors.blackColor,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.normal,
+          ),
         ),
         leading: IconButton(
           onPressed: () => Get.back(),
           icon: const Icon(Icons.arrow_back_ios, color: AppColors.blackColor),
         ),
       ),
-
       body: Obx(
-        ()=> onlineFavouriteDealsScreenController.isLoading.value
-        ? CommonLoader().showCircularLoader()
-        : GridView.builder(
-          itemCount: onlineFavouriteDealsScreenController.favouriteDealsList.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 18,
-            crossAxisSpacing: 18,
-          ),
-          itemBuilder: (context, i){
-            VendorDealsList1 singleDeal = onlineFavouriteDealsScreenController
-                .favouriteDealsList[i];
-            return _onlineDealsGridTile(singleDeal);
-          },
-        ).commonAllSidePadding(10),
+        () => onlineFavouriteDealsScreenController.isLoading.value
+            ? CommonLoader().showCircularLoader()
+            : GridView.builder(
+                itemCount: onlineFavouriteDealsScreenController
+                    .favouriteDealsList.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 18,
+                  crossAxisSpacing: 18,
+                ),
+                itemBuilder: (context, i) {
+                  VendorDealsList1 singleDeal =
+                      onlineFavouriteDealsScreenController
+                          .favouriteDealsList[i];
+                  return _onlineDealsGridTile(singleDeal);
+                },
+              ).commonAllSidePadding(10),
       ),
-
     );
   }
 
@@ -55,8 +59,9 @@ class OnlineFavouriteDealsScreen extends StatelessWidget {
     String imgUrl = singleDeal.categoryImage;
     return GestureDetector(
       onTap: () {
-        Get.to(()=> OnlineFavouriteDealsListScreen(),
-            arguments: singleDeal,
+        Get.to(
+          () => OnlineFavouriteDealsListScreen(),
+          arguments: singleDeal,
         );
       },
       child: Container(
@@ -83,7 +88,9 @@ class OnlineFavouriteDealsScreen extends StatelessWidget {
                     fontSize: 10.sp,
                   ),
                 ),
-                SizedBox(height: onlineFavouriteDealsScreenController.size.height * 0.0006.h),
+                SizedBox(
+                    height: onlineFavouriteDealsScreenController.size.height *
+                        0.0006.h),
                 Text(
                   "${singleDeal.onLineDeals.length} Deals",
                   maxLines: 1,
@@ -100,6 +107,4 @@ class OnlineFavouriteDealsScreen extends StatelessWidget {
       ),
     );
   }
-
-
 }
