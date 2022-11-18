@@ -206,6 +206,7 @@ class CheckBoxListModule extends StatelessWidget {
               fontSize: 12.sp,
             ),
           ).commonAllSidePadding(10),
+          const Divider(thickness: 2, color: AppColors.blueDarkColor),
           ListView.builder(
             itemCount: singleItem.answer.length,
             shrinkWrap: true,
@@ -351,7 +352,7 @@ class FeedbackSubmitButtonModule extends StatelessWidget {
         }
 
         if(screenController.allDataValid.value) {
-          await screenController.setFeedbackFormFunction(context);
+          await screenController.setFeedbackFormFunction();
         } else {
           //todo - fail snackbar show here
         }

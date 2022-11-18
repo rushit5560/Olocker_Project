@@ -57,7 +57,9 @@ class JewellerDetailsScreen extends StatelessWidget {
             : SingleChildScrollView(
                 child: Column(
                   children: [
-                    JewellerFeaturesModule(),
+                    jewellerDetailsScreenController.specialFeaturesList.isEmpty
+                    ? Container()
+                    : JewellerFeaturesModule(),
                     jewellerDetailsScreenController
                             .announcementOfferList.isEmpty
                         ? Container()
@@ -96,7 +98,9 @@ class JewellerDetailsScreen extends StatelessWidget {
                         ? Container()
                         : CustomerSpeakModule(),
 
-                    GoldPriceModule(),
+                    jewellerDetailsScreenController.goldPriceList.isEmpty
+                        ? Container()
+                        : GoldPriceModule(),
 
                     // const SizedBox(height: 20),
                   ],

@@ -1,18 +1,13 @@
-import 'dart:developer';
-
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:card_swiper/card_swiper.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/screens/product_enquire_screen/product_enquire_screen.dart';
-
 import 'package:sizer/sizer.dart';
 import '../../controllers/jewellery_details_screen_controller.dart';
 import 'jewellery_details_screen_widgets.dart';
+
+
 
 class JewelleryDetailsScreen extends StatelessWidget {
   JewelleryDetailsScreen({Key? key}) : super(key: key);

@@ -1,0 +1,4 @@
+enum JewelleryListType {
+  categoryId,
+  categoryName
+}

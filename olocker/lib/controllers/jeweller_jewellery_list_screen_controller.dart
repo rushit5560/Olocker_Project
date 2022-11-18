@@ -4,17 +4,18 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
+import 'package:olocker/constants/enum.dart';
 import 'package:olocker/constants/user_details.dart';
 import 'package:olocker/models/jeweller_jewellery_list_screen_model/all_jewellery_model.dart';
 
 import '../widgets/common_widgets.dart';
 
 class JewellerJewelleryListScreenController extends GetxController {
-  String jewelleryName =
-      Get.arguments[0]; // Getting from jeweller details screen
-  String jewelleryCategoryId =
-      Get.arguments[1]; // Getting from jeweller details screen
-  String jewellerId = Get.arguments[2]; // Getting from jeweller details screen
+  // Getting from jeweller details screen
+  String jewelleryName = Get.arguments[0];
+  String jewelleryCategoryId = Get.arguments[1];
+  String jewellerId = Get.arguments[2];
+  JewelleryListType jewelleryListType = Get.arguments[3] ?? JewelleryListType.categoryId;
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -31,8 +32,13 @@ class JewellerJewelleryListScreenController extends GetxController {
   // Get Category All Product
   Future<void> getAllJewelleryListFunction() async {
     isLoading(true);
-    String url =
-        "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&CollectionID=$jewelleryCategoryId";
+    String url = "";
+
+    if(jewelleryListType == JewelleryListType.categoryId) {
+      url = "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&CollectionID=$jewelleryCategoryId";
+    } else {
+      url = "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$jewelleryCategoryId";
+    }
     log('getAllJewelleryListFunction Api Url : $url');
 
     try {

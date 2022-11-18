@@ -1,13 +1,11 @@
-import 'dart:developer';
-
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
+import 'package:olocker/constants/enum.dart';
 import 'package:olocker/controllers/jeweller_details_screen_controller.dart';
 import 'package:olocker/models/jeweller_details_screen_model/best_seller_model.dart';
 import 'package:olocker/models/jeweller_details_screen_model/client_testimonials_model.dart';
@@ -15,11 +13,12 @@ import 'package:olocker/models/jeweller_details_screen_model/jewellery_type_mode
 import 'package:olocker/screens/jeweller_feedback_screen/jeweller_feedback_screen.dart';
 import 'package:olocker/screens/jeweller_jewellery_list_screen/jeweller_jewellery_list_screen.dart';
 import 'package:olocker/screens/jeweller_loyalty_point_screen/jeweller_loyalty_point_screen.dart';
+import 'package:olocker/screens/jewellery_details_screen/jewellery_details_screen.dart';
 import 'package:olocker/utils/extensions.dart';
-import 'package:olocker/widgets/common_widgets.dart';
 import 'package:sizer/sizer.dart';
-
 import '../my_favourites_screen/my_favourites_screen.dart';
+
+
 
 class JewellerFeaturesModule extends StatelessWidget {
   JewellerFeaturesModule({Key? key}) : super(key: key);
@@ -193,7 +192,10 @@ class FourFunctionalModule extends StatelessWidget {
                 onTap: () {
                   if(screenController.isFeedbackValue.value == false) {
                     Get.to(() => JewellerFeedbackScreen(),
-                        arguments: screenController.jewellerId,);
+                        arguments: screenController.jewellerId,)!.then((value) {
+                          screenController.isLoading(true);
+                          screenController.isLoading(false);
+                    });
                   }
                 },
                 child: Container(
@@ -245,6 +247,7 @@ class JewelleryCategoryListModule extends StatelessWidget {
               screenController.jewelleryCategoryList[i].name,
               screenController.jewelleryCategoryList[i].srNo,
               screenController.jewellerId.toString(),
+              JewelleryListType.categoryId,
             ]);
           },
           child: Container(
@@ -373,35 +376,52 @@ class MenWomenJewelleryListModule extends StatelessWidget {
 
   Widget _jewelleryListTile(ProductTypeItem singleItem) {
     String imgUrl = ApiUrl.apiImagePath + singleItem.image;
-    return Container(
-      // height: screenController.size.height * 0.020.h,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: AppColors.whiteColor,
-      ),
-      child: Column(
-        children: [
-          Expanded(
-            flex: 8,
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(imgUrl),
-                  fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        Get.to(()=> JewellerJewelleryListScreen(),
+            arguments: [
+              singleItem.name,
+              singleItem.name,
+              screenController.jewellerId.toString(),
+              JewelleryListType.categoryName,
+            ]);
+        // Get.to(()=> JewellerJewelleryListScreen(),
+        //     arguments: [
+        //       singleItem.name,
+        //       singleItem.,
+        //       screenController.jewellerId.toString(),
+        //     ]);
+      },
+      child: Container(
+        // height: screenController.size.height * 0.020.h,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: AppColors.whiteColor,
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 8,
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(imgUrl),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ).commonAllSidePadding(20),
+            ),
+            Expanded(
+              flex: 2,
+              child: Text(
+                singleItem.name,
+                style: TextStyle(
+                  fontSize: 10.sp,
                 ),
               ),
-            ).commonAllSidePadding(20),
-          ),
-          Expanded(
-            flex: 2,
-            child: Text(
-              singleItem.name,
-              style: TextStyle(
-                fontSize: 10.sp,
-              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -460,40 +480,50 @@ class BestSellersListModule extends StatelessWidget {
     // String imgUrl = ApiUrl.apiImagePath + singleItem.productimages[0].imageLocation;
     // log('imgUrl111 : $imgUrl');
 
-    return Container(
-      // height: screenController.size.height * 0.020.h,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: AppColors.whiteColor,
-      ),
-      child: Column(
-        children: [
-          Expanded(
-            flex: 8,
-            child: Container(
-                    /*decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(imgUrl.trim()),
-                  fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        Get.to(()=> JewelleryDetailsScreen(),
+        arguments: [
+          screenController.jewellerId,
+          singleItem.productsrno,
+          singleItem.name
+        ],);
+      },
+      child: Container(
+        // height: screenController.size.height * 0.020.h,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: AppColors.whiteColor,
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 8,
+              child: Container(
+                      /*decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(imgUrl.trim()),
+                    fit: BoxFit.cover,
+                  ),
+                ),*/
+                      )
+                  .commonAllSidePadding(20),
+            ),
+            Expanded(
+              flex: 2,
+              child: Text(
+                NumberFormat.currency(
+                  symbol: '₹ ',
+                  locale: "HI",
+                  decimalDigits: 2,
+                ).format(double.parse(singleItem.price)),
+                style: TextStyle(
+                  fontSize: 10.sp,
                 ),
-              ),*/
-                    )
-                .commonAllSidePadding(20),
-          ),
-          Expanded(
-            flex: 2,
-            child: Text(
-              NumberFormat.currency(
-                symbol: '₹ ',
-                locale: "HI",
-                decimalDigits: 2,
-              ).format(double.parse(singleItem.price)),
-              style: TextStyle(
-                fontSize: 10.sp,
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -632,7 +662,9 @@ class GoldPriceModule extends StatelessWidget {
               ),
             ],
           ),
-          GridView.builder(
+          screenController.goldPriceList.isEmpty
+          ? Container()
+          : GridView.builder(
             itemCount: 3,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,

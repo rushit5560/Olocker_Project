@@ -35,6 +35,7 @@ class JewellerDetailsScreenController extends GetxController {
 
   RxBool isFeedbackValue = false.obs;
 
+  List<IbjAratesList> goldPriceList = [];
   String goldPrice1 = '';
   String goldPrice2 = '';
   String goldPrice3 = '';
@@ -257,7 +258,7 @@ class JewellerDetailsScreenController extends GetxController {
       isSuccessStatus = goldPriceModel.success.obs;
 
       if(isSuccessStatus.value) {
-        List<IbjAratesList> goldPriceList = goldPriceModel.ibjAratesList;
+        goldPriceList = goldPriceModel.ibjAratesList;
 
         if(goldPriceList.isNotEmpty) {
           for(int i = 0; i < goldPriceList.length; i++) {

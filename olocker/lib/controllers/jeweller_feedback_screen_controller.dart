@@ -73,7 +73,7 @@ class JewellerFeedbackScreenController extends GetxController {
   }
 
   // Set Feedback Form Api
-  Future<void> setFeedbackFormFunction(BuildContext context) async {
+  Future<void> setFeedbackFormFunction() async {
     isLoading(true);
     String url = ApiUrl.setFeedbackFormApi;
     log('Set Feedback Form Api Url : $url');
@@ -97,7 +97,7 @@ class JewellerFeedbackScreenController extends GetxController {
 
       http.Response response = await http.post(
         Uri.parse(url),
-        headers: headers,
+        headers: apiHeader.headers,
         body: jsonEncode(bodyData)
       );
       log('response1212 : ${response.body}');
@@ -106,16 +106,16 @@ class JewellerFeedbackScreenController extends GetxController {
       isSuccessStatus = addFeedbackFormModel.success.obs;
 
       if(isSuccessStatus.value) {
-        CommonWidgets().showBorderSnackBar(
-          context: context,
-          displayText: "Feedback given successfully",
-        );
         jewellerDetailsScreenController.isFeedbackValue = true.obs;
         Get.back();
+        CommonWidgets().showBorderSnackBar(
+          context: Get.context!,
+          displayText: "Feedback given successfully",
+        );
       } else {
         log('setFeedbackFormFunction Else');
         CommonWidgets().showBorderSnackBar(
-          context: context,
+          context: Get.context!,
           displayText: addFeedbackFormModel.errorInfo.description,
         );
       }
@@ -123,9 +123,9 @@ class JewellerFeedbackScreenController extends GetxController {
     } catch(e) {
       log('setFeedbackFormFunction Error :$e');
       rethrow;
+    } finally {
+      isLoading(false);
     }
-
-    isLoading(false);
   }
   makeBodyDataList() {
     List<Map<String, dynamic>> questionList = [];

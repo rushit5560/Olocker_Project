@@ -40,44 +40,54 @@ class JewellerFeedbackScreen extends StatelessWidget {
       body: Obx(
         () => jewellerFeedbackScreenController.isLoading.value
             ? CommonLoader().showCircularLoader()
-            : SingleChildScrollView(
-                child: Column(
-                  children: [
-                    ListView.builder(
-                      itemCount: jewellerFeedbackScreenController
-                          .feedBackFormList.length,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, i) {
-                        String questionType = jewellerFeedbackScreenController
-                            .feedBackFormList[i].questionType;
-                        // log('$i : $questionType');
-                        RatingQuestionList singleItem =
-                            jewellerFeedbackScreenController
-                                .feedBackFormList[i];
-                        return questionType == "RadioButton"
-                            ? RadioButtonListModule(
-                                singleItem: singleItem,
-                                index: i,
-                              )
-                            : questionType == "CheckBox"
-                                ? CheckBoxListModule(
+            : jewellerFeedbackScreenController.feedBackFormList.isEmpty
+                ? Center(
+                    child: Text(
+                      'No Feedback Form Available',
+                      style: TextStyle(
+                        color: AppColors.whiteColor,
+                        fontSize: 12.sp,
+                      ),
+                    ),
+                  )
+                : SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        ListView.builder(
+                          itemCount: jewellerFeedbackScreenController
+                              .feedBackFormList.length,
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, i) {
+                            String questionType =
+                                jewellerFeedbackScreenController
+                                    .feedBackFormList[i].questionType;
+                            // log('$i : $questionType');
+                            RatingQuestionList singleItem =
+                                jewellerFeedbackScreenController
+                                    .feedBackFormList[i];
+                            return questionType == "RadioButton"
+                                ? RadioButtonListModule(
                                     singleItem: singleItem,
                                     index: i,
                                   )
-                                : questionType == "TextBox"
-                                    ? TextFieldModule(
+                                : questionType == "CheckBox"
+                                    ? CheckBoxListModule(
                                         singleItem: singleItem,
                                         index: i,
                                       )
-                                    : Container();
-                      },
-                    ).commonAllSidePadding(10),
-
-                    FeedbackSubmitButtonModule(),
-                  ],
-                ),
-              ),
+                                    : questionType == "TextBox"
+                                        ? TextFieldModule(
+                                            singleItem: singleItem,
+                                            index: i,
+                                          )
+                                        : Container();
+                          },
+                        ).commonAllSidePadding(10),
+                        FeedbackSubmitButtonModule(),
+                      ],
+                    ),
+                  ),
       ),
     );
   }
