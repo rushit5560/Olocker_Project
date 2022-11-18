@@ -120,9 +120,9 @@ class JewelleryDetailsScreenController extends GetxController {
     }
   }
 
-  shareJewelleryProduct() {
+  shareJewelleryProduct() async {
     // var urlPreview = "";
-    Share.share("share this jewellery to a person https://example.com");
+    await Share.share("share this jewellery to a person https://example.com");
   }
 
   Future<void> addFavouriteProductFunction() async {

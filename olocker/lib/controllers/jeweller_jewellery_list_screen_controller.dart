@@ -7,6 +7,7 @@ import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/enum.dart';
 import 'package:olocker/constants/user_details.dart';
 import 'package:olocker/models/jeweller_jewellery_list_screen_model/all_jewellery_model.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../widgets/common_widgets.dart';
 
@@ -114,6 +115,13 @@ class JewellerJewelleryListScreenController extends GetxController {
     }
     // await getAnnouncementOfferFunction();
   }
+
+   shareJewellery() async {
+    // var urlPreview = "";
+    await Share.share("share this jewellery to a person https://example.com");
+  }
+
+  
 
   @override
   void onInit() {

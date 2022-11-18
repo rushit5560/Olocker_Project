@@ -9,7 +9,6 @@ import 'package:olocker/screens/jewellery_details_screen/jewellery_details_scree
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
-
 class JewelleryGridviewModule extends StatelessWidget {
   JewelleryGridviewModule({Key? key}) : super(key: key);
   final screenController = Get.find<JewellerJewelleryListScreenController>();
@@ -23,7 +22,7 @@ class JewelleryGridviewModule extends StatelessWidget {
         crossAxisCount: 2,
         crossAxisSpacing: 20,
         mainAxisSpacing: 20,
-        childAspectRatio: 0.85,
+        childAspectRatio: 0.82,
       ),
       itemBuilder: (context, i) {
         SearchProductListDatum singleItem = screenController.jewelleryList[i];
@@ -36,8 +35,7 @@ class JewelleryGridviewModule extends StatelessWidget {
     String imgUrl = ApiUrl.apiImagePath + singleItem.productImage;
     return GestureDetector(
       onTap: () {
-        Get.to(()=> JewelleryDetailsScreen(),
-        arguments: [
+        Get.to(() => JewelleryDetailsScreen(), arguments: [
           screenController.jewellerId,
           singleItem.productSrNo,
           singleItem.productName,
@@ -59,19 +57,18 @@ class JewelleryGridviewModule extends StatelessWidget {
                     topLeft: Radius.circular(10),
                   ),
                   image: DecorationImage(
-                    image: NetworkImage(imgUrl),
-                    fit: BoxFit.cover,
-                    onError: (obj, st) {
-                      Text(
-                        'No Image',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                        ),
-                      );
-                    }
-                  ),
+                      image: NetworkImage(imgUrl),
+                      fit: BoxFit.cover,
+                      onError: (obj, st) {
+                        Text(
+                          'No Image',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                          ),
+                        );
+                      }),
                 ),
               ).commonOnlyPadding(bottom: 5),
             ),
@@ -121,16 +118,20 @@ class JewelleryGridviewModule extends StatelessWidget {
                           await screenController.addFavouriteProductFunction(
                               productSrNo: singleItem.productSrNo.toString());
                         },
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.favorite_outline_rounded,
                           color: AppColors.accentColor,
+                          size: 18.sp,
                         ),
                       ),
                       IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
+                        onPressed: () async {
+                          await screenController.shareJewellery();
+                        },
+                        icon: Icon(
                           Icons.share_rounded,
                           color: AppColors.accentColor,
+                          size: 18.sp,
                         ),
                       ),
                     ],
@@ -143,5 +144,4 @@ class JewelleryGridviewModule extends StatelessWidget {
       ),
     );
   }
-
 }

@@ -16,9 +16,8 @@ import 'package:olocker/screens/jeweller_loyalty_point_screen/jeweller_loyalty_p
 import 'package:olocker/screens/jewellery_details_screen/jewellery_details_screen.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
+import '../about_us_screen/about_us_screen.dart';
 import '../my_favourites_screen/my_favourites_screen.dart';
-
-
 
 class JewellerFeaturesModule extends StatelessWidget {
   JewellerFeaturesModule({Key? key}) : super(key: key);
@@ -168,39 +167,51 @@ class FourFunctionalModule extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: AppColors.accentColor,
-                  shape: BoxShape.circle,
+              child: GestureDetector(
+                onTap: () => Get.to(
+                  () => AboutUsScreen(),
+                  arguments: [
+                    screenController.jewellerId,
+                    screenController.jewellerName,
+                  ],
                 ),
-                child: Center(
-                  child: Text(
-                    'About us',
-                    maxLines: 2,
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: AppColors.whiteColor,
-                      fontSize: 10.sp,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: AppColors.accentColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: Text(
+                      'About us',
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: AppColors.whiteColor,
+                        fontSize: 10.sp,
+                      ),
                     ),
                   ),
-                ),
-              ).commonAllSidePadding(5),
+                ).commonAllSidePadding(5),
+              ),
             ),
             Expanded(
               child: GestureDetector(
                 onTap: () {
-                  if(screenController.isFeedbackValue.value == false) {
-                    Get.to(() => JewellerFeedbackScreen(),
-                        arguments: screenController.jewellerId,)!.then((value) {
-                          screenController.isLoading(true);
-                          screenController.isLoading(false);
+                  if (screenController.isFeedbackValue.value == false) {
+                    Get.to(
+                      () => JewellerFeedbackScreen(),
+                      arguments: screenController.jewellerId,
+                    )!
+                        .then((value) {
+                      screenController.isLoading(true);
+                      screenController.isLoading(false);
                     });
                   }
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color:  screenController.isFeedbackValue.value == false
+                    color: screenController.isFeedbackValue.value == false
                         ? AppColors.accentColor
                         : AppColors.accentColor.withOpacity(0.5),
                     shape: BoxShape.circle,
@@ -242,8 +253,7 @@ class JewelleryCategoryListModule extends StatelessWidget {
             screenController.jewelleryCategoryList[i].imageurl;
         return GestureDetector(
           onTap: () {
-            Get.to(()=> JewellerJewelleryListScreen(),
-            arguments: [
+            Get.to(() => JewellerJewelleryListScreen(), arguments: [
               screenController.jewelleryCategoryList[i].name,
               screenController.jewelleryCategoryList[i].srNo,
               screenController.jewellerId.toString(),
@@ -255,8 +265,8 @@ class JewelleryCategoryListModule extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: Colors.grey,
-              image:
-                  DecorationImage(image: NetworkImage(imgUrl), fit: BoxFit.cover),
+              image: DecorationImage(
+                  image: NetworkImage(imgUrl), fit: BoxFit.cover),
             ),
           ).commonSymmetricPadding(horizontal: 5, vertical: 5),
         );
@@ -378,13 +388,12 @@ class MenWomenJewelleryListModule extends StatelessWidget {
     String imgUrl = ApiUrl.apiImagePath + singleItem.image;
     return GestureDetector(
       onTap: () {
-        Get.to(()=> JewellerJewelleryListScreen(),
-            arguments: [
-              singleItem.name,
-              singleItem.name,
-              screenController.jewellerId.toString(),
-              JewelleryListType.categoryName,
-            ]);
+        Get.to(() => JewellerJewelleryListScreen(), arguments: [
+          singleItem.name,
+          singleItem.name,
+          screenController.jewellerId.toString(),
+          JewelleryListType.categoryName,
+        ]);
         // Get.to(()=> JewellerJewelleryListScreen(),
         //     arguments: [
         //       singleItem.name,
@@ -482,12 +491,14 @@ class BestSellersListModule extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Get.to(()=> JewelleryDetailsScreen(),
-        arguments: [
-          screenController.jewellerId,
-          singleItem.productsrno,
-          singleItem.name
-        ],);
+        Get.to(
+          () => JewelleryDetailsScreen(),
+          arguments: [
+            screenController.jewellerId,
+            singleItem.productsrno,
+            singleItem.name
+          ],
+        );
       },
       child: Container(
         // height: screenController.size.height * 0.020.h,
@@ -663,69 +674,71 @@ class GoldPriceModule extends StatelessWidget {
             ],
           ),
           screenController.goldPriceList.isEmpty
-          ? Container()
-          : GridView.builder(
-            itemCount: 3,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: 10,
-              childAspectRatio: 0.9,
-            ),
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, i) {
-              return Container(
-                decoration: BoxDecoration(
-                  color: AppColors.goldColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.whiteColor,
-                          borderRadius: BorderRadius.circular(10),
-                          image: DecorationImage(
-                            image: AssetImage(
-                              screenController.goldCaratImagesList[i],
-                            ),
-                            // fit: BoxFit.fill,
-                          ),
-                        ),
-                      ).commonSymmetricPadding(vertical: 20, horizontal: 30),
-                    ),
-                    Text(
-                      i == 0
-                          ? NumberFormat.currency(
-                              symbol: '₹ ',
-                              locale: "HI",
-                              decimalDigits: 0,
-                            ).format(double.parse(screenController.goldPrice1))
-                          : i == 1
-                              ? NumberFormat.currency(
-                                  symbol: '₹ ',
-                                  locale: "HI",
-                                  decimalDigits: 0,
-                                ).format(
-                                  double.parse(screenController.goldPrice2))
-                              : NumberFormat.currency(
-                                  symbol: '₹ ',
-                                  locale: "HI",
-                                  decimalDigits: 0,
-                                ).format(
-                                  double.parse(screenController.goldPrice3)),
-                      style: TextStyle(
-                        color: AppColors.whiteColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15.sp,
+              ? Container()
+              : GridView.builder(
+                  itemCount: 3,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 10,
+                    childAspectRatio: 0.9,
+                  ),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, i) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.goldColor,
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                    ).commonAllSidePadding(5),
-                  ],
-                ),
-              );
-            },
-          ).commonSymmetricPadding(vertical: 15),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: AppColors.whiteColor,
+                                borderRadius: BorderRadius.circular(10),
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                    screenController.goldCaratImagesList[i],
+                                  ),
+                                  // fit: BoxFit.fill,
+                                ),
+                              ),
+                            ).commonSymmetricPadding(
+                                vertical: 20, horizontal: 30),
+                          ),
+                          Text(
+                            i == 0
+                                ? NumberFormat.currency(
+                                    symbol: '₹ ',
+                                    locale: "HI",
+                                    decimalDigits: 0,
+                                  ).format(
+                                    double.parse(screenController.goldPrice1))
+                                : i == 1
+                                    ? NumberFormat.currency(
+                                        symbol: '₹ ',
+                                        locale: "HI",
+                                        decimalDigits: 0,
+                                      ).format(double.parse(
+                                        screenController.goldPrice2))
+                                    : NumberFormat.currency(
+                                        symbol: '₹ ',
+                                        locale: "HI",
+                                        decimalDigits: 0,
+                                      ).format(double.parse(
+                                        screenController.goldPrice3)),
+                            style: TextStyle(
+                              color: AppColors.whiteColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15.sp,
+                            ),
+                          ).commonAllSidePadding(5),
+                        ],
+                      ),
+                    );
+                  },
+                ).commonSymmetricPadding(vertical: 15),
 
           /*  Row(
             children: [
