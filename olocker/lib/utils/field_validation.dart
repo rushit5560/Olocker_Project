@@ -187,10 +187,10 @@ class FieldValidator {
     // regex = "[A-Z]{5}[0-9]{4}[A-Z]{1}";
 
     if (value.isEmpty) {
-      return 'Enter pancard';
+      return 'Enter pancard number';
     } else if (!RegExp("[A-Z]{5}[0-9]{4}[A-Z]{1}").hasMatch(value)) {
       {
-        return 'Invalid pan number';
+        return 'Invalid pancard number';
       }
     }
     return null;
@@ -205,7 +205,7 @@ class FieldValidator {
 
   String? validateEmployerName(String value) {
     if (value.isEmpty) {
-      return 'Enter employer name';
+      return "Enter employer's name";
     }
     return null;
   }

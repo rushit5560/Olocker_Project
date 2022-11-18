@@ -100,12 +100,16 @@ class PersonalLoansScreenController extends GetxController {
       );
 
       log('response : ${response.body}');
+      log('statusCode : ${response.statusCode}');
 
-      CheckEligibilityModel checkEligibilityModel =
-          CheckEligibilityModel.fromJson(json.decode(response.body));
-      isSuccessStatus = checkEligibilityModel.success.obs;
+      var resultBody = json.decode(response.body);
+      isSuccessStatus.value = resultBody['success'];
 
       if (isSuccessStatus.value) {
+        CheckEligibilityModel checkEligibilityModel =
+        CheckEligibilityModel.fromJson(json.decode(response.body));
+        // isSuccessStatus = checkEligibilityModel.success.obs;
+
         emiScheduleList.clear();
         emiScheduleList.addAll(checkEligibilityModel.emiTenorOptions);
         emiSrNo = checkEligibilityModel.emiSrNo;
@@ -116,6 +120,11 @@ class PersonalLoansScreenController extends GetxController {
         currentStep++;
       } else {
         log('checkEligibilityFunction Else');
+        var resultBody = json.decode(response.body);
+        CommonWidgets().showBorderSnackBar(
+            context: Get.context!,
+            displayText: "${resultBody['error_info']['description']}",
+        );
       }
     } catch (e) {
       log('checkEligibilityFunction Error :$e');
@@ -123,6 +132,8 @@ class PersonalLoansScreenController extends GetxController {
     } finally {
       isLoading(false);
     }
+
+    // isLoading(false);
   }
 
   /// EMI Schedule Api Function - Step 2
@@ -170,13 +181,6 @@ class PersonalLoansScreenController extends GetxController {
 
     try {
       isLoading(true);
-      /*Map<String, String> headers = <String, String>{
-        'Content-Type': "application/json",
-        'MobileAppKey': "EED26D5A-711D-49BD-8999-38D8A60329C5",
-      };*/
-
-      // List<int> imageBytes = selectedProfileImage!.readAsBytesSync();
-      // String base64Image = base64Encode(imageBytes);
 
       var requestMap = {
         "emiSrNo": "$emiSrNo",
@@ -195,27 +199,33 @@ class PersonalLoansScreenController extends GetxController {
       http.Response response = await http.post(
         Uri.parse(url),
         body: jsonEncode(requestMap),
-        headers: {
-          'Content-Type': "application/json",
-          'MobileAppKey': "EED26D5A-711D-49BD-8999-38D8A60329C5",
-        },
+        headers: apiHeader.headers,
       );
 
       log("uploadEmiDocumentsFunction api response body :: ${response.body}");
       log("uploadEmiDocumentsFunction api response st code :: ${response.statusCode}");
 
-      var resbody = jsonDecode(response.body);
+      var resBody = jsonDecode(response.body);
+      isSuccessStatus.value = resBody['success'];
 
-      UploadEmiDocumentModel uploadEmiDocumentModel =
-          UploadEmiDocumentModel.fromJson(resbody);
-      isSuccessStatus.value = uploadEmiDocumentModel.success;
+
+      // isSuccessStatus.value = uploadEmiDocumentModel.success;
       if (isSuccessStatus.value) {
+        UploadEmiDocumentModel uploadEmiDocumentModel =
+        UploadEmiDocumentModel.fromJson(resBody);
         log('uploadEmiDocumentsFunction success call ::: ${uploadEmiDocumentModel.message}');
         CommonWidgets().showBorderSnackBar(
           context: Get.context!,
           displayText: uploadEmiDocumentModel.message,
         );
         Get.back();
+      } else {
+        log('uploadEmiDocumentsFunction Else');
+        var resultBody = json.decode(response.body);
+        CommonWidgets().showBorderSnackBar(
+          context: Get.context!,
+          displayText: "${resultBody['error_info']['description']}",
+        );
       }
     } catch (e) {
       log('uploadEmiDocumentsFunction Error :$e');

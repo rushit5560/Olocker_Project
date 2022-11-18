@@ -365,12 +365,14 @@ class StepOneFormModule extends StatelessWidget {
           controller: screenController.pinCodeController,
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.number,
+          maxLength: 6,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) => FieldValidator().validatePinCode(value!),
           decoration: InputDecoration(
             isDense: true,
             isCollapsed: true,
             hintText: "Residential PinCode",
+            counterText: '',
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
@@ -769,7 +771,7 @@ class StepTwoFormModule extends StatelessWidget {
                     color: screenController.selectedListItem == i
                         ? AppColors.accentColor
                         : Colors.transparent,
-                    width: screenController.selectedListItem == i ? 2 : 0,
+                    width: screenController.selectedListItem == i ? 3 : 0,
                   ),
                 ),
                 child: Stack(

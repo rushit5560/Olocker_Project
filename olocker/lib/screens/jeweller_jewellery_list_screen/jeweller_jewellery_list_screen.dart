@@ -5,7 +5,9 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/jeweller_jewellery_list_screen_controller.dart';
+import 'package:olocker/screens/my_favourites_screen/my_favourites_screen.dart';
 import 'package:olocker/utils/extensions.dart';
+import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 import 'package:sliding_switch/sliding_switch.dart';
 
@@ -13,8 +15,8 @@ import 'jeweller_jewellery_list_screen_widgets.dart';
 
 class JewellerJewelleryListScreen extends StatelessWidget {
   JewellerJewelleryListScreen({Key? key}) : super(key: key);
-  final jewellerJewelleryListScreenController
-  = Get.put(JewellerJewelleryListScreenController());
+  final jewellerJewelleryListScreenController =
+      Get.put(JewellerJewelleryListScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class JewellerJewelleryListScreen extends StatelessWidget {
         leading: IconButton(
           onPressed: () => Get.back(),
           icon:
-          const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor),
+              const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor),
         ),
         title: Text(
           jewellerJewelleryListScreenController.jewelleryName,
@@ -36,33 +38,43 @@ class JewellerJewelleryListScreen extends StatelessWidget {
             fontWeight: FontWeight.w400,
           ),
         ),
-
         actions: [
-          IconButton(
+          /*IconButton(
             onPressed: () {},
             icon: const Icon(
               Icons.search_rounded,
               color: AppColors.greyColor,
             ),
-          ),
-
+          ),*/
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(
+                () => MyFavouritesScreen(),
+                arguments: [
+                  jewellerJewelleryListScreenController.jewellerId.toString(),
+                ],
+              );
+            },
             icon: const Icon(
               Icons.favorite_outline_rounded,
               color: AppColors.greyColor,
             ),
           ),
-
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(
+                    () => MyInquiriesListScreen(),
+                arguments: [
+                  jewellerJewelleryListScreenController.jewellerId.toString(),
+                ],
+              );
+            },
             icon: const Icon(
               Icons.mail_outline_rounded,
               color: AppColors.greyColor,
             ),
           ),
         ],
-
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(40),
           child: Row(
@@ -71,22 +83,25 @@ class JewellerJewelleryListScreen extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(AppIcons.filterIcon,
-                  height: 26,
+                  Image.asset(
+                    AppIcons.filterIcon,
+                    height: 26,
                   ),
                   const Text(
                     'SORT BT PRICE',
                   ),
                 ],
               ),
-
               SlidingSwitch(
-                value: jewellerJewelleryListScreenController.sortPriceValue.value,
-                width: jewellerJewelleryListScreenController.size.width * 0.11.w,
+                value:
+                    jewellerJewelleryListScreenController.sortPriceValue.value,
+                width:
+                    jewellerJewelleryListScreenController.size.width * 0.11.w,
                 height: 40,
                 onChanged: (bool value) {
-                  jewellerJewelleryListScreenController.sortPriceValue.value
-                  = !jewellerJewelleryListScreenController.sortPriceValue.value;
+                  jewellerJewelleryListScreenController.sortPriceValue.value =
+                      !jewellerJewelleryListScreenController
+                          .sortPriceValue.value;
                   log('sortPriceValue :${jewellerJewelleryListScreenController.sortPriceValue.value}');
                 },
                 onSwipe: () {},
@@ -105,12 +120,11 @@ class JewellerJewelleryListScreen extends StatelessWidget {
           ).commonOnlyPadding(bottom: 5),
         ),
       ),
-
-
-      body: JewelleryGridviewModule(),
-
+      body: Obx(
+        () => jewellerJewelleryListScreenController.isLoading.value
+            ? CommonLoader().showCircularLoader()
+            : JewelleryGridviewModule(),
+      ),
     );
   }
-
-
 }

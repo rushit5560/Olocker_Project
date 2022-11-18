@@ -128,7 +128,7 @@ class PersonalLoansScreen extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            'upload Documents',
+                            'Upload Documents',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: AppColors.accentColor,
