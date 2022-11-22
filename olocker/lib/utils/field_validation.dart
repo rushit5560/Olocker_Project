@@ -31,6 +31,13 @@ class FieldValidator {
     return null;
   }
 
+  String? validateAddress(String value) {
+    if (value.isEmpty) {
+      return 'Address is required';
+    }
+    return null;
+  }
+
   String? validateLastName(String value) {
     if (value.isEmpty) {
       return 'Last name is required';
@@ -196,6 +203,21 @@ class FieldValidator {
     return null;
   }
 
+  String? validateAadhaarCard(String value) {
+    // regex = "[A-Z]{5}[0-9]{4}[A-Z]{1}";
+
+    if (value.isEmpty) {
+      return 'Enter aadhaar number';
+    }
+    // else if (!RegExp(r'^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$').hasMatch(value)) {
+    //     return 'Invalid aadhaar number';
+    // }
+    else if(value.length < 12) {
+      return 'Invalid aadhaar number';
+    }
+    return null;
+  }
+
   String? validateMonthlyIncome(String value) {
     if (value.isEmpty) {
       return 'Enter monthly income';
@@ -265,4 +287,20 @@ class FieldValidator {
     }
     return null;
   }
+
+  String? validateCity(String value) {
+    if (value.isEmpty) {
+      return 'City is required';
+    }
+    return null;
+  }
+
+  String? validateState(String value) {
+    if (value.isEmpty) {
+      return 'State is required';
+    }
+    return null;
+  }
+
+
 }
