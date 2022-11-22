@@ -38,11 +38,22 @@ class SavingSchemeEnrollScreen extends StatelessWidget {
         () => savingSchemeEnrollScreenController.isLoading.value
             ? CommonLoader().showCircularLoader()
             : SingleChildScrollView(
-                child: Column(
-                  children: [
-                    HeaderModule(),
-                    MonthlyAmountModule(),
-                  ],
+                child: Form(
+                  key: savingSchemeEnrollScreenController.customerFormKey,
+                  child: Column(
+                    children: [
+                      HeaderModule(),
+                      MonthlyAmountModule(),
+                      savingSchemeEnrollScreenController.isShow.value
+                      ? MaturityAmountModule()
+                      : Container(),
+
+                      CustomerDetailsFormModule(),
+
+                      SaveAndMakePaymentButtonModule(),
+
+                    ],
+                  ),
                 ),
               ),
       ),
