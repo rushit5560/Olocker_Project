@@ -64,7 +64,7 @@ class JewellerJewelleryListScreen extends StatelessWidget {
           IconButton(
             onPressed: () {
               Get.to(
-                    () => MyInquiriesListScreen(),
+                () => MyInquiriesListScreen(),
                 arguments: [
                   jewellerJewelleryListScreenController.jewellerId.toString(),
                 ],
@@ -124,7 +124,21 @@ class JewellerJewelleryListScreen extends StatelessWidget {
       body: Obx(
         () => jewellerJewelleryListScreenController.isLoading.value
             ? CommonLoader().showCircularLoader()
-            : JewelleryGridviewModule(),
+            : jewellerJewelleryListScreenController.jewelleryList.isEmpty
+                ? Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20.h),
+                    child: Center(
+                      child: Text(
+                        "No Jewellery Found",
+                        style: TextStyle(
+                          color: AppColors.whiteColor,
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                  )
+                : JewelleryGridviewModule(),
       ),
     );
   }

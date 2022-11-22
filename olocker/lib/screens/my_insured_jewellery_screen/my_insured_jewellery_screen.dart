@@ -10,7 +10,7 @@ import 'my_insured_jewellery_screen_widgets.dart';
 class MyInsuredJewelleryScreen extends StatelessWidget {
   MyInsuredJewelleryScreen({Key? key}) : super(key: key);
 
-  final myInsuredJewelleryScreen =
+  final myInsuredJewelleryScreenController =
       Get.put(MyInsuredJewelleryScreenController());
 
   @override
@@ -36,14 +36,27 @@ class MyInsuredJewelleryScreen extends StatelessWidget {
         backgroundColor: AppColors.whiteColor,
       ),
       body: Obx(
-        () => myInsuredJewelleryScreen.isLoading.value
+        () => myInsuredJewelleryScreenController.isLoading.value
             ? CommonLoader().showCircularLoader()
             : SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
                     const SizedBox(height: 10),
-                    InsuredJewelleryListModule(),
+                    myInsuredJewelleryScreenController
+                            .getInsuredOrnamentList.isEmpty
+                        ? const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 100),
+                            child: Center(
+                              child: Text(
+                                "No Insured Jewellery Available",
+                                style: TextStyle(
+                                  color: AppColors.whiteColor,
+                                ),
+                              ),
+                            ),
+                          )
+                        : InsuredJewelleryListModule(),
                     const SizedBox(height: 10),
                   ],
                 ),

@@ -27,7 +27,13 @@ class AppImages {
   static const String ornamentBgShapeImage = '$imageRootPath/ornament.png';
 
   //add ornament screen images
-  static const String addOrnamentTitleBGImage = 'assets/images/bg_h.png';
+  static const String addOrnamentTitleBGImage = '$imageRootPath/bg_h.png';
+
+  //loyalty points screen images
+  static const String loyaltyPointTitleBGImage =
+      '$imageRootPath/loyalty_bg.png';
+  static const String loyaltyTableTitleHeaderBGImage =
+      '$imageRootPath/bx_bg_loyalty.png';
 
   //recordings screen images
   static const String recordingsTitleBgImage =
@@ -35,6 +41,8 @@ class AppImages {
   static const String addRecordingsBgImage =
       '$imageRootPath/add_ornamentbg.png';
 
+  //refer and earn screen images
+  static const String referAndEarnImage = '$imageRootPath/refer_earn_img.png';
   //about us screen images
   static const String noLogoImage = '$imageRootPath/noLogoimage.png';
   static const String aboutTileBGImage = '$imageRootPath/about_bg.png';

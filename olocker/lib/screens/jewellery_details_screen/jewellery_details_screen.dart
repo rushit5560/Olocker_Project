@@ -7,8 +7,6 @@ import 'package:sizer/sizer.dart';
 import '../../controllers/jewellery_details_screen_controller.dart';
 import 'jewellery_details_screen_widgets.dart';
 
-
-
 class JewelleryDetailsScreen extends StatelessWidget {
   JewelleryDetailsScreen({Key? key}) : super(key: key);
   final jewelleryDetailsController =

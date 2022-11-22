@@ -12,11 +12,12 @@ import 'package:olocker/models/jeweller_details_screen_model/client_testimonials
 import 'package:olocker/models/jeweller_details_screen_model/jewellery_type_model.dart';
 import 'package:olocker/screens/jeweller_feedback_screen/jeweller_feedback_screen.dart';
 import 'package:olocker/screens/jeweller_jewellery_list_screen/jeweller_jewellery_list_screen.dart';
-import 'package:olocker/screens/jeweller_loyalty_point_screen/jeweller_loyalty_point_screen.dart';
 import 'package:olocker/screens/jewellery_details_screen/jewellery_details_screen.dart';
+import 'package:olocker/screens/refer_and_earn_screen/refer_and_earn_screen.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 import '../about_us_screen/about_us_screen.dart';
+import '../jeweller_loyalty_points_screen/jeweller_loyalty_points_screen.dart';
 import '../my_favourites_screen/my_favourites_screen.dart';
 
 class JewellerFeaturesModule extends StatelessWidget {
@@ -137,6 +138,7 @@ class FourFunctionalModule extends StatelessWidget {
                       style: TextStyle(
                         color: AppColors.whiteColor,
                         fontSize: 10.sp,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
@@ -145,7 +147,12 @@ class FourFunctionalModule extends StatelessWidget {
             ),
             Expanded(
               child: GestureDetector(
-                onTap: () => Get.to(() => JewellerLoyaltyPointScreen()),
+                onTap: () => Get.to(
+                  () => JewellerLoyaltyPointScreen(),
+                  arguments: [
+                    screenController.jewellerName,
+                  ],
+                ),
                 child: Container(
                   decoration: const BoxDecoration(
                     color: AppColors.accentColor,
@@ -160,6 +167,7 @@ class FourFunctionalModule extends StatelessWidget {
                       style: TextStyle(
                         color: AppColors.whiteColor,
                         fontSize: 10.sp,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
@@ -189,6 +197,7 @@ class FourFunctionalModule extends StatelessWidget {
                       style: TextStyle(
                         color: AppColors.whiteColor,
                         fontSize: 10.sp,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
@@ -225,6 +234,7 @@ class FourFunctionalModule extends StatelessWidget {
                       style: TextStyle(
                         color: AppColors.whiteColor,
                         fontSize: 10.sp,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
@@ -291,17 +301,27 @@ class ReferAndJewellerEmiModule extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Container(
-              height: screenController.size.height * 0.033.h,
-              decoration: BoxDecoration(
-                color: AppColors.creamBgColor,
-                borderRadius: BorderRadius.circular(10),
-                image: const DecorationImage(
-                  image: AssetImage(AppImages.referOffer1Image),
-                  fit: BoxFit.cover,
+            child: GestureDetector(
+              onTap: () {
+                Get.to(
+                  () => ReferAndEarnScreen(),
+                  arguments: [
+                    screenController.jewellerId,
+                  ],
+                );
+              },
+              child: Container(
+                height: screenController.size.height * 0.033.h,
+                decoration: BoxDecoration(
+                  color: AppColors.creamBgColor,
+                  borderRadius: BorderRadius.circular(10),
+                  image: const DecorationImage(
+                    image: AssetImage(AppImages.referOffer1Image),
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-            ).commonSymmetricPadding(vertical: 8, horizontal: 14),
+              ).commonSymmetricPadding(vertical: 8, horizontal: 14),
+            ),
           ),
           Expanded(
             child: Container(

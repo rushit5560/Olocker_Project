@@ -29,8 +29,8 @@ class OnlineDealsScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: (){
-              Get.to(()=> OnlineFavouriteDealsScreen());
+            onPressed: () {
+              Get.to(() => OnlineFavouriteDealsScreen());
             },
             icon: const Icon(
               Icons.favorite_border_rounded,
@@ -39,19 +39,32 @@ class OnlineDealsScreen extends StatelessWidget {
           ),
         ],
       ),
-
-      body: GridView.builder(
-        itemCount: onlineDealsScreenController.smartDealsOnlineList.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          mainAxisSpacing: 18,
-          crossAxisSpacing: 18,
-        ),
-        itemBuilder: (context, i){
-          VendorDealsList singleDeal = onlineDealsScreenController.smartDealsOnlineList[i];
-          return _onlineDealsGridTile(singleDeal);
-        },
-      ).commonAllSidePadding(10),
+      body: onlineDealsScreenController.smartDealsOnlineList.isEmpty
+          ? const Padding(
+              padding: EdgeInsets.symmetric(vertical: 100),
+              child: Center(
+                child: Text(
+                  "No Online Deals Available",
+                  style: TextStyle(
+                    color: AppColors.whiteColor,
+                  ),
+                ),
+              ),
+            )
+          : GridView.builder(
+              itemCount:
+                  onlineDealsScreenController.smartDealsOnlineList.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 18,
+                crossAxisSpacing: 18,
+              ),
+              itemBuilder: (context, i) {
+                VendorDealsList singleDeal =
+                    onlineDealsScreenController.smartDealsOnlineList[i];
+                return _onlineDealsGridTile(singleDeal);
+              },
+            ).commonAllSidePadding(10),
     );
   }
 
@@ -59,8 +72,7 @@ class OnlineDealsScreen extends StatelessWidget {
     String imgUrl = singleDeal.categoryImage;
     return GestureDetector(
       onTap: () {
-        Get.to(()=> OnlineDealsListScreen(),
-        arguments: singleDeal);
+        Get.to(() => OnlineDealsListScreen(), arguments: singleDeal);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -86,7 +98,8 @@ class OnlineDealsScreen extends StatelessWidget {
                     fontSize: 10.sp,
                   ),
                 ),
-                SizedBox(height: onlineDealsScreenController.size.height * 0.0006.h),
+                SizedBox(
+                    height: onlineDealsScreenController.size.height * 0.0006.h),
                 Text(
                   "${singleDeal.onLineDeals.length} Deals",
                   maxLines: 1,
@@ -103,5 +116,4 @@ class OnlineDealsScreen extends StatelessWidget {
       ),
     );
   }
-
 }

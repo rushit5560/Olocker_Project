@@ -71,6 +71,12 @@ class ApiUrl {
   static const String addTrackingDataApi =
       "${apiMainPath}api/User/AddTrackingData";
 
+      // refer and earn screen apis
+  static const String getPartnerByCodeApi =
+      "${apiMainPath}api/Partner/GetPartnerByCode";
+  static const String getLoyalityPlanApi =
+      "${apiMainPath}api/Partner/GetLoyalityPlan";
+
   //favourites apis
   static const String getFavProductApi = "${apiMainPath}api/User/GetFavProduct";
   static const String deleteFavProductApi =

@@ -52,7 +52,8 @@ class MyJewellersScreen extends StatelessWidget {
             children: [
               BannerSliderModule(),
               Expanded(
-                  child: AllJewellersListModule().commonAllSidePadding(10)),
+                child: AllJewellersListModule().commonAllSidePadding(10),
+              ),
             ],
           ),
         ],

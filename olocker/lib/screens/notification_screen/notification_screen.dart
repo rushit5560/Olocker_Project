@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:olocker/constants/app_colors.dart';
+import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/notification_screen_controller.dart';
@@ -28,19 +29,36 @@ class NotificationScreen extends StatelessWidget {
         backgroundColor: AppColors.whiteColor,
         elevation: 0,
       ),
-      body: LiquidPullToRefresh(
-        height: 5.h,
-        onRefresh: notificationScreenController.getAllNotificationsFunction,
-        showChildOpacityTransition: false,
-        springAnimationDurationInMilliseconds: 500,
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            children: [
-              NotificationsListModule(),
-            ],
-          ),
-        ),
+      body: Obx(
+        () => notificationScreenController.isLoading.value
+            ? CommonLoader().showCircularLoader()
+            : LiquidPullToRefresh(
+                height: 5.h,
+                onRefresh:
+                    notificationScreenController.getAllNotificationsFunction,
+                showChildOpacityTransition: false,
+                springAnimationDurationInMilliseconds: 500,
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      notificationScreenController.getNotificationList.isEmpty
+                          ? const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 100),
+                              child: Center(
+                                child: Text(
+                                  "No New Notifications Available",
+                                  style: TextStyle(
+                                    color: AppColors.whiteColor,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : NotificationsListModule(),
+                    ],
+                  ),
+                ),
+              ),
       ),
     );
   }

@@ -43,7 +43,19 @@ class MyUnInsuredJewelleryScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     const SizedBox(height: 10),
-                    UnInsuredJewelleryListModule(),
+                    unInsuredJewelleryController.getOrnamentList.isEmpty
+                        ? const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 100),
+                            child: Center(
+                              child: Text(
+                                "No UnInsured Jewellery Available",
+                                style: TextStyle(
+                                  color: AppColors.whiteColor,
+                                ),
+                              ),
+                            ),
+                          )
+                        : UnInsuredJewelleryListModule(),
                     const SizedBox(height: 10),
                   ],
                 ),

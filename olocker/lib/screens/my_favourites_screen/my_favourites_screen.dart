@@ -41,7 +41,21 @@ class MyFavouritesScreen extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
-                    FavouritesListModule(),
+                    myFavouritesScreenController.favouriteProductsList.isEmpty
+                        ? Padding(
+                            padding: EdgeInsets.symmetric(vertical: 20.h),
+                            child: Center(
+                              child: Text(
+                                "No Favourite Products Available",
+                                style: TextStyle(
+                                  color: AppColors.whiteColor,
+                                  fontSize: 13.sp,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          )
+                        : FavouritesListModule(),
                   ],
                 ),
               ),

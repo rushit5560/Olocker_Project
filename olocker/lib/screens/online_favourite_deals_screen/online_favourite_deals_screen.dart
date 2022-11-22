@@ -36,21 +36,36 @@ class OnlineFavouriteDealsScreen extends StatelessWidget {
       body: Obx(
         () => onlineFavouriteDealsScreenController.isLoading.value
             ? CommonLoader().showCircularLoader()
-            : GridView.builder(
-                itemCount: onlineFavouriteDealsScreenController
-                    .favouriteDealsList.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 18,
-                  crossAxisSpacing: 18,
-                ),
-                itemBuilder: (context, i) {
-                  VendorDealsList1 singleDeal =
-                      onlineFavouriteDealsScreenController
-                          .favouriteDealsList[i];
-                  return _onlineDealsGridTile(singleDeal);
-                },
-              ).commonAllSidePadding(10),
+            : onlineFavouriteDealsScreenController.favouriteDealsList.isEmpty
+                ? Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20.h),
+                    child: Center(
+                      child: Text(
+                        "No Favourite Deals Found",
+                        style: TextStyle(
+                          color: AppColors.whiteColor,
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                  )
+                : GridView.builder(
+                    itemCount: onlineFavouriteDealsScreenController
+                        .favouriteDealsList.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 18,
+                      crossAxisSpacing: 18,
+                    ),
+                    itemBuilder: (context, i) {
+                      VendorDealsList1 singleDeal =
+                          onlineFavouriteDealsScreenController
+                              .favouriteDealsList[i];
+                      return _onlineDealsGridTile(singleDeal);
+                    },
+                  ).commonAllSidePadding(10),
       ),
     );
   }

@@ -1,9 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/user_details.dart';
 import 'package:http/http.dart' as http;
+import 'package:sizer/sizer.dart';
 import '../constants/api_url.dart';
 import '../models/enquire_screen_models/get_all_message_model.dart';
 
@@ -49,11 +52,49 @@ class NotificationScreenController extends GetxController {
     }
   }
 
-  Future<void> readMarkUserNotificationApiFunction() async {
+  showMessageInDialog({
+    required String messageText,
+  }) {
+    showDialog(
+      context: Get.context!,
+      builder: (BuildContext dialogContext) {
+        return SimpleDialog(
+          title: Container(
+            padding: const EdgeInsets.symmetric(
+              vertical: 12,
+              horizontal: 30,
+            ),
+            child: Text(
+              messageText,
+              style: TextStyle(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w500,
+                color: AppColors.greyColor,
+              ),
+            ),
+          ),
+          alignment: Alignment.center,
+          backgroundColor: AppColors.whiteColor,
+          // contentPadding: EdgeInsets.symmetric(
+          //   vertical: size.width * 0.1,
+          //   horizontal: size.width * 0.2,
+          // ),
+          children: const [],
+        );
+      },
+    );
+  }
+
+  Future<void> readMarkUserNotificationApiFunction({
+    required String messageText,
+    required int notificationId,
+    required bool isPartnerNotification,
+    required bool isAdminNotification,
+  }) async {
     isLoading(true);
 
     String url =
-        "${ApiUrl.readMarkUserNotificationApi}?customerId=${UserDetails.customerId}&notificationId=5&IsPartnerNotification=false&IsAdminNotification=true";
+        "${ApiUrl.readMarkUserNotificationApi}?customerId=${UserDetails.customerId}&notificationId=$notificationId&IsPartnerNotification=$isPartnerNotification&IsAdminNotification=$isAdminNotification";
     log('getLoyaltyPointFunction Api Url : $url');
 
     try {
@@ -61,25 +102,27 @@ class NotificationScreenController extends GetxController {
         Uri.parse(url),
         headers: apiHeader.headers,
       );
-      // log('response : ${response.body}');
+      log('readMarkUserNotificationApiFunction response ::: ${response.body}');
 
-      // LoyaltyPointsModel loyaltyPointsModel =
-      //     LoyaltyPointsModel.fromJson(json.decode(response.body));
-      // isSuccessStatus = loyaltyPointsModel.success.obs;
+      GetAllMessageModel getAllMessageModel =
+          GetAllMessageModel.fromJson(json.decode(response.body));
+      var isSuccessStatus = getAllMessageModel.success.obs;
 
-      // if (isSuccessStatus.value) {
-      //   loyaltyPointList.clear();
-      //   loyaltyPointList.addAll(loyaltyPointsModel.partnerPoint);
-      //   log('loyaltyPointList : ${loyaltyPointList.length}');
-      // } else {
-      //   log('getLoyaltyPointFunction Else');
-      // }
+      if (isSuccessStatus.value) {
+        showMessageInDialog(messageText: messageText);
+
+        getAllNotificationsFunction();
+
+        log('readMarkUserNotificationApiFunction if case ');
+      } else {
+        log('readMarkUserNotificationApiFunction Else case');
+      }
     } catch (e) {
-      log('getLoyaltyPointFunction Error :$e');
+      log('readMarkUserNotificationApiFunction Error :$e');
       rethrow;
+    } finally {
+      isLoading(false);
     }
-
-    isLoading(false);
   }
 
   @override

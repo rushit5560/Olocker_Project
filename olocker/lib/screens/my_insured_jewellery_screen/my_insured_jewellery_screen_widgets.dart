@@ -17,19 +17,7 @@ class InsuredJewelleryListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return insuredJewelleryController.getInsuredOrnamentList.isEmpty
-        ? const Padding(
-            padding: EdgeInsets.symmetric(vertical: 100),
-            child: Center(
-              child: Text(
-                "No Insured Jewellery Available",
-                style: TextStyle(
-                  color: AppColors.whiteColor,
-                ),
-              ),
-            ),
-          )
-        : ListView.separated(
+    return  ListView.separated(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: insuredJewelleryController.getInsuredOrnamentList.length,

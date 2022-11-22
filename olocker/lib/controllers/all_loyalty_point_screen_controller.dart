@@ -6,9 +6,7 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/models/jeweller_loyalty_point_screen_models/loyalty_point_model.dart';
 
-class JewellerLoyaltyPointScreenController extends GetxController {
-  String jewellerName = Get.arguments[0];
-
+class AllLoyaltyPointScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
@@ -16,7 +14,7 @@ class JewellerLoyaltyPointScreenController extends GetxController {
 
   ApiHeader apiHeader = ApiHeader();
 
-  PartnerPoint? loyaltyPoints;
+  List<PartnerPoint> loyaltyPointList = [];
 
   Future<void> getLoyaltyPointFunction() async {
     isLoading(true);
@@ -38,27 +36,18 @@ class JewellerLoyaltyPointScreenController extends GetxController {
       isSuccessStatus = loyaltyPointsModel.success.obs;
 
       if (isSuccessStatus.value) {
-        for (int i = 0; i < loyaltyPointsModel.partnerPoint.length; i++) {
-          if (loyaltyPointsModel.partnerPoint[i].partner == jewellerName) {
-            loyaltyPoints = loyaltyPointsModel.partnerPoint[i];
-          }
-        }
-
-        // loyaltyPointList.clear();
-        // loyaltyPointList.addAll(loyaltyPointsModel.partnerPoint);
-        if (loyaltyPoints != null) {
-          log('loyaltyPoints!.partner : ${loyaltyPoints!.partner}');
-          log('loyaltyPoints!.pointsEarnedSummary : ${loyaltyPoints!.logoUrl}');
-        }
+        loyaltyPointList.clear();
+        loyaltyPointList.addAll(loyaltyPointsModel.partnerPoint);
+        log('loyaltyPointList : ${loyaltyPointList.length}');
       } else {
         log('getLoyaltyPointFunction Else');
       }
     } catch (e) {
       log('getLoyaltyPointFunction Error :$e');
       rethrow;
-    } finally {
-      isLoading(false);
     }
+
+    isLoading(false);
   }
 
   @override

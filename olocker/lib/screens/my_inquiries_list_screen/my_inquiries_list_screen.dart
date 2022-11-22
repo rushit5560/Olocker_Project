@@ -42,7 +42,22 @@ class MyInquiriesListScreen extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
-                    InquiriesListModule(),
+                    myInquiriesListScreenController
+                            .getInquiryNotificationList.isEmpty
+                        ? Padding(
+                            padding: EdgeInsets.symmetric(vertical: 20.h),
+                            child: Center(
+                              child: Text(
+                                "No Inquiries Found",
+                                style: TextStyle(
+                                  color: AppColors.whiteColor,
+                                  fontSize: 13.sp,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          )
+                        : InquiriesListModule(),
                   ],
                 ),
               ),

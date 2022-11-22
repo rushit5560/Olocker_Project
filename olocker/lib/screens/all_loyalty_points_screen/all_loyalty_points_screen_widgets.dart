@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
-import 'package:olocker/controllers/jeweller_loyalty_point_screen_controller.dart';
+import 'package:olocker/controllers/all_loyalty_point_screen_controller.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
-class LoyaltyPointListModule extends StatelessWidget {
-  LoyaltyPointListModule({Key? key}) : super(key: key);
-  final screenController = Get.find<JewellerLoyaltyPointScreenController>();
+class AllLoyaltyPointListModule extends StatelessWidget {
+  AllLoyaltyPointListModule({Key? key}) : super(key: key);
+  final screenController = Get.find<AllLoyaltyPointScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,8 @@ class LoyaltyPointListModule extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (context, i) {
-        String imgUrl = ApiUrl.apiMainPath + screenController.loyaltyPointList[i].logoUrl;
+        String imgUrl =
+            ApiUrl.apiMainPath + screenController.loyaltyPointList[i].logoUrl;
         return Container(
           decoration: BoxDecoration(
             color: AppColors.whiteColor,
@@ -27,10 +28,9 @@ class LoyaltyPointListModule extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                  screenController.loyaltyPointList[i].partner,
+                screenController.loyaltyPointList[i].partner,
                 style: const TextStyle(color: AppColors.blueDarkColor),
               ),
-
               Stack(
                 alignment: Alignment.centerLeft,
                 children: [
@@ -40,7 +40,6 @@ class LoyaltyPointListModule extends StatelessWidget {
                       Expanded(
                         flex: 9,
                         child: Container(
-
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: const [
@@ -64,34 +63,37 @@ class LoyaltyPointListModule extends StatelessWidget {
                                       color: AppColors.blueDarkColor,
                                     ),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "TOTAL POINTS",
                                           style: TextStyle(
                                             color: AppColors.whiteColor,
-                                          fontSize: 11.sp,
+                                            fontSize: 11.sp,
                                           ),
                                         ),
-
                                         Text(
-                                          screenController.loyaltyPointList[i].totalPoints,
+                                          screenController
+                                              .loyaltyPointList[i].totalPoints,
                                           style: TextStyle(
                                             color: AppColors.whiteColor,
                                             fontSize: 11.sp,
                                           ),
                                         ),
                                       ],
-                                    ).commonSymmetricPadding(horizontal: 10, vertical: 8),
-                                  ).commonSymmetricPadding(horizontal: 8, vertical: 5),
-
+                                    ).commonSymmetricPadding(
+                                        horizontal: 10, vertical: 8),
+                                  ).commonSymmetricPadding(
+                                      horizontal: 8, vertical: 5),
                                   Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
                                       color: AppColors.orangeColor,
                                     ),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "Redeemed",
@@ -100,25 +102,27 @@ class LoyaltyPointListModule extends StatelessWidget {
                                             fontSize: 11.sp,
                                           ),
                                         ),
-
                                         Text(
-                                          screenController.loyaltyPointList[i].totalReedemedPoint,
+                                          screenController.loyaltyPointList[i]
+                                              .totalReedemedPoint,
                                           style: TextStyle(
                                             color: AppColors.whiteColor,
                                             fontSize: 11.sp,
                                           ),
                                         ),
                                       ],
-                                    ).commonSymmetricPadding(horizontal: 10, vertical: 8),
-                                  ).commonSymmetricPadding(horizontal: 8, vertical: 5),
-
+                                    ).commonSymmetricPadding(
+                                        horizontal: 10, vertical: 8),
+                                  ).commonSymmetricPadding(
+                                      horizontal: 8, vertical: 5),
                                   Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
                                       color: AppColors.pinkColor,
                                     ),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "Remaining",
@@ -127,17 +131,19 @@ class LoyaltyPointListModule extends StatelessWidget {
                                             fontSize: 11.sp,
                                           ),
                                         ),
-
                                         Text(
-                                          screenController.loyaltyPointList[i].totalRemainingPoint,
+                                          screenController.loyaltyPointList[i]
+                                              .totalRemainingPoint,
                                           style: TextStyle(
                                             color: AppColors.whiteColor,
                                             fontSize: 11.sp,
                                           ),
                                         ),
                                       ],
-                                    ).commonSymmetricPadding(horizontal: 10, vertical: 8),
-                                  ).commonSymmetricPadding(horizontal: 8, vertical: 5),
+                                    ).commonSymmetricPadding(
+                                        horizontal: 10, vertical: 8),
+                                  ).commonSymmetricPadding(
+                                      horizontal: 8, vertical: 5),
                                 ],
                               ).commonOnlyPadding(left: 50),
 
@@ -170,33 +176,32 @@ class LoyaltyPointListModule extends StatelessWidget {
                       ),
                     ],
                   ),
-
                   Row(
                     // mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Expanded(
                         flex: 2,
                         child: Container(
-                              height: screenController.size.width * 0.035.w,
-                              width: screenController.size.width * 0.035.w,
-                              // alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                // border: Border.all(color: Colors.grey),
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Colors.grey,
-                                    blurStyle: BlurStyle.outer,
-                                    blurRadius: 2,
-                                    // spreadRadius: 2,
-                                  ),
-                                ],
-                                image: DecorationImage(
-                                  image: NetworkImage(imgUrl),
-                                  fit: BoxFit.cover,
-                                ),
+                          height: screenController.size.width * 0.035.w,
+                          width: screenController.size.width * 0.035.w,
+                          // alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            // border: Border.all(color: Colors.grey),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.grey,
+                                blurStyle: BlurStyle.outer,
+                                blurRadius: 2,
+                                // spreadRadius: 2,
                               ),
+                            ],
+                            image: DecorationImage(
+                              image: NetworkImage(imgUrl),
+                              fit: BoxFit.cover,
                             ),
+                          ),
+                        ),
                       ),
                       Expanded(flex: 8, child: Container()),
                     ],

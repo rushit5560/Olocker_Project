@@ -8,6 +8,7 @@ class AppColors {
   static const Color blueDarkColor = Color(0xFF052a45);
   static const Color greyColor = Color.fromARGB(255, 117, 117, 117);
   static const Color greyDarkColor = Color.fromARGB(255, 73, 73, 73);
+  static const Color yellowBgColor = Colors.yellow;
   static const Color greenColor = Colors.green;
   static const Color waGreenColor = Color(0xFF25D366);
   static const Color lightBrownBgColor = Color(0xffffdac1);
@@ -23,7 +24,7 @@ class AppColors {
   static const Color accentTextColor = Color.fromARGB(255, 235, 73, 65);
 
   static const Color greyTextColor = Color(0xFF999999);
-  static const Color blackTextColor = Color.fromARGB(255, 59, 59, 59);
+  static const Color blackTextColor = Color.fromARGB(255, 63, 63, 63);
 
   static const Color darkPeachColor = Color(0xff482b2f);
   static const Color darkCoffeeColor = Color(0xff523620);

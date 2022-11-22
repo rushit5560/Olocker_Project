@@ -48,7 +48,20 @@ class OnlineDealsListScreen extends StatelessWidget {
                   SizedBox(
                       height: onlineDealsListScreenController.size.height *
                           0.001.h),
-                  AllDealsListModule(),
+                  onlineDealsListScreenController
+                          .singleDealList.onLineDeals.isEmpty
+                      ? const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 100),
+                          child: Center(
+                            child: Text(
+                              "No Online Deals Available",
+                              style: TextStyle(
+                                color: AppColors.whiteColor,
+                              ),
+                            ),
+                          ),
+                        )
+                      : AllDealsListModule(),
                 ],
               ).commonAllSidePadding(10),
             ).commonAllSidePadding(10),

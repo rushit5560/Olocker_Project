@@ -7,13 +7,13 @@ import 'package:olocker/constants/user_details.dart';
 import 'package:olocker/controllers/home_screen_controller.dart';
 import 'package:olocker/controllers/profile_screen_controller.dart';
 import 'package:olocker/screens/add_new_jeweller_screen/add_new_jeweller_screen.dart';
+import 'package:olocker/screens/all_loyalty_points_screen/all_loyalty_points_screen.dart';
 import 'package:olocker/screens/auth_screen/auth_screen.dart';
 import 'package:olocker/screens/my_insured_jewellery_screen/my_insured_jewellery_screen.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/utils/user_prefs_data.dart';
 import 'package:sizer/sizer.dart';
 
-import '../screens/jeweller_loyalty_point_screen/jeweller_loyalty_point_screen.dart';
 import '../screens/my_jewellers_screen/my_jewellers_screen.dart';
 import '../screens/my_jewellery_portfolio_screen/my_jewellery_portfolio_screen.dart';
 import '../screens/online_favourite_deals_screen/online_favourite_deals_screen.dart';
@@ -250,7 +250,7 @@ class CustomDrawer extends StatelessWidget {
   Widget _myPointsModule() {
     return GestureDetector(
       onTap: () {
-        Get.to(() => JewellerLoyaltyPointScreen());
+        Get.to(() => AllLoyaltyPointScreen());
       },
       child: SizedBox(
         child: Row(

@@ -18,7 +18,7 @@ import 'package:olocker/screens/personal_loans_screen/personal_loans_screen.dart
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
-import '../jeweller_loyalty_point_screen/jeweller_loyalty_point_screen.dart';
+import '../all_loyalty_points_screen/all_loyalty_points_screen.dart';
 import '../my_favourites_screen/my_favourites_screen.dart';
 import '../online_deals_list_screen/online_deals_list_screen.dart';
 
@@ -52,7 +52,7 @@ class MainAppBar extends StatelessWidget with PreferredSizeWidget {
       actions: [
         IconButton(
           onPressed: () {
-            Get.to(() => JewellerLoyaltyPointScreen());
+            Get.to(() => AllLoyaltyPointScreen());
           },
           icon: Image.asset(
             "assets/icons/gift-box.png",

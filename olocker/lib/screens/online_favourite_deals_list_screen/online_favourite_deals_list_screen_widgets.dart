@@ -7,7 +7,6 @@ import 'package:olocker/screens/online_favourite_deals_details_screen/online_fav
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
-
 class FavPinkBackgroundImageModule extends StatelessWidget {
   FavPinkBackgroundImageModule({Key? key}) : super(key: key);
   final screenController = Get.find<OnlineFavouriteDealsListScreenController>();
@@ -17,13 +16,13 @@ class FavPinkBackgroundImageModule extends StatelessWidget {
     return Container(
       height: screenController.size.height * 0.025.h,
       alignment: Alignment.topCenter,
-      child: Image.asset(AppImages.dealsBgShapeImage,
+      child: Image.asset(
+        AppImages.dealsBgShapeImage,
         fit: BoxFit.cover,
       ),
     );
   }
 }
-
 
 class FavAllDealsHeaderModule extends StatelessWidget {
   FavAllDealsHeaderModule({Key? key}) : super(key: key);
@@ -41,7 +40,6 @@ class FavAllDealsHeaderModule extends StatelessWidget {
             fontSize: 10.sp,
           ),
         ),
-
         Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -76,7 +74,7 @@ class AllFavDealsListModule extends StatelessWidget {
       itemBuilder: (context, i) {
         return GestureDetector(
           onTap: () => Get.to(
-                () => OnlineFavouriteDealsDetailsScreen(),
+            () => OnlineFavouriteDealsDetailsScreen(),
             arguments: screenController.singleDealList.onLineDeals[i],
           ),
           child: Stack(
@@ -112,7 +110,8 @@ class AllFavDealsListModule extends StatelessWidget {
                           bottom: screenController.size.height * 0.0012.h,
                         ),
                         child: Text(
-                          screenController.singleDealList.onLineDeals[i].couponHeading,
+                          screenController
+                              .singleDealList.onLineDeals[i].couponHeading,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -124,7 +123,6 @@ class AllFavDealsListModule extends StatelessWidget {
                   ),
                 ],
               ),
-
               SizedBox(
                 height: screenController.size.height * 0.011.h,
                 child: Row(
