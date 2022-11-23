@@ -216,6 +216,7 @@ class CustomDrawer extends StatelessWidget {
   Widget _mySavingSchemeModule() {
     return GestureDetector(
       onTap: () {
+        homeScreenController.scaffoldKey.currentState!.closeDrawer();
         Get.to(() => MySavingSchemesListScreen());
       },
       child: Row(
@@ -236,6 +237,7 @@ class CustomDrawer extends StatelessWidget {
   Widget _myDealsModule() {
     return GestureDetector(
       onTap: () {
+        homeScreenController.scaffoldKey.currentState!.closeDrawer();
         Get.to(() => OnlineFavouriteDealsScreen());
       },
       child: Row(
@@ -256,6 +258,7 @@ class CustomDrawer extends StatelessWidget {
   Widget _myPointsModule() {
     return GestureDetector(
       onTap: () {
+        homeScreenController.scaffoldKey.currentState!.closeDrawer();
         Get.to(() => AllLoyaltyPointScreen());
       },
       child: SizedBox(
