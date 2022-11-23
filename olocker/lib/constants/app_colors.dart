@@ -33,4 +33,9 @@ class AppColors {
 
   static const Color orangeColor = Color(0xffed6660);
   static const Color pinkColor = Color(0xfff65c78);
+
+  // savings screens colors
+  static const Color greenTintColor = Color(0xff8ad367);
+  static const Color blueTintColor = Color(0xff5fa6da);
+  static const Color pinkTintColor = Color(0xffda6079);
 }

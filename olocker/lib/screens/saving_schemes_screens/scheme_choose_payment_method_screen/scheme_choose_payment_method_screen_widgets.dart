@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:olocker/constants/app_images.dart';
-import 'package:olocker/screens/jeweller_feedback_screen/jeweller_feedback_screen_widgets.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
@@ -20,8 +19,8 @@ class SencoPaymentImageModule extends StatelessWidget {
           Expanded(
             flex: 3,
             child: SizedBox(
-              child: Image.asset(AppSvgs.diamondsIocn),
-            ),
+              child: Image.asset(AppImages.diamondsIocn),
+            ),  
           ),
           SizedBox(
             width: 1.h,

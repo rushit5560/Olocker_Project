@@ -26,19 +26,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Sizer(builder: (context, orientation, deviceType) {
-      return GetMaterialApp(
-        title: 'Olocker',
-        debugShowCheckedModeBanner: false,
-        defaultTransition: Transition.fade,
-        transitionDuration: const Duration(milliseconds: 400),
-        theme: ThemeData(
-          primarySwatch: generateMaterialColor(
-            const Color(0xffed6660),
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return GetMaterialApp(
+          title: 'Olocker',
+          debugShowCheckedModeBanner: false,
+          defaultTransition: Transition.fade,
+          transitionDuration: const Duration(milliseconds: 400),
+          theme: ThemeData(
+            primarySwatch: generateMaterialColor(
+              const Color(0xffed6660),
+            ),
           ),
-        ),
-        home: SplashScreen(),
-      );
-    });
+          home: SplashScreen(),
+        );
+      },
+    );
   }
 }

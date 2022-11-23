@@ -6,10 +6,7 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/models/user_profile_models/city_state_get_model.dart';
 
-import '../../models/saving_scheme_screens_models/get_saving_schemes_list_model.dart';
-
-class SavingSchemeEnrollScreenController extends GetxController {
-  GetSavingSchemeData savingSchemeData = Get.arguments;
+class MySchemePendingInstallmentScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
@@ -19,7 +16,7 @@ class SavingSchemeEnrollScreenController extends GetxController {
 
   // Temp Variable
   RxInt selectedGridItem = 0.obs;
-  final size = Get.size;
+  //
 
   RxBool isShow = false.obs;
   GlobalKey<FormState> customerFormKey = GlobalKey<FormState>();

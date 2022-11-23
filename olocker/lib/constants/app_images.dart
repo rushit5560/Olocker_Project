@@ -59,6 +59,15 @@ class AppImages {
   static const String goldIcon18Image = '$imageRootPath/icon_gold18.jpg';
   static const String goldIcon22Image = '$imageRootPath/icon_gold22.jpg';
   static const String goldIcon24Image = '$imageRootPath/icon_gold24.jpg';
+
+  //Saving screen images
+  static const String enrollLightningImage = '$imageRootPath/enroll.png';
+  static const String amoZonImage = '$imageRootPath/ap_payment.png';
+  static const String gpayImage = '$imageRootPath/gp_payment.png';
+  static const String cashImage = '$imageRootPath/c_d_paymeny.png';
+  static const String paytmImage = '$imageRootPath/py_payment.png';
+  static const String visaImage = '$imageRootPath/visa_payment.png';
+  static const String diamondsIocn = '$imageRootPath/diamonds_icon.png';
 }
 
 class AppIcons {

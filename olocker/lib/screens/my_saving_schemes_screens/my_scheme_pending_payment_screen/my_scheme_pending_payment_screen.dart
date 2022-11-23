@@ -1,37 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:olocker/screens/saving_schemes_screens/saving_scheme_payment_screen/saving_scheme_payment_screen_widgets.dart';
+import 'package:get/get.dart';
+import 'package:olocker/controllers/my_saving_schemes_screens_controllers/my_scheme_pending_payment_screen_controller.dart';
+import 'package:olocker/screens/saving_schemes_screens/scheme_choose_payment_method_screen/scheme_choose_payment_method_screen_widgets.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constants/app_colors.dart';
 
-class SavingSchemeConPaymentScreen extends StatelessWidget {
-  const SavingSchemeConPaymentScreen({Key? key}) : super(key: key);
+class MySchemePendingPaymentScreen extends StatelessWidget {
+  MySchemePendingPaymentScreen({Key? key}) : super(key: key);
+
+  final mySchemePendingPaymentScreenController =
+      Get.put(MySchemePendingPaymentScreenController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: true,
       backgroundColor: AppColors.lightBrownBgColor,
-
-      // bottomNavigationBar: BottomAppBar(
-      //   child: Container(
-      //     width: double.infinity,
-      //     decoration: BoxDecoration(
-      //         borderRadius: BorderRadius.circular(10), color: Colors.redAccent),
-      //     child: Center(
-      //       child: Text(
-      //         "PAY NOW",
-      //         style: TextStyle(
-      //             fontWeight: FontWeight.bold,
-      //             fontSize: 16.sp,
-      //             color: AppColors.whiteColor),
-      //       ).commonSymmetricPadding(vertical: 15),
-      //     ),
-      //   ),
-      // ),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: AppColors.lightBrownBgColor,
@@ -46,11 +31,10 @@ class SavingSchemeConPaymentScreen extends StatelessWidget {
           ),
         ).commonOnlyPadding(left: 50),
       ),
-
       bottomNavigationBar: Container(
         height: 50,
         width: double.infinity,
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10), color: Colors.redAccent),
         child: Center(
@@ -63,7 +47,6 @@ class SavingSchemeConPaymentScreen extends StatelessWidget {
           ).commonSymmetricPadding(vertical: 15),
         ),
       ),
-
       body: SingleChildScrollView(
         child: Column(
           children: [

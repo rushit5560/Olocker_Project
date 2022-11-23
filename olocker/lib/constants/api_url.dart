@@ -32,6 +32,12 @@ class ApiUrl {
   static const String getCustomerFavouriteDealsApi =
       "${apiMainPath}api/User/GetFavDeals";
 
+  //saving schemes screeen apis
+  static const String getParterSavinSchemeApi =
+      "${apiMainPath}api/User/GetParterSavinScheme";
+  static const String getSavingSchemeDetailsApi =
+      "${apiMainPath}api/User/GetSavingSchemeDetails";
+
   // profile Screen Api
   static const String getUserProfileApi =
       "${apiMainPath}api/User/GetUserProfile";
@@ -71,7 +77,7 @@ class ApiUrl {
   static const String addTrackingDataApi =
       "${apiMainPath}api/User/AddTrackingData";
 
-      // refer and earn screen apis
+  // refer and earn screen apis
   static const String getPartnerByCodeApi =
       "${apiMainPath}api/Partner/GetPartnerByCode";
   static const String getLoyalityPlanApi =

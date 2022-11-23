@@ -19,6 +19,7 @@ import 'package:sizer/sizer.dart';
 import '../about_us_screen/about_us_screen.dart';
 import '../jeweller_loyalty_points_screen/jeweller_loyalty_points_screen.dart';
 import '../my_favourites_screen/my_favourites_screen.dart';
+import '../saving_schemes_screens/saving_schemes_list_screen/saving_schemes_list_screen.dart';
 
 class JewellerFeaturesModule extends StatelessWidget {
   JewellerFeaturesModule({Key? key}) : super(key: key);
@@ -324,17 +325,27 @@ class ReferAndJewellerEmiModule extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Container(
-              height: screenController.size.height * 0.033.h,
-              decoration: BoxDecoration(
-                color: AppColors.creamBgColor,
-                borderRadius: BorderRadius.circular(10),
-                image: const DecorationImage(
-                  image: AssetImage(AppImages.referOffer2Image),
-                  fit: BoxFit.cover,
+            child: GestureDetector(
+              onTap: () {
+                Get.to(
+                  () => SavingSchemesListScreen(),
+                  // arguments: [
+                  //   screenController.jewellerId,
+                  // ],
+                );
+              },
+              child: Container(
+                height: screenController.size.height * 0.033.h,
+                decoration: BoxDecoration(
+                  color: AppColors.creamBgColor,
+                  borderRadius: BorderRadius.circular(10),
+                  image: const DecorationImage(
+                    image: AssetImage(AppImages.referOffer2Image),
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-            ).commonSymmetricPadding(vertical: 8, horizontal: 14),
+              ).commonSymmetricPadding(vertical: 8, horizontal: 14),
+            ),
           ),
         ],
       ),

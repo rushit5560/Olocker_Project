@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
-import 'package:olocker/controllers/saving_schemes_screens_controllers/saving_scheme_enroll_screen_controller.dart';
+import 'package:olocker/controllers/my_saving_schemes_screens_controllers/my_scheme_pending_installment_screen_controller.dart';
 import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
-import 'saving_scheme_enroll_screen_widgets.dart';
+import 'my_scheme_pending_installment_screen_widgets.dart';
 
-class SavingSchemeEnrollScreen extends StatelessWidget {
-  SavingSchemeEnrollScreen({Key? key}) : super(key: key);
-  final savingSchemeEnrollScreenController =
-      Get.put(SavingSchemeEnrollScreenController());
+class MySchemePendingInstallmentScreen extends StatelessWidget {
+  MySchemePendingInstallmentScreen({Key? key}) : super(key: key);
+  final mySchemePendingInstallmentScreenController =
+      Get.put(MySchemePendingInstallmentScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -35,23 +35,21 @@ class SavingSchemeEnrollScreen extends StatelessWidget {
         ),
       ),
       body: Obx(
-        () => savingSchemeEnrollScreenController.isLoading.value
+        () => mySchemePendingInstallmentScreenController.isLoading.value
             ? CommonLoader().showCircularLoader()
             : SingleChildScrollView(
                 child: Form(
-                  key: savingSchemeEnrollScreenController.customerFormKey,
+                  key: mySchemePendingInstallmentScreenController
+                      .customerFormKey,
                   child: Column(
                     children: [
                       HeaderModule(),
                       MonthlyAmountModule(),
-                      savingSchemeEnrollScreenController.isShow.value
-                      ? MaturityAmountModule()
-                      : Container(),
-
+                      mySchemePendingInstallmentScreenController.isShow.value
+                          ? MaturityAmountModule()
+                          : Container(),
                       CustomerDetailsFormModule(),
-
                       SaveAndMakePaymentButtonModule(),
-
                     ],
                   ),
                 ),

@@ -1,64 +1,75 @@
 import 'dart:developer';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
+import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/saving_schemes_screens_controllers/saving_scheme_enroll_screen_controller.dart';
+import 'package:olocker/screens/saving_schemes_screens/saving_scheme_confirmation_screen/saving_scheme_confirmation_screen.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/utils/field_validation.dart';
 import 'package:sizer/sizer.dart';
 
-class HeaderModule extends StatelessWidget {
-  HeaderModule({Key? key}) : super(key: key);
+class JewellerDetailsHeaderModule extends StatelessWidget {
+  JewellerDetailsHeaderModule({Key? key}) : super(key: key);
+
   final screenController = Get.find<SavingSchemeEnrollScreenController>();
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.whiteColor,
         borderRadius: BorderRadius.circular(10),
+        color: Colors.white,
       ),
       child: Row(
         children: [
+          screenController.savingSchemeData.imagePath == ""
+              ? Image.asset(
+                  AppImages.diamondsIocn,
+                  fit: BoxFit.cover,
+                  width: 18.w,
+                )
+              : CachedNetworkImage(
+                  imageUrl: ApiUrl.apiImagePath +
+                      screenController.savingSchemeData.imagePath,
+                  fit: BoxFit.cover,
+                  width: 18.w,
+                ),
+          SizedBox(width: 2.h),
           Expanded(
-            flex: 25,
-            child: Container(),
-          ),
-          Expanded(
-            flex: 75,
-            child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Senco Gold',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: AppColors.accentColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14.sp,
-                    ),
+            flex: 7,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  screenController.savingSchemeData.schemeName,
+                  style: TextStyle(
+                    fontSize: 13.sp,
+                    color: AppColors.accentColor,
+                    fontWeight: FontWeight.w500,
                   ),
-                  Text(
-                    'Swaarna Sanchay Scheme',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      // color: AppColors.accentColor,
-                      // fontWeight: FontWeight.bold,
-                      fontSize: 14.sp,
-                    ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  screenController.savingSchemeData.schemeTagLine,
+                  style: TextStyle(
+                    fontSize: 11.sp,
+                    color: AppColors.greyColor,
+                    fontWeight: FontWeight.w400,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ),
+          )
         ],
-      ).commonSymmetricPadding(horizontal: 15, vertical: 20),
-    ).commonSymmetricPadding(vertical: 10, horizontal: 15);
+      ).commonSymmetricPadding(horizontal: 15, vertical: 15),
+    );
   }
 }
 
@@ -89,13 +100,11 @@ class MonthlyAmountModule extends StatelessWidget {
             onChanged: (value) {
               log(value);
               screenController.isLoading(true);
-
-              if(value.isNotEmpty) {
+              if (value.isNotEmpty) {
                 screenController.isShow.value = true;
               } else {
                 screenController.isShow.value = false;
               }
-
               screenController.isLoading(false);
             },
             style: TextStyle(
@@ -104,12 +113,19 @@ class MonthlyAmountModule extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
             decoration: InputDecoration(
-              prefix: Text(
-                '₹ ',
+              prefixIcon: Text(
+                ' ₹  ',
                 style: TextStyle(
                   fontSize: 22.sp,
                   fontWeight: FontWeight.bold,
                 ),
+              ),
+              prefixIconConstraints: const BoxConstraints(maxHeight: 32),
+              hintText: "0",
+              hintStyle: TextStyle(
+                fontSize: 22.sp,
+                fontWeight: FontWeight.bold,
+                color: AppColors.greyColor,
               ),
             ),
           ),
@@ -121,7 +137,7 @@ class MonthlyAmountModule extends StatelessWidget {
             ),
           ).commonSymmetricPadding(vertical: 15),
           GridView.builder(
-            itemCount: 3,
+            itemCount: 1,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -152,7 +168,9 @@ class MonthlyAmountModule extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              '12',
+                              screenController.savingSchemeData.tenor
+                                  .floor()
+                                  .toString(),
                               maxLines: 1,
                               style: TextStyle(
                                 color: AppColors.whiteColor,
@@ -216,7 +234,7 @@ class MaturityAmountModule extends StatelessWidget {
           _singleModule(heading: 'Maturity Amount', value: '32500'),
         ],
       ).commonSymmetricPadding(vertical: 20, horizontal: 8),
-    ).commonSymmetricPadding(horizontal: 15, vertical: 10);
+    ).commonSymmetricPadding(horizontal: 15, vertical: 15);
   }
 
   Widget _singleModule({required String heading, required String value}) {
@@ -269,8 +287,7 @@ class CustomerDetailsFormModule extends StatelessWidget {
               fontWeight: FontWeight.bold,
               fontSize: 14.sp,
             ),
-          ).commonOnlyPadding(bottom: 15, top: 5),
-
+          ).commonOnlyPadding(bottom: 15),
           _nameFieldsRowModule(),
           _panNumberModule(),
           _aadhaarNumberModule(),
@@ -280,10 +297,11 @@ class CustomerDetailsFormModule extends StatelessWidget {
           _pincodeModule(),
           _cityModule(),
           _stateModule(),
-
         ],
-      ).commonAllSidePadding(10),
-    ).commonSymmetricPadding(horizontal: 15, vertical: 10);
+      ).commonSymmetricPadding(horizontal: 12, vertical: 12),
+    ).commonSymmetricPadding(
+      horizontal: 15,
+    );
   }
 
   Widget _nameFieldsRowModule() {
@@ -326,12 +344,10 @@ class CustomerDetailsFormModule extends StatelessWidget {
             keyboardType: TextInputType.text,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) => FieldValidator().validateFirstName(value!),
-            style:
-                TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
+            style: TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
             decoration: InputDecoration(
               hintText: "First Name",
-              hintStyle:
-                  TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+              hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
             ),
           ),
         ),
@@ -343,12 +359,10 @@ class CustomerDetailsFormModule extends StatelessWidget {
             textInputAction: TextInputAction.next,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) => FieldValidator().validateLastName(value!),
-            style:
-                TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
+            style: TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
             decoration: InputDecoration(
               hintText: "Last Name",
-              hintStyle:
-                  TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+              hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
             ),
           ),
         ),
@@ -365,13 +379,11 @@ class CustomerDetailsFormModule extends StatelessWidget {
       textCapitalization: TextCapitalization.characters,
       maxLength: 10,
       validator: (value) => FieldValidator().validatePanCard(value!),
-      style:
-      TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
+      style: TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
       decoration: InputDecoration(
         hintText: "Pan number",
         counterText: '',
-        hintStyle:
-        TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+        hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
       ),
     );
   }
@@ -385,13 +397,11 @@ class CustomerDetailsFormModule extends StatelessWidget {
       maxLength: 12,
       // textCapitalization: TextCapitalization.characters,
       validator: (value) => FieldValidator().validateAadhaarCard(value!),
-      style:
-      TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
+      style: TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
       decoration: InputDecoration(
         hintText: "Aadhaar number",
         counterText: '',
-        hintStyle:
-        TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+        hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
       ),
     );
   }
@@ -404,12 +414,10 @@ class CustomerDetailsFormModule extends StatelessWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       // textCapitalization: TextCapitalization.characters,
       validator: (value) => FieldValidator().validateMobileNumber(value!),
-      style:
-      TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
+      style: TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
       decoration: InputDecoration(
         hintText: "Mobile number",
-        hintStyle:
-        TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+        hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
       ),
     );
   }
@@ -422,12 +430,10 @@ class CustomerDetailsFormModule extends StatelessWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       // textCapitalization: TextCapitalization.characters,
       validator: (value) => FieldValidator().validateEmail(value!),
-      style:
-      TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
+      style: TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
       decoration: InputDecoration(
         hintText: "Email ID",
-        hintStyle:
-        TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+        hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
       ),
     );
   }
@@ -440,12 +446,10 @@ class CustomerDetailsFormModule extends StatelessWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       // textCapitalization: TextCapitalization.characters,
       validator: (value) => FieldValidator().validateAddress(value!),
-      style:
-      TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
+      style: TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
       decoration: InputDecoration(
         hintText: "Address",
-        hintStyle:
-        TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+        hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
       ),
     );
   }
@@ -460,17 +464,13 @@ class CustomerDetailsFormModule extends StatelessWidget {
       validator: (value) => FieldValidator().validatePinCode(value!),
       onChanged: (val) async {
         if (val.length == 6) {
-
-          await screenController
-              .getCityStateDetailsByPinFunction();
+          await screenController.getCityStateDetailsByPinFunction();
         }
       },
-      style:
-      TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
+      style: TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
       decoration: InputDecoration(
         hintText: "Pincode",
-        hintStyle:
-        TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+        hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
       ),
     );
   }
@@ -482,12 +482,10 @@ class CustomerDetailsFormModule extends StatelessWidget {
       keyboardType: TextInputType.text,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) => FieldValidator().validateCity(value!),
-      style:
-      TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
+      style: TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
       decoration: InputDecoration(
         hintText: "City",
-        hintStyle:
-        TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+        hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
       ),
     );
   }
@@ -499,18 +497,14 @@ class CustomerDetailsFormModule extends StatelessWidget {
       keyboardType: TextInputType.text,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) => FieldValidator().validateState(value!),
-      style:
-      TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
+      style: TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
       decoration: InputDecoration(
         hintText: "State",
-        hintStyle:
-        TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+        hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
       ),
     );
   }
-
 }
-
 
 class SaveAndMakePaymentButtonModule extends StatelessWidget {
   SaveAndMakePaymentButtonModule({Key? key}) : super(key: key);
@@ -520,7 +514,11 @@ class SaveAndMakePaymentButtonModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        if(screenController.customerFormKey.currentState!.validate()) {}
+        // if (screenController.customerFormKey.currentState!.validate()) {}
+
+        Get.to(
+          () => SavingSchemeConfirmationScreen(),
+        );
       },
       style: ElevatedButton.styleFrom(
         primary: AppColors.accentColor,
