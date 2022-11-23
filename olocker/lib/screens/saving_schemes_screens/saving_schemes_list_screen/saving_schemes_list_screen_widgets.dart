@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,6 +25,8 @@ class BannerPageViewModule extends StatelessWidget {
       itemBuilder: (context, i, realIndex) {
         // String imgUrl = ApiUrl.apiMainPath +
         //     screenController.announcementOfferList[i].imageurl;
+
+        log("image url :: ${ApiUrl.apiImagePath + savingSchemesListScreenController.getSavingSchemesList[i].imagePath}");
         return Container(
           height: savingSchemesListScreenController.size.height * 0.25,
           width: double.infinity,
@@ -34,8 +38,13 @@ class BannerPageViewModule extends StatelessWidget {
                   savingSchemesListScreenController
                       .getSavingSchemesList[i].imagePath,
               fit: BoxFit.cover,
+              height: savingSchemesListScreenController.size.height * 0.25,
+              width: double.infinity,
               errorWidget: (ctx, str, strace) {
-                return Image.asset(AppImages.noLogoImage);
+                return Image.asset(
+                  AppImages.noLogoImage,
+                  fit: BoxFit.cover,
+                );
               },
             ),
           ),

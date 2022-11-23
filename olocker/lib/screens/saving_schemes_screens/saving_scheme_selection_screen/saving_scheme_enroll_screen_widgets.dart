@@ -29,18 +29,19 @@ class JewellerDetailsHeaderModule extends StatelessWidget {
       ),
       child: Row(
         children: [
-          screenController.savingSchemeData.imagePath == ""
-              ? Image.asset(
-                  AppImages.diamondsIocn,
-                  fit: BoxFit.cover,
-                  width: 18.w,
-                )
-              : CachedNetworkImage(
-                  imageUrl: ApiUrl.apiImagePath +
-                      screenController.savingSchemeData.imagePath,
-                  fit: BoxFit.cover,
-                  width: 18.w,
-                ),
+          CachedNetworkImage(
+            imageUrl: ApiUrl.apiImagePath +
+                screenController.savingSchemeData.imagePath,
+            fit: BoxFit.cover,
+            width: 18.w,
+            errorWidget: (context, url, error) {
+              return Image.asset(
+                AppImages.diamondsIocn,
+                fit: BoxFit.cover,
+                width: 18.w,
+              );
+            },
+          ),
           SizedBox(width: 2.h),
           Expanded(
             flex: 7,
@@ -299,40 +300,36 @@ class CustomerDetailsFormModule extends StatelessWidget {
           _stateModule(),
         ],
       ).commonSymmetricPadding(horizontal: 12, vertical: 12),
-    ).commonSymmetricPadding(
-      horizontal: 15,
-    );
+    ).commonOnlyPadding(left: 15, right: 15, bottom: 10);
   }
 
   Widget _nameFieldsRowModule() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Obx(
-          () => Center(
-            child: SizedBox(
-              height: 3.h,
-              width: 18.w,
-              child: DropdownButton<String>(
-                isDense: true,
-                value: screenController.namePrefixDDValue.value,
-                alignment: Alignment.center,
-                items: screenController.namePrefixItems
-                    .map((item) => DropdownMenuItem<String>(
-                          value: item,
-                          child: Text(
-                            item,
-                            style: const TextStyle(
-                              fontSize: 15,
-                            ),
+          () => SizedBox(
+            height: 4.h,
+            width: 15.w,
+            child: DropdownButton<String>(
+              isDense: true,
+              value: screenController.namePrefixDDValue.value,
+              alignment: Alignment.center,
+              items: screenController.namePrefixItems
+                  .map((item) => DropdownMenuItem<String>(
+                        value: item,
+                        child: Text(
+                          item,
+                          style: const TextStyle(
+                            fontSize: 15,
                           ),
-                        ))
-                    .toList(),
-                onChanged: (val) {
-                  screenController.namePrefixDDValue.value = val!;
-                },
-              ),
+                        ),
+                      ))
+                  .toList(),
+              onChanged: (val) {
+                screenController.namePrefixDDValue.value = val!;
+              },
             ),
           ),
         ),

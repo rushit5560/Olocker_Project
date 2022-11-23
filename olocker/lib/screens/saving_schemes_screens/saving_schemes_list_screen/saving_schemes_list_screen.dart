@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/controllers/saving_schemes_screens_controllers/saving_schemes_list_screen_controller.dart';
 import 'package:olocker/screens/saving_schemes_screens/saving_schemes_list_screen/saving_schemes_list_screen_widgets.dart';
+import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 class SavingSchemesListScreen extends StatelessWidget {
@@ -32,9 +33,7 @@ class SavingSchemesListScreen extends StatelessWidget {
       ),
       body: Obx(
         () => savingSchemesListScreenController.isLoading.value
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
+            ? CommonLoader().showCircularLoader()
             : SingleChildScrollView(
                 physics: const ClampingScrollPhysics(),
                 child: Column(
@@ -42,6 +41,7 @@ class SavingSchemesListScreen extends StatelessWidget {
                     BannerPageViewModule(),
                     const SizedBox(height: 10),
                     SchemesListViewModule(),
+                    SizedBox(height: 2.h)
                   ],
                 ),
               ),

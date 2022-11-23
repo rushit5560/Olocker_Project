@@ -45,7 +45,7 @@ class SavingSchemeEnrollScreen extends StatelessWidget {
                       MonthlyAmountModule(),
                       savingSchemeEnrollScreenController.isShow.value
                           ? MaturityAmountModule()
-                          : Container(),
+                          : Container(height: 10),
                       CustomerDetailsFormModule(),
                       SaveAndMakePaymentButtonModule(),
                       SizedBox(height: 1.h),
