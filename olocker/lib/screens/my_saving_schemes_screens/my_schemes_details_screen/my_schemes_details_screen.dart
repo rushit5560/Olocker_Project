@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:olocker/controllers/my_saving_schemes_screens_controllers/my_schemes_details_screen_controller.dart';
+import 'package:olocker/screens/my_saving_schemes_screens/my_schemes_details_screen/my_schemes_details_screen_widgets.dart';
+import 'package:olocker/utils/extensions.dart';
 
 class MySchemesDetailsScreen extends StatelessWidget {
   MySchemesDetailsScreen({Key? key}) : super(key: key);
@@ -26,7 +28,7 @@ class MySchemesDetailsScreen extends StatelessWidget {
           ),
         ),
         title: const Text(
-          'Saving Schemes',
+          'Schemes Details',
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w400,
@@ -34,35 +36,10 @@ class MySchemesDetailsScreen extends StatelessWidget {
         ),
       ),
       backgroundColor: Colors.orange.shade100,
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(25.0),
-            child: Container(
-              height: 550,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.white,
-              ),
-              child: Column(
-                children: [
-                  ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                      ),
-                      child: Image.asset(
-                        "assets/jewellery.jpg",
-                        height: 150,
-                        width: Get.width,
-                        fit: BoxFit.cover,
-                      )),
-                ],
-              ),
-            ),
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [MySchemesDetailsScreenModule()],
+        ).commonAllSidePadding(12),
       ),
     );
   }

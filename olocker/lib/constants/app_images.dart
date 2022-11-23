@@ -68,6 +68,9 @@ class AppImages {
   static const String paytmImage = '$imageRootPath/py_payment.png';
   static const String visaImage = '$imageRootPath/visa_payment.png';
   static const String diamondsIocn = '$imageRootPath/diamonds_icon.png';
+  static const String callImage = '$imageRootPath/diamonds_call.png';
+  static const String pdfImage = '$imageRootPath/download_icon_payment.png';
+
 }
 
 class AppIcons {
@@ -94,6 +97,7 @@ class AppIcons {
   static const String filterIcon = '$iconRootPath/filter_icon.png';
 
   static const String rightSideImage = '$iconRootPath/right_side_errr.png';
+
 }
 
 class AppSvgs {

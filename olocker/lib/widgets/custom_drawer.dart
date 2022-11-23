@@ -17,6 +17,7 @@ import 'package:sizer/sizer.dart';
 
 import '../screens/my_jewellers_screen/my_jewellers_screen.dart';
 import '../screens/my_jewellery_portfolio_screen/my_jewellery_portfolio_screen.dart';
+import '../screens/my_saving_schemes_screens/my_schemes_details_screen/my_schemes_details_screen.dart';
 import '../screens/online_favourite_deals_screen/online_favourite_deals_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -217,7 +218,7 @@ class CustomDrawer extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         homeScreenController.scaffoldKey.currentState!.closeDrawer();
-        Get.to(() => MySavingSchemesListScreen());
+        Get.to(() => MySchemesDetailsScreen());
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
