@@ -92,6 +92,8 @@ class AppIcons {
   static const String grabOnIcon = '$iconRootPath/grabon_icon.png';
 
   static const String filterIcon = '$iconRootPath/filter_icon.png';
+
+  static const String rightSideImage = '$iconRootPath/right_side_errr.png';
 }
 
 class AppSvgs {
