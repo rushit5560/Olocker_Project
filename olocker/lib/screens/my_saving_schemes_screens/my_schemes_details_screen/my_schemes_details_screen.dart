@@ -4,6 +4,9 @@ import 'package:get/get.dart';
 import 'package:olocker/controllers/my_saving_schemes_screens_controllers/my_schemes_details_screen_controller.dart';
 import 'package:olocker/screens/my_saving_schemes_screens/my_schemes_details_screen/my_schemes_details_screen_widgets.dart';
 import 'package:olocker/utils/extensions.dart';
+import 'package:sizer/sizer.dart';
+
+import '../../../constants/app_colors.dart';
 
 class MySchemesDetailsScreen extends StatelessWidget {
   MySchemesDetailsScreen({Key? key}) : super(key: key);
@@ -27,18 +30,21 @@ class MySchemesDetailsScreen extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        title: const Text(
+        title: Text(
           'Schemes Details',
           style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w400,
+            color: AppColors.blackTextColor,
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
       backgroundColor: Colors.orange.shade100,
       body: SingleChildScrollView(
         child: Column(
-          children: [MySchemesDetailsScreenModule()],
+          children: [
+            MySchemesDetailsModule(),
+          ],
         ).commonAllSidePadding(12),
       ),
     );

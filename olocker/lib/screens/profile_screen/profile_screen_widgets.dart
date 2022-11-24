@@ -77,43 +77,45 @@ class DisplayImageDetailsFieldRow extends StatelessWidget {
         children: [
           Row(
             children: [
-              AbsorbPointer(
-                absorbing: profileScreenController.isEditable.value,
-                child: GestureDetector(
-                  onTap: () {
+              GestureDetector(
+                onTap: () {
+                  if (!profileScreenController.isEditable.value) {
                     profileScreenController.showImagePickerBottomSheet(
                         context: context);
-                  },
-                  child: SizedBox(
-                    height: 75,
-                    width: 75,
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(200),
-                      ),
-                      child: profileScreenController.selectedProfileImage !=
-                              null
-                          ? Image.file(
-                              profileScreenController.selectedProfileImage!,
-                              height: 75,
-                              width: 75,
-                              fit: BoxFit.cover,
-                            )
-                          : profileScreenController.apiGetProfileImage != null
-                              ? Image.network(
-                                  profileScreenController
-                                      .apiGetProfileImage!.path,
-                                  height: 75,
-                                  width: 75,
-                                  fit: BoxFit.cover,
-                                )
-                              : Image.asset(
-                                  AppImages.dealBgImage,
-                                  height: 75,
-                                  width: 75,
-                                  fit: BoxFit.cover,
-                                ),
+                  }
+                },
+                child: Container(
+                  height: 75,
+                  width: 75,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.greyColor),
+                    shape: BoxShape.circle,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(200),
                     ),
+                    child: profileScreenController.selectedProfileImage != null
+                        ? Image.file(
+                            profileScreenController.selectedProfileImage!,
+                            height: 75,
+                            width: 75,
+                            fit: BoxFit.cover,
+                          )
+                        : profileScreenController.apiGetProfileImage != null
+                            ? Image.network(
+                                profileScreenController
+                                    .apiGetProfileImage!.path,
+                                height: 75,
+                                width: 75,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.asset(
+                                AppIcons.uploadImageIcon,
+                                height: 75,
+                                width: 75,
+                                fit: BoxFit.cover,
+                              ),
                   ),
                 ),
               ),
@@ -169,44 +171,41 @@ class NameFieldRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Obx(
-          () => Center(
-            child: SizedBox(
-              height: 5.h,
-              width: 18.w,
-              child: AbsorbPointer(
-                absorbing: !profileScreenController.isEditable.value,
-                child: DropdownButton<String>(
-                  isDense: true,
+          () => SizedBox(
+            height: 3.8.h,
+            width: 18.w,
+            child: DropdownButton<String>(
+              isDense: true,
 
-                  value: profileScreenController.namePrefixDDvalue.value,
-                  alignment: Alignment.center,
-                  // hint: Text(
-                  //   profileScreenController.namePrefixDDvalue.value,
-                  //   style: TextStyle(
-                  //     color: AppColors.greyColor,
-                  //     fontSize: 11.sp,
-                  //     fontWeight: FontWeight.w500,
-                  //   ),
-                  // ),
-                  items: profileScreenController.namePrefixItems
-                      .map((item) => DropdownMenuItem<String>(
-                            value: item,
-                            child: Text(
-                              item,
-                              style: const TextStyle(
-                                fontSize: 15,
-                              ),
-                            ),
-                          ))
-                      .toList(),
-                  onChanged: (val) {
-                    profileScreenController.namePrefixDDvalue.value = val!;
-                  },
-                ),
-              ),
+              value: profileScreenController.namePrefixDDvalue.value,
+              alignment: Alignment.center,
+              // hint: Text(
+              //   profileScreenController.namePrefixDDvalue.value,
+              //   style: TextStyle(
+              //     color: AppColors.greyColor,
+              //     fontSize: 11.sp,
+              //     fontWeight: FontWeight.w500,
+              //   ),
+              // ),
+              items: profileScreenController.namePrefixItems
+                  .map((item) => DropdownMenuItem<String>(
+                        value: item,
+                        child: Text(
+                          item,
+                          style: const TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                      ))
+                  .toList(),
+              onChanged: (val) {
+                if (!profileScreenController.isEditable.value) {
+                  profileScreenController.namePrefixDDvalue.value = val!;
+                }
+              },
             ),
           ),
         ),
@@ -571,7 +570,7 @@ class StateFieldRow extends StatelessWidget {
               style:
                   TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
               decoration: InputDecoration(
-                hintText: "state name",
+                hintText: "Enter state name",
                 hintStyle:
                     TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
               ),

@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/app_colors.dart';
+import 'package:olocker/controllers/my_jewellery_portfolio_controller.dart';
 import '../constants/api_url.dart';
 import '../constants/user_details.dart';
 import '../models/jewellery_models/add_jewellery_response_model.dart';
@@ -298,6 +299,11 @@ class AddUnInsuredJewelleryScreenController extends GetxController {
             context: Get.context!, displayText: 'Successfully Add Jewellery');
 
         Get.back();
+        final jewelleryPortFolioScreenController =
+            Get.find<MyJewelleryPortFolioScreenController>();
+
+        jewelleryPortFolioScreenController
+            .getJewelleryPortFolioDetailsFunction();
       } else {
         log("addOrnamentFunction Else Else");
       }

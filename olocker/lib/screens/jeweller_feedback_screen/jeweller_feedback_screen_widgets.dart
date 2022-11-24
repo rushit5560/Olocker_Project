@@ -93,7 +93,8 @@ class _RadioButtonListTileModuleState extends State<RadioButtonListModule> {
 class RadioButtonListModule extends StatelessWidget {
   final RatingQuestionList singleItem;
   final int index;
-  RadioButtonListModule({Key? key,
+  RadioButtonListModule({
+    Key? key,
     required this.singleItem,
     required this.index,
   }) : super(key: key);
@@ -103,6 +104,7 @@ class RadioButtonListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         color: AppColors.darkCreamBgColor,
         borderRadius: BorderRadius.circular(10),
@@ -113,12 +115,14 @@ class RadioButtonListModule extends StatelessWidget {
           Text(
             singleItem.question,
             style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 13.sp,
+              fontWeight: FontWeight.w500,
             ),
-          ).commonAllSidePadding(10),
+          ).commonSymmetricPadding(horizontal: 15, vertical: 12),
           const Divider(thickness: 2, color: AppColors.blueDarkColor),
           ListView.builder(
             itemCount: singleItem.answer.length,
+            padding: const EdgeInsets.only(bottom: 8),
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, i) {
@@ -128,11 +132,12 @@ class RadioButtonListModule extends StatelessWidget {
                   backgroundColor: AppColors.whiteColor,
                 ),
                 child: RadioListTile<String>(
+                  dense: true,
                   title: Text(
                     singleItem.answer[i].questionAnswer,
                     style: TextStyle(
                       color: AppColors.blueDarkColor,
-                      fontSize: 14.sp,
+                      fontSize: 13.sp,
                     ),
                   ),
                   value: singleItem.answer[i].questionAnswer,
@@ -173,10 +178,9 @@ class RadioButtonListModule extends StatelessWidget {
           ),
         ],
       ),
-    ).commonSymmetricPadding(vertical: 5);
+    );
   }
 }
-
 
 class CheckBoxListModule extends StatelessWidget {
   final RatingQuestionList singleItem;
@@ -193,6 +197,7 @@ class CheckBoxListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         color: AppColors.darkCreamBgColor,
         borderRadius: BorderRadius.circular(10),
@@ -203,13 +208,15 @@ class CheckBoxListModule extends StatelessWidget {
           Text(
             singleItem.question,
             style: TextStyle(
-              fontSize: 12.sp,
+              fontSize: 13.sp,
+              fontWeight: FontWeight.w500,
             ),
           ).commonAllSidePadding(10),
           const Divider(thickness: 2, color: AppColors.blueDarkColor),
           ListView.builder(
             itemCount: singleItem.answer.length,
             shrinkWrap: true,
+            padding: const EdgeInsets.only(bottom: 8),
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, i) {
               return Row(
@@ -220,21 +227,22 @@ class CheckBoxListModule extends StatelessWidget {
                     onChanged: (value) {
                       screenController.isLoading(true);
                       singleItem.answer[i].isSelected =
-                      !singleItem.answer[i].isSelected;
+                          !singleItem.answer[i].isSelected;
 
                       List<String> selectedValueList = [];
 
-                      for( int j = 0; j < singleItem.answer.length; j++) {
-                        if(singleItem.answer[j].isSelected == true) {
-                          selectedValueList.add(singleItem.answer[j].questionAnswer);
+                      for (int j = 0; j < singleItem.answer.length; j++) {
+                        if (singleItem.answer[j].isSelected == true) {
+                          selectedValueList
+                              .add(singleItem.answer[j].questionAnswer);
                         }
                       }
                       log('selectedValueList : ${selectedValueList.length}');
 
-                      screenController.finalFeedBackAnsList[index] = selectedValueList;
+                      screenController.finalFeedBackAnsList[index] =
+                          selectedValueList;
 
                       log('finalFeedBackAnsList : ${screenController.finalFeedBackAnsList[index]}');
-
 
                       screenController.isLoading(false);
                     },
@@ -245,7 +253,7 @@ class CheckBoxListModule extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 14.sp,
+                        fontSize: 13.sp,
                         color: AppColors.blueDarkColor,
                       ),
                     ),
@@ -267,15 +275,15 @@ class CheckBoxListModule extends StatelessWidget {
           ),
         ],
       ),
-
-    ).commonSymmetricPadding(vertical: 5);
+    );
   }
 }
 
 class TextFieldModule extends StatelessWidget {
   final RatingQuestionList singleItem;
   final int index;
-  TextFieldModule({Key? key,
+  TextFieldModule({
+    Key? key,
     required this.singleItem,
     required this.index,
   }) : super(key: key);
@@ -285,6 +293,7 @@ class TextFieldModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         color: AppColors.darkCreamBgColor,
         borderRadius: BorderRadius.circular(10),
@@ -295,7 +304,8 @@ class TextFieldModule extends StatelessWidget {
           Text(
             singleItem.question,
             style: TextStyle(
-              fontSize: 12.sp,
+              fontSize: 13.sp,
+              fontWeight: FontWeight.w500,
             ),
           ).commonAllSidePadding(10),
           const Divider(thickness: 2, color: AppColors.blueDarkColor),
@@ -330,10 +340,9 @@ class TextFieldModule extends StatelessWidget {
           ).commonOnlyPadding(bottom: 10, left: 10, right: 10),
         ],
       ),
-    ).commonSymmetricPadding(vertical: 5);
+    );
   }
 }
-
 
 class FeedbackSubmitButtonModule extends StatelessWidget {
   FeedbackSubmitButtonModule({Key? key}) : super(key: key);
@@ -345,26 +354,23 @@ class FeedbackSubmitButtonModule extends StatelessWidget {
       onTap: () async {
         screenController.allDataValid = true.obs;
 
-        for(int i=0; i < screenController.finalFeedBackAnsList.length; i++) {
-          if(screenController.finalFeedBackAnsList[i].toString() == "[]") {
+        for (int i = 0; i < screenController.finalFeedBackAnsList.length; i++) {
+          if (screenController.finalFeedBackAnsList[i].toString() == "[]") {
             screenController.allDataValid = false.obs;
           }
         }
 
-        if(screenController.allDataValid.value) {
+        if (screenController.allDataValid.value) {
           await screenController.setFeedbackFormFunction();
         } else {
           //todo - fail snackbar show here
         }
-
-
       },
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           color: AppColors.orangeColor,
         ),
-
         child: Text(
           'SUBMIT',
           textAlign: TextAlign.center,
@@ -377,7 +383,3 @@ class FeedbackSubmitButtonModule extends StatelessWidget {
     );
   }
 }
-
-
-
-

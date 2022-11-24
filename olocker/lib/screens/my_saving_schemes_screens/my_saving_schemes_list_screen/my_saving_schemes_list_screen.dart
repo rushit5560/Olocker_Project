@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:olocker/controllers/saving_schemes_screens_controllers/saving_schemes_list_screen_controller.dart';
 import 'package:sizer/sizer.dart';
-
+import '../../../constants/app_colors.dart';
 import '../../../controllers/my_saving_schemes_screens_controllers/my_saving_schemes_list_screen_controller.dart';
+import 'my_saving_schemes_list_screen_widgets.dart';
 
 class MySavingSchemesListScreen extends StatelessWidget {
   MySavingSchemesListScreen({Key? key}) : super(key: key);
@@ -22,11 +22,12 @@ class MySavingSchemesListScreen extends StatelessWidget {
           onPressed: () => Get.back(),
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
         ),
-        title: const Text(
-          'Saving Schemes',
+        title: Text(
+          'My Saving Schemes',
           style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w400,
+            color: AppColors.blackTextColor,
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
@@ -36,13 +37,12 @@ class MySavingSchemesListScreen extends StatelessWidget {
                 child: CircularProgressIndicator(),
               )
             : SingleChildScrollView(
-                physics: const ClampingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
-                    SizedBox(height: 2.h),
-                    // PageViewbuilders(),
-                    // const SizedBox(height: 10),
-                    // Listviewbuilder(),
+                    // SizedBox(height: 1.h),
+                    MySchemesListViewModule(),
+                    SizedBox(height: 1.h),
                   ],
                 ),
               ),

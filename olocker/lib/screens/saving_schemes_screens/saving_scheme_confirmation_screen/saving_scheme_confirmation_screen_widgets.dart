@@ -181,51 +181,55 @@ class AmountDetailsModule extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        children: [
-                          Text(
-                            "Our Contribution",
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              color: AppColors.blackColor,
-                              fontWeight: FontWeight.w500,
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(
+                              "Our Contribution",
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                color: AppColors.blackColor,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 11.sp,
-                          ),
-                          Text(
-                            "₹ 2500",
-                            style: TextStyle(
-                              fontSize: 22.sp,
-                              color: AppColors.accentColor,
-                              fontWeight: FontWeight.w500,
+                            SizedBox(
+                              height: 11.sp,
                             ),
-                          )
-                        ],
+                            Text(
+                              "₹ 2500",
+                              style: TextStyle(
+                                fontSize: 22.sp,
+                                color: AppColors.accentColor,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                      Column(
-                        children: [
-                          Text(
-                            "Maturity Amount",
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              color: AppColors.blackColor,
-                              fontWeight: FontWeight.w500,
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(
+                              "Maturity Amount",
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                color: AppColors.blackColor,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 11.sp,
-                          ),
-                          Text(
-                            "₹ 32500",
-                            style: TextStyle(
-                              fontSize: 22.sp,
-                              color: AppColors.accentColor,
-                              fontWeight: FontWeight.w500,
+                            SizedBox(
+                              height: 11.sp,
                             ),
-                          )
-                        ],
+                            Text(
+                              "₹ 32500",
+                              style: TextStyle(
+                                fontSize: 22.sp,
+                                color: AppColors.accentColor,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            )
+                          ],
+                        ),
                       )
                     ],
                   )

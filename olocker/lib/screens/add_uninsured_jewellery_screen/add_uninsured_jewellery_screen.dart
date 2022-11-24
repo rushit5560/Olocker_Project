@@ -55,6 +55,7 @@ class AddUnInsuredJewelleryScreen extends StatelessWidget {
                         StoneDetailsFormModule(),
                         DecorativeItemDetailsFormModule(),
                         UploadImageFileFormModule(),
+                        SubmitCancelFormModule(),
                         SizedBox(height: 1.h),
                       ],
                     ),

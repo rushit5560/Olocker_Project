@@ -218,7 +218,9 @@ class CustomDrawer extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         homeScreenController.scaffoldKey.currentState!.closeDrawer();
-        Get.to(() => MySchemesDetailsScreen());
+        Get.to(
+          () => MySavingSchemesListScreen(),
+        );
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -291,9 +293,10 @@ class CustomDrawer extends StatelessWidget {
           Container(
             width: homeScreenController.size.width * 0.040.w,
             height: homeScreenController.size.width * 0.040.w,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: AppColors.whiteColor,
+              border: Border.all(color: AppColors.greyColor),
             ),
             child: ClipRRect(
               borderRadius: const BorderRadius.all(

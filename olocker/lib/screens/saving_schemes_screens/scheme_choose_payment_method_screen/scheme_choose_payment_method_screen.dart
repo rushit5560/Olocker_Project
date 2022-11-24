@@ -18,18 +18,23 @@ class SchemeChoosePaymentMethodScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.lightBrownBgColor,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: AppColors.lightBrownBgColor,
-        leading: const Icon(
-          Icons.arrow_back_ios,
-          color: AppColors.blackColor,
+        centerTitle: true,
+        leading: IconButton(
+          onPressed: () => Get.back(),
+          icon:
+              const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor),
         ),
-        title: const Text(
-          "Make Payment",
+        titleSpacing: 0,
+        title: Text(
+          'Make Payments',
           style: TextStyle(
             color: AppColors.blackColor,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.normal,
           ),
-        ).commonOnlyPadding(left: 50),
+        ),
+        backgroundColor: AppColors.whiteColor,
+        elevation: 0,
       ),
       bottomNavigationBar: Container(
         height: 50,
@@ -50,9 +55,8 @@ class SchemeChoosePaymentMethodScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SencoPaymentImageModule(),
-            SizedBox(height: 2.h),
-            AmountDetailsModule(),
+            PaymentDetails(),
+            PaymentMethods(),
             SizedBox(height: 2.h),
           ],
         ).commonAllSidePadding(12),

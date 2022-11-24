@@ -157,7 +157,7 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
                     var dateFormat = DateFormat('dd/MM/yyyy');
 
                     var formattedDate = dateFormat.format(val);
-                    log("selected op date is : : ${formattedDate}");
+                    log("selected op date is : : $formattedDate");
 
                     selectedOrnamentPurchaseDate.value = formattedDate;
                   }),
@@ -278,8 +278,25 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
         ornamentGrossWeightController.text = getOrnamentDetailsModel.grosswt;
         ornamentPurchasedFromController.text =
             getOrnamentDetailsModel.purchasedFrom;
-        selectedOrnamentPurchaseDate.value =
-            getOrnamentDetailsModel.purchaseDate.toString().split(" ")[0];
+
+        log("getOrnamentDetailsModel.purchaseDate :: ${getOrnamentDetailsModel.purchaseDate}");
+
+        var dateFormat = DateFormat('dd-MM-yyyy');
+
+        var parsedDate = dateFormat
+            .parse(getOrnamentDetailsModel.purchaseDate.trim())
+            .toString();
+
+        // log("get parsedDate is : : $parsedDate");
+
+        var dateFormatSet = DateFormat('dd-MM-yyyy');
+        var formattedDate = dateFormatSet.format(DateTime.parse(parsedDate));
+
+        selectedOrnamentPurchaseDate.value = formattedDate.replaceAll("-", "/");
+        log("selectedOrnamentPurchaseDate.value is : : ${selectedOrnamentPurchaseDate.value}");
+
+        // selectedOrnamentPurchaseDate.value =
+        //     getOrnamentDetailsModel.purchaseDate.toString().split(" ")[0];
         ornamentPurchasedPriceController.text =
             getOrnamentDetailsModel.purchasePrice.toString().split(".")[0];
         apiJewelleryImageFile = File(ApiUrl.apiImageUrlPath +
@@ -377,7 +394,9 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
       if (isSuccessStatus) {
         log("CustOraSrNo is a :: ${addOrnamentResponseModel.data.custOraSrNo}");
         CommonWidgets().showBorderSnackBar(
-            context: Get.context!, displayText: 'Successfully Add Jewellery');
+          context: Get.context!,
+          displayText: 'Your Jewellery Updated Successfully.',
+        );
 
         Get.back();
       } else {

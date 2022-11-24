@@ -998,64 +998,143 @@ class UploadImageFileFormModule extends StatelessWidget {
             ],
           ),
           SizedBox(height: 3.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  primary: AppColors.blackTextColor.withOpacity(0.9),
-                  elevation: 0,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(28),
-                    ),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Center(
-                    child: Text(
-                      "CANCEL",
-                      style: TextStyle(
-                        color: AppColors.whiteColor,
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  unInsuredJewelController.isValidate.value = true;
-                  unInsuredJewelController.submitFullForm();
-                },
-                style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(28),
-                    ),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Center(
-                    child: Text(
-                      "SUBMIT",
-                      style: TextStyle(
-                        color: AppColors.whiteColor,
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //   children: [
+          //     ElevatedButton(
+          //       onPressed: () {},
+          //       style: ElevatedButton.styleFrom(
+          //         primary: AppColors.blackTextColor.withOpacity(0.9),
+          //         elevation: 0,
+          //         shape: const RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.all(
+          //             Radius.circular(28),
+          //           ),
+          //         ),
+          //       ),
+          //       child: Padding(
+          //         padding: const EdgeInsets.symmetric(horizontal: 12),
+          //         child: Center(
+          //           child: Text(
+          //             "CANCEL",
+          //             style: TextStyle(
+          //               color: AppColors.whiteColor,
+          //               fontSize: 13.sp,
+          //               fontWeight: FontWeight.w400,
+          //             ),
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //     ElevatedButton(
+          //       onPressed: () {
+          //         unInsuredJewelController.isValidate.value = true;
+          //         unInsuredJewelController.submitFullForm();
+          //       },
+          //       style: ElevatedButton.styleFrom(
+          //         elevation: 0,
+          //         shape: const RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.all(
+          //             Radius.circular(28),
+          //           ),
+          //         ),
+          //       ),
+          //       child: Padding(
+          //         padding: const EdgeInsets.symmetric(horizontal: 12),
+          //         child: Center(
+          //           child: Text(
+          //             "SUBMIT",
+          //             style: TextStyle(
+          //               color: AppColors.whiteColor,
+          //               fontSize: 13.sp,
+          //               fontWeight: FontWeight.w400,
+          //             ),
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
           // SizedBox(height: 1.h),
+        ],
+      ),
+    );
+  }
+}
+
+class SubmitCancelButtonsModule extends StatelessWidget {
+  SubmitCancelButtonsModule({Key? key}) : super(key: key);
+  final unInsuredJewelController =
+      Get.find<EditUnInsuredJewelleryScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      // padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      // decoration: const BoxDecoration(
+      //   color: AppColors.whiteColor,
+      //   borderRadius: BorderRadius.all(
+      //     Radius.circular(12),
+      //   ),
+      // ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Get.back();
+            },
+            style: ElevatedButton.styleFrom(
+              primary: AppColors.blackTextColor.withOpacity(0.9),
+              elevation: 0,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(28),
+                ),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Center(
+                child: Text(
+                  "CANCEL",
+                  style: TextStyle(
+                    color: AppColors.whiteColor,
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              unInsuredJewelController.isValidate.value = true;
+              unInsuredJewelController.submitFullForm();
+            },
+            style: ElevatedButton.styleFrom(
+              elevation: 0,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(28),
+                ),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Center(
+                child: Text(
+                  "SUBMIT",
+                  style: TextStyle(
+                    color: AppColors.whiteColor,
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

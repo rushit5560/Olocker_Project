@@ -17,7 +17,7 @@ class MySavingSchemesListScreenController extends GetxController {
   Future<void> getSavingSchemesListFunction() async {
     isLoading(true);
 
-    String url = '${ApiUrl.getParterSavinSchemeApi}?partnerSrNo=575';
+    String url = '${ApiUrl.getCustomerSavingSchemeApi}?customerSrNo=414099';
     log('getSavingSchemesListFunction api url  : $url');
 
     try {

@@ -91,6 +91,7 @@ class PersonalLoansScreen extends StatelessWidget {
                       lineLength:
                           personalLoansScreenController.size.width * 0.20,
                       lineColor: AppColors.accentColor,
+                      stepReachedAnimationEffect: Curves.bounceInOut,
                       lineDotRadius: 0.1,
                       numberStyle: const TextStyle(fontWeight: FontWeight.w500),
                       onStepReached: (i) {

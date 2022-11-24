@@ -11,6 +11,8 @@ class FieldValidator {
       return 'Mobile number is required';
     } else if (value.length < 10) {
       return 'Enter atleast 10 digit mobile number';
+    } else if (value == "0000000000") {
+      return 'Please enter valid mobile number';
     }
     return null;
   }
@@ -194,10 +196,10 @@ class FieldValidator {
     // regex = "[A-Z]{5}[0-9]{4}[A-Z]{1}";
 
     if (value.isEmpty) {
-      return 'Enter pancard number';
+      return 'Enter pan card number';
     } else if (!RegExp("[A-Z]{5}[0-9]{4}[A-Z]{1}").hasMatch(value)) {
       {
-        return 'Invalid pancard number';
+        return 'Invalid pan card number';
       }
     }
     return null;
@@ -212,7 +214,7 @@ class FieldValidator {
     // else if (!RegExp(r'^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$').hasMatch(value)) {
     //     return 'Invalid aadhaar number';
     // }
-    else if(value.length < 12) {
+    else if (value.length < 12) {
       return 'Invalid aadhaar number';
     }
     return null;
@@ -234,7 +236,7 @@ class FieldValidator {
 
   String? validateCurrentTotalEmi(String value) {
     if (value.isEmpty) {
-      return 'Enter current total emi';
+      return 'Enter current total emi amount you are paying';
     }
     return null;
   }
@@ -301,6 +303,4 @@ class FieldValidator {
     }
     return null;
   }
-
-
 }

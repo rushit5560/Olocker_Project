@@ -27,7 +27,6 @@ class FavouriteButtonModule extends StatelessWidget {
       child: GestureDetector(
         onTap: () async {
           await jewelleryDetailsController.addFavouriteProductFunction();
-         
         },
         child: Container(
           decoration: const BoxDecoration(

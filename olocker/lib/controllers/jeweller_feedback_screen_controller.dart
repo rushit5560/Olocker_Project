@@ -15,7 +15,8 @@ class JewellerFeedbackScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
-  final jewellerDetailsScreenController = Get.find<JewellerDetailsScreenController>();
+  final jewellerDetailsScreenController =
+      Get.find<JewellerDetailsScreenController>();
 
   ApiHeader apiHeader = ApiHeader();
 
@@ -39,32 +40,37 @@ class JewellerFeedbackScreenController extends GetxController {
       );
       log('response1111 : ${response.body}');
 
-      FeedbackFormModel feedbackFormModel = FeedbackFormModel.fromJson(json.decode(response.body));
+      FeedbackFormModel feedbackFormModel =
+          FeedbackFormModel.fromJson(json.decode(response.body));
       isSuccessStatus = feedbackFormModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         feedBackFormList.clear();
         feedBackFormList.addAll(feedbackFormModel.ratingQuestionList);
         // log('feedBackFormList : ${feedBackFormList.length}');
 
-        for(int i =0; i < feedBackFormList.length; i++) {
+        for (int i = 0; i < feedBackFormList.length; i++) {
           finalFeedBackAnsList.add([]);
 
-          if(feedbackFormModel.ratingQuestionList[i].questionType == "RadioButton") {
-            finalFeedBackAnsList[i] = [feedbackFormModel.ratingQuestionList[i].answer[0].questionAnswer];
+          if (feedbackFormModel.ratingQuestionList[i].questionType ==
+              "RadioButton") {
+            finalFeedBackAnsList[i] = [
+              feedbackFormModel.ratingQuestionList[i].answer[0].questionAnswer
+            ];
           }
           // This is only for update ui
-          radioButtonValueList.add(feedbackFormModel.ratingQuestionList[i].answer.isEmpty
-              ? "" : feedbackFormModel.ratingQuestionList[i].answer[0].questionAnswer);
+          radioButtonValueList.add(
+              feedbackFormModel.ratingQuestionList[i].answer.isEmpty
+                  ? ""
+                  : feedbackFormModel
+                      .ratingQuestionList[i].answer[0].questionAnswer);
         }
 
         log('finalFeedBackAnsList : $finalFeedBackAnsList');
-
       } else {
         log('getFeedbackFormFunction Else');
       }
-
-    } catch(e) {
+    } catch (e) {
       log('getFeedbackFormFunction Error :$e');
       rethrow;
     }
@@ -89,23 +95,21 @@ class JewellerFeedbackScreenController extends GetxController {
       };
 
       Map<String, dynamic> bodyData = {
-        "CustomerSrNo" : UserDetails.customerId,
-        "PartnerSrNo" : "$jewellerId",
+        "CustomerSrNo": UserDetails.customerId,
+        "PartnerSrNo": "$jewellerId",
         "Question": questionList
       };
       log('bodyData :$bodyData');
 
-      http.Response response = await http.post(
-        Uri.parse(url),
-        headers: apiHeader.headers,
-        body: jsonEncode(bodyData)
-      );
+      http.Response response = await http.post(Uri.parse(url),
+          headers: apiHeader.headers, body: jsonEncode(bodyData));
       log('response1212 : ${response.body}');
 
-      AddFeedbackFormModel addFeedbackFormModel = AddFeedbackFormModel.fromJson(json.decode(response.body));
+      AddFeedbackFormModel addFeedbackFormModel =
+          AddFeedbackFormModel.fromJson(json.decode(response.body));
       isSuccessStatus = addFeedbackFormModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         jewellerDetailsScreenController.isFeedbackValue = true.obs;
         Get.back();
         CommonWidgets().showBorderSnackBar(
@@ -119,20 +123,20 @@ class JewellerFeedbackScreenController extends GetxController {
           displayText: addFeedbackFormModel.errorInfo.description,
         );
       }
-
-    } catch(e) {
+    } catch (e) {
       log('setFeedbackFormFunction Error :$e');
       rethrow;
     } finally {
       isLoading(false);
     }
   }
+
   makeBodyDataList() {
     List<Map<String, dynamic>> questionList = [];
 
-    for(int i =0; i < feedBackFormList.length; i++) {
+    for (int i = 0; i < feedBackFormList.length; i++) {
       Map<String, dynamic> singleData = {
-        "QuestionId" : "${feedBackFormList[i].srNo}",
+        "QuestionId": "${feedBackFormList[i].srNo}",
         "Answers": finalFeedBackAnsList[i]
       };
 
@@ -143,13 +147,9 @@ class JewellerFeedbackScreenController extends GetxController {
     return questionList;
   }
 
-
-
-
   @override
   void onInit() {
     getFeedbackFormFunction();
     super.onInit();
   }
-
 }

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:olocker/constants/app_colors.dart';
@@ -150,6 +151,7 @@ class StepOneFormModule extends StatelessWidget {
                 border: InputBorder.none,
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
+                errorMaxLines: 2,
                 hintStyle:
                     TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
               ),
@@ -169,8 +171,11 @@ class StepOneFormModule extends StatelessWidget {
                 border: InputBorder.none,
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
-                hintStyle:
-                    TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+                errorMaxLines: 2,
+                hintStyle: TextStyle(
+                  color: AppColors.greyColor,
+                  fontSize: 11.sp,
+                ),
               ),
             ),
           ),
@@ -365,7 +370,9 @@ class StepOneFormModule extends StatelessWidget {
           controller: screenController.pinCodeController,
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.number,
-          maxLength: 6,
+          inputFormatters: [
+            LengthLimitingTextInputFormatter(6),
+          ],
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) => FieldValidator().validatePinCode(value!),
           decoration: InputDecoration(
@@ -403,7 +410,7 @@ class StepOneFormModule extends StatelessWidget {
           decoration: InputDecoration(
             isDense: true,
             isCollapsed: true,
-            hintText: "Pan number",
+            hintText: "Pan card number",
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
@@ -614,7 +621,7 @@ class StepOneFormModule extends StatelessWidget {
           decoration: InputDecoration(
             isDense: true,
             isCollapsed: true,
-            hintText: "Your current total EMI ( if you pay any )",
+            hintText: "Your current total EMI amount(if you pay any)",
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
@@ -777,48 +784,56 @@ class StepTwoFormModule extends StatelessWidget {
                 child: Stack(
                   alignment: Alignment.topRight,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text(
-                          'LOAN AMOUNT ₹ ${singleItem.emiEligibleAmount}',
-                          style: TextStyle(
-                            color: AppColors.accentColor,
-                            fontSize: 7.5.sp,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 13),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            'LOAN AMOUNT ₹ ${singleItem.emiEligibleAmount}',
+                            style: TextStyle(
+                              color: AppColors.accentColor,
+                              fontSize: 9.sp,
+                            ),
                           ),
-                        ),
-                        Text(
-                          'YOUR EMI',
-                          style: TextStyle(
-                            color: AppColors.greyColor,
-                            fontSize: 5.sp,
+                          Text(
+                            'YOUR EMI',
+                            style: TextStyle(
+                              color: AppColors.greyColor,
+                              fontSize: 7.sp,
+                            ),
+                          ).commonSymmetricPadding(vertical: 3),
+                          Text(
+                            '₹ ${singleItem.emiMonthlyLow} - ₹ ${singleItem.emiMonthlyHigh}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13.sp,
+                            ),
                           ),
-                        ).commonSymmetricPadding(vertical: 3),
-                        Text(
-                          '₹ ${singleItem.emiMonthlyLow} - ₹ ${singleItem.emiMonthlyHigh}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12.sp,
-                          ),
-                        ),
-                      ],
-                    ).commonAllSidePadding(16),
+                        ],
+                      ),
+                    ),
                     Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 6),
                       decoration: const BoxDecoration(
-                          color: Color(0xff052a47),
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(8),
-                            bottomLeft: Radius.circular(8),
-                          )),
+                        color: Color(0xff052a47),
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(8),
+                          bottomLeft: Radius.circular(8),
+                        ),
+                      ),
                       child: Column(
                         children: [
                           Text(
                             singleItem.tenorMonth,
                             style: TextStyle(
                               color: AppColors.whiteColor,
-                              fontSize: 8.sp,
+                              fontSize: 9.sp,
                             ),
                           ),
+                          SizedBox(height: 2),
                           Text(
                             'MONTHS',
                             style: TextStyle(
@@ -827,7 +842,7 @@ class StepTwoFormModule extends StatelessWidget {
                             ),
                           ),
                         ],
-                      ).commonAllSidePadding(8),
+                      ),
                     ),
                   ],
                 ),
@@ -921,7 +936,24 @@ class StepThreeFormModule extends StatelessWidget {
                       ),
                     )
                   : Container(),
-              const Text('Pan Card'),
+              RichText(
+                text: TextSpan(
+                  text: "Pan Card ",
+                  style: TextStyle(
+                    color: AppColors.blackColor,
+                    fontSize: 11.sp,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: "*",
+                      style: TextStyle(
+                        color: AppColors.redColor,
+                        fontSize: 12.sp,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -995,7 +1027,25 @@ class StepThreeFormModule extends StatelessWidget {
                       ),
                     )
                   : Container(),
-              const Text('Aadhaar Card'),
+              RichText(
+                text: TextSpan(
+                  text: "Aadhaar Card ",
+                  style: TextStyle(
+                    color: AppColors.blackColor,
+                    fontSize: 11.sp,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: "*",
+                      style: TextStyle(
+                        color: AppColors.redColor,
+                        fontSize: 12.sp,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // const Text('Aadhaar Card'),
             ],
           ),
         ),
@@ -1068,7 +1118,25 @@ class StepThreeFormModule extends StatelessWidget {
                       ),
                     )
                   : Container(),
-              const Text('Address Proof'),
+              RichText(
+                text: TextSpan(
+                  text: "Address Proof",
+                  style: TextStyle(
+                    color: AppColors.blackColor,
+                    fontSize: 11.sp,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: "*",
+                      style: TextStyle(
+                        color: AppColors.redColor,
+                        fontSize: 12.sp,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // const Text('Address Proof'),
             ],
           ),
         ),
@@ -1146,7 +1214,25 @@ class StepThreeFormModule extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Bank Statement'),
+                      RichText(
+                        text: TextSpan(
+                          text: "Bank Statement ",
+                          style: TextStyle(
+                            color: AppColors.blackColor,
+                            fontSize: 11.sp,
+                          ),
+                          children: [
+                            TextSpan(
+                              text: "*",
+                              style: TextStyle(
+                                color: AppColors.redColor,
+                                fontSize: 12.sp,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      // const Text('Bank Statement'),
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
                         child: Text(
@@ -1260,7 +1346,25 @@ class StepThreeFormModule extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Salary Slips'),
+                      RichText(
+                        text: TextSpan(
+                          text: "Salary Slips ",
+                          style: TextStyle(
+                            color: AppColors.blackColor,
+                            fontSize: 11.sp,
+                          ),
+                          children: [
+                            TextSpan(
+                              text: "*",
+                              style: TextStyle(
+                                color: AppColors.redColor,
+                                fontSize: 12.sp,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      // const Text('Salary Slips'),
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
                         child: Text(
@@ -1369,7 +1473,25 @@ class StepThreeFormModule extends StatelessWidget {
                       ),
                     )
                   : Container(),
-              const Text('Rent Agreement'),
+              RichText(
+                text: TextSpan(
+                  text: "Rent Agreement ",
+                  style: TextStyle(
+                    color: AppColors.blackColor,
+                    fontSize: 11.sp,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: "*",
+                      style: TextStyle(
+                        color: AppColors.redColor,
+                        fontSize: 12.sp,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // const Text('Rent Agreement'),
             ],
           ),
         ),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/controllers/my_saving_schemes_screens_controllers/my_scheme_pending_payment_screen_controller.dart';
-import 'package:olocker/screens/saving_schemes_screens/scheme_choose_payment_method_screen/scheme_choose_payment_method_screen_widgets.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constants/app_colors.dart';
+import 'my_scheme_pending_payment_screen_widgets.dart';
 
 class MySchemePendingPaymentScreen extends StatelessWidget {
   MySchemePendingPaymentScreen({Key? key}) : super(key: key);
@@ -24,38 +24,25 @@ class MySchemePendingPaymentScreen extends StatelessWidget {
           Icons.arrow_back_ios,
           color: AppColors.blackColor,
         ),
-        title: const Text(
-          "Make Payment",
+        title: Text(
+          "Make Payments",
           style: TextStyle(
-            color: AppColors.blackColor,
+            color: AppColors.blackTextColor,
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w500,
           ),
         ).commonOnlyPadding(left: 50),
       ),
-      bottomNavigationBar: Container(
-        height: 50,
-        width: double.infinity,
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10), color: Colors.redAccent),
-        child: Center(
-          child: Text(
-            "PAY NOW",
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16.sp,
-                color: AppColors.whiteColor),
-          ).commonSymmetricPadding(vertical: 15),
-        ),
-      ),
+      bottomNavigationBar: PayNowButton(),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SencoPaymentImageModule(),
+            PaymentDetails(),
             SizedBox(height: 2.h),
-            AmountDetailsModule(),
+            PaymentMethods(),
             SizedBox(height: 2.h),
           ],
-        ).commonAllSidePadding(12),
+        ),
       ),
     );
   }

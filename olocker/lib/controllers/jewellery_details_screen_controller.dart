@@ -138,6 +138,8 @@ class JewelleryDetailsScreenController extends GetxController {
         "PartnerId": "$partnerSrNo",
         "IsSupplierProduct": true
       };
+
+      log("rq map ${requestMap}");
       http.Response response = await http.post(
         Uri.parse(url),
         headers: apiHeader.headers,

@@ -70,7 +70,8 @@ class AppImages {
   static const String diamondsIocn = '$imageRootPath/diamonds_icon.png';
   static const String callImage = '$imageRootPath/diamonds_call.png';
   static const String pdfImage = '$imageRootPath/download_icon_payment.png';
-
+  static const String paymentSuccessimage =
+      '$imageRootPath/successful_icon.png';
 }
 
 class AppIcons {
@@ -98,6 +99,7 @@ class AppIcons {
 
   static const String rightSideImage = '$iconRootPath/right_side_errr.png';
 
+  static const String uploadImageIcon = "$iconRootPath/upload_image.png";
 }
 
 class AppSvgs {

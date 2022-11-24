@@ -37,6 +37,12 @@ class ApiUrl {
       "${apiMainPath}api/User/GetParterSavinScheme";
   static const String getSavingSchemeDetailsApi =
       "${apiMainPath}api/User/GetSavingSchemeDetails";
+  static const String addEnrollSavingSchemeApi =
+      "${apiMainPath}api/User/AddEnrollSavingSchemeDetails";
+
+  // my saving schemes
+  static const String getCustomerSavingSchemeApi =
+      "${apiMainPath}api/User/GetCustomerSavingScheme";
 
   // profile Screen Api
   static const String getUserProfileApi =

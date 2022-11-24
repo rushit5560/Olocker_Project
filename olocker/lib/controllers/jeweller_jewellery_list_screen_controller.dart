@@ -16,7 +16,8 @@ class JewellerJewelleryListScreenController extends GetxController {
   String jewelleryName = Get.arguments[0];
   String jewelleryCategoryId = Get.arguments[1];
   String jewellerId = Get.arguments[2];
-  JewelleryListType jewelleryListType = Get.arguments[3] ?? JewelleryListType.categoryId;
+  JewelleryListType jewelleryListType =
+      Get.arguments[3] ?? JewelleryListType.categoryId;
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -35,10 +36,12 @@ class JewellerJewelleryListScreenController extends GetxController {
     isLoading(true);
     String url = "";
 
-    if(jewelleryListType == JewelleryListType.categoryId) {
-      url = "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&CollectionID=$jewelleryCategoryId";
+    if (jewelleryListType == JewelleryListType.categoryId) {
+      url =
+          "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&CollectionID=$jewelleryCategoryId&CustomerId=${UserDetails.customerId}";
     } else {
-      url = "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$jewelleryCategoryId";
+      url =
+          "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$jewelleryCategoryId";
     }
     log('getAllJewelleryListFunction Api Url : $url');
 
@@ -47,7 +50,7 @@ class JewellerJewelleryListScreenController extends GetxController {
         Uri.parse(url),
         headers: apiHeader.headers,
       );
-      // log('response : ${response.body}');
+      log('getAllJewelleryListFunction response : ${response.body}');
 
       AllJewelleryModel allJewelleryModel =
           AllJewelleryModel.fromJson(json.decode(response.body));
@@ -116,12 +119,10 @@ class JewellerJewelleryListScreenController extends GetxController {
     // await getAnnouncementOfferFunction();
   }
 
-   shareJewellery() async {
+  shareJewellery() async {
     // var urlPreview = "";
     await Share.share("share this jewellery to a person https://example.com");
   }
-
-  
 
   @override
   void onInit() {
