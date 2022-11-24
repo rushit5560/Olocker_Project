@@ -15,35 +15,30 @@ class SchemePaymentFailureScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.darkCreamBgColor,
+      backgroundColor: Colors.orange.shade100,
       appBar: AppBar(
+        backgroundColor: Colors.orange.shade100,
         elevation: 0,
         centerTitle: true,
-        backgroundColor: AppColors.darkCreamBgColor,
         leading: IconButton(
-          onPressed: () => Get.back(),
-          icon:
-              const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor),
+          onPressed: () {},
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
         ),
-        title: Text(
+        title: const Text(
           'Make Payments',
           style: TextStyle(
-            color: AppColors.blackTextColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w500,
+            color: Colors.black,
+            fontWeight: FontWeight.w400,
           ),
         ),
       ),
-      body: Obx(
-        () => schemePaymentFailureScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
-            : SingleChildScrollView(
-                child: Column(
-                  children: [
-                    HeaderModule(),
-                  ],
-                ),
-              ),
+      bottomNavigationBar:const TryAnotherPaymentMethod(),
+      body: Column(
+        children:const [
+          SencoGoldContainer(),
+          PaymentDetailForMonthlyContainer(),
+          UnSuccessPaymentContainer(),
+        ],
       ),
     );
   }

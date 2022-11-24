@@ -98,11 +98,35 @@ class MonthlyAmountModule extends StatelessWidget {
           TextFormField(
             controller: screenController.monthlyAmountFieldController,
             keyboardType: TextInputType.number,
+            validator: (value) {
+              if(value!.isEmpty) {
+                return 'Please enter monthly amount';
+              }
+              return null;
+            },
             onChanged: (value) {
-              log(value);
+
               screenController.isLoading(true);
               if (value.isNotEmpty) {
                 screenController.isShow.value = true;
+
+                int fieldAmount = int.parse(screenController.monthlyAmountFieldController.text.trim());
+                double contributionPercent = screenController.savingSchemeData.contributionPercent;
+                int tenorAmount = screenController.savingSchemeData.tenor.floor();
+
+                // Getting Mature Amount
+                int matureAmount = fieldAmount * tenorAmount;
+                screenController.maturityAmount.value = matureAmount;
+                log('Mature Amount : ${screenController.maturityAmount.value}');
+                //
+
+                // Calculate Our Contribution
+                var contributionAmount = (fieldAmount / 100) * contributionPercent;
+                screenController.ourContributionAmount.value = contributionAmount.toString();
+                //
+
+
+
               } else {
                 screenController.isShow.value = false;
               }
@@ -231,8 +255,8 @@ class MaturityAmountModule extends StatelessWidget {
       ),
       child: Row(
         children: [
-          _singleModule(heading: 'Our Contribution', value: '2500'),
-          _singleModule(heading: 'Maturity Amount', value: '32500'),
+          _singleModule(heading: 'Our Contribution', value: '${screenController.ourContributionAmount.value}'),
+          _singleModule(heading: 'Maturity Amount', value: '${screenController.maturityAmount.value}'),
         ],
       ).commonSymmetricPadding(vertical: 20, horizontal: 8),
     ).commonSymmetricPadding(horizontal: 15, vertical: 15);
@@ -510,12 +534,15 @@ class SaveAndMakePaymentButtonModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        // if (screenController.customerFormKey.currentState!.validate()) {}
+      onPressed: () async {
+        if (screenController.customerFormKey.currentState!.validate()) {
+          await screenController.addEnrollSavingSchemeFunction();
+          // Get.to(
+          //       () => SavingSchemeConfirmationScreen(),
+          // );
+        }
 
-        Get.to(
-          () => SavingSchemeConfirmationScreen(),
-        );
+
       },
       style: ElevatedButton.styleFrom(
         primary: AppColors.accentColor,

@@ -4,17 +4,25 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
+import 'package:olocker/models/saving_scheme_enroll_screen_models/add_enroll_saving_scheme_model.dart';
 import 'package:olocker/models/user_profile_models/city_state_get_model.dart';
+import 'package:olocker/screens/saving_schemes_screens/saving_schemes_explainer_screen/saving_schemes_explainer_screen.dart';
+import 'package:olocker/widgets/common_widgets.dart';
 
 import '../../models/saving_scheme_screens_models/get_saving_schemes_list_model.dart';
 
 class SavingSchemeEnrollScreenController extends GetxController {
+  // Getting from Saving Scheme List Screen
   GetSavingSchemeData savingSchemeData = Get.arguments;
+
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController monthlyAmountFieldController = TextEditingController();
+  RxString ourContributionAmount = "".obs;
+  RxInt maturityAmount = 0.obs;
+
   ApiHeader apiHeader = ApiHeader();
 
   // Temp Variable
@@ -85,4 +93,81 @@ class SavingSchemeEnrollScreenController extends GetxController {
     }
     // }
   }
+
+  Future<void> addEnrollSavingSchemeFunction() async {
+    isLoading(true);
+    String url = ApiUrl.addEnrollSavingSchemeApi;
+    log('addEnrollSavingSchemeFunction Api Url :$url');
+
+    try {
+
+      Map<String, dynamic> bodyData = getBodyData();
+      log('bodyData : $bodyData');
+
+      http.Response response = await http.post(
+        Uri.parse(url),
+        headers: apiHeader.headers,
+        body: jsonEncode(bodyData),
+      );
+
+      log('Body1212 :${response.body}');
+
+      AddEnrollSavingSchemeModel addEnrollSavingSchemeModel = AddEnrollSavingSchemeModel.fromJson(json.decode(response.body));
+      isSuccessStatus.value = addEnrollSavingSchemeModel.success;
+      log('isSuccessStatus : ${isSuccessStatus.value}');
+
+
+      if(isSuccessStatus.value) {
+
+        // Get.to(
+        //   () => SavingSchemesExplainerScreen(),
+        //   arguments: [
+        //     savingSchemeData,
+        //     monthlyAmountFieldController.text.trim().toString(),
+        //     ourContributionAmount.value,
+        //     maturityAmount.value.toString(),
+        //   ],
+        // );
+
+      } else {
+        if(addEnrollSavingSchemeModel.errorInfo.description.contains("Customer not found matching with email address and mobile number")) {
+          CommonWidgets().showBorderSnackBar(context: Get.context!, displayText: addEnrollSavingSchemeModel.errorInfo.description);
+        }
+      }
+
+
+    } catch(e) {
+      log('addEnrollSavingSchemeFunction Error : $e');
+      rethrow;
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  Map<String, dynamic> getBodyData() {
+
+    Map<String, dynamic> bodyData = {
+      "MonthlyAmount": monthlyAmountFieldController.text.trim(),
+      "Tenure": savingSchemeData.tenor.floor().toString(),
+      "OurContribution": ourContributionAmount.value,
+      "MaturityAmount": maturityAmount.toString(),
+      "PartnerSavingSchemeSrNo": savingSchemeData.srNo.toString(),
+      "Customer": {
+        "Salutation": namePrefixDDValue.value,
+        "FirstName": fNameController.text.trim(),
+        "LastName": lNameController.text.trim(),
+        "PanNumber": panCardController.text.trim(),
+        "AdharNumber": aadhaarCardController.text.trim(),
+        "MobileNumber": mobileNumberController.text.trim(),
+        "EmailId": emailIdController.text.trim(),
+        "Address": addressController.text.trim(),
+        "Pincode": pincodeController.text.trim(),
+        "City": cityController.text.trim(),
+        "State": stateController.text.trim(),
+        "Country": "india"
+      }
+    };
+    return bodyData;
+  }
+
 }

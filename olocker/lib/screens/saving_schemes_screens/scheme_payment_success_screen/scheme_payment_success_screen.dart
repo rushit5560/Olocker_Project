@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/saving_schemes_screens_controllers/saving_scheme_enroll_screen_controller.dart';
+import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
@@ -16,35 +17,47 @@ class SchemePaymentSuccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.darkCreamBgColor,
+      backgroundColor: AppColors.lightBrownBgColor,
       appBar: AppBar(
         elevation: 0,
-        centerTitle: true,
-        backgroundColor: AppColors.darkCreamBgColor,
-        leading: IconButton(
-          onPressed: () => Get.back(),
-          icon:
-              const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor),
+        backgroundColor: AppColors.lightBrownBgColor,
+        leading: const Icon(
+          Icons.arrow_back_ios,
+          color: AppColors.blackColor,
         ),
-        title: Text(
-          'Make Payments',
+        title: const Text(
+          "Make Payment",
           style: TextStyle(
-            color: AppColors.blackTextColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w500,
+            color: AppColors.blackColor,
+          ),
+        ).commonOnlyPadding(left: 50),
+      ),
+      bottomNavigationBar: Container(
+        height: 50,
+        width: double.infinity,
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10), color: Colors.redAccent),
+        child: Center(
+          child: Text(
+            "GO BACK TO MY SAVING SCHEMES",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 12.sp,
+                color: AppColors.whiteColor),
           ),
         ),
       ),
-      body: Obx(
-        () => schemePaymentSuccessScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
-            : SingleChildScrollView(
-                child: Column(
-                  children: [
-                    HeaderModule(),
-                  ],
-                ),
-              ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SencoPaymentSuccessImageModule(),
+            SizedBox(height: 2.h),
+            const PaymentSuccessDetailsModule(),
+            SizedBox(height: 2.h),
+            const PaymentSuccessfulModule()
+          ],
+        ).commonAllSidePadding(12),
       ),
     );
   }

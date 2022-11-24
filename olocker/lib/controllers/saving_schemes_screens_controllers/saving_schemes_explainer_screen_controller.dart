@@ -17,8 +17,7 @@ class SavingSchemesExplainerScreenController extends GetxController {
   ApiHeader apiHeader = ApiHeader();
 
   List<GetSavingSchemeData> getSavingSchemesList = [];
-// //  SpecialOfferModel?specialOfferModel;
-// GetSavingSchemeList?getSavingSchemeList;
+
   Future<void> getSavingSchemeDetailsFunction() async {
     isLoading(true);
 
@@ -57,7 +56,6 @@ class SavingSchemesExplainerScreenController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     getSavingSchemeDetailsFunction();
     super.onInit();
   }
