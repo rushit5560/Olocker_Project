@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,8 @@ import 'package:olocker/controllers/my_jewellers_screen_controller.dart';
 import 'package:olocker/models/home_screen_models/banner_model.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
+
+import '../jeweller_details_screen/jeweller_details_screen.dart';
 
 class BackGroundModule extends StatelessWidget {
   const BackGroundModule({Key? key}) : super(key: key);
@@ -140,58 +143,132 @@ class AllJewellersListModule extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 1.4,
-        crossAxisSpacing: 2,
-        mainAxisSpacing: 2,
+        childAspectRatio: 1.28,
+        crossAxisSpacing: 4,
+        mainAxisSpacing: 4,
       ),
       itemBuilder: (context, i) {
         String imgUrl = ApiUrl.apiImagePath +
             screenController.allJewellersList[i].logoFileName;
-        return Container(
-          decoration: BoxDecoration(
-            borderRadius: i % 2 == 0
-                ? const BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                  )
-                : const BorderRadius.only(
-                    topRight: Radius.circular(10),
-                    bottomRight: Radius.circular(10),
+
+        var jewellerData = screenController.allJewellersList[i];
+        return GestureDetector(
+          onTap: () {
+            Get.to(() => JewellerDetailsScreen(), arguments: [
+              jewellerData.partnerSrNo,
+              jewellerData.companyName
+            ]);
+          },
+          child: Container(
+            // width: screenController.size.width * 0.11.w,
+            // height: screenController.size.height * 0.015.h,
+            decoration: BoxDecoration(
+              borderRadius: i % 2 == 0
+                  ? const BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                    )
+                  : const BorderRadius.only(
+                      topRight: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
+              color: AppColors.whiteColor,
+            ),
+            child: Column(
+              children: [
+                Container(
+                  width: screenController.size.width * 0.11.w,
+                  height: screenController.size.height * 0.015.h,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                    color: AppColors.greyColor.withOpacity(0.15),
                   ),
-            color: AppColors.whiteColor,
-          ),
-          child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                // flex: 80,
-                /*child: Image.network(
-                    imgUrl,
-                  fit: BoxFit.fitWidth,
-                ),*/
-                child: Image.network(
-                  imgUrl,
-                  fit: BoxFit.fill,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Container(
-                      color: AppColors.greyTextColor.withOpacity(0.5),
-                      child: const Center(
-                        child: Text("No Image"),
-                      ),
-                    );
-                  },
-                ).commonAllSidePadding(5),
-              ),
-              Text(
-                screenController.allJewellersList[i].companyName.toUpperCase(),
-                style: TextStyle(
-                  color: AppColors.blackColor,
-                  fontSize: 10.sp,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: CachedNetworkImage(
+                      imageUrl: imgUrl,
+                      fit: BoxFit.fill,
+                      errorWidget: (context, error, stackTrace) {
+                        return Container(
+                          color: AppColors.greyColor.withOpacity(0.15),
+                          child: const Center(
+                            child: Text("No Image"),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 ),
-              ),
-            ],
-          ).commonAllSidePadding(8),
+                SizedBox(height: 1.h),
+                Text(
+                  jewellerData.companyName.toUpperCase(),
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 9.sp,
+                    letterSpacing: 0.4,
+                    color: AppColors.blackColor,
+                    fontWeight: FontWeight.normal,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ).commonAllSidePadding(8),
+          ),
         );
+
+        // Container(
+        //   decoration: BoxDecoration(
+        //     borderRadius: i % 2 == 0
+        //         ? const BorderRadius.only(
+        //             topLeft: Radius.circular(10),
+        //             bottomLeft: Radius.circular(10),
+        //           )
+        //         : const BorderRadius.only(
+        //             topRight: Radius.circular(10),
+        //             bottomRight: Radius.circular(10),
+        //           ),
+        //     color: AppColors.whiteColor,
+        //   ),
+        //   child: Column(
+        //     // mainAxisAlignment: MainAxisAlignment.center,
+        //     children: [
+        //       Expanded(
+        //         flex: 8,
+        //         child: CachedNetworkImage(
+        //           imageUrl: imgUrl,
+        //           fit: BoxFit.cover,
+        //           errorWidget: (context, error, stackTrace) {
+        //             return Container(
+        //               color: AppColors.greyTextColor.withOpacity(0.5),
+        //               child: const Center(
+        //                 child: Text("No Image"),
+        //               ),
+        //             );
+        //           },
+        //         ).commonAllSidePadding(5),
+        //       ),
+        //       Expanded(
+        //         flex: 2,
+        //         child: Text(
+        //           screenController.allJewellersList[i].companyName
+        //               .toUpperCase(),
+        //           maxLines: 2,
+        //           textAlign: TextAlign.center,
+        //           style: TextStyle(
+        //             fontSize: 9.sp,
+        //             letterSpacing: 0.4,
+        //             color: AppColors.blackColor,
+        //             fontWeight: FontWeight.w500,
+        //             overflow: TextOverflow.ellipsis,
+        //           ),
+        //         ),
+        //       ),
+        //     ],
+        //   ).commonAllSidePadding(8),
+        // );
       },
     );
   }

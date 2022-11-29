@@ -4,6 +4,9 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:olocker/constants/api_url.dart';
+import 'package:olocker/constants/user_details.dart';
+
+import '../../models/my_saving_schemes_models/get_saving_schemes_list_model/get_saving_scheme_list_model.dart';
 
 class MySavingSchemesListScreenController extends GetxController {
   RxBool isLoading = false.obs;
@@ -11,14 +14,17 @@ class MySavingSchemesListScreenController extends GetxController {
 
   ApiHeader apiHeader = ApiHeader();
 
-//   List<GetSavingSchemeList> specialofferlist=[];
+  List<GetCustomerPurchaseSavingSchemeData> getCustomerSchemeslist = [];
 // //  SpecialOfferModel?specialOfferModel;
 // GetSavingSchemeList?getSavingSchemeList;
-  Future<void> getSavingSchemesListFunction() async {
+  Future<void> getCustomerSavingSchemesListFunction() async {
     isLoading(true);
 
-    String url = '${ApiUrl.getCustomerSavingSchemeApi}?customerSrNo=414099';
-    log('getSavingSchemesListFunction api url  : $url');
+    String url =
+        '${ApiUrl.getCustomerSavingSchemeApi}?customerSrNo=${UserDetails.customerId}';
+
+    // 414099';
+    log('getCustomerSavingSchemesListFunction api url  : $url');
 
     try {
       http.Response response = await http.get(
@@ -26,22 +32,23 @@ class MySavingSchemesListScreenController extends GetxController {
         headers: apiHeader.headers,
       );
 
-      log("getSavingSchemesListFunction res body :: ${response.body}");
-      // SpecialOfferModel specialOfferModel =
-      //     SpecialOfferModel.fromJson(json.decode(response.body));
-      // log('response body1212: ${response.body}');
-      // isSuccessStatus = specialOfferModel.success.obs;
+      log("getCustomerSavingSchemesListFunction res body :: ${response.body}");
+      GetCustomerSchemeslistModel getCustomerSchemeslistModel =
+          GetCustomerSchemeslistModel.fromJson(json.decode(response.body));
 
-      // if (isSuccessStatus.value) {
-      //   specialofferlist.clear();
-      //   specialofferlist.addAll(specialOfferModel.getSavingSchemeList);
-      //   log('specialofferlist : ${specialofferlist.length}');
-      // } else {
-      //   log('special_offer_model false');
-      // }
+      isSuccessStatus = getCustomerSchemeslistModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        getCustomerSchemeslist.clear();
+        getCustomerSchemeslist.addAll(
+            getCustomerSchemeslistModel.getCustomerPurchaseSavingSchemeList);
+        log('getCustomerSchemeslist lentgh is ::: ${getCustomerSchemeslist.length}');
+      } else {
+        log('getCustomerSavingSchemesListFunction false');
+      }
     } catch (e) {
-      log('getSpecialOfferFunction error:$e');
-      // rethrow;
+      log('getCustomerSavingSchemesListFunction error:$e');
+      rethrow;
     } finally {
       isLoading(false);
     }
@@ -50,7 +57,7 @@ class MySavingSchemesListScreenController extends GetxController {
   @override
   void onInit() {
     // TODO: implement onInit
-    getSavingSchemesListFunction();
+    getCustomerSavingSchemesListFunction();
     super.onInit();
   }
 }

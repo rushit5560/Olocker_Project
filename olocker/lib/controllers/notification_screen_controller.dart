@@ -61,8 +61,8 @@ class NotificationScreenController extends GetxController {
         return SimpleDialog(
           title: Container(
             padding: const EdgeInsets.symmetric(
-              vertical: 12,
-              horizontal: 30,
+              vertical: 8,
+              horizontal: 5,
             ),
             child: Text(
               messageText,
@@ -121,7 +121,7 @@ class NotificationScreenController extends GetxController {
       log('readMarkUserNotificationApiFunction Error :$e');
       rethrow;
     } finally {
-      isLoading(false);
+      // isLoading(false);
     }
   }
 

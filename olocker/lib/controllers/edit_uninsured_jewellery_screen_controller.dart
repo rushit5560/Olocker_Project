@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/app_colors.dart';
+import 'package:olocker/controllers/my_uninsured_jewellery_screen_controller.dart';
 import '../constants/api_url.dart';
 import '../constants/user_details.dart';
 import '../models/jewellery_models/add_jewellery_response_model.dart';
@@ -130,7 +131,7 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
     if (productFormKey.currentState!.validate()) {
       //api call
 
-      await editOrnamentFunction();
+      await updateOrnamentFunction();
     } else {
       log("full form not submitting");
     }
@@ -330,9 +331,9 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
               i < getOrnamentDetailsModel.decorativeitem.length;
               i++) {
             decoItemsDataMapList.add({
-              "name": getOrnamentDetailsModel.metaldetails[i].netmetalweight,
-              "wt": getOrnamentDetailsModel.metaldetails[i].netmetalweight,
-              "unitofwt": getOrnamentDetailsModel.metaldetails[i].netmetalweight
+              "name": getOrnamentDetailsModel.decorativeitem[i].name,
+              "wt": getOrnamentDetailsModel.decorativeitem[i].wt,
+              "unitofwt": getOrnamentDetailsModel.decorativeitem[i].unitofwt,
             });
           }
         }
@@ -353,9 +354,9 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
     }
   }
 
-  Future<void> editOrnamentFunction() async {
+  Future<void> updateOrnamentFunction() async {
     isLoading(true);
-    String url = ApiUrl.addOrnamentApi;
+    String url = ApiUrl.updateOrnamentApi;
     log('addOrnamentFunction Api url : $url');
 
     try {
@@ -374,6 +375,7 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
         'metaldetails': metalDataMapList,
         'stonedetails': stoneDataMapList,
         'decorativeitem': decoItemsDataMapList,
+        "OrnamentSrNo": ornamentSrNo,
       };
 
       log("request body passing is :: ${jsonEncode(requestMap)}");
@@ -395,10 +397,15 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
         log("CustOraSrNo is a :: ${addOrnamentResponseModel.data.custOraSrNo}");
         CommonWidgets().showBorderSnackBar(
           context: Get.context!,
-          displayText: 'Your Jewellery Updated Successfully.',
+          displayText: 'Jewellery Updated Successfully.',
         );
 
+        final myUnInsuredJewelleryScreenController =
+            Get.find<MyUnInsuredJewelleryScreenController>();
+
         Get.back();
+        myUnInsuredJewelleryScreenController
+            .getMyUnInsuredAllJewelleryFunction();
       } else {
         log("addOrnamentFunction Else Else");
       }

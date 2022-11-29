@@ -10,9 +10,7 @@ import 'package:olocker/screens/saving_schemes_screens/saving_schemes_explainer_
 import 'package:sizer/sizer.dart';
 import '../../../constants/api_url.dart';
 import '../../../controllers/saving_schemes_screens_controllers/saving_schemes_list_screen_controller.dart';
-import '../../../models/saving_scheme_screens_models/get_saving_schemes_list_model.dart';
-
-
+import '../../../models/saving_scheme_screens_models/get_saving_scheme_list_models/get_saving_schemes_list_model.dart';
 
 class BannerPageViewModule extends StatelessWidget {
   BannerPageViewModule({Key? key}) : super(key: key);

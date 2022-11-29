@@ -6,6 +6,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../constants/app_colors.dart';
 import '../../../controllers/saving_schemes_screens_controllers/scheme_choose_payment_method_screen_controller.dart';
+import '../../../widgets/saving_schemes_widgets.dart';
 
 class SchemeChoosePaymentMethodScreen extends StatelessWidget {
   SchemeChoosePaymentMethodScreen({Key? key}) : super(key: key);
@@ -18,6 +19,8 @@ class SchemeChoosePaymentMethodScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.lightBrownBgColor,
       appBar: AppBar(
+        backgroundColor: AppColors.lightBrownBgColor,
+        elevation: 0,
         centerTitle: true,
         leading: IconButton(
           onPressed: () => Get.back(),
@@ -33,33 +36,36 @@ class SchemeChoosePaymentMethodScreen extends StatelessWidget {
             fontWeight: FontWeight.normal,
           ),
         ),
-        backgroundColor: AppColors.whiteColor,
-        elevation: 0,
       ),
-      bottomNavigationBar: Container(
-        height: 50,
-        width: double.infinity,
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10), color: Colors.redAccent),
-        child: Center(
-          child: Text(
-            "PAY NOW",
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16.sp,
-                color: AppColors.whiteColor),
-          ).commonSymmetricPadding(vertical: 15),
-        ),
-      ),
+      bottomNavigationBar: PayNowCustomButton(),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            PaymentDetails(),
+            JewellerDetailImageInfoModule(
+              imagePath:
+                  schemeChoosePaymentMethodScreenController.schemeImagePath,
+              schemeName: schemeChoosePaymentMethodScreenController.schemeName,
+              schemeTagLine:
+                  schemeChoosePaymentMethodScreenController.schemeTagLine,
+            ),
+            SizedBox(height: 2.h),
+            PaymentDetailsWidget(
+              monthlyAmount: schemeChoosePaymentMethodScreenController
+                  .savingSchemeDetails.monthlyAmount,
+              maturityAmount: schemeChoosePaymentMethodScreenController
+                  .savingSchemeDetails.maturityAmount,
+              tenure: schemeChoosePaymentMethodScreenController
+                  .savingSchemeDetails.tenure,
+              startDateTime: schemeChoosePaymentMethodScreenController
+                  .partnerSavingSchemeDetails.startDate,
+              endDateTime: schemeChoosePaymentMethodScreenController
+                  .partnerSavingSchemeDetails.endDate,
+            ),
+            SizedBox(height: 2.h),
             PaymentMethods(),
             SizedBox(height: 2.h),
           ],
-        ).commonAllSidePadding(12),
+        ).commonAllSidePadding(15),
       ),
     );
   }

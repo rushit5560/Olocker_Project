@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-AddEnrollSavingSchemeModel addEnrollSavingSchemeModelFromJson(String str) => AddEnrollSavingSchemeModel.fromJson(json.decode(str));
+AddEnrollSavingSchemeModel addEnrollSavingSchemeModelFromJson(String str) =>
+    AddEnrollSavingSchemeModel.fromJson(json.decode(str));
 
 // String addEnrollSavingSchemeModelToJson(AddEnrollSavingSchemeModel data) => json.encode(data.toJson());
 
@@ -19,42 +20,44 @@ class AddEnrollSavingSchemeModel {
   bool success;
   ErrorInfo errorInfo;
 
-  factory AddEnrollSavingSchemeModel.fromJson(Map<String, dynamic> json) => AddEnrollSavingSchemeModel(
-    savingSchemeDetails: SavingSchemeDetails.fromJson(json["SavingSchemeDetails"] ?? {}),
-    partnerSavingSchemeDetails: PartnerSavingSchemeDetails.fromJson(json["PartnerSavingSchemeDetails"] ?? {}),
-    // paymentDetails: PaymentDetails.fromJson(json["PaymentDetails"] ?? {}),
-    success: json["success"] ?? false,
-    errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
-  );
-
+  factory AddEnrollSavingSchemeModel.fromJson(Map<String, dynamic> json) =>
+      AddEnrollSavingSchemeModel(
+        savingSchemeDetails:
+            SavingSchemeDetails.fromJson(json["SavingSchemeDetails"] ?? {}),
+        partnerSavingSchemeDetails: PartnerSavingSchemeDetails.fromJson(
+            json["PartnerSavingSchemeDetails"] ?? {}),
+        // paymentDetails: PaymentDetails.fromJson(json["PaymentDetails"] ?? {}),
+        success: json["success"] ?? false,
+        errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
+      );
 }
 
 class ErrorInfo {
   ErrorInfo({
-    // this.errorType,
-    // this.extraInfo,
+    required this.errorType,
+    required this.extraInfo,
     required this.description,
-    // this.errorData,
+    this.errorData,
   });
 
-  // int errorType;
-  // String extraInfo;
-  String description;
-  // dynamic errorData;
+  final int errorType;
+  final String extraInfo;
+  final String description;
+  final dynamic errorData;
 
   factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
-    // errorType: json["error_type"],
-    // extraInfo: json["extra_info"],
-    description: json["description"] ?? "",
-    // errorData: json["error_data"],
-  );
+        errorType: json["error_type"] ?? 0,
+        extraInfo: json["extra_info"] ?? "",
+        description: json["description"] ?? "",
+        errorData: json["error_data"] ?? "",
+      );
 
-  // Map<String, dynamic> toJson() => {
-  //   "error_type": errorType,
-  //   "extra_info": extraInfo,
-  //   "description": description,
-  //   "error_data": errorData,
-  // };
+  Map<String, dynamic> toJson() => {
+        "error_type": errorType,
+        "extra_info": extraInfo,
+        "description": description,
+        "error_data": errorData,
+      };
 }
 
 class SavingSchemeDetails {
@@ -64,7 +67,7 @@ class SavingSchemeDetails {
     required this.ourContribution,
     required this.maturityAmount,
     required this.partnerSavingSchemeSrNo,
-    // this.paymentId,
+    required this.paymentId,
     required this.customer,
   });
 
@@ -73,18 +76,19 @@ class SavingSchemeDetails {
   double ourContribution;
   int maturityAmount;
   int partnerSavingSchemeSrNo;
-  // dynamic paymentId;
+  String paymentId;
   Customer customer;
 
-  factory SavingSchemeDetails.fromJson(Map<String, dynamic> json) => SavingSchemeDetails(
-    monthlyAmount: json["MonthlyAmount"] ?? 0,
-    tenure: json["Tenure"] ?? 0,
-    ourContribution: json["OurContribution"] ?? 0.0,
-    maturityAmount: json["MaturityAmount"] ?? 0,
-    partnerSavingSchemeSrNo: json["PartnerSavingSchemeSrNo"] ?? 0,
-    // paymentId: json["PaymentId"],
-    customer: Customer.fromJson(json["Customer"] ?? {}),
-  );
+  factory SavingSchemeDetails.fromJson(Map<String, dynamic> json) =>
+      SavingSchemeDetails(
+        monthlyAmount: json["MonthlyAmount"] ?? 0,
+        tenure: json["Tenure"] ?? 0,
+        ourContribution: json["OurContribution"] ?? 0.0,
+        maturityAmount: json["MaturityAmount"] ?? 0,
+        partnerSavingSchemeSrNo: json["PartnerSavingSchemeSrNo"] ?? 0,
+        paymentId: json["PaymentId"] ?? "",
+        customer: Customer.fromJson(json["Customer"] ?? {}),
+      );
 
   /*Map<String, dynamic> toJson() => {
     "MonthlyAmount": monthlyAmount,
@@ -129,20 +133,20 @@ class Customer {
   String country;
 
   factory Customer.fromJson(Map<String, dynamic> json) => Customer(
-    // customerSrNo: json["CustomerSrNo"],
-    salutation: json["Salutation"] ?? "",
-    firstName: json["FirstName"] ?? "",
-    lastName: json["LastName"] ?? "",
-    panNumber: json["PanNumber"] ?? "",
-    adharNumber: json["AdharNumber"] ?? "",
-    mobileNumber: json["MobileNumber"] ?? "",
-    emailId: json["EmailId"] ?? "",
-    address: json["Address"] ?? "",
-    pincode: json["Pincode"] ?? "",
-    city: json["City"] ?? "",
-    state: json["State"] ?? "",
-    country: json["Country"] ?? "",
-  );
+        // customerSrNo: json["CustomerSrNo"],
+        salutation: json["Salutation"] ?? "",
+        firstName: json["FirstName"] ?? "",
+        lastName: json["LastName"] ?? "",
+        panNumber: json["PanNumber"] ?? "",
+        adharNumber: json["AdharNumber"] ?? "",
+        mobileNumber: json["MobileNumber"] ?? "",
+        emailId: json["EmailId"] ?? "",
+        address: json["Address"] ?? "",
+        pincode: json["Pincode"] ?? "",
+        city: json["City"] ?? "",
+        state: json["State"] ?? "",
+        country: json["Country"] ?? "",
+      );
 
   /*Map<String, dynamic> toJson() => {
     "CustomerSrNo": customerSrNo,
@@ -200,25 +204,27 @@ class PartnerSavingSchemeDetails {
   // List<dynamic> pendingBillSrNo;
   DateTime startDateNew;
 
-  factory PartnerSavingSchemeDetails.fromJson(Map<String, dynamic> json) => PartnerSavingSchemeDetails(
-    customerSrNo: json["CustomerSrNo"] ?? 0,
-    // partnerSavingSchemeDetailsStartDate: json["startDate"],
-    installmentAmount: json["InstallmentAmount"] ?? "",
-    startDate: DateTime.parse(json["StartDate"] ?? DateTime.now()),
-    maturityDate: DateTime.parse(json["MaturityDate"] ?? DateTime.now()),
-    endDate: DateTime.parse(json["EndDate"] ?? DateTime.now()),
-    smsReminderDate: DateTime.parse(json["SmsReminderDate"] ?? DateTime.now()),
-    finalAmountPayable: json["FinalAmountPayable"] ?? 0.0,
-    ourContribution: json["OurContribution"] ?? 0.0,
-    partnerSavingSchemeSrNo: json["PartnerSavingSchemeSrNo"] ?? 0,
-    folioNo: json["FolioNo"] ?? "",
-    amount: json["Amount"] ?? 0,
-    isPending: json["IsPending"] ?? false,
-    tenure: json["Tenure"] ?? 0,
-    maturityAmount: json["MaturityAmount"] ?? 0,
-    // pendingBillSrNo: List<dynamic>.from(json["PendingBillSrNo"].map((x) => x)),
-    startDateNew: DateTime.parse(json["StartDateNew"] ?? DateTime.now()),
-  );
+  factory PartnerSavingSchemeDetails.fromJson(Map<String, dynamic> json) =>
+      PartnerSavingSchemeDetails(
+        customerSrNo: json["CustomerSrNo"] ?? 0,
+        // partnerSavingSchemeDetailsStartDate: json["startDate"],
+        installmentAmount: json["InstallmentAmount"] ?? "",
+        startDate: DateTime.parse(json["StartDate"] ?? DateTime.now()),
+        maturityDate: DateTime.parse(json["MaturityDate"] ?? DateTime.now()),
+        endDate: DateTime.parse(json["EndDate"] ?? DateTime.now()),
+        smsReminderDate:
+            DateTime.parse(json["SmsReminderDate"] ?? DateTime.now()),
+        finalAmountPayable: json["FinalAmountPayable"] ?? 0.0,
+        ourContribution: json["OurContribution"] ?? 0.0,
+        partnerSavingSchemeSrNo: json["PartnerSavingSchemeSrNo"] ?? 0,
+        folioNo: json["FolioNo"] ?? "",
+        amount: json["Amount"] ?? 0,
+        isPending: json["IsPending"] ?? false,
+        tenure: json["Tenure"] ?? 0,
+        maturityAmount: json["MaturityAmount"] ?? 0,
+        // pendingBillSrNo: List<dynamic>.from(json["PendingBillSrNo"].map((x) => x)),
+        startDateNew: DateTime.parse(json["StartDateNew"] ?? DateTime.now()),
+      );
 
   /*Map<String, dynamic> toJson() => {
     "CustomerSrNo": customerSrNo,

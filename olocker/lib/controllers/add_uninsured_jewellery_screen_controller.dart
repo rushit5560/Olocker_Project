@@ -112,7 +112,7 @@ class AddUnInsuredJewelleryScreenController extends GetxController {
       //store to local list call
       isLoading(true);
       decoItemsDataMapList.add({
-        "name": selectedDecoItemName!.id.toString(),
+        "name": selectedDecoItemName!.value.toString(),
         "wt": decoItemWeightController.text.toString(),
         "unitofwt": selectedDecoItemUnitOfWeight.value.toString()
       });

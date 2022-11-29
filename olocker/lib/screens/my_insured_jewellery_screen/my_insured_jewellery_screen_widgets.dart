@@ -17,19 +17,19 @@ class InsuredJewelleryListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: insuredJewelleryController.getInsuredOrnamentList.length,
-            itemBuilder: (context, index) {
-              return JewelleryListItem(
-                index: index,
-              );
-            },
-            separatorBuilder: (context, index) {
-              return const SizedBox(height: 8);
-            },
-          );
+    return ListView.separated(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: insuredJewelleryController.getInsuredOrnamentList.length,
+      itemBuilder: (context, index) {
+        return JewelleryListItem(
+          index: index,
+        );
+      },
+      separatorBuilder: (context, index) {
+        return const SizedBox(height: 8);
+      },
+    );
   }
 }
 

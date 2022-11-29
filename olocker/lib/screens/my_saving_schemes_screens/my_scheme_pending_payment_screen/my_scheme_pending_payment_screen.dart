@@ -15,33 +15,50 @@ class MySchemePendingPaymentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.lightBrownBgColor,
-      appBar: AppBar(
-        elevation: 0,
+    return WillPopScope(
+      onWillPop: () async {
+        mySchemePendingPaymentScreenController.pendingBillsSelectedList.clear();
+        return true;
+      },
+      child: Scaffold(
         backgroundColor: AppColors.lightBrownBgColor,
-        leading: const Icon(
-          Icons.arrow_back_ios,
-          color: AppColors.blackColor,
-        ),
-        title: Text(
-          "Make Payments",
-          style: TextStyle(
-            color: AppColors.blackTextColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w500,
+        appBar: AppBar(
+          backgroundColor: Colors.orange.shade100,
+          elevation: 0,
+          centerTitle: true,
+          leading: IconButton(
+            onPressed: () {
+              mySchemePendingPaymentScreenController.pendingBillsSelectedList
+                  .clear();
+              Get.back();
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+            ),
           ),
-        ).commonOnlyPadding(left: 50),
-      ),
-      bottomNavigationBar: PayNowButton(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            PaymentDetails(),
-            SizedBox(height: 2.h),
-            PaymentMethods(),
-            SizedBox(height: 2.h),
-          ],
+          title: Text(
+            'Make Payments',
+            style: TextStyle(
+              color: AppColors.blackTextColor,
+              fontSize: 13.sp,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+        bottomNavigationBar: PayNowButton(),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            child: Column(
+              children: [
+                PaymentDetails(),
+                SizedBox(height: 2.h),
+                PaymentMethods(),
+                SizedBox(height: 2.h),
+              ],
+            ),
+          ),
         ),
       ),
     );

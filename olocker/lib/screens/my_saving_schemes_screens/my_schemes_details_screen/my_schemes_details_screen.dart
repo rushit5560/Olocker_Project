@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/controllers/my_saving_schemes_screens_controllers/my_schemes_details_screen_controller.dart';
 import 'package:olocker/screens/my_saving_schemes_screens/my_schemes_details_screen/my_schemes_details_screen_widgets.dart';
-import 'package:olocker/utils/extensions.dart';
+import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constants/app_colors.dart';
+import '../../../widgets/saving_schemes_widgets.dart';
 
 class MySchemesDetailsScreen extends StatelessWidget {
   MySchemesDetailsScreen({Key? key}) : super(key: key);
@@ -40,12 +41,42 @@ class MySchemesDetailsScreen extends StatelessWidget {
         ),
       ),
       backgroundColor: Colors.orange.shade100,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            MySchemesDetailsModule(),
-          ],
-        ).commonAllSidePadding(12),
+      body: Obx(
+        () => mySchemePendingPaymentScreenController.isLoading.value
+            ? CommonLoader().showCircularLoader()
+            : SingleChildScrollView(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  child: Column(
+                    children: [
+                      mySchemePendingPaymentScreenController
+                                  .schemeData.status ==
+                              "UNMATURED"
+                          ? UnmaturedSchemeDetailsModule(
+                              schemeData: mySchemePendingPaymentScreenController
+                                  .schemeData,
+                            )
+                          : MaturedSchemeDetailsModule(
+                              schemeData: mySchemePendingPaymentScreenController
+                                  .schemeData,
+                            ),
+                      PaymentRefundRowModule(),
+                      SizedBox(height: 2.h),
+                      // JewellerDetailImageInfoModule(
+                      //   imagePath: "",
+                      //   // schemePaymentSuccessScreenController.schemeImagePath,
+                      //   schemeName: "Senco Gold & Diamonds",
+                      //   // schemePaymentSuccessScreenController.schemeName,
+                      //   schemeTagLine: "2342/8, jeifj road",
+                      //   // schemePaymentSuccessScreenController.schemeTagLine,
+                      // ),
+                      JewellerCallDetailsModule(),
+                      MySchemesTransactionsListViewModule(),
+                    ],
+                  ),
+                ),
+              ),
       ),
     );
   }

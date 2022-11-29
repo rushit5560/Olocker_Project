@@ -1,62 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
+import 'package:olocker/screens/saving_schemes_screens/scheme_choose_payment_method_screen/scheme_choose_payment_method_screen.dart';
 import 'package:olocker/utils/extensions.dart';
+import 'package:olocker/widgets/common_widgets.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../constants/api_url.dart';
 import '../../../controllers/saving_schemes_screens_controllers/saving_scheme_confirmation_screen_controller.dart';
 
-class JewellerDetailsHeaderModule extends StatelessWidget {
-  JewellerDetailsHeaderModule({Key? key}) : super(key: key);
 
-  final savingSelectionScreenController =
-      Get.find<SavingSchemeConfirmationScreenController>();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10), color: Colors.white),
-      child: Row(
-        children: [
-          Image.asset(
-            AppImages.diamondsIocn,
-            fit: BoxFit.cover,
-            width: 18.w,
-          ),
-          SizedBox(width: 2.h),
-          Expanded(
-            flex: 7,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Senco Gold",
-                  style: TextStyle(
-                    fontSize: 13.sp,
-                    color: AppColors.accentColor,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  "Senco Gold dfd gsd ghd h",
-                  style: TextStyle(
-                    fontSize: 11.sp,
-                    color: AppColors.greyColor,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
-      ).commonAllSidePadding(20),
-    );
-  }
-}
 
 class AmountDetailsModule extends StatelessWidget {
   AmountDetailsModule({Key? key}) : super(key: key);
@@ -71,7 +26,7 @@ class AmountDetailsModule extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -79,17 +34,21 @@ class AmountDetailsModule extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Text(
-                    'Thank You jbb ujb uihuh uhuih uihuih fgeg ewgergb weg ',
-                    style: TextStyle(
-                      fontSize: 13.sp,
-                      color: AppColors.greyColor,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      'Thank You for choosing our scheme.\n Your details are as follows',
+                      maxLines: 3,
+                      style: TextStyle(
+                        fontSize: 12.sp,
+                        color: AppColors.greyColor,
+                      ),
                     ),
                   ),
                   SizedBox(height: 3.h),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Expanded(
                         child: Column(
@@ -104,14 +63,14 @@ class AmountDetailsModule extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            SizedBox(height: 1.5.h),
+                            SizedBox(height: 1.h),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 SizedBox(height: 2.h),
                                 Text(
-                                  "₹ 2200",
+                                  "₹ ${savingSelectionScreenController.savingSchemeDetails.monthlyAmount}",
                                   style: TextStyle(
                                     fontSize: 20.sp,
                                     color: AppColors.accentColor,
@@ -136,13 +95,13 @@ class AmountDetailsModule extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            SizedBox(height: 2.5.h),
+                            SizedBox(height: 1.h),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  "12",
+                                  "${savingSelectionScreenController.savingSchemeDetails.tenure}",
                                   style: TextStyle(
                                     fontSize: 20.sp,
                                     color: AppColors.accentColor,
@@ -171,7 +130,7 @@ class AmountDetailsModule extends StatelessWidget {
             SizedBox(height: 2.h),
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: AppColors.whiteColor,
@@ -187,18 +146,16 @@ class AmountDetailsModule extends StatelessWidget {
                             Text(
                               "Our Contribution",
                               style: TextStyle(
-                                fontSize: 14.sp,
+                                fontSize: 13.sp,
                                 color: AppColors.blackColor,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            SizedBox(
-                              height: 11.sp,
-                            ),
+                            const SizedBox(height: 12),
                             Text(
-                              "₹ 2500",
+                              "₹ ${savingSelectionScreenController.savingSchemeDetails.ourContribution}",
                               style: TextStyle(
-                                fontSize: 22.sp,
+                                fontSize: 20.sp,
                                 color: AppColors.accentColor,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -206,24 +163,23 @@ class AmountDetailsModule extends StatelessWidget {
                           ],
                         ),
                       ),
+                      SizedBox(width: 2.w),
                       Expanded(
                         child: Column(
                           children: [
                             Text(
                               "Maturity Amount",
                               style: TextStyle(
-                                fontSize: 14.sp,
+                                fontSize: 13.sp,
                                 color: AppColors.blackColor,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            SizedBox(
-                              height: 11.sp,
-                            ),
+                            const SizedBox(height: 12),
                             Text(
-                              "₹ 32500",
+                              "₹ ${savingSelectionScreenController.savingSchemeDetails.maturityAmount}",
                               style: TextStyle(
-                                fontSize: 22.sp,
+                                fontSize: 20.sp,
                                 color: AppColors.accentColor,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -252,59 +208,122 @@ class ProceedToPayButtonModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: savingSelectionScreenController.size.height * 0.22,
+      height: savingSelectionScreenController.size.height * 0.18,
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
       child: Column(
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: 25,
-                width: 25,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: AppColors.blackColor, width: 2)),
-                child: Checkbox(
-                  activeColor: AppColors.lightBrownBgColor,
-                  checkColor: AppColors.blackColor,
-                  value: true,
-                  onChanged: (value) {
-                    // _isChecked = value!;
-                  },
-                ),
-              ),
-              SizedBox(width: 2.w),
-              Expanded(
-                flex: 9,
-                child: Text(
-                  """I have read the terms & conditions""",
-                  overflow: TextOverflow.clip,
-                  maxLines: 3,
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w400,
+          Obx(
+            () => Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 28,
+                  width: 28,
+
+                  // decoration: BoxDecoration(
+                  //   borderRadius: BorderRadius.circular(5),
+                  //   // border: Border.all(
+                  //   //   color: AppColors.blueDarkColor,
+                  //   //   width: 1,
+                  //   // ),
+                  // ),
+                  child: Checkbox(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    fillColor: MaterialStateProperty.resolveWith(
+                        (states) => AppColors.accentBGColor),
+                    activeColor: AppColors.lightBrownBgColor,
+                    checkColor: AppColors.whiteColor,
+                    value: savingSelectionScreenController
+                        .termConditionCheckValue.value,
+                    onChanged: (value) {
+                      savingSelectionScreenController
+                              .termConditionCheckValue.value =
+                          !savingSelectionScreenController
+                              .termConditionCheckValue.value;
+                      // _isChecked = value!;
+                    },
                   ),
                 ),
-              )
-            ],
-          ),
-          SizedBox(height: 3.h),
-          Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.redAccent),
-            child: Center(
-              child: Text(
-                "PROCEED TO PAY",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.sp,
-                    color: AppColors.whiteColor),
-              ).commonSymmetricPadding(vertical: 15),
+                SizedBox(width: 1.5.w),
+                Expanded(
+                  flex: 9,
+                  child: Text(
+                    """I have read the terms & conditions and I agree that I am making payment to (jeweller) & olocker is not responsible fpr delivery & other issues.""",
+                    overflow: TextOverflow.clip,
+                    maxLines: 3,
+                    style: TextStyle(
+                      fontSize: 10.sp,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.blueDarkColor,
+                    ),
+                  ),
+                )
+              ],
             ),
-          )
+          ),
+          SizedBox(height: 2.h),
+          SizedBox(
+            height: 48,
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () {
+                if (savingSelectionScreenController
+                    .termConditionCheckValue.value) {
+                  Get.to(
+                    () => SchemeChoosePaymentMethodScreen(),
+                    arguments: [
+                      savingSelectionScreenController.schemeImagePath,
+                      savingSelectionScreenController.schemeName,
+                      savingSelectionScreenController.schemeTagLine,
+                      savingSelectionScreenController.savingSchemeDetails,
+                      savingSelectionScreenController
+                          .partnerSavingSchemeDetails,
+                    ],
+                  );
+                } else {
+                  CommonWidgets().showBorderSnackBar(
+                    context: context,
+                    displayText:
+                        "Please accept our terms and conditions to move forward.",
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  "PROCEED TO PAY",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12.sp,
+                    color: AppColors.whiteColor,
+                    fontStyle: FontStyle.italic,
+                    letterSpacing: 0.6,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          // Container(
+          //   width: double.infinity,
+          //   decoration: BoxDecoration(
+          //       borderRadius: BorderRadius.circular(10),
+          //       color: Colors.redAccent),
+          //   child: Center(
+          //     child: Text(
+          //       "PROCEED TO PAY",
+          //       style: TextStyle(
+          //           fontWeight: FontWeight.bold,
+          //           fontSize: 16.sp,
+          //           color: AppColors.whiteColor),
+          //     ).commonSymmetricPadding(vertical: 15),
+          //   ),
+          // )
         ],
       ),
     );

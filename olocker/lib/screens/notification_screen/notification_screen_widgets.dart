@@ -17,22 +17,28 @@ class NotificationsListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      shrinkWrap: true,
-      itemCount: notificationScreenController.getNotificationList.length,
-      itemBuilder: (context, index) {
-        var singleMsg = notificationScreenController.getNotificationList[index];
-        return NotificationItem(
-          singleMsg: singleMsg,
-        );
-      },
-      separatorBuilder: (context, index) {
-        return const Divider(
-          color: AppColors.greyTextColor,
-          height: 5,
-          thickness: 1,
-        );
-      },
+    return Obx(
+      () => notificationScreenController.isLoading.value
+          ? CommonLoader().showCircularLoader()
+          : ListView.separated(
+              shrinkWrap: true,
+              itemCount:
+                  notificationScreenController.getNotificationList.length,
+              itemBuilder: (context, index) {
+                var singleMsg =
+                    notificationScreenController.getNotificationList[index];
+                return NotificationItem(
+                  singleMsg: singleMsg,
+                );
+              },
+              separatorBuilder: (context, index) {
+                return const Divider(
+                  color: AppColors.greyTextColor,
+                  height: 5,
+                  thickness: 1,
+                );
+              },
+            ),
     );
   }
 }
@@ -113,12 +119,17 @@ class NotificationItem extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: 5),
-                              Text(
-                                singleMsg.message,
-                                style: TextStyle(
-                                  fontSize: 11.sp,
-                                  fontWeight: FontWeight.normal,
-                                  color: AppColors.greyTextColor,
+                              SizedBox(
+                                width: 72.w,
+                                child: Text(
+                                  singleMsg.message,
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                    fontSize: 11.sp,
+                                    fontWeight: FontWeight.normal,
+                                    color: AppColors.greyTextColor,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
                               ),
                             ],

@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:olocker/constants/api_url.dart';
 
-import '../../models/saving_scheme_screens_models/get_saving_schemes_list_model.dart';
+import '../../models/saving_scheme_screens_models/get_saving_scheme_list_models/get_saving_schemes_list_model.dart';
 
 class SavingSchemesExplainerScreenController extends GetxController {
-  int savingSchemeSrNo = Get.arguments;
+  var savingSchemeSrNo = Get.arguments;
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
@@ -33,19 +33,19 @@ class SavingSchemesExplainerScreenController extends GetxController {
 
       log("getSavingSchemeDetailsFunction res body :: ${response.body}");
 
-      // GetSavingSchemesListModel getSavingSchemesListModel =
-      //     GetSavingSchemesListModel.fromJson(json.decode(response.body));
+      GetSavingSchemesListModel getSavingSchemesListModel =
+          GetSavingSchemesListModel.fromJson(json.decode(response.body));
 
-      // isSuccessStatus = getSavingSchemesListModel.success.obs;
+      isSuccessStatus = getSavingSchemesListModel.success.obs;
 
-      // if (isSuccessStatus.value) {
-      //   getSavingSchemesList.clear();
-      //   getSavingSchemesList
-      //       .addAll(getSavingSchemesListModel.getSavingSchemeList);
-      //   log('getSavingSchemesList ::: ${getSavingSchemesList.length}');
-      // } else {
-      //   log('getSavingSchemeDetailsFunction false');
-      // }
+      if (isSuccessStatus.value) {
+        getSavingSchemesList.clear();
+        getSavingSchemesList
+            .addAll(getSavingSchemesListModel.getSavingSchemeList);
+        log('getSavingSchemesList ::: ${getSavingSchemesList.length}');
+      } else {
+        log('getSavingSchemeDetailsFunction false');
+      }
     } catch (e) {
       log('getSavingSchemeDetailsFunction error:$e');
       rethrow;

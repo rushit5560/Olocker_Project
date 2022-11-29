@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
@@ -13,66 +14,7 @@ import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/utils/field_validation.dart';
 import 'package:sizer/sizer.dart';
 
-class JewellerDetailsHeaderModule extends StatelessWidget {
-  JewellerDetailsHeaderModule({Key? key}) : super(key: key);
-
-  final screenController = Get.find<SavingSchemeEnrollScreenController>();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-      ),
-      child: Row(
-        children: [
-          CachedNetworkImage(
-            imageUrl: ApiUrl.apiImagePath +
-                screenController.savingSchemeData.imagePath,
-            fit: BoxFit.cover,
-            width: 18.w,
-            errorWidget: (context, url, error) {
-              return Image.asset(
-                AppImages.diamondsIocn,
-                fit: BoxFit.cover,
-                width: 18.w,
-              );
-            },
-          ),
-          SizedBox(width: 2.h),
-          Expanded(
-            flex: 7,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  screenController.savingSchemeData.schemeName,
-                  style: TextStyle(
-                    fontSize: 13.sp,
-                    color: AppColors.accentColor,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  screenController.savingSchemeData.schemeTagLine,
-                  style: TextStyle(
-                    fontSize: 11.sp,
-                    color: AppColors.greyColor,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
-      ).commonSymmetricPadding(horizontal: 15, vertical: 15),
-    );
-  }
-}
+import '../scheme_payment_success_screen/scheme_payment_success_screen.dart';
 
 class MonthlyAmountModule extends StatelessWidget {
   MonthlyAmountModule({Key? key}) : super(key: key);
@@ -99,20 +41,22 @@ class MonthlyAmountModule extends StatelessWidget {
             controller: screenController.monthlyAmountFieldController,
             keyboardType: TextInputType.number,
             validator: (value) {
-              if(value!.isEmpty) {
+              if (value!.isEmpty) {
                 return 'Please enter monthly amount';
               }
               return null;
             },
             onChanged: (value) {
-
               screenController.isLoading(true);
               if (value.isNotEmpty) {
                 screenController.isShow.value = true;
 
-                int fieldAmount = int.parse(screenController.monthlyAmountFieldController.text.trim());
-                double contributionPercent = screenController.savingSchemeData.contributionPercent;
-                int tenorAmount = screenController.savingSchemeData.tenor.floor();
+                int fieldAmount = int.parse(
+                    screenController.monthlyAmountFieldController.text.trim());
+                double contributionPercent =
+                    screenController.savingSchemeData.contributionPercent;
+                int tenorAmount =
+                    screenController.savingSchemeData.tenor.floor();
 
                 // Getting Mature Amount
                 int matureAmount = fieldAmount * tenorAmount;
@@ -121,11 +65,11 @@ class MonthlyAmountModule extends StatelessWidget {
                 //
 
                 // Calculate Our Contribution
-                var contributionAmount = (fieldAmount / 100) * contributionPercent;
-                screenController.ourContributionAmount.value = contributionAmount.toString();
+                var contributionAmount =
+                    (fieldAmount / 100) * contributionPercent;
+                screenController.ourContributionAmount.value =
+                    contributionAmount.toString();
                 //
-
-
 
               } else {
                 screenController.isShow.value = false;
@@ -255,8 +199,12 @@ class MaturityAmountModule extends StatelessWidget {
       ),
       child: Row(
         children: [
-          _singleModule(heading: 'Our Contribution', value: '${screenController.ourContributionAmount.value}'),
-          _singleModule(heading: 'Maturity Amount', value: '${screenController.maturityAmount.value}'),
+          _singleModule(
+              heading: 'Our Contribution',
+              value: '${screenController.ourContributionAmount.value}'),
+          _singleModule(
+              heading: 'Maturity Amount',
+              value: '${screenController.maturityAmount.value}'),
         ],
       ).commonSymmetricPadding(vertical: 20, horizontal: 8),
     ).commonSymmetricPadding(horizontal: 15, vertical: 15);
@@ -434,6 +382,9 @@ class CustomerDetailsFormModule extends StatelessWidget {
       keyboardType: TextInputType.phone,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       // textCapitalization: TextCapitalization.characters,
+      inputFormatters: [
+        LengthLimitingTextInputFormatter(10),
+      ],
       validator: (value) => FieldValidator().validateMobileNumber(value!),
       style: TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
       decoration: InputDecoration(
@@ -488,6 +439,9 @@ class CustomerDetailsFormModule extends StatelessWidget {
           await screenController.getCityStateDetailsByPinFunction();
         }
       },
+      inputFormatters: [
+        LengthLimitingTextInputFormatter(6),
+      ],
       style: TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
       decoration: InputDecoration(
         hintText: "Pincode",
@@ -537,12 +491,10 @@ class SaveAndMakePaymentButtonModule extends StatelessWidget {
       onPressed: () async {
         if (screenController.customerFormKey.currentState!.validate()) {
           await screenController.addEnrollSavingSchemeFunction();
-          // Get.to(
-          //       () => SavingSchemeConfirmationScreen(),
-          // );
         }
-
-
+        // Get.to(
+        //   () => SchemePaymentSuccessScreen(),
+        // );
       },
       style: ElevatedButton.styleFrom(
         primary: AppColors.accentColor,

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/screens/my_saving_schemes_screens/my_schemes_details_screen/my_schemes_details_screen.dart';
@@ -10,6 +11,8 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../controllers/my_saving_schemes_screens_controllers/my_saving_schemes_list_screen_controller.dart';
+import '../../../models/my_saving_schemes_models/get_saving_schemes_list_model/get_saving_scheme_list_model.dart';
+import '../my_scheme_pending_bills_screen/my_scheme_pending_bills_screen.dart';
 
 class MySchemesListViewModule extends StatelessWidget {
   MySchemesListViewModule({Key? key}) : super(key: key);
@@ -21,13 +24,24 @@ class MySchemesListViewModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       shrinkWrap: true,
-      itemCount: 3,
+      itemCount:
+          mySavingSchemesListScreenController.getCustomerSchemeslist.length,
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        return index.floor().isEven
-            ? SingleSchemeItemModule(index: index)
-            : MaturedSchemeItemModule(index: index);
+        GetCustomerPurchaseSavingSchemeData singleSchemeData =
+            mySavingSchemesListScreenController.getCustomerSchemeslist[index];
+
+        // matured and unmatured logic to display
+        //singleSchemeData.status == "UNMATURED"
+
+        return singleSchemeData.status == "UNMATURED"
+            ? SingleSchemeItemModule(
+                schemeData: singleSchemeData,
+              )
+            : MaturedSchemeItemModule(
+                schemeData: singleSchemeData,
+              );
       },
       separatorBuilder: (context, index) {
         return SizedBox(height: 2.h);
@@ -39,13 +53,15 @@ class MySchemesListViewModule extends StatelessWidget {
 class SingleSchemeItemModule extends StatelessWidget {
   const SingleSchemeItemModule({
     Key? key,
-    required this.index,
+    required this.schemeData,
   }) : super(key: key);
 
-  final int index;
+  final GetCustomerPurchaseSavingSchemeData schemeData;
 
   @override
   Widget build(BuildContext context) {
+    var format = DateFormat("dd MMM yyyy");
+
     return Column(
       children: [
         Container(
@@ -78,7 +94,7 @@ class SingleSchemeItemModule extends StatelessWidget {
                   ),
                   SizedBox(width: 2.w),
                   Text(
-                    "AJMJ-16",
+                    schemeData.folioNo,
                     style: TextStyle(
                       fontSize: 13.sp,
                       fontWeight: FontWeight.bold,
@@ -90,6 +106,10 @@ class SingleSchemeItemModule extends StatelessWidget {
                     onTap: () {
                       Get.to(
                         () => MySchemesDetailsScreen(),
+                        arguments: [
+                          schemeData.partnerSavingSchemeSrNo,
+                          schemeData,
+                        ],
                       );
                     },
                     child: Image.asset(
@@ -115,7 +135,7 @@ class SingleSchemeItemModule extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Akshay Jewels, Jalgaon",
+                          schemeData.partnerName,
                           style: TextStyle(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w500,
@@ -125,19 +145,19 @@ class SingleSchemeItemModule extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 1.5.h),
-                    const SavingDetailsTextCustom(
+                    SavingDetailsTextCustom(
                       text: "Start date",
-                      textValue: '24 June 2020',
+                      textValue: format.format(schemeData.startDate),
                     ),
                     SizedBox(height: 1.h),
-                    const SavingDetailsTextCustom(
+                    SavingDetailsTextCustom(
                       text: "Maturity date",
-                      textValue: '24 June 2022',
+                      textValue: format.format(schemeData.maturityDate),
                     ),
                     SizedBox(height: 1.h),
-                    const SavingDetailsTextCustom(
+                    SavingDetailsTextCustom(
                       text: "Next payment date",
-                      textValue: '24 June 2021',
+                      textValue: format.format(schemeData.nextPaymentDate),
                     ),
                     SizedBox(height: 2.5.h),
                     LinearPercentIndicator(
@@ -156,19 +176,19 @@ class SingleSchemeItemModule extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
+                  children: [
                     AmountDetailsColoredColumn(
-                      price: "₹ 250000",
+                      price: "₹ ${schemeData.maturityAmount.floor()}",
                       text: "Maturity amount",
                       color: AppColors.blueDarkColor,
                     ),
                     AmountDetailsColoredColumn(
-                      price: "₹ 25000",
+                      price: "₹ ${schemeData.totalPaid.floor()}",
                       text: "Total paid",
                       color: AppColors.orangeColor,
                     ),
                     AmountDetailsColoredColumn(
-                      price: "₹ 2500",
+                      price: "₹ ${schemeData.monthlyAmount.floor()}",
                       text: "Monthly amount",
                       color: AppColors.waGreenColor,
                     ),
@@ -181,7 +201,14 @@ class SingleSchemeItemModule extends StatelessWidget {
                   ColoredCustomButton(
                     color: AppColors.greenTintColor,
                     text: "MAKE PAYMENT",
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(
+                        () => MySchemePendingBillsScreen(),
+                        arguments: [
+                          schemeData.savingSchemeSrNo,
+                        ],
+                      );
+                    },
                   ),
                   SizedBox(width: 3.w),
                   ColoredCustomButton(
@@ -203,13 +230,14 @@ class SingleSchemeItemModule extends StatelessWidget {
 class MaturedSchemeItemModule extends StatelessWidget {
   const MaturedSchemeItemModule({
     Key? key,
-    required this.index,
+    required this.schemeData,
   }) : super(key: key);
 
-  final int index;
+  final GetCustomerPurchaseSavingSchemeData schemeData;
 
   @override
   Widget build(BuildContext context) {
+    var format = DateFormat("dd MMM yyyy");
     return Column(
       children: [
         Container(
@@ -242,7 +270,7 @@ class MaturedSchemeItemModule extends StatelessWidget {
                   ),
                   SizedBox(width: 2.w),
                   Text(
-                    "ABJX-99",
+                    schemeData.folioNo,
                     style: TextStyle(
                       fontSize: 13.sp,
                       fontWeight: FontWeight.bold,
@@ -254,6 +282,10 @@ class MaturedSchemeItemModule extends StatelessWidget {
                     onTap: () {
                       Get.to(
                         () => MySchemesDetailsScreen(),
+                        arguments: [
+                          schemeData.savingSchemeSrNo,
+                          schemeData,
+                        ],
                       );
                     },
                     child: Image.asset(
@@ -279,7 +311,7 @@ class MaturedSchemeItemModule extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Akshay Jewels, Jalgaon",
+                          schemeData.partnerName,
                           style: TextStyle(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w500,
@@ -289,14 +321,14 @@ class MaturedSchemeItemModule extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 1.5.h),
-                    const SavingDetailsTextCustom(
+                    SavingDetailsTextCustom(
                       text: "Start date",
-                      textValue: '24 June 2020',
+                      textValue: format.format(schemeData.startDate),
                     ),
                     SizedBox(height: 1.h),
-                    const SavingDetailsTextCustom(
+                    SavingDetailsTextCustom(
                       text: "Maturity date",
-                      textValue: '24 June 2022',
+                      textValue: format.format(schemeData.maturityDate),
                     ),
                     SizedBox(height: 2.5.h),
                   ],
@@ -336,19 +368,19 @@ class MaturedSchemeItemModule extends StatelessWidget {
               SizedBox(height: 2.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   AmountDetailsColoredColumn(
-                    price: "₹ 250000",
+                    price: "₹ ${schemeData.maturityAmount.floor()}",
                     text: "Maturity amount",
                     color: AppColors.blueDarkColor,
                   ),
                   AmountDetailsColoredColumn(
-                    price: "₹ 225000",
+                    price: "₹ ${schemeData.totalPaid.floor()}",
                     text: "Total paid",
                     color: AppColors.orangeColor,
                   ),
                   AmountDetailsColoredColumn(
-                    price: "₹ 2500",
+                    price: "₹ ${schemeData.monthlyAmount.floor()}",
                     text: "Monthly amount",
                     color: AppColors.waGreenColor,
                   ),

@@ -33,30 +33,33 @@ class ProfileDetailsFormModule extends StatelessWidget {
         child: Obx(
           () => profileScreenController.isLoading.value
               ? CommonLoader().showCircularLoader()
-              : Column(
-                  children: [
-                    const SizedBox(height: 10),
-                    DisplayImageDetailsFieldRow(),
-                    const SizedBox(height: 20),
-                    NameFieldRow(),
-                    const SizedBox(height: 10),
-                    EmailFieldRow(),
-                    const SizedBox(height: 10),
-                    DobFieldRow(),
-                    const SizedBox(height: 10),
-                    MobileFieldRow(),
-                    const SizedBox(height: 10),
-                    PinCodeFieldRow(),
-                    const SizedBox(height: 10),
-                    CityFieldRow(),
-                    const SizedBox(height: 10),
-                    StateFieldRow(),
-                    const SizedBox(height: 30),
-                    !profileScreenController.isEditable.value
-                        ? SaveProfileButton()
-                        : const SizedBox(),
-                    const SizedBox(height: 20),
-                  ],
+              : Form(
+                  key: profileScreenController.formKey,
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 10),
+                      DisplayImageDetailsFieldRow(),
+                      const SizedBox(height: 20),
+                      NameFieldRow(),
+                      const SizedBox(height: 10),
+                      EmailFieldRow(),
+                      const SizedBox(height: 10),
+                      DobFieldRow(),
+                      const SizedBox(height: 10),
+                      MobileFieldRow(),
+                      const SizedBox(height: 10),
+                      PinCodeFieldRow(),
+                      const SizedBox(height: 10),
+                      CityFieldRow(),
+                      const SizedBox(height: 10),
+                      StateFieldRow(),
+                      const SizedBox(height: 30),
+                      !profileScreenController.isEditable.value
+                          ? SaveProfileButton()
+                          : const SizedBox(),
+                      const SizedBox(height: 20),
+                    ],
+                  ),
                 ),
         ),
       ),
@@ -212,7 +215,7 @@ class NameFieldRow extends StatelessWidget {
         SizedBox(width: 2.w),
         Expanded(
           child: SizedBox(
-            height: 5.h,
+            // height: 5.h,
             child: TextFormField(
               controller: profileScreenController.fnameController,
               textInputAction: TextInputAction.next,
@@ -222,6 +225,7 @@ class NameFieldRow extends StatelessWidget {
               style:
                   TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
               decoration: InputDecoration(
+                isDense: true,
                 hintText: "First Name",
                 hintStyle:
                     TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
@@ -231,7 +235,7 @@ class NameFieldRow extends StatelessWidget {
         ),
         Expanded(
           child: SizedBox(
-            height: 5.h,
+            // height: 5.h,
             child: TextFormField(
               controller: profileScreenController.lnameController,
               keyboardType: TextInputType.text,
@@ -241,6 +245,7 @@ class NameFieldRow extends StatelessWidget {
               style:
                   TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
               decoration: InputDecoration(
+                isDense: true,
                 hintText: "Last Name",
                 hintStyle:
                     TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
@@ -265,7 +270,7 @@ class EmailFieldRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          height: 5.h,
+          // height: 5.h,
           width: 18.w,
           alignment: Alignment.centerLeft,
           child: Text(
@@ -280,7 +285,7 @@ class EmailFieldRow extends StatelessWidget {
         SizedBox(width: 2.w),
         Expanded(
           child: SizedBox(
-            height: 5.h,
+            // height: 5.h,
             child: TextFormField(
               controller: profileScreenController.emailController,
               textInputAction: TextInputAction.next,
@@ -290,6 +295,7 @@ class EmailFieldRow extends StatelessWidget {
               style:
                   TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
               decoration: InputDecoration(
+                isDense: true,
                 hintText: "Enter Email id",
                 hintStyle:
                     TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
@@ -315,7 +321,7 @@ class DobFieldRow extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            height: 5.h,
+            // height: 5.h,
             width: 18.w,
             alignment: Alignment.centerLeft,
             child: Text(
@@ -330,7 +336,7 @@ class DobFieldRow extends StatelessWidget {
           SizedBox(width: 2.w),
           Expanded(
             child: SizedBox(
-              height: 5.h,
+              // height: 5.h,
               child: AbsorbPointer(
                 absorbing: profileScreenController.isEditable.value,
                 child: GestureDetector(
@@ -363,6 +369,7 @@ class DobFieldRow extends StatelessWidget {
               //   style:
               //       TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
               //   decoration: InputDecoration(
+
               //     hintText: "Oct 12 1999 date",
               //     hintStyle:
               //         TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
@@ -388,7 +395,7 @@ class MobileFieldRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          height: 5.h,
+          // height: 5.h,
           width: 18.w,
           alignment: Alignment.centerLeft,
           child: Text(
@@ -403,7 +410,7 @@ class MobileFieldRow extends StatelessWidget {
         SizedBox(width: 2.w),
         Expanded(
           child: SizedBox(
-            height: 5.h,
+            // height: 5.h,
             child: TextFormField(
               controller: profileScreenController.numberController,
               textInputAction: TextInputAction.next,
@@ -415,6 +422,7 @@ class MobileFieldRow extends StatelessWidget {
                 fontSize: 11.sp,
               ),
               decoration: InputDecoration(
+                isDense: true,
                 hintText: "Enter Mobile Number",
                 hintStyle: TextStyle(
                   color: AppColors.greyColor,
@@ -441,7 +449,7 @@ class PinCodeFieldRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          height: 5.h,
+          // height: 5.h,
           width: 18.w,
           alignment: Alignment.centerLeft,
           child: Text(
@@ -456,7 +464,7 @@ class PinCodeFieldRow extends StatelessWidget {
         SizedBox(width: 2.w),
         Expanded(
           child: SizedBox(
-            height: 5.h,
+            // height: 5.h,
             child: TextFormField(
               controller: profileScreenController.pinCodeController,
               textInputAction: TextInputAction.next,
@@ -466,6 +474,7 @@ class PinCodeFieldRow extends StatelessWidget {
               style:
                   TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
               decoration: InputDecoration(
+                isDense: true,
                 hintText: "Enter Pin Code",
                 hintStyle:
                     TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
@@ -496,7 +505,7 @@ class CityFieldRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          height: 5.h,
+          // height: 5.h,
           width: 18.w,
           alignment: Alignment.centerLeft,
           child: Text(
@@ -511,7 +520,7 @@ class CityFieldRow extends StatelessWidget {
         SizedBox(width: 2.w),
         Expanded(
           child: SizedBox(
-            height: 5.h,
+            // height: 5.h,
             child: TextFormField(
               controller: profileScreenController.cityController,
               textInputAction: TextInputAction.next,
@@ -521,6 +530,7 @@ class CityFieldRow extends StatelessWidget {
               style:
                   TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
               decoration: InputDecoration(
+                isDense: true,
                 hintText: "Enter City Name",
                 hintStyle:
                     TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
@@ -545,7 +555,7 @@ class StateFieldRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          height: 5.h,
+          // height: 5.h,
           width: 18.w,
           alignment: Alignment.centerLeft,
           child: Text(
@@ -560,7 +570,7 @@ class StateFieldRow extends StatelessWidget {
         SizedBox(width: 2.w),
         Expanded(
           child: SizedBox(
-            height: 5.h,
+            // height: 5.h,
             child: TextFormField(
               controller: profileScreenController.stateController,
               textInputAction: TextInputAction.next,
@@ -570,6 +580,7 @@ class StateFieldRow extends StatelessWidget {
               style:
                   TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
               decoration: InputDecoration(
+                isDense: true,
                 hintText: "Enter state name",
                 hintStyle:
                     TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
@@ -594,11 +605,13 @@ class SaveProfileButton extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
-          height: 5.h,
+          // height: 5.h,
           width: 50.w,
           child: ElevatedButton(
             onPressed: () {
-              profileScreenController.updateUserProfileDetailsFunction();
+              if (profileScreenController.formKey.currentState!.validate()) {
+                profileScreenController.updateUserProfileDetailsFunction();
+              }
             },
             style: ElevatedButton.styleFrom(
               primary: AppColors.pinkBGColor,

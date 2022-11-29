@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -190,10 +191,10 @@ class MyJewellersListModule extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                imgUrl,
+              child: CachedNetworkImage(
+                imageUrl: imgUrl,
                 fit: BoxFit.fill,
-                errorBuilder: (context, error, stackTrace) {
+                errorWidget: (context, error, stackTrace) {
                   return Container(
                     color: AppColors.greyTextColor.withOpacity(0.5),
                     child: const Center(
@@ -380,12 +381,18 @@ class OnlineDealsListModule extends StatelessWidget {
           color: AppColors.whiteColor,
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Image.network(
-          imgUrl,
+        child: CachedNetworkImage(
+          imageUrl: imgUrl,
           fit: BoxFit.contain,
           width: screenController.size.height * 0.019.h,
           height: screenController.size.height * 0.019.h,
         ).commonAllSidePadding(8),
+        // Image.network(
+        //   imgUrl,
+        //   fit: BoxFit.contain,
+        //   width: screenController.size.height * 0.019.h,
+        //   height: screenController.size.height * 0.019.h,
+        // ).commonAllSidePadding(8),
       ).commonAllSidePadding(2),
     );
   }

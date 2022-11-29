@@ -95,8 +95,8 @@ class GetSavingSchemeData {
     // this.paymentGatewaySecret,
     // this.paymentGatewayType,
     // this.finalAmount,
-    // this.mobile,
-    // this.hOaddress,
+    required this.mobile,
+    required this.hOaddress,
   });
 
   final int srNo;
@@ -122,8 +122,8 @@ class GetSavingSchemeData {
   // final dynamic paymentGatewaySecret;
   // final dynamic paymentGatewayType;
   // final dynamic finalAmount;
-  // final dynamic mobile;
-  // final dynamic hOaddress;
+  final double mobile;
+  final String hOaddress;
 
   factory GetSavingSchemeData.fromJson(Map<String, dynamic> json) =>
       GetSavingSchemeData(
@@ -150,8 +150,8 @@ class GetSavingSchemeData {
         // paymentGatewaySecret: json["PaymentGatewaySecret"],
         // paymentGatewayType: json["PaymentGatewayType"],
         // finalAmount: json["FinalAmount"],
-        // mobile: json["Mobile"],
-        // hOaddress: json["HOaddress"],
+        mobile: json["Mobile"] ?? 0.0,
+        hOaddress: json["HOaddress"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -178,7 +178,7 @@ class GetSavingSchemeData {
         // "PaymentGatewaySecret": paymentGatewaySecret,
         // "PaymentGatewayType": paymentGatewayType,
         // "FinalAmount": finalAmount,
-        // "Mobile": mobile,
-        // "HOaddress": hOaddress,
+        "Mobile": mobile,
+        "HOaddress": hOaddress,
       };
 }

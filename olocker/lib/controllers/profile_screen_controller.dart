@@ -196,82 +196,134 @@ class ProfileScreenController extends GetxController {
     try {
       isLoading(true);
 
-      var genderValue = 0;
+      if (selectedProfileImage == null) {
+        log("without image updateing profile::::");
+        var genderValue = 0;
 
-      List<int> imageBytes = selectedProfileImage!.readAsBytesSync();
-      String base64Image = base64Encode(imageBytes);
+        // List<int> imageBytes = selectedProfileImage!.readAsBytesSync();
+        // String base64Image = base64Encode(imageBytes);
 
-      if (namePrefixDDvalue == "Mr.") {
-        genderValue = 1;
-      } else if (namePrefixDDvalue == "Mrs.") {
-        genderValue = 2;
-      } else {
-        genderValue = 3;
-      }
+        if (namePrefixDDvalue == "Mr.") {
+          genderValue = 1;
+        } else if (namePrefixDDvalue == "Mrs.") {
+          genderValue = 2;
+        } else {
+          genderValue = 3;
+        }
 
-      var requestMap = {
-        "firstname": fnameController.text.toString(),
-        "lastname": lnameController.text.toString(),
-        "useremail": emailController.text.toString(),
-        "Gender": genderValue.toString(),
-        "Salutation": namePrefixDDvalue.value.replaceAll(".", " "),
-        "Country": "",
-        "State": stateController.text.toString(),
-        "City": cityController.text.toString(),
-        "Pin": pinCodeController.text.toString(),
-        "Address1": "",
-        "DOB": datePassingvalue.value.toString(),
-        "IPAddr": "192.0.0.1",
-        "CustSrNo": UserDetails.customerId.toString(),
-        "ProfileImage_Base64": base64Image,
-      };
+        var requestMap = {
+          "firstname": fnameController.text.toString(),
+          "lastname": lnameController.text.toString(),
+          "useremail": emailController.text.toString(),
+          "Gender": genderValue.toString(),
+          "Salutation": namePrefixDDvalue.value.replaceAll(".", " "),
+          "Country": "",
+          "State": stateController.text.toString(),
+          "City": cityController.text.toString(),
+          "Pin": pinCodeController.text.toString(),
+          "Address1": "",
+          "DOB": datePassingvalue.value.toString(),
+          "IPAddr": "192.0.0.1",
+          "CustSrNo": UserDetails.customerId.toString(),
+          "ProfileImage_Base64": "",
+        };
 
-      log("updateUserProfileDetailsFunction req map : ${UserDetails.customerId}");
-      log("updateUserProfileDetailsFunction req map : ${datePassingvalue.value}");
+        log("updateUserProfileDetailsFunction req map : ${UserDetails.customerId}");
+        log("updateUserProfileDetailsFunction req map : ${datePassingvalue.value}");
 
-      http.Response response = await http.post(
-        Uri.parse(url),
-        body: jsonEncode(requestMap),
-        headers: apiHeader.headers,
-      );
-
-      log("updateUserProfileDetailsFunction st code is : ${response.statusCode}");
-      log("updateUserProfileDetailsFunction res body : ${response.body}");
-
-      var resBody = jsonDecode(response.body);
-
-      UserProfileGetModel userProfileGetModel =
-          UserProfileGetModel.fromJson(resBody);
-
-      isSuccessResult.value = userProfileGetModel.success;
-
-      if (isSuccessResult.value) {
-        log("updateUserProfileDetailsFunction success");
-        // prefs.setString(
-        //     UserPrefsData().customerMobileNoKey, numberController.text);
-        isEditable.value = true;
-        CommonWidgets().showBorderSnackBar(
-          context: Get.context!,
-          displayText: "Profile Updated Successfully.",
+        http.Response response = await http.post(
+          Uri.parse(url),
+          body: jsonEncode(requestMap),
+          headers: apiHeader.headers,
         );
 
-        // isEditable.value = true;
-        // userName.value = userProfileGetModel.customerProfile.firstName;
-        // // namePrefixDDvalue.value = userProfileGetModel.customerProfile.gender == "Male" ? "" :;
-        // fnameController.text = userProfileGetModel.customerProfile.firstName;
-        // fnameController.text = userProfileGetModel.customerProfile.firstName;
-        // lnameController.text = userProfileGetModel.customerProfile.lastName;
-        // emailController.text = userProfileGetModel.customerProfile.userEmail;
-        // selectedDobNumber.value = userProfileGetModel.customerProfile.dob == ""
-        //     ? "Select Date Of Birth"
-        //     : userProfileGetModel.customerProfile.dob;
-        // numberController.text = userProfileGetModel.customerProfile.mobileNo;
-        // pinCodeController.text = userProfileGetModel.customerProfile.pin;
-        // cityController.text = userProfileGetModel.customerProfile.city;
-        // stateController.text = userProfileGetModel.customerProfile.state;
+        log("updateUserProfileDetailsFunction st code is : ${response.statusCode}");
+        log("updateUserProfileDetailsFunction res body : ${response.body}");
+
+        var resBody = jsonDecode(response.body);
+
+        UserProfileGetModel userProfileGetModel =
+            UserProfileGetModel.fromJson(resBody);
+
+        isSuccessResult.value = userProfileGetModel.success;
+
+        if (isSuccessResult.value) {
+          log("updateUserProfileDetailsFunction success");
+          // prefs.setString(
+          //     UserPrefsData().customerMobileNoKey, numberController.text);
+          isEditable.value = true;
+          CommonWidgets().showBorderSnackBar(
+            context: Get.context!,
+            displayText: "Profile Updated Successfully.",
+          );
+        } else {
+          log("updateUserProfileDetailsFunction not success");
+          //do nothing
+        }
       } else {
-        log("updateUserProfileDetailsFunction not success");
-        //do nothing
+        log("with image updateing profile::::");
+        var genderValue = 0;
+
+        List<int> imageBytes = selectedProfileImage!.readAsBytesSync();
+        String base64Image = base64Encode(imageBytes);
+
+        if (namePrefixDDvalue == "Mr.") {
+          genderValue = 1;
+        } else if (namePrefixDDvalue == "Mrs.") {
+          genderValue = 2;
+        } else {
+          genderValue = 3;
+        }
+
+        var requestMap = {
+          "firstname": fnameController.text.toString(),
+          "lastname": lnameController.text.toString(),
+          "useremail": emailController.text.toString(),
+          "Gender": genderValue.toString(),
+          "Salutation": namePrefixDDvalue.value.replaceAll(".", " "),
+          "Country": "",
+          "State": stateController.text.toString(),
+          "City": cityController.text.toString(),
+          "Pin": pinCodeController.text.toString(),
+          "Address1": "",
+          "DOB": datePassingvalue.value.toString(),
+          "IPAddr": "192.0.0.1",
+          "CustSrNo": UserDetails.customerId.toString(),
+          "ProfileImage_Base64": base64Image,
+        };
+
+        log("updateUserProfileDetailsFunction req map : ${UserDetails.customerId}");
+        log("updateUserProfileDetailsFunction req map : ${datePassingvalue.value}");
+
+        http.Response response = await http.post(
+          Uri.parse(url),
+          body: jsonEncode(requestMap),
+          headers: apiHeader.headers,
+        );
+
+        log("updateUserProfileDetailsFunction st code is : ${response.statusCode}");
+        log("updateUserProfileDetailsFunction res body : ${response.body}");
+
+        var resBody = jsonDecode(response.body);
+
+        UserProfileGetModel userProfileGetModel =
+            UserProfileGetModel.fromJson(resBody);
+
+        isSuccessResult.value = userProfileGetModel.success;
+
+        if (isSuccessResult.value) {
+          log("updateUserProfileDetailsFunction success");
+          // prefs.setString(
+          //     UserPrefsData().customerMobileNoKey, numberController.text);
+          isEditable.value = true;
+          CommonWidgets().showBorderSnackBar(
+            context: Get.context!,
+            displayText: "Profile Updated Successfully.",
+          );
+        } else {
+          log("updateUserProfileDetailsFunction not success");
+          //do nothing
+        }
       }
     } catch (e) {
       log("updateUserProfileDetailsFunction Error ::: $e");
@@ -292,6 +344,8 @@ class ProfileScreenController extends GetxController {
 
     try {
       isLoading(true);
+      cityController.clear();
+      stateController.clear();
       http.Response response = await http.get(
         Uri.parse(url),
         headers: apiHeader.headers,
@@ -316,6 +370,9 @@ class ProfileScreenController extends GetxController {
         cityController.text = cityStateGetModel.stateCityDetails.cityName;
         stateController.text = cityStateGetModel.stateCityDetails.stateName;
       } else {
+        cityController.clear();
+        stateController.clear();
+
         log("getCityStateDetailsByPinFunction not success");
         //do nothing
       }

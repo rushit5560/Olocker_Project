@@ -5,6 +5,7 @@ import 'package:olocker/controllers/saving_schemes_screens_controllers/saving_sc
 import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../widgets/saving_schemes_widgets.dart';
 import 'saving_scheme_enroll_screen_widgets.dart';
 
 class SavingSchemeEnrollScreen extends StatelessWidget {
@@ -41,7 +42,19 @@ class SavingSchemeEnrollScreen extends StatelessWidget {
                   key: savingSchemeEnrollScreenController.customerFormKey,
                   child: Column(
                     children: [
-                      JewellerDetailsHeaderModule(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 15),
+                        child: JewellerDetailImageInfoModule(
+                          imagePath: savingSchemeEnrollScreenController
+                              .savingSchemeData.imagePath,
+                          schemeName: savingSchemeEnrollScreenController
+                              .savingSchemeData.schemeName,
+                          schemeTagLine: savingSchemeEnrollScreenController
+                              .savingSchemeData.schemeTagLine,
+                        ),
+                      ),
+                      Container(height: 10),
                       MonthlyAmountModule(),
                       savingSchemeEnrollScreenController.isShow.value
                           ? MaturityAmountModule()

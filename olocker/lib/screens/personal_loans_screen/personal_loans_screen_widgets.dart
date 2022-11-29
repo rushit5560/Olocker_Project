@@ -410,7 +410,7 @@ class StepOneFormModule extends StatelessWidget {
           decoration: InputDecoration(
             isDense: true,
             isCollapsed: true,
-            hintText: "Pan card number",
+            hintText: "Pan Card Number",
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,

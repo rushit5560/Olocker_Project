@@ -598,11 +598,21 @@ class _AddRecordingDetailsFormModuleState
                                 .selectedActivityTypeName ==
                             null) {
                           CommonWidgets().showBorderSnackBar(
-                              context: context,
-                              displayText: "Please select activity type");
+                            context: context,
+                            displayText: "Please select activity type",
+                          );
                         } else {
-                          addOrnamentRecordingsController
-                              .addOrnamentRecordingsFunction();
+                          if (addOrnamentRecordingsController
+                                  .selectedlocationOfJewellery ==
+                              null) {
+                            CommonWidgets().showBorderSnackBar(
+                                context: context,
+                                displayText:
+                                    "Please select location of jewellery type");
+                          } else {
+                            addOrnamentRecordingsController
+                                .addOrnamentRecordingsFunction();
+                          }
                         }
                       },
                       style: ElevatedButton.styleFrom(

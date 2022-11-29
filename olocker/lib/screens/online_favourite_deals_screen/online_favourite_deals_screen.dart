@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
@@ -37,16 +38,13 @@ class OnlineFavouriteDealsScreen extends StatelessWidget {
         () => onlineFavouriteDealsScreenController.isLoading.value
             ? CommonLoader().showCircularLoader()
             : onlineFavouriteDealsScreenController.favouriteDealsList.isEmpty
-                ? Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20.h),
-                    child: Center(
-                      child: Text(
-                        "No Favourite Deals Found",
-                        style: TextStyle(
-                          color: AppColors.whiteColor,
-                          fontSize: 13.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
+                ? Center(
+                    child: Text(
+                      "No Favourite Deals Found",
+                      style: TextStyle(
+                        color: AppColors.whiteColor,
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
                   )
@@ -87,9 +85,13 @@ class OnlineFavouriteDealsScreen extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: Image.network(
-                imgUrl,
-                // fit: BoxFit.fill,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: CachedNetworkImage(
+                  imageUrl: imgUrl,
+                  fit: BoxFit.fill,
+                  width: double.infinity,
+                ),
               ),
             ),
             Column(

@@ -5,6 +5,7 @@ import 'package:olocker/controllers/saving_schemes_screens_controllers/scheme_pa
 import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../widgets/saving_schemes_widgets.dart';
 import 'scheme_payment_failure_screen_widgets.dart';
 
 class SchemePaymentFailureScreen extends StatelessWidget {
@@ -32,13 +33,35 @@ class SchemePaymentFailureScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar:const TryAnotherPaymentMethod(),
-      body: Column(
-        children:const [
-          SencoGoldContainer(),
-          PaymentDetailForMonthlyContainer(),
-          UnSuccessPaymentContainer(),
-        ],
+      bottomNavigationBar: TryAnotherPaymentMethodButton(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        child: Column(
+          children: [
+            JewellerDetailImageInfoModule(
+              imagePath: schemePaymentFailureScreenController.schemeImagePath,
+              schemeName: schemePaymentFailureScreenController.schemeName,
+              schemeTagLine: schemePaymentFailureScreenController.schemeTagLine,
+            ),
+            SizedBox(height: 2.h),
+            PaymentDetailsWidget(
+              monthlyAmount: schemePaymentFailureScreenController
+                  .savingSchemeDetails.monthlyAmount,
+              maturityAmount: schemePaymentFailureScreenController
+                  .savingSchemeDetails.maturityAmount,
+              tenure: schemePaymentFailureScreenController
+                  .savingSchemeDetails.tenure,
+              startDateTime: schemePaymentFailureScreenController
+                  .partnerSavingSchemeDetails.startDate,
+              endDateTime: schemePaymentFailureScreenController
+                  .partnerSavingSchemeDetails.endDate,
+            ),
+            SizedBox(height: 2.h),
+            // SencoGoldContainer(),
+            // PaymentDetailForMonthlyContainer(),
+            UnSuccessPaymentWidget(),
+          ],
+        ),
       ),
     );
   }

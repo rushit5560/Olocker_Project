@@ -72,6 +72,8 @@ class AppImages {
   static const String pdfImage = '$imageRootPath/download_icon_payment.png';
   static const String paymentSuccessimage =
       '$imageRootPath/successful_icon.png';
+  static const String pendingBillsImage = '$imageRootPath/my_bills_right.png';
+  static const String declinedCardimage = '$imageRootPath/declined_card.png';
 }
 
 class AppIcons {

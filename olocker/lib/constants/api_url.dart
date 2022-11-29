@@ -39,10 +39,18 @@ class ApiUrl {
       "${apiMainPath}api/User/GetSavingSchemeDetails";
   static const String addEnrollSavingSchemeApi =
       "${apiMainPath}api/User/AddEnrollSavingSchemeDetails";
+  static const String paymentSavingSchemeApi =
+      "${apiMainPath}api/User/PaymentSavingScheme";
+  static const String getCustomerSavingTransactions =
+      "${apiMainPath}api/User/GetCustomerSavingTransactions";
 
   // my saving schemes
   static const String getCustomerSavingSchemeApi =
       "${apiMainPath}api/User/GetCustomerSavingScheme";
+  static const String getPendingBillDetailListApi =
+      "${apiMainPath}api/User/PendingBillDetail";
+  static const String mySchemesEMIPaymentsApi =
+      "${apiMainPath}api/User/EMIPayments";
 
   // profile Screen Api
   static const String getUserProfileApi =
@@ -66,6 +74,8 @@ class ApiUrl {
   static const String getAllDataAddOrnamentApi =
       "${apiMainPath}api/Info/GetAllDataAddOrnament";
   static const String addOrnamentApi = "${apiMainPath}api/User/AddOrnament";
+  static const String updateOrnamentApi =
+      "${apiMainPath}api/User/UpdateOrnament";
   static const String getAllUnInsuredOrnamentApi =
       "${apiMainPath}api/User/GetAllUnInsuredOrnament";
   static const String getAllInsuredOrnamentApi =

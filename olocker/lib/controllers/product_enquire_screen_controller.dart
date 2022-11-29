@@ -110,7 +110,7 @@ class ProductEnquireScreenController extends GetxController {
             message: sendMsgController.text,
             messageType: 1,
             partnerName: "",
-            partnerSrNo: partnerSrNo,
+            partnerSrNo: int.parse(partnerSrNo),
             productId: productSrNo,
             replyMsgId: threadMsgId.value,
             sentBy: 0,

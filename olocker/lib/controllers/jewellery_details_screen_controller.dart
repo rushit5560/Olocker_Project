@@ -40,15 +40,15 @@ class JewelleryDetailsScreenController extends GetxController {
     try {
       await launchUrl(whatsappAndroid);
     } catch (e) {
-      log("launchWhatsappChat error occured :: ${e.toString()}");
+      if (e.toString().contains("ACTIVITY_NOT_FOUND")) {
+        CommonWidgets().showBorderSnackBar(
+          context: Get.context!,
+          displayText: "Whatsapp is not installed",
+        );
+      }
+      log("launchWhatsappChat error occured :: $e");
 
       rethrow;
-
-      // ScaffoldMessenger.of(Get.context!).showSnackBar(
-      //   const SnackBar(
-      //     content: Text("WhatsApp is not installed on the device"),
-      //   ),
-      // );
     }
     // if (await canLaunchUrl(whatsappAndroid)) {
     // } else {}
@@ -157,7 +157,7 @@ class JewelleryDetailsScreenController extends GetxController {
             context: Get.context!,
             displayText: "Item Added to favourites.",
           );
-          getFavouriteProductFunction();
+          // getFavouriteProductFunction();
         }
       } else {
         log('addFavouriteProductFunction Else');
@@ -193,7 +193,7 @@ class JewelleryDetailsScreenController extends GetxController {
             context: Get.context!,
             displayText: "Item Removed from favourites.",
           );
-          getFavouriteProductFunction();
+          // getFavouriteProductFunction();
         }
       } else {
         log('addFavouriteProductFunction Else');

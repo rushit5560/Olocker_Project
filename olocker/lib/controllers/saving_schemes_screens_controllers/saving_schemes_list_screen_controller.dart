@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:olocker/constants/api_url.dart';
 
-import '../../models/saving_scheme_screens_models/get_saving_schemes_list_model.dart';
+import '../../models/saving_scheme_screens_models/get_saving_scheme_list_models/get_saving_schemes_list_model.dart';
 
 class SavingSchemesListScreenController extends GetxController {
   RxBool isLoading = false.obs;

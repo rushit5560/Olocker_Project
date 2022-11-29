@@ -53,37 +53,38 @@ class SavingSchemesExplainerScreen extends StatelessWidget {
                         ),
                         child: Column(
                           children: [
-                            Text("api not properly ready"),
-                            // ClipRRect(
-                            //   borderRadius: const BorderRadius.only(
-                            //     topLeft: Radius.circular(20),
-                            //     topRight: Radius.circular(20),
-                            //   ),
-                            //   child: CachedNetworkImage(
-                            //     imageUrl: ApiUrl.apiImagePath +
-                            //         savingSchemesExplainerScreenController
-                            //             .getSavingSchemeData.imagePath,
-                            //     fit: BoxFit.fill,
-                            //     height: savingSchemesExplainerScreenController
-                            //             .size.height *
-                            //         0.28,
-                            //     width: double.infinity,
-                            //   ),
-                            // ),
-                            // Padding(
-                            //   padding: const EdgeInsets.symmetric(
-                            //       vertical: 12, horizontal: 15),
+                            // Text("api not properly ready"),
+                            ClipRRect(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20),
+                              ),
+                              child: CachedNetworkImage(
+                                imageUrl: ApiUrl.apiImagePath +
+                                    savingSchemesExplainerScreenController
+                                        .getSavingSchemesList[0].imagePath,
+                                fit: BoxFit.fill,
+                                height: savingSchemesExplainerScreenController
+                                        .size.height *
+                                    0.25,
+                                width: double.infinity,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 12, horizontal: 15),
 
-                            //   child: Html(
-                            //     data: savingSchemesExplainerScreenController
-                            //         .getSavingSchemeData.termsAndCondition,
-                            //   ),
-                            //   // Text(),
-                            // ),
+                              child: Html(
+                                data: savingSchemesExplainerScreenController
+                                    .getSavingSchemesList[0].termsAndCondition,
+                              ),
+                              // Text(),
+                            ),
                           ],
                         ),
                       ),
                     ),
+                    SizedBox(height: 2.h),
                   ],
                 ),
               ),
