@@ -844,7 +844,7 @@ class TransationSingleItemModule extends StatelessWidget {
               child: Text(
                 "₹ ${transData.transactionAmount}",
                 style: TextStyle(
-                  fontSize: 15.sp,
+                  fontSize: 13.sp,
                   color: AppColors.blackColor,
                   fontWeight: FontWeight.w500,
                 ),

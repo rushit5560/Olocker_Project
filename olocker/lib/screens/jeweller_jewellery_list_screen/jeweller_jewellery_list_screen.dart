@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
@@ -10,7 +11,7 @@ import 'package:olocker/screens/my_inquiries_list_screen/my_inquiries_list_scree
 import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
-import 'package:sliding_switch/sliding_switch.dart';
+// import 'package:sliding_switch/sliding_switch.dart';
 
 import 'jeweller_jewellery_list_screen_widgets.dart';
 
@@ -86,39 +87,55 @@ class JewellerJewelleryListScreen extends StatelessWidget {
                 children: [
                   Image.asset(
                     AppIcons.filterIcon,
-                    height: 26,
+                    height: 18.sp,
                   ),
                   const Text(
                     'SORT BT PRICE',
                   ),
                 ],
               ),
-              SlidingSwitch(
-                value:
-                    jewellerJewelleryListScreenController.sortPriceValue.value,
-                width:
-                    jewellerJewelleryListScreenController.size.width * 0.11.w,
-                height: 40,
-                onChanged: (bool value) {
-                  jewellerJewelleryListScreenController.sortPriceValue.value =
-                      !jewellerJewelleryListScreenController
-                          .sortPriceValue.value;
-                  log('sortPriceValue :${jewellerJewelleryListScreenController.sortPriceValue.value}');
-                },
-                onSwipe: () {},
-                onDoubleTap: () {},
-                onTap: () {},
-                textOff: 'LOW',
-                textOn: 'HIGH',
-                background: AppColors.greenColor,
-                contentSize: 15,
-                colorOff: AppColors.greenColor,
-                colorOn: AppColors.greenColor,
-                inactiveColor: AppColors.whiteColor,
-                buttonColor: AppColors.whiteColor,
-              ).commonOnlyPadding(right: 10),
+              Obx(
+                () => FlutterToggleTab(
+                  height: 5.h,
+                  width: 10.w,
+                  marginSelected: const EdgeInsets.all(3),
+                  borderRadius: 28,
+                  selectedIndex: jewellerJewelleryListScreenController
+                      .selectedSortingIndex.value,
+                  unSelectedBackgroundColors: const [
+                    AppColors.greenColor,
+                  ],
+                  selectedBackgroundColors: const [
+                    AppColors.whiteColor,
+                  ],
+                  selectedTextStyle: TextStyle(
+                    color: AppColors.greenColor,
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  unSelectedTextStyle: TextStyle(
+                    color: AppColors.whiteColor,
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  labels: const [
+                    "LOW",
+                    "HIGH",
+                  ],
+                  selectedLabelIndex: (index) {
+                    jewellerJewelleryListScreenController.isLoading(true);
+                    jewellerJewelleryListScreenController
+                        .selectedSortingIndex.value = index;
+                    jewellerJewelleryListScreenController.isLoading(false);
+                    log('selected sorting index :: ${jewellerJewelleryListScreenController.selectedSortingIndex.value}');
+
+                    jewellerJewelleryListScreenController.changeSortOption();
+                  },
+                ),
+              ),
+             
             ],
-          ).commonOnlyPadding(bottom: 5),
+          ).commonOnlyPadding(bottom: 5, left: 10),
         ),
       ),
       body: Obx(
