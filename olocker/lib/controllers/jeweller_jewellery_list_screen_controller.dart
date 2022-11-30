@@ -174,10 +174,10 @@ class JewellerJewelleryListScreenController extends GetxController {
       if (_jewelleryList[i].productsPrice.contains(".")) {
         withPriceList.add(_jewelleryList[i]);
 
-        if (selectedSortingIndex == 0) {
+        if (selectedSortingIndex.value == 0) {
           withPriceList
               .sort((a, b) => a.productsPrice.compareTo(b.productsPrice));
-        } else if (selectedSortingIndex == 1) {
+        } else if (selectedSortingIndex.value == 1) {
           withPriceList
               .sort((a, b) => b.productsPrice.compareTo(a.productsPrice));
         }
