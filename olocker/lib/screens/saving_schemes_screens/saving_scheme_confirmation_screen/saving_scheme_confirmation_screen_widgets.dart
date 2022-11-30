@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/screens/saving_schemes_screens/scheme_choose_payment_method_screen/scheme_choose_payment_method_screen.dart';
@@ -70,7 +71,14 @@ class AmountDetailsModule extends StatelessWidget {
                               children: [
                                 SizedBox(height: 2.h),
                                 Text(
-                                  "₹ ${savingSelectionScreenController.savingSchemeDetails.monthlyAmount}",
+                                  NumberFormat.currency(
+                                    symbol: '₹ ',
+                                    locale: "HI",
+                                    decimalDigits: 0,
+                                  ).format(double.parse(
+                                      savingSelectionScreenController
+                                          .savingSchemeDetails.monthlyAmount
+                                          .toString())),
                                   style: TextStyle(
                                     fontSize: 20.sp,
                                     color: AppColors.accentColor,
@@ -152,14 +160,22 @@ class AmountDetailsModule extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 12),
+
                             Text(
-                              "₹ ${savingSelectionScreenController.savingSchemeDetails.ourContribution}",
+                              NumberFormat.currency(
+                                symbol: '₹ ',
+                                locale: "HI",
+                                decimalDigits: 0,
+                              ).format(double.parse(
+                                  savingSelectionScreenController
+                                      .savingSchemeDetails.ourContribution
+                                      .toString())),
                               style: TextStyle(
                                 fontSize: 20.sp,
                                 color: AppColors.accentColor,
                                 fontWeight: FontWeight.w500,
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -177,7 +193,13 @@ class AmountDetailsModule extends StatelessWidget {
                             ),
                             const SizedBox(height: 12),
                             Text(
-                              "₹ ${savingSelectionScreenController.savingSchemeDetails.maturityAmount}",
+                              NumberFormat.currency(
+                                symbol: '₹ ',
+                                locale: "HI",
+                                decimalDigits: 0,
+                              ).format(double.parse(
+                                  savingSelectionScreenController.savingSchemeDetails.maturityAmount
+                                      .toString())),
                               style: TextStyle(
                                 fontSize: 20.sp,
                                 color: AppColors.accentColor,

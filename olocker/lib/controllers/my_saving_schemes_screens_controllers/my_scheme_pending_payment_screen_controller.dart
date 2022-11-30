@@ -1,17 +1,20 @@
 import 'dart:convert';
 import 'dart:developer';
-
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
 import 'package:olocker/constants/api_url.dart';
 import 'package:http/http.dart' as http;
+import 'package:olocker/constants/payment_keys.dart';
+import 'package:olocker/constants/user_details.dart';
 import 'package:olocker/screens/my_saving_schemes_screens/my_scheme_payment_failure_screen/my_scheme_payment_failure_screen.dart';
 import 'package:olocker/screens/my_saving_schemes_screens/my_scheme_payment_success_screen/my_scheme_payment_success_screen.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 import '../../constants/enum.dart';
 import '../../models/my_saving_schemes_models/emi_payment_result_model/emi_payment_result_model.dart';
 import '../../models/my_saving_schemes_models/get_pending_bills_model/get_pending_bills_list_model.dart';
 import '../../widgets/common_widgets.dart';
+
 
 class MySchemePendingPaymentScreenController extends GetxController {
   List<GetPendingBillData> pendingBillsSelectedList = Get.arguments[0];
@@ -20,6 +23,7 @@ class MySchemePendingPaymentScreenController extends GetxController {
 
   ApiHeader apiHeader = ApiHeader();
   PaymentTypeEnum paymentTypeEnum = PaymentTypeEnum.paytm;
+  final razorpay = Razorpay();
 
   RxInt customerPurchaseSchemeSrNo = 0.obs;
   RxString getPaymentId = "".obs;
@@ -43,7 +47,7 @@ class MySchemePendingPaymentScreenController extends GetxController {
 
     var srNoString = srNoDemoList.join(",");
 
-    log("passing srNoString is :: ${srNoString}");
+    log("passing srNoString is :: $srNoString");
 
     try {
       Map<String, dynamic> bodyData = {};
@@ -78,14 +82,14 @@ class MySchemePendingPaymentScreenController extends GetxController {
       } else if (paymentTypeEnum == PaymentTypeEnum.visa) {
         /// handle razorpay events
         ///
-        bodyData = {
-          "savingSchemeSrNo": srNoString,
-          "TransUuid": 0,
-          "TransactionId": "0",
-          "PaymentStatus": "1",
-          "Amount": "${totalEmiPaymentAmount.value}",
-          "TransactionDate": transDate,
-        };
+        // bodyData = {
+        //   "savingSchemeSrNo": srNoString,
+        //   "TransUuid": 0,
+        //   "TransactionId": "0",
+        //   "PaymentStatus": "1",
+        //   "Amount": "${totalEmiPaymentAmount.value}",
+        //   "TransactionDate": transDate,
+        // };
       } else {
         bodyData = {
           "savingSchemeSrNo": srNoString,
@@ -149,9 +153,89 @@ class MySchemePendingPaymentScreenController extends GetxController {
     }
   }
 
+  /// RazorPay Payment Gateway Moethods
+  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+    // Do something when payment succeeds
+    log('Success Payment Razorpay');
+    Get.to(
+          () => MySchemePaymentSuccessScreen(),
+      arguments: [
+        getPaymentId.value,
+        customerPurchaseSchemeSrNo.value,
+      ],
+    );
+
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    // Do something when payment fails
+    log('Error Payment Razorpay');
+    // Get.to(
+    //       () => SchemePaymentFailureScreen(),
+    //   arguments: [
+    //     schemeImagePath,
+    //     schemeName,
+    //     schemeTagLine,
+    //     savingSchemeDetails,
+    //     partnerSavingSchemeDetails,
+    //   ],
+    // );
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    // Do something when an external wallet is selected
+    log('External Wallet Payment Razorpay');
+    // Get.to(
+    //       () => SchemePaymentFailureScreen(),
+    //   arguments: [
+    //     schemeImagePath,
+    //     schemeName,
+    //     schemeTagLine,
+    //     savingSchemeDetails,
+    //     partnerSavingSchemeDetails,
+    //   ],
+    // );
+  }
+
+  void createRazorPaymentSheet() {
+    var options = {
+      'key': RazorpayPaymentKey.razorPaymentKey,
+      'amount': totalEmiPaymentAmount.value * 100,
+      'name': "",
+      'description': "",
+      'retry': {'enabled': true, 'max_count': 1},
+      'send_sms_hash': true,
+      'prefill': {
+        'contact': UserDetails.customerMobileNo,
+        'email': UserDetails.customerEmail,
+      },
+      /*'external': {
+        'wallets': ['paytm']
+      }*/
+    };
+
+    log('options: $options');
+
+    try {
+      razorpay.open(options);
+    } catch (e) {
+      debugPrint('Error: e');
+    }
+  }
+
+
+  // Future<void> razorPayPaymentSuccessFunction() async {
+  //
+  // }
+
   @override
   void onInit() {
     // TODO: implement onInit
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+      razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+      razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+    });
     totalEmiPaymentAmount.value = (pendingBillsSelectedList.length *
             pendingBillsSelectedList[0].installmentAmount)
         .floor();
@@ -160,7 +244,7 @@ class MySchemePendingPaymentScreenController extends GetxController {
 
   @override
   void dispose() {
-    // TODO: implement dispose
+    razorpay.clear(); // Removes all listeners
     super.dispose();
 
     pendingBillsSelectedList.clear();

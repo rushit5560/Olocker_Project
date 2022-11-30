@@ -191,6 +191,9 @@ class PayNowCustomButton extends StatelessWidget {
               displayText:
                   "Please select any payment method to continue payment.",
             );
+          } else if(screenController.paymentTypeEnum == PaymentTypeEnum.visa) {
+            // Here call Razorpay payment intent
+            screenController.createRazorPaymentSheet();
           } else {
             screenController.paymentSavingSchemeFunction();
           }

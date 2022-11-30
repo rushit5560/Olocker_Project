@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/constants/enum.dart';
+import 'package:olocker/widgets/common_widgets.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constants/app_colors.dart';
@@ -25,7 +26,21 @@ class PayNowButton extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
-          screenController.makePaymentsApiFunction();
+
+          if (screenController.paymentTypeEnum == null) {
+            CommonWidgets().showBorderSnackBar(
+              context: context,
+              displayText:
+              "Please select any payment method to continue payment.",
+            );
+          } else if(screenController.paymentTypeEnum == PaymentTypeEnum.visa) {
+            // Here call Razorpay payment intent
+            screenController.createRazorPaymentSheet();
+          } else {
+            screenController.makePaymentsApiFunction();
+          }
+
+
           
         },
         style: ElevatedButton.styleFrom(

@@ -43,7 +43,9 @@ class MySchemePendingBillsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     MyBillsModule(),
-                    PandingBillsSelectModule(),
+                    mySchemePendingBillsScreenController.getPendingBillsList.isEmpty
+                        ? Container()
+                        : PandingBillsSelectModule(),
                   ],
                 ),
               ),

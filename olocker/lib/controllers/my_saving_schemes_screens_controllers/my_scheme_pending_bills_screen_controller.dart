@@ -20,14 +20,14 @@ class MySchemePendingBillsScreenController extends GetxController {
 
   List<GetPendingBillData> getPendingBillsList = [];
   List<GetPendingBillData> selectedPendingBillsList = [];
+  RxString selectedAmountTotal = "0.0".obs;
+
+
 
   Future<void> getPendingBillDetailListApiFunction() async {
     String url =
         "${ApiUrl.getPendingBillDetailListApi}?customerPurchaseSavingSchemeSrNo=${customerPurchaseSavingSchemeSrNo}";
 
-    // $customerPurchaseSavingSchemeSrNo";
-
-    // 10055 numbeer
     log(" getPendingBillDetailListApiFunction url: $url");
 
     try {
@@ -50,8 +50,9 @@ class MySchemePendingBillsScreenController extends GetxController {
       if (isSuccessStatus.value) {
         // isLoading(true);
 
-        getPendingBillsList =
-            getPendingBillsListModel.getPurchaseSavingSchemeList;
+        getPendingBillsList = getPendingBillsListModel.getPurchaseSavingSchemeList;
+
+        calculateSelectedRecord();
         log("getPendingBillsList len is :: ${getPendingBillsList.length}");
         // isLoading(false);
       } else {
@@ -66,9 +67,20 @@ class MySchemePendingBillsScreenController extends GetxController {
     }
   }
 
+  void calculateSelectedRecord() {
+    if(getPendingBillsList.isEmpty) {
+      selectedAmountTotal.value = "0.0";
+    } else {
+      double amount = 0.0;
+      for(int i =0; i < getPendingBillsList.length;i++) {
+        amount = amount + getPendingBillsList[i].installmentAmount;
+      }
+      selectedAmountTotal.value = amount.toString();
+    }
+  }
+
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     getPendingBillDetailListApiFunction();
   }

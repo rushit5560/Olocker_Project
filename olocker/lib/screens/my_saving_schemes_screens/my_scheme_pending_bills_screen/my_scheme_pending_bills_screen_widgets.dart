@@ -121,7 +121,11 @@ class MyBillsModule extends StatelessWidget {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      "₹ ${(screenController.getPendingBillsList[0].installmentAmount * screenController.getPendingBillsList.length).floor()}",
+                      NumberFormat.currency(
+                        symbol: '₹ ',
+                        locale: "HI",
+                        decimalDigits: 2,
+                      ).format(double.parse(screenController.selectedAmountTotal.value)),
                       style: const TextStyle(
                         color: Colors.red,
                         fontSize: 20,

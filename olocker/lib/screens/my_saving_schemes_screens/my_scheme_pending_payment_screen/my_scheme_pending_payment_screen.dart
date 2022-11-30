@@ -46,7 +46,6 @@ class MySchemePendingPaymentScreen extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: PayNowButton(),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -60,6 +59,9 @@ class MySchemePendingPaymentScreen extends StatelessWidget {
             ),
           ),
         ),
+
+        bottomNavigationBar: PayNowButton(),
+
       ),
     );
   }
