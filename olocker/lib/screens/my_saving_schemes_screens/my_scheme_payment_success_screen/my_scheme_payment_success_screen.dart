@@ -5,6 +5,7 @@ import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../controllers/my_saving_schemes_screens_controllers/my_scheme_payment_success_screen_controller.dart';
+import '../../../widgets/common_widgets.dart';
 import 'my_scheme_payment_success_screen_widgets.dart';
 
 class MySchemePaymentSuccessScreen extends StatelessWidget {
@@ -14,36 +15,55 @@ class MySchemePaymentSuccessScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.darkCreamBgColor,
-      appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
+    return WillPopScope(
+      onWillPop: () async {
+        CommonWidgets().showBorderSnackBar(
+          context: context,
+          displayText: "You can not go back from this page.",
+        );
+
+        // can not go back if false
+        return false;
+      },
+      child: Scaffold(
         backgroundColor: AppColors.darkCreamBgColor,
-        leading: IconButton(
-          onPressed: () => Get.back(),
-          icon:
-              const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor),
-        ),
-        title: Text(
-          'Make Payments',
-          style: TextStyle(
-            color: AppColors.blackTextColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w500,
+        appBar: AppBar(
+          elevation: 0,
+          centerTitle: true,
+          backgroundColor: AppColors.darkCreamBgColor,
+          leading: IconButton(
+            onPressed: () {
+              CommonWidgets().showBorderSnackBar(
+                context: context,
+                displayText: "You can not go back from this page.",
+              );
+            },
+            icon: const Icon(Icons.arrow_back_ios,
+                color: AppColors.blackTextColor),
+          ),
+          title: Text(
+            'Payment Status',
+            style: TextStyle(
+              color: AppColors.blackTextColor,
+              fontSize: 13.sp,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
-      ),
-      body: Obx(
-        () => schemePaymentSuccessScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
-            : SingleChildScrollView(
-                child: Column(
-                  children: [
-                    HeaderModule(),
-                  ],
+        bottomNavigationBar: GoBackToSchemeDetailsButton(),
+        body: Obx(
+          () => schemePaymentSuccessScreenController.isLoading.value
+              ? CommonLoader().showCircularLoader()
+              : SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      PaymentSuccessContainerWidget(),
+                      SizedBox(height: 2.h),
+                      ImageShowWidget(),
+                    ],
+                  ),
                 ),
-              ),
+        ),
       ),
     );
   }

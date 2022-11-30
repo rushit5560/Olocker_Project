@@ -60,7 +60,7 @@ class MySchemesDetailsScreenController extends GetxController {
   Future<void> getTransactionsListFunction() async {
     isLoading(true);
     String url =
-        "${ApiUrl.getCustomerSavingTransactions}?SavingSchemeSrNo=$savingSchemeSrNo";
+        "${ApiUrl.getCustomerSavingTransactions}?SavingSchemeSrNo=${schemeData.savingSchemeSrNo}";
 
     // 10047";
     log('getTransactionsListFunction Api url : $url');

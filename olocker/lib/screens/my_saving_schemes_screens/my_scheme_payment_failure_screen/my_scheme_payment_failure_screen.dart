@@ -34,13 +34,16 @@ class MySchemePaymentFailureScreen extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: TryAnotherMethodButton(),
       body: Obx(
         () => mySchemePaymentFailureScreenController.isLoading.value
             ? CommonLoader().showCircularLoader()
             : SingleChildScrollView(
                 child: Column(
                   children: [
-                    HeaderModule(),
+                    PaymentUnSuccessContainerWidget(),
+                    SizedBox(height: 3.h),
+                    ImageShowWidget(),
                   ],
                 ),
               ),

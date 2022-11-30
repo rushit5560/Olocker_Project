@@ -264,18 +264,21 @@ class JewelleryCategoryListModule extends StatelessWidget {
             screenController.jewelleryCategoryList[i].imageurl;
         return GestureDetector(
           onTap: () {
-            Get.to(() => JewellerJewelleryListScreen(), arguments: [
-              screenController.jewelleryCategoryList[i].name,
-              screenController.jewelleryCategoryList[i].srNo,
-              screenController.jewellerId.toString(),
-              JewelleryListType.categoryId,
-            ]);
+            Get.to(
+              () => JewellerJewelleryListScreen(),
+              arguments: [
+                screenController.jewelleryCategoryList[i].name,
+                screenController.jewelleryCategoryList[i].srNo,
+                screenController.jewellerId.toString(),
+                JewelleryListType.categoryId,
+              ],
+            );
           },
           child: Container(
             height: screenController.size.height * 0.023.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Colors.grey,
+              color: AppColors.greyTextColor,
               image: DecorationImage(
                   image: NetworkImage(imgUrl), fit: BoxFit.cover),
             ),

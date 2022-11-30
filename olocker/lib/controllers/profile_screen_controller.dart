@@ -252,6 +252,7 @@ class ProfileScreenController extends GetxController {
           // prefs.setString(
           //     UserPrefsData().customerMobileNoKey, numberController.text);
           isEditable.value = true;
+
           CommonWidgets().showBorderSnackBar(
             context: Get.context!,
             displayText: "Profile Updated Successfully.",
