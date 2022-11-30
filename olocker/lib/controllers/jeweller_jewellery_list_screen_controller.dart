@@ -24,6 +24,7 @@ class JewellerJewelleryListScreenController extends GetxController {
 
   Size size = Get.size;
   ApiHeader apiHeader = ApiHeader();
+  RxInt selectedSortingIndex = 0.obs;
 
   RxBool sortPriceValue = false.obs;
 
