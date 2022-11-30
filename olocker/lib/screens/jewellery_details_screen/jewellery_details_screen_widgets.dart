@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
+import 'package:olocker/controllers/jeweller_jewellery_list_screen_controller.dart';
 
 import 'package:olocker/utils/extensions.dart';
 import 'package:photo_view/photo_view_gallery.dart';
@@ -19,6 +20,9 @@ class FavouriteButtonModule extends StatelessWidget {
   final jewelleryDetailsController =
       Get.find<JewelleryDetailsScreenController>();
 
+  // Find Previous screen controller here for Product fav or unFav.
+  final jewellerJewelleryListScreenController = Get.find<JewellerJewelleryListScreenController>();
+
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -26,7 +30,9 @@ class FavouriteButtonModule extends StatelessWidget {
       top: 10,
       child: GestureDetector(
         onTap: () async {
-          await jewelleryDetailsController.addFavouriteProductFunction();
+          jewellerJewelleryListScreenController.jewelleryList[jewelleryDetailsController.indexOfThisProduct].isFav == true
+              ? await jewelleryDetailsController.removeFavouriteProductFunction()
+          : await jewelleryDetailsController.addFavouriteProductFunction();
         },
         child: Container(
           decoration: const BoxDecoration(
@@ -34,8 +40,9 @@ class FavouriteButtonModule extends StatelessWidget {
             shape: BoxShape.circle,
           ),
           padding: const EdgeInsets.all(8),
-          child: const Icon(
-            Icons.favorite_border,
+          child: Icon(
+            jewellerJewelleryListScreenController.jewelleryList[jewelleryDetailsController.indexOfThisProduct].isFav == true
+            ? Icons.favorite_rounded : Icons.favorite_border,
             color: AppColors.accentColor,
             size: 24,
           ),

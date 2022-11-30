@@ -26,12 +26,12 @@ class JewelleryGridviewModule extends StatelessWidget {
       ),
       itemBuilder: (context, i) {
         SearchProductListDatum singleItem = screenController.jewelleryList[i];
-        return _jewelleryListTile(singleItem);
+        return _jewelleryListTile(singleItem, i);
       },
     ).commonAllSidePadding(10);
   }
 
-  Widget _jewelleryListTile(SearchProductListDatum singleItem) {
+  Widget _jewelleryListTile(SearchProductListDatum singleItem, int i) {
     String imgUrl = ApiUrl.apiImagePath + singleItem.productImage;
     return GestureDetector(
       onTap: () {
@@ -39,7 +39,11 @@ class JewelleryGridviewModule extends StatelessWidget {
           screenController.jewellerId,
           singleItem.productSrNo,
           singleItem.productName,
-        ]);
+          i,
+        ])!.then((value) {
+          screenController.isLoading(true);
+          screenController.isLoading(false);
+        });
       },
       child: Container(
         decoration: BoxDecoration(
@@ -115,11 +119,24 @@ class JewelleryGridviewModule extends StatelessWidget {
                     children: [
                       IconButton(
                         onPressed: () async {
-                          await screenController.addFavouriteProductFunction(
-                              productSrNo: singleItem.productSrNo.toString());
+                          singleItem.isFav == false
+                              ? await screenController
+                                  .addFavouriteProductFunction(
+                                  productSrNo:
+                                      singleItem.productSrNo.toString(),
+                                  singleProduct: singleItem,
+                                )
+                              : await screenController
+                                  .removeFavouriteProductListFunction(
+                                  productSrNo:
+                                      singleItem.productSrNo.toString(),
+                                  singleProduct: singleItem,
+                                );
                         },
                         icon: Icon(
-                          Icons.favorite_outline_rounded,
+                          singleItem.isFav == true
+                              ? Icons.favorite_rounded
+                              : Icons.favorite_outline_rounded,
                           color: AppColors.accentColor,
                           size: 18.sp,
                         ),

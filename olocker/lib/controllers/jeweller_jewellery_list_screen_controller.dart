@@ -75,7 +75,7 @@ class JewellerJewelleryListScreenController extends GetxController {
 
   // Add product in Fav
   Future<void> addFavouriteProductFunction(
-      {required String productSrNo}) async {
+      {required String productSrNo, required SearchProductListDatum singleProduct}) async {
     // isLoading(true);
     String url = "${ApiUrl.addFavProductApi}?Id=$productSrNo";
 
@@ -106,6 +106,7 @@ class JewellerJewelleryListScreenController extends GetxController {
             context: Get.context!,
             displayText: "Item Added to favourites.",
           );
+          singleProduct.isFav = true;
         }
       } else {
         log('addFavouriteProductFunction Else');
@@ -114,14 +115,81 @@ class JewellerJewelleryListScreenController extends GetxController {
       log('addFavouriteProductFunction Error :$e');
       rethrow;
     } finally {
-      // isLoading(false);
+      isLoading(true);
+      isLoading(false);
     }
     // await getAnnouncementOfferFunction();
+  }
+
+  Future<void> removeFavouriteProductListFunction({required String productSrNo, required SearchProductListDatum singleProduct}) async {
+    String url = "${ApiUrl.removeFavProductApi}?Id=$productSrNo";
+
+    log('removeFavouriteProductFunction Api Url :: $url');
+
+    try {
+      // isLoading(true);
+      http.Response response = await http.get(
+        Uri.parse(url),
+        headers: apiHeader.headers,
+      );
+      log('removeFavouriteProductFunction response : ${response.body}');
+      var resBody = jsonDecode(response.body);
+
+      isSuccessStatus.value = resBody["success"];
+
+      if (response.statusCode == 200) {
+        if (isSuccessStatus.value) {
+          CommonWidgets().showBorderSnackBar(
+            context: Get.context!,
+            displayText: "Item Removed from favourites.",
+          );
+          /// Remove favourite button change in previous screen list
+          singleProduct.isFav = false;
+          // getFavouriteProductFunction();
+        }
+      } else {
+        log('addFavouriteProductFunction Else');
+      }
+    } catch (e) {
+      log('removeFavouriteProductFunction Error :$e');
+      rethrow;
+    } finally {
+      isLoading(true);
+      isLoading(false);
+    }
   }
 
   shareJewellery() async {
     // var urlPreview = "";
     await Share.share("share this jewellery to a person https://example.com");
+  }
+
+  changeSortOption() {
+    isLoading(true);
+    List<SearchProductListDatum> withPriceList = [];
+    List<SearchProductListDatum> withoutPriceList = [];
+
+    for (int i = 0; i < _jewelleryList.length; i++) {
+      if (_jewelleryList[i].productsPrice.contains(".")) {
+        withPriceList.add(_jewelleryList[i]);
+
+        if (selectedSortingIndex == 0) {
+          withPriceList
+              .sort((a, b) => a.productsPrice.compareTo(b.productsPrice));
+        } else if (selectedSortingIndex == 1) {
+          withPriceList
+              .sort((a, b) => b.productsPrice.compareTo(a.productsPrice));
+        }
+      } else {
+        withoutPriceList.add(_jewelleryList[i]);
+      }
+    }
+
+    _jewelleryList.clear();
+    _jewelleryList.addAll(withPriceList);
+    _jewelleryList.addAll(withoutPriceList);
+
+    isLoading(false);
   }
 
   @override

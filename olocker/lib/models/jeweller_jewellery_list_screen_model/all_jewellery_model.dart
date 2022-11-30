@@ -76,6 +76,7 @@ class SearchProductListDatum {
     required this.productImage,
     required this.tryBeforeBuy,
     required this.type,
+    required this.isFav,
   });
 
   String categoryName;
@@ -96,6 +97,7 @@ class SearchProductListDatum {
   String productImage;
   bool tryBeforeBuy;
   String type;
+  bool isFav;
 
   factory SearchProductListDatum.fromJson(Map<String, dynamic> json) => SearchProductListDatum(
     categoryName: json["CategoryName"] ?? "",
@@ -116,6 +118,7 @@ class SearchProductListDatum {
     productImage: json["ProductImage"] ?? "",
     tryBeforeBuy: json["TryBeforeBuy"] ?? false,
     type: json["Type"] ?? "",
+    isFav: json["IsFav"] ?? false,
   );
 
   Map<String, dynamic> toJson() => {

@@ -12,12 +12,18 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../models/jeweller_details_screen_model/special_features_model.dart';
 import '../models/jewellery_details_screen_model/get_jewellery_detail_model.dart';
+import 'jeweller_jewellery_list_screen_controller.dart';
 
 class JewelleryDetailsScreenController extends GetxController {
   var partnerSrNo = Get.arguments[0]; // Coming From Home Screen Jeweller List
   var productSrNo = Get.arguments[1]; // Coming From Home Screen Jeweller List
   var jewelleryTypeName =
       Get.arguments[2]; // Coming From Home Screen Jeweller List
+  int indexOfThisProduct = Get.arguments[3];
+
+
+  // Find Previous screen controller here for Product fav or unFav.
+  final jewellerJewelleryListScreenController = Get.find<JewellerJewelleryListScreenController>();
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -131,7 +137,7 @@ class JewelleryDetailsScreenController extends GetxController {
     log('addFavouriteProductFunction Api Url :: $url');
 
     try {
-      isLoading(true);
+      // isLoading(true);
       var requestMap = {
         "CustomerId": UserDetails.customerId,
         "Product": productSrNo,
@@ -139,7 +145,7 @@ class JewelleryDetailsScreenController extends GetxController {
         "IsSupplierProduct": true
       };
 
-      log("rq map ${requestMap}");
+      log("rq map $requestMap");
       http.Response response = await http.post(
         Uri.parse(url),
         headers: apiHeader.headers,
@@ -157,6 +163,8 @@ class JewelleryDetailsScreenController extends GetxController {
             context: Get.context!,
             displayText: "Item Added to favourites.",
           );
+          /// Add favourite button change in previous screen list
+          jewellerJewelleryListScreenController.jewelleryList[indexOfThisProduct].isFav = true;
           // getFavouriteProductFunction();
         }
       } else {
@@ -166,6 +174,7 @@ class JewelleryDetailsScreenController extends GetxController {
       log('addFavouriteProductFunction Error :$e');
       rethrow;
     } finally {
+      isLoading(true);
       isLoading(false);
     }
     // await getAnnouncementOfferFunction();
@@ -177,7 +186,7 @@ class JewelleryDetailsScreenController extends GetxController {
     log('removeFavouriteProductFunction Api Url :: $url');
 
     try {
-      isLoading(true);
+      // isLoading(true);
       http.Response response = await http.get(
         Uri.parse(url),
         headers: apiHeader.headers,
@@ -193,6 +202,8 @@ class JewelleryDetailsScreenController extends GetxController {
             context: Get.context!,
             displayText: "Item Removed from favourites.",
           );
+          /// Remove favourite button change in previous screen list
+          jewellerJewelleryListScreenController.jewelleryList[indexOfThisProduct].isFav = false;
           // getFavouriteProductFunction();
         }
       } else {
@@ -202,6 +213,7 @@ class JewelleryDetailsScreenController extends GetxController {
       log('removeFavouriteProductFunction Error :$e');
       rethrow;
     } finally {
+      isLoading(true);
       isLoading(false);
     }
   }
