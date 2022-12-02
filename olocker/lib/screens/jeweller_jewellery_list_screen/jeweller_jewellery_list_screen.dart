@@ -55,7 +55,9 @@ class JewellerJewelleryListScreen extends StatelessWidget {
                 arguments: [
                   jewellerJewelleryListScreenController.jewellerId.toString(),
                 ],
-              );
+              )!.then((value) async {
+                await jewellerJewelleryListScreenController.getAllJewelleryListFunction();
+              });
             },
             icon: const Icon(
               Icons.favorite_outline_rounded,

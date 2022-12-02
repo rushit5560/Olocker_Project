@@ -25,7 +25,7 @@ class MyInquiriesListScreen extends StatelessWidget {
         ),
         titleSpacing: 0,
         title: Text(
-          'My Inquiries',
+          'My Enquiries',
           style: TextStyle(
             color: AppColors.blackTextColor,
             fontSize: 13.sp,
@@ -48,7 +48,7 @@ class MyInquiriesListScreen extends StatelessWidget {
                             padding: EdgeInsets.symmetric(vertical: 20.h),
                             child: Center(
                               child: Text(
-                                "No Inquiries Found",
+                                "No Enquiries Found",
                                 style: TextStyle(
                                   color: AppColors.whiteColor,
                                   fontSize: 13.sp,

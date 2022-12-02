@@ -35,12 +35,16 @@ class JewelleryGridviewModule extends StatelessWidget {
     String imgUrl = ApiUrl.apiImagePath + singleItem.productImage;
     return GestureDetector(
       onTap: () {
-        Get.to(() => JewelleryDetailsScreen(), arguments: [
-          screenController.jewellerId,
-          singleItem.productSrNo,
-          singleItem.productName,
-          i,
-        ])!.then((value) {
+        Get.to(
+          () => JewelleryDetailsScreen(),
+          arguments: [
+            screenController.jewellerId,
+            singleItem.productSrNo,
+            singleItem.productName,
+            i,
+          ],
+        )!
+            .then((value) {
           screenController.isLoading(true);
           screenController.isLoading(false);
         });

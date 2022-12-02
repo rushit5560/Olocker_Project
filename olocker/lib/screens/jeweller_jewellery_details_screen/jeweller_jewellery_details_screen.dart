@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
+import 'package:olocker/controllers/jeweller_jewellery_details_screen_controller.dart';
 import 'package:olocker/screens/product_enquire_screen/product_enquire_screen.dart';
 import 'package:sizer/sizer.dart';
-import '../../controllers/jewellery_details_screen_controller.dart';
-import 'jewellery_details_screen_widgets.dart';
 
-class JewelleryDetailsScreen extends StatelessWidget {
-  JewelleryDetailsScreen({Key? key}) : super(key: key);
-  final jewelleryDetailsController =
-      Get.put(JewelleryDetailsScreenController());
+import 'jeweller_jewellery_details_screen_widgets.dart';
+
+class JewellerJewelleryDetailsScreen extends StatelessWidget {
+  JewellerJewelleryDetailsScreen({Key? key}) : super(key: key);
+  final jewellerJewelleryDetailsScreenController =
+      Get.put(JewellerJewelleryDetailsScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class JewelleryDetailsScreen extends StatelessWidget {
               const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor),
         ),
         title: Text(
-          '${jewelleryDetailsController.jewelleryTypeName}',
+          '${jewellerJewelleryDetailsScreenController.jewelleryTypeName}',
           style: TextStyle(
             color: AppColors.blackTextColor,
             fontSize: 13.sp,
@@ -34,7 +35,7 @@ class JewelleryDetailsScreen extends StatelessWidget {
         ),
       ),
       body: Obx(
-        () => jewelleryDetailsController.isLoading.value
+        () => jewellerJewelleryDetailsScreenController.isLoading.value
             ? const Center(child: CircularProgressIndicator())
             : SingleChildScrollView(
                 child: Column(
@@ -45,10 +46,12 @@ class JewelleryDetailsScreen extends StatelessWidget {
                         Image.asset(
                           AppImages.jewelleryProductBgShapeImage,
                           width: double.infinity,
-                          height: jewelleryDetailsController.size.height * 0.38,
+                          height: jewellerJewelleryDetailsScreenController
+                                  .size.height *
+                              0.38,
                           fit: BoxFit.cover,
                         ),
-                        jewelleryDetailsController
+                        jewellerJewelleryDetailsScreenController
                                 .productDetailsData.productImageList.isEmpty
                             ? Center(
                                 child: Text(
@@ -60,27 +63,32 @@ class JewelleryDetailsScreen extends StatelessWidget {
                                   ),
                                 ),
                               )
-                            : ProductImagesSliderModule(),
-                        FavouriteButtonModule(),
-                        ShareButtonModule(),
+                            : JewellerProductImagesSliderModule(),
+                        JewellerFavouriteButtonModule(),
+                        JewellerShareButtonModule(),
                       ],
                     ),
+
                     Column(
                       children: [
-                        JewelleryApproxPriceModule(),
-                        ProductDescriptionModule(),
-                        jewelleryDetailsController.specialFeaturesList.isEmpty
+                        JewellerJewelleryApproxPriceModule(),
+                        JewellerProductDescriptionModule(),
+                        jewellerJewelleryDetailsScreenController.specialFeaturesList.isEmpty
                             ? const SizedBox()
-                            : JewellerFeaturesAvailableModule(),
+                            : JewellerJewellerFeaturesAvailableModule(),
                       ],
                     ),
+
+
                   ],
                 ),
               ),
       ),
+
+
       bottomNavigationBar: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: jewelleryDetailsController.size.width * 0.2,
+          horizontal: jewellerJewelleryDetailsScreenController.size.width * 0.2,
           vertical: 2.h,
         ),
         child: SizedBox(
@@ -91,10 +99,10 @@ class JewelleryDetailsScreen extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   Get.to(
-                    () => ProductEnquireScreen(),
+                        () => ProductEnquireScreen(),
                     arguments: [
-                      jewelleryDetailsController.partnerSrNo,
-                      jewelleryDetailsController.productSrNo,
+                      jewellerJewelleryDetailsScreenController.partnerSrNo,
+                      jewellerJewelleryDetailsScreenController.productSrNo,
                       "",
                     ],
                   );
@@ -144,6 +152,8 @@ class JewelleryDetailsScreen extends StatelessWidget {
           ),
         ),
       ),
+
+
     );
   }
 }
