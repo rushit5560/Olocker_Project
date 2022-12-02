@@ -55,7 +55,7 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
           "PaymentId": savingSchemeDetails.paymentId,
           "TransUuid": 0,
           "TransactionId": "0",
-          "PaymentStatus": "1",
+          "PaymentStatus": "AUTHORISED",
           "Amount": "${savingSchemeDetails.monthlyAmount}",
           "TransactionDate": transDate,
         };
@@ -64,7 +64,7 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
           "PaymentId": savingSchemeDetails.paymentId,
           "TransUuid": 0,
           "TransactionId": "0",
-          "PaymentStatus": "1",
+          "PaymentStatus": "AUTHORISED",
           "Amount": "${savingSchemeDetails.monthlyAmount}",
           "TransactionDate": transDate,
         };
@@ -73,7 +73,7 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
           "PaymentId": savingSchemeDetails.paymentId,
           "TransUuid": 0,
           "TransactionId": "0",
-          "PaymentStatus": "1",
+          "PaymentStatus": "AUTHORISED",
           "Amount": "${savingSchemeDetails.monthlyAmount}",
           "TransactionDate": transDate,
         };
@@ -84,7 +84,7 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
         //   "PaymentId": savingSchemeDetails.paymentId,
         //   "TransUuid": 0,
         //   "TransactionId": "0",
-        //   "PaymentStatus": "1",
+        //   "PaymentStatus": "AUTHORISED",
         //   "Amount": "${savingSchemeDetails.monthlyAmount}",
         //   "TransactionDate": transDate,
         // };
@@ -94,7 +94,7 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
           "PaymentId": savingSchemeDetails.paymentId,
           "TransUuid": 0,
           "TransactionId": "0",
-          "PaymentStatus": "1",
+          "PaymentStatus": "AUTHORISED",
           "Amount": "${savingSchemeDetails.monthlyAmount}",
           "TransactionDate": transDate,
         };
@@ -264,9 +264,9 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
     try {
       Map<String, dynamic> bodyData = {
         "PaymentId": savingSchemeDetails.paymentId,
-        "TransUuid": transUuid,
-        "TransactionId": transactionId,
-        "PaymentStatus": "1",
+        "TransUuid": transUuid == null ? 0 : transUuid,
+        "TransactionId": transactionId == null ? "0" : transUuid,
+        "PaymentStatus": "AUTHORISED",
         "Amount": "${savingSchemeDetails.monthlyAmount}",
         "TransactionDate": transDate,
       };

@@ -57,7 +57,7 @@ class BannerSliderModule extends StatelessWidget {
               return _imageModule(singleBanner);
             },
             options: CarouselOptions(
-              height: screenController.size.height * 0.022.h,
+              height: 25.h,
               autoPlay: true,
               viewportFraction: 1,
               autoPlayInterval: const Duration(seconds: 10),
@@ -116,7 +116,10 @@ class BannerSliderModule extends StatelessWidget {
       borderRadius: BorderRadius.circular(15),
       child: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(image: NetworkImage(imgUrl), fit: BoxFit.fill),
+          image: DecorationImage(
+            image: NetworkImage(imgUrl),
+            fit: BoxFit.fill,
+          ),
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
@@ -139,6 +142,7 @@ class AllJewellersListModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       itemCount: screenController.allJewellersList.length,
+      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

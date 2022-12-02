@@ -1,39 +1,48 @@
 import 'dart:convert';
 
-JewelleryCategoryModel jewelleryCategoryModelFromJson(String str) => JewelleryCategoryModel.fromJson(json.decode(str));
+import 'package:olocker/models/jeweller_details_screen_model/announcement_offer_model.dart';
 
-String jewelleryCategoryModelToJson(JewelleryCategoryModel data) => json.encode(data.toJson());
+JewelleryCategoryModel jewelleryCategoryModelFromJson(String str) =>
+    JewelleryCategoryModel.fromJson(json.decode(str));
+
+String jewelleryCategoryModelToJson(JewelleryCategoryModel data) =>
+    json.encode(data.toJson());
 
 class JewelleryCategoryModel {
   JewelleryCategoryModel({
     required this.getPushCollection,
-    // required this.getPushOffer,
+    required this.getPushOffer,
     // required this.getPushSubCategory,
     required this.success,
     required this.errorInfo,
   });
 
   List<GetPushCollectionItem> getPushCollection;
-  // List<dynamic> getPushOffer;
+  List<GetPushOfferItem> getPushOffer;
   // List<GetPushSubCategory> getPushSubCategory;
   bool success;
   ErrorInfo errorInfo;
 
-  factory JewelleryCategoryModel.fromJson(Map<String, dynamic> json) => JewelleryCategoryModel(
-    getPushCollection: List<GetPushCollectionItem>.from((json["GetPushCollection"] ?? []).map((x) => GetPushCollectionItem.fromJson(x))),
-    // getPushOffer: List<dynamic>.from((json["GetPushOffer"] ?? []).map((x) => x)),
-    // getPushSubCategory: List<GetPushSubCategory>.from(json["GetPushSubCategory"].map((x) => GetPushSubCategory.fromJson(x))),
-    success: json["success"],
-    errorInfo: ErrorInfo.fromJson(json["error_info"]),
-  );
+  factory JewelleryCategoryModel.fromJson(Map<String, dynamic> json) =>
+      JewelleryCategoryModel(
+        getPushCollection: List<GetPushCollectionItem>.from(
+            (json["GetPushCollection"] ?? [])
+                .map((x) => GetPushCollectionItem.fromJson(x))),
+        getPushOffer: List<GetPushOfferItem>.from((json["GetPushOffer"] ?? [])
+            .map((x) => GetPushOfferItem.fromJson(x))),
+        // getPushSubCategory: List<GetPushSubCategory>.from(json["GetPushSubCategory"].map((x) => GetPushSubCategory.fromJson(x))),
+        success: json["success"],
+        errorInfo: ErrorInfo.fromJson(json["error_info"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "GetPushCollection": List<dynamic>.from(getPushCollection.map((x) => x.toJson())),
-    // "GetPushOffer": List<dynamic>.from(getPushOffer.map((x) => x)),
-    // "GetPushSubCategory": List<dynamic>.from(getPushSubCategory.map((x) => x.toJson())),
-    "success": success,
-    "error_info": errorInfo.toJson(),
-  };
+        "GetPushCollection": List<GetPushCollectionItem>.from(
+            getPushCollection.map((x) => x.toJson())),
+        "GetPushOffer": List<GetPushOfferItem>.from(getPushOffer.map((x) => x)),
+        // "GetPushSubCategory": List<dynamic>.from(getPushSubCategory.map((x) => x.toJson())),
+        "success": success,
+        "error_info": errorInfo.toJson(),
+      };
 }
 
 class ErrorInfo {
@@ -50,18 +59,18 @@ class ErrorInfo {
   // dynamic errorData;
 
   factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
-    // errorType: json["error_type"],
-    extraInfo: json["extra_info"] ?? "",
-    // description: json["description"],
-    // errorData: json["error_data"],
-  );
+        // errorType: json["error_type"],
+        extraInfo: json["extra_info"] ?? "",
+        // description: json["description"],
+        // errorData: json["error_data"],
+      );
 
   Map<String, dynamic> toJson() => {
-    // "error_type": errorType,
-    "extra_info": extraInfo,
-    // "description": description,
-    // "error_data": errorData,
-  };
+        // "error_type": errorType,
+        "extra_info": extraInfo,
+        // "description": description,
+        // "error_data": errorData,
+      };
 }
 
 class GetPushCollectionItem {
@@ -83,26 +92,59 @@ class GetPushCollectionItem {
   String pushSortOrder;
   String imageurl;
 
-  factory GetPushCollectionItem.fromJson(Map<String, dynamic> json) => GetPushCollectionItem(
-    srNo: json["SrNo"].toString(),
-    name: json["Name"] ?? "",
-    title: json["Title"] ?? "",
-    description: json["Description"] ?? "",
-    isActive: json["IsActive"] ?? false,
-    pushSortOrder: json["PushSortOrder"].toString(),
-    imageurl: json["Imageurl"] ?? "",
-  );
+  factory GetPushCollectionItem.fromJson(Map<String, dynamic> json) =>
+      GetPushCollectionItem(
+        srNo: json["SrNo"].toString(),
+        name: json["Name"] ?? "",
+        title: json["Title"] ?? "",
+        description: json["Description"] ?? "",
+        isActive: json["IsActive"] ?? false,
+        pushSortOrder: json["PushSortOrder"].toString(),
+        imageurl: json["Imageurl"] ?? "",
+      );
 
   Map<String, dynamic> toJson() => {
-    "SrNo": srNo,
-    "Name": name,
-    "Title": title,
-    "Description": description,
-    "IsActive": isActive,
-    "PushSortOrder": pushSortOrder,
-    "Imageurl": imageurl,
-  };
+        "SrNo": srNo,
+        "Name": name,
+        "Title": title,
+        "Description": description,
+        "IsActive": isActive,
+        "PushSortOrder": pushSortOrder,
+        "Imageurl": imageurl,
+      };
 }
+
+// class GetPushOffer {
+//   GetPushOffer({
+//     required this.srNo,
+//     required this.name,
+//     required this.pushSortOrder,
+//     required this.imageurl,
+//     required this.description,
+//   });
+
+//   final int srNo;
+//   final String name;
+//   final int pushSortOrder;
+//   final String imageurl;
+//   final String description;
+
+//   factory GetPushOffer.fromJson(Map<String, dynamic> json) => GetPushOffer(
+//         srNo: json["SrNo"] ?? 0,
+//         name: json["Name"] ?? "",
+//         pushSortOrder: json["PushSortOrder"] ?? 0,
+//         imageurl: json["Imageurl"] ?? "",
+//         description: json["Description"] ?? "",
+//       );
+
+//   Map<String, dynamic> toJson() => {
+//         "SrNo": srNo,
+//         "Name": name,
+//         "PushSortOrder": pushSortOrder,
+//         "Imageurl": imageurl,
+//         "Description": description,
+//       };
+// }
 
 // class GetPushSubCategory {
 //   GetPushSubCategory({

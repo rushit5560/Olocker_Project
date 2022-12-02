@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,9 +17,11 @@ import 'package:olocker/screens/jewellery_details_screen/jewellery_details_scree
 import 'package:olocker/screens/refer_and_earn_screen/refer_and_earn_screen.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
+import '../../models/jeweller_details_screen_model/announcement_offer_model.dart';
 import '../about_us_screen/about_us_screen.dart';
 import '../jeweller_loyalty_points_screen/jeweller_loyalty_points_screen.dart';
 import '../my_favourites_screen/my_favourites_screen.dart';
+import '../offers_jewellery_list_screen/offers_jewellery_list_screen.dart';
 import '../saving_schemes_screens/saving_schemes_list_screen/saving_schemes_list_screen.dart';
 
 class JewellerFeaturesModule extends StatelessWidget {
@@ -78,12 +81,13 @@ class JewellerBannerModule extends StatelessWidget {
     return CarouselSlider.builder(
       itemCount: screenController.announcementOfferList.length,
       itemBuilder: (context, i, realIndex) {
-        String imgUrl = ApiUrl.apiMainPath +
-            screenController.announcementOfferList[i].imageurl;
-        return _imageModule(imgUrl) /*.commonSymmetricPadding(horizontal: 5)*/;
+        GetPushOfferItem oneOffer = screenController.announcementOfferList[i];
+        return _imageModule(
+          singleOffer: oneOffer,
+        ) /*.commonSymmetricPadding(horizontal: 5)*/;
       },
       options: CarouselOptions(
-        height: screenController.size.height * 0.040.h,
+        height: 28.h,
         autoPlay: true,
         viewportFraction: 1,
         // autoPlayAnimationDuration: const Duration(seconds: 10),
@@ -92,14 +96,31 @@ class JewellerBannerModule extends StatelessWidget {
     ).commonSymmetricPadding(vertical: 8);
   }
 
-  Widget _imageModule(String imgUrl) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.grey,
-        image: DecorationImage(image: NetworkImage(imgUrl), fit: BoxFit.cover),
-      ),
-    ).commonSymmetricPadding(horizontal: 5);
+  Widget _imageModule({required GetPushOfferItem singleOffer}) {
+    String imgUrl = ApiUrl.apiMainPath + singleOffer.imageurl;
+    return GestureDetector(
+      onTap: () {
+        if (singleOffer.isClickable == true) {
+          Get.to(
+            () => OffersJewelleryListScreen(),
+            arguments: [
+              singleOffer.srNo.split(".")[0],
+              screenController.jewellerId.toString(),
+            ],
+          );
+        }
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: AppColors.greyTextColor,
+          image: DecorationImage(
+            image: NetworkImage(imgUrl),
+            fit: BoxFit.fill,
+          ),
+        ),
+      ).commonSymmetricPadding(horizontal: 5),
+    );
   }
 }
 
@@ -445,13 +466,15 @@ class MenWomenJewelleryListModule extends StatelessWidget {
           children: [
             Expanded(
               flex: 8,
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(imgUrl),
+              child: CachedNetworkImage(
+                imageUrl: imgUrl,
+                fit: BoxFit.cover,
+                errorWidget: (context, str, dyn) {
+                  return Image.asset(
+                    AppImages.noLogoImage,
                     fit: BoxFit.cover,
-                  ),
-                ),
+                  );
+                },
               ).commonAllSidePadding(20),
             ),
             Expanded(
@@ -520,17 +543,18 @@ class BestSellersListModule extends StatelessWidget {
   }
 
   Widget _bestSellerListTile(ListOfProduct singleItem) {
-    // String imgUrl = ApiUrl.apiImagePath + singleItem.productimages[0].imageLocation;
+    String imgUrl =
+        ApiUrl.apiImagePath + singleItem.productimages[0].imageLocation;
     // log('imgUrl111 : $imgUrl');
 
     return GestureDetector(
       onTap: () {
         Get.to(
-          () => JewelleryDetailsScreen(),
+          () => JewellerJewelleryDetailsScreen(),
           arguments: [
-            screenController.jewellerId,
+            screenController.jewellerId.toString(),
             singleItem.productsrno,
-            singleItem.name
+            singleItem.name,
           ],
         );
       },
@@ -544,15 +568,16 @@ class BestSellersListModule extends StatelessWidget {
           children: [
             Expanded(
               flex: 8,
-              child: Container(
-                      /*decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(imgUrl.trim()),
+              child: CachedNetworkImage(
+                imageUrl: imgUrl,
+                fit: BoxFit.cover,
+                errorWidget: (context, str, dyn) {
+                  return Image.asset(
+                    AppImages.noLogoImage,
                     fit: BoxFit.cover,
-                  ),
-                ),*/
-                      )
-                  .commonAllSidePadding(20),
+                  );
+                },
+              ).commonAllSidePadding(20),
             ),
             Expanded(
               flex: 2,
@@ -644,10 +669,29 @@ class CustomerSpeakModule extends StatelessWidget {
               Container(
                 height: screenController.size.width * 0.030.w,
                 width: screenController.size.width * 0.030.w,
-                decoration:  BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: AppColors.whiteColor,
-                  image: DecorationImage(image: AssetImage(AppImages.aboutTileBGImage),),
+                  // image: DecorationImage(
+                  //   image: NetworkImage(
+                  //       "${ApiUrl.apiImageUrlPath}/images/JewelleryApp/2020/5/9e926966718148acaedc690e4a55d5f8_1.png"),
+
+                  //   // AssetImage(AppImages.aboutTileBGImage),
+                  // ),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(200),
+                  child: CachedNetworkImage(
+                    imageUrl:
+                        "${ApiUrl.apiImageUrlPath}/images/JewelleryApp/2020/5/9e926966718148acaedc690e4a55d5f8_1.png",
+                    fit: BoxFit.cover,
+                    errorWidget: (context, url, error) {
+                      return Image.asset(
+                        AppImages.noLogoImage,
+                        fit: BoxFit.cover,
+                      );
+                    },
+                  ),
                 ),
               ),
               const SizedBox(width: 8),

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 
@@ -105,8 +106,16 @@ class FavouriteListItem extends StatelessWidget {
                             ),
                             SizedBox(height: 0.3.h),
                             Text(
-                              favouritesController.favouriteProductsList[index]
-                                  .productDetails.price,
+                              NumberFormat.currency(
+                                symbol: '₹ ',
+                                locale: "HI",
+                                decimalDigits: 2,
+                              ).format(double.parse(favouritesController
+                                  .favouriteProductsList[index]
+                                  .productDetails
+                                  .price)),
+                              // favouritesController.favouriteProductsList[index]
+                              //     .productDetails.price,
                               style: TextStyle(
                                 fontSize: 10.sp,
                                 fontWeight: FontWeight.w500,
@@ -203,7 +212,7 @@ class FavouriteListItem extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 15),
                       child: Icon(
                         Icons.delete,
-                        color: AppColors.greyColor,
+                        color: AppColors.redColor,
                       ),
                     ),
                   ),
@@ -219,6 +228,7 @@ class FavouriteListItem extends StatelessWidget {
                               .favouriteProductsList[index].productDetails.srNo,
                           favouritesController.favouriteProductsList[index]
                               .productDetails.itemTypeName,
+                          index,
                         ],
                       );
                     },

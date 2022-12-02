@@ -59,7 +59,7 @@ class MySchemePendingPaymentScreenController extends GetxController {
             "savingSchemeSrNo": item.srNo.floor().toString(),
             "TransUuid": 0,
             "TransactionId": "0",
-            "PaymentStatus": "1",
+            "PaymentStatus": "AUTHORISED",
             "Amount": "${item.installmentAmount.floor()}",
             "TransactionDate": transDate,
           },
@@ -143,9 +143,9 @@ class MySchemePendingPaymentScreenController extends GetxController {
         savingSchemeBodyList.add(
           {
             "savingSchemeSrNo": item.srNo.floor().toString(),
-            "TransUuid": transUuid == null ? "0" : transUuid,
-            "TransactionId": transactionId,
-            "PaymentStatus": "1",
+            "TransUuid": transUuid == null ? 0 : transUuid,
+            "TransactionId": transactionId == null ? "0" : transUuid,
+            "PaymentStatus": "AUTHORISED",
             "Amount": "${item.installmentAmount.floor()}",
             "TransactionDate": transDate,
           },

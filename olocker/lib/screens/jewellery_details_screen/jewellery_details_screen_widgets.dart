@@ -3,6 +3,7 @@ import 'package:card_swiper/card_swiper.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
@@ -21,7 +22,8 @@ class FavouriteButtonModule extends StatelessWidget {
       Get.find<JewelleryDetailsScreenController>();
 
   // Find Previous screen controller here for Product fav or unFav.
-  final jewellerJewelleryListScreenController = Get.find<JewellerJewelleryListScreenController>();
+  final jewellerJewelleryListScreenController =
+      Get.find<JewellerJewelleryListScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +32,14 @@ class FavouriteButtonModule extends StatelessWidget {
       top: 10,
       child: GestureDetector(
         onTap: () async {
-          jewellerJewelleryListScreenController.jewelleryList[jewelleryDetailsController.indexOfThisProduct].isFav == true
-              ? await jewelleryDetailsController.removeFavouriteProductFunction()
-          : await jewelleryDetailsController.addFavouriteProductFunction();
+          jewellerJewelleryListScreenController
+                      .jewelleryList[
+                          jewelleryDetailsController.indexOfThisProduct]
+                      .isFav ==
+                  true
+              ? await jewelleryDetailsController
+                  .removeFavouriteProductFunction()
+              : await jewelleryDetailsController.addFavouriteProductFunction();
         },
         child: Container(
           decoration: const BoxDecoration(
@@ -41,8 +48,13 @@ class FavouriteButtonModule extends StatelessWidget {
           ),
           padding: const EdgeInsets.all(8),
           child: Icon(
-            jewellerJewelleryListScreenController.jewelleryList[jewelleryDetailsController.indexOfThisProduct].isFav == true
-            ? Icons.favorite_rounded : Icons.favorite_border,
+            jewellerJewelleryListScreenController
+                        .jewelleryList[
+                            jewelleryDetailsController.indexOfThisProduct]
+                        .isFav ==
+                    true
+                ? Icons.favorite_rounded
+                : Icons.favorite_border,
             color: AppColors.accentColor,
             size: 24,
           ),
@@ -233,13 +245,21 @@ class JewelleryApproxPriceModule extends StatelessWidget {
                   .toString()
                   .contains("PRICE ON REQUEST")
               ? "PRICE ON REQUEST"
-              : "₹${jewelleryDetailController.productDetailsData.price.toString()}",
+              : NumberFormat.currency(
+                  symbol: '₹ ',
+                  locale: "HI",
+                  decimalDigits: 2,
+                ).format(double.parse(
+                  jewelleryDetailController.productDetailsData.price)),
+
+          // "₹${jewelleryDetailController.productDetailsData.price.toString()}",
           style: TextStyle(
             color: AppColors.whiteColor,
             fontSize: 13.sp,
             fontWeight: FontWeight.w500,
           ),
         ),
+        const SizedBox(width: 5),
         jewelleryDetailController.productDetailsData.price.toString() ==
                 "PRICE ON REQUEST"
             ? const SizedBox()

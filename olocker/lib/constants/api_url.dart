@@ -122,7 +122,9 @@ class ApiUrl {
       "${apiMainPath}api/Partner/GetSpecialFeatures";
   static const String getAnnouncementOfferApi =
       "${apiMainPath}api/Partner/GetAnnouncementOffer";
-  static const String getJewelleryCategoryApi =
+  static const String getOfferDetailApi =
+      "${apiMainPath}api/Partner/GetOfferDetail";
+  static const String getJewelleryGetPushToAppDataApi =
       "${apiMainPath}api/Partner/GetPushToAppData";
   static const String getJewelleryTypeApi =
       "${apiMainPath}api/Partner/GetUniqueList";

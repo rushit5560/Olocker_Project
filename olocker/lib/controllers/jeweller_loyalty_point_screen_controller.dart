@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/models/jeweller_loyalty_point_screen_models/loyalty_point_model.dart';
 
+import '../constants/user_details.dart';
+
 class JewellerLoyaltyPointScreenController extends GetxController {
   String jewellerName = Get.arguments[0];
 
@@ -20,8 +22,9 @@ class JewellerLoyaltyPointScreenController extends GetxController {
 
   Future<void> getLoyaltyPointFunction() async {
     isLoading(true);
-    // String url = "${ApiUrl.getLoyaltyPointApi}?customerId=${UserDetails.customerId}";
-    String url = "${ApiUrl.getLoyaltyPointApi}?customerId=415785";
+    String url =
+        "${ApiUrl.getLoyaltyPointApi}?customerId=${UserDetails.customerId}";
+    // String url = "${ApiUrl.getLoyaltyPointApi}?customerId=415785";
     // ${UserDetails.customerId}";
 
     log('getLoyaltyPointFunction Api Url : $url');

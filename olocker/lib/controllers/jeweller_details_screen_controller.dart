@@ -57,17 +57,18 @@ class JewellerDetailsScreenController extends GetxController {
       );
       log('response : ${response.body}');
 
-      SpecialFeaturesModel specialFeaturesModel = SpecialFeaturesModel.fromJson(json.decode(response.body));
+      SpecialFeaturesModel specialFeaturesModel =
+          SpecialFeaturesModel.fromJson(json.decode(response.body));
       isSuccessStatus = specialFeaturesModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         specialFeaturesList.clear();
         specialFeaturesList.addAll(specialFeaturesModel.specialFeature);
         // log('specialFeaturesList : ${specialFeaturesList.length}');
       } else {
         log('getSpecialFeaturesFunction Else');
       }
-    } catch(e) {
+    } catch (e) {
       log('getSpecialFeaturesFunction Error :$e');
       rethrow;
     }
@@ -87,48 +88,65 @@ class JewellerDetailsScreenController extends GetxController {
       );
       log('response : ${response.body}');
 
-      AnnouncementOfferModel announcementOfferModel = AnnouncementOfferModel.fromJson(json.decode(response.body));
+      AnnouncementOfferModel announcementOfferModel =
+          AnnouncementOfferModel.fromJson(json.decode(response.body));
       isSuccessStatus = announcementOfferModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         announcementOfferList.clear();
         announcementOfferList.addAll(announcementOfferModel.getPushOffer);
         log('announcementOfferList : ${announcementOfferList.length}');
       } else {
         log('getAnnouncementOfferFunction Else');
       }
-    } catch(e) {
+    } catch (e) {
       log('getAnnouncementOfferFunction Error :$e');
       rethrow;
     }
     // isLoading(false);
-    await getJewelleryCategoryFunction();
+    await getJewelleryPushToAppDataFunction();
   }
 
-  Future<void> getJewelleryCategoryFunction() async {
+  Future<void> getJewelleryPushToAppDataFunction() async {
     isLoading(true);
-    String url = "${ApiUrl.getJewelleryCategoryApi}?PartnerSrNo=$jewellerId";
-    log('getJewelleryCategoryFunction Api Url :$url');
+    String url =
+        "${ApiUrl.getJewelleryGetPushToAppDataApi}?PartnerSrNo=$jewellerId";
+    log('getJewelleryPushToAppDataFunction Api Url :$url');
 
     try {
       http.Response response = await http.get(
         Uri.parse(url),
         headers: apiHeader.headers,
       );
-      log('response : ${response.body}');
+      log('getJewelleryPushToAppDataFunction response : ${response.body}');
 
-      JewelleryCategoryModel jewelleryCategoryModel = JewelleryCategoryModel.fromJson(json.decode(response.body));
+      JewelleryCategoryModel jewelleryCategoryModel =
+          JewelleryCategoryModel.fromJson(json.decode(response.body));
       isSuccessStatus = jewelleryCategoryModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         jewelleryCategoryList.clear();
         jewelleryCategoryList.addAll(jewelleryCategoryModel.getPushCollection);
+        if (jewelleryCategoryModel.getPushOffer.isNotEmpty) {
+          for (int i = 0; i < jewelleryCategoryModel.getPushOffer.length; i++) {
+            var singleItem = jewelleryCategoryModel.getPushOffer[i];
+            announcementOfferList.add(GetPushOfferItem(
+              srNo: singleItem.srNo,
+              name: singleItem.name,
+              imageurl: singleItem.imageurl,
+              pushSortOrder: singleItem.pushSortOrder,
+              isClickable: true,
+            ));
+            // jewelleryCategoryModel.getPushOffer
+          }
+        }
+
         log('jewelleryCategoryList : ${jewelleryCategoryList.length}');
       } else {
-        log('getJewelleryCategoryFunction Else');
+        log('getJewelleryPushToAppDataFunction Else');
       }
-    } catch(e) {
-      log('getJewelleryCategoryFunction Error :$e');
+    } catch (e) {
+      log('getJewelleryPushToAppDataFunction Error :$e');
       rethrow;
     }
     // isLoading(false);
@@ -146,29 +164,27 @@ class JewellerDetailsScreenController extends GetxController {
       );
       log('response : ${response.body}');
 
-      JewelleryTypeModel jewelleryTypeModel = JewelleryTypeModel.fromJson(json.decode(response.body));
+      JewelleryTypeModel jewelleryTypeModel =
+          JewelleryTypeModel.fromJson(json.decode(response.body));
       isSuccessStatus = jewelleryTypeModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         menTypeList.clear();
-        if(jewelleryTypeModel.productTypeMen.isNotEmpty) {
+        if (jewelleryTypeModel.productTypeMen.isNotEmpty) {
           menTypeList.add(ProductTypeItem(name: '', image: ''));
           menTypeList.addAll(jewelleryTypeModel.productTypeMen);
         }
         log('menTypeList : ${menTypeList.length}');
         womenTypeList.clear();
-        if(jewelleryTypeModel.productTypeWomen.isNotEmpty) {
+        if (jewelleryTypeModel.productTypeWomen.isNotEmpty) {
           womenTypeList.add(ProductTypeItem(name: '', image: ''));
           womenTypeList.addAll(jewelleryTypeModel.productTypeWomen);
         }
         log('womenTypeList : ${womenTypeList.length}');
-
-
       } else {
-       log('getJewelleryTypeFunction Else');
+        log('getJewelleryTypeFunction Else');
       }
-
-    } catch(e) {
+    } catch (e) {
       log('getJewelleryTypeFunction Error :$e');
       rethrow;
     }
@@ -189,18 +205,18 @@ class JewellerDetailsScreenController extends GetxController {
       );
       log('response : ${response.body}');
 
-      BestSellerModel bestSellerModel = BestSellerModel.fromJson(json.decode(response.body));
+      BestSellerModel bestSellerModel =
+          BestSellerModel.fromJson(json.decode(response.body));
       isSuccessStatus = bestSellerModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         bestSellerList.clear();
         bestSellerList.addAll(bestSellerModel.listOfProducts);
         log('bestSellerList : ${bestSellerList.length}');
       } else {
         log('getBestSellerFunction Else');
       }
-
-    } catch(e) {
+    } catch (e) {
       log('getBestSellerFunction Error :$e');
       rethrow;
     }
@@ -221,19 +237,18 @@ class JewellerDetailsScreenController extends GetxController {
       );
       log('response : ${response.body}');
 
-      ClientTestimonialsModel clientTestimonialsModel = ClientTestimonialsModel.fromJson(json.decode(response.body));
+      ClientTestimonialsModel clientTestimonialsModel =
+          ClientTestimonialsModel.fromJson(json.decode(response.body));
       isSuccessStatus = clientTestimonialsModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         clientTestimonialsList.clear();
         clientTestimonialsList.addAll(clientTestimonialsModel.testimonials);
         log('clientTestimonialsList : ${clientTestimonialsList.length}');
       } else {
         log('getClientTestimonialsFunction Else');
       }
-
-
-    } catch(e) {
+    } catch (e) {
       log('getClientTestimonialsFunction Error : $e');
       rethrow;
     }
@@ -254,29 +269,28 @@ class JewellerDetailsScreenController extends GetxController {
       );
       log('response : ${response.body}');
 
-      GoldPriceModel goldPriceModel = GoldPriceModel.fromJson(json.decode(response.body));
+      GoldPriceModel goldPriceModel =
+          GoldPriceModel.fromJson(json.decode(response.body));
       isSuccessStatus = goldPriceModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         goldPriceList = goldPriceModel.ibjAratesList;
 
-        if(goldPriceList.isNotEmpty) {
-          for(int i = 0; i < goldPriceList.length; i++) {
-            if(goldPriceList[i].purity == 999) {
+        if (goldPriceList.isNotEmpty) {
+          for (int i = 0; i < goldPriceList.length; i++) {
+            if (goldPriceList[i].purity == 999) {
               goldPrice1 = goldPriceList[i].pm.toString();
-            } else if(goldPriceList[i].purity == 916) {
+            } else if (goldPriceList[i].purity == 916) {
               goldPrice2 = goldPriceList[i].pm.toString();
-            } else if(goldPriceList[i].purity == 750) {
+            } else if (goldPriceList[i].purity == 750) {
               goldPrice3 = goldPriceList[i].pm.toString();
             }
           }
         }
-
       } else {
         log('getGoldPriceFunction Else');
       }
-
-    } catch(e) {
+    } catch (e) {
       log('getGoldPriceFunction Error :$e');
       rethrow;
     }
@@ -286,7 +300,8 @@ class JewellerDetailsScreenController extends GetxController {
 
   Future<void> getAboutYourSelfFunction() async {
     isLoading(true);
-    String url = "${ApiUrl.getAboutYourSelfApi}?PartnerSrno=$jewellerId&CustomerId=${UserDetails.customerId}";
+    String url =
+        "${ApiUrl.getAboutYourSelfApi}?PartnerSrno=$jewellerId&CustomerId=${UserDetails.customerId}";
     log('getAboutYourSelfFunction Api Url : $url');
 
     try {
@@ -296,18 +311,17 @@ class JewellerDetailsScreenController extends GetxController {
       );
       log('response : ${response.body}');
 
-      AboutYourSelfModel aboutYourSelfModel = AboutYourSelfModel.fromJson(json.decode(response.body));
+      AboutYourSelfModel aboutYourSelfModel =
+          AboutYourSelfModel.fromJson(json.decode(response.body));
       isSuccessStatus = aboutYourSelfModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         isFeedbackValue = aboutYourSelfModel.ratingGivenByCustomer.obs;
         log('isFeedbackValue : $isFeedbackValue');
       } else {
         log('getAboutYourSelfFunction Else');
       }
-
-
-    } catch(e) {
+    } catch (e) {
       log('getAboutYourSelfFunction Error :$e');
       rethrow;
     }

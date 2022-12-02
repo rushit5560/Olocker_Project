@@ -787,16 +787,13 @@ class TransationSingleItemModule extends StatelessWidget {
                       fontSize: 15.sp,
                     ),
                   ),
-                  SizedBox(
-                    width: 24,
-                    child: Text(
-                      formattedDate.split(" ")[1].toUpperCase(),
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: AppColors.accentColor,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 8.5.sp,
-                      ),
+                  Text(
+                    formattedDate.split(" ")[1].toUpperCase(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: AppColors.accentColor,
+                      fontWeight: FontWeight.normal,
+                      fontSize: 8.5.sp,
                     ),
                   ),
                   Text(

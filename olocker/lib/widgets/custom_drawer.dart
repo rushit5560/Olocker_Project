@@ -339,14 +339,17 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 0.25.h),
-              Text(
-                "${UserDetails.customerFname.capitalizeFirst!} ${UserDetails.customerLname.capitalizeFirst!}",
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: AppColors.whiteColor,
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.bold,
+              SizedBox(
+                width: 45.w,
+                child: Text(
+                  "${UserDetails.customerFname.capitalizeFirst!} ${UserDetails.customerLname.capitalizeFirst!}",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: AppColors.whiteColor,
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],

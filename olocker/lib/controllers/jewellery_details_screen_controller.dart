@@ -21,9 +21,11 @@ class JewelleryDetailsScreenController extends GetxController {
       Get.arguments[2]; // Coming From Home Screen Jeweller List
   int indexOfThisProduct = Get.arguments[3];
 
-
   // Find Previous screen controller here for Product fav or unFav.
-  final jewellerJewelleryListScreenController = Get.find<JewellerJewelleryListScreenController>();
+  final jewellerJewelleryListController =
+      Get.lazyPut(() => JewellerJewelleryListScreenController(), fenix: true);
+  final jewellerJewelleryListScreenController =
+      Get.find<JewellerJewelleryListScreenController>();
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -163,8 +165,10 @@ class JewelleryDetailsScreenController extends GetxController {
             context: Get.context!,
             displayText: "Item Added to favourites.",
           );
+
           /// Add favourite button change in previous screen list
-          jewellerJewelleryListScreenController.jewelleryList[indexOfThisProduct].isFav = true;
+          jewellerJewelleryListScreenController
+              .jewelleryList[indexOfThisProduct].isFav = true;
           // getFavouriteProductFunction();
         }
       } else {
@@ -202,8 +206,10 @@ class JewelleryDetailsScreenController extends GetxController {
             context: Get.context!,
             displayText: "Item Removed from favourites.",
           );
+
           /// Remove favourite button change in previous screen list
-          jewellerJewelleryListScreenController.jewelleryList[indexOfThisProduct].isFav = false;
+          jewellerJewelleryListScreenController
+              .jewelleryList[indexOfThisProduct].isFav = false;
           // getFavouriteProductFunction();
         }
       } else {
