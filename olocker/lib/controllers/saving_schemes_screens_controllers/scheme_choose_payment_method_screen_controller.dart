@@ -35,7 +35,6 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
   PaymentTypeEnum? paymentTypeEnum;
   final razorpay = Razorpay();
 
-
   Future<void> paymentSavingSchemeFunction() async {
     isLoading(true);
     String url = ApiUrl.paymentSavingSchemeApi;
@@ -89,7 +88,8 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
         //   "Amount": "${savingSchemeDetails.monthlyAmount}",
         //   "TransactionDate": transDate,
         // };
-      }*/ else {
+      }*/
+      else {
         bodyData = {
           "PaymentId": savingSchemeDetails.paymentId,
           "TransUuid": 0,
@@ -183,15 +183,20 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
   }
 
   /// RazorPay Payment Gateway Moethods
-  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+  Future<void> _handlePaymentSuccess(PaymentSuccessResponse response) async {
     // Do something when payment succeeds
     log('Success Payment Razorpay');
 
+    await razorPayPaymentSuccessFunction(
+      transUuid: response.orderId!,
+      transactionId: response.paymentId!,
+    );
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
     // Do something when payment fails
     log('Error Payment Razorpay');
+
     // Get.to(
     //       () => SchemePaymentFailureScreen(),
     //   arguments: [
@@ -245,10 +250,12 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
     }
   }
 
-
-  Future<void> razorPayPaymentSuccessFunction() async {
+  Future<void> razorPayPaymentSuccessFunction({
+    required String transUuid,
+    required String transactionId,
+  }) async {
     String url = ApiUrl.paymentSavingSchemeApi;
-    log('paymentSavingSchemeFunction Api Url :$url');
+    log('razorPayPaymentSuccessFunction Api Url :$url');
 
     var format = DateFormat("yyyy-MM-dd");
     var now = DateTime.now();
@@ -257,8 +264,8 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
     try {
       Map<String, dynamic> bodyData = {
         "PaymentId": savingSchemeDetails.paymentId,
-        "TransUuid": 0,
-        "TransactionId": "0",
+        "TransUuid": transUuid,
+        "TransactionId": transactionId,
         "PaymentStatus": "1",
         "Amount": "${savingSchemeDetails.monthlyAmount}",
         "TransactionDate": transDate,
@@ -272,12 +279,12 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
         body: jsonEncode(bodyData),
       );
 
-      log('paymentSavingSchemeFunction res body :: ${response.body}');
+      log('razorPayPaymentSuccessFunction res body :: ${response.body}');
 
       PaymentSchemeResultModel paymentSchemeResultModel =
-      PaymentSchemeResultModel.fromJson(json.decode(response.body));
+          PaymentSchemeResultModel.fromJson(json.decode(response.body));
       isSuccessStatus.value = paymentSchemeResultModel.success;
-      log('isSuccessStatus : ${isSuccessStatus.value}');
+      log('razorPayPaymentSuccessFunction isSuccessStatus : ${isSuccessStatus.value}');
 
       if (isSuccessStatus.value) {
         customerPurchaseSchemeSrNo =
@@ -289,7 +296,7 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
         );
 
         Get.to(
-              () => SchemePaymentSuccessScreen(),
+          () => SchemePaymentSuccessScreen(),
           arguments: [
             schemeImagePath,
             schemeName,
@@ -318,7 +325,7 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
         // );
 
         Get.to(
-              () => SchemePaymentFailureScreen(),
+          () => SchemePaymentFailureScreen(),
           arguments: [
             schemeImagePath,
             schemeName,
@@ -328,12 +335,10 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
           ],
         );
       }
-
-    } catch(e) {
+    } catch (e) {
       log('razorPayPaymentSuccessFunction Error :$e');
       rethrow;
     }
-
   }
 
   @override
@@ -341,5 +346,4 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
     razorpay.clear(); // Removes all listeners
     super.dispose();
   }
-
 }

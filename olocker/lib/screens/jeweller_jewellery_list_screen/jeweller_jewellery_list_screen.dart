@@ -133,7 +133,6 @@ class JewellerJewelleryListScreen extends StatelessWidget {
                   },
                 ),
               ),
-             
             ],
           ).commonOnlyPadding(bottom: 5, left: 10),
         ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
+import 'package:olocker/controllers/my_saving_schemes_screens_controllers/my_saving_schemes_list_screen_controller.dart';
+import 'package:olocker/controllers/my_saving_schemes_screens_controllers/my_schemes_details_screen_controller.dart';
 import 'package:olocker/screens/my_saving_schemes_screens/my_scheme_payment_failure_screen/my_scheme_payment_failure_screen.dart';
 
 import 'package:sizer/sizer.dart';
@@ -132,9 +134,15 @@ class GoBackToSchemeDetailsButton extends StatelessWidget {
           Get.back();
           Get.back();
 
-          // Get.to(() => MySchemePaymentFailureScreen());
+          final mySchemesDetailsScreenController =
+              Get.find<MySchemesDetailsScreenController>();
+          final mySavingSchemesListScreenController =
+              Get.find<MySavingSchemesListScreenController>();
 
-          // screenController.makePaymentsApiFunction();
+          mySchemesDetailsScreenController.getMySavingSchemeDetailsFunction();
+
+          mySavingSchemesListScreenController
+              .getCustomerSavingSchemesListFunction();
         },
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(

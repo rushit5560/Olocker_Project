@@ -644,9 +644,10 @@ class CustomerSpeakModule extends StatelessWidget {
               Container(
                 height: screenController.size.width * 0.030.w,
                 width: screenController.size.width * 0.030.w,
-                decoration: const BoxDecoration(
+                decoration:  BoxDecoration(
                   shape: BoxShape.circle,
                   color: AppColors.whiteColor,
+                  image: DecorationImage(image: AssetImage(AppImages.aboutTileBGImage),),
                 ),
               ),
               const SizedBox(width: 8),

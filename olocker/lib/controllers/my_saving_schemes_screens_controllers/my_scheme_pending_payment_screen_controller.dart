@@ -15,7 +15,6 @@ import '../../models/my_saving_schemes_models/emi_payment_result_model/emi_payme
 import '../../models/my_saving_schemes_models/get_pending_bills_model/get_pending_bills_list_model.dart';
 import '../../widgets/common_widgets.dart';
 
-
 class MySchemePendingPaymentScreenController extends GetxController {
   List<GetPendingBillData> pendingBillsSelectedList = Get.arguments[0];
   RxBool isLoading = false.obs;
@@ -39,67 +38,37 @@ class MySchemePendingPaymentScreenController extends GetxController {
     var now = DateTime.now();
     var transDate = format.format(now);
 
-    List<String> srNoDemoList = [];
+    // List<String> srNoDemoList = [];
 
-    for (var item in pendingBillsSelectedList) {
-      srNoDemoList.add(item.srNo.floor().toString());
-    }
+    // for (var item in pendingBillsSelectedList) {
+    //   srNoDemoList.add(item.srNo.floor().toString());
+    // }
 
-    var srNoString = srNoDemoList.join(",");
+    // var srNoString = srNoDemoList.join(",");
 
-    log("passing srNoString is :: $srNoString");
+    // log("passing srNoString is :: $srNoString");
 
     try {
       Map<String, dynamic> bodyData = {};
 
-      if (paymentTypeEnum == PaymentTypeEnum.paytm) {
-        bodyData = {
-          "savingSchemeSrNo": srNoString,
-          "TransUuid": 0,
-          "TransactionId": "0",
-          "PaymentStatus": "1",
-          "Amount": "${totalEmiPaymentAmount.value}",
-          "TransactionDate": transDate,
-        };
-      } else if (paymentTypeEnum == PaymentTypeEnum.googlepay) {
-        bodyData = {
-          "savingSchemeSrNo": srNoString,
-          "TransUuid": 0,
-          "TransactionId": "0",
-          "PaymentStatus": "1",
-          "Amount": "${totalEmiPaymentAmount.value}",
-          "TransactionDate": transDate,
-        };
-      } else if (paymentTypeEnum == PaymentTypeEnum.amazonpay) {
-        bodyData = {
-          "savingSchemeSrNo": srNoString,
-          "TransUuid": 0,
-          "TransactionId": "0",
-          "PaymentStatus": "1",
-          "Amount": "${totalEmiPaymentAmount.value}",
-          "TransactionDate": transDate,
-        };
-      } else if (paymentTypeEnum == PaymentTypeEnum.visa) {
-        /// handle razorpay events
-        ///
-        // bodyData = {
-        //   "savingSchemeSrNo": srNoString,
-        //   "TransUuid": 0,
-        //   "TransactionId": "0",
-        //   "PaymentStatus": "1",
-        //   "Amount": "${totalEmiPaymentAmount.value}",
-        //   "TransactionDate": transDate,
-        // };
-      } else {
-        bodyData = {
-          "savingSchemeSrNo": srNoString,
-          "TransUuid": 0,
-          "TransactionId": "0",
-          "PaymentStatus": "1",
-          "Amount": "${totalEmiPaymentAmount.value}",
-          "TransactionDate": transDate,
-        };
+      List<Map<String, dynamic>> savingSchemeBodyList = [];
+
+      for (var item in pendingBillsSelectedList) {
+        savingSchemeBodyList.add(
+          {
+            "savingSchemeSrNo": item.srNo.floor().toString(),
+            "TransUuid": 0,
+            "TransactionId": "0",
+            "PaymentStatus": "1",
+            "Amount": "${item.installmentAmount.floor()}",
+            "TransactionDate": transDate,
+          },
+        );
       }
+
+      bodyData = {
+        "listPurchaseSavingSchemeDetail": savingSchemeBodyList,
+      };
 
       log('makePaymentsApiFunction body passing is :: $bodyData');
 
@@ -153,18 +122,107 @@ class MySchemePendingPaymentScreenController extends GetxController {
     }
   }
 
-  /// RazorPay Payment Gateway Moethods
-  void _handlePaymentSuccess(PaymentSuccessResponse response) {
-    // Do something when payment succeeds
-    log('Success Payment Razorpay');
-    Get.to(
+  Future<void> razorPayAfterPaymentApiFunction({
+    required String transUuid,
+    required String transactionId,
+  }) async {
+    isLoading(true);
+    String url = ApiUrl.mySchemesEMIPaymentsApi;
+    log('razorPayAfterPaymentApiFunction Api Url :$url');
+
+    var format = DateFormat("yyyy-MM-dd");
+    var now = DateTime.now();
+    var transDate = format.format(now);
+
+    try {
+      Map<String, dynamic> bodyData = {};
+
+      List<Map<String, dynamic>> savingSchemeBodyList = [];
+
+      for (var item in pendingBillsSelectedList) {
+        savingSchemeBodyList.add(
+          {
+            "savingSchemeSrNo": item.srNo.floor().toString(),
+            "TransUuid": transUuid == null ? "0" : transUuid,
+            "TransactionId": transactionId,
+            "PaymentStatus": "1",
+            "Amount": "${item.installmentAmount.floor()}",
+            "TransactionDate": transDate,
+          },
+        );
+      }
+
+      bodyData = {
+        "listPurchaseSavingSchemeDetail": savingSchemeBodyList,
+      };
+
+      log('razorPayAfterPaymentApiFunction body passing is :: $bodyData');
+
+      http.Response response = await http.post(
+        Uri.parse(url),
+        headers: apiHeader.headers,
+        body: jsonEncode(bodyData),
+      );
+
+      log('razorPayAfterPaymentApiFunction res body is ::: ${response.body}');
+
+      EmiPaymentResultModel emiPaymentResultModel =
+          EmiPaymentResultModel.fromJson(json.decode(response.body));
+      isSuccessStatus.value = emiPaymentResultModel.success;
+      log('razorPayAfterPaymentApiFunction isSuccessStatus : ${isSuccessStatus.value}');
+
+      if (isSuccessStatus.value) {
+        getPaymentId.value = emiPaymentResultModel.paymentId;
+        customerPurchaseSchemeSrNo.value =
+            emiPaymentResultModel.customerPurchaseSavingSchemeNo;
+
+        CommonWidgets().showBorderSnackBar(
+          context: Get.context!,
+          displayText: "Your payment succesfully done.",
+        );
+
+        Get.to(
           () => MySchemePaymentSuccessScreen(),
+          arguments: [
+            getPaymentId.value,
+            customerPurchaseSchemeSrNo.value,
+          ],
+        );
+      } else {
+        log('razorPayAfterPaymentApiFunction else casee');
+        log('false');
+        Get.to(
+          () => MySchemePaymentFailureScreen(),
+        );
+      }
+    } catch (e) {
+      log('razorPayAfterPaymentApiFunction Error : $e');
+      rethrow;
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  /// RazorPay Payment Gateway Moethods
+  Future<void> _handlePaymentSuccess(PaymentSuccessResponse response) async {
+    // Do something when payment succeeds
+
+    log("razorpay succes orderId is :: ${response.orderId}");
+    log("razorpay succes paymentId is :: ${response.paymentId}");
+    log("razorpay succes signature is :: ${response.signature}");
+    log('Success Payment Razorpay');
+
+    await razorPayAfterPaymentApiFunction(
+      transUuid: response.orderId!,
+      transactionId: response.paymentId!,
+    );
+    Get.to(
+      () => MySchemePaymentSuccessScreen(),
       arguments: [
         getPaymentId.value,
         customerPurchaseSchemeSrNo.value,
       ],
     );
-
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
@@ -222,7 +280,6 @@ class MySchemePendingPaymentScreenController extends GetxController {
       debugPrint('Error: e');
     }
   }
-
 
   // Future<void> razorPayPaymentSuccessFunction() async {
   //

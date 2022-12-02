@@ -15,14 +15,15 @@ class MyInsuredJewelleryScreen extends StatelessWidget {
       Get.put(MyInsuredJewelleryScreenController());
 
   final myJewelleryPortFolioScreenController =
+      Get.lazyPut(() => MyJewelleryPortFolioScreenController(), fenix: true);
+  final myJewelleryPortFolioController =
       Get.find<MyJewelleryPortFolioScreenController>();
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        myJewelleryPortFolioScreenController
-            .getJewelleryPortFolioDetailsFunction();
+        myJewelleryPortFolioController.getJewelleryPortFolioDetailsFunction();
 
         return Future.value(true);
       },
@@ -32,7 +33,7 @@ class MyInsuredJewelleryScreen extends StatelessWidget {
           leading: IconButton(
             onPressed: () {
               Get.back();
-              myJewelleryPortFolioScreenController
+              myJewelleryPortFolioController
                   .getJewelleryPortFolioDetailsFunction();
             },
             icon: const Icon(Icons.arrow_back_ios,

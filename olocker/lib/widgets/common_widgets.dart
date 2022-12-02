@@ -10,6 +10,7 @@ class CommonWidgets {
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 3),
         shape: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(12),
@@ -30,11 +31,11 @@ class CommonWidgets {
         ),
         action: SnackBarAction(
           label: "Okay",
-          onPressed: () {},
+          onPressed: () {
+            ScaffoldMessenger.of(context).removeCurrentSnackBar();
+          },
         ),
       ),
     );
   }
 }
-
-
