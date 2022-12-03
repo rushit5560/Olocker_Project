@@ -12,6 +12,7 @@ import 'package:olocker/models/jeweller_details_screen_model/best_seller_model.d
 import 'package:olocker/models/jeweller_details_screen_model/client_testimonials_model.dart';
 import 'package:olocker/models/jeweller_details_screen_model/jewellery_type_model.dart';
 import 'package:olocker/screens/jeweller_feedback_screen/jeweller_feedback_screen.dart';
+import 'package:olocker/screens/jeweller_jewellery_details_screen/jeweller_jewellery_details_screen.dart';
 import 'package:olocker/screens/jeweller_jewellery_list_screen/jeweller_jewellery_list_screen.dart';
 import 'package:olocker/screens/jewellery_details_screen/jewellery_details_screen.dart';
 import 'package:olocker/screens/refer_and_earn_screen/refer_and_earn_screen.dart';

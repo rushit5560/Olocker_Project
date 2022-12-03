@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
+import 'package:olocker/constants/user_details.dart';
 import 'package:olocker/models/jeweller_details_screen_model/special_features_model.dart';
 import 'package:olocker/models/jewellery_details_screen_model/get_jewellery_detail_model.dart';
+import 'package:olocker/widgets/common_widgets.dart';
 import 'package:share_plus/share_plus.dart';
 
 class JewellerJewelleryDetailsScreenController extends GetxController {
@@ -96,6 +98,97 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
   shareJewelleryProduct() async {
     // var urlPreview = "";
     await Share.share("share this jewellery to a person https://example.com");
+  }
+
+  Future<void> addFavouriteProductFunction() async {
+    String url = "${ApiUrl.addFavProductApi}?Id=$productSrNo";
+
+    log('addFavouriteProductFunction Api Url :: $url');
+
+    try {
+      // isLoading(true);
+      var requestMap = {
+        "CustomerId": UserDetails.customerId,
+        "Product": productSrNo,
+        "PartnerId": "$partnerSrNo",
+        "IsSupplierProduct": true
+      };
+
+      log("rq map $requestMap");
+      http.Response response = await http.post(
+        Uri.parse(url),
+        headers: apiHeader.headers,
+        body: jsonEncode(requestMap),
+      );
+      log('addFavouriteProductFunction response : ${response.body}');
+
+      var resBody = jsonDecode(response.body);
+
+      isSuccessStatus.value = resBody["success"];
+
+      if (response.statusCode == 200) {
+        if (isSuccessStatus.value) {
+          CommonWidgets().showBorderSnackBar(
+            context: Get.context!,
+            displayText: "Item Added to favourites.",
+          );
+
+          /// Add favourite button change in previous screen list
+          // jewellerJewelleryListScreenController
+          //     .jewelleryList[indexOfThisProduct].isFav = true;
+          // getFavouriteProductFunction();
+        }
+      } else {
+        log('addFavouriteProductFunction Else');
+      }
+    } catch (e) {
+      log('addFavouriteProductFunction Error :$e');
+      rethrow;
+    } finally {
+      isLoading(true);
+      isLoading(false);
+    }
+    // await getAnnouncementOfferFunction();
+  }
+
+  Future<void> removeFavouriteProductFunction() async {
+    String url = "${ApiUrl.removeFavProductApi}?Id=$productSrNo";
+
+    log('removeFavouriteProductFunction Api Url :: $url');
+
+    try {
+      // isLoading(true);
+      http.Response response = await http.get(
+        Uri.parse(url),
+        headers: apiHeader.headers,
+      );
+      log('removeFavouriteProductFunction response : ${response.body}');
+      var resBody = jsonDecode(response.body);
+
+      isSuccessStatus.value = resBody["success"];
+
+      if (response.statusCode == 200) {
+        if (isSuccessStatus.value) {
+          CommonWidgets().showBorderSnackBar(
+            context: Get.context!,
+            displayText: "Item Removed from favourites.",
+          );
+
+          /// Remove favourite button change in previous screen list
+          // jewellerJewelleryListScreenController
+          //     .jewelleryList[indexOfThisProduct].isFav = false;
+          // getFavouriteProductFunction();
+        }
+      } else {
+        log('addFavouriteProductFunction Else');
+      }
+    } catch (e) {
+      log('removeFavouriteProductFunction Error :$e');
+      rethrow;
+    } finally {
+      isLoading(true);
+      isLoading(false);
+    }
   }
 
 

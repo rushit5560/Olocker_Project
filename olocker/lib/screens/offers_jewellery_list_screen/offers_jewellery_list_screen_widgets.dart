@@ -6,6 +6,7 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/models/jeweller_details_screen_model/get_offer_details_list_model.dart';
 
 import 'package:olocker/models/jeweller_jewellery_list_screen_model/all_jewellery_model.dart';
+import 'package:olocker/screens/jeweller_jewellery_details_screen/jeweller_jewellery_details_screen.dart';
 import 'package:olocker/screens/jewellery_details_screen/jewellery_details_screen.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
@@ -39,18 +40,28 @@ class OfferJewelleryGridviewModule extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Get.to(
-          () => JewelleryDetailsScreen(),
+              () => JewellerJewelleryDetailsScreen(),
           arguments: [
-            screenController.jewellerId,
+            screenController.jewellerId.toString(),
             singleItem.productSrNo,
             singleItem.productName,
-            i,
           ],
-        )!
-            .then((value) {
-          screenController.isLoading(true);
-          screenController.isLoading(false);
+        )!.then((value) async {
+          await screenController.getOfferDetailListFunction();
         });
+        // Get.to(
+        //   () => JewelleryDetailsScreen(),
+        //   arguments: [
+        //     screenController.jewellerId,
+        //     singleItem.productSrNo,
+        //     singleItem.productName,
+        //     i,
+        //   ],
+        // )!
+        //     .then((value) {
+        //   screenController.isLoading(true);
+        //   screenController.isLoading(false);
+        // });
       },
       child: Container(
         decoration: BoxDecoration(
