@@ -52,7 +52,7 @@ class JewellerJewelleryDetailsScreen extends StatelessWidget {
                           fit: BoxFit.cover,
                         ),
                         jewellerJewelleryDetailsScreenController
-                                .productDetailsData.productImageList.isEmpty
+                                .productDetailsData.productimages!.isEmpty
                             ? Center(
                                 child: Text(
                                   "No Product Images Available",

@@ -129,6 +129,8 @@ class GetProduct {
     required this.brandCollection,
     required this.productImage,
     required this.tryBeforeBuy,
+    required this.isFav,
+    required this.favId,
   });
 
   final String categoryName;
@@ -146,6 +148,8 @@ class GetProduct {
   final String brandCollection;
   final String productImage;
   final bool tryBeforeBuy;
+  bool isFav;
+  int favId;
 
   factory GetProduct.fromJson(Map<String, dynamic> json) => GetProduct(
         categoryName: json["CategoryName"] ?? "",
@@ -164,6 +168,8 @@ class GetProduct {
         brandCollection: json["BrandCollection"] ?? "",
         productImage: json["ProductImage"] ?? "",
         tryBeforeBuy: json["TryBeforeBuy"] ?? false,
+        isFav: json["IsFav"] ?? false,
+    favId: json["FavId"] ?? 0,
       );
 
   Map<String, dynamic> toJson() => {
@@ -183,6 +189,7 @@ class GetProduct {
         "BrandCollection": brandCollection,
         "ProductImage": productImage,
         "TryBeforeBuy": tryBeforeBuy,
+        "IsFav": isFav,
       };
 }
 

@@ -101,8 +101,7 @@ class ApiUrl {
 
   //favourites apis
   static const String getFavProductApi = "${apiMainPath}api/User/GetFavProduct";
-  static const String deleteFavProductApi =
-      "${apiMainPath}api/User/RemoveFavProduct";
+  // static const String deleteFavProductApi = "${apiMainPath}api/User/RemoveFavProduct";
 
   //authentication apis
   static const String userLoginApi = "${apiMainPath}api/User/UserLogin/";
@@ -139,10 +138,9 @@ class ApiUrl {
       "${apiMainPath}api/Partner/GetDetails";
 
   /// Jewellery Details Screen Api's
-  static const String getJewelleryDetailApi =
-      "${apiMainPath}api/User/GetProductDetail";
-  static const String removeFavProductApi =
-      "${apiMainPath}api/User/RemoveFavProduct";
+  static const String getJewelleryDetailApi = "${apiMainPath}api/User/GetProductDetail";
+  static const String getOfferJewelleryDetailApi = "${apiMainPath}api/Partner/GetProductDetail";
+  static const String removeFavProductApi = "${apiMainPath}api/User/RemoveFavProduct";
   static const String addFavProductApi = "${apiMainPath}api/User/AddFavProduct";
 
   /// Enquire Screen Api's

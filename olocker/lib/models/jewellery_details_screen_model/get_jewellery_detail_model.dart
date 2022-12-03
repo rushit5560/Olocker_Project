@@ -97,6 +97,7 @@ class ProductDetailsData {
     required this.decorativedetails,
     required this.stonedetails,
     required this.diamonddetails,
+    required this.isFav,
   });
 
   final int srNo;
@@ -130,6 +131,7 @@ class ProductDetailsData {
   final List<Decorativedetail> decorativedetails;
   final List<Stonedetail> stonedetails;
   final List<Diamonddetail> diamonddetails;
+  bool isFav;
 
   factory ProductDetailsData.fromJson(Map<String, dynamic> json) =>
       ProductDetailsData(
@@ -157,6 +159,7 @@ class ProductDetailsData {
         fullPayment: json["FullPayment"] ?? "",
         advancePayment: json["AdvancePayment"] ?? "",
         productStatus: json["ProductStatus"] ?? "",
+        isFav: json["IsFav"] ?? false,
         // estimateDeliveryDays: json["EstimateDeliveryDays"],
         productImageList: List<ProductImageList>.from(
             (json["ProductImageList"] ?? [])

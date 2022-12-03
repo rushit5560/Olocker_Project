@@ -4,10 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/models/jeweller_details_screen_model/get_offer_details_list_model.dart';
-
-import 'package:olocker/models/jeweller_jewellery_list_screen_model/all_jewellery_model.dart';
 import 'package:olocker/screens/jeweller_jewellery_details_screen/jeweller_jewellery_details_screen.dart';
-import 'package:olocker/screens/jewellery_details_screen/jewellery_details_screen.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
@@ -138,25 +135,24 @@ class OfferJewelleryGridviewModule extends StatelessWidget {
                     children: [
                       IconButton(
                         onPressed: () async {
-                          // singleItem.isFav == false
-                          //     ? await screenController
-                          //         .addFavouriteProductFunction(
-                          //         productSrNo:
-                          //             singleItem.productSrNo.toString(),
-                          //         singleProduct: singleItem,
-                          //       )
-                          //     : await screenController
-                          //         .removeFavouriteProductListFunction(
-                          //         productSrNo:
-                          //             singleItem.productSrNo.toString(),
-                          //         singleProduct: singleItem,
-                          //       );
+                          singleItem.isFav == false
+                              ? await screenController
+                                  .addFavouriteProductFunction(
+                                  productSrNo:
+                                      singleItem.productSrNo.toString(),
+                                  singleProduct: singleItem,
+                                )
+                              : await screenController
+                                  .removeFavouriteProductListFunction(
+                            favouriteId:
+                                      singleItem.favId.toString(),
+                                  singleProduct: singleItem,
+                                );
                         },
                         icon: Icon(
-                          Icons.favorite_outline_rounded,
-                          // singleItem.isFav == true
-                          //     ? Icons.favorite_rounded
-                          //     : Icons.favorite_outline_rounded,
+                          singleItem.isFav == true
+                              ? Icons.favorite_rounded
+                              : Icons.favorite_outline_rounded,
                           color: AppColors.accentColor,
                           size: 18.sp,
                         ),
