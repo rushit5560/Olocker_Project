@@ -10,6 +10,7 @@ import 'package:olocker/models/jewellery_details_screen_model/get_jewellery_deta
 import 'package:olocker/widgets/common_widgets.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../models/jewellery_details_screen_model/get_offer_jewellery_detail_model.dart';
 import '../models/refer_and_earn_screen_models/get_partner_by_code_model.dart';
 import '../models/user_profile_models/user_profile_get_model.dart';
 
