@@ -12,6 +12,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../models/jeweller_details_screen_model/special_features_model.dart';
 import '../models/jewellery_details_screen_model/get_jewellery_detail_model.dart';
+import '../models/refer_and_earn_screen_models/get_partner_by_code_model.dart';
+import '../models/user_profile_models/user_profile_get_model.dart';
 import 'jeweller_jewellery_list_screen_controller.dart';
 
 class JewelleryDetailsScreenController extends GetxController {
@@ -36,6 +38,10 @@ class JewelleryDetailsScreenController extends GetxController {
 
   late ProductDetailsData productDetailsData;
   List<SpecialFeatureItem> specialFeaturesList = [];
+
+  PartnerDetails? partnerDetails;
+
+  RxString userReferaalCode = "".obs;
 
   launchWhatsappChat({
     required String mobileNumber,
@@ -124,13 +130,9 @@ class JewelleryDetailsScreenController extends GetxController {
       log('getJewellerySpecialFeaturesFunction Error :$e');
       rethrow;
     } finally {
-      isLoading(false);
+      getPartnerByCodeFunction();
+      // isLoading(false);
     }
-  }
-
-  shareJewelleryProduct() async {
-    // var urlPreview = "";
-    await Share.share("share this jewellery to a person https://example.com");
   }
 
   Future<void> addFavouriteProductFunction() async {
@@ -252,6 +254,95 @@ class JewelleryDetailsScreenController extends GetxController {
       // }
     } catch (e) {
       log('getFavouriteProductFunction Error :$e');
+      rethrow;
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  shareJewelleryReferFriend() async {
+    // var urlPreview = "";
+    String shareText =
+        '''I loved this beautiful jewellery from ${partnerDetails!.partnerName.capitalize!} on olocker app. 
+    You must download this app to witness their excellent jewellery collections, get fabulous deals & 
+    rewards too. Click here https://olocker.in/DetectOS.aspx?retailer=${userReferaalCode.value}-${partnerDetails!.partnerId} and use my referral 
+    code ${userReferaalCode.value}-${partnerDetails!.partnerId} on ENTER CODE space on Sign up page https://www.olocker.in/''';
+
+    await Share.share(shareText);
+  }
+
+  Future<void> getPartnerByCodeFunction() async {
+    // if (formKey.currentState!.validate()) {
+    String url = "${ApiUrl.getPartnerByCodeApi}?PartnerCode=$partnerSrNo";
+    log(" getPartnerByCodeFunction url: $url");
+
+    try {
+      isLoading(true);
+      http.Response response = await http.get(
+        Uri.parse(url),
+        headers: apiHeader.headers,
+      );
+
+      log("getPartnerByCodeFunction st code is : ${response.statusCode}");
+      log("getPartnerByCodeFunction res body : ${response.body}");
+
+      var resBody = jsonDecode(response.body);
+
+      GetPartnerByCodeModel getPartnerByCodeModel =
+          GetPartnerByCodeModel.fromJson(resBody);
+
+      bool isSuccessResult = getPartnerByCodeModel.success;
+
+      if (isSuccessResult) {
+        log("getPartnerByCodeFunction get success");
+        partnerDetails = getPartnerByCodeModel.partner;
+      } else {
+        log("getPartnerByCodeFunction get not success");
+        //do nothing
+      }
+    } catch (e) {
+      log("getPartnerByCodeFunction Error ::: $e");
+      rethrow;
+    } finally {
+      getUserProfileDetailsFunction();
+      // isLoading(false);
+    }
+    // }
+  }
+
+  Future<void> getUserProfileDetailsFunction() async {
+    String url =
+        "${ApiUrl.getUserProfileApi}?customerId=${UserDetails.customerId}";
+    log(" getUserProfleDetailsFunction url: $url");
+
+    try {
+      isLoading(true);
+      http.Response response = await http.get(
+        Uri.parse(url),
+        headers: apiHeader.headers,
+      );
+
+      log("getUserProfleDetailsFunction st code is : ${response.statusCode}");
+      log("getUserProfleDetailsFunction res body : ${response.body}");
+
+      var resBody = jsonDecode(response.body);
+
+      UserProfileGetModel userProfileGetModel =
+          UserProfileGetModel.fromJson(resBody);
+
+      bool isSuccessResult = userProfileGetModel.success;
+
+      if (isSuccessResult) {
+        log("user profile get success");
+        userReferaalCode.value =
+            userProfileGetModel.customerProfile.referralCode;
+        log("user userReferaalCode :: $userReferaalCode");
+      } else {
+        log("user profile get not success");
+        //do nothing
+      }
+    } catch (e) {
+      log("getUserProfleDetailsFunction Error ::: $e");
       rethrow;
     } finally {
       isLoading(false);

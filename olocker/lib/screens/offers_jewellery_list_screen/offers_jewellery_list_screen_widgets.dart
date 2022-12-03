@@ -40,13 +40,14 @@ class OfferJewelleryGridviewModule extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Get.to(
-              () => JewellerJewelleryDetailsScreen(),
+          () => JewellerJewelleryDetailsScreen(),
           arguments: [
             screenController.jewellerId.toString(),
             singleItem.productSrNo,
             singleItem.productName,
           ],
-        )!.then((value) async {
+        )!
+            .then((value) async {
           await screenController.getOfferDetailListFunction();
         });
         // Get.to(
@@ -162,7 +163,7 @@ class OfferJewelleryGridviewModule extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () async {
-                          await screenController.shareJewellery();
+                          await screenController.shareJewelleryReferFriend();
                         },
                         icon: Icon(
                           Icons.share_rounded,

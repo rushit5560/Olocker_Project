@@ -46,7 +46,7 @@ class MyFavouritesScreen extends StatelessWidget {
                             padding: EdgeInsets.symmetric(vertical: 20.h),
                             child: Center(
                               child: Text(
-                                "No Favourite Products Available",
+                                "No Favourite Jewellery Available",
                                 style: TextStyle(
                                   color: AppColors.whiteColor,
                                   fontSize: 13.sp,
@@ -55,7 +55,7 @@ class MyFavouritesScreen extends StatelessWidget {
                               ),
                             ),
                           )
-                        : FavouritesListModule(),
+                        : FavouritesCategoriesListModule(),
                   ],
                 ),
               ),

@@ -77,7 +77,7 @@ class ShareButtonModule extends StatelessWidget {
       top: 10,
       child: GestureDetector(
         onTap: () async {
-          await jewelleryDetailsController.shareJewelleryProduct();
+          await jewelleryDetailsController.shareJewelleryReferFriend();
         },
         child: Container(
           decoration: const BoxDecoration(
@@ -245,7 +245,7 @@ class JewelleryApproxPriceModule extends StatelessWidget {
                   .toString()
                   .contains("PRICE ON REQUEST")
               ? "PRICE ON REQUEST"
-              : NumberFormat.currency(
+              : NumberFormat.currency( 
                   symbol: '₹ ',
                   locale: "HI",
                   decimalDigits: 2,

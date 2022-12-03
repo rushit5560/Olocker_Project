@@ -9,6 +9,8 @@ import 'package:olocker/constants/user_details.dart';
 import 'package:olocker/models/jeweller_jewellery_list_screen_model/all_jewellery_model.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../models/refer_and_earn_screen_models/get_partner_by_code_model.dart';
+import '../models/user_profile_models/user_profile_get_model.dart';
 import '../widgets/common_widgets.dart';
 
 class JewellerJewelleryListScreenController extends GetxController {
@@ -31,6 +33,10 @@ class JewellerJewelleryListScreenController extends GetxController {
   final List<SearchProductListDatum> _jewelleryList = [];
 
   List<SearchProductListDatum> get jewelleryList => _jewelleryList;
+
+  PartnerDetails? partnerDetails;
+
+  RxString userReferaalCode = "".obs;
 
   // Get Category All Product
   Future<void> getAllJewelleryListFunction() async {
@@ -70,13 +76,15 @@ class JewellerJewelleryListScreenController extends GetxController {
       log('getAllJewelleryListFunction Error : $e');
       rethrow;
     } finally {
-      isLoading(false);
+      getPartnerByCodeFunction();
+      // isLoading(false);
     }
   }
 
   // Add product in Fav
   Future<void> addFavouriteProductFunction(
-      {required String productSrNo, required SearchProductListDatum singleProduct}) async {
+      {required String productSrNo,
+      required SearchProductListDatum singleProduct}) async {
     // isLoading(true);
     String url = "${ApiUrl.addFavProductApi}?Id=$productSrNo";
 
@@ -122,7 +130,9 @@ class JewellerJewelleryListScreenController extends GetxController {
     // await getAnnouncementOfferFunction();
   }
 
-  Future<void> removeFavouriteProductListFunction({required String productSrNo, required SearchProductListDatum singleProduct}) async {
+  Future<void> removeFavouriteProductListFunction(
+      {required String productSrNo,
+      required SearchProductListDatum singleProduct}) async {
     String url = "${ApiUrl.removeFavProductApi}?Id=$productSrNo";
 
     log('removeFavouriteProductFunction Api Url :: $url');
@@ -144,6 +154,7 @@ class JewellerJewelleryListScreenController extends GetxController {
             context: Get.context!,
             displayText: "Item Removed from favourites.",
           );
+
           /// Remove favourite button change in previous screen list
           singleProduct.isFav = false;
           // getFavouriteProductFunction();
@@ -158,11 +169,6 @@ class JewellerJewelleryListScreenController extends GetxController {
       isLoading(true);
       isLoading(false);
     }
-  }
-
-  shareJewellery() async {
-    // var urlPreview = "";
-    await Share.share("share this jewellery to a person https://example.com");
   }
 
   changeSortOption() {
@@ -191,6 +197,95 @@ class JewellerJewelleryListScreenController extends GetxController {
     _jewelleryList.addAll(withoutPriceList);
 
     isLoading(false);
+  }
+
+  shareJewelleryReferFriend() async {
+    // var urlPreview = "";
+    String shareText =
+        '''I loved this beautiful jewellery from ${partnerDetails!.partnerName.capitalize!} on olocker app. 
+    You must download this app to witness their excellent jewellery collections, get fabulous deals & 
+    rewards too. Click here https://olocker.in/DetectOS.aspx?retailer=${userReferaalCode.value}-${partnerDetails!.partnerId} and use my referral 
+    code ${userReferaalCode.value}-${partnerDetails!.partnerId} on ENTER CODE space on Sign up page https://www.olocker.in/''';
+
+    await Share.share(shareText);
+  }
+
+  Future<void> getPartnerByCodeFunction() async {
+    // if (formKey.currentState!.validate()) {
+    String url = "${ApiUrl.getPartnerByCodeApi}?PartnerCode=$jewellerId";
+    log(" getPartnerByCodeFunction url: $url");
+
+    try {
+      isLoading(true);
+      http.Response response = await http.get(
+        Uri.parse(url),
+        headers: apiHeader.headers,
+      );
+
+      log("getPartnerByCodeFunction st code is : ${response.statusCode}");
+      log("getPartnerByCodeFunction res body : ${response.body}");
+
+      var resBody = jsonDecode(response.body);
+
+      GetPartnerByCodeModel getPartnerByCodeModel =
+          GetPartnerByCodeModel.fromJson(resBody);
+
+      bool isSuccessResult = getPartnerByCodeModel.success;
+
+      if (isSuccessResult) {
+        log("getPartnerByCodeFunction get success");
+        partnerDetails = getPartnerByCodeModel.partner;
+      } else {
+        log("getPartnerByCodeFunction get not success");
+        //do nothing
+      }
+    } catch (e) {
+      log("getPartnerByCodeFunction Error ::: $e");
+      rethrow;
+    } finally {
+      getUserProfileDetailsFunction();
+      // isLoading(false);
+    }
+    // }
+  }
+
+  Future<void> getUserProfileDetailsFunction() async {
+    String url =
+        "${ApiUrl.getUserProfileApi}?customerId=${UserDetails.customerId}";
+    log(" getUserProfleDetailsFunction url: $url");
+
+    try {
+      isLoading(true);
+      http.Response response = await http.get(
+        Uri.parse(url),
+        headers: apiHeader.headers,
+      );
+
+      log("getUserProfleDetailsFunction st code is : ${response.statusCode}");
+      log("getUserProfleDetailsFunction res body : ${response.body}");
+
+      var resBody = jsonDecode(response.body);
+
+      UserProfileGetModel userProfileGetModel =
+          UserProfileGetModel.fromJson(resBody);
+
+      bool isSuccessResult = userProfileGetModel.success;
+
+      if (isSuccessResult) {
+        log("user profile get success");
+        userReferaalCode.value =
+            userProfileGetModel.customerProfile.referralCode;
+        log("user userReferaalCode :: $userReferaalCode");
+      } else {
+        log("user profile get not success");
+        //do nothing
+      }
+    } catch (e) {
+      log("getUserProfleDetailsFunction Error ::: $e");
+      rethrow;
+    } finally {
+      isLoading(false);
+    }
   }
 
   @override

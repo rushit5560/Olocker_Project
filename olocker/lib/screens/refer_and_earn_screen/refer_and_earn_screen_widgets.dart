@@ -71,7 +71,7 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: () {
-                  referAndEarnScreenController.copyRefferalCode("Igoae");
+                  referAndEarnScreenController.copyRefferalCode();
                 },
                 icon: Icon(
                   Icons.copy,
@@ -81,7 +81,7 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  "Igoae",
+                  referAndEarnScreenController.userReferaalCode.value,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: AppColors.greyColor,

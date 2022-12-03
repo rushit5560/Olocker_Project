@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:olocker/models/favourites_model/favourites_model.dart';
 import '../constants/api_url.dart';
 import '../constants/user_details.dart';
+import '../models/favourites_model/categorize_fav_products_model.dart';
 
 class MyFavouritesScreenController extends GetxController {
   final size = Get.size;
@@ -15,6 +16,9 @@ class MyFavouritesScreenController extends GetxController {
   RxBool isLoading = false.obs;
 
   List<FavProduct> favouriteProductsList = [];
+
+  List<String> jewelCatStringslist = [];
+  List<CategorizedProduct> categorizedProductsList = [];
 
   ApiHeader apiHeader = ApiHeader();
 
@@ -40,6 +44,42 @@ class MyFavouritesScreenController extends GetxController {
         favouriteProductsList.clear();
         favouriteProductsList = favouritesModel.favProduct;
         log('getFavouriteProducts list count is  : ${favouriteProductsList.length}');
+
+        List<FavProduct> demoFavProdList = [];
+        for (var item in favouriteProductsList) {
+          if (jewelCatStringslist.contains(item.productDetails.itemTypeName)) {
+            demoFavProdList.add(item);
+          } else {
+            jewelCatStringslist.add(item.productDetails.itemTypeName);
+            demoFavProdList.add(item);
+          }
+        }
+        for (var element in jewelCatStringslist) {
+          String typeName = "";
+
+          List<FavProduct> typeProductsList = [];
+          // log("jewelCatString is :: $element");
+          for (var single in demoFavProdList) {
+            if (element == single.productDetails.itemTypeName) {
+              log("if the $element is same");
+              typeName = element;
+              typeProductsList.add(single);
+            } else {
+              // log("if the $element is not same");
+              // typeName = "";
+              // typeProductsList.clear();
+              // typeName = "";
+              // typeProductsList.clear();
+            }
+          }
+          categorizedProductsList.add(
+            CategorizedProduct(
+              itemTypeName: typeName,
+              favProductsList: typeProductsList,
+            ),
+          );
+        }
+        log("categorizedProductsList length is :: ${categorizedProductsList.length}");
       } else {
         log('get FavouriteProductsFunction Else');
       }
@@ -52,7 +92,7 @@ class MyFavouritesScreenController extends GetxController {
   }
 
   Future<void> deleteFavouriteProductFunction({required int id}) async {
-    String url = "${ApiUrl.deleteFavProductApi}?Id=$id";
+    String url = "${ApiUrl.removeFavProductApi}?Id=$id";
     log("deleteFavouriteProductFunction Api Url : $url");
 
     try {

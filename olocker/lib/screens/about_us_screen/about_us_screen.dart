@@ -45,7 +45,7 @@ class AboutUsScreen extends StatelessWidget {
               },
               icon: const Icon(
                 Icons.mail_outline_rounded,
-                color: AppColors.greyColor,
+                color: AppColors.accentColor,
               ),
             ),
           ],

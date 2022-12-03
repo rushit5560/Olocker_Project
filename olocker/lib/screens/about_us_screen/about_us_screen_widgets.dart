@@ -225,50 +225,55 @@ class TeamDetailsListItemModule extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
-                width: aboutUsPageController.size.width * 0.78,
-                height: aboutUsPageController.size.height * 0.12,
-                decoration: const BoxDecoration(
-                  color: AppColors.whiteColor,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.greyTextColor,
-                      blurRadius: 5,
-                      spreadRadius: 1,
-                    ),
-                  ],
+              width: aboutUsPageController.size.width * 0.79,
+              height: aboutUsPageController.size.height * 0.12,
+              decoration: const BoxDecoration(
+                color: AppColors.whiteColor,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(12),
                 ),
-                child: Row(
-                  children: [
-                    Expanded(flex: 13, child: Container()),
-                    Expanded(
-                      flex: 87,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            singleMember.ownerName,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.bold),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.greyTextColor,
+                    blurRadius: 5,
+                    spreadRadius: 1,
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  SizedBox(width: 9.w),
+                  SizedBox(
+                    width: 67.w,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          singleMember.ownerName,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: AppColors.blackColor,
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.bold,
                           ),
-                          const SizedBox(height: 2),
-                          Text(
-                            singleMember.ownerDescription,
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(fontSize: 11.sp),
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          singleMember.ownerDescription,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 10.sp,
+                            color: AppColors.blackTextColor,
                           ),
-                        ],
-                      ).commonSymmetricPadding(vertical: 8, horizontal: 10),
-                    ),
-                  ],
-                )),
+                        ),
+                      ],
+                    ).commonSymmetricPadding(vertical: 8, horizontal: 10),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
         Align(

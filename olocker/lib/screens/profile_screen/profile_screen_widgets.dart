@@ -614,7 +614,7 @@ class SaveProfileButton extends StatelessWidget {
               }
             },
             style: ElevatedButton.styleFrom(
-              primary: AppColors.pinkBGColor,
+              primary: AppColors.accentColor,
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(25),

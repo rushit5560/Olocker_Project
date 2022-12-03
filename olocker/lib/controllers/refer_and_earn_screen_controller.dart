@@ -24,9 +24,11 @@ class ReferAndEarnScreenController extends GetxController {
   LoyalityPlan? loyalityPlan;
   PartnerDetails? partnerDetails;
 
-  copyRefferalCode(String code) {
+  RxString userReferaalCode = "".obs;
+
+  copyRefferalCode() {
     Clipboard.setData(
-      ClipboardData(text: code),
+      ClipboardData(text: userReferaalCode.value),
     );
 
     CommonWidgets().showBorderSnackBar(
@@ -39,9 +41,12 @@ class ReferAndEarnScreenController extends GetxController {
     await Share.share(
         '''I loved this beautiful jewellery from ${partnerDetails!.partnerName.capitalize!} on olocker app. 
     You must download this app to witness their excellent jewellery collections, get fabulous deals & 
-    rewards too. Click here https://olocker.in/DetectOS.aspx?retailer=lgoae-${partnerDetails!.partnerId} and use my referral 
-    code lgoae-${partnerDetails!.partnerId} on ENTER CODE space on Sign up page''');
+    rewards too. Click here https://olocker.in/DetectOS.aspx?retailer=${userReferaalCode.value}-${partnerDetails!.partnerId} and use my referral 
+    code ${userReferaalCode.value}-${partnerDetails!.partnerId} on ENTER CODE space on Sign up page https://www.olocker.in/''');
   }
+
+//${prof.ReferralCode}
+  // lgoae
 
   Future<void> getPartnerByCodeFunction() async {
     // if (formKey.currentState!.validate()) {
@@ -82,6 +87,45 @@ class ReferAndEarnScreenController extends GetxController {
     // }
   }
 
+  Future<void> getUserProfileDetailsFunction() async {
+    String url =
+        "${ApiUrl.getUserProfileApi}?customerId=${UserDetails.customerId}";
+    log(" getUserProfleDetailsFunction url: $url");
+
+    try {
+      isLoading(true);
+      http.Response response = await http.get(
+        Uri.parse(url),
+        headers: apiHeader.headers,
+      );
+
+      log("getUserProfleDetailsFunction st code is : ${response.statusCode}");
+      log("getUserProfleDetailsFunction res body : ${response.body}");
+
+      var resBody = jsonDecode(response.body);
+
+      UserProfileGetModel userProfileGetModel =
+          UserProfileGetModel.fromJson(resBody);
+
+      isSuccessResult.value = userProfileGetModel.success;
+
+      if (isSuccessResult.value) {
+        log("user profile get success");
+        userReferaalCode.value =
+            userProfileGetModel.customerProfile.referralCode;
+        log("user userReferaalCode :: $userReferaalCode");
+      } else {
+        log("user profile get not success");
+        //do nothing
+      }
+    } catch (e) {
+      log("getUserProfleDetailsFunction Error ::: $e");
+      rethrow;
+    } finally {
+      isLoading(false);
+    }
+  }
+
   Future<void> getLoyalityPlanFunction() async {
     // if (formKey.currentState!.validate()) {
 
@@ -89,7 +133,7 @@ class ReferAndEarnScreenController extends GetxController {
     log(" getLoyalityPlanFunction url: $url");
 
     try {
-      // isLoading(true);
+      isLoading(true);
       http.Response response = await http.get(
         Uri.parse(url),
         headers: apiHeader.headers,
@@ -117,45 +161,10 @@ class ReferAndEarnScreenController extends GetxController {
       log("getLoyalityPlanFunction Error ::: $e");
       rethrow;
     } finally {
-      isLoading(false);
+      // isLoading(false);
+      getUserProfileDetailsFunction();
     }
     // }
-  }
-
-  Future<void> getUserProfileDetailsFunction() async {
-    String url =
-        "${ApiUrl.getUserProfileApi}?customerId=${UserDetails.customerId}";
-    log(" getUserProfleDetailsFunction url: $url");
-
-    try {
-      isLoading(true);
-      http.Response response = await http.get(
-        Uri.parse(url),
-        headers: apiHeader.headers,
-      );
-
-      log("getUserProfleDetailsFunction st code is : ${response.statusCode}");
-      log("getUserProfleDetailsFunction res body : ${response.body}");
-
-      var resBody = jsonDecode(response.body);
-
-      UserProfileGetModel userProfileGetModel =
-          UserProfileGetModel.fromJson(resBody);
-
-      isSuccessResult.value = userProfileGetModel.success;
-
-      if (isSuccessResult.value) {
-        log("user profile get success");
-      } else {
-        log("user profile get not success");
-        //do nothing
-      }
-    } catch (e) {
-      log("getUserProfleDetailsFunction Error ::: $e");
-      rethrow;
-    } finally {
-      isLoading(false);
-    }
   }
 
   @override

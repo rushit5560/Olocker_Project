@@ -147,7 +147,7 @@ class JewelleryGridviewModule extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () async {
-                          await screenController.shareJewellery();
+                          await screenController.shareJewelleryReferFriend();
                         },
                         icon: Icon(
                           Icons.share_rounded,

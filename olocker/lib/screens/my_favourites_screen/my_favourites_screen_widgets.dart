@@ -4,14 +4,17 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
+import 'package:olocker/screens/jeweller_jewellery_details_screen/jeweller_jewellery_details_screen.dart';
 
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/my_favourites_controller.dart';
+import '../../models/favourites_model/categorize_fav_products_model.dart';
+import '../../models/favourites_model/favourites_model.dart';
 import '../jewellery_details_screen/jewellery_details_screen.dart';
 
-class FavouritesListModule extends StatelessWidget {
-  FavouritesListModule({Key? key}) : super(key: key);
+class FavouritesCategoriesListModule extends StatelessWidget {
+  FavouritesCategoriesListModule({Key? key}) : super(key: key);
 
   final favouritesController = Get.find<MyFavouritesScreenController>();
 
@@ -21,10 +24,11 @@ class FavouritesListModule extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-      itemCount: favouritesController.favouriteProductsList.length,
+      itemCount: favouritesController.categorizedProductsList.length,
       itemBuilder: (context, index) {
-        return FavouriteListItem(
-          index: index,
+        var single = favouritesController.categorizedProductsList[index];
+        return FavouriteProductsListModule(
+          singleCatProduct: single,
         );
       },
       separatorBuilder: (context, index) {
@@ -34,13 +38,12 @@ class FavouritesListModule extends StatelessWidget {
   }
 }
 
-class FavouriteListItem extends StatelessWidget {
-  FavouriteListItem({
-    Key? key,
-    required this.index,
-  }) : super(key: key);
+class FavouriteProductsListModule extends StatelessWidget {
+  FavouriteProductsListModule({Key? key, required this.singleCatProduct})
+      : super(key: key);
 
-  int index;
+  final CategorizedProduct singleCatProduct;
+
   final favouritesController = Get.find<MyFavouritesScreenController>();
 
   @override
@@ -53,106 +56,69 @@ class FavouriteListItem extends StatelessWidget {
           Radius.circular(12),
         ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 5, top: 5),
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  width: favouritesController.size.width * 0.81,
-                  decoration: const BoxDecoration(
-                    color: AppColors.whiteColor,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(12),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.greyTextColor,
-                        blurRadius: 5,
-                        spreadRadius: 1,
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      SizedBox(width: favouritesController.size.width * 0.12),
-                      SizedBox(
-                        width: favouritesController.size.width * 0.46,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 10),
-                            Text(
-                              favouritesController.favouriteProductsList[index]
-                                  .productDetails.itemTypeName,
-                              style: TextStyle(
-                                fontSize: 10.sp,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.blackTextColor,
-                              ),
-                            ),
-                            SizedBox(height: 0.3.h),
-                            Text(
-                              "SKU Code: ${favouritesController.favouriteProductsList[index].productDetails.productSku}",
-                              style: TextStyle(
-                                fontSize: 10.sp,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.blackTextColor,
-                              ),
-                            ),
-                            SizedBox(height: 0.3.h),
-                            Text(
-                              NumberFormat.currency(
-                                symbol: '₹ ',
-                                locale: "HI",
-                                decimalDigits: 2,
-                              ).format(double.parse(favouritesController
-                                  .favouriteProductsList[index]
-                                  .productDetails
-                                  .price)),
-                              // favouritesController.favouriteProductsList[index]
-                              //     .productDetails.price,
-                              style: TextStyle(
-                                fontSize: 10.sp,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.blackTextColor,
-                              ),
-                            ),
-                            SizedBox(height: 0.3.h),
-                            Text(
-                              favouritesController
-                                  .favouriteProductsList[index].partnerName,
-                              style: TextStyle(
-                                fontSize: 10.sp,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.blackTextColor,
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Text(
+              singleCatProduct.itemTypeName,
+              style: TextStyle(
+                fontSize: 15.sp,
+                color: AppColors.blackColor,
+              ),
             ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Container(
-                height: favouritesController.size.height * 0.08,
-                width: favouritesController.size.height * 0.08,
-                margin: const EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 8,
-                ),
+          ),
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: const EdgeInsets.only(top: 10, bottom: 10, right: 8),
+            itemCount: singleCatProduct.favProductsList.length,
+            itemBuilder: (context, index) {
+              var singleProd = singleCatProduct.favProductsList[index];
+              return FavouriteListItem(
+                index: index,
+                singleProd: singleProd,
+              );
+            },
+            separatorBuilder: (context, index) {
+              return const SizedBox(height: 10);
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class FavouriteListItem extends StatelessWidget {
+  FavouriteListItem({
+    Key? key,
+    required this.index,
+    required this.singleProd,
+  }) : super(key: key);
+
+  int index;
+  final FavProduct singleProd;
+  final favouritesController = Get.find<MyFavouritesScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                width: favouritesController.size.width * 0.81,
                 decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
                   color: AppColors.whiteColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
                   boxShadow: [
                     BoxShadow(
                       color: AppColors.greyTextColor,
@@ -161,120 +127,202 @@ class FavouriteListItem extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(60),
-                  ),
-                  child: CachedNetworkImage(
-                    imageUrl: favouritesController.favouriteProductsList[index]
-                            .productDetails.productImageList.isEmpty
-                        ? ""
-                        : "${ApiUrl.apiImagePath}${favouritesController.favouriteProductsList[index].productDetails.productImageList[0].imageLocation}",
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) {
-                      return Center(
-                        child: Text(
-                          "No Image",
-                          style: TextStyle(
-                            fontSize: 8.sp,
-                          ),
-                        ),
-                      );
-                    },
-                    errorWidget: (context, url, error) {
-                      return Center(
-                        child: Text(
-                          "No Image",
-                          style: TextStyle(
-                            fontSize: 8.sp,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.topRight,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      favouritesController.deleteFavouriteProductFunction(
-                        id: favouritesController
-                            .favouriteProductsList[index].id,
-                      );
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      child: Icon(
-                        Icons.delete,
-                        color: AppColors.redColor,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: favouritesController.size.height * 0.02),
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(
-                        () => JewelleryDetailsScreen(),
-                        arguments: [
-                          favouritesController
-                              .favouriteProductsList[index].partnerSrNo,
-                          favouritesController
-                              .favouriteProductsList[index].productDetails.srNo,
-                          favouritesController.favouriteProductsList[index]
-                              .productDetails.itemTypeName,
-                          index,
-                        ],
-                      );
-                    },
-                    child: Container(
-                      height: favouritesController.size.height * 0.04,
-                      width: favouritesController.size.width * 0.22,
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      decoration: const BoxDecoration(
-                        color: AppColors.accentColor,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          bottomLeft: Radius.circular(10),
-                        ),
-                      ),
-                      child: Row(
+                child: Row(
+                  children: [
+                    SizedBox(width: favouritesController.size.width * 0.12),
+                    SizedBox(
+                      width: favouritesController.size.width * 0.46,
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(
-                            Icons.remove_red_eye_outlined,
-                            color: AppColors.whiteColor,
-                            size: 15.sp,
-                          ),
-                          SizedBox(width: 1.5.w),
+                          const SizedBox(height: 10),
                           Text(
-                            "View",
+                            singleProd.productDetails.itemTypeName,
                             style: TextStyle(
-                              color: AppColors.whiteColor,
-                              fontSize: 11.sp,
-                              fontWeight: FontWeight.w500,
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.blackTextColor,
                             ),
                           ),
+                          SizedBox(height: 0.3.h),
+                          Text(
+                            "SKU Code: ${singleProd.productDetails.productSku}",
+                            style: TextStyle(
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.blackTextColor,
+                            ),
+                          ),
+                          SizedBox(height: 0.3.h),
+                          Text(
+                            singleProd.productDetails.price
+                                    .toString()
+                                    .contains("PRICE ON REQUEST")
+                                ? "PRICE ON REQUEST"
+                                : NumberFormat.currency(
+                                    symbol: '₹ ',
+                                    locale: "HI",
+                                    decimalDigits: 2,
+                                  ).format(
+                                    double.parse(favouritesController
+                                        .favouriteProductsList[index]
+                                        .productDetails
+                                        .price),
+                                  ),
+                            // singleProd
+                            //     .productDetails.price,
+                            style: TextStyle(
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.blackTextColor,
+                            ),
+                          ),
+                          SizedBox(height: 0.3.h),
+                          Text(
+                            favouritesController
+                                .favouriteProductsList[index].partnerName,
+                            style: TextStyle(
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.blackTextColor,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
                         ],
                       ),
                     ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              height: favouritesController.size.height * 0.08,
+              width: favouritesController.size.height * 0.08,
+              margin: const EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 8,
+              ),
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.whiteColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.greyTextColor,
+                    blurRadius: 5,
+                    spreadRadius: 1,
                   ),
                 ],
               ),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(60),
+                ),
+                child: CachedNetworkImage(
+                  imageUrl: singleProd.productDetails.productImageList.isEmpty
+                      ? ""
+                      : "${ApiUrl.apiImagePath}${singleProd.productDetails.productImageList[0].imageLocation}",
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) {
+                    return Center(
+                      child: Text(
+                        "No Image",
+                        style: TextStyle(
+                          fontSize: 8.sp,
+                        ),
+                      ),
+                    );
+                  },
+                  errorWidget: (context, url, error) {
+                    return Center(
+                      child: Text(
+                        "No Image",
+                        style: TextStyle(
+                          fontSize: 8.sp,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ),
-          ],
-        ),
+          ),
+          Align(
+            alignment: Alignment.topRight,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    favouritesController.deleteFavouriteProductFunction(
+                      id: singleProd.id,
+                    );
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    child: Icon(
+                      Icons.delete,
+                      color: AppColors.redColor,
+                    ),
+                  ),
+                ),
+                SizedBox(height: favouritesController.size.height * 0.02),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(
+                      () => JewellerJewelleryDetailsScreen(),
+                      arguments: [
+                        favouritesController
+                            .favouriteProductsList[index].partnerSrNo
+                            .toString(),
+                        favouritesController
+                            .favouriteProductsList[index].productDetails.srNo,
+                        singleProd.productDetails.itemTypeName,
+                        // index,
+                      ],
+                    );
+                  },
+                  child: Container(
+                    height: favouritesController.size.height * 0.04,
+                    width: favouritesController.size.width * 0.22,
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    decoration: const BoxDecoration(
+                      color: AppColors.accentColor,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.remove_red_eye_outlined,
+                          color: AppColors.whiteColor,
+                          size: 15.sp,
+                        ),
+                        SizedBox(width: 1.5.w),
+                        Text(
+                          "View",
+                          style: TextStyle(
+                            color: AppColors.whiteColor,
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
-
-      // Text(
-      //   favouritesController
-      //       .favouriteProductsList[index].productDetails.itemTypeName,
-      // ),
     );
   }
 }

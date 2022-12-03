@@ -3,18 +3,16 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
-import 'package:olocker/constants/app_images.dart';
-import 'package:olocker/models/portfolio_screen_models/get_all_data_ornament_model.dart';
+
 import 'package:olocker/utils/field_validation.dart';
 import 'package:olocker/widgets/common_loader.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/add_ornament_recordings_screen_controller.dart';
-import '../../controllers/add_uninsured_jewellery_screen_controller.dart';
 
 class AddRecordingDetailsFormModule extends StatefulWidget {
-  AddRecordingDetailsFormModule({Key? key}) : super(key: key);
+  const AddRecordingDetailsFormModule({Key? key}) : super(key: key);
 
   @override
   State<AddRecordingDetailsFormModule> createState() =>

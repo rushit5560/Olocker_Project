@@ -111,13 +111,25 @@ class JewellerBannerModule extends StatelessWidget {
           );
         }
       },
-      child: Container(
-        decoration: BoxDecoration(
+      child: SizedBox(
+        height: 28.h,
+        width: double.infinity,
+        // decoration: BoxDecoration(
+        //   borderRadius: BorderRadius.circular(20),
+        //   color: AppColors.greyTextColor,
+        //   image: DecorationImage(
+        //     image: NetworkImage(imgUrl),
+        //     fit: BoxFit.fill,
+        //   ),
+        // ),
+        child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
-          color: AppColors.greyTextColor,
-          image: DecorationImage(
-            image: NetworkImage(imgUrl),
+          child: CachedNetworkImage(
+            imageUrl: imgUrl,
             fit: BoxFit.fill,
+            errorWidget: (context, url, error) {
+              return Image.asset(AppImages.noLogoImage);
+            },
           ),
         ),
       ).commonSymmetricPadding(horizontal: 5),
@@ -501,7 +513,7 @@ class BestSellersListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: screenController.size.height * 0.042.h,
+      height: 32.h,
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(AppImages.bestSellerBgImage),
@@ -520,10 +532,11 @@ class BestSellersListModule extends StatelessWidget {
             ),
           ).commonSymmetricPadding(vertical: 12),
           SizedBox(
-            height: screenController.size.height * 0.030.h,
+            height: 24.h,
             child: GridView.builder(
               itemCount: screenController.bestSellerList.length,
               shrinkWrap: true,
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1,
                 // crossAxisSpacing: 10,
