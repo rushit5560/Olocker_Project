@@ -96,6 +96,27 @@ flutter:
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
+  fonts:
+    - family: Acephimere
+      fonts:
+        - asset: fonts/Acephimere.ttf
+          style: normal
+    - family: Roboto
+      fonts:
+        - asset: fonts/Roboto-Regular.ttf
+          style: normal
+    - family: latoregular
+      fonts:
+        - asset: fonts/lato-regular-webfont.ttf
+          style: normal
+    - family: Roboto-Medium
+      fonts:
+        - asset: fonts/Roboto-Medium.ttf
+          style: normal
+    - family: elephantregular
+      fonts:
+        - asset: fonts/elephant-webfont.ttf  
+
   # example:
   # fonts:
   #   - family: Schyler

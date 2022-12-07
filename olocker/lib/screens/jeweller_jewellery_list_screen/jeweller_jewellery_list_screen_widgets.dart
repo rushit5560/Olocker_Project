@@ -98,6 +98,7 @@ class JewelleryGridviewModule extends StatelessWidget {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
+                              fontFamily: "Roboto",
                               color: AppColors.whiteColor,
                               fontSize: 12.sp,
                             ),
@@ -112,6 +113,7 @@ class JewelleryGridviewModule extends StatelessWidget {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
+                              fontFamily: "Roboto",
                               color: AppColors.whiteColor,
                               fontSize: 12.sp,
                             ),

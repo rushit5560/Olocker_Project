@@ -153,7 +153,7 @@ class MyJewellersListModule extends StatelessWidget {
         screenController.myAllJewellersList.isEmpty
             ? Container(height: screenController.size.height * 0.005.h)
             : SizedBox(
-                height: screenController.size.height * 0.023.h,
+                height: screenController.size.height * 0.17,
                 child: ListView.builder(
                   itemCount: screenController.myAllJewellersList.length,
                   shrinkWrap: true,
@@ -171,16 +171,19 @@ class MyJewellersListModule extends StatelessWidget {
 
   Widget _jewellerListTile(JewellerData jewellerData) {
     String imgUrl = ApiUrl.apiImagePath + jewellerData.logoFileName;
+    log("imgUrl :: $imgUrl");
     return GestureDetector(
       onTap: () {
-        Get.to(() => JewellerDetailsScreen(),
-            arguments: [jewellerData.partnerSrNo, jewellerData.companyName]);
+        Get.to(() => JewellerDetailsScreen(), arguments: [
+          jewellerData.partnerSrNo,
+          jewellerData.companyName,
+        ]);
       },
       child: Column(
         children: [
           Container(
-            width: screenController.size.width * 0.11.w,
-            height: screenController.size.height * 0.015.h,
+            width: screenController.size.width * 0.37,
+            height: screenController.size.height * 0.11,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               // color: AppColors.greyColor,
@@ -245,13 +248,18 @@ class BannerModule extends StatelessWidget {
     String imgUrl = ApiUrl.apiImagePath +
         singleBanner.imageLocation +
         singleBanner.imageName;
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: NetworkImage(imgUrl),
-          fit: BoxFit.fill,
-        ),
-      ),
+    return CachedNetworkImage(
+      imageUrl: imgUrl,
+      fit: BoxFit.cover,
+      width: double.infinity,
+      errorWidget: (context, error, stackTrace) {
+        return Container(
+          color: AppColors.greyTextColor.withOpacity(0.5),
+          child: const Center(
+            child: Text("No Image"),
+          ),
+        );
+      },
     );
   }
 }
@@ -326,11 +334,13 @@ class SmartDealsModule extends StatelessWidget {
           ),
           screenController.smartDealsSwitch.value == false
               ? OnlineDealsListModule()
-              : const Text(
+              : Text(
                   'Keep checking this space for exciting deals',
                   style: TextStyle(
+                    fontFamily: "Roboto",
                     color: AppColors.whiteColor,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
           SizedBox(height: screenController.size.height * 0.015),

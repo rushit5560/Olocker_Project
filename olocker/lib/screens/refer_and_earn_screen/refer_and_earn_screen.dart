@@ -27,6 +27,7 @@ class ReferAndEarnScreen extends StatelessWidget {
         title: Text(
           'Refer & Earn',
           style: TextStyle(
+            fontFamily: "Roboto",
             color: AppColors.blackColor,
             fontSize: 14.sp,
             fontWeight: FontWeight.normal,

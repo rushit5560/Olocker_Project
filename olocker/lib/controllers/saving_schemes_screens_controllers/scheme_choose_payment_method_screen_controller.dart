@@ -188,8 +188,8 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
     log('Success Payment Razorpay');
 
     await razorPayPaymentSuccessFunction(
-      transUuid: response.orderId!,
-      transactionId: response.paymentId!,
+      transUuid: response.orderId ?? "",
+      transactionId: response.paymentId ?? "",
     );
   }
 
@@ -264,8 +264,8 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
     try {
       Map<String, dynamic> bodyData = {
         "PaymentId": savingSchemeDetails.paymentId,
-        "TransUuid": transUuid == null ? 0 : transUuid,
-        "TransactionId": transactionId == null ? "0" : transUuid,
+        "TransUuid": transUuid,
+        "TransactionId": transactionId,
         "PaymentStatus": "AUTHORISED",
         "Amount": "${savingSchemeDetails.monthlyAmount}",
         "TransactionDate": transDate,

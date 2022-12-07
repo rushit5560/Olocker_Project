@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -64,6 +66,7 @@ class FavouriteProductsListModule extends StatelessWidget {
             child: Text(
               singleCatProduct.itemTypeName,
               style: TextStyle(
+                fontFamily: "Roboto",
                 fontSize: 15.sp,
                 color: AppColors.blackColor,
               ),
@@ -104,6 +107,7 @@ class FavouriteListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // log(" one image path  :: ${ApiUrl.apiImagePath}${singleProd.productDetails.productImageList[0].imageLocation}");
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Stack(
@@ -140,6 +144,7 @@ class FavouriteListItem extends StatelessWidget {
                           Text(
                             singleProd.productDetails.itemTypeName,
                             style: TextStyle(
+                              fontFamily: "Roboto",
                               fontSize: 10.sp,
                               fontWeight: FontWeight.w400,
                               color: AppColors.blackTextColor,
@@ -149,40 +154,45 @@ class FavouriteListItem extends StatelessWidget {
                           Text(
                             "SKU Code: ${singleProd.productDetails.productSku}",
                             style: TextStyle(
+                              fontFamily: "Roboto",
                               fontSize: 10.sp,
                               fontWeight: FontWeight.w500,
                               color: AppColors.blackTextColor,
                             ),
                           ),
                           SizedBox(height: 0.3.h),
-                          Text(
-                            singleProd.productDetails.price
-                                    .toString()
-                                    .contains("PRICE ON REQUEST")
-                                ? "PRICE ON REQUEST"
-                                : NumberFormat.currency(
-                                    symbol: '₹ ',
-                                    locale: "HI",
-                                    decimalDigits: 2,
-                                  ).format(
-                                    double.parse(favouritesController
-                                        .favouriteProductsList[index]
-                                        .productDetails
-                                        .price),
+                          singleProd.productDetails.price.toString() !=
+                                  "PRICE ON REQUEST"
+                              ? const SizedBox(height: 8)
+                              : Text(
+                                  singleProd.productDetails.price
+                                          .toString()
+                                          .contains("PRICE ON REQUEST")
+                                      ? "PRICE ON REQUEST"
+                                      : NumberFormat.currency(
+                                          symbol: '₹ ',
+                                          locale: "HI",
+                                          decimalDigits: 2,
+                                        ).format(
+                                          double.parse(favouritesController
+                                              .favouriteProductsList[index]
+                                              .productDetails
+                                              .price),
+                                        ),
+                                  // singleProd
+                                  //     .productDetails.price,
+                                  style: TextStyle(
+                                    fontFamily: "Roboto",
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.blackTextColor,
                                   ),
-                            // singleProd
-                            //     .productDetails.price,
-                            style: TextStyle(
-                              fontSize: 10.sp,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.blackTextColor,
-                            ),
-                          ),
+                                ),
                           SizedBox(height: 0.3.h),
                           Text(
-                            favouritesController
-                                .favouriteProductsList[index].partnerName,
+                            singleProd.partnerName,
                             style: TextStyle(
+                              fontFamily: "Roboto",
                               fontSize: 10.sp,
                               fontWeight: FontWeight.w500,
                               color: AppColors.blackTextColor,
@@ -276,11 +286,8 @@ class FavouriteListItem extends StatelessWidget {
                     Get.to(
                       () => JewellerJewelleryDetailsScreen(),
                       arguments: [
-                        favouritesController
-                            .favouriteProductsList[index].partnerSrNo
-                            .toString(),
-                        favouritesController
-                            .favouriteProductsList[index].productDetails.srNo,
+                        singleProd.partnerSrNo.toString(),
+                        singleProd.productDetails.srNo,
                         singleProd.productDetails.itemTypeName,
                         // index,
                       ],
@@ -309,6 +316,7 @@ class FavouriteListItem extends StatelessWidget {
                         Text(
                           "View",
                           style: TextStyle(
+                            fontFamily: "Roboto",
                             color: AppColors.whiteColor,
                             fontSize: 11.sp,
                             fontWeight: FontWeight.w500,

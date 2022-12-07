@@ -12,8 +12,6 @@ import 'package:sizer/sizer.dart';
 import '../../../constants/api_url.dart';
 import '../../../controllers/saving_schemes_screens_controllers/saving_scheme_confirmation_screen_controller.dart';
 
-
-
 class AmountDetailsModule extends StatelessWidget {
   AmountDetailsModule({Key? key}) : super(key: key);
 
@@ -160,7 +158,6 @@ class AmountDetailsModule extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 12),
-
                             Text(
                               NumberFormat.currency(
                                 symbol: '₹ ',
@@ -198,7 +195,8 @@ class AmountDetailsModule extends StatelessWidget {
                                 locale: "HI",
                                 decimalDigits: 0,
                               ).format(double.parse(
-                                  savingSelectionScreenController.savingSchemeDetails.maturityAmount
+                                  savingSelectionScreenController
+                                      .savingSchemeDetails.maturityAmount
                                       .toString())),
                               style: TextStyle(
                                 fontSize: 20.sp,
@@ -321,6 +319,7 @@ class ProceedToPayButtonModule extends StatelessWidget {
                 child: Text(
                   "PROCEED TO PAY",
                   style: TextStyle(
+                    fontFamily: "Roboto-Medium",
                     fontWeight: FontWeight.bold,
                     fontSize: 12.sp,
                     color: AppColors.whiteColor,

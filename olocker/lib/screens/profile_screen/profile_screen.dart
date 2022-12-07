@@ -18,6 +18,7 @@ class ProfileScreen extends StatelessWidget {
         title: Text(
           'Profile',
           style: TextStyle(
+            fontFamily: "Roboto",
             color: AppColors.blackColor,
             fontSize: 14.sp,
             fontWeight: FontWeight.normal,

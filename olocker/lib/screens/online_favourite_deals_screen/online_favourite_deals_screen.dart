@@ -24,6 +24,7 @@ class OnlineFavouriteDealsScreen extends StatelessWidget {
         title: Text(
           'Favourite Deals',
           style: TextStyle(
+            fontFamily: "Roboto",
             color: AppColors.blackColor,
             fontSize: 14.sp,
             fontWeight: FontWeight.normal,
@@ -101,7 +102,8 @@ class OnlineFavouriteDealsScreen extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: const Color(0xff4a060f),
+                    fontFamily: "Roboto",
+                    color: AppColors.blackColor,
                     fontSize: 10.sp,
                   ),
                 ),
@@ -113,7 +115,8 @@ class OnlineFavouriteDealsScreen extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: const Color(0xff4a060f),
+                    color: AppColors.blackColor,
+                    fontFamily: "Roboto",
                     fontSize: 10.sp,
                   ),
                 ),

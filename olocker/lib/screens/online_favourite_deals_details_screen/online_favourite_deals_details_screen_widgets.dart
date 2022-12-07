@@ -6,11 +6,10 @@ import 'package:olocker/controllers/online_favourite_deals_details_screen_contro
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
-
 class FavouriteActivateDealButtonModule extends StatelessWidget {
   FavouriteActivateDealButtonModule({Key? key}) : super(key: key);
-  final onlineFavouriteDealsDetailsScreenController
-  = Get.find<OnlineFavouriteDealsDetailsScreenController>();
+  final onlineFavouriteDealsDetailsScreenController =
+      Get.find<OnlineFavouriteDealsDetailsScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +19,13 @@ class FavouriteActivateDealButtonModule extends StatelessWidget {
         GestureDetector(
           onTap: () async {
             // await onlineFavouriteDealsDetailsScreenController.addOnlineDealInFavouriteFunction();
-            Clipboard.setData(ClipboardData(text: onlineFavouriteDealsDetailsScreenController.favDealsDetails.dealCode));
-            const snackBar = SnackBar(content: Text('Successful copied'),
-              behavior: SnackBarBehavior.floating,);
+            Clipboard.setData(ClipboardData(
+                text: onlineFavouriteDealsDetailsScreenController
+                    .favDealsDetails.dealCode));
+            const snackBar = SnackBar(
+              content: Text('Successful copied'),
+              behavior: SnackBarBehavior.floating,
+            );
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           },
           child: Container(
@@ -35,13 +38,18 @@ class FavouriteActivateDealButtonModule extends StatelessWidget {
                 Text(
                   'COUPON CODE',
                   style: TextStyle(
-                    color: AppColors.whiteColor,
                     fontSize: 6.sp,
+                    fontFamily: "Roboto",
+                    color: AppColors.whiteColor,
                   ),
                 ),
                 Text(
-                  onlineFavouriteDealsDetailsScreenController.favDealsDetails.dealCode,
-                  style: const TextStyle(color: AppColors.whiteColor),
+                  onlineFavouriteDealsDetailsScreenController
+                      .favDealsDetails.dealCode,
+                  style: const TextStyle(
+                    color: AppColors.whiteColor,
+                    fontFamily: "Roboto",
+                  ),
                 ),
               ],
             ).commonSymmetricPadding(horizontal: 15, vertical: 12),

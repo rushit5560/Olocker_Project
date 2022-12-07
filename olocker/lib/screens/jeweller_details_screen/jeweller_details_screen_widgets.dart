@@ -79,22 +79,67 @@ class JewellerBannerModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CarouselSlider.builder(
-      itemCount: screenController.announcementOfferList.length,
-      itemBuilder: (context, i, realIndex) {
-        GetPushOfferItem oneOffer = screenController.announcementOfferList[i];
-        return _imageModule(
-          singleOffer: oneOffer,
-        ) /*.commonSymmetricPadding(horizontal: 5)*/;
-      },
-      options: CarouselOptions(
-        height: 28.h,
-        autoPlay: true,
-        viewportFraction: 1,
-        // autoPlayAnimationDuration: const Duration(seconds: 10),
-        autoPlayInterval: const Duration(seconds: 10),
-      ),
-    ).commonSymmetricPadding(vertical: 8);
+    return Stack(
+      alignment: Alignment.bottomRight,
+      children: [
+        CarouselSlider.builder(
+          itemCount: screenController.announcementOfferList.length,
+          itemBuilder: (context, i, realIndex) {
+            GetPushOfferItem oneOffer =
+                screenController.announcementOfferList[i];
+            return _imageModule(
+              singleOffer: oneOffer,
+            ) /*.commonSymmetricPadding(horizontal: 5)*/;
+          },
+          options: CarouselOptions(
+            onPageChanged: ((index, reason) {
+              screenController.bannerCurrentIndex.value = index;
+            }),
+            height: 26.h,
+            autoPlay: true,
+            viewportFraction: 1,
+            // autoPlayAnimationDuration: const Duration(seconds: 10),
+            autoPlayInterval: const Duration(seconds: 4),
+          ),
+        ).commonSymmetricPadding(vertical: 8),
+        Obx(
+          () => Padding(
+            padding: const EdgeInsets.only(right: 8, bottom: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: screenController.announcementOfferList.map((url) {
+                int index = screenController.announcementOfferList.indexOf(url);
+                return Container(
+                  width: screenController.bannerCurrentIndex.value == index
+                      ? 16
+                      : 11,
+                  height: screenController.bannerCurrentIndex.value == index
+                      ? 16
+                      : 11,
+                  margin: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 2.0),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                        width:
+                            screenController.bannerCurrentIndex.value == index
+                                ? 2
+                                : 0,
+                        color:
+                            screenController.bannerCurrentIndex.value == index
+                                ? AppColors.whiteColor
+                                : Colors.transparent),
+                    color: screenController.bannerCurrentIndex.value == index
+                        ? AppColors.blueDarkColor
+                        : AppColors.greyColor,
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+        ).commonOnlyPadding(right: 1.h),
+      ],
+    );
   }
 
   Widget _imageModule({required GetPushOfferItem singleOffer}) {
@@ -312,7 +357,7 @@ class JewelleryCategoryListModule extends StatelessWidget {
             height: screenController.size.height * 0.023.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: AppColors.greyTextColor,
+              color: AppColors.greyTextColor.withOpacity(0.5),
               image: DecorationImage(
                   image: NetworkImage(imgUrl), fit: BoxFit.cover),
             ),
@@ -697,7 +742,7 @@ class CustomerSpeakModule extends StatelessWidget {
                   borderRadius: BorderRadius.circular(200),
                   child: CachedNetworkImage(
                     imageUrl:
-                        "${ApiUrl.apiImageUrlPath}/images/JewelleryApp/2020/5/9e926966718148acaedc690e4a55d5f8_1.png",
+                        "${ApiUrl.apiImagePath}/images/JewelleryApp/2020/5/9e926966718148acaedc690e4a55d5f8_1.png",
                     fit: BoxFit.cover,
                     errorWidget: (context, url, error) {
                       return Image.asset(

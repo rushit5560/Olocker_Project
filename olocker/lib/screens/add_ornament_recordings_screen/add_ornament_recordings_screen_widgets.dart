@@ -61,6 +61,7 @@ class _AddRecordingDetailsFormModuleState
                               color: AppColors.blackColor,
                               fontSize: 10.sp,
                               fontWeight: FontWeight.w400,
+                              fontFamily: "Roboto",
                             ),
                           ),
                           style: TextStyle(
@@ -77,6 +78,7 @@ class _AddRecordingDetailsFormModuleState
                                 child: Text(
                                   activityValue.textValue,
                                   style: TextStyle(
+                                    fontFamily: "Roboto",
                                     fontSize: 11.sp,
                                   ),
                                 ),
@@ -102,12 +104,14 @@ class _AddRecordingDetailsFormModuleState
                                 horizontal: 16, vertical: 5),
                             labelText: "CURRENT LOCATION OF JEWELLERY",
                             labelStyle: TextStyle(
+                              fontFamily: "Roboto",
                               color: AppColors.blackColor,
                               fontSize: 10.sp,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
                           style: TextStyle(
+                            fontFamily: "Roboto",
                             color: AppColors.blackColor,
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w400,
@@ -148,12 +152,14 @@ class _AddRecordingDetailsFormModuleState
                                       labelText: "Other location of jewellery"
                                           .toUpperCase(),
                                       labelStyle: TextStyle(
+                                        fontFamily: "Roboto",
                                         color: AppColors.blackColor,
                                         fontSize: 10.sp,
                                         fontWeight: FontWeight.w400,
                                       ),
                                       hintText: 'Other location of jewellery',
                                       hintStyle: TextStyle(
+                                        fontFamily: "Roboto",
                                         color: AppColors.greyColor,
                                         fontSize: 10.sp,
                                         fontWeight: FontWeight.w400,
@@ -180,6 +186,7 @@ class _AddRecordingDetailsFormModuleState
                                 horizontal: 16, vertical: 5),
                             labelText: 'SELECT ACTIVITY DATE',
                             labelStyle: TextStyle(
+                              fontFamily: "Roboto",
                               color: AppColors.blackColor,
                               fontSize: 10.sp,
                               fontWeight: FontWeight.w400,
@@ -255,12 +262,14 @@ class _AddRecordingDetailsFormModuleState
                                                                       .toUpperCase()
                                                                   : "",
                                       labelStyle: TextStyle(
+                                        fontFamily: "Roboto",
                                         color: AppColors.blackColor,
                                         fontSize: 10.sp,
                                         fontWeight: FontWeight.w400,
                                       ),
                                       hintText: 'name',
                                       hintStyle: TextStyle(
+                                        fontFamily: "Roboto",
                                         color: AppColors.greyColor,
                                         fontSize: 10.sp,
                                         fontWeight: FontWeight.w400,

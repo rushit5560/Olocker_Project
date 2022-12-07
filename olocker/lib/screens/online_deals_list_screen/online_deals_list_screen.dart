@@ -20,14 +20,19 @@ class OnlineDealsListScreen extends StatelessWidget {
         backgroundColor: AppColors.whiteColor,
         title: Text(
           onlineDealsListScreenController.singleDealList.category,
-          style: const TextStyle(
+          style: TextStyle(
+            fontFamily: "Roboto",
             color: AppColors.blackColor,
-            fontWeight: FontWeight.normal,
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w500,
           ),
         ),
         leading: IconButton(
           onPressed: () => Get.back(),
-          icon: const Icon(Icons.arrow_back_ios, color: AppColors.blackColor),
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: AppColors.blackColor,
+          ),
         ),
       ),
       body: Container(

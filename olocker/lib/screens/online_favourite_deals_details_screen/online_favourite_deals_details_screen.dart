@@ -9,27 +9,30 @@ import 'online_favourite_deals_details_screen_widgets.dart';
 
 class OnlineFavouriteDealsDetailsScreen extends StatelessWidget {
   OnlineFavouriteDealsDetailsScreen({Key? key}) : super(key: key);
-  final onlineFavouriteDealsDetailsScreenController
-  = Get.put(OnlineFavouriteDealsDetailsScreenController());
+  final onlineFavouriteDealsDetailsScreenController =
+      Get.put(OnlineFavouriteDealsDetailsScreenController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
-
       appBar: AppBar(
         backgroundColor: AppColors.whiteColor,
         elevation: 0,
-        title: const Text(
+        title: Text(
           'Deal Details',
-          style: TextStyle(color: AppColors.blackColor),
+          style: TextStyle(
+            fontFamily: "Roboto",
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w400,
+            color: AppColors.blackColor,
+          ),
         ),
         leading: IconButton(
           onPressed: () => Get.back(),
           icon: const Icon(Icons.arrow_back_ios, color: AppColors.blackColor),
         ),
       ),
-
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,16 +42,13 @@ class OnlineFavouriteDealsDetailsScreen extends StatelessWidget {
                   .favDealsDetails.termsAndCondition,
             ),
             SizedBox(
-              height: onlineFavouriteDealsDetailsScreenController.size.height * 0.01.h,
+              height: onlineFavouriteDealsDetailsScreenController.size.height *
+                  0.01.h,
             ),
-
             FavouriteActivateDealButtonModule(),
-
-
           ],
         ),
       ),
-
     );
   }
 }

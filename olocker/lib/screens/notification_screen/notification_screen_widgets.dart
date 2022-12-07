@@ -105,6 +105,7 @@ class NotificationItem extends StatelessWidget {
                                 singleMsg.partnerName.capitalizeFirst!,
                                 style: TextStyle(
                                   fontSize: 11.sp,
+                                  fontFamily: "Roboto",
                                   fontWeight: FontWeight.normal,
                                   color: AppColors.blackTextColor,
                                 ),
@@ -114,6 +115,7 @@ class NotificationItem extends StatelessWidget {
                                 singleMsg.isAdminNotification ? "Admin" : "",
                                 style: TextStyle(
                                   fontSize: 11.sp,
+                                  fontFamily: "Roboto",
                                   fontWeight: FontWeight.w500,
                                   color: AppColors.blackTextColor,
                                 ),
@@ -126,6 +128,7 @@ class NotificationItem extends StatelessWidget {
                                   maxLines: 1,
                                   style: TextStyle(
                                     fontSize: 11.sp,
+                                    fontFamily: "Roboto",
                                     fontWeight: FontWeight.normal,
                                     color: AppColors.greyTextColor,
                                     overflow: TextOverflow.ellipsis,
@@ -145,6 +148,7 @@ class NotificationItem extends StatelessWidget {
                       msgTime.toString(),
                       style: TextStyle(
                         fontSize: 10.sp,
+                        fontFamily: "Roboto",
                         fontWeight: FontWeight.normal,
                         color: AppColors.greyTextColor,
                       ),

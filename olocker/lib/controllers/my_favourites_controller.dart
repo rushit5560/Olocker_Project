@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:olocker/models/favourites_model/favourites_model.dart';
+import 'package:olocker/widgets/common_widgets.dart';
 import '../constants/api_url.dart';
 import '../constants/user_details.dart';
 import '../models/favourites_model/categorize_fav_products_model.dart';
@@ -42,6 +43,7 @@ class MyFavouritesScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         favouriteProductsList.clear();
+        categorizedProductsList.clear();
         favouriteProductsList = favouritesModel.favProduct;
         log('getFavouriteProducts list count is  : ${favouriteProductsList.length}');
 
@@ -63,7 +65,9 @@ class MyFavouritesScreenController extends GetxController {
             if (element == single.productDetails.itemTypeName) {
               log("if the $element is same");
               typeName = element;
-              typeProductsList.add(single);
+              if (single != null) {
+                typeProductsList.add(single);
+              }
             } else {
               // log("if the $element is not same");
               // typeName = "";
@@ -72,12 +76,14 @@ class MyFavouritesScreenController extends GetxController {
               // typeProductsList.clear();
             }
           }
-          categorizedProductsList.add(
-            CategorizedProduct(
-              itemTypeName: typeName,
-              favProductsList: typeProductsList,
-            ),
-          );
+          if (typeProductsList.isNotEmpty) {
+            categorizedProductsList.add(
+              CategorizedProduct(
+                itemTypeName: typeName,
+                favProductsList: typeProductsList,
+              ),
+            );
+          }
         }
         log("categorizedProductsList length is :: ${categorizedProductsList.length}");
       } else {
@@ -109,6 +115,10 @@ class MyFavouritesScreenController extends GetxController {
 
       if (isSuccessStatus) {
         log('deleteFavouriteProductFunction  if success');
+        CommonWidgets().showBorderSnackBar(
+          context: Get.context!,
+          displayText: "Item deleted from favourites.",
+        );
       } else {
         log('get deleteFavouriteProductFunction Else');
       }

@@ -41,7 +41,7 @@ class ReferAndEarnScreenController extends GetxController {
     await Share.share(
         '''I loved this beautiful jewellery from ${partnerDetails!.partnerName.capitalize!} on olocker app. 
     You must download this app to witness their excellent jewellery collections, get fabulous deals & 
-    rewards too. Click here https://olocker.in/DetectOS.aspx?retailer=${userReferaalCode.value}-${partnerDetails!.partnerId} and use my referral 
+    rewards too. Click here https://olocker.in/DetectOS.aspx and use my referral 
     code ${userReferaalCode.value}-${partnerDetails!.partnerId} on ENTER CODE space on Sign up page https://www.olocker.in/''');
   }
 

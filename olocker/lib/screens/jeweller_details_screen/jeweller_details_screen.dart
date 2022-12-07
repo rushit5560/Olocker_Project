@@ -58,8 +58,8 @@ class JewellerDetailsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     jewellerDetailsScreenController.specialFeaturesList.isEmpty
-                    ? Container()
-                    : JewellerFeaturesModule(),
+                        ? Container()
+                        : JewellerFeaturesModule(),
                     jewellerDetailsScreenController
                             .announcementOfferList.isEmpty
                         ? Container()

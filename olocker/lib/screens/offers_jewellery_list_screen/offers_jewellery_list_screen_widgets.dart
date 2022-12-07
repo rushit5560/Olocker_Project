@@ -110,8 +110,9 @@ class OfferJewelleryGridviewModule extends StatelessWidget {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                              color: AppColors.whiteColor,
                               fontSize: 12.sp,
+                              fontFamily: "Roboto",
+                              color: AppColors.whiteColor,
                             ),
                           ).commonSymmetricPadding(vertical: 5)
                         : Text(
@@ -124,6 +125,7 @@ class OfferJewelleryGridviewModule extends StatelessWidget {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
+                              fontFamily: "Roboto",
                               color: AppColors.whiteColor,
                               fontSize: 12.sp,
                             ),
@@ -144,8 +146,7 @@ class OfferJewelleryGridviewModule extends StatelessWidget {
                                 )
                               : await screenController
                                   .removeFavouriteProductListFunction(
-                            favouriteId:
-                                      singleItem.favId.toString(),
+                                  favouriteId: singleItem.favId.toString(),
                                   singleProduct: singleItem,
                                 );
                         },

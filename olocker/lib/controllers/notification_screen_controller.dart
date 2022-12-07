@@ -95,7 +95,7 @@ class NotificationScreenController extends GetxController {
 
     String url =
         "${ApiUrl.readMarkUserNotificationApi}?customerId=${UserDetails.customerId}&notificationId=$notificationId&IsPartnerNotification=$isPartnerNotification&IsAdminNotification=$isAdminNotification";
-    log('getLoyaltyPointFunction Api Url : $url');
+    log('readMarkUserNotificationApiFunction Api Url : $url');
 
     try {
       http.Response response = await http.get(

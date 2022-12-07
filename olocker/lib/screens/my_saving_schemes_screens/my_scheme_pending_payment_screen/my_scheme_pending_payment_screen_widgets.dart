@@ -26,22 +26,18 @@ class PayNowButton extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
-
           if (screenController.paymentTypeEnum == null) {
             CommonWidgets().showBorderSnackBar(
               context: context,
               displayText:
-              "Please select any payment method to continue payment.",
+                  "Please select any payment method to continue payment.",
             );
-          } else if(screenController.paymentTypeEnum == PaymentTypeEnum.visa) {
+          } else if (screenController.paymentTypeEnum == PaymentTypeEnum.visa) {
             // Here call Razorpay payment intent
             screenController.createRazorPaymentSheet();
           } else {
             screenController.makePaymentsApiFunction();
           }
-
-
-          
         },
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
@@ -54,6 +50,7 @@ class PayNowButton extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 12.sp,
+              fontFamily: "Roboto-Medium",
               color: AppColors.whiteColor,
               fontStyle: FontStyle.italic,
               letterSpacing: 0.6,

@@ -43,6 +43,7 @@ class ActivateDealButtonModule extends StatelessWidget {
               child: Text(
                 'ACTIVATE DEAL',
                 style: TextStyle(
+                  fontFamily: "Roboto",
                   color: Colors.white,
                   fontSize: 13.sp,
                   fontWeight: FontWeight.w500,
@@ -89,6 +90,7 @@ class ActivateDealButtonModule extends StatelessWidget {
                   Text(
                     'COUPON CODE',
                     style: TextStyle(
+                      fontFamily: "Roboto",
                       color: AppColors.whiteColor,
                       fontSize: 8.5.sp,
                       fontWeight: FontWeight.w500,
@@ -103,6 +105,7 @@ class ActivateDealButtonModule extends StatelessWidget {
                           .onLineDealDetails.dealCode
                           .trim(),
                       style: TextStyle(
+                        fontFamily: "Roboto",
                         color: AppColors.whiteColor,
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w500,

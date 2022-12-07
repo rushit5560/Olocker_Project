@@ -32,24 +32,27 @@ class SchemePaymentSuccessScreen extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: AppColors.lightBrownBgColor,
-          leading: IconButton(
-            onPressed: () {
-              CommonWidgets().showBorderSnackBar(
-                context: context,
-                displayText: "You can not go back from this page.",
-              );
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-            ),
-          ),
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+          // leading: IconButton(
+          //   onPressed: () {
+          //     CommonWidgets().showBorderSnackBar(
+          //       context: context,
+          //       displayText: "You can not go back from this page.",
+          //     );
+          //   },
+          //   icon: const Icon(
+          //     Icons.arrow_back_ios,
+          //     color: Colors.black,
+          //   ),
+          // ),
           title: const Text(
-            "Make Payment",
+            "Payment Status",
             style: TextStyle(
+              fontFamily: "Roboto",
               color: AppColors.blackColor,
             ),
-          ).commonOnlyPadding(left: 50),
+          ),
         ),
         bottomNavigationBar: GoBackSavingSchemeButton(),
         body: SingleChildScrollView(

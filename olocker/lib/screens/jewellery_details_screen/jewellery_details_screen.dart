@@ -27,6 +27,7 @@ class JewelleryDetailsScreen extends StatelessWidget {
         title: Text(
           '${jewelleryDetailsController.jewelleryTypeName}',
           style: TextStyle(
+            fontFamily: "latoregular",
             color: AppColors.blackTextColor,
             fontSize: 13.sp,
             fontWeight: FontWeight.w500,

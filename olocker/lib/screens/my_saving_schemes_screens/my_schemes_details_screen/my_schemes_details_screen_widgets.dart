@@ -580,7 +580,7 @@ class JewellerCallDetailsModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10), color: Colors.white),
       child: Row(
@@ -611,7 +611,7 @@ class JewellerCallDetailsModule extends StatelessWidget {
                   mySchemePendingPaymentScreenController
                       .getSavingSchemeData.schemeName,
                   style: TextStyle(
-                    fontSize: 13.sp,
+                    fontSize: 11.sp,
                     color: AppColors.accentColor,
                     fontWeight: FontWeight.w500,
                   ),
@@ -622,7 +622,7 @@ class JewellerCallDetailsModule extends StatelessWidget {
                       .getSavingSchemeData.schemeTagLine,
                   maxLines: 2,
                   style: TextStyle(
-                    fontSize: 11.sp,
+                    fontSize: 10.sp,
                     color: AppColors.greyColor,
                     fontWeight: FontWeight.w400,
                     overflow: TextOverflow.ellipsis,
@@ -631,6 +631,7 @@ class JewellerCallDetailsModule extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(width: 2.w),
           GestureDetector(
             onTap: () async {
               Uri phoneno = Uri.parse(
@@ -972,6 +973,7 @@ class ColoredCustomButton extends StatelessWidget {
             style: TextStyle(
               color: AppColors.whiteColor,
               fontSize: 11.sp,
+              fontFamily: "Roboto-Medium",
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,
               letterSpacing: 0.4,

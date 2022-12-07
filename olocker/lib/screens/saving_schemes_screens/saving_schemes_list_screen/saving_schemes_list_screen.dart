@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/saving_schemes_screens_controllers/saving_schemes_list_screen_controller.dart';
 import 'package:olocker/screens/saving_schemes_screens/saving_schemes_list_screen/saving_schemes_list_screen_widgets.dart';
 import 'package:olocker/widgets/common_loader.dart';
@@ -36,14 +37,29 @@ class SavingSchemesListScreen extends StatelessWidget {
             ? CommonLoader().showCircularLoader()
             : SingleChildScrollView(
                 physics: const ClampingScrollPhysics(),
-                child: Column(
-                  children: [
-                    BannerPageViewModule(),
-                    const SizedBox(height: 10),
-                    SchemesListViewModule(),
-                    SizedBox(height: 2.h)
-                  ],
-                ),
+                child: savingSchemesListScreenController
+                        .getSavingSchemesList.isEmpty
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(vertical: 30.h),
+                        child: Center(
+                          child: Text(
+                            "No Saving schemes available",
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.blackColor,
+                            ),
+                          ),
+                        ),
+                      )
+                    : Column(
+                        children: [
+                          BannerPageViewModule(),
+                          const SizedBox(height: 10),
+                          SchemesListViewModule(),
+                          SizedBox(height: 2.h)
+                        ],
+                      ),
               ),
       ),
     );

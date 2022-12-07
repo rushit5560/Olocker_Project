@@ -143,8 +143,8 @@ class MySchemePendingPaymentScreenController extends GetxController {
         savingSchemeBodyList.add(
           {
             "savingSchemeSrNo": item.srNo.floor().toString(),
-            "TransUuid": transUuid == null ? 0 : transUuid,
-            "TransactionId": transactionId == null ? "0" : transUuid,
+            "TransUuid": transUuid,
+            "TransactionId": transactionId,
             "PaymentStatus": "AUTHORISED",
             "Amount": "${item.installmentAmount.floor()}",
             "TransactionDate": transDate,
@@ -213,8 +213,8 @@ class MySchemePendingPaymentScreenController extends GetxController {
     log('Success Payment Razorpay');
 
     await razorPayAfterPaymentApiFunction(
-      transUuid: response.orderId!,
-      transactionId: response.paymentId!,
+      transUuid: response.orderId ?? "",
+      transactionId: response.paymentId ?? "",
     );
     Get.to(
       () => MySchemePaymentSuccessScreen(),

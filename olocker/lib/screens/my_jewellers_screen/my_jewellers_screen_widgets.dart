@@ -211,6 +211,7 @@ class AllJewellersListModule extends StatelessWidget {
                   maxLines: 2,
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    fontFamily: "Roboto",
                     fontSize: 9.sp,
                     letterSpacing: 0.4,
                     color: AppColors.blackColor,

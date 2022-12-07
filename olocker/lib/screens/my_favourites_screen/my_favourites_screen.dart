@@ -26,6 +26,7 @@ class MyFavouritesScreen extends StatelessWidget {
         title: Text(
           'My Favourites',
           style: TextStyle(
+            fontFamily: "Roboto",
             color: AppColors.blackTextColor,
             fontSize: 13.sp,
             fontWeight: FontWeight.w400,

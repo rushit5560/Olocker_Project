@@ -38,13 +38,28 @@ class MySavingSchemesListScreen extends StatelessWidget {
               )
             : SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
-                child: Column(
-                  children: [
-                    // SizedBox(height: 1.h),
-                    MySchemesListViewModule(),
-                    SizedBox(height: 1.h),
-                  ],
-                ),
+                child: mySavingSchemesListScreenController
+                        .getCustomerSchemeslist.isEmpty
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(vertical: 30.h),
+                        child: Center(
+                          child: Text(
+                            "No Saving schemes available",
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.blackColor,
+                            ),
+                          ),
+                        ),
+                      )
+                    : Column(
+                        children: [
+                          // SizedBox(height: 1.h),
+                          MySchemesListViewModule(),
+                          SizedBox(height: 1.h),
+                        ],
+                      ),
               ),
       ),
     );

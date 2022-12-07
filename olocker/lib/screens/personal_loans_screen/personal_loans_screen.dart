@@ -36,9 +36,14 @@ class PersonalLoansScreen extends StatelessWidget {
           },
           icon: const Icon(Icons.arrow_back_ios, color: AppColors.blackColor),
         ),
-        title: const Text(
+        title: Text(
           'Jewellery on EMI',
-          style: TextStyle(color: AppColors.blackColor),
+          style: TextStyle(
+            fontFamily: "Roboto",
+            color: AppColors.blackTextColor,
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w400,
+          ),
         ),
         centerTitle: true,
       ),

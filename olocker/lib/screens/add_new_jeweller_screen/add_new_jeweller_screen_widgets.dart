@@ -27,6 +27,7 @@ class RetailerCodeFormModule extends StatelessWidget {
               'RETAILER CODE',
               style: TextStyle(
                 fontSize: 12.sp,
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.bold,
                 color: AppColors.blackColor,
               ),
@@ -36,11 +37,19 @@ class RetailerCodeFormModule extends StatelessWidget {
               autovalidateMode: AutovalidateMode.onUserInteraction,
               style: TextStyle(
                 fontSize: 12.sp,
-                color: AppColors.greyColor,
+                color: AppColors.blackColor,
+                fontFamily: "Roboto",
               ),
               validator: (val) => FieldValidator().validateRetailerCode(val!),
               readOnly: screenController.isTypeEnable.value,
-              decoration: const InputDecoration(hintText: 'Retailer Code'),
+              decoration: InputDecoration(
+                hintText: 'Retailer code',
+                hintStyle: TextStyle(
+                  fontSize: 12.sp,
+                  color: AppColors.greyTextColor,
+                  fontFamily: "Roboto",
+                ),
+              ),
             ),
             TextFormField(
               controller: screenController.referralCodeFieldController,
@@ -50,9 +59,16 @@ class RetailerCodeFormModule extends StatelessWidget {
               style: TextStyle(
                 fontSize: 12.sp,
                 color: AppColors.blackColor,
+                fontFamily: "Roboto",
               ),
-              decoration:
-                  const InputDecoration(hintText: 'Enter Referral Code If Any'),
+              decoration: InputDecoration(
+                hintText: 'Enter Referral Code If Any',
+                hintStyle: TextStyle(
+                  fontSize: 12.sp,
+                  color: AppColors.greyTextColor,
+                  fontFamily: "Roboto",
+                ),
+              ),
               onChanged: (value) {
                 screenController.isLoading(true);
 
@@ -173,6 +189,7 @@ class SubmitButtonModule extends StatelessWidget {
             style: TextStyle(
               color: AppColors.whiteColor,
               fontSize: 13.sp,
+              fontFamily: "Roboto",
               // fontWeight: FontWeight.w400,
             ),
           ),

@@ -54,6 +54,7 @@ class AboutUsDetailsModule extends StatelessWidget {
               aboutUsPageController.aboutUsData!.aboutShowroom,
               style: TextStyle(
                 fontSize: 10.sp,
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.normal,
               ),
             ),
@@ -137,6 +138,10 @@ class ContactDetailsModule extends StatelessWidget {
               text,
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontFamily: "Roboto",
+                fontSize: 10.sp,
+              ),
             )),
           ],
         ),
@@ -166,7 +171,10 @@ class CustemAppbarModule extends StatelessWidget with PreferredSizeWidget {
             ? const SizedBox()
             : Text(
                 aboutUsPageController.aboutUsData!.ownersName,
-                style: const TextStyle(color: Colors.black),
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontFamily: "Roboto",
+                ),
               ),
       ),
       actions: const [
@@ -226,7 +234,7 @@ class TeamDetailsListItemModule extends StatelessWidget {
           children: [
             Container(
               width: aboutUsPageController.size.width * 0.79,
-              height: aboutUsPageController.size.height * 0.12,
+              height: aboutUsPageController.size.height * 0.11,
               decoration: const BoxDecoration(
                 color: AppColors.whiteColor,
                 borderRadius: BorderRadius.all(
@@ -253,8 +261,9 @@ class TeamDetailsListItemModule extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
+                            fontFamily: "Roboto",
                             color: AppColors.blackColor,
-                            fontSize: 13.sp,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -264,6 +273,7 @@ class TeamDetailsListItemModule extends StatelessWidget {
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
+                            fontFamily: "Roboto",
                             fontSize: 10.sp,
                             color: AppColors.blackTextColor,
                           ),
@@ -342,15 +352,15 @@ class SliderModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return aboutUsPageController.sliderImageList.isEmpty
-        ? Center(
-            child: Text("No showroom images"),
+        ? const Center(
+            child: Text("No Showroom Images"),
           )
         : Column(
             children: [
               CarouselSlider.builder(
                 itemCount: aboutUsPageController.sliderImageList.length,
                 itemBuilder: ((context, index, realIndex) {
-                  return Container(
+                  return SizedBox(
                     height: 150,
                     width: 200,
                     child: Image.network(
@@ -378,17 +388,17 @@ class SliderModule extends StatelessWidget {
                         aboutUsPageController.sliderImageList.indexOf(url);
                     return Container(
                       width: aboutUsPageController.currentIndex.value == index
-                          ? 14
-                          : 10,
+                          ? 16
+                          : 11,
                       height: aboutUsPageController.currentIndex.value == index
-                          ? 14
-                          : 10,
+                          ? 16
+                          : 11,
                       margin: const EdgeInsets.symmetric(
                           vertical: 10.0, horizontal: 2.0),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                            width: 1,
+                            width: 2,
                             color: aboutUsPageController.currentIndex.value ==
                                     index
                                 ? AppColors.whiteColor
@@ -426,6 +436,7 @@ class TitleAboutModule extends StatelessWidget {
               child: Text(
                 text,
                 style: const TextStyle(
+                  fontFamily: "Roboto",
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.w500,

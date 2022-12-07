@@ -33,6 +33,8 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
 
   RxString userReferaalCode = "".obs;
 
+  RxInt fullScreenImageCurrentindex = 0.obs;
+
   Future<void> getJewellerJewelleryProductDetailFunction() async {
     isLoading(true);
     String url = "${ApiUrl.getOfferJewelleryDetailApi}"
@@ -55,6 +57,14 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
 
       if (response.statusCode == 200) {
         productDetailsData = getJewelleryDetailModel.getProductModel;
+
+        if (getJewelleryDetailModel.errorInfo.description
+            .contains("Product data not found.")) {
+          CommonWidgets().showBorderSnackBar(
+            context: Get.context!,
+            displayText: getJewelleryDetailModel.errorInfo.description,
+          );
+        }
 
         // log('productDetailsData is  : ${productDetailsData}');
       } else {
@@ -193,7 +203,7 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
     String shareText =
         '''I loved this beautiful jewellery from ${partnerDetails!.partnerName.capitalize!} on olocker app. 
     You must download this app to witness their excellent jewellery collections, get fabulous deals & 
-    rewards too. Click here https://olocker.in/DetectOS.aspx?retailer=${userReferaalCode.value}-${partnerDetails!.partnerId} and use my referral 
+    rewards too. Click here https://olocker.in/DetectOS.aspx and use my referral 
     code ${userReferaalCode.value}-${partnerDetails!.partnerId} on ENTER CODE space on Sign up page https://www.olocker.in/''';
 
     await Share.share(shareText);

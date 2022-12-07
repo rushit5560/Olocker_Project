@@ -28,6 +28,7 @@ class SchemePaymentFailureScreen extends StatelessWidget {
         title: const Text(
           'Make Payments',
           style: TextStyle(
+            fontFamily: "Roboto",
             color: Colors.black,
             fontWeight: FontWeight.w400,
           ),
@@ -59,7 +60,7 @@ class SchemePaymentFailureScreen extends StatelessWidget {
             SizedBox(height: 2.h),
             // SencoGoldContainer(),
             // PaymentDetailForMonthlyContainer(),
-            UnSuccessPaymentWidget(),
+            const UnSuccessPaymentWidget(),
           ],
         ),
       ),

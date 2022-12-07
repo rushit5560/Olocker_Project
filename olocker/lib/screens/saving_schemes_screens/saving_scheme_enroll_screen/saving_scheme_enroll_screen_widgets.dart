@@ -509,6 +509,7 @@ class SaveAndMakePaymentButtonModule extends StatelessWidget {
           "Save & Make Payment".toUpperCase(),
           style: TextStyle(
             fontSize: 13.sp,
+            fontFamily: "Roboto-Medium",
             fontWeight: FontWeight.bold,
           ),
         ),

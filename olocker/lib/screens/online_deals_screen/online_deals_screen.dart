@@ -20,9 +20,14 @@ class OnlineDealsScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: AppColors.whiteColor,
-        title: const Text(
+        title: Text(
           'Online Deals',
-          style: TextStyle(color: AppColors.blackColor),
+          style: TextStyle(
+            fontFamily: "Roboto",
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w400,
+            color: AppColors.blackColor,
+          ),
         ),
         leading: IconButton(
           onPressed: () => Get.back(),
@@ -99,8 +104,9 @@ class OnlineDealsScreen extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: const Color(0xff4a060f),
                     fontSize: 10.sp,
+                    fontFamily: "Roboto",
+                    color: AppColors.blueDarkColor,
                   ),
                 ),
                 SizedBox(
@@ -110,7 +116,8 @@ class OnlineDealsScreen extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: const Color(0xff4a060f),
+                    fontFamily: "Roboto",
+                    color: AppColors.blueDarkColor,
                     fontSize: 10.sp,
                   ),
                 ),

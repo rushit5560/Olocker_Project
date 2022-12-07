@@ -39,6 +39,7 @@ class PaymentMethods extends StatelessWidget {
                           "Total Payable",
                           style: TextStyle(
                             color: AppColors.blueDarkColor,
+                            fontFamily: "Roboto",
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w500,
                           ),
@@ -48,6 +49,7 @@ class PaymentMethods extends StatelessWidget {
                           style: TextStyle(
                             color: AppColors.accentColor,
                             fontSize: 16.sp,
+                            fontFamily: "Roboto",
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -58,6 +60,7 @@ class PaymentMethods extends StatelessWidget {
                       "Payment methods",
                       style: TextStyle(
                         color: AppColors.greyColor,
+                        fontFamily: "Roboto",
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w500,
                       ),
@@ -191,7 +194,7 @@ class PayNowCustomButton extends StatelessWidget {
               displayText:
                   "Please select any payment method to continue payment.",
             );
-          } else if(screenController.paymentTypeEnum == PaymentTypeEnum.visa) {
+          } else if (screenController.paymentTypeEnum == PaymentTypeEnum.visa) {
             // Here call Razorpay payment intent
             screenController.createRazorPaymentSheet();
           } else {
@@ -229,6 +232,7 @@ class PayNowCustomButton extends StatelessWidget {
             "PAY NOW",
             style: TextStyle(
               fontWeight: FontWeight.bold,
+              fontFamily: "Roboto-Medium",
               fontSize: 12.sp,
               color: AppColors.whiteColor,
               fontStyle: FontStyle.italic,

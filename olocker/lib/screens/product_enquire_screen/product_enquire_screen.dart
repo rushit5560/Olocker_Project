@@ -32,6 +32,7 @@ class ProductEnquireScreen extends StatelessWidget {
         title: Text(
           "Enquire",
           style: TextStyle(
+            fontFamily: "Roboto",
             color: AppColors.blackTextColor,
             fontSize: 13.sp,
             fontWeight: FontWeight.w400,

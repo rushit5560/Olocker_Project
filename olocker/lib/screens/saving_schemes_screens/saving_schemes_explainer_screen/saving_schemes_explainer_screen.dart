@@ -29,6 +29,7 @@ class SavingSchemesExplainerScreen extends StatelessWidget {
         title: Text(
           'Saving Schemes',
           style: TextStyle(
+            fontFamily: "Roboto",
             color: Colors.black,
             fontSize: 15.sp,
             fontWeight: FontWeight.normal,

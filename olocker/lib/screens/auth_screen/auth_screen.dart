@@ -67,6 +67,7 @@ class AuthScreen extends StatelessWidget {
                     "Login With Mobile",
                     style: TextStyle(
                       color: AppColors.whiteColor,
+                      fontFamily: "Acephimere",
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w400,
                     ),
@@ -88,6 +89,7 @@ class AuthScreen extends StatelessWidget {
                 "Sign Up",
                 style: TextStyle(
                   color: AppColors.blackColor,
+                  fontFamily: "Acephimere",
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
                 ),

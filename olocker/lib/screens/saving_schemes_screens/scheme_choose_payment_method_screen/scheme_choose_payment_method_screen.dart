@@ -31,6 +31,7 @@ class SchemeChoosePaymentMethodScreen extends StatelessWidget {
         title: Text(
           'Make Payments',
           style: TextStyle(
+            fontFamily: "Roboto",
             color: AppColors.blackColor,
             fontSize: 14.sp,
             fontWeight: FontWeight.normal,

@@ -42,6 +42,7 @@ class OrnamentDetailsModule extends StatelessWidget {
               Text(
                 "Ornament Details",
                 style: TextStyle(
+                  fontFamily: "Roboto",
                   color: AppColors.blackColor,
                   fontSize: 13.sp,
                   fontWeight: FontWeight.w400,
@@ -56,6 +57,7 @@ class OrnamentDetailsModule extends StatelessWidget {
               Text(
                 ornamentRecordingsController.trackingDetail!.itemName,
                 style: TextStyle(
+                  fontFamily: "Roboto",
                   color: AppColors.greyColor,
                   fontSize: 11.sp,
                 ),
@@ -64,6 +66,7 @@ class OrnamentDetailsModule extends StatelessWidget {
               Text(
                 ornamentRecordingsController.trackingDetail!.grossWt,
                 style: TextStyle(
+                  fontFamily: "Roboto",
                   color: AppColors.greyColor,
                   fontSize: 11.sp,
                 ),
@@ -108,8 +111,9 @@ class AddRecordingButton extends StatelessWidget {
           child: Text(
             "ADD RECORDINGS",
             style: TextStyle(
-              color: AppColors.whiteColor,
               fontSize: 12.sp,
+              fontFamily: "Roboto",
+              color: AppColors.whiteColor,
             ),
           ),
         ),
@@ -244,6 +248,7 @@ class DetailsRowWidget extends StatelessWidget {
               style: TextStyle(
                 color: AppColors.greyDarkColor,
                 fontSize: 11.sp,
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w500,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -253,6 +258,7 @@ class DetailsRowWidget extends StatelessWidget {
             ": ",
             style: TextStyle(
               color: AppColors.greyDarkColor,
+              fontFamily: "Roboto",
             ),
           ),
           Expanded(
@@ -263,6 +269,7 @@ class DetailsRowWidget extends StatelessWidget {
               style: TextStyle(
                 color: AppColors.greyDarkColor,
                 fontSize: 11.sp,
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w400,
                 overflow: TextOverflow.ellipsis,
               ),

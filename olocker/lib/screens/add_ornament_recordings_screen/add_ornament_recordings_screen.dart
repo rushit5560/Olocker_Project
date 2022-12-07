@@ -51,8 +51,8 @@ class AddOrnamentRecordingsScreen extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                     Column(
-                      children: [
-                        const SizedBox(height: 10),
+                      children: const [
+                        SizedBox(height: 10),
                         AddRecordingDetailsFormModule(),
                       ],
                     ),

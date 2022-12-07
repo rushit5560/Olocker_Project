@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/jeweller_jewellery_details_screen_controller.dart';
@@ -10,11 +13,10 @@ import 'package:olocker/utils/extensions.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:sizer/sizer.dart';
 
-
 class JewellerProductImagesSliderModule extends StatelessWidget {
   JewellerProductImagesSliderModule({Key? key}) : super(key: key);
   final jewelleryDetailsController =
-  Get.find<JewellerJewelleryDetailsScreenController>();
+      Get.find<JewellerJewelleryDetailsScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +44,29 @@ class JewellerProductImagesSliderModule extends StatelessWidget {
 
         list: jewelleryDetailsController.productDetailsData.productimages!,
         builder: (context, data, index) {
+          // ignore: prefer_interpolation_to_compose_strings
+          var singleImage = ApiUrl.apiImagePath +
+              jewelleryDetailsController
+                  .productDetailsData.productimages![index].imageLocation
+                  .replaceAll(r'\', "/") +
+              "/" +
+              jewelleryDetailsController
+                  .productDetailsData.productimages![index].imageName;
+
+          log("singleImage path si :: $singleImage");
           return GestureDetector(
             onTap: () {
               // show full screen image slider
 
-              Get.to(() => ShowFullScreenImagesSliderModule(
-                initialPageViewIndex: index,
-              ));
+              Get.to(
+                () => ShowFullScreenImagesSliderModule(
+                  initialPageViewIndex: index,
+                ),
+              );
+              jewelleryDetailsController.isLoading(true);
+              jewelleryDetailsController.fullScreenImageCurrentindex.value =
+                  index;
+              jewelleryDetailsController.isLoading(false);
             },
             child: Container(
               height: jewelleryDetailsController.size.height * 0.25,
@@ -61,9 +79,10 @@ class JewellerProductImagesSliderModule extends StatelessWidget {
                   Radius.circular(200),
                 ),
                 child: CachedNetworkImage(
-                  imageUrl: ApiUrl.apiImagePath +
-                      jewelleryDetailsController.productDetailsData
-                          .productimages![index].imageLocation,
+                  imageUrl: singleImage,
+                  // imageUrl: ApiUrl.apiImagePath +
+                  //     jewelleryDetailsController.productDetailsData
+                  //         .productimages![index].imageLocation,
                   fit: BoxFit.cover,
                   errorWidget: (context, url, error) {
                     return Container(
@@ -88,58 +107,118 @@ class ShowFullScreenImagesSliderModule extends StatelessWidget {
       {Key? key, required this.initialPageViewIndex})
       : super(key: key);
   final jewelleryDetailsController =
-  Get.find<JewellerJewelleryDetailsScreenController>();
+      Get.find<JewellerJewelleryDetailsScreenController>();
 
   final int initialPageViewIndex;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PhotoViewGallery.builder(
-        // scrollPhysics: const BouncingScrollPhysics(),
-        gaplessPlayback: true,
-        pageController: PageController(
-          initialPage: initialPageViewIndex,
-        ),
-        builder: (BuildContext context, int index) {
-          return PhotoViewGalleryPageOptions(
-            imageProvider: NetworkImage(
-              ApiUrl.apiImagePath +
-                  jewelleryDetailsController
-                      .productDetailsData.productimages![index].imageLocation,
-              // scale: 1,
+      body: Stack(
+        alignment: Alignment.bottomRight,
+        children: [
+          PhotoViewGallery.builder(
+            // scrollPhysics: const BouncingScrollPhysics(),
+            gaplessPlayback: true,
+            pageController: PageController(
+              initialPage: initialPageViewIndex,
             ),
-            errorBuilder: (context, error, stackTrace) {
-              return const Center(
-                child: Text("Image not loaded"),
+            onPageChanged: (ind) {
+              jewelleryDetailsController.isLoading(true);
+              jewelleryDetailsController.fullScreenImageCurrentindex.value =
+                  ind;
+              jewelleryDetailsController.isLoading(false);
+            },
+            builder: (BuildContext context, int index) {
+              var singleImage = ApiUrl.apiImagePath +
+                  jewelleryDetailsController
+                      .productDetailsData.productimages![index].imageLocation
+                      .replaceAll(r'\', "/") +
+                  "/" +
+                  jewelleryDetailsController
+                      .productDetailsData.productimages![index].imageName;
+              return PhotoViewGalleryPageOptions(
+                imageProvider: NetworkImage(
+                  singleImage,
+                  // scale: 1,
+                ),
+                errorBuilder: (context, error, stackTrace) {
+                  return const Center(
+                    child: Text("Image not loaded"),
+                  );
+                },
+                // initialScale: 0.32,
+                minScale: 0.2,
+                tightMode: true,
+                basePosition: Alignment.center,
+                filterQuality: FilterQuality.high,
               );
             },
-            // initialScale: 0.32,
-            minScale: 0.2,
-            tightMode: true,
-            basePosition: Alignment.center,
-            filterQuality: FilterQuality.high,
-          );
-        },
-        backgroundDecoration: const BoxDecoration(
-          color: AppColors.whiteColor,
-        ),
-        itemCount: jewelleryDetailsController
-            .productDetailsData.productimages!.length,
-        loadingBuilder: (context, event) => const Center(
-          child: SizedBox(
-            width: 20.0,
-            height: 20.0,
-            child: CircularProgressIndicator(),
+            backgroundDecoration: const BoxDecoration(
+              color: AppColors.whiteColor,
+            ),
+            itemCount: jewelleryDetailsController
+                .productDetailsData.productimages!.length,
+            loadingBuilder: (context, event) => const Center(
+              child: SizedBox(
+                width: 20.0,
+                height: 20.0,
+                child: CircularProgressIndicator(),
+              ),
+            ),
+            allowImplicitScrolling: false,
+
+            scrollDirection: Axis.horizontal,
+
+            // backgroundDecoration: widget.backgroundDecoration,
+            // pageController: widget.pageController,
+            // onPageChanged: onPageChanged,
           ),
-        ),
-        allowImplicitScrolling: false,
-
-        scrollDirection: Axis.horizontal,
-
-        // backgroundDecoration: widget.backgroundDecoration,
-        // pageController: widget.pageController,
-        // onPageChanged: onPageChanged,
+          Obx(
+            () => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: jewelleryDetailsController
+                    .productDetailsData.productimages!
+                    .map((url) {
+                  int index = jewelleryDetailsController
+                      .productDetailsData.productimages!
+                      .indexOf(url);
+                  return Container(
+                    width: jewelleryDetailsController
+                                .fullScreenImageCurrentindex.value ==
+                            index
+                        ? 14
+                        : 10,
+                    height: jewelleryDetailsController
+                                .fullScreenImageCurrentindex.value ==
+                            index
+                        ? 14
+                        : 10,
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 10.0, horizontal: 2.0),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      // border: Border.all(
+                      //     width: 2,
+                      //     color: jewelleryDetailsController
+                      //                 .fullScreenImageCurrentindex.value ==
+                      //             index
+                      //         ? AppColors.whiteColor
+                      //         : Colors.transparent),
+                      color: jewelleryDetailsController
+                                  .fullScreenImageCurrentindex.value ==
+                              index
+                          ? AppColors.accentColor
+                          : AppColors.greyTextColor,
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
+          ).commonOnlyPadding(right: 1.h),
+        ],
       ),
     );
   }
@@ -149,7 +228,7 @@ class JewellerFavouriteButtonModule extends StatelessWidget {
   JewellerFavouriteButtonModule({Key? key}) : super(key: key);
 
   final jewelleryDetailsController =
-  Get.find<JewellerJewelleryDetailsScreenController>();
+      Get.find<JewellerJewelleryDetailsScreenController>();
 
   // Find Previous screen controller here for Product fav or unFav.
   // final jewellerJewelleryListScreenController = Get.find<JewellerJewelleryListScreenController>();
@@ -162,7 +241,8 @@ class JewellerFavouriteButtonModule extends StatelessWidget {
       child: GestureDetector(
         onTap: () async {
           jewelleryDetailsController.productDetailsData.isFav == true
-              ? await jewelleryDetailsController.removeFavouriteProductFunction()
+              ? await jewelleryDetailsController
+                  .removeFavouriteProductFunction()
               : await jewelleryDetailsController.addFavouriteProductFunction();
         },
         child: Container(
@@ -173,7 +253,8 @@ class JewellerFavouriteButtonModule extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           child: Icon(
             jewelleryDetailsController.productDetailsData.isFav == true
-                ? Icons.favorite_rounded : Icons.favorite_border,
+                ? Icons.favorite_rounded
+                : Icons.favorite_border,
             color: AppColors.accentColor,
             size: 24,
           ),
@@ -187,7 +268,7 @@ class JewellerShareButtonModule extends StatelessWidget {
   JewellerShareButtonModule({Key? key}) : super(key: key);
 
   final jewelleryDetailsController =
-  Get.find<JewellerJewelleryDetailsScreenController>();
+      Get.find<JewellerJewelleryDetailsScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -215,50 +296,60 @@ class JewellerShareButtonModule extends StatelessWidget {
   }
 }
 
-
 class JewellerJewelleryApproxPriceModule extends StatelessWidget {
   JewellerJewelleryApproxPriceModule({Key? key}) : super(key: key);
   final jewelleryDetailController =
-  Get.find<JewellerJewelleryDetailsScreenController>();
+      Get.find<JewellerJewelleryDetailsScreenController>();
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          jewelleryDetailController.productDetailsData.price
-              .toString()
-              .contains("PRICE ON REQUEST")
-              ? "PRICE ON REQUEST"
-              : "₹${jewelleryDetailController.productDetailsData.price.toString()}",
-          style: TextStyle(
-            color: AppColors.whiteColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
+        jewelleryDetailController.productDetailsData.price!.isEmpty
+            ? SizedBox()
+            : Text(
+                jewelleryDetailController.productDetailsData.price
+                        .toString()
+                        .contains("PRICE ON REQUEST")
+                    ? "PRICE ON REQUEST"
+                    : NumberFormat.currency(
+                        symbol: '₹ ',
+                        locale: "HI",
+                        decimalDigits: 2,
+                      ).format(double.parse(
+                        jewelleryDetailController.productDetailsData.price!)),
+
+                // "₹${jewelleryDetailController.productDetailsData.price.toString()}",
+                style: TextStyle(
+                  fontFamily: "Roboto",
+                  color: AppColors.whiteColor,
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+        SizedBox(width: 5),
         jewelleryDetailController.productDetailsData.price.toString() ==
-            "PRICE ON REQUEST"
+                "PRICE ON REQUEST"
             ? const SizedBox()
             : Text(
-          "(Approximate Price)",
-          style: TextStyle(
-            color: AppColors.whiteColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
+                "(Approximate Price)",
+                style: TextStyle(
+                  fontFamily: "Roboto",
+                  color: AppColors.whiteColor,
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
       ],
     ).commonAllSidePadding(10);
   }
 }
 
-
 class JewellerProductDescriptionModule extends StatelessWidget {
   JewellerProductDescriptionModule({Key? key}) : super(key: key);
   final jewelleryDetailController =
-  Get.find<JewellerJewelleryDetailsScreenController>();
+      Get.find<JewellerJewelleryDetailsScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -278,6 +369,7 @@ class JewellerProductDescriptionModule extends StatelessWidget {
           Text(
             "product description".toUpperCase(),
             style: TextStyle(
+              fontFamily: "Roboto",
               color: AppColors.blackColor,
               fontSize: 12.sp,
               fontWeight: FontWeight.w500,
@@ -295,31 +387,32 @@ class JewellerProductDescriptionModule extends StatelessWidget {
           jewelleryDetailController.productDetailsData.metaldetails!.isEmpty
               ? const SizedBox()
               : ProductDescRow(
-            textTitle: "Metal",
-            textValue:
-            "${jewelleryDetailController.productDetailsData.metaldetails![0].metalType} ${jewelleryDetailController.productDetailsData.metaldetails![0].metalPurity} ${double.parse(jewelleryDetailController.productDetailsData.metaldetails![0].metalWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.metaldetails![0].unitMetalWt}",
-          ),
-          jewelleryDetailController.productDetailsData.decorativedetails!.isEmpty
+                  textTitle: "Metal",
+                  textValue:
+                      "${jewelleryDetailController.productDetailsData.metaldetails![0].metalType} ${jewelleryDetailController.productDetailsData.metaldetails![0].metalPurity} ${double.parse(jewelleryDetailController.productDetailsData.metaldetails![0].metalWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.metaldetails![0].unitMetalWt}",
+                ),
+          jewelleryDetailController
+                  .productDetailsData.decorativedetails!.isEmpty
               ? const SizedBox()
               : ProductDescRow(
-            textTitle: "Decorative",
-            textValue:
-            "${jewelleryDetailController.productDetailsData.decorativedetails![0].decorativeItemName} ${double.parse(jewelleryDetailController.productDetailsData.decorativedetails![0].decorativeItemWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.decorativedetails![0].unitDecoItemWt}",
-          ),
+                  textTitle: "Decorative",
+                  textValue:
+                      "${jewelleryDetailController.productDetailsData.decorativedetails![0].decorativeItemName} ${double.parse(jewelleryDetailController.productDetailsData.decorativedetails![0].decorativeItemWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.decorativedetails![0].unitDecoItemWt}",
+                ),
           jewelleryDetailController.productDetailsData.stonedetails!.isEmpty
               ? const SizedBox()
               : ProductDescRow(
-            textTitle: "Stone",
-            textValue:
-            "${jewelleryDetailController.productDetailsData.stonedetails![0].stoneName} ${double.parse(jewelleryDetailController.productDetailsData.stonedetails![0].stoneWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.stonedetails![0].unitStoneWt}",
-          ),
+                  textTitle: "Stone",
+                  textValue:
+                      "${jewelleryDetailController.productDetailsData.stonedetails![0].stoneName} ${double.parse(jewelleryDetailController.productDetailsData.stonedetails![0].stoneWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.stonedetails![0].unitStoneWt}",
+                ),
           jewelleryDetailController.productDetailsData.diamonddetails!.isEmpty
               ? const SizedBox()
               : ProductDescRow(
-            textTitle: "Diamond",
-            textValue:
-            "${jewelleryDetailController.productDetailsData.diamonddetails![0].stoneName} ${double.parse(jewelleryDetailController.productDetailsData.diamonddetails![0].stoneWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.diamonddetails![0].unitStoneWt}",
-          ),
+                  textTitle: "Diamond",
+                  textValue:
+                      "${jewelleryDetailController.productDetailsData.diamonddetails![0].stoneName} ${double.parse(jewelleryDetailController.productDetailsData.diamonddetails![0].stoneWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.diamonddetails![0].unitStoneWt}",
+                ),
           ProductDescRow(
             textTitle: "Status",
             textValue: jewelleryDetailController
@@ -354,6 +447,7 @@ class ProductDescRow extends StatelessWidget {
               textTitle,
               maxLines: 2,
               style: TextStyle(
+                fontFamily: "Roboto",
                 color: AppColors.blackColor,
                 fontSize: 12.sp,
                 // fontWeight: FontWeight.w400,
@@ -363,6 +457,7 @@ class ProductDescRow extends StatelessWidget {
           Text(
             ":  ",
             style: TextStyle(
+              fontFamily: "Roboto",
               color: AppColors.blackColor,
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
@@ -374,6 +469,7 @@ class ProductDescRow extends StatelessWidget {
               textValue,
               maxLines: 2,
               style: TextStyle(
+                fontFamily: "Roboto",
                 color: AppColors.blackColor,
                 fontSize: 12.sp,
                 // fontWeight: FontWeight.w400,
@@ -389,7 +485,7 @@ class ProductDescRow extends StatelessWidget {
 class JewellerJewellerFeaturesAvailableModule extends StatelessWidget {
   JewellerJewellerFeaturesAvailableModule({Key? key}) : super(key: key);
   final jewelleryDetailController =
-  Get.find<JewellerJewelleryDetailsScreenController>();
+      Get.find<JewellerJewelleryDetailsScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -410,6 +506,7 @@ class JewellerJewellerFeaturesAvailableModule extends StatelessWidget {
           Text(
             "what makes us stand out".toUpperCase(),
             style: TextStyle(
+              fontFamily: "Roboto",
               color: AppColors.blackColor,
               fontSize: 12.sp,
               fontWeight: FontWeight.w500,
@@ -440,6 +537,7 @@ class JewellerJewellerFeaturesAvailableModule extends StatelessWidget {
                         .toUpperCase(),
                     textAlign: TextAlign.center,
                     style: TextStyle(
+                      fontFamily: "Roboto",
                       color: AppColors.blackColor,
                       fontSize: 8.5.sp,
                       fontWeight: FontWeight.w500,
@@ -454,4 +552,3 @@ class JewellerJewellerFeaturesAvailableModule extends StatelessWidget {
     );
   }
 }
-

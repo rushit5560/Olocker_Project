@@ -37,7 +37,8 @@ class AllDealsHeaderModule extends StatelessWidget {
         Text(
           'All Deals',
           style: TextStyle(
-            fontSize: 10.sp,
+            fontFamily: "Roboto",
+            fontSize: 11.sp,
           ),
         ),
         Column(
@@ -47,7 +48,8 @@ class AllDealsHeaderModule extends StatelessWidget {
             Text(
               'Deal Partner',
               style: TextStyle(
-                fontSize: 8.sp,
+                fontFamily: "Roboto",
+                fontSize: 9.sp,
               ),
             ),
             Image.asset(
@@ -116,6 +118,7 @@ class AllDealsListModule extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontSize: 10.sp,
+                            fontFamily: "Roboto",
                           ),
                         ),
                       ),
@@ -142,6 +145,7 @@ class AllDealsListModule extends StatelessWidget {
                             BoxShadow(
                               color: Colors.grey.shade400,
                               // spreadRadius: 2,
+
                               blurRadius: 2,
                               blurStyle: BlurStyle.outer,
                             ),

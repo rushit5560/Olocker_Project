@@ -243,6 +243,7 @@ class GoBackSavingSchemeButton extends StatelessWidget {
             "GO BACK TO MY SAVING SCHEMES",
             style: TextStyle(
               fontWeight: FontWeight.bold,
+              fontFamily: "Roboto-Medium",
               fontSize: 12.sp,
               color: AppColors.whiteColor,
               fontStyle: FontStyle.italic,

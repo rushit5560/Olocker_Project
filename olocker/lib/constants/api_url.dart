@@ -8,9 +8,11 @@ class ApiHeader {
 class ApiUrl {
   static const String apiMainPath = "https://devappapi.olocker.in/";
 
-  static const String apiImageUrlPath = "https://devappapi.olocker.in/";
+  // static const String apiImageUrlPath = "https://devappapi.olocker.in/";
 
-  static const String apiImagePath = "https://www.olocker.in";
+  static const String apiImagePath = "https://demo.olocker.in";
+  //release image api path
+  // static const String apiImagePath = "https://www.olocker.in";
 
   // Home Screen Api
   static const String myJewellersApi = "${apiMainPath}api/user/GetMyJewellers";
@@ -138,9 +140,12 @@ class ApiUrl {
       "${apiMainPath}api/Partner/GetDetails";
 
   /// Jewellery Details Screen Api's
-  static const String getJewelleryDetailApi = "${apiMainPath}api/User/GetProductDetail";
-  static const String getOfferJewelleryDetailApi = "${apiMainPath}api/Partner/GetProductDetail";
-  static const String removeFavProductApi = "${apiMainPath}api/User/RemoveFavProduct";
+  static const String getJewelleryDetailApi =
+      "${apiMainPath}api/User/GetProductDetail";
+  static const String getOfferJewelleryDetailApi =
+      "${apiMainPath}api/Partner/GetProductDetail";
+  static const String removeFavProductApi =
+      "${apiMainPath}api/User/RemoveFavProduct";
   static const String addFavProductApi = "${apiMainPath}api/User/AddFavProduct";
 
   /// Enquire Screen Api's

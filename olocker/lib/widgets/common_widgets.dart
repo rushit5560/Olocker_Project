@@ -25,6 +25,7 @@ class CommonWidgets {
           displayText,
           style: TextStyle(
             color: AppColors.blackTextColor,
+            fontFamily: "Roboto",
             fontSize: 12.sp,
             fontWeight: FontWeight.w500,
           ),

@@ -35,6 +35,7 @@ class JewellerJewelleryListScreen extends StatelessWidget {
         title: Text(
           jewellerJewelleryListScreenController.jewelleryName,
           style: TextStyle(
+            fontFamily: "Roboto",
             color: AppColors.blackTextColor,
             fontSize: 13.sp,
             fontWeight: FontWeight.w400,
@@ -55,8 +56,10 @@ class JewellerJewelleryListScreen extends StatelessWidget {
                 arguments: [
                   jewellerJewelleryListScreenController.jewellerId.toString(),
                 ],
-              )!.then((value) async {
-                await jewellerJewelleryListScreenController.getAllJewelleryListFunction();
+              )!
+                  .then((value) async {
+                await jewellerJewelleryListScreenController
+                    .getAllJewelleryListFunction();
               });
             },
             icon: const Icon(
@@ -111,11 +114,13 @@ class JewellerJewelleryListScreen extends StatelessWidget {
                     AppColors.whiteColor,
                   ],
                   selectedTextStyle: TextStyle(
+                    fontFamily: "Roboto",
                     color: AppColors.greenColor,
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w600,
                   ),
                   unSelectedTextStyle: TextStyle(
+                    fontFamily: "Roboto",
                     color: AppColors.whiteColor,
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w600,

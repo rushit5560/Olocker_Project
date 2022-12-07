@@ -19,16 +19,21 @@ class OnlineDealsDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.whiteColor,
         elevation: 0,
-        title: const Text(
+        title: Text(
           'Deal Details',
           style: TextStyle(
+            fontFamily: "Roboto",
             color: AppColors.blackColor,
-            fontWeight: FontWeight.normal,
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w500,
           ),
         ),
         leading: IconButton(
           onPressed: () => Get.back(),
-          icon: const Icon(Icons.arrow_back_ios, color: AppColors.blackColor),
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: AppColors.blackColor,
+          ),
         ),
       ),
       body: SingleChildScrollView(

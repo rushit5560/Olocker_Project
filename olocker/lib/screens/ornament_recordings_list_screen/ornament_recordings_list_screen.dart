@@ -30,6 +30,7 @@ class OrnamentRecordingsListScreen extends StatelessWidget {
         title: Text(
           'Ornament Recordings',
           style: TextStyle(
+            fontFamily: "Roboto",
             color: AppColors.blackTextColor,
             fontSize: 13.sp,
             fontWeight: FontWeight.w400,

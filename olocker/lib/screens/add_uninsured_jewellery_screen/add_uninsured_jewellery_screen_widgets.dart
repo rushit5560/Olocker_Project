@@ -45,6 +45,7 @@ class ProductDetailsFormModule extends StatelessWidget {
                     child: Text(
                       "Product Details (Ornament)",
                       style: TextStyle(
+                        fontFamily: "Roboto",
                         color: AppColors.blackColor,
                         fontSize: 13.sp,
                         fontWeight: FontWeight.w400,
@@ -65,12 +66,14 @@ class ProductDetailsFormModule extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
                   labelText: "SELECT PRODUCT NAME",
                   labelStyle: TextStyle(
+                    fontFamily: "Roboto",
                     color: AppColors.blackColor,
                     fontSize: 10.sp,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
                 style: TextStyle(
+                  fontFamily: "Roboto",
                   color: AppColors.blackColor,
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w400,
@@ -99,6 +102,7 @@ class ProductDetailsFormModule extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
                   labelText: 'GROSS WEIGHT',
                   labelStyle: TextStyle(
+                    fontFamily: "Roboto",
                     color: AppColors.blackColor,
                     fontSize: 10.sp,
                     fontWeight: FontWeight.w400,
@@ -118,6 +122,7 @@ class ProductDetailsFormModule extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
                   labelText: 'PURCHASED FROM (SHOP/STORE NAME)',
                   labelStyle: TextStyle(
+                    fontFamily: "Roboto",
                     color: AppColors.blackColor,
                     fontSize: 10.sp,
                     fontWeight: FontWeight.w400,
@@ -134,6 +139,7 @@ class ProductDetailsFormModule extends StatelessWidget {
                     Text(
                       "PURCHASED DATE",
                       style: TextStyle(
+                        fontFamily: "Roboto",
                         color: AppColors.blackColor,
                         fontSize: 10.sp,
                         fontWeight: FontWeight.w400,
@@ -156,6 +162,7 @@ class ProductDetailsFormModule extends StatelessWidget {
                   child: Text(
                     unInsuredJewelController.selectedOrnamentPurchaseDate.value,
                     style: TextStyle(
+                      fontFamily: "Roboto",
                       color: AppColors.greyDarkColor,
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w400,
@@ -181,6 +188,7 @@ class ProductDetailsFormModule extends StatelessWidget {
                               child: Text(
                                 "Enter Purchased Date",
                                 style: TextStyle(
+                                  fontFamily: "Roboto",
                                   fontSize: 12,
                                   color: Colors.red.shade600,
                                   fontWeight: FontWeight.w400,
@@ -205,6 +213,7 @@ class ProductDetailsFormModule extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
                   labelText: 'PURCHASED PRICE (INR)',
                   labelStyle: TextStyle(
+                    fontFamily: "Roboto",
                     color: AppColors.blackColor,
                     fontSize: 10.sp,
                     fontWeight: FontWeight.w400,
@@ -258,6 +267,7 @@ class MetalDetailsFormModule extends StatelessWidget {
                           child: Text(
                             "Metal Details",
                             style: TextStyle(
+                              fontFamily: "Roboto",
                               color: AppColors.blackColor,
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w400,
@@ -277,12 +287,14 @@ class MetalDetailsFormModule extends StatelessWidget {
                             horizontal: 16, vertical: 5),
                         labelText: "SELECT METAL TYPE",
                         labelStyle: TextStyle(
+                          fontFamily: "Roboto",
                           color: AppColors.blackColor,
                           fontSize: 10.sp,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
                       style: TextStyle(
+                        fontFamily: "Roboto",
                         color: AppColors.blackColor,
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w400,
@@ -309,12 +321,14 @@ class MetalDetailsFormModule extends StatelessWidget {
                             horizontal: 16, vertical: 5),
                         labelText: "SELECT PURITY",
                         labelStyle: TextStyle(
+                          fontFamily: "Roboto",
                           color: AppColors.blackColor,
                           fontSize: 10.sp,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
                       style: TextStyle(
+                        fontFamily: "Roboto",
                         color: AppColors.blackColor,
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w400,
@@ -343,6 +357,7 @@ class MetalDetailsFormModule extends StatelessWidget {
                             horizontal: 16, vertical: 5),
                         labelText: 'METAL WEIGHT',
                         labelStyle: TextStyle(
+                          fontFamily: "Roboto",
                           color: AppColors.blackColor,
                           fontSize: 10.sp,
                           fontWeight: FontWeight.w400,
@@ -369,6 +384,7 @@ class MetalDetailsFormModule extends StatelessWidget {
                           child: Text(
                             "ADD METAL",
                             style: TextStyle(
+                              fontFamily: "Roboto",
                               color: AppColors.whiteColor,
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w400,
@@ -402,14 +418,20 @@ class MetalDetailsFormModule extends StatelessWidget {
                                                 .metalDataMapList[index]
                                             ["metaltype"],
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(fontSize: 10.sp),
+                                        style: TextStyle(
+                                          fontSize: 10.sp,
+                                          fontFamily: "Roboto",
+                                        ),
                                       ),
                                     ),
                                     Expanded(
                                       child: Text(
                                         unInsuredJewelController
                                             .metalDataMapList[index]["purity"],
-                                        style: TextStyle(fontSize: 10.sp),
+                                        style: TextStyle(
+                                          fontSize: 10.sp,
+                                          fontFamily: "Roboto",
+                                        ),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -419,7 +441,10 @@ class MetalDetailsFormModule extends StatelessWidget {
                                                 .metalDataMapList[index]
                                             ["netmetalweight"],
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(fontSize: 10.sp),
+                                        style: TextStyle(
+                                          fontSize: 10.sp,
+                                          fontFamily: "Roboto",
+                                        ),
                                       ),
                                     ),
                                     GestureDetector(
@@ -492,6 +517,7 @@ class StoneDetailsFormModule extends StatelessWidget {
                           child: Text(
                             "Stone Details",
                             style: TextStyle(
+                              fontFamily: "Roboto",
                               color: AppColors.blackColor,
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w400,
@@ -509,12 +535,14 @@ class StoneDetailsFormModule extends StatelessWidget {
                             horizontal: 16, vertical: 5),
                         labelText: "SELECT STONE NAME",
                         labelStyle: TextStyle(
+                          fontFamily: "Roboto",
                           color: AppColors.blackColor,
                           fontSize: 10.sp,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
                       style: TextStyle(
+                        fontFamily: "Roboto",
                         color: AppColors.blackColor,
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w400,
@@ -543,6 +571,7 @@ class StoneDetailsFormModule extends StatelessWidget {
                             horizontal: 16, vertical: 5),
                         labelText: 'STONE WT',
                         labelStyle: TextStyle(
+                          fontFamily: "Roboto",
                           color: AppColors.blackColor,
                           fontSize: 10.sp,
                           fontWeight: FontWeight.w400,
@@ -559,12 +588,14 @@ class StoneDetailsFormModule extends StatelessWidget {
                             horizontal: 16, vertical: 5),
                         labelText: "SELECT UNIT OF WT",
                         labelStyle: TextStyle(
+                          fontFamily: "Roboto",
                           color: AppColors.blackColor,
                           fontSize: 10.sp,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
                       style: TextStyle(
+                        fontFamily: "Roboto",
                         color: AppColors.blackColor,
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w400,
@@ -601,6 +632,7 @@ class StoneDetailsFormModule extends StatelessWidget {
                           child: Text(
                             "ADD STONE",
                             style: TextStyle(
+                              fontFamily: "Roboto",
                               color: AppColors.whiteColor,
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w400,
@@ -633,14 +665,20 @@ class StoneDetailsFormModule extends StatelessWidget {
                                         unInsuredJewelController
                                             .stoneDataMapList[index]["name"],
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(fontSize: 10.sp),
+                                        style: TextStyle(
+                                          fontSize: 10.sp,
+                                          fontFamily: "Roboto",
+                                        ),
                                       ),
                                     ),
                                     Expanded(
                                       child: Text(
                                         unInsuredJewelController
                                             .stoneDataMapList[index]["wt"],
-                                        style: TextStyle(fontSize: 10.sp),
+                                        style: TextStyle(
+                                          fontSize: 10.sp,
+                                          fontFamily: "Roboto",
+                                        ),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -650,7 +688,10 @@ class StoneDetailsFormModule extends StatelessWidget {
                                                 .stoneDataMapList[index]
                                             ["unitofwt"],
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(fontSize: 10.sp),
+                                        style: TextStyle(
+                                          fontSize: 10.sp,
+                                          fontFamily: "Roboto",
+                                        ),
                                       ),
                                     ),
                                     GestureDetector(
@@ -722,6 +763,7 @@ class DecorativeItemDetailsFormModule extends StatelessWidget {
                           child: Text(
                             "Decorative Item Details",
                             style: TextStyle(
+                              fontFamily: "Roboto",
                               color: AppColors.blackColor,
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w400,
@@ -739,12 +781,14 @@ class DecorativeItemDetailsFormModule extends StatelessWidget {
                             horizontal: 16, vertical: 5),
                         labelText: "SELECT DECORATIVE ITEM NAME",
                         labelStyle: TextStyle(
+                          fontFamily: "Roboto",
                           color: AppColors.blackColor,
                           fontSize: 10.sp,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
                       style: TextStyle(
+                        fontFamily: "Roboto",
                         color: AppColors.blackColor,
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w400,
@@ -773,6 +817,7 @@ class DecorativeItemDetailsFormModule extends StatelessWidget {
                             horizontal: 16, vertical: 5),
                         labelText: 'DECORATIVE ITEM WT',
                         labelStyle: TextStyle(
+                          fontFamily: "Roboto",
                           color: AppColors.blackColor,
                           fontSize: 10.sp,
                           fontWeight: FontWeight.w400,
@@ -789,12 +834,14 @@ class DecorativeItemDetailsFormModule extends StatelessWidget {
                             horizontal: 16, vertical: 5),
                         labelText: "SELECT UNIT OF WT.",
                         labelStyle: TextStyle(
+                          fontFamily: "Roboto",
                           color: AppColors.blackColor,
                           fontSize: 10.sp,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
                       style: TextStyle(
+                        fontFamily: "Roboto",
                         color: AppColors.blackColor,
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w400,
@@ -833,6 +880,7 @@ class DecorativeItemDetailsFormModule extends StatelessWidget {
                             child: Text(
                               "ADD DECORATIVE ITEM",
                               style: TextStyle(
+                                fontFamily: "Roboto",
                                 color: AppColors.whiteColor,
                                 fontSize: 13.sp,
                                 fontWeight: FontWeight.w400,
@@ -868,14 +916,18 @@ class DecorativeItemDetailsFormModule extends StatelessWidget {
                                                 .decoItemsDataMapList[index]
                                             ["name"],
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(fontSize: 10.sp),
+                                        style: TextStyle(
+                                            fontFamily: "Roboto",
+                                            fontSize: 10.sp),
                                       ),
                                     ),
                                     Expanded(
                                       child: Text(
                                         unInsuredJewelController
                                             .decoItemsDataMapList[index]["wt"],
-                                        style: TextStyle(fontSize: 10.sp),
+                                        style: TextStyle(
+                                            fontFamily: "Roboto",
+                                            fontSize: 10.sp),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -885,7 +937,9 @@ class DecorativeItemDetailsFormModule extends StatelessWidget {
                                                 .decoItemsDataMapList[index]
                                             ["unitofwt"],
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(fontSize: 10.sp),
+                                        style: TextStyle(
+                                            fontFamily: "Roboto",
+                                            fontSize: 10.sp),
                                       ),
                                     ),
                                     GestureDetector(
@@ -975,6 +1029,7 @@ class UploadImageFileFormModule extends StatelessWidget {
                     child: Text(
                       "Upload File",
                       style: TextStyle(
+                        fontFamily: "Roboto",
                         color: AppColors.whiteColor,
                         fontSize: 13.sp,
                         fontWeight: FontWeight.w400,
@@ -1032,6 +1087,7 @@ class SubmitCancelFormModule extends StatelessWidget {
                 child: Text(
                   "CANCEL",
                   style: TextStyle(
+                    fontFamily: "Roboto",
                     color: AppColors.whiteColor,
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w400,
@@ -1059,6 +1115,7 @@ class SubmitCancelFormModule extends StatelessWidget {
                 child: Text(
                   "SUBMIT",
                   style: TextStyle(
+                    fontFamily: "Roboto",
                     color: AppColors.whiteColor,
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w400,

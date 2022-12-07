@@ -61,6 +61,7 @@ class PayNowBottomButton extends StatelessWidget {
             "PAY NOW",
             style: TextStyle(
               fontWeight: FontWeight.bold,
+              fontFamily: "Roboto-Medium",
               fontSize: 12.sp,
               color: AppColors.whiteColor,
               fontStyle: FontStyle.italic,
@@ -125,7 +126,8 @@ class MyBillsModule extends StatelessWidget {
                         symbol: '₹ ',
                         locale: "HI",
                         decimalDigits: 2,
-                      ).format(double.parse(screenController.selectedAmountTotal.value)),
+                      ).format(double.parse(
+                          screenController.selectedAmountTotal.value)),
                       style: const TextStyle(
                         color: Colors.red,
                         fontSize: 20,

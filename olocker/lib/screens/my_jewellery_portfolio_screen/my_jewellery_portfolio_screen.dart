@@ -27,6 +27,7 @@ class MyJewelleryPortFolioScreen extends StatelessWidget {
         title: Text(
           'My Jewellery Portfolio',
           style: TextStyle(
+            fontFamily: "Roboto",
             color: AppColors.blackTextColor,
             fontSize: 13.sp,
             fontWeight: FontWeight.w400,

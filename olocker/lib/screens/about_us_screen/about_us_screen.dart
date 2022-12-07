@@ -22,8 +22,10 @@ class AboutUsScreen extends StatelessWidget {
           elevation: 0,
           leading: IconButton(
             onPressed: () => Get.back(),
-            icon: const Icon(Icons.arrow_back_ios,
-                color: AppColors.blackTextColor),
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: AppColors.blackTextColor,
+            ),
           ),
           title: Text(
             '${aboutUsPageController.jewellerName}',

@@ -28,10 +28,13 @@ class AddNewJewellerScreen extends StatelessWidget {
             color: AppColors.blackColor,
           ),
         ),
-        title: const Text(
+        title: Text(
           'Add Jeweller',
           style: TextStyle(
-            color: AppColors.blackColor,
+            fontFamily: "Roboto",
+            color: AppColors.blackTextColor,
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w400,
           ),
         ),
       ),

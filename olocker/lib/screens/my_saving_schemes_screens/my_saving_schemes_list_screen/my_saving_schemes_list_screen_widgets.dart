@@ -505,6 +505,7 @@ class ColoredCustomButton extends StatelessWidget {
               fontSize: 12.sp,
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,
+              fontFamily: "Roboto-Medium",
               letterSpacing: 0.4,
             ),
           ),

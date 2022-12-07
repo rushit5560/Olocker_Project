@@ -160,6 +160,7 @@ class SingleSavingSchemeItem extends StatelessWidget {
                           "MORE INFO",
                           style: TextStyle(
                             color: Colors.white,
+                            fontFamily: "Roboto-Medium",
                             fontWeight: FontWeight.bold,
                             fontSize: 12.sp,
                             fontStyle: FontStyle.italic,
@@ -200,6 +201,7 @@ class SingleSavingSchemeItem extends StatelessWidget {
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
+                              fontFamily: "Roboto-Medium",
                               fontSize: 12.sp,
                               fontStyle: FontStyle.italic,
                               letterSpacing: 0.6,

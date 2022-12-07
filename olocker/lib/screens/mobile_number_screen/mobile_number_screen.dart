@@ -61,9 +61,10 @@ class MobileNumberScreen extends StatelessWidget {
                         Text(
                           "Enter Mobile Number",
                           style: TextStyle(
-                            color: AppColors.blackColor,
-                            fontSize: 13.sp,
-                            fontWeight: FontWeight.w400,
+                            fontFamily: "Acephimere",
+                            color: AppColors.greyDarkColor,
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.normal,
                           ),
                         )
                       ],
@@ -92,8 +93,10 @@ class MobileNumberScreen extends StatelessWidget {
                           hintText: "Enter your mobile number",
                           hintStyle: TextStyle(
                             color: AppColors.greyColor,
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w500,
+                            fontFamily: "Acephimere",
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 0.6,
                           ),
                         ),
                       ).commonSymmetricPadding(
@@ -115,6 +118,7 @@ class MobileNumberScreen extends StatelessWidget {
                             "GET OTP",
                             style: TextStyle(
                               color: AppColors.whiteColor,
+                              fontFamily: "Acephimere",
                               fontSize: 15.sp,
                               fontWeight: FontWeight.w400,
                             ),

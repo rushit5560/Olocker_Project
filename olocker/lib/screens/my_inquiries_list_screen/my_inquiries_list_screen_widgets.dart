@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +7,6 @@ import 'package:sizer/sizer.dart';
 import '../../constants/api_url.dart';
 import '../../constants/app_colors.dart';
 import '../../controllers/my_inquiries_list_screen_controller.dart';
-import '../jewellery_details_screen/jewellery_details_screen.dart';
 
 class InquiriesListModule extends StatelessWidget {
   InquiriesListModule({Key? key}) : super(key: key);
@@ -93,6 +90,7 @@ class InquiryListItem extends StatelessWidget {
                             singleInquiry.itemDesc,
                             maxLines: 1,
                             style: TextStyle(
+                              fontFamily: "Roboto",
                               fontSize: 10.sp,
                               fontWeight: FontWeight.w400,
                               color: AppColors.blackTextColor,
@@ -110,6 +108,7 @@ class InquiryListItem extends StatelessWidget {
                               Text(
                                 "Category : ${singleInquiry.itemName}",
                                 style: TextStyle(
+                                  fontFamily: "Roboto",
                                   fontSize: 10.sp,
                                   fontWeight: FontWeight.normal,
                                   color: AppColors.blackTextColor,
@@ -119,6 +118,7 @@ class InquiryListItem extends StatelessWidget {
                               Text(
                                 "₹${singleInquiry.productsPrice.toString()}",
                                 style: TextStyle(
+                                  fontFamily: "Roboto",
                                   fontSize: 10.sp,
                                   fontWeight: FontWeight.w500,
                                   color: AppColors.blackTextColor,
@@ -232,6 +232,7 @@ class InquiryListItem extends StatelessWidget {
                       Text(
                         "View",
                         style: TextStyle(
+                          fontFamily: "Roboto",
                           color: AppColors.whiteColor,
                           fontSize: 11.sp,
                           fontWeight: FontWeight.w500,

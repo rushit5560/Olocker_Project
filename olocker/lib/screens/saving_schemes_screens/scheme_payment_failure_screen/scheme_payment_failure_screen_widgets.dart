@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_images.dart';
-import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constants/app_colors.dart';
@@ -32,6 +31,7 @@ class TryAnotherPaymentMethodButton extends StatelessWidget {
           child: Text(
             "TRY ANOTHER PAYMENT METHOD",
             style: TextStyle(
+              fontFamily: "Roboto-Medium",
               fontWeight: FontWeight.bold,
               fontSize: 12.sp,
               color: AppColors.whiteColor,
@@ -51,7 +51,7 @@ class UnSuccessPaymentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -60,8 +60,9 @@ class UnSuccessPaymentWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "Your payment is unsuccessful  !",
+            "Your payment is unsuccessful !",
             style: TextStyle(
+              fontFamily: "Roboto",
               fontSize: 15.sp,
               color: AppColors.accentColor,
               fontWeight: FontWeight.w500,
@@ -78,6 +79,7 @@ class UnSuccessPaymentWidget extends StatelessWidget {
           Text(
             "Try again",
             style: TextStyle(
+              fontFamily: "Roboto",
               fontSize: 13.sp,
               color: AppColors.greyDarkColor,
               fontWeight: FontWeight.normal,
@@ -87,6 +89,7 @@ class UnSuccessPaymentWidget extends StatelessWidget {
           Text(
             "Payment has been declined",
             style: TextStyle(
+              fontFamily: "Roboto",
               fontSize: 10.sp,
               color: AppColors.greyDarkColor,
               fontWeight: FontWeight.normal,

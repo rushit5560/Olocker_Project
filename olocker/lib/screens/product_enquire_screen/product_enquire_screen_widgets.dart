@@ -46,6 +46,7 @@ class SendMessageTextField extends StatelessWidget {
                   decoration: InputDecoration(
                     hintText: "Add your message, comments",
                     hintStyle: TextStyle(
+                      fontFamily: "Roboto",
                       fontSize: 11.sp,
                     ),
                     border: border,
@@ -88,6 +89,7 @@ class SendMessageTextField extends StatelessWidget {
                   "send".toUpperCase(),
                   style: TextStyle(
                     fontSize: 11.sp,
+                    fontFamily: "Roboto",
                     letterSpacing: 0.4,
                   ),
                 ),
@@ -198,7 +200,8 @@ class SingleMessageModule extends StatelessWidget {
                         Text(
                           msg.message,
                           style: TextStyle(
-                            fontSize: 12.sp,
+                            fontSize: 11.sp,
+                            fontFamily: "Roboto",
                             color: AppColors.blackColor,
                             fontWeight: FontWeight.normal,
                           ),
@@ -214,7 +217,8 @@ class SingleMessageModule extends StatelessWidget {
                         Text(
                           msgTime,
                           style: TextStyle(
-                            fontSize: 11.sp,
+                            fontSize: 9.sp,
+                            fontFamily: "Roboto",
                             color: AppColors.greyTextColor,
                             fontWeight: FontWeight.normal,
                           ),
@@ -253,12 +257,14 @@ class JewelleryDetailModule extends StatelessWidget {
           SizedBox(
             height: 75,
             width: 75,
-            child: CachedNetworkImage(
-              imageUrl: ApiUrl.apiImagePath +
-                  screenController
-                      .productDetailsData.productImageList[0].imageLocation,
-              fit: BoxFit.cover,
-            ),
+            child: screenController.productDetailsData.productImageList.isEmpty
+                ? Container(color: AppColors.greyTextColor)
+                : CachedNetworkImage(
+                    imageUrl: ApiUrl.apiImagePath +
+                        screenController.productDetailsData.productImageList[0]
+                            .imageLocation,
+                    fit: BoxFit.cover,
+                  ),
             // Image.asset(
             //   "",
             //   height: 75,
@@ -276,7 +282,7 @@ class JewelleryDetailModule extends StatelessWidget {
                   screenController
                       .productDetailsData.itemTypeName.capitalizeFirst!,
                   style: TextStyle(
-                    fontSize: 13.sp,
+                    fontSize: 12.sp,
                     color: AppColors.blackColor,
                     fontWeight: FontWeight.w400,
                   ),
@@ -286,7 +292,7 @@ class JewelleryDetailModule extends StatelessWidget {
                   screenController.productDetailsData.description,
                   maxLines: 1,
                   style: TextStyle(
-                    fontSize: 9.sp,
+                    fontSize: 8.5.sp,
                     color: AppColors.blackColor,
                     fontWeight: FontWeight.w400,
                     overflow: TextOverflow.ellipsis,
@@ -296,7 +302,7 @@ class JewelleryDetailModule extends StatelessWidget {
                 Text(
                   "Category : ${screenController.productDetailsData.itemTypeName}",
                   style: TextStyle(
-                    fontSize: 9.sp,
+                    fontSize: 8.5.sp,
                     color: AppColors.blackColor,
                     fontWeight: FontWeight.w400,
                   ),
@@ -305,7 +311,7 @@ class JewelleryDetailModule extends StatelessWidget {
                 Text(
                   "₹${screenController.productDetailsData.price}",
                   style: TextStyle(
-                    fontSize: 9.sp,
+                    fontSize: 8.5.sp,
                     color: AppColors.blackColor,
                     fontWeight: FontWeight.w400,
                   ),
@@ -317,7 +323,7 @@ class JewelleryDetailModule extends StatelessWidget {
                     Text(
                       screenController.nowDateDisplay,
                       style: TextStyle(
-                        fontSize: 9.sp,
+                        fontSize: 8.5.sp,
                         color: AppColors.greyColor,
                         fontWeight: FontWeight.w400,
                       ),

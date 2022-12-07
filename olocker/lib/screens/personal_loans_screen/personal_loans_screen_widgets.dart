@@ -26,19 +26,23 @@ class StepOneFormModule extends StatelessWidget {
           Text(
             'Your personal data',
             style: TextStyle(
+              fontSize: 14.sp,
+              fontFamily: "Roboto",
               fontWeight: FontWeight.bold,
-              fontSize: 13.sp,
+              color: AppColors.blueDarkColor,
             ),
           ),
-          SizedBox(height: screenController.size.height * 0.0015.h),
+          SizedBox(height: 1.5.h),
           Text(
             'Your personal data will be shared with the relevant jeweller who will offer EMI option to buy jewellery',
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.left,
             style: TextStyle(
-              fontSize: 8.5.sp,
+              fontSize: 9.5.sp,
+              fontFamily: "Roboto",
+              color: AppColors.greyTextColor,
             ),
           ),
-          SizedBox(height: screenController.size.height * 0.0030.h),
+          SizedBox(height: 2.5.h),
           _fLNameModule(),
           const SizedBox(height: 10),
           _birthDateModule(context),
@@ -58,10 +62,12 @@ class StepOneFormModule extends StatelessWidget {
           _salariedModule(),
           const SizedBox(height: 10),
           Text(
-            'Kindly note: Your salary must be coming directly to your bank account via bank transfer',
+            'Kindly note : Your salary must be coming directly to your bank account via bank transfer',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 8.5.sp,
+              fontSize: 9.5.sp,
+              fontFamily: "Roboto",
+              color: AppColors.greyColor,
             ),
           ),
           SizedBox(height: screenController.size.height * 0.0030.h),
@@ -102,12 +108,13 @@ class StepOneFormModule extends StatelessWidget {
               width: 15.w,
               child: DropdownButton<String>(
                 isDense: true,
-                icon: const SizedBox(),
+                // icon: const SizedBox(),
                 hint: Text(
                   screenController.namePrefixDDValue.value,
                   style: TextStyle(
-                    color: AppColors.greyColor,
-                    fontSize: 11.sp,
+                    fontFamily: "Roboto",
+                    color: AppColors.blackColor,
+                    fontSize: 10.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -116,8 +123,9 @@ class StepOneFormModule extends StatelessWidget {
                           value: item,
                           child: Text(
                             item,
-                            style: const TextStyle(
-                              fontSize: 14,
+                            style: TextStyle(
+                              fontFamily: "Roboto",
+                              fontSize: 10.sp,
                             ),
                           ),
                         ))
@@ -152,8 +160,11 @@ class StepOneFormModule extends StatelessWidget {
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 errorMaxLines: 2,
-                hintStyle:
-                    TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+                hintStyle: TextStyle(
+                  fontSize: 10.sp,
+                  fontFamily: "Roboto",
+                  color: AppColors.greyColor,
+                ),
               ),
             ),
           ),
@@ -174,7 +185,7 @@ class StepOneFormModule extends StatelessWidget {
                 errorMaxLines: 2,
                 hintStyle: TextStyle(
                   color: AppColors.greyColor,
-                  fontSize: 11.sp,
+                  fontSize: 10.sp,
                 ),
               ),
             ),
@@ -209,7 +220,10 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+            hintStyle: TextStyle(
+              color: AppColors.greyColor,
+              fontSize: 10.sp,
+            ),
           ),
         ),
       ),
@@ -240,7 +254,8 @@ class StepOneFormModule extends StatelessWidget {
                       child: const Text(
                         'CANCEL',
                         style: TextStyle(
-                          color: AppColors.blueColor,
+                          fontFamily: "Roboto",
+                          color: AppColors.blueDarkColor,
                         ),
                       ),
                     ),
@@ -261,7 +276,10 @@ class StepOneFormModule extends StatelessWidget {
                       },
                       child: const Text(
                         'DONE',
-                        style: TextStyle(color: AppColors.blueColor),
+                        style: TextStyle(
+                          color: AppColors.blueDarkColor,
+                          fontFamily: "Roboto",
+                        ),
                       ),
                     ),
                   ],
@@ -319,7 +337,7 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 10.sp),
           ),
         ),
       ),
@@ -349,7 +367,7 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 10.sp),
           ),
         ),
       ),
@@ -383,7 +401,7 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 10.sp),
           ),
         ),
       ),
@@ -414,7 +432,7 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 10.sp),
           ),
         ),
       ),
@@ -510,6 +528,7 @@ class StepOneFormModule extends StatelessWidget {
               },
             ),
           ),
+          SizedBox(height: 1.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -564,7 +583,7 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 10.sp),
           ),
         ),
       ),
@@ -594,7 +613,7 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 10.sp),
           ),
         ),
       ),
@@ -625,7 +644,7 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 10.sp),
           ),
         ),
       ),
@@ -655,7 +674,7 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 10.sp),
           ),
         ),
       ),
@@ -733,11 +752,13 @@ class StepOneFormModule extends StatelessWidget {
           color: AppColors.accentColor,
           borderRadius: BorderRadius.circular(8),
         ),
-        child: const Center(
+        child: Center(
           child: Text(
             'SUBMIT',
             style: TextStyle(
               color: AppColors.whiteColor,
+              fontFamily: "Roboto",
+              fontSize: 12.sp,
             ),
           ),
         ).commonSymmetricPadding(vertical: 12),
@@ -864,6 +885,7 @@ class StepTwoFormModule extends StatelessWidget {
               child: Text(
                 'SUBMIT',
                 style: TextStyle(
+                  fontFamily: "Roboto",
                   color: AppColors.whiteColor,
                 ),
               ),
@@ -891,6 +913,7 @@ class StepThreeFormModule extends StatelessWidget {
           style: TextStyle(
             fontSize: 8.5.sp,
             fontStyle: FontStyle.italic,
+            fontFamily: "Roboto",
           ),
         ),
         SizedBox(height: screenController.size.height * 0.005.h),
@@ -941,7 +964,8 @@ class StepThreeFormModule extends StatelessWidget {
                   text: "Pan Card ",
                   style: TextStyle(
                     color: AppColors.blackColor,
-                    fontSize: 11.sp,
+                    fontSize: 10.sp,
+                    fontFamily: "Roboto",
                   ),
                   children: [
                     TextSpan(
@@ -949,6 +973,7 @@ class StepThreeFormModule extends StatelessWidget {
                       style: TextStyle(
                         color: AppColors.redColor,
                         fontSize: 12.sp,
+                        fontFamily: "Roboto",
                       ),
                     ),
                   ],
@@ -963,6 +988,7 @@ class StepThreeFormModule extends StatelessWidget {
                   'Successful',
                   style: TextStyle(
                     color: AppColors.greenColor,
+                    fontFamily: "Roboto",
                   ),
                 )
               : GestureDetector(
@@ -978,6 +1004,7 @@ class StepThreeFormModule extends StatelessWidget {
                       child: Text(
                         'IMAGE/PHOTO UPLOAD',
                         style: TextStyle(
+                          fontFamily: "Roboto",
                           color: AppColors.whiteColor,
                           fontSize: 8.sp,
                         ),
@@ -1031,13 +1058,15 @@ class StepThreeFormModule extends StatelessWidget {
                 text: TextSpan(
                   text: "Aadhaar Card ",
                   style: TextStyle(
+                    fontFamily: "Roboto",
                     color: AppColors.blackColor,
-                    fontSize: 11.sp,
+                    fontSize: 10.sp,
                   ),
                   children: [
                     TextSpan(
                       text: "*",
                       style: TextStyle(
+                        fontFamily: "Roboto",
                         color: AppColors.redColor,
                         fontSize: 12.sp,
                       ),
@@ -1054,6 +1083,7 @@ class StepThreeFormModule extends StatelessWidget {
               ? const Text(
                   'Successful',
                   style: TextStyle(
+                    fontFamily: "Roboto",
                     color: AppColors.greenColor,
                   ),
                 )
@@ -1069,6 +1099,7 @@ class StepThreeFormModule extends StatelessWidget {
                       child: Text(
                         'IMAGE/PHOTO UPLOAD',
                         style: TextStyle(
+                          fontFamily: "Roboto",
                           color: AppColors.whiteColor,
                           fontSize: 8.sp,
                         ),
@@ -1123,13 +1154,15 @@ class StepThreeFormModule extends StatelessWidget {
                   text: "Address Proof",
                   style: TextStyle(
                     color: AppColors.blackColor,
-                    fontSize: 11.sp,
+                    fontFamily: "Roboto",
+                    fontSize: 10.sp,
                   ),
                   children: [
                     TextSpan(
                       text: "*",
                       style: TextStyle(
                         color: AppColors.redColor,
+                        fontFamily: "Roboto",
                         fontSize: 12.sp,
                       ),
                     ),
@@ -1146,6 +1179,7 @@ class StepThreeFormModule extends StatelessWidget {
                   'Successful',
                   style: TextStyle(
                     color: AppColors.greenColor,
+                    fontFamily: "Roboto",
                   ),
                 )
               : GestureDetector(
@@ -1161,6 +1195,7 @@ class StepThreeFormModule extends StatelessWidget {
                         'IMAGE/PHOTO UPLOAD',
                         style: TextStyle(
                           color: AppColors.whiteColor,
+                          fontFamily: "Roboto",
                           fontSize: 8.sp,
                         ),
                       ).commonSymmetricPadding(vertical: 12),
@@ -1219,13 +1254,15 @@ class StepThreeFormModule extends StatelessWidget {
                           text: "Bank Statement ",
                           style: TextStyle(
                             color: AppColors.blackColor,
-                            fontSize: 11.sp,
+                            fontFamily: "Roboto",
+                            fontSize: 10.sp,
                           ),
                           children: [
                             TextSpan(
                               text: "*",
                               style: TextStyle(
                                 color: AppColors.redColor,
+                                fontFamily: "Roboto",
                                 fontSize: 12.sp,
                               ),
                             ),
@@ -1237,7 +1274,10 @@ class StepThreeFormModule extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 8),
                         child: Text(
                           'Last 6 months',
-                          style: TextStyle(fontSize: 8.sp),
+                          style: TextStyle(
+                            fontSize: 8.sp,
+                            fontFamily: "Roboto",
+                          ),
                         ),
                       ),
                     ],
@@ -1251,6 +1291,7 @@ class StepThreeFormModule extends StatelessWidget {
                       'Successful',
                       style: TextStyle(
                         color: AppColors.greenColor,
+                        fontFamily: "Roboto",
                       ),
                     )
                   : GestureDetector(
@@ -1266,6 +1307,7 @@ class StepThreeFormModule extends StatelessWidget {
                             'DOCUMENT UPLOAD',
                             style: TextStyle(
                               color: AppColors.whiteColor,
+                              fontFamily: "Roboto",
                               fontSize: 8.sp,
                             ),
                           ).commonSymmetricPadding(vertical: 12),
@@ -1286,6 +1328,7 @@ class StepThreeFormModule extends StatelessWidget {
                         '(Only PDF allowed)',
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                          fontFamily: "Roboto",
                           fontStyle: FontStyle.italic,
                           fontSize: 8.sp,
                           color: AppColors.greyColor,
@@ -1351,13 +1394,15 @@ class StepThreeFormModule extends StatelessWidget {
                           text: "Salary Slips ",
                           style: TextStyle(
                             color: AppColors.blackColor,
-                            fontSize: 11.sp,
+                            fontFamily: "Roboto",
+                            fontSize: 10.sp,
                           ),
                           children: [
                             TextSpan(
                               text: "*",
                               style: TextStyle(
                                 color: AppColors.redColor,
+                                fontFamily: "Roboto",
                                 fontSize: 12.sp,
                               ),
                             ),
@@ -1369,7 +1414,10 @@ class StepThreeFormModule extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 8),
                         child: Text(
                           'Last 3 months',
-                          style: TextStyle(fontSize: 8.sp),
+                          style: TextStyle(
+                            fontSize: 8.sp,
+                            fontFamily: "Roboto",
+                          ),
                         ),
                       ),
                     ],
@@ -1383,6 +1431,7 @@ class StepThreeFormModule extends StatelessWidget {
                       'Successful',
                       style: TextStyle(
                         color: AppColors.greenColor,
+                        fontFamily: "Roboto",
                       ),
                     )
                   : GestureDetector(
@@ -1398,6 +1447,7 @@ class StepThreeFormModule extends StatelessWidget {
                             'DOCUMENT UPLOAD',
                             style: TextStyle(
                               color: AppColors.whiteColor,
+                              fontFamily: "Roboto",
                               fontSize: 8.sp,
                             ),
                           ).commonSymmetricPadding(vertical: 12),
@@ -1419,6 +1469,7 @@ class StepThreeFormModule extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontStyle: FontStyle.italic,
+                          fontFamily: "Roboto",
                           fontSize: 8.sp,
                           color: AppColors.greyColor,
                         ),
@@ -1477,13 +1528,15 @@ class StepThreeFormModule extends StatelessWidget {
                 text: TextSpan(
                   text: "Rent Agreement ",
                   style: TextStyle(
+                    fontFamily: "Roboto",
                     color: AppColors.blackColor,
-                    fontSize: 11.sp,
+                    fontSize: 10.sp,
                   ),
                   children: [
                     TextSpan(
                       text: "*",
                       style: TextStyle(
+                        fontFamily: "Roboto",
                         color: AppColors.redColor,
                         fontSize: 12.sp,
                       ),
@@ -1500,6 +1553,7 @@ class StepThreeFormModule extends StatelessWidget {
               ? const Text(
                   'Successful',
                   style: TextStyle(
+                    fontFamily: "Roboto",
                     color: AppColors.greenColor,
                   ),
                 )
@@ -1515,6 +1569,7 @@ class StepThreeFormModule extends StatelessWidget {
                       child: Text(
                         'IMAGE/PHOTO UPLOAD',
                         style: TextStyle(
+                          fontFamily: "Roboto",
                           color: AppColors.whiteColor,
                           fontSize: 8.sp,
                         ),

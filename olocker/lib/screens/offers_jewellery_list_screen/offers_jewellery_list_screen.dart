@@ -40,6 +40,7 @@ class OffersJewelleryListScreen extends StatelessWidget {
                   offersJewelleryListScreenController
                       .offerDetailResultModeldata!.offerType,
                   style: TextStyle(
+                    fontFamily: "Roboto",
                     color: AppColors.blackTextColor,
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w400,
@@ -125,14 +126,16 @@ class OffersJewelleryListScreen extends StatelessWidget {
                     AppColors.whiteColor,
                   ],
                   selectedTextStyle: TextStyle(
-                    color: AppColors.greenColor,
                     fontSize: 12.sp,
+                    fontFamily: "Roboto",
                     fontWeight: FontWeight.w600,
+                    color: AppColors.greenColor,
                   ),
                   unSelectedTextStyle: TextStyle(
-                    color: AppColors.whiteColor,
                     fontSize: 12.sp,
+                    fontFamily: "Roboto",
                     fontWeight: FontWeight.w600,
+                    color: AppColors.whiteColor,
                   ),
                   labels: const [
                     "LOW",

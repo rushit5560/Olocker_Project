@@ -27,6 +27,7 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
         Text(
           "Get 100 Points",
           style: TextStyle(
+            fontFamily: "Roboto",
             color: AppColors.accentColor,
             fontSize: 20.sp,
             fontWeight: FontWeight.bold,
@@ -36,6 +37,7 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
         Text(
           "For every new user you refer",
           style: TextStyle(
+            fontFamily: "Roboto",
             color: AppColors.blackTextColor,
             fontSize: 15.sp,
             fontWeight: FontWeight.w500,
@@ -45,6 +47,7 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
         Text(
           "Share your referal link and earn 100 points",
           style: TextStyle(
+            fontFamily: "Roboto",
             color: AppColors.greyColor,
             fontSize: 11.sp,
             fontWeight: FontWeight.w500,
@@ -84,6 +87,7 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
                   referAndEarnScreenController.userReferaalCode.value,
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    fontFamily: "Roboto",
                     color: AppColors.greyColor,
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w500,
@@ -139,6 +143,7 @@ class UserBenefitPointsTextModule extends StatelessWidget {
             style: TextStyle(
               color: AppColors.accentColor,
               fontSize: 15.sp,
+              fontFamily: "Roboto",
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -148,6 +153,7 @@ class UserBenefitPointsTextModule extends StatelessWidget {
             style: TextStyle(
               color: AppColors.blackTextColor,
               fontSize: 11.sp,
+              fontFamily: "Roboto",
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -178,6 +184,7 @@ class ShareButtonModule extends StatelessWidget {
               style: TextStyle(
                 color: AppColors.whiteColor,
                 fontSize: 14.sp,
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w500,
               ),
             ),

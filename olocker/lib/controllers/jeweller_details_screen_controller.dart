@@ -45,6 +45,8 @@ class JewellerDetailsScreenController extends GetxController {
     AppImages.goldIcon18Image,
   ];
 
+  RxInt bannerCurrentIndex = 0.obs;
+
   Future<void> getSpecialFeaturesFunction() async {
     isLoading(true);
     String url = "${ApiUrl.getSpecialFeaturesApi}?PartnerSrNo=$jewellerId";

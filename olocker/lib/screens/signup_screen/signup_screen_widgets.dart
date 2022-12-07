@@ -29,7 +29,8 @@ class RegisterHeaderModule extends StatelessWidget {
                 textAlign: TextAlign.start,
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
-                  fontSize: 17.sp,
+                  fontFamily: "elephantregular",
+                  fontSize: 14.sp,
                   color: AppColors.blackColor,
                   letterSpacing: 0.6,
                 ),
@@ -39,16 +40,18 @@ class RegisterHeaderModule extends StatelessWidget {
                 maxLines: null,
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
-                  fontSize: 28.sp,
+                  fontFamily: "elephantregular",
+                  fontSize: 30.sp,
                   color: AppColors.blackColor,
-                  letterSpacing: 0.8,
+                  height: 0.9,
+                  // letterSpacing: 0.8,
                 ),
               ),
             ],
           ),
         ),
         Expanded(
-          flex: 3,
+          flex: 4,
           child: Image.asset(
             AppImages.registrationImage,
           ),
@@ -96,6 +99,7 @@ class NameFieldRow extends StatelessWidget {
                   signUpScreenController.namePrefixDDvalue.value,
                   style: TextStyle(
                     color: AppColors.greyColor,
+                    fontFamily: "Acephimere",
                     fontSize: 11.sp,
                     fontWeight: FontWeight.w500,
                   ),

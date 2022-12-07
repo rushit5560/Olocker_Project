@@ -82,6 +82,7 @@ class JewelleryListItem extends StatelessWidget {
                             child: Text(
                               "Item",
                               style: TextStyle(
+                                fontFamily: "Roboto",
                                 fontSize: 10.sp,
                               ),
                             ),
@@ -90,6 +91,7 @@ class JewelleryListItem extends StatelessWidget {
                           Text(
                             ":",
                             style: TextStyle(
+                              fontFamily: "Roboto",
                               fontSize: 10.sp,
                             ),
                           ),
@@ -98,6 +100,10 @@ class JewelleryListItem extends StatelessWidget {
                             child: Text(
                               insuredJewelleryController
                                   .getInsuredOrnamentList[index].itemName,
+                              style: TextStyle(
+                                fontFamily: "Roboto",
+                                fontSize: 10.sp,
+                              ),
                             ),
                           ),
                         ],
@@ -110,6 +116,7 @@ class JewelleryListItem extends StatelessWidget {
                               "Puchased Date",
                               style: TextStyle(
                                 fontSize: 10.sp,
+                                fontFamily: "Roboto",
                               ),
                             ),
                           ),
@@ -118,6 +125,7 @@ class JewelleryListItem extends StatelessWidget {
                             ":",
                             style: TextStyle(
                               fontSize: 10.sp,
+                              fontFamily: "Roboto",
                             ),
                           ),
                           const SizedBox(width: 10),
@@ -126,6 +134,10 @@ class JewelleryListItem extends StatelessWidget {
                               insuredJewelleryController
                                   .getInsuredOrnamentList[index].purchaseDate
                                   .split(" ")[0],
+                              style: TextStyle(
+                                fontSize: 10.sp,
+                                fontFamily: "Roboto",
+                              ),
                             ),
                           ),
                         ],
@@ -138,6 +150,7 @@ class JewelleryListItem extends StatelessWidget {
                               "Weight",
                               style: TextStyle(
                                 fontSize: 10.sp,
+                                fontFamily: "Roboto",
                               ),
                             ),
                           ),
@@ -146,6 +159,7 @@ class JewelleryListItem extends StatelessWidget {
                             ":",
                             style: TextStyle(
                               fontSize: 10.sp,
+                              fontFamily: "Roboto",
                             ),
                           ),
                           const SizedBox(width: 10),
@@ -153,6 +167,10 @@ class JewelleryListItem extends StatelessWidget {
                             child: Text(
                               insuredJewelleryController
                                   .getInsuredOrnamentList[index].grossWt,
+                              style: TextStyle(
+                                fontSize: 10.sp,
+                                fontFamily: "Roboto",
+                              ),
                             ),
                           ),
                         ],
@@ -185,6 +203,7 @@ class JewelleryListItem extends StatelessWidget {
                               "TRACKING",
                               style: TextStyle(
                                 fontSize: 10.sp,
+                                fontFamily: "Roboto",
                               ),
                             ),
                           ),
@@ -212,6 +231,7 @@ class JewelleryListItem extends StatelessWidget {
                               "ADD IMAGE",
                               style: TextStyle(
                                 fontSize: 10.sp,
+                                fontFamily: "Roboto",
                               ),
                             ),
                           ),

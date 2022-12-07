@@ -26,6 +26,7 @@ class MyJewellersScreen extends StatelessWidget {
         title: Text(
           'My Jewellers',
           style: TextStyle(
+            fontFamily: "Roboto",
             color: AppColors.blackTextColor,
             fontSize: 13.sp,
             fontWeight: FontWeight.w400,

@@ -26,6 +26,7 @@ class JewellerLoyaltyPointsModule extends StatelessWidget {
               Text(
                 screenController.loyaltyPoints!.partner,
                 style: TextStyle(
+                  fontFamily: "Roboto",
                   color: AppColors.whiteColor,
                   fontSize: 16.sp,
                   fontWeight: FontWeight.bold,
@@ -92,6 +93,7 @@ class JewellerLoyaltyPointsModule extends StatelessWidget {
                             Text(
                               "total points".toUpperCase(),
                               style: TextStyle(
+                                fontFamily: "Roboto-Medium",
                                 color: AppColors.blackColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 11.sp,
@@ -106,6 +108,7 @@ class JewellerLoyaltyPointsModule extends StatelessWidget {
                             Text(
                               "redeemed".toUpperCase(),
                               style: TextStyle(
+                                fontFamily: "Roboto-Medium",
                                 color: AppColors.blackColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 11.sp,
@@ -118,6 +121,7 @@ class JewellerLoyaltyPointsModule extends StatelessWidget {
                                   .toString()
                                   .split(".")[0],
                               style: TextStyle(
+                                fontFamily: "Roboto-Medium",
                                 color: AppColors.accentColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 13.sp,
@@ -150,6 +154,7 @@ class JewellerLoyaltyPointsModule extends StatelessWidget {
                                       .loyaltyPoints!.totalRemainingPoint
                                       .toString(),
                                   style: TextStyle(
+                                    fontFamily: "Roboto-Medium",
                                     color: AppColors.whiteColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18.sp,
@@ -161,6 +166,7 @@ class JewellerLoyaltyPointsModule extends StatelessWidget {
                             Text(
                               "remaining".toUpperCase(),
                               style: TextStyle(
+                                fontFamily: "Roboto-Medium",
                                 color: AppColors.blackColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 11.sp,
@@ -206,6 +212,7 @@ class JewellerLoyaltyPointsModule extends StatelessWidget {
               child: Text(
                 "Points earned summary",
                 style: TextStyle(
+                  fontFamily: "Roboto",
                   color: AppColors.blackColor,
                   fontSize: 13.sp,
                   fontWeight: FontWeight.w500,
@@ -222,6 +229,7 @@ class JewellerLoyaltyPointsModule extends StatelessWidget {
           child: Text(
             "* Note : 1 Loyalty Point = 1 INR",
             style: TextStyle(
+              fontFamily: "Roboto",
               color: AppColors.whiteColor,
               fontSize: 13.sp,
               fontWeight: FontWeight.w500,
@@ -270,6 +278,7 @@ class PointsEarnedSummaryTable extends StatelessWidget {
                         "Date",
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                          fontFamily: "Roboto",
                           color: AppColors.blackTextColor,
                           fontSize: 11.sp,
                           fontWeight: FontWeight.w500,
@@ -281,6 +290,7 @@ class PointsEarnedSummaryTable extends StatelessWidget {
                         "Points",
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                          fontFamily: "Roboto",
                           color: AppColors.blackTextColor,
                           fontSize: 11.sp,
                           fontWeight: FontWeight.w500,
@@ -292,6 +302,7 @@ class PointsEarnedSummaryTable extends StatelessWidget {
                         "Ocassion",
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                          fontFamily: "Roboto",
                           color: AppColors.blackTextColor,
                           fontSize: 11.sp,
                           fontWeight: FontWeight.w500,
@@ -303,6 +314,7 @@ class PointsEarnedSummaryTable extends StatelessWidget {
                         "Expiry Date",
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                          fontFamily: "Roboto",
                           color: AppColors.blackTextColor,
                           fontSize: 11.sp,
                           fontWeight: FontWeight.w500,
@@ -386,6 +398,7 @@ class SingleEarnedPointTile extends StatelessWidget {
                 singleEarnedPoint.points.toString(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
+                  fontFamily: "Roboto",
                   color: AppColors.blackTextColor,
                   fontSize: 10.sp,
                   fontWeight: FontWeight.w500,
@@ -397,6 +410,7 @@ class SingleEarnedPointTile extends StatelessWidget {
                 singleEarnedPoint.creditType.toString(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
+                  fontFamily: "Roboto",
                   color: AppColors.blackTextColor,
                   fontSize: 10.sp,
                   fontWeight: FontWeight.w500,
@@ -408,6 +422,7 @@ class SingleEarnedPointTile extends StatelessWidget {
                 singleEarnedPoint.pointExpiryDate.toString(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
+                  fontFamily: "Roboto",
                   color: AppColors.blackTextColor,
                   fontSize: 10.sp,
                   fontWeight: FontWeight.w500,

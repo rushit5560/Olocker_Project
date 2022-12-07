@@ -103,6 +103,7 @@ class TryAnotherMethodButton extends StatelessWidget {
           child: Text(
             "TRY ANOTHER PAYMENT METHOD",
             style: TextStyle(
+              fontFamily: "Roboto-Medium",
               fontWeight: FontWeight.bold,
               fontSize: 12.sp,
               color: AppColors.whiteColor,

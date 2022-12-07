@@ -131,9 +131,15 @@ class ProductImagesSliderModule extends StatelessWidget {
             onTap: () {
               // show full screen image slider
 
-              Get.to(() => ShowFullScreenImagesSliderModule(
-                    initialPageViewIndex: index,
-                  ));
+              Get.to(
+                () => ShowFullScreenImagesSliderModule(
+                  initialPageViewIndex: index,
+                ),
+              );
+              jewelleryDetailsController.isLoading(true);
+              jewelleryDetailsController.fullScreenImageCurrentindex.value =
+                  index;
+              jewelleryDetailsController.isLoading(false);
             },
             child: Container(
               height: jewelleryDetailsController.size.height * 0.25,
@@ -180,51 +186,106 @@ class ShowFullScreenImagesSliderModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PhotoViewGallery.builder(
-        // scrollPhysics: const BouncingScrollPhysics(),
-        gaplessPlayback: true,
-        pageController: PageController(
-          initialPage: initialPageViewIndex,
-        ),
-        builder: (BuildContext context, int index) {
-          return PhotoViewGalleryPageOptions(
-            imageProvider: NetworkImage(
-              ApiUrl.apiImagePath +
-                  jewelleryDetailsController
-                      .productDetailsData.productImageList[index].imageLocation,
-              // scale: 1,
+      body: Stack(
+        alignment: Alignment.bottomRight,
+        children: [
+          PhotoViewGallery.builder(
+            // scrollPhysics: const BouncingScrollPhysics(),
+            gaplessPlayback: true,
+            pageController: PageController(
+              initialPage: initialPageViewIndex,
             ),
-            errorBuilder: (context, error, stackTrace) {
-              return const Center(
-                child: Text("Image not loaded"),
+            onPageChanged: (ind) {
+              jewelleryDetailsController.isLoading(true);
+              jewelleryDetailsController.fullScreenImageCurrentindex.value =
+                  ind;
+              jewelleryDetailsController.isLoading(false);
+            },
+            builder: (BuildContext context, int index) {
+              return PhotoViewGalleryPageOptions(
+                imageProvider: NetworkImage(
+                  ApiUrl.apiImagePath +
+                      jewelleryDetailsController.productDetailsData
+                          .productImageList[index].imageLocation,
+                  // scale: 1,
+                ),
+                errorBuilder: (context, error, stackTrace) {
+                  return const Center(
+                    child: Text("Image not loaded"),
+                  );
+                },
+                // initialScale: 0.32,
+                minScale: 0.2,
+                tightMode: true,
+                basePosition: Alignment.center,
+                filterQuality: FilterQuality.high,
               );
             },
-            // initialScale: 0.32,
-            minScale: 0.2,
-            tightMode: true,
-            basePosition: Alignment.center,
-            filterQuality: FilterQuality.high,
-          );
-        },
-        backgroundDecoration: const BoxDecoration(
-          color: AppColors.whiteColor,
-        ),
-        itemCount: jewelleryDetailsController
-            .productDetailsData.productImageList.length,
-        loadingBuilder: (context, event) => const Center(
-          child: SizedBox(
-            width: 20.0,
-            height: 20.0,
-            child: CircularProgressIndicator(),
+            backgroundDecoration: const BoxDecoration(
+              color: AppColors.whiteColor,
+            ),
+            itemCount: jewelleryDetailsController
+                .productDetailsData.productImageList.length,
+            loadingBuilder: (context, event) => const Center(
+              child: SizedBox(
+                width: 20.0,
+                height: 20.0,
+                child: CircularProgressIndicator(),
+              ),
+            ),
+            allowImplicitScrolling: false,
+
+            scrollDirection: Axis.horizontal,
+
+            // backgroundDecoration: widget.backgroundDecoration,
+            // pageController: widget.pageController,
+            // onPageChanged: onPageChanged,
           ),
-        ),
-        allowImplicitScrolling: false,
-
-        scrollDirection: Axis.horizontal,
-
-        // backgroundDecoration: widget.backgroundDecoration,
-        // pageController: widget.pageController,
-        // onPageChanged: onPageChanged,
+          Obx(
+            () => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: jewelleryDetailsController
+                    .productDetailsData.productImageList
+                    .map((url) {
+                  int index = jewelleryDetailsController
+                      .productDetailsData.productImageList
+                      .indexOf(url);
+                  return Container(
+                    width: jewelleryDetailsController
+                                .fullScreenImageCurrentindex.value ==
+                            index
+                        ? 14
+                        : 10,
+                    height: jewelleryDetailsController
+                                .fullScreenImageCurrentindex.value ==
+                            index
+                        ? 14
+                        : 10,
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 10.0, horizontal: 2.0),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      // border: Border.all(
+                      //     width: 2,
+                      //     color: jewelleryDetailsController
+                      //                 .fullScreenImageCurrentindex.value ==
+                      //             index
+                      //         ? AppColors.whiteColor
+                      //         : Colors.transparent),
+                      color: jewelleryDetailsController
+                                  .fullScreenImageCurrentindex.value ==
+                              index
+                          ? AppColors.accentColor
+                          : AppColors.greyTextColor,
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
+          ).commonOnlyPadding(right: 1.h),
+        ],
       ),
     );
   }
@@ -245,7 +306,7 @@ class JewelleryApproxPriceModule extends StatelessWidget {
                   .toString()
                   .contains("PRICE ON REQUEST")
               ? "PRICE ON REQUEST"
-              : NumberFormat.currency( 
+              : NumberFormat.currency(
                   symbol: '₹ ',
                   locale: "HI",
                   decimalDigits: 2,

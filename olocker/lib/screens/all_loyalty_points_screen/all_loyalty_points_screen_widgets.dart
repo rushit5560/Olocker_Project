@@ -29,7 +29,10 @@ class AllLoyaltyPointListModule extends StatelessWidget {
             children: [
               Text(
                 screenController.loyaltyPointList[i].partner,
-                style: const TextStyle(color: AppColors.blueDarkColor),
+                style: const TextStyle(
+                  color: AppColors.blueDarkColor,
+                  fontFamily: "Roboto",
+                ),
               ),
               Stack(
                 alignment: Alignment.centerLeft,
@@ -69,6 +72,7 @@ class AllLoyaltyPointListModule extends StatelessWidget {
                                         Text(
                                           "TOTAL POINTS",
                                           style: TextStyle(
+                                            fontFamily: "Roboto",
                                             color: AppColors.whiteColor,
                                             fontSize: 11.sp,
                                           ),
@@ -77,6 +81,7 @@ class AllLoyaltyPointListModule extends StatelessWidget {
                                           screenController
                                               .loyaltyPointList[i].totalPoints,
                                           style: TextStyle(
+                                            fontFamily: "Roboto",
                                             color: AppColors.whiteColor,
                                             fontSize: 11.sp,
                                           ),
@@ -106,6 +111,7 @@ class AllLoyaltyPointListModule extends StatelessWidget {
                                           screenController.loyaltyPointList[i]
                                               .totalReedemedPoint,
                                           style: TextStyle(
+                                            fontFamily: "Roboto",
                                             color: AppColors.whiteColor,
                                             fontSize: 11.sp,
                                           ),
@@ -127,6 +133,7 @@ class AllLoyaltyPointListModule extends StatelessWidget {
                                         Text(
                                           "Remaining",
                                           style: TextStyle(
+                                            fontFamily: "Roboto",
                                             color: AppColors.whiteColor,
                                             fontSize: 11.sp,
                                           ),
@@ -135,6 +142,7 @@ class AllLoyaltyPointListModule extends StatelessWidget {
                                           screenController.loyaltyPointList[i]
                                               .totalRemainingPoint,
                                           style: TextStyle(
+                                            fontFamily: "Roboto",
                                             color: AppColors.whiteColor,
                                             fontSize: 11.sp,
                                           ),

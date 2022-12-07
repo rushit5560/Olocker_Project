@@ -43,6 +43,7 @@ class MyInsuredJewelleryScreen extends StatelessWidget {
           title: Text(
             'My Insured Jewellery',
             style: TextStyle(
+              fontFamily: "Roboto",
               color: AppColors.blackTextColor,
               fontSize: 13.sp,
               fontWeight: FontWeight.w400,

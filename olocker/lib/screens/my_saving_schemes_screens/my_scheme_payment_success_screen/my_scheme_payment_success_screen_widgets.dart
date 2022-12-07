@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
@@ -134,15 +136,33 @@ class GoBackToSchemeDetailsButton extends StatelessWidget {
           Get.back();
           Get.back();
 
-          final mySchemesDetailsScreenController =
-              Get.find<MySchemesDetailsScreenController>();
-          final mySavingSchemesListScreenController =
-              Get.find<MySavingSchemesListScreenController>();
+          bool ifSavingSchemesDetailsController =
+              Get.isRegistered<MySchemesDetailsScreenController>();
 
-          mySchemesDetailsScreenController.getMySavingSchemeDetailsFunction();
+          log("ifSavingSchemesDetailsController is refreshing is :: $ifSavingSchemesDetailsController");
 
-          mySavingSchemesListScreenController
-              .getCustomerSavingSchemesListFunction();
+          if (ifSavingSchemesDetailsController) {
+            Get.back();
+            // final mySchemesDetailsScreenController =
+            //     Get.find<MySchemesDetailsScreenController>();
+
+            // mySchemesDetailsScreenController.getMySavingSchemeDetailsFunction();
+
+            bool ifSavingSchemesListController =
+                Get.isRegistered<MySavingSchemesListScreenController>();
+
+            log("ifSavingSchemesListController is refreshing is :: $ifSavingSchemesListController");
+            if (ifSavingSchemesListController) {
+              final mySavingSchemesListScreenController =
+                  Get.find<MySavingSchemesListScreenController>();
+              mySavingSchemesListScreenController
+                  .getCustomerSavingSchemesListFunction();
+            }
+            // final mySavingSchemesListPutController =
+            //     Get.lazyPut(() => MySavingSchemesListScreenController);
+            // final mySchemesDetailsPutController =
+            //     Get.lazyPut(() => MySchemesDetailsScreenController);
+          }
         },
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
@@ -153,6 +173,7 @@ class GoBackToSchemeDetailsButton extends StatelessWidget {
           child: Text(
             "GO BACK TO SCHEME DETAILS",
             style: TextStyle(
+              fontFamily: "Roboto-Medium",
               fontWeight: FontWeight.bold,
               fontSize: 12.sp,
               color: AppColors.whiteColor,
