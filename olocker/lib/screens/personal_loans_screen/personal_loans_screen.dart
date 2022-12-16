@@ -1,9 +1,9 @@
 import 'dart:developer';
 
+import 'package:another_stepper/dto/stepper_data.dart';
+import 'package:another_stepper/widgets/another_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:im_stepper/stepper.dart';
-// import 'package:im_stepper/stepper.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/personal_loans_screen_controller.dart';
 import 'package:olocker/utils/extensions.dart';
@@ -58,13 +58,13 @@ class PersonalLoansScreen extends StatelessWidget {
                 stepperList: personalLoansScreenController.stepperData,
                 stepperDirection: Axis.horizontal,
                 horizontalStepperHeight: personalLoansScreenController.size.height * 0.0090.h,
-                activeBarColor: AppColors.accentColor,
+                activeBarColor: AppColors.accentBGColor,
                 inActiveBarColor: AppColors.whiteColor,
                 activeIndex: personalLoansScreenController.currentStep.value,
                 barThickness: 4,
                 dotWidget: Container(
                   decoration: BoxDecoration(
-                    color: AppColors.accentColor,
+                    color: AppColors.accentBGColor,
                     shape: BoxShape.circle,
                   ),
                   child: Text(
@@ -82,86 +82,202 @@ class PersonalLoansScreen extends StatelessWidget {
                   decorationThickness: 0,
                 ),
               ),*/
-                    NumberStepper(
-                      numbers: const [1, 2, 3],
-                      activeStep:
-                          personalLoansScreenController.currentStep.value,
-                      activeStepColor: AppColors.accentColor,
-                      stepColor: AppColors.whiteColor,
-                      enableNextPreviousButtons: false,
-                      activeStepBorderColor: AppColors.accentColor,
-                      activeStepBorderWidth: 0,
-                      activeStepBorderPadding: 0,
-                      enableStepTapping: false,
-                      lineLength:
-                          personalLoansScreenController.size.width * 0.20,
-                      lineColor: AppColors.accentColor,
-                      stepReachedAnimationEffect: Curves.bounceInOut,
-                      lineDotRadius: 0.1,
-                      numberStyle: const TextStyle(fontWeight: FontWeight.w500),
-                      onStepReached: (i) {
-                        personalLoansScreenController.isLoading(true);
-                        personalLoansScreenController.currentStep.value = i;
-                        personalLoansScreenController.isLoading(false);
-                      },
-                    ),
+                    // NumberStepper(
+                    //   numbers: const [1, 2, 3],
+                    //   activeStep:
+                    //       personalLoansScreenController.currentStep.value,
+                    //   activeStepColor: AppColors.accentBGColor,
+                    //   stepColor: AppColors.whiteColor,
+                    //   enableNextPreviousButtons: false,
+                    //   activeStepBorderColor: AppColors.accentBGColor,
 
-                    // Stepper Step Text Module
-                    Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Text(
+                    //   activeStepBorderWidth: 5,
+
+                    //   activeStepBorderPadding: 0,
+                    //   enableStepTapping: false,
+                    //   lineLength: 22.w,
+                    //   lineColor: AppColors.accentBGColor,
+                    //   stepReachedAnimationEffect: Curves.bounceInOut,
+                    //   // lineDotRadius: 0,
+                    //   numberStyle: TextStyle(
+                    //     fontWeight: FontWeight.w500,
+                    //     color: AppColors.blackColor,
+                    //   ),
+                    //   onStepReached: (i) {
+                    //     personalLoansScreenController.isLoading(true);
+                    //     personalLoansScreenController.currentStep.value = i;
+                    //     personalLoansScreenController.isLoading(false);
+                    //   },
+                    // ),
+                    AnotherStepper(
+                      gap: 15.w,
+                      barThickness: 5,
+                      inverted: true,
+                      stepperDirection: Axis.horizontal,
+                      activeBarColor: AppColors.accentBGColor,
+                      inActiveBarColor: AppColors.whiteColor,
+                      activeIndex:
+                          personalLoansScreenController.currentStep.value,
+                      stepperList: [
+                        StepperData(
+                          title: StepperText(
                             'Check Eligibility',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: AppColors.accentColor,
-                              fontSize: 8.sp,
+                            textStyle: TextStyle(
+                              color: const Color(0xFFEC7773),
+                              height: 1.6,
+                              fontSize: 9.5.sp,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
+                          iconWidget: Container(
+                            height: 9.h,
+                            width: 9.h,
+                            decoration: BoxDecoration(
+                              color: AppColors.accentBGColor,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Center(
+                              child: Text(
+                                "1",
+                                style: TextStyle(
+                                  fontFamily: "Roboto",
+                                  color: AppColors.whiteColor,
+                                  fontSize: 22.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
-                        Expanded(
-                          child: Text(
+                        StepperData(
+                          title: StepperText(
                             'EMI Schedule',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: AppColors.accentColor,
-                              fontSize: 8.sp,
+                            textStyle: TextStyle(
+                              color: const Color(0xFFEC7773),
+                              height: 1.6,
+                              fontSize: 9.5.sp,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
+                          iconWidget: Container(
+                            height: 9.h,
+                            width: 9.h,
+                            decoration: BoxDecoration(
+                              color: personalLoansScreenController
+                                          .currentStep.value >=
+                                      1
+                                  ? AppColors.accentBGColor
+                                  : AppColors.whiteColor,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Center(
+                              child: Text(
+                                "2",
+                                style: TextStyle(
+                                  fontFamily: "Roboto",
+                                  color: personalLoansScreenController
+                                              .currentStep.value >=
+                                          1
+                                      ? AppColors.whiteColor
+                                      : AppColors.accentBGColor,
+                                  fontSize: 22.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
-                        Expanded(
-                          child: Text(
+                        StepperData(
+                          title: StepperText(
                             'Upload Documents',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: AppColors.accentColor,
-                              fontSize: 8.sp,
+                            textStyle: TextStyle(
+                              color: const Color(0xFFEC7773),
+                              height: 1.6,
+                              fontSize: 9.5.sp,
                               fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          iconWidget: Container(
+                            height: 9.h,
+                            width: 9.h,
+                            decoration: BoxDecoration(
+                              color: personalLoansScreenController
+                                          .currentStep.value ==
+                                      2
+                                  ? AppColors.accentBGColor
+                                  : AppColors.whiteColor,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Center(
+                              child: Text(
+                                "3",
+                                style: TextStyle(
+                                  fontFamily: "Roboto",
+                                  color: personalLoansScreenController
+                                              .currentStep.value ==
+                                          2
+                                      ? AppColors.whiteColor
+                                      : AppColors.accentBGColor,
+                                  fontSize: 22.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
                             ),
                           ),
                         ),
                       ],
                     ),
+                    // Stepper Step Text Module
+                    // Row(
+                    //   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     Expanded(
+                    //       child: Text(
+                    //         'Check Eligibility',
+                    //         textAlign: TextAlign.center,
+                    //         style: TextStyle(
+                    //           color: AppColors.accentBGColor,
+                    //           fontSize: 8.sp,
+                    //           fontWeight: FontWeight.w500,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Expanded(
+                    //       child: Text(
+                    //         'EMI Schedule',
+                    //         textAlign: TextAlign.center,
+                    //         style: TextStyle(
+                    //           color: AppColors.accentBGColor,
+                    //           fontSize: 8.sp,
+                    //           fontWeight: FontWeight.w500,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Expanded(
+                    //       child: Text(
+                    //         'Upload Documents',
+                    //         textAlign: TextAlign.center,
+                    //         style: TextStyle(
+                    //           color: AppColors.accentBGColor,
+                    //           fontSize: 8.sp,
+                    //           fontWeight: FontWeight.w500,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+
+                    // personalLoansScreenController.currentStep.value == 0
+                    //     ? GetLoanContainerModule()
+                    //     : const SizedBox(),
 
                     // Stepper Details Module
-                    Container(
-                      decoration: BoxDecoration(
-                        color:
-                            personalLoansScreenController.currentStep.value == 1
-                                ? null
-                                : AppColors.whiteColor,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: personalLoansScreenController.currentStep.value ==
-                              0
-                          ? StepOneFormModule()
-                          : personalLoansScreenController.currentStep.value == 1
-                              ? StepTwoFormModule()
-                              : StepThreeFormModule(),
-                    ).commonAllSidePadding(20),
+
+                    personalLoansScreenController.currentStep.value == 0
+                        ? StepOneFormModule()
+                        : personalLoansScreenController.currentStep.value == 1
+                            ? StepTwoFormModule()
+                            : StepThreeFormModule(),
 
                     personalLoansScreenController.currentStep.value == 2
                         ? GestureDetector(
@@ -190,21 +306,25 @@ class PersonalLoansScreen extends StatelessWidget {
                               }
                             },
                             child: Container(
+                              padding: const EdgeInsets.symmetric(vertical: 15),
                               decoration: BoxDecoration(
-                                color: AppColors.accentColor,
+                                color: AppColors.accentBGColor,
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              child: const Center(
+                              child: Center(
                                 child: Text(
                                   'SUBMIT',
                                   style: TextStyle(
                                     color: AppColors.whiteColor,
+                                    fontFamily: "Roboto",
+                                    fontSize: 12.sp,
                                   ),
                                 ),
-                              ).commonSymmetricPadding(vertical: 12),
+                              ),
                             ),
-                          ).commonSymmetricPadding(horizontal: 20, vertical: 15)
+                          ).commonSymmetricPadding(horizontal: 20)
                         : Container(),
+                    const SizedBox(height: 20)
                   ],
                 ),
               ),

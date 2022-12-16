@@ -60,7 +60,7 @@ class AuthScreen extends StatelessWidget {
                   Image.asset(
                     AppIcons.mobileIcon,
                     color: AppColors.whiteColor,
-                    height: 32,
+                    height: 18.sp,
                   ),
                   SizedBox(width: 6.w),
                   Text(
@@ -68,8 +68,8 @@ class AuthScreen extends StatelessWidget {
                     style: TextStyle(
                       color: AppColors.whiteColor,
                       fontFamily: "Acephimere",
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ],
@@ -91,7 +91,7 @@ class AuthScreen extends StatelessWidget {
                   color: AppColors.blackColor,
                   fontFamily: "Acephimere",
                   fontSize: 14.sp,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ).commonSymmetricPadding(

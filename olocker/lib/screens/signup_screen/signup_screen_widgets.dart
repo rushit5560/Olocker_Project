@@ -73,7 +73,7 @@ class NameFieldRow extends StatelessWidget {
       height: 60,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.greyColor.withOpacity(0.3),
+        color: AppColors.greyTextColor.withOpacity(0.3),
         borderRadius: const BorderRadius.all(
           Radius.circular(8),
         ),
@@ -94,16 +94,19 @@ class NameFieldRow extends StatelessWidget {
               width: 15.w,
               child: DropdownButton<String>(
                 isDense: true,
-                icon: const SizedBox(),
+                icon: const Icon(Icons.keyboard_arrow_down_rounded),
+                iconSize: 14.sp,
+                iconEnabledColor: AppColors.accentColor,
                 hint: Text(
                   signUpScreenController.namePrefixDDvalue.value,
                   style: TextStyle(
-                    color: AppColors.greyColor,
+                    color: AppColors.greyTextColor,
                     fontFamily: "Acephimere",
                     fontSize: 11.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
+                alignment: Alignment.center,
                 items: signUpScreenController.namePrefixItems
                     .map((item) => DropdownMenuItem<String>(
                           value: item,
@@ -136,7 +139,7 @@ class NameFieldRow extends StatelessWidget {
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 hintStyle:
-                    TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+                    TextStyle(color: AppColors.greyTextColor, fontSize: 11.sp),
               ),
             ),
           ),
@@ -154,7 +157,7 @@ class NameFieldRow extends StatelessWidget {
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 hintStyle:
-                    TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+                    TextStyle(color: AppColors.greyTextColor, fontSize: 11.sp),
               ),
             ),
           ),
@@ -178,7 +181,7 @@ class EmailField extends StatelessWidget {
       height: 60,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.greyColor.withOpacity(0.3),
+        color: AppColors.greyTextColor.withOpacity(0.3),
         borderRadius: const BorderRadius.all(
           Radius.circular(8),
         ),
@@ -208,7 +211,7 @@ class EmailField extends StatelessWidget {
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 hintStyle:
-                    TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+                    TextStyle(color: AppColors.greyTextColor, fontSize: 11.sp),
               ),
             ),
           ),
@@ -232,7 +235,7 @@ class MobileNumberField extends StatelessWidget {
       height: 60,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.greyColor.withOpacity(0.3),
+        color: AppColors.greyTextColor.withOpacity(0.3),
         borderRadius: const BorderRadius.all(
           Radius.circular(8),
         ),
@@ -274,7 +277,7 @@ class MobileNumberField extends StatelessWidget {
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 hintStyle:
-                    TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+                    TextStyle(color: AppColors.greyTextColor, fontSize: 11.sp),
               ),
             ),
           ),
@@ -298,7 +301,7 @@ class EnterCodeField extends StatelessWidget {
       height: 60,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.greyColor.withOpacity(0.3),
+        color: AppColors.greyTextColor.withOpacity(0.3),
         borderRadius: const BorderRadius.all(
           Radius.circular(8),
         ),
@@ -329,7 +332,7 @@ class EnterCodeField extends StatelessWidget {
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 hintStyle:
-                    TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+                    TextStyle(color: AppColors.greyTextColor, fontSize: 11.sp),
               ),
             ),
           ),

@@ -10,6 +10,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../controllers/mobile_number_screen_controller.dart';
 import '../../widgets/common_buttons.dart';
+import '../../widgets/common_widgets.dart';
 
 class MobileNumberScreen extends StatelessWidget {
   MobileNumberScreen({Key? key}) : super(key: key);
@@ -72,42 +73,67 @@ class MobileNumberScreen extends StatelessWidget {
                     SizedBox(height: 2.h),
                     Form(
                       key: mobileNumberScreenController.formKey,
-                      child: TextFormField(
-                        textAlign: TextAlign.center,
-                        keyboardType: TextInputType.number,
-                        style: TextStyle(
-                          color: AppColors.blackTextColor,
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(10),
-                        ],
-                        controller:
-                            mobileNumberScreenController.numberController,
-                        validator: (value) =>
-                            FieldValidator().validateMobileNumber(value!),
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        textInputAction: TextInputAction.done,
-                        decoration: InputDecoration(
-                          hintText: "Enter your mobile number",
-                          hintStyle: TextStyle(
-                            color: AppColors.greyColor,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 5.w),
+                        child: TextFormField(
+                          textAlign: TextAlign.left,
+                          keyboardType: TextInputType.number,
+                          style: TextStyle(
+                            color: AppColors.blackColor,
                             fontFamily: "Acephimere",
-                            fontSize: 13.sp,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 0.6,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.2,
                           ),
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(10),
+                          ],
+                          controller:
+                              mobileNumberScreenController.numberController,
+                          validator: (value) =>
+                              FieldValidator().validateMobileNumber(value!),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          textInputAction: TextInputAction.done,
+                          decoration: InputDecoration(
+                            hintText: "Enter your mobile number",
+                            prefix: Text(
+                              "+91 - ",
+                              style: TextStyle(
+                                color: AppColors.blackColor,
+                                fontFamily: "Acephimere",
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.2,
+                              ),
+                            ),
+                            hintStyle: TextStyle(
+                              color: AppColors.greyColor,
+                              fontFamily: "Acephimere",
+                              fontSize: 13.sp,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 0.6,
+                            ),
+                          ),
+                        ).commonSymmetricPadding(
+                          horizontal: 10.w,
                         ),
-                      ).commonSymmetricPadding(
-                        horizontal: 10.w,
                       ),
                     ),
                     SizedBox(height: 2.h),
                     RectangleRoundedButton(
                       buttonColor: AppColors.accentColor,
                       onPressed: () {
-                        mobileNumberScreenController.userLoginFunction(context);
+                        if (mobileNumberScreenController
+                            .termConditionCheckValue.value) {
+                          mobileNumberScreenController
+                              .userLoginFunction(context);
+                        } else {
+                          CommonWidgets().showBorderSnackBar(
+                            context: context,
+                            displayText:
+                                "Please accept our terms and conditions to move forward.",
+                          );
+                        }
                       },
                       centerChild: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -119,7 +145,7 @@ class MobileNumberScreen extends StatelessWidget {
                             style: TextStyle(
                               color: AppColors.whiteColor,
                               fontFamily: "Acephimere",
-                              fontSize: 15.sp,
+                              fontSize: 13.sp,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
@@ -128,14 +154,78 @@ class MobileNumberScreen extends StatelessWidget {
                           Icon(
                             Icons.arrow_forward_rounded,
                             color: AppColors.whiteColor,
-                            size: 20.sp,
+                            size: 17.sp,
                           ),
                         ],
                       ),
                     ).commonSymmetricPadding(
-                      horizontal: 3.w,
+                      horizontal: 5.w,
                       vertical: 1.5.h,
                     ),
+                    SizedBox(height: 2.h),
+                    Obx(
+                      () => Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 12.w),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 28,
+                              width: 28,
+
+                              // decoration: BoxDecoration(
+                              //   borderRadius: BorderRadius.circular(5),
+                              //   // border: Border.all(
+                              //   //   color: AppColors.blueDarkColor,
+                              //   //   width: 1,
+                              //   // ),
+                              // ),
+                              child: Checkbox(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                fillColor: MaterialStateProperty.resolveWith(
+                                    (states) => AppColors.accentBGColor),
+                                activeColor: AppColors.lightBrownBgColor,
+                                checkColor: AppColors.whiteColor,
+                                value: mobileNumberScreenController
+                                    .termConditionCheckValue.value,
+                                onChanged: (value) {
+                                  mobileNumberScreenController
+                                          .termConditionCheckValue.value =
+                                      !mobileNumberScreenController
+                                          .termConditionCheckValue.value;
+                                  // _isChecked = value!;
+                                },
+                              ),
+                            ),
+                            SizedBox(width: 1.5.w),
+                            RichText(
+                              text: TextSpan(
+                                text: "I hereby agree to the ",
+                                style: TextStyle(
+                                  fontSize: 9.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.greyColor,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text: "Terms & Conditions",
+                                    style: TextStyle(
+                                      fontSize: 9.sp,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.blackColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 4.h),
                   ],
                 ),
               ),

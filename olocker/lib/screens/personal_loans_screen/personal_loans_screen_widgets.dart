@@ -7,11 +7,73 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:olocker/constants/app_colors.dart';
+import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/personal_loans_screen_controller.dart';
 import 'package:olocker/models/personal_loans_screen_model/check_availability_model.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/utils/field_validation.dart';
 import 'package:sizer/sizer.dart';
+
+class GetLoanContainerModule extends StatelessWidget {
+  GetLoanContainerModule({Key? key}) : super(key: key);
+  final screenController = Get.find<PersonalLoansScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 8.w),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(
+              Radius.circular(10),
+            ),
+            color: AppColors.whiteColor,
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                flex: 70,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "CASH GIFTS",
+                      style: TextStyle(
+                        color: AppColors.whiteColor,
+                        fontSize: 20.sp,
+                        fontFamily: "latoregular",
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      "FOR ₹1L JEWELLERY",
+                      style: TextStyle(
+                        color: AppColors.whiteColor,
+                        fontSize: 12.sp,
+                        fontFamily: "latoregular",
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 30,
+                child: Image.asset(
+                  AppImages.joyWomenImage,
+                  height: 10.h,
+                ),
+              )
+            ],
+          ),
+        ),
+        SizedBox(height: 2.h),
+      ],
+    );
+  }
+}
 
 class StepOneFormModule extends StatelessWidget {
   StepOneFormModule({Key? key}) : super(key: key);
@@ -19,82 +81,176 @@ class StepOneFormModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: screenController.stepOneFormKey,
-      child: Column(
-        children: [
-          Text(
-            'Your personal data',
-            style: TextStyle(
-              fontSize: 14.sp,
-              fontFamily: "Roboto",
-              fontWeight: FontWeight.bold,
-              color: AppColors.blueDarkColor,
-            ),
+    return Column(
+      children: [
+        Container(
+          margin: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+          decoration: BoxDecoration(
+            color: AppColors.whiteColor,
+            borderRadius: BorderRadius.circular(10),
           ),
-          SizedBox(height: 1.5.h),
-          Text(
-            'Your personal data will be shared with the relevant jeweller who will offer EMI option to buy jewellery',
-            textAlign: TextAlign.left,
-            style: TextStyle(
-              fontSize: 9.5.sp,
-              fontFamily: "Roboto",
-              color: AppColors.greyTextColor,
-            ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Image.asset(
+                AppImages.walletImage,
+                height: 45,
+                width: 40,
+              ),
+              SizedBox(width: 4.w),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Your Pre approved loan is",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 11.5.sp,
+                      color: AppColors.greyColor,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "₹ 100000",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 24.sp,
+                          color: AppColors.accentColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(width: 20),
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: Text(
+                          "GET LOAN",
+                          style: TextStyle(
+                            fontSize: 11.sp,
+                            fontFamily: "Roboto",
+                            color: AppColors.whiteColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
           ),
-          SizedBox(height: 2.5.h),
-          _fLNameModule(),
-          const SizedBox(height: 10),
-          _birthDateModule(context),
-          const SizedBox(height: 10),
-          _mobileNumberModule(),
-          const SizedBox(height: 10),
-          _emailIdModule(),
-          const SizedBox(height: 10),
-          _residentialPinCodeModule(),
-          const SizedBox(height: 10),
-          _panNumberModule(),
-          const SizedBox(height: 10),
-          _loanNeededModule(),
-          const SizedBox(height: 15),
-          _loanAmountSliderModule(),
-          const SizedBox(height: 10),
-          _salariedModule(),
-          const SizedBox(height: 10),
-          Text(
-            'Kindly note : Your salary must be coming directly to your bank account via bank transfer',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 9.5.sp,
-              fontFamily: "Roboto",
-              color: AppColors.greyColor,
-            ),
+        ),
+        // SizedBox(height: 1.h),
+        Container(
+          margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+          // .all(20),
+          // padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: screenController.currentStep.value == 1
+                ? null
+                : AppColors.whiteColor,
+            borderRadius: BorderRadius.circular(10),
           ),
-          SizedBox(height: screenController.size.height * 0.0030.h),
-          _monthlyIncomeModule(),
-          const SizedBox(height: 10),
-          _employerNameModule(),
-          const SizedBox(height: 10),
-          _currentTotalEmiModule(),
-          const SizedBox(height: 10),
-          _whichBankModule(),
-          const SizedBox(height: 10),
-          _homeLoanModule(),
-          const SizedBox(height: 20),
-          _submitButton(context),
-          const SizedBox(height: 10),
-        ],
-      ).commonAllSidePadding(16),
+          child: Column(
+            children: [
+              Form(
+                key: screenController.stepOneFormKey,
+                child: Column(
+                  children: [
+                    Text(
+                      'Your personal data',
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        fontFamily: "Roboto",
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.blueDarkColor,
+                      ),
+                    ),
+                    SizedBox(height: 1.5.h),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Text(
+                        'Your personal data will be shared with the relevant jeweller who will offer EMI option to buy jewellery',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 11.sp,
+                          fontFamily: "Roboto",
+                          color: AppColors.greyColor,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 2.5.h),
+                    _fLNameModule(),
+                    const SizedBox(height: 10),
+                    _birthDateModule(context),
+                    const SizedBox(height: 10),
+                    _mobileNumberModule(),
+                    const SizedBox(height: 10),
+                    _emailIdModule(),
+                    const SizedBox(height: 10),
+                    _residentialPinCodeModule(),
+                    const SizedBox(height: 10),
+                    _panNumberModule(),
+                    const SizedBox(height: 10),
+                    _loanNeededModule(),
+                    const SizedBox(height: 15),
+                    _loanAmountSliderModule(),
+                    const SizedBox(height: 10),
+                    _salariedModule(),
+                    // Row(
+                    //   children: [
+                    //     _salariedModule(),
+                    //     _selfEmployedModule(),
+                    //   ],
+                    // ),
+                    const SizedBox(height: 10),
+                    Text(
+                      'Kindly note : Your salary must be coming directly to your bank account via bank transfer',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 9.5.sp,
+                        fontFamily: "Roboto",
+                        color: AppColors.greyColor,
+                      ),
+                    ),
+                    SizedBox(height: screenController.size.height * 0.0030.h),
+                    _monthlyIncomeModule(),
+                    const SizedBox(height: 10),
+                    _employerNameModule(),
+                    const SizedBox(height: 10),
+                    _currentTotalEmiModule(),
+                    const SizedBox(height: 10),
+                    _whichBankModule(),
+                    const SizedBox(height: 10),
+                    _homeLoanModule(),
+                    const SizedBox(height: 20),
+                    _submitButton(context),
+                    const SizedBox(height: 10),
+                  ],
+                ).commonAllSidePadding(16),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
   Widget _fLNameModule() {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
       // height: 45,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.greyColor.withOpacity(0.3),
+        color: AppColors.greyColor.withOpacity(0.2),
         borderRadius: const BorderRadius.all(
           Radius.circular(8),
         ),
@@ -108,12 +264,16 @@ class StepOneFormModule extends StatelessWidget {
               width: 15.w,
               child: DropdownButton<String>(
                 isDense: true,
-                // icon: const SizedBox(),
+                icon: Icon(
+                  Icons.keyboard_arrow_down_rounded,
+                  color: AppColors.accentColor,
+                  size: 18.sp,
+                ),
                 hint: Text(
                   screenController.namePrefixDDValue.value,
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    color: AppColors.blackColor,
+                    color: AppColors.greyColor,
                     fontSize: 10.sp,
                     fontWeight: FontWeight.w500,
                   ),
@@ -125,6 +285,7 @@ class StepOneFormModule extends StatelessWidget {
                             item,
                             style: TextStyle(
                               fontFamily: "Roboto",
+                              color: AppColors.greyColor,
                               fontSize: 10.sp,
                             ),
                           ),
@@ -198,10 +359,10 @@ class StepOneFormModule extends StatelessWidget {
   Widget _birthDateModule(BuildContext context) {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.greyColor.withOpacity(0.3),
+        color: AppColors.greyColor.withOpacity(0.2),
         borderRadius: const BorderRadius.all(Radius.circular(8)),
       ),
       child: Center(
@@ -315,10 +476,10 @@ class StepOneFormModule extends StatelessWidget {
   Widget _mobileNumberModule() {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.greyColor.withOpacity(0.3),
+        color: AppColors.greyColor.withOpacity(0.2),
         borderRadius: const BorderRadius.all(Radius.circular(8)),
       ),
       child: Center(
@@ -347,10 +508,10 @@ class StepOneFormModule extends StatelessWidget {
   Widget _emailIdModule() {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.greyColor.withOpacity(0.3),
+        color: AppColors.greyColor.withOpacity(0.2),
         borderRadius: const BorderRadius.all(Radius.circular(8)),
       ),
       child: Center(
@@ -377,10 +538,10 @@ class StepOneFormModule extends StatelessWidget {
   Widget _residentialPinCodeModule() {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.greyColor.withOpacity(0.3),
+        color: AppColors.greyColor.withOpacity(0.2),
         borderRadius: const BorderRadius.all(Radius.circular(8)),
       ),
       child: Center(
@@ -411,10 +572,10 @@ class StepOneFormModule extends StatelessWidget {
   Widget _panNumberModule() {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.greyColor.withOpacity(0.3),
+        color: AppColors.greyColor.withOpacity(0.2),
         borderRadius: const BorderRadius.all(Radius.circular(8)),
       ),
       child: Center(
@@ -442,29 +603,30 @@ class StepOneFormModule extends StatelessWidget {
   Widget _loanNeededModule() {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
       width: double.infinity,
       // decoration: BoxDecoration(
-      //   color: AppColors.greyColor.withOpacity(0.3),
+      //   color: AppColors.greyColor.withOpacity(0.2),
       //   borderRadius: const BorderRadius.all(Radius.circular(8)),
       // ),
       child: Row(
         children: [
           Expanded(
-            flex: 35,
+            flex: 55,
             child: Text(
               'Loan Needed',
               style: TextStyle(
-                fontSize: 10.sp,
+                fontSize: 11.sp,
                 color: AppColors.greyColor,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),
           Expanded(
-            flex: 65,
+            flex: 50,
             child: Container(
               // height: 45,
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: Colors.grey.shade500),
@@ -507,7 +669,7 @@ class StepOneFormModule extends StatelessWidget {
   Widget _loanAmountSliderModule() {
     return SizedBox(
       // height: 30,
-      // padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      // padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 12),
       width: double.infinity,
       child: Column(
         children: [
@@ -534,11 +696,19 @@ class StepOneFormModule extends StatelessWidget {
             children: [
               Text(
                 '₹ 0',
-                style: TextStyle(fontSize: 9.sp),
+                style: TextStyle(
+                  fontSize: 10.sp,
+                  color: AppColors.greyColor,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               Text(
                 '₹15 L',
-                style: TextStyle(fontSize: 9.sp),
+                style: TextStyle(
+                  fontSize: 10.sp,
+                  color: AppColors.greyColor,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ],
           ).commonSymmetricPadding(horizontal: 20),
@@ -560,13 +730,28 @@ class StepOneFormModule extends StatelessWidget {
     );
   }
 
+  // Widget _selfEmployedModule() {
+  //   return Expanded(
+  //     child: RadioListTile(
+  //       title: const Text("Self Employed"),
+  //       value: "SelfEmployed",
+  //       groupValue: screenController.salariedValue.value,
+  //       onChanged: (value) {
+  //         screenController.isLoading(true);
+  //         screenController.salariedValue.value = value.toString();
+  //         screenController.isLoading(false);
+  //       },
+  //     ),
+  //   );
+  // }
+
   Widget _monthlyIncomeModule() {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.greyColor.withOpacity(0.3),
+        color: AppColors.greyColor.withOpacity(0.2),
         borderRadius: const BorderRadius.all(Radius.circular(8)),
       ),
       child: Center(
@@ -593,10 +778,10 @@ class StepOneFormModule extends StatelessWidget {
   Widget _employerNameModule() {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.greyColor.withOpacity(0.3),
+        color: AppColors.greyColor.withOpacity(0.2),
         borderRadius: const BorderRadius.all(Radius.circular(8)),
       ),
       child: Center(
@@ -623,10 +808,10 @@ class StepOneFormModule extends StatelessWidget {
   Widget _currentTotalEmiModule() {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.greyColor.withOpacity(0.3),
+        color: AppColors.greyColor.withOpacity(0.2),
         borderRadius: const BorderRadius.all(Radius.circular(8)),
       ),
       child: Center(
@@ -654,10 +839,10 @@ class StepOneFormModule extends StatelessWidget {
   Widget _whichBankModule() {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.greyColor.withOpacity(0.3),
+        color: AppColors.greyColor.withOpacity(0.2),
         borderRadius: const BorderRadius.all(Radius.circular(8)),
       ),
       child: Center(
@@ -748,8 +933,9 @@ class StepOneFormModule extends StatelessWidget {
         }
       },
       child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 15),
         decoration: BoxDecoration(
-          color: AppColors.accentColor,
+          color: AppColors.accentBGColor,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Center(
@@ -761,7 +947,7 @@ class StepOneFormModule extends StatelessWidget {
               fontSize: 12.sp,
             ),
           ),
-        ).commonSymmetricPadding(vertical: 12),
+        ),
       ),
     );
   }
@@ -773,126 +959,138 @@ class StepTwoFormModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ListView.builder(
-          itemCount: screenController.emiScheduleList.length,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, i) {
-            EmiTenorOption singleItem = screenController.emiScheduleList[i];
-            return GestureDetector(
-              onTap: () {
-                screenController.isLoading(true);
-                screenController.selectedListItem = i;
-                screenController.selectedMonth =
-                    singleItem.tenorMonth.toString();
-                screenController.selectedEligibleEmiAmount =
-                    singleItem.emiEligibleAmount.toString();
-                screenController.isLoading(false);
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.whiteColor,
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: screenController.selectedListItem == i
-                        ? AppColors.accentColor
-                        : Colors.transparent,
-                    width: screenController.selectedListItem == i ? 3 : 0,
-                  ),
-                ),
-                child: Stack(
-                  alignment: Alignment.topRight,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 13),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Text(
-                            'LOAN AMOUNT ₹ ${singleItem.emiEligibleAmount}',
-                            style: TextStyle(
-                              color: AppColors.accentColor,
-                              fontSize: 9.sp,
-                            ),
-                          ),
-                          Text(
-                            'YOUR EMI',
-                            style: TextStyle(
-                              color: AppColors.greyColor,
-                              fontSize: 7.sp,
-                            ),
-                          ).commonSymmetricPadding(vertical: 3),
-                          Text(
-                            '₹ ${singleItem.emiMonthlyLow} - ₹ ${singleItem.emiMonthlyHigh}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 13.sp,
-                            ),
-                          ),
-                        ],
-                      ),
+    return Container(
+      margin: const EdgeInsets.all(20),
+      // padding: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: screenController.currentStep.value == 1
+            ? null
+            : AppColors.whiteColor,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        children: [
+          ListView.builder(
+            itemCount: screenController.emiScheduleList.length,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, i) {
+              EmiTenorOption singleItem = screenController.emiScheduleList[i];
+              return GestureDetector(
+                onTap: () {
+                  screenController.isLoading(true);
+                  screenController.selectedListItem = i;
+                  screenController.selectedMonth =
+                      singleItem.tenorMonth.toString();
+                  screenController.selectedEligibleEmiAmount =
+                      singleItem.emiEligibleAmount.toString();
+                  screenController.isLoading(false);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.whiteColor,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: screenController.selectedListItem == i
+                          ? AppColors.accentColor
+                          : Colors.transparent,
+                      width: screenController.selectedListItem == i ? 3 : 0,
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 6),
-                      decoration: const BoxDecoration(
-                        color: Color(0xff052a47),
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(8),
-                          bottomLeft: Radius.circular(8),
+                  ),
+                  child: Stack(
+                    alignment: Alignment.topRight,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 13),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Text(
+                              'LOAN AMOUNT ₹ ${singleItem.emiEligibleAmount}',
+                              style: TextStyle(
+                                color: AppColors.accentColor,
+                                fontSize: 9.sp,
+                              ),
+                            ),
+                            Text(
+                              'YOUR EMI',
+                              style: TextStyle(
+                                color: AppColors.greyColor,
+                                fontSize: 7.sp,
+                              ),
+                            ).commonSymmetricPadding(vertical: 3),
+                            Text(
+                              '₹ ${singleItem.emiMonthlyLow} - ₹ ${singleItem.emiMonthlyHigh}',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13.sp,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      child: Column(
-                        children: [
-                          Text(
-                            singleItem.tenorMonth,
-                            style: TextStyle(
-                              color: AppColors.whiteColor,
-                              fontSize: 9.sp,
-                            ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 3),
+                        decoration: const BoxDecoration(
+                          color: Color(0xff052a47),
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(8),
+                            bottomLeft: Radius.circular(8),
                           ),
-                          SizedBox(height: 2),
-                          Text(
-                            'MONTHS',
-                            style: TextStyle(
-                              color: AppColors.whiteColor,
-                              fontSize: 6.sp,
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              singleItem.tenorMonth,
+                              style: TextStyle(
+                                color: AppColors.whiteColor,
+                                fontSize: 12.sp,
+                              ),
                             ),
-                          ),
-                        ],
+                            const SizedBox(height: 2),
+                            Text(
+                              'MONTHS',
+                              style: TextStyle(
+                                color: AppColors.whiteColor,
+                                fontSize: 6.sp,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ).commonSymmetricPadding(vertical: 8),
-            );
-          },
-        ),
-        SizedBox(height: screenController.size.height * 0.003.h),
-        GestureDetector(
-          onTap: () async {
-            await screenController.emiScheduleFunction();
-          },
-          child: Container(
-            decoration: BoxDecoration(
-              color: AppColors.accentColor,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: const Center(
-              child: Text(
-                'SUBMIT',
-                style: TextStyle(
-                  fontFamily: "Roboto",
-                  color: AppColors.whiteColor,
+                    ],
+                  ),
+                ).commonSymmetricPadding(vertical: 8),
+              );
+            },
+          ),
+          SizedBox(height: screenController.size.height * 0.003.h),
+          GestureDetector(
+            onTap: () async {
+              await screenController.emiScheduleFunction();
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 15),
+              decoration: BoxDecoration(
+                color: AppColors.accentBGColor,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Center(
+                child: Text(
+                  'SUBMIT',
+                  style: TextStyle(
+                    color: AppColors.whiteColor,
+                    fontFamily: "Roboto",
+                    fontSize: 12.sp,
+                  ),
                 ),
               ),
-            ).commonSymmetricPadding(vertical: 12),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -903,34 +1101,49 @@ class StepThreeFormModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          'For quick processing kindly upload your documents online. '
-          'Documents needed - PAN card, Aadhaar card, Proof of address, '
-          'Salary slips, Bank statement.',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 8.5.sp,
-            fontStyle: FontStyle.italic,
-            fontFamily: "Roboto",
+    return Container(
+      margin: const EdgeInsets.all(20),
+      // padding: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: screenController.currentStep.value == 1
+            ? null
+            : AppColors.whiteColor,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              'For quick processing kindly upload your documents online. '
+              'Documents needed - PAN card, Aadhaar card, Proof of address, '
+              'Salary slips, Bank statement.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 10.sp,
+                fontStyle: FontStyle.italic,
+                color: AppColors.greyDarkColor,
+                fontFamily: "Roboto",
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ),
-        ),
-        SizedBox(height: screenController.size.height * 0.005.h),
-        _panCardModule(),
-        SizedBox(height: screenController.size.height * 0.005.h),
-        _aadhaarCardModule(),
-        SizedBox(height: screenController.size.height * 0.005.h),
-        _addressProofModule(),
-        SizedBox(height: screenController.size.height * 0.005.h),
-        _bankStatementModule(),
-        SizedBox(height: screenController.size.height * 0.005.h),
-        _salarySlipsModule(),
-        SizedBox(height: screenController.size.height * 0.005.h),
-        _rentAgreementModule(),
-        SizedBox(height: screenController.size.height * 0.005.h),
-      ],
-    ).commonAllSidePadding(16);
+          SizedBox(height: screenController.size.height * 0.005.h),
+          _panCardModule(),
+          SizedBox(height: screenController.size.height * 0.005.h),
+          _aadhaarCardModule(),
+          SizedBox(height: screenController.size.height * 0.005.h),
+          _addressProofModule(),
+          SizedBox(height: screenController.size.height * 0.005.h),
+          _bankStatementModule(),
+          SizedBox(height: screenController.size.height * 0.005.h),
+          _salarySlipsModule(),
+          SizedBox(height: screenController.size.height * 0.005.h),
+          _rentAgreementModule(),
+          SizedBox(height: screenController.size.height * 0.005.h),
+        ],
+      ).commonAllSidePadding(16),
+    );
   }
 
   Widget _panCardModule() {
@@ -985,10 +1198,11 @@ class StepThreeFormModule extends StatelessWidget {
         Expanded(
           child: screenController.panCardFile.path.isNotEmpty
               ? const Text(
-                  'Successful',
+                  'SUCCESSFUL',
                   style: TextStyle(
                     color: AppColors.greenColor,
                     fontFamily: "Roboto",
+                    fontWeight: FontWeight.bold,
                   ),
                 )
               : GestureDetector(
@@ -1081,10 +1295,11 @@ class StepThreeFormModule extends StatelessWidget {
         Expanded(
           child: screenController.aadhaarCardFile.path.isNotEmpty
               ? const Text(
-                  'Successful',
+                  'SUCCESSFUL',
                   style: TextStyle(
-                    fontFamily: "Roboto",
                     color: AppColors.greenColor,
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.bold,
                   ),
                 )
               : GestureDetector(
@@ -1176,10 +1391,11 @@ class StepThreeFormModule extends StatelessWidget {
         Expanded(
           child: screenController.addressProofFile.path.isNotEmpty
               ? const Text(
-                  'Successful',
+                  'SUCCESSFUL',
                   style: TextStyle(
                     color: AppColors.greenColor,
                     fontFamily: "Roboto",
+                    fontWeight: FontWeight.bold,
                   ),
                 )
               : GestureDetector(
@@ -1288,10 +1504,11 @@ class StepThreeFormModule extends StatelessWidget {
             Expanded(
               child: screenController.bankStatementFile.path.isNotEmpty
                   ? const Text(
-                      'Successful',
+                      'SUCCESSFUL',
                       style: TextStyle(
                         color: AppColors.greenColor,
                         fontFamily: "Roboto",
+                        fontWeight: FontWeight.bold,
                       ),
                     )
                   : GestureDetector(
@@ -1428,10 +1645,11 @@ class StepThreeFormModule extends StatelessWidget {
             Expanded(
               child: screenController.salarySlipsFile.path.isNotEmpty
                   ? const Text(
-                      'Successful',
+                      'SUCCESSFUL',
                       style: TextStyle(
                         color: AppColors.greenColor,
                         fontFamily: "Roboto",
+                        fontWeight: FontWeight.bold,
                       ),
                     )
                   : GestureDetector(
@@ -1551,10 +1769,11 @@ class StepThreeFormModule extends StatelessWidget {
         Expanded(
           child: screenController.rentAgreementFile.path.isNotEmpty
               ? const Text(
-                  'Successful',
+                  'SUCCESSFUL',
                   style: TextStyle(
-                    fontFamily: "Roboto",
                     color: AppColors.greenColor,
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.bold,
                   ),
                 )
               : GestureDetector(

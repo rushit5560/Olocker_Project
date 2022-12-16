@@ -22,6 +22,7 @@ class MobileNumberScreenController extends GetxController {
   final formKey = GlobalKey<FormState>();
 
   ApiHeader apiHeader = ApiHeader();
+  RxBool termConditionCheckValue = false.obs;
 
   Future<void> userLoginFunction(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

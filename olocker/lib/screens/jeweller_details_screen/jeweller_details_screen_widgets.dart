@@ -32,39 +32,101 @@ class JewellerFeaturesModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      decoration: BoxDecoration(
         border: Border(
-          top: BorderSide(color: Colors.grey),
-          bottom: BorderSide(color: Colors.grey),
+          top: BorderSide(
+            color: AppColors.greyTextColor.withOpacity(0.35),
+          ),
+          bottom: BorderSide(
+            color: AppColors.greyTextColor.withOpacity(0.35),
+          ),
         ),
       ),
       child: Row(
         children: [
           Expanded(
-            child: Text(
-              screenController.specialFeaturesList[0].feature.toString(),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: Colors.grey, fontSize: 10.sp),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Row(
+                children: [
+                  CachedNetworkImage(
+                    imageUrl: ApiUrl.apiImagePath +
+                        screenController.specialFeaturesList[0].iconUrl,
+                    color: AppColors.accentColor,
+                    height: 20.sp,
+                    width: 20.sp,
+                  ),
+                  SizedBox(width: 2.w),
+                  Expanded(
+                    child: Text(
+                      screenController.specialFeaturesList[0].feature
+                          .toString(),
+                      textAlign: TextAlign.left,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 9.sp,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           Expanded(
-            child: Text(
-              screenController.specialFeaturesList[1].feature.toString(),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: Colors.grey, fontSize: 10.sp),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Row(
+                children: [
+                  CachedNetworkImage(
+                    imageUrl: ApiUrl.apiImagePath +
+                        screenController.specialFeaturesList[1].iconUrl,
+                    color: AppColors.accentColor,
+                    height: 20.sp,
+                    width: 20.sp,
+                  ),
+                  SizedBox(width: 2.w),
+                  Expanded(
+                    child: Text(
+                      screenController.specialFeaturesList[1].feature
+                          .toString(),
+                      textAlign: TextAlign.left,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(color: Colors.grey, fontSize: 9.sp),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           Expanded(
-            child: Text(
-              screenController.specialFeaturesList[2].feature.toString(),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: Colors.grey, fontSize: 10.sp),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Row(
+                children: [
+                  CachedNetworkImage(
+                    imageUrl: ApiUrl.apiImagePath +
+                        screenController.specialFeaturesList[2].iconUrl,
+                    color: AppColors.accentColor,
+                    height: 20.sp,
+                    width: 20.sp,
+                  ),
+                  SizedBox(width: 2.w),
+                  Expanded(
+                    child: Text(
+                      screenController.specialFeaturesList[2].feature
+                          .toString(),
+                      textAlign: TextAlign.left,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(color: Colors.grey, fontSize: 9.sp),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -95,7 +157,7 @@ class JewellerBannerModule extends StatelessWidget {
             onPageChanged: ((index, reason) {
               screenController.bannerCurrentIndex.value = index;
             }),
-            height: 26.h,
+            height: 28.h,
             autoPlay: true,
             viewportFraction: 1,
             // autoPlayAnimationDuration: const Duration(seconds: 10),
@@ -168,7 +230,7 @@ class JewellerBannerModule extends StatelessWidget {
         //   ),
         // ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(10),
           child: CachedNetworkImage(
             imageUrl: imgUrl,
             fit: BoxFit.fill,
@@ -177,7 +239,7 @@ class JewellerBannerModule extends StatelessWidget {
             },
           ),
         ),
-      ).commonSymmetricPadding(horizontal: 5),
+      ).commonSymmetricPadding(horizontal: 10),
     );
   }
 }
@@ -189,7 +251,7 @@ class FourFunctionalModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: SizedBox(
         height: screenController.size.height * 0.015.h,
         child: Row(
@@ -222,9 +284,10 @@ class FourFunctionalModule extends StatelessWidget {
                       ),
                     ),
                   ),
-                ).commonAllSidePadding(5),
+                ),
               ),
             ),
+            const SizedBox(width: 5),
             Expanded(
               child: GestureDetector(
                 onTap: () => Get.to(
@@ -251,9 +314,10 @@ class FourFunctionalModule extends StatelessWidget {
                       ),
                     ),
                   ),
-                ).commonAllSidePadding(5),
+                ),
               ),
             ),
+            const SizedBox(width: 5),
             Expanded(
               child: GestureDetector(
                 onTap: () => Get.to(
@@ -281,9 +345,10 @@ class FourFunctionalModule extends StatelessWidget {
                       ),
                     ),
                   ),
-                ).commonAllSidePadding(5),
+                ),
               ),
             ),
+            const SizedBox(width: 5),
             Expanded(
               child: GestureDetector(
                 onTap: () {
@@ -318,7 +383,7 @@ class FourFunctionalModule extends StatelessWidget {
                       ),
                     ),
                   ),
-                ).commonAllSidePadding(5),
+                ),
               ),
             ),
           ],
@@ -356,7 +421,7 @@ class JewelleryCategoryListModule extends StatelessWidget {
           child: Container(
             height: screenController.size.height * 0.023.h,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(10),
               color: AppColors.greyTextColor.withOpacity(0.5),
               image: DecorationImage(
                   image: NetworkImage(imgUrl), fit: BoxFit.cover),
@@ -456,19 +521,6 @@ class MenWomenJewelleryListModule extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: screenController.size.width,
-          decoration: BoxDecoration(color: headerBgColor),
-          child: Text(
-            headerName,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: AppColors.whiteColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 15.sp,
-            ),
-          ).commonSymmetricPadding(vertical: 10),
-        ),
-        Container(
           height: screenController.size.height * 0.035.h,
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -491,6 +543,19 @@ class MenWomenJewelleryListModule extends StatelessWidget {
               ProductTypeItem singleItem = typeList[i];
               return i == 0 ? Container() : _jewelleryListTile(singleItem);
             },
+          ).commonSymmetricPadding(vertical: 10),
+        ),
+        Container(
+          width: screenController.size.width,
+          decoration: BoxDecoration(color: headerBgColor),
+          child: Text(
+            headerName,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: AppColors.whiteColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 15.sp,
+            ),
           ).commonSymmetricPadding(vertical: 10),
         ),
       ],
@@ -571,9 +636,11 @@ class BestSellersListModule extends StatelessWidget {
             "BEST SELLERS",
             textAlign: TextAlign.center,
             style: TextStyle(
+              fontFamily: "Roboto",
               color: AppColors.whiteColor,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600,
               fontSize: 15.sp,
+              letterSpacing: 0.6,
             ),
           ).commonSymmetricPadding(vertical: 12),
           SizedBox(
@@ -647,7 +714,9 @@ class BestSellersListModule extends StatelessWidget {
                   decimalDigits: 2,
                 ).format(double.parse(singleItem.price)),
                 style: TextStyle(
-                  fontSize: 10.sp,
+                  color: AppColors.blackColor,
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),
@@ -682,9 +751,11 @@ class CustomerSpeakModule extends StatelessWidget {
                     "CUSTOMER'S SPEAK",
                     textAlign: TextAlign.left,
                     style: TextStyle(
+                      fontFamily: "latoregular",
                       color: AppColors.whiteColor,
                       fontSize: 13.sp,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
                     ),
                   ).commonSymmetricPadding(horizontal: 8),
                 ],
@@ -693,7 +764,7 @@ class CustomerSpeakModule extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: screenController.size.height * 0.022.h,
+          height: screenController.size.height * 0.024.h,
           child: GridView.builder(
             itemCount: screenController.clientTestimonialsList.length,
             scrollDirection: Axis.horizontal,
@@ -716,6 +787,7 @@ class CustomerSpeakModule extends StatelessWidget {
 
   Widget _customerSpeakListTile(Testimonial singleItem) {
     return Container(
+      margin: EdgeInsets.only(left: 18, top: 5, bottom: 5, right: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: AppColors.lightCoffeeColor,
@@ -753,14 +825,15 @@ class CustomerSpeakModule extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 4.w),
               Text(
                 singleItem.clientName,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: AppColors.whiteColor,
-                  fontSize: 12.sp,
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ],
@@ -770,17 +843,19 @@ class CustomerSpeakModule extends StatelessWidget {
               child: Text(
                 singleItem.testimonials,
                 maxLines: 3,
+                textAlign: TextAlign.left,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: AppColors.whiteColor,
                   fontSize: 10.sp,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ),
           ),
         ],
-      ).commonSymmetricPadding(horizontal: 10, vertical: 5),
-    ).commonSymmetricPadding(horizontal: 5);
+      ).commonSymmetricPadding(horizontal: 20, vertical: 15),
+    );
   }
 }
 
@@ -806,7 +881,9 @@ class GoldPriceModule extends StatelessWidget {
               Text(
                 'Gold Price',
                 style: TextStyle(
-                  fontSize: 16.sp,
+                  fontSize: 15.sp,
+                  color: AppColors.darkCoffeeColor,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
@@ -1001,6 +1078,6 @@ class GoldPriceModule extends StatelessWidget {
           ),*/
         ],
       ),
-    ).commonSymmetricPadding(vertical: 10, horizontal: 5);
+    ).commonSymmetricPadding(vertical: 10, horizontal: 12);
   }
 }

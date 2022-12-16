@@ -12,6 +12,7 @@ class AppImages {
   static const String dealLogoImage = '$imageRootPath/deal_logo.png';
   static const String olockerServiceLogoImage =
       '$imageRootPath/olocker_logo_home.png';
+  static const String joyWomenImage = '$imageRootPath/joy_women.png';
   static const String olockerServiceLogo1Image =
       '$imageRootPath/olocker_logo_homebx1.jpg';
   static const String olockerServiceLogo2Image =
@@ -41,6 +42,7 @@ class AppImages {
   static const String addRecordingsBgImage =
       '$imageRootPath/add_ornamentbg.png';
 
+  static const String walletImage = '$imageRootPath/w_iconloan.png';
   //refer and earn screen images
   static const String referAndEarnImage = '$imageRootPath/refer_earn_img.png';
   //about us screen images
@@ -76,7 +78,6 @@ class AppImages {
   static const String pendingBillsImage = '$imageRootPath/my_bills_right.png';
   static const String declinedCardimage = '$imageRootPath/declined_card.png';
   static const String paymentDoneCardimage = '$imageRootPath/payment_card.png';
-
 }
 
 class AppIcons {

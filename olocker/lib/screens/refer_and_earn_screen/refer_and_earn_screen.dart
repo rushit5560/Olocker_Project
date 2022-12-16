@@ -46,6 +46,7 @@ class ReferAndEarnScreen extends StatelessWidget {
                   children: [
                     SizedBox(height: 2.h),
                     ReferAndEarnDetailsModule(),
+                    SizedBox(height: 2.h),
                     ShareButtonModule(),
                     SizedBox(height: 2.h),
                   ],

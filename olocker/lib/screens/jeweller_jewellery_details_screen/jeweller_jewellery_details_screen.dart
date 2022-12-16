@@ -56,14 +56,14 @@ class JewellerJewelleryDetailsScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Stack(
-                        alignment: Alignment.center,
+                        alignment: Alignment.topCenter,
                         children: [
                           Image.asset(
                             AppImages.jewelleryProductBgShapeImage,
                             width: double.infinity,
                             height: jewellerJewelleryDetailsScreenController
                                     .size.height *
-                                0.38,
+                                0.18,
                             fit: BoxFit.cover,
                           ),
                           jewellerJewelleryDetailsScreenController

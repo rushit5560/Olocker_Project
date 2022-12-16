@@ -57,13 +57,13 @@ class JewellerDetailsScreen extends StatelessWidget {
             : SingleChildScrollView(
                 child: Column(
                   children: [
-                    jewellerDetailsScreenController.specialFeaturesList.isEmpty
-                        ? Container()
-                        : JewellerFeaturesModule(),
                     jewellerDetailsScreenController
                             .announcementOfferList.isEmpty
                         ? Container()
                         : JewellerBannerModule(),
+                    jewellerDetailsScreenController.specialFeaturesList.isEmpty
+                        ? Container()
+                        : JewellerFeaturesModule(),
                     FourFunctionalModule(),
                     JewelleryCategoryListModule(),
                     // NecklaceBannerModule(),

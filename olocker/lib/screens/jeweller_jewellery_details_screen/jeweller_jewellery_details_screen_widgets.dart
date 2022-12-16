@@ -28,7 +28,7 @@ class JewellerProductImagesSliderModule extends StatelessWidget {
         loop: false,
         curve: Curves.fastOutSlowIn,
         scrollDirection: Axis.horizontal,
-        fade: 0.45,
+        // fade: 0.45,
 
         viewportFraction: 0.6, // this is displaying images size
         scale: 0.35, // this is non displaying images size
@@ -325,7 +325,7 @@ class JewellerJewelleryApproxPriceModule extends StatelessWidget {
                   fontFamily: "Roboto",
                   color: AppColors.whiteColor,
                   fontSize: 13.sp,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
         SizedBox(width: 5),
@@ -364,14 +364,14 @@ class JewellerProductDescriptionModule extends StatelessWidget {
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             "product description".toUpperCase(),
             style: TextStyle(
               fontFamily: "Roboto",
-              color: AppColors.blackColor,
-              fontSize: 12.sp,
+              color: AppColors.blueDarkColor,
+              fontSize: 13.sp,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -438,7 +438,7 @@ class ProductDescRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
+      padding: EdgeInsets.symmetric(vertical: 6, horizontal: 4.w),
       child: Row(
         children: [
           Expanded(
@@ -448,9 +448,9 @@ class ProductDescRow extends StatelessWidget {
               maxLines: 2,
               style: TextStyle(
                 fontFamily: "Roboto",
-                color: AppColors.blackColor,
+                color: AppColors.blueDarkColor,
                 fontSize: 12.sp,
-                // fontWeight: FontWeight.w400,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),
@@ -458,9 +458,9 @@ class ProductDescRow extends StatelessWidget {
             ":  ",
             style: TextStyle(
               fontFamily: "Roboto",
-              color: AppColors.blackColor,
+              color: AppColors.blueDarkColor,
               fontSize: 12.sp,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w500,
             ),
           ),
           Expanded(
@@ -470,8 +470,9 @@ class ProductDescRow extends StatelessWidget {
               maxLines: 2,
               style: TextStyle(
                 fontFamily: "Roboto",
-                color: AppColors.blackColor,
+                color: AppColors.blueDarkColor,
                 fontSize: 12.sp,
+                fontWeight: FontWeight.w500,
                 // fontWeight: FontWeight.w400,
               ),
             ),
@@ -501,14 +502,14 @@ class JewellerJewellerFeaturesAvailableModule extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             "what makes us stand out".toUpperCase(),
             style: TextStyle(
               fontFamily: "Roboto",
-              color: AppColors.blackColor,
-              fontSize: 12.sp,
+              color: AppColors.blueDarkColor,
+              fontSize: 13.sp,
               fontWeight: FontWeight.w500,
             ),
           ),

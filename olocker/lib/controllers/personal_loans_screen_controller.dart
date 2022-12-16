@@ -2,16 +2,19 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:another_stepper/dto/stepper_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:olocker/constants/api_url.dart';
+import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/user_details.dart';
 import 'package:http/http.dart' as http;
 import 'package:olocker/models/personal_loans_screen_model/check_availability_model.dart';
 import 'package:olocker/models/personal_loans_screen_model/emi_schedule_model.dart';
 import 'package:olocker/models/personal_loans_screen_model/upload_emi_document_model.dart';
 import 'package:olocker/widgets/common_widgets.dart';
+import 'package:sizer/sizer.dart';
 
 class PersonalLoansScreenController extends GetxController {
   RxBool isLoading = false.obs;
@@ -50,6 +53,90 @@ class PersonalLoansScreenController extends GetxController {
     'Mrs.',
     'Miss',
   ];
+
+  // List<StepperData> stepperData = [
+  //   StepperData(
+  //     title: StepperText(
+  //       'Check Eligibility',
+  //       textStyle: TextStyle(
+  //         color: AppColors.accentColor,
+  //         fontSize: 9.5.sp,
+  //         fontWeight: FontWeight.w500,
+  //       ),
+  //     ),
+  //     iconWidget: Container(
+  //       padding: const EdgeInsets.all(25),
+  //       decoration: const BoxDecoration(
+  //         color: currentStep.value == 0 ? : AppColors.accentColor,
+  //         shape: BoxShape.circle,
+  //       ),
+  //       child: Center(
+  //         child: Text(
+  //           "1",
+  //           style: TextStyle(
+  //             color: AppColors.whiteColor,
+  //             fontSize: 14.sp,
+  //             fontWeight: FontWeight.w500,
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   ),
+  //   StepperData(
+  //     title: StepperText(
+  //       'EMI Schedule',
+  //       textStyle: TextStyle(
+  //         color: AppColors.accentColor,
+  //         fontSize: 9.5.sp,
+  //         fontWeight: FontWeight.w500,
+  //       ),
+  //     ),
+  //     iconWidget: Container(
+  //       padding: const EdgeInsets.all(25),
+  //       decoration: const BoxDecoration(
+  //         color: AppColors.accentColor,
+  //         shape: BoxShape.circle,
+  //       ),
+  //       child: Center(
+  //         child: Text(
+  //           "2",
+  //           style: TextStyle(
+  //             color: AppColors.whiteColor,
+  //             fontSize: 14.sp,
+  //             fontWeight: FontWeight.w500,
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   ),
+  //   StepperData(
+  //     title: StepperText(
+  //       'Upload Documents',
+  //       textStyle: TextStyle(
+  //         color: AppColors.accentColor,
+  //         fontSize: 9.5.sp,
+  //         fontWeight: FontWeight.w500,
+  //       ),
+  //     ),
+  //     iconWidget: Container(
+  //       padding: const EdgeInsets.all(25),
+  //       decoration: const BoxDecoration(
+  //         color: AppColors.accentColor,
+  //         shape: BoxShape.circle,
+  //       ),
+  //       child: Center(
+  //         child: Text(
+  //           "3",
+  //           style: TextStyle(
+  //             color: AppColors.whiteColor,
+  //             fontSize: 14.sp,
+  //             fontWeight: FontWeight.w500,
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   ),
+  // ];
 
   int emiSrNo = 0;
   String selectedMonth = "";
@@ -107,7 +194,7 @@ class PersonalLoansScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         CheckEligibilityModel checkEligibilityModel =
-        CheckEligibilityModel.fromJson(json.decode(response.body));
+            CheckEligibilityModel.fromJson(json.decode(response.body));
         // isSuccessStatus = checkEligibilityModel.success.obs;
 
         emiScheduleList.clear();
@@ -117,13 +204,14 @@ class PersonalLoansScreenController extends GetxController {
         selectedEligibleEmiAmount = emiScheduleList[0].emiEligibleAmount;
         log('emiScheduleList : ${emiScheduleList.length}');
         // Go to next Step
-        currentStep++;
+        currentStep.value++;
+        log("currentStep.value is :: ${currentStep.value}");
       } else {
         log('checkEligibilityFunction Else');
         var resultBody = json.decode(response.body);
         CommonWidgets().showBorderSnackBar(
-            context: Get.context!,
-            displayText: "${resultBody['error_info']['description']}",
+          context: Get.context!,
+          displayText: "${resultBody['error_info']['description']}",
         );
       }
     } catch (e) {
@@ -162,7 +250,8 @@ class PersonalLoansScreenController extends GetxController {
           EmiScheduleModel.fromJson(json.decode(response.body));
       isSuccessStatus = emiScheduleModel.success.obs;
       if (isSuccessStatus.value) {
-        currentStep++;
+        currentStep.value++;
+        log("currentStep.value is :: ${currentStep.value}");
       } else {
         log('emiScheduleFunction Else');
       }
@@ -208,11 +297,10 @@ class PersonalLoansScreenController extends GetxController {
       var resBody = jsonDecode(response.body);
       isSuccessStatus.value = resBody['success'];
 
-
       // isSuccessStatus.value = uploadEmiDocumentModel.success;
       if (isSuccessStatus.value) {
         UploadEmiDocumentModel uploadEmiDocumentModel =
-        UploadEmiDocumentModel.fromJson(resBody);
+            UploadEmiDocumentModel.fromJson(resBody);
         log('uploadEmiDocumentsFunction success call ::: ${uploadEmiDocumentModel.message}');
         CommonWidgets().showBorderSnackBar(
           context: Get.context!,

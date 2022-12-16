@@ -27,7 +27,7 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
         Text(
           "Get 100 Points",
           style: TextStyle(
-            fontFamily: "Roboto",
+            fontFamily: "latoregular",
             color: AppColors.accentColor,
             fontSize: 20.sp,
             fontWeight: FontWeight.bold,
@@ -37,10 +37,11 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
         Text(
           "For every new user you refer",
           style: TextStyle(
-            fontFamily: "Roboto",
-            color: AppColors.blackTextColor,
-            fontSize: 15.sp,
-            fontWeight: FontWeight.w500,
+            fontFamily: "latoregular",
+            color: AppColors.greyDarkColor,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 0.8,
           ),
         ),
         SizedBox(height: 2.h),
@@ -49,8 +50,8 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
           style: TextStyle(
             fontFamily: "Roboto",
             color: AppColors.greyColor,
-            fontSize: 11.sp,
-            fontWeight: FontWeight.w500,
+            fontSize: 12.sp,
+            fontWeight: FontWeight.bold,
           ),
         ),
         SizedBox(height: 2.h),
@@ -78,13 +79,14 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
                 },
                 icon: Icon(
                   Icons.copy,
-                  color: AppColors.greyColor,
+                  color: AppColors.greyTextColor,
                   size: 15.sp,
                 ),
               ),
               Expanded(
                 child: Text(
-                  referAndEarnScreenController.userReferaalCode.value,
+                  referAndEarnScreenController.userReferaalCode.value
+                      .toUpperCase(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: "Roboto",
@@ -142,7 +144,7 @@ class UserBenefitPointsTextModule extends StatelessWidget {
             benefitText,
             style: TextStyle(
               color: AppColors.accentColor,
-              fontSize: 15.sp,
+              fontSize: 17.sp,
               fontFamily: "Roboto",
               fontWeight: FontWeight.bold,
             ),
@@ -151,10 +153,11 @@ class UserBenefitPointsTextModule extends StatelessWidget {
           Text(
             benefitDescription,
             style: TextStyle(
-              color: AppColors.blackTextColor,
-              fontSize: 11.sp,
+              color: AppColors.greyDarkColor,
+              fontSize: 10.sp,
               fontFamily: "Roboto",
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 0.5,
             ),
           ),
         ],
