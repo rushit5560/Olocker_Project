@@ -291,7 +291,7 @@ class CustomDrawer extends StatelessWidget {
         children: [
           SizedBox(width: homeScreenController.size.width * 0.010.w),
           Container(
-            width: homeScreenController.size.width * 0.040.w,
+            width: homeScreenController.size.width * 0.042.w,
             height: homeScreenController.size.width * 0.040.w,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
@@ -340,7 +340,7 @@ class CustomDrawer extends StatelessWidget {
               ),
               SizedBox(height: 0.25.h),
               SizedBox(
-                width: 45.w,
+                // width: 45.w,
                 child: Text(
                   "${UserDetails.customerFname.capitalizeFirst!} ${UserDetails.customerLname.capitalizeFirst!}",
                   maxLines: 1,
