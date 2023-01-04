@@ -33,23 +33,25 @@ class AllLoyaltyPointScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Obx(() => allLoyaltyPointScreenController.isLoading.value
-          ? CommonLoader().showCircularLoader()
-          : allLoyaltyPointScreenController.loyaltyPointList.isEmpty
-              ? Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20.h),
-                  child: Center(
-                    child: Text(
-                      "No Loyalty Points Records Found",
-                      style: TextStyle(
-                        color: AppColors.whiteColor,
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w400,
+      body: Obx(
+        () => allLoyaltyPointScreenController.isLoading.value
+            ? AllLoyaltyPointsLoadingWidget()
+            : allLoyaltyPointScreenController.loyaltyPointList.isEmpty
+                ? Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20.h),
+                    child: Center(
+                      child: Text(
+                        "No Loyalty Points Records Found",
+                        style: TextStyle(
+                          color: AppColors.whiteColor,
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ),
-                  ),
-                )
-              : AllLoyaltyPointListModule()),
+                  )
+                : AllLoyaltyPointListModule(),
+      ),
     );
   }
 }

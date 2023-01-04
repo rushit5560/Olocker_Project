@@ -13,6 +13,7 @@ import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
+import '../jeweller_jewellery_list_screen/jeweller_jewellery_list_screen_widgets.dart';
 import 'offers_jewellery_list_screen_widgets.dart';
 // import 'package:sliding_switch/sliding_switch.dart';
 
@@ -158,7 +159,7 @@ class OffersJewelleryListScreen extends StatelessWidget {
       ),
       body: Obx(
         () => offersJewelleryListScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? JewelleryListScreenLoadingWidget()
             : offersJewelleryListScreenController.jewelleryList.isEmpty
                 ? Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.h),

@@ -4,6 +4,7 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/widgets/common_loader.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../controllers/saving_schemes_screens_controllers/scheme_payment_success_screen_controller.dart';
@@ -131,7 +132,32 @@ class PaymentSuccessDetailsModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => screenController.isLoading.value
-          ? CommonLoader().showCircularLoader()
+          ? SizedBox(
+              width: double.infinity,
+              child: Shimmer.fromColors(
+                baseColor: Colors.grey.shade300,
+                highlightColor: Colors.grey.shade100,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 10),
+                      Container(
+                        height: 28.h,
+                        width: double.infinity,
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 12),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 15, horizontal: 12),
+                        decoration: const BoxDecoration(
+                          color: AppColors.greyColor,
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )
           : Container(
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
               width: double.infinity,

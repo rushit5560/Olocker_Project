@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/ornament_recordings_list_screen_controller.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../widgets/common_buttons.dart';
@@ -54,6 +55,17 @@ class OrnamentDetailsModule extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              Expanded(
+                child: Text(
+                  ornamentRecordingsController.coiNumber,
+                  style: TextStyle(
+                    fontFamily: "Roboto",
+                    color: AppColors.greyColor,
+                    fontSize: 11.sp,
+                  ),
+                ),
+              ),
+              // const SizedBox(width: 20),
               Text(
                 ornamentRecordingsController.trackingDetail!.itemName,
                 style: TextStyle(
@@ -276,6 +288,81 @@ class DetailsRowWidget extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class OrnamentRecordingsListLoadingWidget extends StatelessWidget {
+  OrnamentRecordingsListLoadingWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              Container(
+                height: 14.h,
+                width: double.infinity,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+                decoration: BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 40,
+                    width: 60.w,
+                    decoration: BoxDecoration(
+                      color: AppColors.greyColor,
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(20),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.only(top: 15, bottom: 15),
+                itemCount: 2,
+                itemBuilder: (context, index) {
+                  return Container(
+                    height: 24.h,
+                    width: double.infinity,
+                    margin: const EdgeInsets.symmetric(horizontal: 12),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 15, horizontal: 12),
+                    decoration: BoxDecoration(
+                      color: AppColors.greyColor,
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(12),
+                      ),
+                    ),
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return SizedBox(height: 2.h);
+                },
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

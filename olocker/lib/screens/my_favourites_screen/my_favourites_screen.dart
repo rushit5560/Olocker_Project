@@ -37,7 +37,7 @@ class MyFavouritesScreen extends StatelessWidget {
       ),
       body: Obx(
         () => myFavouritesScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? MyFavouritesJewelleryLoadingWidget()
             : SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Column(

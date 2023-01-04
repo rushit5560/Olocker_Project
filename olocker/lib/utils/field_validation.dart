@@ -303,4 +303,46 @@ class FieldValidator {
     }
     return null;
   }
+
+  String? validateLossDate(String value) {
+    if (value.isEmpty) {
+      return 'Enter Loss Date';
+    }
+    return null;
+  }
+
+  String? validateLocationOfLoss(String value) {
+    if (value.isEmpty) {
+      return 'Enter location of loss';
+    }
+    return null;
+  }
+
+  String? validateEventOfLoss(String value) {
+    if (value.isEmpty) {
+      return 'Describe the event of loss';
+    }
+    return null;
+  }
+
+  String? validateClaimNumber(String value) {
+    if (value.isEmpty) {
+      return 'Enter claim number';
+    }
+    return null;
+  }
+
+  String? validateFirNumber(String value) {
+    if (value.isEmpty) {
+      return 'Enter fir number';
+    }
+    return null;
+  }
+
+  String? validatePoliceStationAddress(String value) {
+    if (value.isEmpty) {
+      return 'Enter Police Station Address';
+    }
+    return null;
+  }
 }

@@ -4,6 +4,7 @@ import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/widgets/common_loader.dart';
 import 'package:olocker/widgets/custom_drawer.dart';
+import 'package:sizer/sizer.dart';
 import '../../controllers/home_screen_controller.dart';
 import 'home_screen_widgets.dart';
 
@@ -22,7 +23,7 @@ class HomeScreen extends StatelessWidget {
       drawer: CustomDrawer(),
       body: Obx(
         () => homeScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? HomeScreenLoadingWidget()
             : LiquidPullToRefresh(
                 // key: _refreshIndicatorKey, // key if you want to add
                 onRefresh: homeScreenController.getMyJewellersFunction,
@@ -32,18 +33,18 @@ class HomeScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      SizedBox(height: homeScreenController.size.height * 0.01),
+                      SizedBox(height: 1.h),
                       AddNewJewellerButtonModule(),
-                      SizedBox(height: homeScreenController.size.height * 0.02),
+                      SizedBox(height: 2.h),
 
                       MyJewellersListModule(),
                       // SizedBox(height: homeScreenController.size.height * 0.02),
 
                       BannerModule(),
-                      SizedBox(height: homeScreenController.size.height * 0.02),
+                      SizedBox(height: 2.h),
 
                       SmartDealsModule(),
-                      SizedBox(height: homeScreenController.size.height * 0.02),
+                      SizedBox(height: 2.h),
 
                       OlockerServiceModule(),
                       // SizedBox(height: homeScreenController.size.height * 0.02),

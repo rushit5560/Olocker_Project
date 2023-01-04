@@ -11,6 +11,7 @@ import 'package:sizer/sizer.dart';
 import '../../controllers/mobile_number_screen_controller.dart';
 import '../../widgets/common_buttons.dart';
 import '../../widgets/common_widgets.dart';
+import 'mobile_number_screen_widgets.dart';
 
 class MobileNumberScreen extends StatelessWidget {
   MobileNumberScreen({Key? key}) : super(key: key);
@@ -34,7 +35,7 @@ class MobileNumberScreen extends StatelessWidget {
           ),
         ),
         body: mobileNumberScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? MobileNumberLoadingWidget()
             : SingleChildScrollView(
                 child: Column(
                   children: [
@@ -74,7 +75,7 @@ class MobileNumberScreen extends StatelessWidget {
                     Form(
                       key: mobileNumberScreenController.formKey,
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 5.w),
+                        padding: EdgeInsets.symmetric(horizontal: 4.w),
                         child: TextFormField(
                           textAlign: TextAlign.left,
                           keyboardType: TextInputType.number,
@@ -95,13 +96,15 @@ class MobileNumberScreen extends StatelessWidget {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           textInputAction: TextInputAction.done,
                           decoration: InputDecoration(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 10),
                             hintText: "Enter your mobile number",
                             prefix: Text(
                               "+91 - ",
                               style: TextStyle(
                                 color: AppColors.blackColor,
                                 fontFamily: "Acephimere",
-                                fontSize: 14.sp,
+                                fontSize: 13.sp,
                                 fontWeight: FontWeight.bold,
                                 letterSpacing: 1.2,
                               ),
@@ -119,50 +122,7 @@ class MobileNumberScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 2.h),
-                    RectangleRoundedButton(
-                      buttonColor: AppColors.accentColor,
-                      onPressed: () {
-                        if (mobileNumberScreenController
-                            .termConditionCheckValue.value) {
-                          mobileNumberScreenController
-                              .userLoginFunction(context);
-                        } else {
-                          CommonWidgets().showBorderSnackBar(
-                            context: context,
-                            displayText:
-                                "Please accept our terms and conditions to move forward.",
-                          );
-                        }
-                      },
-                      centerChild: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const Spacer(),
-                          Text(
-                            "GET OTP",
-                            style: TextStyle(
-                              color: AppColors.whiteColor,
-                              fontFamily: "Acephimere",
-                              fontSize: 13.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          // SizedBox(width: 6.w),
-                          const Spacer(),
-                          Icon(
-                            Icons.arrow_forward_rounded,
-                            color: AppColors.whiteColor,
-                            size: 17.sp,
-                          ),
-                        ],
-                      ),
-                    ).commonSymmetricPadding(
-                      horizontal: 5.w,
-                      vertical: 1.5.h,
-                    ),
-                    SizedBox(height: 2.h),
+                    SizedBox(height: 4.h),
                     Obx(
                       () => Padding(
                         padding: EdgeInsets.symmetric(horizontal: 12.w),
@@ -224,6 +184,49 @@ class MobileNumberScreen extends StatelessWidget {
                           ],
                         ),
                       ),
+                    ),
+                    SizedBox(height: 1.h),
+                    RectangleRoundedButton(
+                      buttonColor: AppColors.accentColor,
+                      onPressed: () {
+                        if (mobileNumberScreenController
+                            .termConditionCheckValue.value) {
+                          mobileNumberScreenController
+                              .userLoginFunction(context);
+                        } else {
+                          CommonWidgets().showBorderSnackBar(
+                            context: context,
+                            displayText:
+                                "Please accept our terms and conditions to move forward.",
+                          );
+                        }
+                      },
+                      centerChild: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Spacer(),
+                          Text(
+                            "GET OTP",
+                            style: TextStyle(
+                              color: AppColors.whiteColor,
+                              fontFamily: "Acephimere",
+                              fontSize: 13.sp,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          // SizedBox(width: 6.w),
+                          const Spacer(),
+                          Icon(
+                            Icons.arrow_forward_rounded,
+                            color: AppColors.whiteColor,
+                            size: 17.sp,
+                          ),
+                        ],
+                      ),
+                    ).commonSymmetricPadding(
+                      horizontal: 5.w,
+                      vertical: 1.5.h,
                     ),
                     SizedBox(height: 4.h),
                   ],

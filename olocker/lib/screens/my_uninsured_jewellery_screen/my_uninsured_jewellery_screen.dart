@@ -52,7 +52,7 @@ class MyUnInsuredJewelleryScreen extends StatelessWidget {
         ),
         body: Obx(
           () => unInsuredJewelleryController.isLoading.value
-              ? CommonLoader().showCircularLoader()
+              ? MyUninsuredLoadingWidget()
               : SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Column(

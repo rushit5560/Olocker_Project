@@ -7,6 +7,7 @@ import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/models/portfolio_screen_models/get_all_data_ornament_model.dart';
 import 'package:olocker/utils/field_validation.dart';
 import 'package:olocker/widgets/common_loader.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/add_uninsured_jewellery_screen_controller.dart';
@@ -1125,6 +1126,54 @@ class SubmitCancelFormModule extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class AddUninsuredJewelleryLoadingWidget extends StatelessWidget {
+  AddUninsuredJewelleryLoadingWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              Container(
+                height: 45.h,
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+              Container(
+                height: 45.h,
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -36,11 +36,15 @@ class AppImages {
   static const String loyaltyTableTitleHeaderBGImage =
       '$imageRootPath/bx_bg_loyalty.png';
 
+  // invoice details screen
+  static const String addRecordingsBgImage =
+      '$imageRootPath/add_ornamentbg.png';
+
   //recordings screen images
   static const String recordingsTitleBgImage =
       '$imageRootPath/recordings_bg.png';
-  static const String addRecordingsBgImage =
-      '$imageRootPath/add_ornamentbg.png';
+  static const String invoiceDetailsBgImage =
+      '$imageRootPath/invoice_details.png';
 
   static const String walletImage = '$imageRootPath/w_iconloan.png';
   //refer and earn screen images

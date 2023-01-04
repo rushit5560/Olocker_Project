@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/models/enquire_screen_models/get_all_message_model.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/user_details.dart';
@@ -65,17 +66,14 @@ class SendMessageTextField extends StatelessWidget {
                 ),
               ),
             ),
-
-            // Container(),
+            const SizedBox(width: 5),
             TextButton(
               style: TextButton.styleFrom(
                 primary: AppColors.whiteColor,
                 backgroundColor: AppColors.accentColor,
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(
-                    Radius.circular(
-                      0,
-                    ),
+                    Radius.circular(5),
                   ),
                 ),
               ),
@@ -128,7 +126,7 @@ class ChatDisplayModule extends StatelessWidget {
                         itemBuilder: (context, i) {
                           GetNotification singleMsg =
                               screenController.getNotificationList[i];
-                          log('singleMsg is ::: $singleMsg');
+                          log('single Msg is ::: $singleMsg');
                           return SingleMessageModule(
                             msg: singleMsg,
                           );
@@ -197,13 +195,17 @@ class SingleMessageModule extends StatelessWidget {
                           ? MainAxisAlignment.start
                           : MainAxisAlignment.end,
                       children: [
-                        Text(
-                          msg.message,
-                          style: TextStyle(
-                            fontSize: 11.sp,
-                            fontFamily: "Roboto",
-                            color: AppColors.blackColor,
-                            fontWeight: FontWeight.normal,
+                        SizedBox(
+                          width: screenController.size.width * 0.38,
+                          child: Text(
+                            msg.message,
+                            maxLines: 3,
+                            style: TextStyle(
+                              fontSize: 11.sp,
+                              fontFamily: "Roboto",
+                              color: AppColors.blackColor,
+                              fontWeight: FontWeight.normal,
+                            ),
                           ),
                         ),
                       ],
@@ -334,6 +336,47 @@ class JewelleryDetailModule extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class EnquireScreenLoadingWidget extends StatelessWidget {
+  EnquireScreenLoadingWidget({Key? key}) : super(key: key);
+
+  final screenController = Get.find<ProductEnquireScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: Stack(
+          children: [
+            const SizedBox(height: 10),
+            Container(
+              height: 15.h,
+              margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              decoration: const BoxDecoration(
+                color: AppColors.greyColor,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: 55,
+                width: double.infinity,
+                color: AppColors.greyColor,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

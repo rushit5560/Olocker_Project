@@ -6,6 +6,7 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/signup_screen_controller.dart';
 import 'package:olocker/utils/field_validation.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 class RegisterHeaderModule extends StatelessWidget {
@@ -15,48 +16,51 @@ class RegisterHeaderModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          flex: 7,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Please fill up the form",
-                maxLines: null,
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontFamily: "elephantregular",
-                  fontSize: 14.sp,
-                  color: AppColors.blackColor,
-                  letterSpacing: 0.6,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Row(
+        children: [
+          Expanded(
+            flex: 7,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Please fill up the form",
+                  maxLines: null,
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontFamily: "elephantregular",
+                    fontSize: 14.sp,
+                    color: AppColors.blackColor,
+                    letterSpacing: 0.6,
+                  ),
                 ),
-              ),
-              Text(
-                "to complete registration",
-                maxLines: null,
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontFamily: "elephantregular",
-                  fontSize: 30.sp,
-                  color: AppColors.blackColor,
-                  height: 0.9,
-                  // letterSpacing: 0.8,
+                Text(
+                  "to complete registration",
+                  maxLines: null,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontFamily: "elephantregular",
+                    fontSize: 30.sp,
+                    color: AppColors.blackColor,
+                    height: 0.9,
+                    // letterSpacing: 0.8,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        Expanded(
-          flex: 4,
-          child: Image.asset(
-            AppImages.registrationImage,
+          Expanded(
+            flex: 4,
+            child: Image.asset(
+              AppImages.registrationImage,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -100,7 +104,7 @@ class NameFieldRow extends StatelessWidget {
                 hint: Text(
                   signUpScreenController.namePrefixDDvalue.value,
                   style: TextStyle(
-                    color: AppColors.greyTextColor,
+                    color: AppColors.blackTextColor,
                     fontFamily: "Acephimere",
                     fontSize: 11.sp,
                     fontWeight: FontWeight.w500,
@@ -361,6 +365,97 @@ class RegisterForm extends StatelessWidget {
           SizedBox(height: 2.h),
           EnterCodeField(),
         ],
+      ),
+    );
+  }
+}
+
+class SignUpScreenLoadingWidget extends StatelessWidget {
+  SignUpScreenLoadingWidget({Key? key}) : super(key: key);
+  final signUpScreenController = Get.find<SignUpScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              RegisterHeaderModule(),
+              SizedBox(height: 4.h),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                height: 60,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(8),
+                  ),
+                ),
+              ),
+              SizedBox(height: 2.h),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                height: 60,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(8),
+                  ),
+                ),
+              ),
+              SizedBox(height: 2.h),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                height: 60,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(8),
+                  ),
+                ),
+              ),
+              SizedBox(height: 2.h),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                height: 60,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(8),
+                  ),
+                ),
+              ),
+              SizedBox(height: 4.h),
+              Container(
+                height: 60,
+                width: double.infinity,
+                margin: EdgeInsets.symmetric(
+                  // vertical: 20,
+                  horizontal: 6.w,
+                ),
+                decoration: BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+              ),
+              SizedBox(height: 4.h),
+            ],
+          ),
+        ),
       ),
     );
   }

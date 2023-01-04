@@ -14,7 +14,7 @@ class PinkBackgroundImageModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: screenController.size.height * 0.025.h,
+      width: double.infinity,
       alignment: Alignment.topCenter,
       child: Image.asset(
         AppImages.dealsBgShapeImage,

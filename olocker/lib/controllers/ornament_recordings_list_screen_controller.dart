@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+
 import '../constants/api_url.dart';
 import '../constants/user_details.dart';
 import '../models/ornament_recording_models/get_ornament_recording_model.dart';
@@ -11,6 +12,7 @@ class OrnamentRecordingsListScreenController extends GetxController {
   final size = Get.size;
   final ornamentSrNo = Get.arguments[0];
   final customerOraSrNo = Get.arguments[1];
+  final coiNumber = Get.arguments[2];
 
   RxBool isLoading = false.obs;
 
@@ -19,12 +21,15 @@ class OrnamentRecordingsListScreenController extends GetxController {
   List<OrnamentHistoryDetail> ornamentHistoryDetailList = [];
   TrackingDetail? trackingDetail;
   Future<void> getOrnamentRecordingsListFunction() async {
+    String url =
+        "${ApiUrl.getOrnamentTrackingApi}?customerId=${UserDetails.customerId}&OrnamentSrNo=$ornamentSrNo&CustOraSrNo=$customerOraSrNo";
+    // String url =
+    //     "${ApiUrl.getOrnamentTrackingApi}?customerId=939308&OrnamentSrNo=$ornamentSrNo&CustOraSrNo=$customerOraSrNo";
+
     try {
       isLoading(true);
       http.Response response = await http.get(
-        Uri.parse(
-            // url),
-            "https://devappapi.olocker.in/api/User/GetOrnamentTracking?customerId=${UserDetails.customerId}&OrnamentSrNo=$ornamentSrNo&CustOraSrNo=$customerOraSrNo"),
+        Uri.parse(url),
         headers: apiHeader.headers,
       );
       log(" getOrnamentRecordingsListFunction url: ${response.request}");

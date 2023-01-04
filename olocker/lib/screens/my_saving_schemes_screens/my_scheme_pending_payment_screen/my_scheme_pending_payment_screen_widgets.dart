@@ -12,6 +12,7 @@ import '../../../constants/app_colors.dart';
 import '../../../controllers/my_saving_schemes_screens_controllers/my_scheme_pending_payment_screen_controller.dart';
 import '../../../models/my_saving_schemes_models/get_pending_bills_model/get_pending_bills_list_model.dart';
 import '../../../widgets/common_loader.dart';
+import '../../saving_schemes_screens/scheme_choose_payment_method_screen/scheme_choose_payment_method_screen_widgets.dart';
 import '../my_scheme_payment_success_screen/my_scheme_payment_success_screen.dart';
 
 class PayNowButton extends StatelessWidget {
@@ -104,19 +105,19 @@ class PaymentDetails extends StatelessWidget {
             },
           ),
           SizedBox(height: 1.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                "Late payment fee ₹ 100",
-                style: TextStyle(
-                  color: AppColors.accentColor,
-                  fontSize: 10.sp,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-            ],
-          )
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.end,
+          //   children: [
+          //     Text(
+          //       "Late payment fee ₹ 100",
+          //       style: TextStyle(
+          //         color: AppColors.accentColor,
+          //         fontSize: 10.sp,
+          //         fontWeight: FontWeight.normal,
+          //       ),
+          //     ),
+          //   ],
+          // )
         ],
       ),
     );
@@ -147,7 +148,7 @@ class SingleBillShowWidget extends StatelessWidget {
 
     // selectedOrnamentPurchaseDate.value = formattedDate.replaceAll("-", "/");
 
-    log("formattedDate is:: $formattedDate");
+    // log("formattedDate is:: $formattedDate");
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -211,7 +212,7 @@ class PaymentMethods extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => screenController.isLoading.value
-          ? CommonLoader().showCircularLoader()
+          ? SchemePaymentLoadingWidget()
           : Container(
               width: double.infinity,
               decoration: BoxDecoration(

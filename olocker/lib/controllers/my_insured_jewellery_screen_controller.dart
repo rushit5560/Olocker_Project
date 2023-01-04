@@ -30,8 +30,11 @@ class MyInsuredJewelleryScreenController extends GetxController {
     try {
       isLoading(true);
       var requestMap = {
+        // "CustSrNo": "939308",
         "CustSrNo": UserDetails.customerId,
       };
+
+      log("requestMap : $requestMap");
       http.Response response = await http.post(
         Uri.parse(url),
         body: jsonEncode(requestMap),
@@ -48,8 +51,10 @@ class MyInsuredJewelleryScreenController extends GetxController {
 
       if (response.statusCode == 200) {
         // favouriteProductsList = favouritesModel.favProduct;
+
         getInsuredOrnamentList = getInsuredOrnamentModel.insuredOrnament;
-        log('getMyInsuredAllJewelleryFunction list is  : ${getInsuredOrnamentList.length.toString()}');
+
+        log('getInsuredOrnamentList list len : ${getInsuredOrnamentList.length}');
       } else {
         CommonWidgets().showBorderSnackBar(
           context: Get.context!,

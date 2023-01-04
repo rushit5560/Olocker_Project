@@ -164,7 +164,7 @@ class JewellerDetailsScreenController extends GetxController {
         Uri.parse(url),
         headers: apiHeader.headers,
       );
-      log('response : ${response.body}');
+      log('getJewelleryTypeFunction response : ${response.body}');
 
       JewelleryTypeModel jewelleryTypeModel =
           JewelleryTypeModel.fromJson(json.decode(response.body));
@@ -176,13 +176,13 @@ class JewellerDetailsScreenController extends GetxController {
           menTypeList.add(ProductTypeItem(name: '', image: ''));
           menTypeList.addAll(jewelleryTypeModel.productTypeMen);
         }
-        log('menTypeList : ${menTypeList.length}');
+        log('getJewelleryTypeFunction menTypeList : ${menTypeList.length}');
         womenTypeList.clear();
         if (jewelleryTypeModel.productTypeWomen.isNotEmpty) {
           womenTypeList.add(ProductTypeItem(name: '', image: ''));
           womenTypeList.addAll(jewelleryTypeModel.productTypeWomen);
         }
-        log('womenTypeList : ${womenTypeList.length}');
+        log('getJewelleryTypeFunction womenTypeList : ${womenTypeList.length}');
       } else {
         log('getJewelleryTypeFunction Else');
       }

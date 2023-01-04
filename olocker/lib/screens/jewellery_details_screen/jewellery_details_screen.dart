@@ -36,17 +36,17 @@ class JewelleryDetailsScreen extends StatelessWidget {
       ),
       body: Obx(
         () => jewelleryDetailsController.isLoading.value
-            ? const Center(child: CircularProgressIndicator())
+            ? JewelleryDetailsLoadingWidget()
             : SingleChildScrollView(
                 child: Column(
                   children: [
                     Stack(
-                      alignment: Alignment.center,
+                      alignment: Alignment.topCenter,
                       children: [
                         Image.asset(
                           AppImages.jewelleryProductBgShapeImage,
                           width: double.infinity,
-                          height: jewelleryDetailsController.size.height * 0.38,
+                          height: jewelleryDetailsController.size.height * 0.18,
                           fit: BoxFit.cover,
                         ),
                         jewelleryDetailsController

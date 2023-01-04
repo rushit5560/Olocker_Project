@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/utils/extensions.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../constants/app_colors.dart';
@@ -79,18 +80,20 @@ class AboutUsDetailsModule extends StatelessWidget {
             },
           ),
           SizedBox(height: 1.h),
-          ContactDetailsModule(
-            icon: Icons.call,
-            text: aboutUsPageController.aboutUsData!.contactPhone,
-            onTap: () async {
-              Uri phoneno = Uri.parse(
-                  "tel:+91${aboutUsPageController.aboutUsData!.contactPhone}");
-              log(aboutUsPageController.aboutUsData!.contactPhone);
+          aboutUsPageController.aboutUsData!.contactPhone == ""
+              ? const SizedBox()
+              : ContactDetailsModule(
+                  icon: Icons.call,
+                  text: aboutUsPageController.aboutUsData!.contactPhone,
+                  onTap: () async {
+                    Uri phoneno = Uri.parse(
+                        "tel:+91${aboutUsPageController.aboutUsData!.contactPhone}");
+                    log(aboutUsPageController.aboutUsData!.contactPhone);
 
-              if (await launchUrl(phoneno)) {
-              } else {}
-            },
-          ),
+                    if (await launchUrl(phoneno)) {
+                    } else {}
+                  },
+                ),
           SizedBox(height: 1.h),
           ContactDetailsModule(
             icon: Icons.location_on_outlined,
@@ -234,7 +237,7 @@ class TeamDetailsListItemModule extends StatelessWidget {
           children: [
             Container(
               width: aboutUsPageController.size.width * 0.79,
-              height: aboutUsPageController.size.height * 0.11,
+              height: 90,
               decoration: const BoxDecoration(
                 color: AppColors.whiteColor,
                 borderRadius: BorderRadius.all(
@@ -263,7 +266,7 @@ class TeamDetailsListItemModule extends StatelessWidget {
                           style: TextStyle(
                             fontFamily: "Roboto",
                             color: AppColors.blackColor,
-                            fontSize: 12.sp,
+                            fontSize: 11.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -446,6 +449,40 @@ class TitleAboutModule extends StatelessWidget {
           ],
         ),
       ],
+    );
+  }
+}
+
+class AboutUsLoadingWidget extends StatelessWidget {
+  AboutUsLoadingWidget({Key? key}) : super(key: key);
+
+  final screenController = Get.find<AboutUsPageController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: 85.h,
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: AppColors.lightBrownBgColor,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

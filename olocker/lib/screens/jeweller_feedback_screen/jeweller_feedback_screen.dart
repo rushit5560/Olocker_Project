@@ -39,7 +39,7 @@ class JewellerFeedbackScreen extends StatelessWidget {
       ),
       body: Obx(
         () => jewellerFeedbackScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? FeedbackScreenLoadingWidget()
             : jewellerFeedbackScreenController.feedBackFormList.isEmpty
                 ? Center(
                     child: Text(

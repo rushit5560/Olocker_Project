@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/app_images.dart';
@@ -430,6 +431,112 @@ class SingleEarnedPointTile extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class MyLoyaltyPointsLoadingWidget extends StatelessWidget {
+  MyLoyaltyPointsLoadingWidget({Key? key}) : super(key: key);
+
+  final screenController = Get.find<JewellerLoyaltyPointScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 2.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 35,
+                      width: 45.w,
+                      decoration: BoxDecoration(
+                        color: AppColors.greyColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                height: screenController.size.height * 0.35,
+                width: double.infinity,
+                margin: EdgeInsets.symmetric(horizontal: 2.w),
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        height: screenController.size.height * 0.275,
+                        width: double.infinity,
+                        decoration: const BoxDecoration(
+                          color: AppColors.greyColor,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: SizedBox(
+                        height: screenController.size.width * 0.3,
+                        width: screenController.size.width * 0.3,
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(200),
+                          ),
+                          child: Container(color: AppColors.greyColor),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 2.h),
+              Row(
+                children: [
+                  SizedBox(width: 10),
+                  Image.asset(
+                    AppImages.loyaltyPointTitleBGImage,
+                    width: screenController.size.width * 0.65,
+                    height: 35,
+                    fit: BoxFit.fill,
+                  ),
+                ],
+              ),
+              SizedBox(height: 2.h),
+              Container(
+                height: 8.h,
+                margin: EdgeInsets.symmetric(horizontal: 10),
+                decoration: BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+              ),
+              SizedBox(height: 1.5.h),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Container(
+                  height: 20,
+                  width: 70.w,
+                  color: AppColors.greyColor,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

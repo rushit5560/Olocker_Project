@@ -38,7 +38,7 @@ class MyInquiriesListScreen extends StatelessWidget {
       ),
       body: Obx(
         () => myInquiriesListScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? MyInquiriesLoadingWidget()
             : SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Column(

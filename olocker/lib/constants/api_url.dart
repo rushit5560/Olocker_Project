@@ -78,8 +78,8 @@ class ApiUrl {
   static const String addOrnamentApi = "${apiMainPath}api/User/AddOrnament";
   static const String updateOrnamentApi =
       "${apiMainPath}api/User/UpdateOrnament";
-  static const String getAllUnInsuredOrnamentApi =
-      "${apiMainPath}api/User/GetAllUnInsuredOrnament";
+
+//uninsured apis
   static const String getAllInsuredOrnamentApi =
       "${apiMainPath}api/User/GetAllInsuredOrnament";
   static const String getOrnamentDetailApi =
@@ -88,6 +88,14 @@ class ApiUrl {
       "${apiMainPath}api/User/UpdateUnInsuredOrnamentImage";
   static const String getJewelleryPortfolioApi =
       "${apiMainPath}api/User/GetJewelleryPortfolio";
+
+//insured apis
+  static const String getAllUnInsuredOrnamentApi =
+      "${apiMainPath}api/User/GetAllUnInsuredOrnament";
+  static const String trackClaimApi = "${apiMainPath}api/User/TrackClaim";
+  static const String addClaimApi = "${apiMainPath}api/User/AddClaim";
+  static const String updateInvoiceApi = "${apiMainPath}api/User/UpdateInvoice";
+  static const String deleteInvoiceApi = "${apiMainPath}api/User/DeleteInvoice";
 
   // manage ornament recordings Screen Api
   static const String getOrnamentTrackingApi =

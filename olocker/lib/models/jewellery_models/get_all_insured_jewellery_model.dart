@@ -24,14 +24,14 @@ class GetInsuredOrnamentModel {
   factory GetInsuredOrnamentModel.fromJson(Map<String, dynamic> json) =>
       GetInsuredOrnamentModel(
         insuredOrnament: List<InsuredOrnament>.from(
-            (json["insuredOrnament"] ?? [])
+            (json["InsuredOrnament"] ?? [])
                 .map((x) => InsuredOrnament.fromJson(x))),
         success: json["success"] ?? false,
         errorInfo: ErrorInfo.fromJson((json["error_info"] ?? {})),
       );
 
   Map<String, dynamic> toJson() => {
-        "insuredOrnament":
+        "InsuredOrnament":
             List<dynamic>.from(insuredOrnament.map((x) => x.toJson())),
         "success": success,
         "error_info": errorInfo.toJson(),
@@ -74,14 +74,25 @@ class InsuredOrnament {
     required this.itemName,
     required this.description,
     required this.grossWt,
+    required this.daysToExpire,
     required this.hallmarked,
-    required this.wasInsured,
     required this.url,
-    required this.occassion,
     required this.ornamentImagesSrNo,
-    required this.oranamentsPrice,
+    required this.insuredForAmt,
     required this.purchaseDate,
     required this.estValue,
+    required this.expiryDate,
+    required this.policyNo,
+    required this.policySrNo,
+    required this.isClaim,
+    required this.oid,
+    required this.customerName,
+    required this.mobileNo,
+    required this.coi,
+    required this.invoiceName,
+    required this.pdfUrl,
+    required this.isClaimEligible,
+    required this.calimMsg,
   });
 
   final int srNo;
@@ -90,31 +101,54 @@ class InsuredOrnament {
   final String itemName;
   final String description;
   final String grossWt;
+  final String daysToExpire;
   final String hallmarked;
-  final String wasInsured;
   final String url;
-  final String occassion;
   final String ornamentImagesSrNo;
-  final String oranamentsPrice;
+  final double insuredForAmt;
   final String purchaseDate;
   final double estValue;
+  final String expiryDate;
+  final String policyNo;
+  final int policySrNo;
+  final bool isClaim;
+  final String oid;
+  final String customerName;
+  final String mobileNo;
+  final String coi;
+  final String invoiceName;
+  final String pdfUrl;
+  final bool isClaimEligible;
+  final String calimMsg;
 
   factory InsuredOrnament.fromJson(Map<String, dynamic> json) =>
       InsuredOrnament(
-          srNo: json["SrNo"] ?? 0,
-          custSrNo: json["CustSrNo"] ?? 0,
-          custOraSrNo: json["CustOraSrNo"] ?? 0,
-          itemName: json["ItemName"] ?? "",
-          description: json["Description"] ?? "",
-          grossWt: json["GrossWt"] ?? "",
-          hallmarked: json["Hallmarked"] ?? "",
-          wasInsured: json["WasInsured"] ?? "",
-          url: json["url"] ?? "",
-          occassion: json["Occassion"] ?? "",
-          ornamentImagesSrNo: json["OrnamentImagesSrNo"] ?? "",
-          oranamentsPrice: json["OranamentsPrice"] ?? "",
-          purchaseDate: json["PurchaseDate"] ?? "",
-          estValue: json["EstValue"] ?? 0.0);
+        srNo: json["SrNo"] ?? 0,
+        custSrNo: json["CustSrNo"] ?? 0,
+        custOraSrNo: json["CustOraSrNo"] ?? 0,
+        itemName: json["ItemName"] ?? "",
+        description: json["Description"] ?? "",
+        grossWt: json["GrossWt"] ?? "",
+        daysToExpire: json["DaysToExpire"] ?? "",
+        hallmarked: json["Hallmarked"] ?? "",
+        url: json["url"] ?? "",
+        ornamentImagesSrNo: json["OrnamentImagesSrNo"] ?? "",
+        insuredForAmt: (json["InsuredForAmt"] ?? 0).toDouble(),
+        purchaseDate: json["PurchaseDate"] ?? "",
+        estValue: (json["EstValue"] ?? 0).toDouble(),
+        expiryDate: json["ExpiryDate"] ?? "",
+        policyNo: json["PolicyNo"] ?? "",
+        policySrNo: json["PolicySrNo"] ?? 0,
+        isClaim: json["IsClaim"] ?? false,
+        oid: json["OID"] ?? "",
+        customerName: json["CustomerName"] ?? "",
+        mobileNo: json["MobileNo"] ?? "",
+        coi: json["COI"] ?? "",
+        invoiceName: json["InvoiceName"] ?? "",
+        pdfUrl: json["PdfUrl"] ?? "",
+        isClaimEligible: json["IsClaimEligible"] ?? false,
+        calimMsg: json["CalimMsg"] ?? "",
+      );
 
   Map<String, dynamic> toJson() => {
         "SrNo": srNo,
@@ -123,13 +157,24 @@ class InsuredOrnament {
         "ItemName": itemName,
         "Description": description,
         "GrossWt": grossWt,
+        "DaysToExpire": daysToExpire,
         "Hallmarked": hallmarked,
-        "WasInsured": wasInsured,
         "url": url,
-        "Occassion": occassion,
         "OrnamentImagesSrNo": ornamentImagesSrNo,
-        "OranamentsPrice": oranamentsPrice,
+        "InsuredForAmt": insuredForAmt,
         "PurchaseDate": purchaseDate,
         "EstValue": estValue,
+        "ExpiryDate": expiryDate,
+        "PolicyNo": policyNo,
+        "PolicySrNo": policySrNo,
+        "IsClaim": isClaim,
+        "OID": oid,
+        "CustomerName": customerName,
+        "MobileNo": mobileNo,
+        "COI": coi,
+        "InvoiceName": invoiceName,
+        "PdfUrl": pdfUrl,
+        "IsClaimEligible": isClaimEligible,
+        "CalimMsg": calimMsg,
       };
 }

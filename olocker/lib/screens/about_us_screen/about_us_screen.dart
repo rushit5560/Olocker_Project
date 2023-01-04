@@ -54,7 +54,7 @@ class AboutUsScreen extends StatelessWidget {
         ),
         body: Obx(
           () => aboutUsPageController.isLoading.value
-              ? CommonLoader().showCircularLoader()
+              ? AboutUsLoadingWidget()
               : SingleChildScrollView(
                   child: Column(
                     children: [

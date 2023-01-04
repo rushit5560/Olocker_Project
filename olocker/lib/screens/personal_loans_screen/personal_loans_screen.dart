@@ -49,7 +49,7 @@ class PersonalLoansScreen extends StatelessWidget {
       ),
       body: Obx(
         () => personalLoansScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? JewelleryOnEmiLoadingWidget()
             : SingleChildScrollView(
                 child: Column(
                   children: [

@@ -17,6 +17,7 @@ import 'package:olocker/screens/my_jewellery_portfolio_screen/my_jewellery_portf
 import 'package:olocker/screens/online_deals_screen/online_deals_screen.dart';
 import 'package:olocker/screens/personal_loans_screen/personal_loans_screen.dart';
 import 'package:olocker/utils/extensions.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../all_loyalty_points_screen/all_loyalty_points_screen.dart';
@@ -171,7 +172,7 @@ class MyJewellersListModule extends StatelessWidget {
 
   Widget _jewellerListTile(JewellerData jewellerData) {
     String imgUrl = ApiUrl.apiImagePath + jewellerData.logoFileName;
-    log("imgUrl :: $imgUrl");
+    // log("imgUrl :: $imgUrl");
     return GestureDetector(
       onTap: () {
         Get.to(() => JewellerDetailsScreen(), arguments: [
@@ -235,7 +236,7 @@ class BannerModule extends StatelessWidget {
             singleBanner) /*.commonSymmetricPadding(horizontal: 5)*/;
       },
       options: CarouselOptions(
-        height: screenController.size.height * 0.050.h,
+        height: 39.h,
         autoPlay: true,
         viewportFraction: 1,
         // autoPlayAnimationDuration: const Duration(seconds: 10),
@@ -365,7 +366,7 @@ class OnlineDealsListModule extends StatelessWidget {
       child: ListView.builder(
         itemCount: screenController.smartDealsOnlineList.length,
         scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         shrinkWrap: true,
         itemBuilder: (context, i) {
           VendorDealsList vendorDeals =
@@ -443,7 +444,7 @@ class OlockerServiceModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: screenController.size.height * 0.041.h,
+      height: 250,
       child: Stack(
         children: [
           Column(
@@ -468,7 +469,7 @@ class OlockerServiceModule extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    height: screenController.size.height * 0.005.h,
+                    height: 5.h,
                     width: screenController.size.width * 0.13.w,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
@@ -484,8 +485,8 @@ class OlockerServiceModule extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   _serviceModule(
-                    width: screenController.size.width * 0.105.w,
-                    height: screenController.size.height * 0.03.h,
+                    width: 150,
+                    height: 170,
                     onTap: () {
                       Get.to(() => MyJewelleryPortFolioScreen());
                     },
@@ -494,8 +495,8 @@ class OlockerServiceModule extends StatelessWidget {
                   ),
                   SizedBox(width: screenController.size.width * 0.008.w),
                   _serviceModule(
-                    width: screenController.size.width * 0.105.w,
-                    height: screenController.size.height * 0.03.h,
+                    width: 150,
+                    height: 170,
                     onTap: () {
                       Get.to(() => PersonalLoansScreen());
                     },
@@ -577,11 +578,11 @@ class OlockerServiceModule extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        top: -15,
+                        top: -12,
                         right: 5,
                         child: Container(
-                          width: screenController.size.width * 0.018.w,
-                          height: screenController.size.width * 0.018.w,
+                          width: 24,
+                          height: 24,
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: AppColors.whiteColor,
@@ -601,6 +602,102 @@ class OlockerServiceModule extends StatelessWidget {
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class HomeScreenLoadingWidget extends StatelessWidget {
+  HomeScreenLoadingWidget({Key? key}) : super(key: key);
+  final screenController = Get.find<HomeScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: 1.h),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 15),
+                height: 60,
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(8),
+                  ),
+                ),
+              ),
+              SizedBox(height: 2.h),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'My Jewellers',
+                    style: TextStyle(
+                      fontSize: 13.sp,
+                      color: AppColors.accentColor,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: const Icon(
+                      Icons.view_module_rounded,
+                      color: AppColors.accentColor,
+                    ),
+                  ),
+                ],
+              ).commonSymmetricPadding(horizontal: 10),
+              SizedBox(
+                height: screenController.size.height * 0.17,
+                child: ListView.builder(
+                  itemCount: 3,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, i) {
+                    return Column(
+                      children: [
+                        Container(
+                          width: screenController.size.width * 0.37,
+                          height: screenController.size.height * 0.11,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: AppColors.greyColor,
+                          ),
+                        ),
+                        SizedBox(
+                            height: screenController.size.height * 0.001.h),
+                        Container(height: 10, color: AppColors.greyColor),
+                      ],
+                    ).commonAllSidePadding(8);
+                  },
+                ),
+              ),
+              // SizedBox(height: homeScreenController.size.height * 0.02),
+
+              Container(
+                  height: 39.h,
+                  width: double.infinity,
+                  color: AppColors.greyColor),
+              SizedBox(height: 2.h),
+
+              Container(
+                height: 60,
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                ),
+              ),
+              SizedBox(height: 2.h),
+            ],
+          ),
         ),
       ),
     );

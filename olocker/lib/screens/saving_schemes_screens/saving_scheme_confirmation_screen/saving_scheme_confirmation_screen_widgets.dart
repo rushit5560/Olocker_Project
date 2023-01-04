@@ -228,7 +228,7 @@ class ProceedToPayButtonModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: savingSelectionScreenController.size.height * 0.18,
+      height: 140,
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
       child: Column(
         children: [
@@ -285,7 +285,7 @@ class ProceedToPayButtonModule extends StatelessWidget {
           ),
           SizedBox(height: 2.h),
           SizedBox(
-            height: 48,
+            height: 46,
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {

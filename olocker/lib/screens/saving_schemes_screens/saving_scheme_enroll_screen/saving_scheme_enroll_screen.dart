@@ -36,7 +36,7 @@ class SavingSchemeEnrollScreen extends StatelessWidget {
       ),
       body: Obx(
         () => savingSchemeEnrollScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? SchemEnrollScreenLoadingWidget()
             : SingleChildScrollView(
                 child: Form(
                   key: savingSchemeEnrollScreenController.customerFormKey,

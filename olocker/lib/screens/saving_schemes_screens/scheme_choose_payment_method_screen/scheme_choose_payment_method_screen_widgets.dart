@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/widgets/common_loader.dart';
 import 'package:olocker/widgets/common_widgets.dart';
+import 'package:shimmer/shimmer.dart';
 
 import 'package:sizer/sizer.dart';
 
@@ -20,7 +21,7 @@ class PaymentMethods extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => screenController.isLoading.value
-          ? CommonLoader().showCircularLoader()
+          ? SchemePaymentLoadingWidget()
           : Container(
               width: double.infinity,
               decoration: BoxDecoration(
@@ -237,6 +238,32 @@ class PayNowCustomButton extends StatelessWidget {
               color: AppColors.whiteColor,
               fontStyle: FontStyle.italic,
               letterSpacing: 0.6,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SchemePaymentLoadingWidget extends StatelessWidget {
+  SchemePaymentLoadingWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: Container(
+          height: 48.h,
+          width: double.infinity,
+          margin: const EdgeInsets.symmetric(vertical: 10),
+          decoration: const BoxDecoration(
+            color: AppColors.greyColor,
+            borderRadius: BorderRadius.all(
+              Radius.circular(12),
             ),
           ),
         ),

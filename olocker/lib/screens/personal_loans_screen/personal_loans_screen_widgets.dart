@@ -12,6 +12,7 @@ import 'package:olocker/controllers/personal_loans_screen_controller.dart';
 import 'package:olocker/models/personal_loans_screen_model/check_availability_model.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/utils/field_validation.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 class GetLoanContainerModule extends StatelessWidget {
@@ -83,72 +84,72 @@ class StepOneFormModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          margin: const EdgeInsets.all(20),
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
-          decoration: BoxDecoration(
-            color: AppColors.whiteColor,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Image.asset(
-                AppImages.walletImage,
-                height: 45,
-                width: 40,
-              ),
-              SizedBox(width: 4.w),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Your Pre approved loan is",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 11.5.sp,
-                      color: AppColors.greyColor,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "₹ 100000",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 24.sp,
-                          color: AppColors.accentColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(width: 20),
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        child: Text(
-                          "GET LOAN",
-                          style: TextStyle(
-                            fontSize: 11.sp,
-                            fontFamily: "Roboto",
-                            color: AppColors.whiteColor,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        // SizedBox(height: 1.h),
+        // Container(
+        //   margin: const EdgeInsets.all(20),
+        //   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+        //   decoration: BoxDecoration(
+        //     color: AppColors.whiteColor,
+        //     borderRadius: BorderRadius.circular(10),
+        //   ),
+        //   child: Row(
+        //     crossAxisAlignment: CrossAxisAlignment.center,
+        //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //     children: [
+        //       Image.asset(
+        //         AppImages.walletImage,
+        //         height: 45,
+        //         width: 40,
+        //       ),
+        //       SizedBox(width: 4.w),
+        //       Column(
+        //         crossAxisAlignment: CrossAxisAlignment.start,
+        //         mainAxisAlignment: MainAxisAlignment.center,
+        //         children: [
+        //           Text(
+        //             "Your Pre approved loan is",
+        //             textAlign: TextAlign.center,
+        //             style: TextStyle(
+        //               fontSize: 11.5.sp,
+        //               color: AppColors.greyColor,
+        //               fontWeight: FontWeight.w500,
+        //             ),
+        //           ),
+        //           Row(
+        //             children: [
+        //               Text(
+        //                 "₹ 100000",
+        //                 textAlign: TextAlign.center,
+        //                 style: TextStyle(
+        //                   fontSize: 24.sp,
+        //                   color: AppColors.accentColor,
+        //                   fontWeight: FontWeight.bold,
+        //                 ),
+        //               ),
+        //               SizedBox(width: 20),
+        //               ElevatedButton(
+        //                 onPressed: () {},
+        //                 style: ElevatedButton.styleFrom(
+        //                   shape: RoundedRectangleBorder(
+        //                     borderRadius: BorderRadius.circular(8),
+        //                   ),
+        //                 ),
+        //                 child: Text(
+        //                   "GET LOAN",
+        //                   style: TextStyle(
+        //                     fontSize: 11.sp,
+        //                     fontFamily: "Roboto",
+        //                     color: AppColors.whiteColor,
+        //                   ),
+        //                 ),
+        //               ),
+        //             ],
+        //           ),
+        //         ],
+        //       ),
+        //     ],
+        //   ),
+        // ),
+        SizedBox(height: 20),
         Container(
           margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
           // .all(20),
@@ -1810,5 +1811,114 @@ class StepThreeFormModule extends StatelessWidget {
       screenController.rentAgreementFile = File(pickedFile.path);
       screenController.loadUI();
     } else {}
+  }
+}
+
+class JewelleryOnEmiLoadingWidget extends StatelessWidget {
+  JewelleryOnEmiLoadingWidget({Key? key}) : super(key: key);
+
+  final screenController = Get.find<PersonalLoansScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      Container(
+                        height: 9.h,
+                        width: 9.h,
+                        decoration: BoxDecoration(
+                          color: AppColors.greyColor,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Container(
+                        height: 10,
+                        width: 80,
+                        color: AppColors.greyColor,
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 12.w),
+                  Column(
+                    children: [
+                      Container(
+                        height: 9.h,
+                        width: 9.h,
+                        decoration: BoxDecoration(
+                          color: AppColors.greyColor,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Container(
+                        height: 10,
+                        width: 80,
+                        color: AppColors.greyColor,
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 12.w),
+                  Column(
+                    children: [
+                      Container(
+                        height: 9.h,
+                        width: 9.h,
+                        decoration: BoxDecoration(
+                          color: AppColors.greyColor,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Container(
+                        height: 10,
+                        width: 80,
+                        color: AppColors.greyColor,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
+              Container(
+                height: 62.h,
+                width: double.infinity,
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              Container(
+                height: 60,
+                width: double.infinity,
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

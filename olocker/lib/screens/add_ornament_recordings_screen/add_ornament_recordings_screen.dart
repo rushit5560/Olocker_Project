@@ -20,7 +20,9 @@ class AddOrnamentRecordingsScreen extends StatelessWidget {
       backgroundColor: AppColors.lightBrownBgColor,
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () => Get.back(),
+          onPressed: () {
+            Get.back();
+          },
           icon:
               const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor),
         ),
@@ -38,7 +40,7 @@ class AddOrnamentRecordingsScreen extends StatelessWidget {
       ),
       body: Obx(
         () => addOrnamentRecordingsController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? AddRecordingsLoadingWidget()
             : SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
                 child: Stack(

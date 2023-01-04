@@ -4,6 +4,7 @@ import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/all_loyalty_point_screen_controller.dart';
 import 'package:olocker/utils/extensions.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 class AllLoyaltyPointListModule extends StatelessWidget {
@@ -220,6 +221,41 @@ class AllLoyaltyPointListModule extends StatelessWidget {
           ).commonAllSidePadding(10),
         ).commonAllSidePadding(5);
       },
+    );
+  }
+}
+
+class AllLoyaltyPointsLoadingWidget extends StatelessWidget {
+  const AllLoyaltyPointsLoadingWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              ListView.builder(
+                itemCount: 2,
+                physics: const BouncingScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, i) {
+                  return Container(
+                    height: 22.h,
+                    decoration: BoxDecoration(
+                      color: AppColors.greyColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ).commonAllSidePadding(5);
+                },
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

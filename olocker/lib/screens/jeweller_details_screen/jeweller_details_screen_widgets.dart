@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +15,10 @@ import 'package:olocker/models/jeweller_details_screen_model/jewellery_type_mode
 import 'package:olocker/screens/jeweller_feedback_screen/jeweller_feedback_screen.dart';
 import 'package:olocker/screens/jeweller_jewellery_details_screen/jeweller_jewellery_details_screen.dart';
 import 'package:olocker/screens/jeweller_jewellery_list_screen/jeweller_jewellery_list_screen.dart';
-import 'package:olocker/screens/jewellery_details_screen/jewellery_details_screen.dart';
+
 import 'package:olocker/screens/refer_and_earn_screen/refer_and_earn_screen.dart';
 import 'package:olocker/utils/extensions.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 import '../../models/jeweller_details_screen_model/announcement_offer_model.dart';
 import '../about_us_screen/about_us_screen.dart';
@@ -476,9 +478,9 @@ class ReferAndJewellerEmiModule extends StatelessWidget {
               onTap: () {
                 Get.to(
                   () => SavingSchemesListScreen(),
-                  // arguments: [
-                  //   screenController.jewellerId,
-                  // ],
+                  arguments: [
+                    screenController.jewellerId,
+                  ],
                 );
               },
               child: Container(
@@ -522,6 +524,7 @@ class MenWomenJewelleryListModule extends StatelessWidget {
       children: [
         Container(
           height: screenController.size.height * 0.035.h,
+          width: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(bgImage),
@@ -588,7 +591,7 @@ class MenWomenJewelleryListModule extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              flex: 8,
+              flex: 10,
               child: CachedNetworkImage(
                 imageUrl: imgUrl,
                 fit: BoxFit.cover,
@@ -669,9 +672,14 @@ class BestSellersListModule extends StatelessWidget {
   }
 
   Widget _bestSellerListTile(ListOfProduct singleItem) {
-    String imgUrl =
-        ApiUrl.apiImagePath + singleItem.productimages[0].imageLocation;
+    String imgUrl = "";
     // log('imgUrl111 : $imgUrl');
+
+    if (singleItem.productimages.isNotEmpty) {
+      log("has image");
+
+      imgUrl = ApiUrl.apiImagePath + singleItem.productimages[0].imageLocation;
+    }
 
     return GestureDetector(
       onTap: () {
@@ -954,130 +962,193 @@ class GoldPriceModule extends StatelessWidget {
                     );
                   },
                 ).commonSymmetricPadding(vertical: 15),
-
-          /*  Row(
-            children: [
-
-              Expanded(
-                child: Container(
-                  height: screenController.size.height * 0.025.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColors.goldColor,
-                  ),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        flex: 7,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                              image: AssetImage(AppImages.goldIcon24Image),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ).commonAllSidePadding(20),
-                      ),
-
-                      Expanded(
-                        flex: 3,
-                        child: Text(
-                          NumberFormat.currency(
-                            symbol: '₹ ',
-                            locale: "HI",
-                            decimalDigits: 2,
-                          ).format(double.parse(screenController.goldPrice1)),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: AppColors.whiteColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12.sp,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ).commonAllSidePadding(5),
-
-              Expanded(
-                child: Container(
-                  height: screenController.size.height * 0.03.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColors.goldColor,
-                  ),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        flex: 7,
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(AppImages.goldIcon22Image),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-
-                      Expanded(
-                        flex: 3,
-                        child: Text(
-                          NumberFormat.currency(
-                            symbol: '₹ ',
-                            locale: "HI",
-                            decimalDigits: 2,
-                          ).format(double.parse(screenController.goldPrice2)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ).commonAllSidePadding(5),
-
-              Expanded(
-                child: Container(
-                  height: screenController.size.height * 0.03.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColors.goldColor,
-                  ),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        flex: 7,
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(AppImages.goldIcon18Image),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-
-                      Expanded(
-                        flex: 3,
-                        child: Text(
-                          NumberFormat.currency(
-                            symbol: '₹ ',
-                            locale: "HI",
-                            decimalDigits: 2,
-                          ).format(double.parse(screenController.goldPrice3)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ).commonAllSidePadding(5),
-
-            ],
-          ),*/
         ],
       ),
     ).commonSymmetricPadding(vertical: 10, horizontal: 12);
+  }
+}
+
+class JewellerDetailsLoadingShimmer extends StatelessWidget {
+  JewellerDetailsLoadingShimmer({Key? key}) : super(key: key);
+  final screenController = Get.find<JewellerDetailsScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: 28.h,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: AppColors.greyColor,
+                ),
+              ).commonSymmetricPadding(horizontal: 10),
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                decoration: BoxDecoration(
+                  border: Border(
+                    top: BorderSide(
+                      color: AppColors.greyTextColor.withOpacity(0.35),
+                    ),
+                    bottom: BorderSide(
+                      color: AppColors.greyTextColor.withOpacity(0.35),
+                    ),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: Row(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: AppColors.greyColor,
+                                shape: BoxShape.circle,
+                              ),
+                              height: 20.sp,
+                              width: 20.sp,
+                            ),
+                            SizedBox(width: 2.w),
+                            Expanded(
+                              child: Container(
+                                height: 10,
+                                decoration: BoxDecoration(
+                                  color: AppColors.greyColor,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: Row(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: AppColors.greyColor,
+                                shape: BoxShape.circle,
+                              ),
+                              height: 20.sp,
+                              width: 20.sp,
+                            ),
+                            SizedBox(width: 2.w),
+                            Expanded(
+                              child: Container(
+                                height: 10,
+                                decoration: BoxDecoration(
+                                  color: AppColors.greyColor,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: Row(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: AppColors.greyColor,
+                                shape: BoxShape.circle,
+                              ),
+                              height: 20.sp,
+                              width: 20.sp,
+                            ),
+                            SizedBox(width: 2.w),
+                            Expanded(
+                              child: Container(
+                                height: 10,
+                                decoration: BoxDecoration(
+                                  color: AppColors.greyColor,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ).commonAllSidePadding(10),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                child: SizedBox(
+                  height: screenController.size.height * 0.015.h,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.greyColor,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 5),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.greyColor,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 5),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.greyColor,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 5),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.greyColor,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ListView.builder(
+                itemCount: 3,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, i) {
+                  return Container(
+                    height: screenController.size.height * 0.023.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: AppColors.greyColor,
+                    ),
+                  ).commonSymmetricPadding(horizontal: 5, vertical: 5);
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

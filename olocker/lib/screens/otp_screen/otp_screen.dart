@@ -32,7 +32,7 @@ class OtpScreen extends StatelessWidget {
       ),
       body: Obx(
         () => otpScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? OtpScreenLoadingWidget()
             : SingleChildScrollView(
                 child: Column(
                   children: [

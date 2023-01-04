@@ -6,89 +6,64 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/jeweller_feedback_screen_controller.dart';
 import 'package:olocker/models/jeweller_feedback_screen_models/feedback_form_model.dart';
 import 'package:olocker/utils/extensions.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
-/*class RadioButtonListModule extends StatefulWidget {
-  final RatingQuestionList singleItem;
-  final int index;
+class FeedbackScreenLoadingWidget extends StatelessWidget {
+  FeedbackScreenLoadingWidget({Key? key}) : super(key: key);
 
-  RadioButtonListModule({
-    Key? key,
-    required this.singleItem,
-    required this.index,
-  }) : super(key: key);
-
-  @override
-  State<RadioButtonListModule> createState() =>
-      _RadioButtonListTileModuleState();
-}
-
-class _RadioButtonListTileModuleState extends State<RadioButtonListModule> {
   final screenController = Get.find<JewellerFeedbackScreenController>();
 
   @override
   Widget build(BuildContext context) {
-    // Answer groupValue1 = widget.groupValue;
-
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.darkCreamBgColor,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            widget.singleItem.question,
-            style: TextStyle(
-              fontSize: 12.sp,
-            ),
-          ).commonAllSidePadding(10),
-          ListView.builder(
-            itemCount: widget.singleItem.answer.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, i) {
-              return RadioListTile<String>(
-                title: Text(widget.singleItem.answer[i].questionAnswer),
-                value: widget.singleItem.answer[i].questionAnswer,
-                groupValue: screenController.radioButtonValueList[widget.index],
-                onChanged: (value) {
-                  screenController.isLoading(true);
-
-                  String selectedValue =
-                      widget.singleItem.answer[i].questionAnswer;
-                  List<String> selectedValueList = [];
-                  selectedValueList.add(selectedValue);
-                  // index, selectedValueList
-                  for (int i = 0;
-                      i < screenController.finalFeedBackAnsList.length;
-                      i++) {
-                    if (widget.index == i) {
-                      screenController.finalFeedBackAnsList[widget.index] =
-                          selectedValueList;
-
-                      // This is only for update ui
-                      screenController.radioButtonValueList[widget.index] =
-                          selectedValue;
-                      log('radioButtonValueList : ${screenController.radioButtonValueList[widget.index]}');
-                    }
-                  }
-                  // for(int i =0; i < screenController.finalFeedBackAnsList.length; i++) {
-                  //   log('finalFeedBackAnsList $i : ${screenController.finalFeedBackAnsList[i]}');
-                  // }
-
-                  // log('groupValue123 : ${groupValue1.questionAnswer}');
-                  screenController.isLoading(false);
-                },
-              );
-            },
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: 32.h,
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: AppColors.lightBrownBgColor,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+              Container(
+                height: 32.h,
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: AppColors.lightBrownBgColor,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+              Container(
+                height: 18.h,
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: AppColors.lightBrownBgColor,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
-    ).commonSymmetricPadding(vertical: 5);
+    );
   }
-}*/
+}
 
 class RadioButtonListModule extends StatelessWidget {
   final RatingQuestionList singleItem;

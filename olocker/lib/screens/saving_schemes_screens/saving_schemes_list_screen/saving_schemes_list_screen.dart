@@ -34,16 +34,18 @@ class SavingSchemesListScreen extends StatelessWidget {
       ),
       body: Obx(
         () => savingSchemesListScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? SavingSchemesListLoadingWidget()
             : SingleChildScrollView(
                 physics: const ClampingScrollPhysics(),
                 child: savingSchemesListScreenController
                         .getSavingSchemesList.isEmpty
                     ? Padding(
-                        padding: EdgeInsets.symmetric(vertical: 30.h),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 30.h, horizontal: 10.w),
                         child: Center(
                           child: Text(
-                            "No Saving schemes available",
+                            "Currently, there is no savings scheme LIVE. Thank you for showing interest.",
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w500,

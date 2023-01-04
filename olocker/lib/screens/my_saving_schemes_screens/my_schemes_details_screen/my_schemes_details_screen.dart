@@ -7,7 +7,6 @@ import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constants/app_colors.dart';
-import '../../../widgets/saving_schemes_widgets.dart';
 
 class MySchemesDetailsScreen extends StatelessWidget {
   MySchemesDetailsScreen({Key? key}) : super(key: key);
@@ -43,7 +42,7 @@ class MySchemesDetailsScreen extends StatelessWidget {
       backgroundColor: Colors.orange.shade100,
       body: Obx(
         () => mySchemePendingPaymentScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? SchemeDetailsLoadingWidget()
             : SingleChildScrollView(
                 child: Padding(
                   padding:

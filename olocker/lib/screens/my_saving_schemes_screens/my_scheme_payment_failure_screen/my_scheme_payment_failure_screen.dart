@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
-import 'package:olocker/widgets/common_loader.dart';
+
 import 'package:sizer/sizer.dart';
 
 import '../../../controllers/my_saving_schemes_screens_controllers/my_scheme_payment_failure_screen_controller.dart';
@@ -35,18 +35,14 @@ class MySchemePaymentFailureScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: TryAnotherMethodButton(),
-      body: Obx(
-        () => mySchemePaymentFailureScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
-            : SingleChildScrollView(
-                child: Column(
-                  children: [
-                    PaymentUnSuccessContainerWidget(),
-                    SizedBox(height: 3.h),
-                    ImageShowWidget(),
-                  ],
-                ),
-              ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            PaymentUnSuccessContainerWidget(),
+            SizedBox(height: 3.h),
+            ImageShowWidget(),
+          ],
+        ),
       ),
     );
   }

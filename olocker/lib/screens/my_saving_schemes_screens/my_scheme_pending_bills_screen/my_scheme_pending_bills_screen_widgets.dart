@@ -1,13 +1,12 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/screens/my_saving_schemes_screens/my_scheme_pending_payment_screen/my_scheme_pending_payment_screen.dart';
-import 'package:olocker/utils/extensions.dart';
+
 import 'package:olocker/widgets/common_widgets.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constants/app_colors.dart';
@@ -203,7 +202,7 @@ class SinglePendingItem extends StatelessWidget {
 
     // selectedOrnamentPurchaseDate.value = formattedDate.replaceAll("-", "/");
 
-    log("formattedDate is:: $formattedDate");
+    // log("formattedDate is:: $formattedDate");
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
@@ -310,6 +309,82 @@ class SinglePendingItem extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class PendingBillsLoadingWidget extends StatelessWidget {
+  PendingBillsLoadingWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              Container(
+                height: 16.h,
+                width: double.infinity,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Container(
+                height: 11.h,
+                width: double.infinity,
+                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+              Container(
+                height: 11.h,
+                width: double.infinity,
+                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+              Container(
+                height: 11.h,
+                width: double.infinity,
+                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

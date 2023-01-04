@@ -7,6 +7,7 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/screens/saving_schemes_screens/saving_scheme_enroll_screen/saving_scheme_enroll_screen.dart';
 import 'package:olocker/screens/saving_schemes_screens/saving_schemes_explainer_screen/saving_schemes_explainer_screen.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 import '../../../constants/api_url.dart';
 import '../../../controllers/saving_schemes_screens_controllers/saving_schemes_list_screen_controller.dart';
@@ -29,21 +30,30 @@ class BannerPageViewModule extends StatelessWidget {
           height: savingSchemesListScreenController.size.height * 0.25,
           width: double.infinity,
           padding: const EdgeInsets.all(8.0),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: CachedNetworkImage(
-              imageUrl: ApiUrl.apiImagePath +
-                  savingSchemesListScreenController
-                      .getSavingSchemesList[i].imagePath,
-              fit: BoxFit.cover,
-              height: savingSchemesListScreenController.size.height * 0.25,
-              width: double.infinity,
-              errorWidget: (ctx, str, strace) {
-                return Image.asset(
-                  AppImages.noLogoImage,
-                  fit: BoxFit.cover,
-                );
-              },
+          child: GestureDetector(
+            onTap: () {
+              Get.to(
+                () => SavingSchemesExplainerScreen(),
+                arguments: savingSchemesListScreenController
+                    .getSavingSchemesList[i].srNo,
+              );
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: CachedNetworkImage(
+                imageUrl: ApiUrl.apiImagePath +
+                    savingSchemesListScreenController
+                        .getSavingSchemesList[i].imagePath,
+                fit: BoxFit.cover,
+                height: savingSchemesListScreenController.size.height * 0.25,
+                width: double.infinity,
+                errorWidget: (ctx, str, strace) {
+                  return Image.asset(
+                    AppImages.noLogoImage,
+                    fit: BoxFit.cover,
+                  );
+                },
+              ),
             ),
           ),
         );
@@ -66,18 +76,18 @@ class SchemesListViewModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount:
-            savingSchemesListScreenController.getSavingSchemesList.length,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
-          var singleScheme =
-              savingSchemesListScreenController.getSavingSchemesList[index];
-          return SingleSavingSchemeItem(
-            singleScheme: singleScheme,
-            index: index,
-          );
-        });
+      itemCount: savingSchemesListScreenController.getSavingSchemesList.length,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemBuilder: (context, index) {
+        var singleScheme =
+            savingSchemesListScreenController.getSavingSchemesList[index];
+        return SingleSavingSchemeItem(
+          singleScheme: singleScheme,
+          index: index,
+        );
+      },
+    );
   }
 }
 
@@ -106,6 +116,10 @@ class SingleSavingSchemeItem extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.only(left: 3.w),
         decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(10),
+            bottomRight: Radius.circular(10),
+          ),
           color: Colors.white,
         ),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -216,6 +230,64 @@ class SingleSavingSchemeItem extends StatelessWidget {
             ),
             SizedBox(height: 1.h),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class SavingSchemesListLoadingWidget extends StatelessWidget {
+  SavingSchemesListLoadingWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              Container(
+                height: 21.h,
+                width: double.infinity,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+                decoration: BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+              SizedBox(height: 1.h),
+              ListView.builder(
+                itemCount: 2,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Container(
+                    height: 22.h,
+                    width: double.infinity,
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 12),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 15, horizontal: 12),
+                    decoration: BoxDecoration(
+                      color: AppColors.greyColor,
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(12),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

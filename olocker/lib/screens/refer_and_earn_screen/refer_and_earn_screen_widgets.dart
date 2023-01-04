@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/refer_and_earn_screen_controller.dart';
@@ -191,6 +192,113 @@ class ShareButtonModule extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ReferEarnLoadingWidget extends StatelessWidget {
+  ReferEarnLoadingWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              Container(
+                height: 35.h,
+                width: double.infinity,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+                decoration: BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(28),
+                  ),
+                ),
+              ),
+              Container(
+                height: 30,
+                width: 80.w,
+                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
+              ),
+              Container(
+                height: 15,
+                width: 80.w,
+                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
+              ),
+              Container(
+                height: 15,
+                width: 80.w,
+                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
+              ),
+              Container(
+                height: 60,
+                width: 85.w,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(Radius.circular(28)),
+                ),
+              ),
+              Container(
+                height: 25,
+                width: 85.w,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(Radius.circular(28)),
+                ),
+              ),
+              Container(
+                height: 10,
+                width: 85.w,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(Radius.circular(28)),
+                ),
+              ),
+              Container(
+                height: 60,
+                width: double.infinity,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+                decoration: BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(5),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

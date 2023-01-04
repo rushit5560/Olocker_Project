@@ -4,6 +4,7 @@ import 'package:flutter_html/flutter_html.dart';
 
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
+import 'package:olocker/screens/saving_schemes_screens/saving_schemes_explainer_screen/saving_schemes_explainer_screen_widgets.dart';
 import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
@@ -39,7 +40,7 @@ class SavingSchemesExplainerScreen extends StatelessWidget {
       backgroundColor: Colors.orange.shade100,
       body: Obx(
         () => savingSchemesExplainerScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? SchemeExplainerLoadingWidget()
             : SingleChildScrollView(
                 child: Column(
                   children: [

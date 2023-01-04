@@ -38,7 +38,7 @@ class MyJewelleryPortFolioScreen extends StatelessWidget {
       ),
       body: Obx(
         () => jewellPortFolioController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? MyPortFolioLoadingWidget()
             : SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Stack(

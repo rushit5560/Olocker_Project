@@ -35,7 +35,7 @@ class JewellerLoyaltyPointScreen extends StatelessWidget {
       ),
       body: Obx(
         () => screenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? MyLoyaltyPointsLoadingWidget()
             : screenController.loyaltyPoints == null
                 ? Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.h),

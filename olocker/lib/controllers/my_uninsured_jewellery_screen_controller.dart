@@ -52,10 +52,10 @@ class MyUnInsuredJewelleryScreenController extends GetxController {
         getOrnamentList = getUnInsuredOrnamentModel.unInsuredOrnament;
         log('getMyUnInsuredAllJewelleryFunction list is  : ${getUnInsuredOrnamentModel.unInsuredOrnament.length.toString()}');
       } else {
-        CommonWidgets().showBorderSnackBar(
-          context: Get.context!,
-          displayText: getUnInsuredOrnamentModel.errorInfo.extraInfo,
-        );
+        // CommonWidgets().showBorderSnackBar(
+        //   context: Get.context!,
+        //   displayText: getUnInsuredOrnamentModel.errorInfo.extraInfo,
+        // );
         log('get getMyUnInsuredAllJewelleryFunction Else');
       }
       isLoading(false);

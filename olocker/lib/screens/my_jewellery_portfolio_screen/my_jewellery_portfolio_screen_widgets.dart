@@ -5,6 +5,7 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/screens/add_uninsured_jewellery_screen/add_uninsured_jewellery_screen.dart';
 import 'package:olocker/screens/my_insured_jewellery_screen/my_insured_jewellery_screen.dart';
 import 'package:olocker/screens/my_uninsured_jewellery_screen/my_uninsured_jewellery_screen.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/my_jewellery_portfolio_controller.dart';
@@ -379,6 +380,72 @@ class MyUnInsuredJewelleryModule extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class MyPortFolioLoadingWidget extends StatelessWidget {
+  MyPortFolioLoadingWidget({Key? key}) : super(key: key);
+
+  final screenController = Get.find<MyJewelleryPortFolioScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              Container(
+                height: 15.h,
+                width: double.infinity,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+                decoration: BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+              Container(
+                height: 15.h,
+                width: double.infinity,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+                decoration: BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+              Container(
+                height: 15.h,
+                width: double.infinity,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+                decoration: BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

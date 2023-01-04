@@ -11,6 +11,7 @@ import 'package:olocker/controllers/jeweller_jewellery_list_screen_controller.da
 
 import 'package:olocker/utils/extensions.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/jewellery_details_screen_controller.dart';
@@ -532,6 +533,101 @@ class JewellerFeaturesAvailableModule extends StatelessWidget {
             },
           ),
         ],
+      ),
+    );
+  }
+}
+
+class JewelleryDetailsLoadingWidget extends StatelessWidget {
+  JewelleryDetailsLoadingWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                width: double.infinity,
+                child: Stack(
+                  alignment: Alignment.topCenter,
+                  children: [
+                    Container(
+                      height: 55.w,
+                      width: 55.w,
+                      decoration: const BoxDecoration(
+                        color: AppColors.greyColor,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    Positioned(
+                      left: 15,
+                      top: 10,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: AppColors.greyColor,
+                          shape: BoxShape.circle,
+                        ),
+                        padding: const EdgeInsets.all(8),
+                        child: const SizedBox(height: 24, width: 24),
+                      ),
+                    ),
+                    Positioned(
+                      right: 15,
+                      top: 10,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: AppColors.greyColor,
+                          shape: BoxShape.circle,
+                        ),
+                        padding: const EdgeInsets.all(8),
+                        child: const SizedBox(height: 24, width: 24),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 15),
+              Container(
+                height: 25,
+                width: 75.w,
+                color: AppColors.greyColor,
+              ),
+              Container(
+                height: 26.h,
+                width: double.infinity,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+              Container(
+                height: 12.h,
+                width: double.infinity,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

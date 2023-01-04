@@ -24,6 +24,8 @@ class UserPrefsData {
   String customerCountryKey = "customerCountryKey";
   String customerDOBKey = "customerDOBKey";
 
+  String updateProfileCountKey = "updateProfileCountKey";
+
   String customerSalutationKey = "customerSalutationKey";
 
   setCustomerPrefsData({
@@ -59,6 +61,12 @@ class UserPrefsData {
     prefs.setString(customerCountryKey, customerCountry);
     prefs.setString(customerDOBKey, customerDob);
 
+    if (customerDob == "") {
+      prefs.setInt(updateProfileCountKey, 0);
+    } else {
+      prefs.setInt(updateProfileCountKey, 3);
+    }
+
     prefs.setString(customerIdKey, customerId);
 
     UserDetails.customerLoggedIn = true;
@@ -79,6 +87,7 @@ class UserPrefsData {
     UserDetails.customerDob = customerDob;
 
     UserDetails.customerId = customerId;
+    UserDetails.updateProfileCount = prefs.getInt(updateProfileCountKey) ?? 0;
 
     log("UserDetails.customerLoggedIn ::: ${UserDetails.customerLoggedIn}");
 
@@ -96,6 +105,7 @@ class UserPrefsData {
     log("UserDetails.customerState ::: ${UserDetails.customerState}");
     log("UserDetails.customerCountry ::: ${UserDetails.customerCountry}");
     log("UserDetails.customerDob ::: ${UserDetails.customerDob}");
+    log("UserDetails.updateProfileCount ::: ${UserDetails.updateProfileCount}");
 
     log("UserDetails.customerId ::: ${UserDetails.customerId}");
   }
@@ -118,6 +128,8 @@ class UserPrefsData {
     UserDetails.customerCountry = prefs.getString(customerCountryKey) ?? '';
     UserDetails.customerDob = prefs.getString(customerDOBKey) ?? '';
 
+    UserDetails.updateProfileCount = prefs.getInt(updateProfileCountKey) ?? 0;
+
     UserDetails.customerId = prefs.getString(customerIdKey) ?? '';
 
     log("UserDetails.customerLoggedIn ::: ${UserDetails.customerLoggedIn}");
@@ -136,6 +148,8 @@ class UserPrefsData {
     log("UserDetails.customerState ::: ${UserDetails.customerState}");
     log("UserDetails.customerCountry ::: ${UserDetails.customerCountry}");
     log("UserDetails.customerDob ::: ${UserDetails.customerDob}");
+
+    log("UserDetails.updateProfileCount ::: ${UserDetails.updateProfileCount}");
 
     log("UserDetails.customerId ::: ${UserDetails.customerId}");
   }
@@ -159,6 +173,7 @@ class UserPrefsData {
     prefs.setString(customerStateKey, "");
     prefs.setString(customerCountryKey, "");
     prefs.setString(customerDOBKey, "");
+    prefs.setInt(updateProfileCountKey, 0);
 
     prefs.setString(customerIdKey, "");
 

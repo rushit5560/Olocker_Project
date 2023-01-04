@@ -213,7 +213,7 @@ class MySchemePendingPaymentScreenController extends GetxController {
     log('Success Payment Razorpay');
 
     await razorPayAfterPaymentApiFunction(
-      transUuid: response.orderId ?? "",
+      transUuid: response.orderId ?? "0",
       transactionId: response.paymentId ?? "",
     );
     Get.to(

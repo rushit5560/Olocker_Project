@@ -1,13 +1,11 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/screens/my_saving_schemes_screens/my_schemes_details_screen/my_schemes_details_screen.dart';
-import 'package:olocker/utils/extensions.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../controllers/my_saving_schemes_screens_controllers/my_saving_schemes_list_screen_controller.dart';
@@ -515,118 +513,52 @@ class ColoredCustomButton extends StatelessWidget {
   }
 }
 
+class MySchemesListLoadingWidget extends StatelessWidget {
+  MySchemesListLoadingWidget({Key? key}) : super(key: key);
 
-// matured saivings schemes plan widget
-
-
-// SizedBox(height: 2.h),
-//         Container(
-//           width: double.infinity,
-//           decoration: BoxDecoration(
-//               borderRadius: BorderRadius.circular(10),
-//               color: AppColors.whiteColor),
-//           child: Column(
-//             children: [
-//               Row(
-//                 children: [
-//                   Container(
-//                     height: 15,
-//                     width: 15,
-//                     decoration: const BoxDecoration(
-//                       color: AppColors.orangeColor,
-//                       shape: BoxShape.circle,
-//                     ),
-//                   ),
-//                   SizedBox(width: 2.w),
-//                   Text(
-//                     "Follo Number",
-//                     style:
-//                         TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w400),
-//                   ),
-//                   SizedBox(width: 1.w),
-//                   Text(
-//                     "AJMJ-16",
-//                     style:
-//                         TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
-//                   ),
-//                   const Spacer(),
-//                   SizedBox(
-//                     height: 25,
-//                     width: 25,
-//                     child: Image.asset(AppIcons.rightSideImage),
-//                   )
-//                 ],
-//               ),
-//               const Divider(color: Colors.grey),
-//               SizedBox(height: 2.h),
-//               Row(
-//                 crossAxisAlignment: CrossAxisAlignment.start,
-//                 children: [
-//                   Text(
-//                     "Akshay Jewels,Jalgaon",
-//                     style:
-//                         TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
-//                   ),
-//                 ],
-//               ).commonOnlyPadding(left: 15, right: 15),
-//               SizedBox(height: 1.h),
-//               MySavingScreenDateTextCustom(
-//                 text: '24 June 2020',
-//                 date: "Start date",
-//               ),
-//               SizedBox(height: 1.h),
-//               MySavingScreenDateTextCustom(
-//                 date: "Maturity date",
-//                 text: '24 June 2021',
-//               ),
-//               SizedBox(height: 2.h),
-//               Stack(
-//                 alignment: Alignment.center,
-//                 children: [
-//                   const Divider(
-//                     color: AppColors.orangeColor,
-//                   ),
-//                   Align(
-//                     alignment: Alignment.center,
-//                     child: Container(
-//                       height: 5.h,
-//                       width: 35.w,
-//                       decoration: BoxDecoration(
-//                         color: AppColors.orangeColor,
-//                         borderRadius: BorderRadius.circular(27),
-//                       ),
-//                       child: const Center(
-//                         child: Text(
-//                           "MATURED",
-//                           style: TextStyle(
-//                               color: Colors.white, fontWeight: FontWeight.bold),
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//               SizedBox(height: 2.h),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                 children: [
-//                   MySavinScreengAmountDetailsCustom(
-//                     price: "₹ 250000",
-//                     text: "Maturity amount",
-//                     color: AppColors.blueDarkColor,
-//                   ),
-//                   MySavinScreengAmountDetailsCustom(
-//                     price: "₹ 25000",
-//                     text: "Total paid",
-//                     color: AppColors.orangeColor,
-//                   ),
-//                   MySavinScreengAmountDetailsCustom(
-//                     price: "₹ 2500",
-//                     text: "Monthly amount",
-//                     color: AppColors.waGreenColor,
-//                   ),
-//                 ],
-//               ),
-//             ],
-//           ).commonAllSidePadding(20),
-//         ),
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              Container(
+                height: 36.h,
+                width: double.infinity,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+              Container(
+                height: 36.h,
+                width: double.infinity,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

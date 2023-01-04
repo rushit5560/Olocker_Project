@@ -6,7 +6,7 @@ import 'package:olocker/constants/app_images.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/add_uninsured_jewellery_screen_controller.dart';
-import '../../widgets/common_loader.dart';
+
 import 'add_uninsured_jewellery_screen_widgets.dart';
 
 class AddUnInsuredJewelleryScreen extends StatelessWidget {
@@ -39,7 +39,7 @@ class AddUnInsuredJewelleryScreen extends StatelessWidget {
       ),
       body: Obx(
         () => addUnInsuredJewelleryScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? AddUninsuredJewelleryLoadingWidget()
             : SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
                 child: Stack(

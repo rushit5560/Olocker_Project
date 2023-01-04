@@ -44,13 +44,13 @@ class NotificationScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       notificationScreenController.getNotificationList.isEmpty
-                          ? const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 100),
-                              child: Center(
+                          ? Padding(
+                              padding: EdgeInsets.symmetric(vertical: 35.h),
+                              child: const Center(
                                 child: Text(
                                   "No New Notifications Available",
                                   style: TextStyle(
-                                    color: AppColors.whiteColor,
+                                    color: AppColors.blackColor,
                                   ),
                                 ),
                               ),

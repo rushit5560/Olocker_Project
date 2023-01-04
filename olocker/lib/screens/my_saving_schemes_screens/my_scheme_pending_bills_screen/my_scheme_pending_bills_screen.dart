@@ -37,7 +37,7 @@ class MySchemePendingBillsScreen extends StatelessWidget {
       bottomNavigationBar: PayNowBottomButton(),
       body: Obx(
         () => mySchemePendingBillsScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? PendingBillsLoadingWidget()
             : SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Column(

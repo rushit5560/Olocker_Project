@@ -7,6 +7,7 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/utils/field_validation.dart';
 import 'package:olocker/widgets/common_loader.dart';
 import 'package:olocker/widgets/common_widgets.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/add_ornament_recordings_screen_controller.dart';
@@ -641,6 +642,42 @@ class _AddRecordingDetailsFormModuleState
                 ),
               ],
             ),
+    );
+  }
+}
+
+class AddRecordingsLoadingWidget extends StatelessWidget {
+  AddRecordingsLoadingWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              Container(
+                height: 50.h,
+                width: double.infinity,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

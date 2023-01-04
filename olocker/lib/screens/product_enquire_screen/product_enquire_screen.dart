@@ -42,7 +42,7 @@ class ProductEnquireScreen extends StatelessWidget {
       // bottomNavigationBar: SendMessageTextField(),
       body: Obx(
         () => productEnquireScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? EnquireScreenLoadingWidget()
             : Stack(
                 children: [
                   Image.asset(

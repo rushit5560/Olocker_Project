@@ -1,14 +1,11 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
-import 'package:olocker/screens/my_saving_schemes_screens/my_scheme_pending_payment_screen/my_scheme_pending_payment_screen.dart';
 
-import 'package:olocker/utils/extensions.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../constants/app_colors.dart';
@@ -18,173 +15,93 @@ import '../../../models/my_saving_schemes_models/get_saving_schemes_list_model/g
 import '../../../models/saving_scheme_screens_models/saving_schemes_success_failure_models/get_transaction_status_details_model.dart';
 import '../my_scheme_pending_bills_screen/my_scheme_pending_bills_screen.dart';
 
-// class MySchemesDetailsModule extends StatelessWidget {
-//   MySchemesDetailsModule({Key? key}) : super(key: key);
+class SchemeDetailsLoadingWidget extends StatelessWidget {
+  SchemeDetailsLoadingWidget({Key? key}) : super(key: key);
 
-//   final mySchemePendingPaymentScreenController =
-//       Get.find<MySchemesDetailsScreenController>();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         Container(
-//           width: double.infinity,
-//           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-//           decoration: BoxDecoration(
-//               borderRadius: BorderRadius.circular(10),
-//               color: AppColors.whiteColor),
-//           child: Column(
-//             children: [
-//               Row(
-//                 children: [
-//                   Container(
-//                     height: 15,
-//                     width: 15,
-//                     decoration: const BoxDecoration(
-//                       color: AppColors.greenTintColor,
-//                       shape: BoxShape.circle,
-//                     ),
-//                   ),
-//                   SizedBox(width: 4.w),
-//                   Text(
-//                     "Folio Number",
-//                     style: TextStyle(
-//                       fontSize: 13.sp,
-//                       fontWeight: FontWeight.w400,
-//                       color: AppColors.blackColor,
-//                     ),
-//                   ),
-//                   SizedBox(width: 2.w),
-//                   Text(
-//                     "AJMJ-16",
-//                     style: TextStyle(
-//                       fontSize: 13.sp,
-//                       fontWeight: FontWeight.bold,
-//                       color: AppColors.blackColor,
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//               SizedBox(height: 2.h),
-//               const Divider(
-//                 color: AppColors.lightBrownBgColor,
-//                 thickness: 1,
-//                 height: 5,
-//               ),
-//               SizedBox(height: 2.h),
-//               Padding(
-//                 padding: const EdgeInsets.symmetric(horizontal: 12),
-//                 child: Column(
-//                   children: [
-//                     Row(
-//                       crossAxisAlignment: CrossAxisAlignment.start,
-//                       children: [
-//                         Text(
-//                           "Akshay Jewels, Jalgaon",
-//                           style: TextStyle(
-//                             fontSize: 16.sp,
-//                             fontWeight: FontWeight.w500,
-//                             color: AppColors.blackColor,
-//                           ),
-//                         ),
-//                       ],
-//                     ),
-//                     SizedBox(height: 1.5.h),
-//                     const SavingDetailsTextCustom(
-//                       text: "Start date",
-//                       textValue: '24 June 2020',
-//                     ),
-//                     SizedBox(height: 1.h),
-//                     const SavingDetailsTextCustom(
-//                       text: "Maturity date",
-//                       textValue: '24 June 2022',
-//                     ),
-//                     SizedBox(height: 1.h),
-//                     const SavingDetailsTextCustom(
-//                       text: "Next payment date",
-//                       textValue: '24 June 2021',
-//                     ),
-//                     SizedBox(height: 2.5.h),
-//                     LinearPercentIndicator(
-//                       animation: true,
-//                       lineHeight: 10,
-//                       animationDuration: 2000,
-//                       percent: 0.7,
-//                       barRadius: const Radius.circular(10),
-//                       progressColor: AppColors.greenTintColor,
-//                     ),
-//                     SizedBox(height: 2.5.h),
-//                   ],
-//                 ),
-//               ),
-//               SizedBox(height: 1.h),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                 children: const [
-//                   AmountDetailsColoredColumn(
-//                     price: "₹ 250000",
-//                     text: "Maturity amount",
-//                     color: AppColors.blueDarkColor,
-//                   ),
-//                   AmountDetailsColoredColumn(
-//                     price: "₹ 25000",
-//                     text: "Total paid",
-//                     color: AppColors.orangeColor,
-//                   ),
-//                   AmountDetailsColoredColumn(
-//                     price: "₹ 2500",
-//                     text: "Monthly amount",
-//                     color: AppColors.waGreenColor,
-//                   ),
-//                 ],
-//               ),
-//               SizedBox(height: 1.h),
-//             ],
-//           ),
-//         ),
-//         SizedBox(height: 2.h),
-//         SencoPaymentDetailsImageModule(),
-//         SizedBox(height: 2.h),
-//         Row(
-//           children: [
-//             ColoredCustomButton(
-//               color: AppColors.greenTintColor,
-//               text: "MAKE PAYMENT",
-//               onPressed: () {
-//                 Get.to(
-//                   () => MySchemePendingPaymentScreen(),
-//                 );
-//               },
-//             ),
-//             SizedBox(width: 4.w),
-//             ColoredCustomButton(
-//               color: AppColors.orangeColor,
-//               text: "REFUND",
-//               onPressed: () {},
-//             ),
-//           ],
-//         ),
-//         SizedBox(height: 2.h),
-//         Row(
-//           children: [
-//             Text(
-//               "TRANSACTIONS",
-//               style: TextStyle(
-//                 fontSize: 12.sp,
-//                 fontWeight: FontWeight.bold,
-//                 color: AppColors.blueDarkColor,
-//                 fontStyle: FontStyle.italic,
-//               ),
-//             ),
-//           ],
-//         ).commonOnlyPadding(left: 25),
-//         SizedBox(height: 2.h),
-//         MySchemesTransactionsListViewModule()
-//       ],
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              Container(
+                height: 36.h,
+                width: double.infinity,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+                decoration: const BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+              SizedBox(height: 15),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 50,
+                        width: double.infinity,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 15, horizontal: 12),
+                        decoration: BoxDecoration(
+                          color: AppColors.greyColor,
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(27),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 50),
+                    Expanded(
+                      child: Container(
+                        height: 60,
+                        width: double.infinity,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 15, horizontal: 12),
+                        decoration: BoxDecoration(
+                          color: AppColors.greyColor,
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(27),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 15),
+              Container(
+                height: 11.h,
+                width: double.infinity,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+                decoration: BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class PaymentRefundRowModule extends StatelessWidget {
   PaymentRefundRowModule({Key? key}) : super(key: key);
@@ -588,7 +505,7 @@ class JewellerCallDetailsModule extends StatelessWidget {
           CachedNetworkImage(
             imageUrl: ApiUrl.apiImagePath +
                 mySchemePendingPaymentScreenController
-                    .getSavingSchemeData.imagePath,
+                    .getSavingSchemeData!.imagePath,
 
             // ApiUrl.apiImagePath + imagePath,
             fit: BoxFit.cover,
@@ -609,7 +526,7 @@ class JewellerCallDetailsModule extends StatelessWidget {
               children: [
                 Text(
                   mySchemePendingPaymentScreenController
-                      .getSavingSchemeData.schemeName,
+                      .getSavingSchemeData!.schemeName,
                   style: TextStyle(
                     fontSize: 11.sp,
                     color: AppColors.accentColor,
@@ -619,7 +536,7 @@ class JewellerCallDetailsModule extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   mySchemePendingPaymentScreenController
-                      .getSavingSchemeData.schemeTagLine,
+                      .getSavingSchemeData!.schemeTagLine,
                   maxLines: 2,
                   style: TextStyle(
                     fontSize: 10.sp,
@@ -635,7 +552,7 @@ class JewellerCallDetailsModule extends StatelessWidget {
           GestureDetector(
             onTap: () async {
               Uri phoneno = Uri.parse(
-                  "tel:+91 ${mySchemePendingPaymentScreenController.getSavingSchemeData.mobile.floor()}");
+                  "tel:+91 ${mySchemePendingPaymentScreenController.getSavingSchemeData!.mobile.floor()}");
 
               if (await launchUrl(phoneno)) {
               } else {}
@@ -688,7 +605,7 @@ class MySchemesTransactionsListViewModule extends StatelessWidget {
           ),
         ),
         SizedBox(height: 2.h),
-        mySchemePendingPaymentScreenController.transactionsDataList.isEmpty
+        mySchemePendingPaymentScreenController.transactionsDataList == null
             ? Padding(
                 padding: EdgeInsets.symmetric(vertical: 4.h),
                 child: Text(
@@ -703,12 +620,12 @@ class MySchemesTransactionsListViewModule extends StatelessWidget {
             : ListView.separated(
                 // padding: const EdgeInsets.symmetric(horizontal: 10),
                 itemCount: mySchemePendingPaymentScreenController
-                    .transactionsDataList.length,
+                    .transactionsDataList!.length,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   var singleTransItem = mySchemePendingPaymentScreenController
-                      .transactionsDataList[index];
+                      .transactionsDataList![index];
                   return TransationSingleItemModule(
                     transData: singleTransItem,
                     index: index,
@@ -755,7 +672,7 @@ class TransationSingleItemModule extends StatelessWidget {
 
     // selectedOrnamentPurchaseDate.value = formattedDate.replaceAll("-", "/");
 
-    log("formattedDate is:: $formattedDate");
+    // log("formattedDate is:: $formattedDate");
 
     return Container(
       decoration: BoxDecoration(

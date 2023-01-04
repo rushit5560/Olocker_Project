@@ -38,7 +38,7 @@ class EditUnInsuredJewelleryScreen extends StatelessWidget {
       ),
       body: Obx(
         () => editUnInsuredJewelleryScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? EditUninsuredJewelleryLoadingWidget()
             : SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
                 child: Stack(

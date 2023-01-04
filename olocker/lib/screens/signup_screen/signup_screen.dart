@@ -33,7 +33,7 @@ class SignUpScreen extends StatelessWidget {
       ),
       body: Obx(
         () => signUpScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? SignUpScreenLoadingWidget()
             : SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),

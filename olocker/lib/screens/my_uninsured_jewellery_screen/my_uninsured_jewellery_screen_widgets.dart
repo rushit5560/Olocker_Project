@@ -8,6 +8,7 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/screens/edit_uninsured_jewellery_screen/edit_uninsured_jewellery_screen.dart';
 import 'package:olocker/screens/ornament_recordings_list_screen/ornament_recordings_list_screen.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/my_uninsured_jewellery_screen_controller.dart';
@@ -196,6 +197,7 @@ class JewelleryListItem extends StatelessWidget {
                                       .getOrnamentList[index].srNo,
                                   unInsuredJewelleryController
                                       .getOrnamentList[index].custOraSrNo,
+                                  "",
                                 ],
                               );
                             },
@@ -308,6 +310,88 @@ class JewelleryListItem extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class MyUninsuredLoadingWidget extends StatelessWidget {
+  MyUninsuredLoadingWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.only(top: 15, bottom: 15, right: 10),
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            width: 88.w,
+                            height: 15.h,
+                            decoration: const BoxDecoration(
+                              color: AppColors.greyColor,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(12),
+                              ),
+                              // boxShadow: [
+                              //   BoxShadow(
+                              //     color: AppColors.greyTextColor,
+                              //     blurRadius: 5,
+                              //     spreadRadius: 1,
+                              //   ),
+                              // ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Container(
+                          height: 8.h,
+                          width: 8.h,
+                          margin: const EdgeInsets.symmetric(
+                            vertical: 10,
+                            horizontal: 8,
+                          ),
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.greyColor,
+                          ),
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(60),
+                            ),
+                            child: Container(color: AppColors.greyColor),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return SizedBox(height: 2.h);
+                },
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

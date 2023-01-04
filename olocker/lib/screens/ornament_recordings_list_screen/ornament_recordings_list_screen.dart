@@ -49,7 +49,7 @@ class OrnamentRecordingsListScreen extends StatelessWidget {
           ),
           Obx(
             () => ornamentRecordingsListScreenController.isLoading.value
-                ? CommonLoader().showCircularLoader()
+                ? OrnamentRecordingsListLoadingWidget()
                 : SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Padding(

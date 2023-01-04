@@ -3,9 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:olocker/controllers/otp_screen_controller.dart';
 import 'package:olocker/utils/extensions.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/app_colors.dart';
+import '../../constants/app_images.dart';
 import '../../utils/field_validation.dart';
 
 class OtpEnterForm extends StatelessWidget {
@@ -44,6 +46,107 @@ class OtpEnterForm extends StatelessWidget {
         ),
       ).commonSymmetricPadding(
         horizontal: 10.w,
+      ),
+    );
+  }
+}
+
+class OtpScreenLoadingWidget extends StatelessWidget {
+  OtpScreenLoadingWidget({Key? key}) : super(key: key);
+
+  final otpScreenController = Get.find<OtpScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.only(
+                  top: 2.h,
+                  left: 6.w,
+                  right: 6.w,
+                  bottom: 3.h,
+                ),
+                // height: otpScreenController.size.height * 0.4,
+                width: otpScreenController.size.width,
+                color: AppColors.accentBGColor,
+                child: Image.asset(
+                  AppImages.otpTopImage,
+                  fit: BoxFit.contain,
+                  height: 35.h,
+                  width: 70.w,
+                ),
+              ),
+              SizedBox(height: 3.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 15,
+                    width: 60.w,
+                    decoration: BoxDecoration(color: AppColors.greyColor),
+                  ),
+                ],
+              ),
+              SizedBox(height: 2.h),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 10.w),
+                height: 45,
+                decoration: BoxDecoration(color: AppColors.greyColor),
+              ),
+              SizedBox(height: 4.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(width: 2.w),
+                  RichText(
+                    text: TextSpan(
+                      text: "Don't receive the OTP? ",
+                      style: TextStyle(
+                        color: AppColors.greyColor,
+                        fontSize: 11.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: "RESEND OTP",
+                          style: TextStyle(
+                            color: AppColors.greyColor,
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(height: 4.h),
+              Container(
+                height: 60,
+                width: double.infinity,
+                margin: EdgeInsets.symmetric(
+                  // vertical: 20,
+                  horizontal: 6.w,
+                ),
+                decoration: BoxDecoration(
+                  color: AppColors.greyColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+              ),
+              SizedBox(height: 4.h),
+            ],
+          ),
+        ),
       ),
     );
   }

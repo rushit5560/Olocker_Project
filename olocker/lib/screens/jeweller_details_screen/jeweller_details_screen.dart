@@ -4,6 +4,7 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/jeweller_details_screen_controller.dart';
 import 'package:olocker/widgets/common_loader.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../my_inquiries_list_screen/my_inquiries_list_screen.dart';
@@ -53,7 +54,7 @@ class JewellerDetailsScreen extends StatelessWidget {
       ),
       body: Obx(
         () => jewellerDetailsScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? JewellerDetailsLoadingShimmer()
             : SingleChildScrollView(
                 child: Column(
                   children: [

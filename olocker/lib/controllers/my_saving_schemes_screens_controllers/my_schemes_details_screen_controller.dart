@@ -17,9 +17,9 @@ class MySchemesDetailsScreenController extends GetxController {
   GetCustomerPurchaseSavingSchemeData schemeData = Get.arguments[1];
 
   ApiHeader apiHeader = ApiHeader();
-  late GetSavingSchemeData getSavingSchemeData;
+  GetSavingSchemeData? getSavingSchemeData;
 
-  late List<TransactionData> transactionsDataList;
+  List<TransactionData>? transactionsDataList;
 
   Future<void> getMySavingSchemeDetailsFunction() async {
     isLoading(true);
@@ -43,8 +43,8 @@ class MySchemesDetailsScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         getSavingSchemeData = getSavingSchemesListModel.getSavingSchemeList[0];
-        log('getSavingSchemeData  schemeName ::: ${getSavingSchemeData.schemeName}');
-        log('getSavingSchemeData mobile no ::: ${getSavingSchemeData.mobile}');
+        log('getSavingSchemeData schemeName ::: ${getSavingSchemeData!.schemeName}');
+        log('getSavingSchemeData mobile no ::: ${getSavingSchemeData!.mobile}');
       } else {
         log('getMySavingSchemeDetailsFunction false');
       }
@@ -79,7 +79,7 @@ class MySchemesDetailsScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         transactionsDataList = getTransactionStatusDetailsModel.transactions;
-        log('transactionsDataList : ${transactionsDataList.length}');
+        log('transactionsDataList : ${transactionsDataList!.length}');
         // log('transactionData.invoiceNo : ${transactionData.invoiceNo}');
       } else {
         log('getTransactionsListFunction Else');

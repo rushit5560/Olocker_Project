@@ -146,7 +146,7 @@ class JewellerJewelleryListScreen extends StatelessWidget {
       ),
       body: Obx(
         () => jewellerJewelleryListScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? JewelleryListScreenLoadingWidget()
             : jewellerJewelleryListScreenController.jewelleryList.isEmpty
                 ? Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.h),

@@ -15,6 +15,7 @@ import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/utils/user_prefs_data.dart';
 import 'package:sizer/sizer.dart';
 
+import '../controllers/index_screen_controller.dart';
 import '../screens/my_jewellers_screen/my_jewellers_screen.dart';
 import '../screens/my_jewellery_portfolio_screen/my_jewellery_portfolio_screen.dart';
 import '../screens/my_saving_schemes_screens/my_schemes_details_screen/my_schemes_details_screen.dart';
@@ -290,38 +291,46 @@ class CustomDrawer extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(width: homeScreenController.size.width * 0.010.w),
-          Container(
-            width: homeScreenController.size.width * 0.042.w,
-            height: homeScreenController.size.width * 0.040.w,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColors.whiteColor,
-              border: Border.all(color: AppColors.greyColor),
-            ),
-            child: ClipRRect(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(200),
+          GestureDetector(
+            onTap: () {
+              final indexScreenController = Get.find<IndexScreenController>();
+
+              indexScreenController.currentBottomIndex.value = 1;
+            },
+            child: Container(
+              width: homeScreenController.size.width * 0.042.w,
+              height: homeScreenController.size.width * 0.040.w,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.whiteColor,
+                border: Border.all(color: AppColors.greyColor),
               ),
-              child: profileScreenController.selectedProfileImage != null
-                  ? Image.file(
-                      profileScreenController.selectedProfileImage!,
-                      height: 75,
-                      width: 75,
-                      fit: BoxFit.cover,
-                    )
-                  : profileScreenController.apiGetProfileImage != null
-                      ? Image.network(
-                          profileScreenController.apiGetProfileImage!.path,
-                          height: 75,
-                          width: 75,
-                          fit: BoxFit.cover,
-                        )
-                      : Image.asset(
-                          AppImages.dealBgImage,
-                          height: 75,
-                          width: 75,
-                          fit: BoxFit.cover,
-                        ),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(200),
+                ),
+                child: profileScreenController.selectedProfileImage != null
+                    ? Image.file(
+                        profileScreenController.selectedProfileImage!,
+                        height: 75,
+                        width: 75,
+                        fit: BoxFit.cover,
+                      )
+                    : Image.network(
+                        profileScreenController.apiGetProfileImage!.path,
+                        height: 75,
+                        width: 75,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.asset(
+                            AppIcons.drawerSavingSchemeIcon,
+                            height: 75,
+                            width: 75,
+                            fit: BoxFit.fill,
+                          );
+                        },
+                      ),
+              ),
             ),
           ),
           SizedBox(width: 5.w),

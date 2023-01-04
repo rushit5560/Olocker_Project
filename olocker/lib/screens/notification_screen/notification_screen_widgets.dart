@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/notification_screen_controller.dart';
@@ -19,7 +20,7 @@ class NotificationsListModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => notificationScreenController.isLoading.value
-          ? CommonLoader().showCircularLoader()
+          ? NotificationScreenLoadingWidget()
           : ListView.separated(
               shrinkWrap: true,
               itemCount:
@@ -58,26 +59,26 @@ class NotificationItem extends StatelessWidget {
     return Obx(
       () => notificationScreenController.isLoading.value
           ? CommonLoader().showCircularLoader()
-          : Container(
-              decoration: BoxDecoration(
-                color: singleMsg.isRead
-                    ? AppColors.whiteColor
-                    : AppColors.yellowBgColor.withOpacity(0.35),
-              ),
-              child: Stack(
-                children: [
-                  GestureDetector(
-                    onTap: () async {
-                      await notificationScreenController
-                          .readMarkUserNotificationApiFunction(
-                        messageText: singleMsg.message,
-                        notificationId: singleMsg.srNo,
-                        isPartnerNotification:
-                            singleMsg.partnerSrNo == 0 ? false : true,
-                        isAdminNotification: singleMsg.isAdminNotification,
-                      );
-                    },
-                    child: Container(
+          : GestureDetector(
+              onTap: () async {
+                await notificationScreenController
+                    .readMarkUserNotificationApiFunction(
+                  messageText: singleMsg.message,
+                  notificationId: singleMsg.srNo,
+                  isPartnerNotification:
+                      singleMsg.partnerSrNo == 0 ? false : true,
+                  isAdminNotification: singleMsg.isAdminNotification,
+                );
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: singleMsg.isRead
+                      ? AppColors.whiteColor
+                      : AppColors.yellowBgColor.withOpacity(0.35),
+                ),
+                child: Stack(
+                  children: [
+                    Container(
                       margin: const EdgeInsets.symmetric(
                           vertical: 10, horizontal: 10),
                       padding: const EdgeInsets.symmetric(
@@ -140,23 +141,111 @@ class NotificationItem extends StatelessWidget {
                         ],
                       ),
                     ),
-                  ),
-                  Positioned(
-                    right: 5,
-                    top: 2,
-                    child: Text(
-                      msgTime.toString(),
-                      style: TextStyle(
-                        fontSize: 10.sp,
-                        fontFamily: "Roboto",
-                        fontWeight: FontWeight.normal,
-                        color: AppColors.greyTextColor,
+                    Positioned(
+                      right: 5,
+                      top: 2,
+                      child: Text(
+                        msgTime.toString(),
+                        style: TextStyle(
+                          fontSize: 10.sp,
+                          fontFamily: "Roboto",
+                          fontWeight: FontWeight.normal,
+                          color: AppColors.greyTextColor,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
+    );
+  }
+}
+
+class NotificationScreenLoadingWidget extends StatelessWidget {
+  NotificationScreenLoadingWidget({Key? key}) : super(key: key);
+  final notificationScreenController = Get.find<NotificationScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: ListView.separated(
+          shrinkWrap: true,
+          itemCount: 2,
+          physics: NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) {
+            return Stack(
+              children: [
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(200),
+                        ),
+                        child: Container(
+                          height: 55,
+                          width: 55,
+                          color: AppColors.greyColor,
+                        ),
+                      ),
+                      SizedBox(width: 3.w),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 10,
+                            width: 40.w,
+                            color: AppColors.greyColor,
+                          ),
+                          const SizedBox(height: 5),
+                          Container(
+                            height: 10,
+                            width: 40.w,
+                            color: AppColors.greyColor,
+                          ),
+                          const SizedBox(height: 5),
+                          Container(
+                            height: 10,
+                            width: 72.w,
+                            color: AppColors.greyColor,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Positioned(
+                  right: 5,
+                  top: 2,
+                  child: Container(
+                    height: 10,
+                    width: 20.w,
+                    color: AppColors.greyColor,
+                  ),
+                ),
+              ],
+            );
+          },
+          separatorBuilder: (context, index) {
+            return const Divider(
+              color: AppColors.greyTextColor,
+              height: 5,
+              thickness: 1,
+            );
+          },
+        ),
+      ),
     );
   }
 }

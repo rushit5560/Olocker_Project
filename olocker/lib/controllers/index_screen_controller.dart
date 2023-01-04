@@ -35,17 +35,20 @@ class IndexScreenController extends GetxController {
   checkUserDOBData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    var userDob = prefs.getString(UserPrefsData().customerDOBKey) ?? "";
+    // String dobUser = prefs.getString(UserPrefsData().customerDOBKey) ?? "";
 
-    if (userDob == "") {
+    int updateProfileCount =
+        prefs.getInt(UserPrefsData().updateProfileCountKey) ?? 0;
+
+    if (updateProfileCount < 3) {
       showDialog(
         context: Get.context!,
         builder: (context) {
           return AlertDialog(
-            title: const Text("Alert"),
+            title: const Text("Update Profile"),
             actionsAlignment: MainAxisAlignment.end,
             content: Text(
-              "Your details will help us serve you better. Kindly update your profile details.",
+              "Please  update your profile details.\nYour details will help us serve you better.",
               maxLines: null,
               style: TextStyle(
                 color: AppColors.greyColor,
@@ -55,13 +58,15 @@ class IndexScreenController extends GetxController {
             ),
             actions: [
               TextButton(
-                onPressed: () {
+                onPressed: () async {
+                  await updateProfileUpdateCount();
                   Get.back();
                 },
                 child: const Text("CANCEL"),
               ),
               TextButton(
-                onPressed: () {
+                onPressed: () async {
+                  await updateProfileUpdateCount();
                   Get.back();
                   currentBottomIndex.value = 1;
                 },
@@ -74,6 +79,20 @@ class IndexScreenController extends GetxController {
     } else {
       log("profile DOB is updated");
     }
+  }
+
+  updateProfileUpdateCount() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    int? updateCount = prefs.getInt(UserPrefsData().updateProfileCountKey);
+    log("get updateCount is ::: ${UserDetails.updateProfileCount}");
+
+    prefs.setInt(UserPrefsData().updateProfileCountKey, updateCount! + 1);
+
+    UserDetails.updateProfileCount =
+        prefs.getInt(UserPrefsData().updateProfileCountKey) ?? 0;
+
+    log("UserDetails.updateProfileCount ::: ${UserDetails.updateProfileCount}");
   }
 
   Future<void> getNotificationCountFunction() async {

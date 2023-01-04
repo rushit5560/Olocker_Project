@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/screens/product_enquire_screen/product_enquire_screen.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/api_url.dart';
@@ -19,7 +20,7 @@ class InquiriesListModule extends StatelessWidget {
     return ListView.separated(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+      padding: const EdgeInsets.only(top: 15, bottom: 15, right: 10),
       itemCount:
           inquiriesListScreenController.getInquiryNotificationList.length,
       itemBuilder: (context, index) {
@@ -46,9 +47,12 @@ class InquiryListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var imgPath = "";
     var singleInquiry =
         inquiriesListScreenController.getInquiryNotificationList[index];
-    var imgPath = "${ApiUrl.apiImagePath}${singleInquiry.imgeUrl.substring(3)}";
+    if (singleInquiry.imgeUrl.isNotEmpty) {
+      imgPath = "${ApiUrl.apiImagePath}${singleInquiry.imgeUrl.substring(3)}";
+    }
 
     // log("imgPath :: $imgPath");
     return Stack(
@@ -59,7 +63,7 @@ class InquiryListItem extends StatelessWidget {
           children: [
             Container(
               padding: const EdgeInsets.symmetric(vertical: 5),
-              width: inquiriesListScreenController.size.width * 0.84,
+              width: inquiriesListScreenController.size.width * 0.88,
               decoration: const BoxDecoration(
                 color: AppColors.whiteColor,
                 borderRadius: BorderRadius.all(
@@ -76,7 +80,7 @@ class InquiryListItem extends StatelessWidget {
               child: Row(
                 children: [
                   SizedBox(
-                    width: inquiriesListScreenController.size.width * 0.12,
+                    width: inquiriesListScreenController.size.width * 0.115,
                   ),
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 8),
@@ -85,7 +89,8 @@ class InquiryListItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: inquiriesListScreenController.size.width * 0.7,
+                          width:
+                              inquiriesListScreenController.size.width * 0.72,
                           child: Text(
                             singleInquiry.itemDesc,
                             maxLines: 1,
@@ -246,6 +251,88 @@ class InquiryListItem extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class MyInquiriesLoadingWidget extends StatelessWidget {
+  MyInquiriesLoadingWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.only(top: 15, bottom: 15, right: 10),
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            width: 88.w,
+                            height: 12.h,
+                            decoration: const BoxDecoration(
+                              color: AppColors.greyColor,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(12),
+                              ),
+                              // boxShadow: [
+                              //   BoxShadow(
+                              //     color: AppColors.greyTextColor,
+                              //     blurRadius: 5,
+                              //     spreadRadius: 1,
+                              //   ),
+                              // ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Container(
+                          height: 8.h,
+                          width: 8.h,
+                          margin: const EdgeInsets.symmetric(
+                            vertical: 10,
+                            horizontal: 8,
+                          ),
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.greyColor,
+                          ),
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(60),
+                            ),
+                            child: Container(color: AppColors.greyColor),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return SizedBox(height: 2.h);
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

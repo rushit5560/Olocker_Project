@@ -38,7 +38,7 @@ class ReferAndEarnScreen extends StatelessWidget {
       ),
       body: Obx(
         () => referAndEarnScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? ReferEarnLoadingWidget()
             : SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Column(

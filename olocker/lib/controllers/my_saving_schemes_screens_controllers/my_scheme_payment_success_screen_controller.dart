@@ -46,7 +46,7 @@ class MySchemePaymentSuccessScreenController extends GetxController {
           }
         }
 
-        log('transactionsList is :: ${transactionsList}');
+        log('transactionsList is :: $transactionsList');
         log('transactionsList len is :: ${transactionsList.length}');
       } else {
         log('getSuccessTransactionsListFunction Else');

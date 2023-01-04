@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/profile_screen_controller.dart';
+import 'package:olocker/utils/extensions.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../utils/field_validation.dart';
@@ -32,7 +34,7 @@ class ProfileDetailsFormModule extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
         child: Obx(
           () => profileScreenController.isLoading.value
-              ? CommonLoader().showCircularLoader()
+              ? ProfileScreenLoadingWidget()
               : Form(
                   key: profileScreenController.formKey,
                   child: Column(
@@ -105,20 +107,20 @@ class DisplayImageDetailsFieldRow extends StatelessWidget {
                             width: 75,
                             fit: BoxFit.cover,
                           )
-                        : profileScreenController.apiGetProfileImage != null
-                            ? Image.network(
-                                profileScreenController
-                                    .apiGetProfileImage!.path,
+                        : Image.network(
+                            profileScreenController.apiGetProfileImage!.path,
+                            height: 75,
+                            width: 75,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Image.asset(
+                                AppIcons.drawerSavingSchemeIcon,
                                 height: 75,
                                 width: 75,
-                                fit: BoxFit.cover,
-                              )
-                            : Image.asset(
-                                AppIcons.uploadImageIcon,
-                                height: 75,
-                                width: 75,
-                                fit: BoxFit.cover,
-                              ),
+                                fit: BoxFit.fill,
+                              );
+                            },
+                          ),
                   ),
                 ),
               ),
@@ -683,6 +685,147 @@ class SaveProfileButton extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class ProfileScreenLoadingWidget extends StatelessWidget {
+  ProfileScreenLoadingWidget({Key? key}) : super(key: key);
+  final profileScreenController = Get.find<ProfileScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    textFieldRow({required String text}) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            // height: 5.h,
+            width: 18.w,
+            alignment: Alignment.centerLeft,
+            child: Text(
+              text,
+              style: TextStyle(
+                color: AppColors.greyColor,
+                fontSize: 11.sp,
+                fontWeight: FontWeight.w500,
+                fontFamily: "Roboto",
+              ),
+            ),
+          ),
+          SizedBox(width: 2.w),
+          Expanded(
+            child: Container(
+              height: 40,
+              color: AppColors.greyColor,
+            ),
+          ),
+        ],
+      );
+    }
+
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        height: 75,
+                        width: 75,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: AppColors.greyColor),
+                          shape: BoxShape.circle,
+                        ),
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(200),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 18),
+                      Container(
+                        height: 20,
+                        width: 40.w,
+                        color: AppColors.greyColor,
+                      ),
+                    ],
+                  ),
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                    decoration: BoxDecoration(
+                      color: profileScreenController.isEditable.value
+                          ? AppColors.accentColor
+                          : AppColors.greyTextColor,
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(28),
+                      ),
+                    ),
+                    child: Text(
+                      "Edit",
+                      style: TextStyle(
+                        fontFamily: "Roboto",
+                        color: AppColors.whiteColor,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Container(
+                    height: 40,
+                    width: 18.w,
+                    color: AppColors.greyColor,
+                  ),
+                  SizedBox(width: 2.w),
+                  Expanded(
+                    child: Container(
+                      height: 40,
+                      color: AppColors.greyColor,
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: 40,
+                      color: AppColors.greyColor,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              textFieldRow(text: "Email :"),
+              const SizedBox(height: 10),
+              textFieldRow(text: "DOB :"),
+              const SizedBox(height: 10),
+              textFieldRow(text: "Mobile :"),
+              const SizedBox(height: 10),
+              textFieldRow(text: "Pin Code :"),
+              const SizedBox(height: 10),
+              textFieldRow(text: "City :"),
+              const SizedBox(height: 10),
+              textFieldRow(text: "State :"),
+              const SizedBox(height: 20),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

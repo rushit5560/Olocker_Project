@@ -8,6 +8,7 @@ import 'package:olocker/constants/api_url.dart';
 import '../../models/saving_scheme_screens_models/get_saving_scheme_list_models/get_saving_schemes_list_model.dart';
 
 class SavingSchemesListScreenController extends GetxController {
+  var jewellerId = Get.arguments[0];
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
@@ -21,7 +22,8 @@ class SavingSchemesListScreenController extends GetxController {
   Future<void> getSavingSchemesListFunction() async {
     isLoading(true);
 
-    String url = '${ApiUrl.getParterSavinSchemeApi}?partnerSrNo=575';
+    String url = '${ApiUrl.getParterSavinSchemeApi}?partnerSrNo=$jewellerId';
+    // String url = '${ApiUrl.getParterSavinSchemeApi}?partnerSrNo=575';
     log('getSavingSchemesListFunction api url  : $url');
 
     try {

@@ -18,4 +18,5 @@ class UserDetails {
   static String customerDob = '';
 
   static String customerId = '';
+  static int updateProfileCount = 0;
 }

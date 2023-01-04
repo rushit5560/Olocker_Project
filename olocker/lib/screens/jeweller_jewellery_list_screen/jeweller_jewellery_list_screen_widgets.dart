@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -7,6 +8,7 @@ import 'package:olocker/controllers/jeweller_jewellery_list_screen_controller.da
 import 'package:olocker/models/jeweller_jewellery_list_screen_model/all_jewellery_model.dart';
 import 'package:olocker/screens/jewellery_details_screen/jewellery_details_screen.dart';
 import 'package:olocker/utils/extensions.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 class JewelleryGridviewModule extends StatelessWidget {
@@ -59,29 +61,37 @@ class JewelleryGridviewModule extends StatelessWidget {
             Expanded(
               flex: 60,
               child: Container(
-                decoration: BoxDecoration(
+                width: double.infinity,
+                margin: const EdgeInsets.only(bottom: 8),
+                child: ClipRRect(
                   borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(10),
                     topLeft: Radius.circular(10),
                   ),
-                  image: DecorationImage(
-                      image: NetworkImage(imgUrl),
-                      fit: BoxFit.cover,
-                      onError: (obj, st) {
-                        Text(
-                          'No Image',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 12.sp,
+                  child: CachedNetworkImage(
+                    imageUrl: imgUrl,
+                    fit: BoxFit.cover,
+                    errorWidget: (context, url, error) {
+                      return Container(
+                        color: AppColors.greyTextColor.withOpacity(0.25),
+                        child: Center(
+                          child: Text(
+                            'No Image',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                            ),
                           ),
-                        );
-                      }),
+                        ),
+                      );
+                    },
+                  ),
                 ),
-              ).commonOnlyPadding(bottom: 5),
+              ),
             ),
             Expanded(
-              flex: 40,
+              flex: 35,
               child: Column(
                 children: [
                   // Price Show Module
@@ -108,7 +118,9 @@ class JewelleryGridviewModule extends StatelessWidget {
                               symbol: '₹ ',
                               locale: "HI",
                               decimalDigits: 0,
-                            ).format(double.parse(singleItem.productsPrice)),
+                            ).format(double.parse(singleItem.productsPrice == ""
+                                ? "0"
+                                : singleItem.productsPrice)),
                             textAlign: TextAlign.center,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -163,6 +175,46 @@ class JewelleryGridviewModule extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class JewelleryListScreenLoadingWidget extends StatelessWidget {
+  JewelleryListScreenLoadingWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              GridView.builder(
+                itemCount: 8,
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20,
+                  childAspectRatio: 0.82,
+                ),
+                itemBuilder: (context, i) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: AppColors.greyColor,
+                    ),
+                  );
+                },
+              ).commonAllSidePadding(10),
+            ],
+          ),
         ),
       ),
     );

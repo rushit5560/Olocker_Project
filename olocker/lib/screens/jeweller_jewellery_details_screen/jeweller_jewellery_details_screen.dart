@@ -7,6 +7,7 @@ import 'package:olocker/controllers/my_favourites_controller.dart';
 import 'package:olocker/screens/product_enquire_screen/product_enquire_screen.dart';
 import 'package:sizer/sizer.dart';
 
+import '../jewellery_details_screen/jewellery_details_screen_widgets.dart';
 import 'jeweller_jewellery_details_screen_widgets.dart';
 
 class JewellerJewelleryDetailsScreen extends StatelessWidget {
@@ -51,7 +52,7 @@ class JewellerJewelleryDetailsScreen extends StatelessWidget {
         ),
         body: Obx(
           () => jewellerJewelleryDetailsScreenController.isLoading.value
-              ? const Center(child: CircularProgressIndicator())
+              ? JewelleryDetailsLoadingWidget()
               : SingleChildScrollView(
                   child: Column(
                     children: [
