@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,6 +15,7 @@ import '../models/jewellery_models/add_jewellery_response_model.dart';
 import '../models/jewellery_models/get_ornament_details_model.dart';
 import '../models/portfolio_screen_models/get_all_data_ornament_model.dart';
 import '../widgets/common_widgets.dart';
+
 
 class EditUnInsuredJewelleryScreenController extends GetxController {
   final size = Get.size;
@@ -60,7 +60,7 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
     "Cts.",
   ];
 
-  //decorativve item text controller
+  //decorative item text controller
   final decoItemFormKey = GlobalKey<FormState>();
   SingleItemDetail? selectedDecoItemName;
   TextEditingController decoItemWeightController = TextEditingController();
@@ -200,7 +200,7 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
         stoneDetailsList.clear();
         decoItemsDetailsList.clear();
 
-        //asigning ornamentTypeNameList data
+        //assigning ornamentTypeNameList data
         selectedOrnamentName = getAddDataOrnamentModel.productDetails[0];
         for (int i = 0;
             i < getAddDataOrnamentModel.productDetails.length;
@@ -209,7 +209,7 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
         }
 
         selectedMetalName = getAddDataOrnamentModel.metalTypes[0];
-        //asigning metalTypesList and metalPurityList data
+        //assigning metalTypesList and metalPurityList data
         for (int i = 0; i < getAddDataOrnamentModel.metalTypes.length; i++) {
           metalTypesList = getAddDataOrnamentModel.metalTypes;
         }
@@ -219,13 +219,13 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
         }
 
         selectedStoneName = getAddDataOrnamentModel.stoneDetails[0];
-        //asigning stoneDetailsList data
+        //assigning stoneDetailsList data
         for (int i = 0; i < getAddDataOrnamentModel.stoneDetails.length; i++) {
           stoneDetailsList = getAddDataOrnamentModel.stoneDetails;
         }
 
         selectedDecoItemName = getAddDataOrnamentModel.decorativeItemDetails[0];
-        //asigning decoItemsDetailsList data
+        //assigning decoItemsDetailsList data
         for (int i = 0;
             i < getAddDataOrnamentModel.decorativeItemDetails.length;
             i++) {

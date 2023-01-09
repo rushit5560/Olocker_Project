@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../constants/api_url.dart';
 import '../constants/user_details.dart';
 import '../models/jewellery_models/jewellery_portfolio_get_model.dart';
+
 
 class MyJewelleryPortFolioScreenController extends GetxController {
   final size = Get.size;
@@ -63,7 +63,6 @@ class MyJewelleryPortFolioScreenController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     getJewelleryPortFolioDetailsFunction();
     super.onInit();
   }

@@ -1,8 +1,8 @@
 import 'dart:developer';
-
 import 'package:get/get.dart';
 import 'package:olocker/models/home_screen_models/banner_model.dart';
 import 'package:olocker/models/home_screen_models/my_jewellers_model.dart';
+
 
 class MyJewellersScreenController extends GetxController {
   List<NotificationBanner> bannerList = Get.arguments[0];

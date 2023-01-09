@@ -97,7 +97,7 @@ class ProfileScreenController extends GetxController {
 
     String url =
         "${ApiUrl.getUserProfileApi}?customerId=${UserDetails.customerId}";
-    log(" getUserProfleDetailsFunction url: $url");
+    log(" getUserProfileDetailsFunction url: $url");
 
     try {
       isLoading(true);
@@ -106,8 +106,8 @@ class ProfileScreenController extends GetxController {
         headers: apiHeader.headers,
       );
 
-      log("getUserProfleDetailsFunction st code is : ${response.statusCode}");
-      log("getUserProfleDetailsFunction res body : ${response.body}");
+      log("getUserProfileDetailsFunction st code is : ${response.statusCode}");
+      log("getUserProfileDetailsFunction res body : ${response.body}");
 
       var resBody = jsonDecode(response.body);
 
@@ -178,7 +178,7 @@ class ProfileScreenController extends GetxController {
         //do nothing
       }
     } catch (e) {
-      log("getUserProfleDetailsFunction Error ::: $e");
+      log("getUserProfileDetailsFunction Error ::: $e");
       rethrow;
     } finally {
       isLoading(false);
@@ -187,7 +187,6 @@ class ProfileScreenController extends GetxController {
   }
 
   Future<void> updateUserProfileDetailsFunction() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
 
     // if (formKey.currentState!.validate()) {
     String url = ApiUrl.updateUserProfileApi;
@@ -197,15 +196,15 @@ class ProfileScreenController extends GetxController {
       isLoading(true);
 
       if (selectedProfileImage == null) {
-        log("without image updateing profile::::");
+        log("without image updating profile::::");
         var genderValue = 0;
 
         // List<int> imageBytes = selectedProfileImage!.readAsBytesSync();
         // String base64Image = base64Encode(imageBytes);
 
-        if (namePrefixDDvalue == "Mr.") {
+        if (namePrefixDDvalue.value == "Mr.") {
           genderValue = 1;
-        } else if (namePrefixDDvalue == "Mrs.") {
+        } else if (namePrefixDDvalue.value == "Mrs.") {
           genderValue = 2;
         } else {
           genderValue = 3;
@@ -262,15 +261,15 @@ class ProfileScreenController extends GetxController {
           //do nothing
         }
       } else {
-        log("with image updateing profile::::");
+        log("with image updating profile::::");
         var genderValue = 0;
 
         List<int> imageBytes = selectedProfileImage!.readAsBytesSync();
         String base64Image = base64Encode(imageBytes);
 
-        if (namePrefixDDvalue == "Mr.") {
+        if (namePrefixDDvalue.value == "Mr.") {
           genderValue = 1;
-        } else if (namePrefixDDvalue == "Mrs.") {
+        } else if (namePrefixDDvalue.value == "Mrs.") {
           genderValue = 2;
         } else {
           genderValue = 3;
@@ -336,7 +335,6 @@ class ProfileScreenController extends GetxController {
   }
 
   Future<void> getCityStateDetailsByPinFunction() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
 
     // if (formKey.currentState!.validate()) {
     String url =

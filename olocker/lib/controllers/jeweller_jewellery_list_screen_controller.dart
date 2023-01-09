@@ -8,10 +8,10 @@ import 'package:olocker/constants/enum.dart';
 import 'package:olocker/constants/user_details.dart';
 import 'package:olocker/models/jeweller_jewellery_list_screen_model/all_jewellery_model.dart';
 import 'package:share_plus/share_plus.dart';
-
 import '../models/refer_and_earn_screen_models/get_partner_by_code_model.dart';
 import '../models/user_profile_models/user_profile_get_model.dart';
 import '../widgets/common_widgets.dart';
+
 
 class JewellerJewelleryListScreenController extends GetxController {
   // Getting from jeweller details screen
@@ -252,7 +252,7 @@ class JewellerJewelleryListScreenController extends GetxController {
   Future<void> getUserProfileDetailsFunction() async {
     String url =
         "${ApiUrl.getUserProfileApi}?customerId=${UserDetails.customerId}";
-    log(" getUserProfleDetailsFunction url: $url");
+    log(" getUserProfileDetailsFunction url: $url");
 
     try {
       isLoading(true);
@@ -261,8 +261,8 @@ class JewellerJewelleryListScreenController extends GetxController {
         headers: apiHeader.headers,
       );
 
-      log("getUserProfleDetailsFunction st code is : ${response.statusCode}");
-      log("getUserProfleDetailsFunction res body : ${response.body}");
+      log("getUserProfileDetailsFunction st code is : ${response.statusCode}");
+      log("getUserProfileDetailsFunction res body : ${response.body}");
 
       var resBody = jsonDecode(response.body);
 
@@ -281,7 +281,7 @@ class JewellerJewelleryListScreenController extends GetxController {
         //do nothing
       }
     } catch (e) {
-      log("getUserProfleDetailsFunction Error ::: $e");
+      log("getUserProfileDetailsFunction Error ::: $e");
       rethrow;
     } finally {
       isLoading(false);

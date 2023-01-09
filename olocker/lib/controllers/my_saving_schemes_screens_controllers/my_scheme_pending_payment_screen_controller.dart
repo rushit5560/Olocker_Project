@@ -92,7 +92,7 @@ class MySchemePendingPaymentScreenController extends GetxController {
 
         CommonWidgets().showBorderSnackBar(
           context: Get.context!,
-          displayText: "Your payment succesfully done.",
+          displayText: "Your payment successfully done.",
         );
 
         Get.to(
@@ -108,7 +108,7 @@ class MySchemePendingPaymentScreenController extends GetxController {
         // int savingSchemeSrNo = Get.arguments[0];
 
       } else {
-        log('makePaymentsApiFunction else casee');
+        log('makePaymentsApiFunction else case');
         log('false');
         Get.to(
           () => MySchemePaymentFailureScreen(),
@@ -178,7 +178,7 @@ class MySchemePendingPaymentScreenController extends GetxController {
 
         CommonWidgets().showBorderSnackBar(
           context: Get.context!,
-          displayText: "Your payment succesfully done.",
+          displayText: "Your payment successfully done.",
         );
 
         Get.to(
@@ -189,7 +189,7 @@ class MySchemePendingPaymentScreenController extends GetxController {
           ],
         );
       } else {
-        log('razorPayAfterPaymentApiFunction else casee');
+        log('razorPayAfterPaymentApiFunction else case');
         log('false');
         Get.to(
           () => MySchemePaymentFailureScreen(),
@@ -203,13 +203,13 @@ class MySchemePendingPaymentScreenController extends GetxController {
     }
   }
 
-  /// RazorPay Payment Gateway Moethods
+  /// RazorPay Payment Gateway Methods
   Future<void> _handlePaymentSuccess(PaymentSuccessResponse response) async {
     // Do something when payment succeeds
 
-    log("razorpay succes orderId is :: ${response.orderId}");
-    log("razorpay succes paymentId is :: ${response.paymentId}");
-    log("razorpay succes signature is :: ${response.signature}");
+    log("razorpay success orderId is :: ${response.orderId}");
+    log("razorpay success paymentId is :: ${response.paymentId}");
+    log("razorpay success signature is :: ${response.signature}");
     log('Success Payment Razorpay');
 
     await razorPayAfterPaymentApiFunction(

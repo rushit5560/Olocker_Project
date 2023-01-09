@@ -66,7 +66,7 @@ class FieldValidator {
     return null;
   }
 
-  String? validateRefferalCodeNumber(String value) {
+  String? validateReferralCodeNumber(String value) {
     if (value.isEmpty) {
       return 'Referral code is required';
     }

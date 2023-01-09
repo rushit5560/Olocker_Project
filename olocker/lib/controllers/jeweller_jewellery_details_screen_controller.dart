@@ -6,13 +6,12 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/user_details.dart';
 import 'package:olocker/models/jeweller_details_screen_model/special_features_model.dart';
-import 'package:olocker/models/jewellery_details_screen_model/get_jewellery_detail_model.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 import 'package:share_plus/share_plus.dart';
-
 import '../models/jewellery_details_screen_model/get_offer_jewellery_detail_model.dart';
 import '../models/refer_and_earn_screen_models/get_partner_by_code_model.dart';
 import '../models/user_profile_models/user_profile_get_model.dart';
+
 
 class JewellerJewelleryDetailsScreenController extends GetxController {
   /// Getting this jeweller details screen
@@ -122,7 +121,7 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
       var requestMap = {
         "CustomerId": UserDetails.customerId,
         "Product": productSrNo,
-        "PartnerId": "$partnerSrNo",
+        "PartnerId": partnerSrNo,
         "IsSupplierProduct": true
       };
 

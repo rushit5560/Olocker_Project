@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
@@ -9,6 +8,7 @@ import 'package:olocker/controllers/jeweller_details_screen_controller.dart';
 import 'package:olocker/models/jeweller_feedback_screen_models/add_feedback_form_model.dart';
 import 'package:olocker/models/jeweller_feedback_screen_models/feedback_form_model.dart';
 import 'package:olocker/widgets/common_widgets.dart';
+
 
 class JewellerFeedbackScreenController extends GetxController {
   var jewellerId = Get.arguments; // Getting from Jeweller Details screen
@@ -87,12 +87,6 @@ class JewellerFeedbackScreenController extends GetxController {
     try {
       List<Map<String, dynamic>> questionList = [];
       questionList = makeBodyDataList();
-      // log('questionList123 : $questionList');
-
-      Map<String, String> headers = <String, String>{
-        'Content-Type': "application/json"
-        // 'MobileAppKey': "EED26D5A-711D-49BD-8999-38D8A60329C5"
-      };
 
       Map<String, dynamic> bodyData = {
         "CustomerSrNo": UserDetails.customerId,

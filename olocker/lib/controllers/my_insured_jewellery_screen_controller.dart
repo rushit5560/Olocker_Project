@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:olocker/models/jewellery_models/get_all_insured_jewellery_model.dart';
-
 import '../constants/api_url.dart';
 import '../constants/app_colors.dart';
 import '../constants/user_details.dart';
 import '../widgets/common_widgets.dart';
+
 
 class MyInsuredJewelleryScreenController extends GetxController {
   final size = Get.size;

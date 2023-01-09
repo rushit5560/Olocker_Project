@@ -11,6 +11,7 @@ import 'package:olocker/models/personal_loans_screen_model/emi_schedule_model.da
 import 'package:olocker/models/personal_loans_screen_model/upload_emi_document_model.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 
+
 class PersonalLoansScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;

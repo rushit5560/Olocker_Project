@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -8,9 +7,10 @@ import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/user_details.dart';
 import 'package:olocker/models/enquire_screen_models/get_all_message_model.dart';
-
 import '../models/enquire_screen_models/send_message_model.dart';
 import '../models/jewellery_details_screen_model/get_jewellery_detail_model.dart';
+
+
 
 class ProductEnquireScreenController extends GetxController {
   var partnerSrNo = Get.arguments[0]; // Coming from jewellery details screen

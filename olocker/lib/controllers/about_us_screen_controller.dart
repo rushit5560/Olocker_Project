@@ -5,9 +5,9 @@ import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/user_details.dart';
-
 import '../models/about_us_models/about_us_details_model.dart';
 import '../models/about_us_models/owner_detail_model.dart';
+
 
 class AboutUsPageController extends GetxController {
   var partnerSrno = Get.arguments[0];

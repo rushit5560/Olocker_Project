@@ -9,6 +9,7 @@ import 'package:olocker/models/home_screen_models/banner_model.dart';
 import 'package:olocker/models/home_screen_models/my_jewellers_model.dart';
 import 'package:olocker/models/home_screen_models/smart_deals_online_model.dart';
 
+
 class HomeScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;

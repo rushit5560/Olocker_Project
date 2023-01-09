@@ -162,7 +162,7 @@ class AddUnInsuredJewelleryScreenController extends GetxController {
                     var dateFormat = DateFormat('dd/MM/yyyy');
 
                     var formattedDate = dateFormat.format(val);
-                    log("selected op date is : : ${formattedDate}");
+                    log("selected op date is : : $formattedDate");
 
                     selectedOrnamentPurchaseDate.value = formattedDate;
                   }),

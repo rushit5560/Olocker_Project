@@ -8,9 +8,5 @@ class MySchemePaymentFailureScreenController extends GetxController {
 
   ApiHeader apiHeader = ApiHeader();
 
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-  }
+
 }

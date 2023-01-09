@@ -232,10 +232,6 @@ class AddOrnamentRecordingsScreenController extends GetxController {
     }
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 }
 
 class FormDDValue {

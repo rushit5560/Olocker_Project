@@ -16,7 +16,7 @@ class MySchemePendingBillsScreenController extends GetxController {
 
   // static int _len = 20;
   // List<bool> isChecked = List.generate(_len, (index) => false);
-  // int _currentindex = 0;
+  // int _currentIndex = 0;
 
   List<GetPendingBillData> getPendingBillsList = [];
   List<GetPendingBillData> selectedPendingBillsList = [];
@@ -26,7 +26,7 @@ class MySchemePendingBillsScreenController extends GetxController {
 
   Future<void> getPendingBillDetailListApiFunction() async {
     String url =
-        "${ApiUrl.getPendingBillDetailListApi}?customerPurchaseSavingSchemeSrNo=${customerPurchaseSavingSchemeSrNo}";
+        "${ApiUrl.getPendingBillDetailListApi}?customerPurchaseSavingSchemeSrNo=$customerPurchaseSavingSchemeSrNo";
 
     log(" getPendingBillDetailListApiFunction url: $url");
 

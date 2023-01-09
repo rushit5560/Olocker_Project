@@ -11,6 +11,7 @@ import '../models/refer_and_earn_screen_models/get_partner_by_code_model.dart';
 import '../models/user_profile_models/user_profile_get_model.dart';
 import '../widgets/common_widgets.dart';
 
+
 class OffersJewelleryListScreenController extends GetxController {
   // Getting from jeweller details screen
   // String offerName = Get.arguments[0];

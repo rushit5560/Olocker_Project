@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../constants/api_url.dart';
-import '../constants/user_details.dart';
 import '../models/jewellery_models/claim_details_model.dart';
+
+
 
 class ClaimDetailsViewScreenController extends GetxController {
   final String policyNumber = Get.arguments[0];

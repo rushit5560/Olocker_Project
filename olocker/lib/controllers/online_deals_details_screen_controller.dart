@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -11,6 +10,7 @@ import 'package:olocker/models/home_screen_models/smart_deals_online_model.dart'
 import 'package:http/http.dart' as http;
 import 'package:olocker/models/online_deals_details_screen_model/insert_favourite_deals_model.dart';
 import 'package:olocker/widgets/common_widgets.dart';
+
 
 class OnlineDealsDetailsScreenController extends GetxController {
   OnLineDeal onLineDealDetails = Get.arguments;
@@ -84,7 +84,6 @@ class OnlineDealsDetailsScreenController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
 
     if (onLineDealDetails.isFavoriteDeal == true) {

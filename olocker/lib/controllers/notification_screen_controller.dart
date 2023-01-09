@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
@@ -9,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:sizer/sizer.dart';
 import '../constants/api_url.dart';
 import '../models/enquire_screen_models/get_all_message_model.dart';
+
 
 class NotificationScreenController extends GetxController {
   final size = Get.size;
@@ -127,7 +127,6 @@ class NotificationScreenController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     getAllNotificationsFunction();
   }

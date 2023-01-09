@@ -14,6 +14,7 @@ import 'package:olocker/utils/user_prefs_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
+
 class IndexScreenController extends GetxController {
   final size = Get.size;
 

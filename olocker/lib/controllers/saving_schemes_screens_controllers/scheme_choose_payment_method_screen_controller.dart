@@ -121,7 +121,7 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
 
         CommonWidgets().showBorderSnackBar(
           context: Get.context!,
-          displayText: "Your payment succesfully done.",
+          displayText: "Your payment successfully done.",
         );
 
         Get.to(
@@ -182,7 +182,7 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
     super.onInit();
   }
 
-  /// RazorPay Payment Gateway Moethods
+  /// RazorPay Payment Gateway Methods
   Future<void> _handlePaymentSuccess(PaymentSuccessResponse response) async {
     // Do something when payment succeeds
     log('Success Payment Razorpay');
@@ -292,7 +292,7 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
 
         CommonWidgets().showBorderSnackBar(
           context: Get.context!,
-          displayText: "Your payment succesfully done.",
+          displayText: "Your payment successfully done.",
         );
 
         Get.to(

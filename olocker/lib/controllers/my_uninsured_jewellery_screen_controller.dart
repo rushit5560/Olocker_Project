@@ -241,7 +241,6 @@ class MyUnInsuredJewelleryScreenController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     getMyUnInsuredAllJewelleryFunction();
     super.onInit();
   }

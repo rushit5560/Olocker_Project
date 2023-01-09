@@ -1,21 +1,20 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:olocker/constants/user_details.dart';
 import 'package:olocker/controllers/my_insured_jewellery_screen_controller.dart';
 import '../constants/api_url.dart';
-
 import '../constants/app_colors.dart';
 import '../models/jewellery_models/claim_details_model.dart';
 import '../models/jewellery_models/claim_response_model.dart';
 import '../widgets/common_widgets.dart';
+
+
 
 class SubmitClaimFormScreenController extends GetxController {
   final String policyNo = Get.arguments[0];
@@ -116,7 +115,7 @@ class SubmitClaimFormScreenController extends GetxController {
         ],
       };
 
-      log("addClaimApiFunction request body is :: ${requestMap}");
+      log("addClaimApiFunction request body is :: $requestMap");
 
       http.Response response = await http.post(
         Uri.parse(url),

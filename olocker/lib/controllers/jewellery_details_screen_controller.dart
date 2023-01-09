@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
@@ -9,12 +8,12 @@ import 'package:olocker/constants/user_details.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../models/jeweller_details_screen_model/special_features_model.dart';
 import '../models/jewellery_details_screen_model/get_jewellery_detail_model.dart';
 import '../models/refer_and_earn_screen_models/get_partner_by_code_model.dart';
 import '../models/user_profile_models/user_profile_get_model.dart';
 import 'jeweller_jewellery_list_screen_controller.dart';
+
 
 class JewelleryDetailsScreenController extends GetxController {
   var partnerSrNo = Get.arguments[0]; // Coming From Home Screen Jeweller List
@@ -99,7 +98,7 @@ class JewelleryDetailsScreenController extends GetxController {
           );
         }
 
-        log('productDetailsData is  : ${productDetailsData}');
+        log('productDetailsData is  : $productDetailsData');
       } else {
         log('getJewelleryProductDetailFunction Else');
       }
@@ -323,7 +322,7 @@ class JewelleryDetailsScreenController extends GetxController {
   Future<void> getUserProfileDetailsFunction() async {
     String url =
         "${ApiUrl.getUserProfileApi}?customerId=${UserDetails.customerId}";
-    log(" getUserProfleDetailsFunction url: $url");
+    log(" getUserProfileDetailsFunction url: $url");
 
     try {
       isLoading(true);
@@ -332,8 +331,8 @@ class JewelleryDetailsScreenController extends GetxController {
         headers: apiHeader.headers,
       );
 
-      log("getUserProfleDetailsFunction st code is : ${response.statusCode}");
-      log("getUserProfleDetailsFunction res body : ${response.body}");
+      log("getUserProfileDetailsFunction st code is : ${response.statusCode}");
+      log("getUserProfileDetailsFunction res body : ${response.body}");
 
       var resBody = jsonDecode(response.body);
 
@@ -352,7 +351,7 @@ class JewelleryDetailsScreenController extends GetxController {
         //do nothing
       }
     } catch (e) {
-      log("getUserProfleDetailsFunction Error ::: $e");
+      log("getUserProfileDetailsFunction Error ::: $e");
       rethrow;
     } finally {
       isLoading(false);

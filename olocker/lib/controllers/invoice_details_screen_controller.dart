@@ -229,9 +229,4 @@ class InvoiceDetailsScreenController extends GetxController {
         });
   }
 
-  @override
-  void onInit() {
-    // getTrackClaimDetailsFunction();
-    super.onInit();
-  }
 }

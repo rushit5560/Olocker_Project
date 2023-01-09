@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/models/auth_screen_models/user_login_model.dart';
@@ -11,6 +10,7 @@ import 'package:http/http.dart' as http;
 import '../constants/api_url.dart';
 import '../constants/app_colors.dart';
 import '../models/auth_screen_models/register_model.dart';
+
 
 class SignUpScreenController extends GetxController {
   final size = Get.size;

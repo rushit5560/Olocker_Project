@@ -326,7 +326,7 @@ class EnterCodeField extends StatelessWidget {
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.done,
               validator: (value) =>
-                  FieldValidator().validateRefferalCodeNumber(value!),
+                  FieldValidator().validateReferralCodeNumber(value!),
               controller: signUpScreenController.codeController,
               decoration: InputDecoration(
                 isDense: true,
@@ -387,52 +387,52 @@ class SignUpScreenLoadingWidget extends StatelessWidget {
               RegisterHeaderModule(),
               SizedBox(height: 4.h),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 20),
+                margin: const EdgeInsets.symmetric(horizontal: 20),
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 height: 60,
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(8),
                   ),
                 ),
               ),
               SizedBox(height: 2.h),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 20),
+                margin: const EdgeInsets.symmetric(horizontal: 20),
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 height: 60,
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(8),
                   ),
                 ),
               ),
               SizedBox(height: 2.h),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 20),
+                margin: const EdgeInsets.symmetric(horizontal: 20),
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 height: 60,
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(8),
                   ),
                 ),
               ),
               SizedBox(height: 2.h),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 20),
+                margin: const EdgeInsets.symmetric(horizontal: 20),
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 height: 60,
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(8),
                   ),
                 ),
@@ -445,9 +445,9 @@ class SignUpScreenLoadingWidget extends StatelessWidget {
                   // vertical: 20,
                   horizontal: 6.w,
                 ),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(10),
                   ),
                 ),

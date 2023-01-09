@@ -40,7 +40,7 @@ class JewellerDetailImageInfoModule extends StatelessWidget {
               );
             },
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Expanded(
             flex: 7,
             child: Column(

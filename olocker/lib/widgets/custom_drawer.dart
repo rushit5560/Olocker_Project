@@ -14,11 +14,9 @@ import 'package:olocker/screens/my_saving_schemes_screens/my_saving_schemes_list
 import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/utils/user_prefs_data.dart';
 import 'package:sizer/sizer.dart';
-
 import '../controllers/index_screen_controller.dart';
 import '../screens/my_jewellers_screen/my_jewellers_screen.dart';
 import '../screens/my_jewellery_portfolio_screen/my_jewellery_portfolio_screen.dart';
-import '../screens/my_saving_schemes_screens/my_schemes_details_screen/my_schemes_details_screen.dart';
 import '../screens/online_favourite_deals_screen/online_favourite_deals_screen.dart';
 
 class CustomDrawer extends StatelessWidget {

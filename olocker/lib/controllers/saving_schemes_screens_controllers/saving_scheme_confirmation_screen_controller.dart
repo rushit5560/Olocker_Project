@@ -17,10 +17,4 @@ class SavingSchemeConfirmationScreenController extends GetxController {
 
   final size = Get.size;
 
-  @override
-  void onInit() {
-    // TODO: implement onInit
-
-    super.onInit();
-  }
 }
