@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,6 @@ import 'package:olocker/models/jeweller_details_screen_model/jewellery_type_mode
 import 'package:olocker/screens/jeweller_feedback_screen/jeweller_feedback_screen.dart';
 import 'package:olocker/screens/jeweller_jewellery_details_screen/jeweller_jewellery_details_screen.dart';
 import 'package:olocker/screens/jeweller_jewellery_list_screen/jeweller_jewellery_list_screen.dart';
-
 import 'package:olocker/screens/refer_and_earn_screen/refer_and_earn_screen.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:shimmer/shimmer.dart';
@@ -26,6 +24,7 @@ import '../jeweller_loyalty_points_screen/jeweller_loyalty_points_screen.dart';
 import '../my_favourites_screen/my_favourites_screen.dart';
 import '../offers_jewellery_list_screen/offers_jewellery_list_screen.dart';
 import '../saving_schemes_screens/saving_schemes_list_screen/saving_schemes_list_screen.dart';
+
 
 class JewellerFeaturesModule extends StatelessWidget {
   JewellerFeaturesModule({Key? key}) : super(key: key);
@@ -358,8 +357,7 @@ class FourFunctionalModule extends StatelessWidget {
                     Get.to(
                       () => JewellerFeedbackScreen(),
                       arguments: screenController.jewellerId,
-                    )!
-                        .then((value) {
+                    )!.then((value) {
                       screenController.isLoading(true);
                       screenController.isLoading(false);
                     });
@@ -676,8 +674,6 @@ class BestSellersListModule extends StatelessWidget {
     // log('imgUrl111 : $imgUrl');
 
     if (singleItem.productimages.isNotEmpty) {
-      log("has image");
-
       imgUrl = ApiUrl.apiImagePath + singleItem.productimages[0].imageLocation;
     }
 
@@ -795,7 +791,7 @@ class CustomerSpeakModule extends StatelessWidget {
 
   Widget _customerSpeakListTile(Testimonial singleItem) {
     return Container(
-      margin: EdgeInsets.only(left: 18, top: 5, bottom: 5, right: 5),
+      margin: const EdgeInsets.only(left: 18, top: 5, bottom: 5, right: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: AppColors.lightCoffeeColor,
@@ -1010,7 +1006,7 @@ class JewellerDetailsLoadingShimmer extends StatelessWidget {
                         child: Row(
                           children: [
                             Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: AppColors.greyColor,
                                 shape: BoxShape.circle,
                               ),
@@ -1021,7 +1017,7 @@ class JewellerDetailsLoadingShimmer extends StatelessWidget {
                             Expanded(
                               child: Container(
                                 height: 10,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: AppColors.greyColor,
                                 ),
                               ),
@@ -1036,7 +1032,7 @@ class JewellerDetailsLoadingShimmer extends StatelessWidget {
                         child: Row(
                           children: [
                             Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: AppColors.greyColor,
                                 shape: BoxShape.circle,
                               ),
@@ -1047,7 +1043,7 @@ class JewellerDetailsLoadingShimmer extends StatelessWidget {
                             Expanded(
                               child: Container(
                                 height: 10,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: AppColors.greyColor,
                                 ),
                               ),
@@ -1062,7 +1058,7 @@ class JewellerDetailsLoadingShimmer extends StatelessWidget {
                         child: Row(
                           children: [
                             Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: AppColors.greyColor,
                                 shape: BoxShape.circle,
                               ),
@@ -1073,7 +1069,7 @@ class JewellerDetailsLoadingShimmer extends StatelessWidget {
                             Expanded(
                               child: Container(
                                 height: 10,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: AppColors.greyColor,
                                 ),
                               ),
@@ -1094,7 +1090,7 @@ class JewellerDetailsLoadingShimmer extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: AppColors.greyColor,
                             shape: BoxShape.circle,
                           ),
@@ -1103,7 +1099,7 @@ class JewellerDetailsLoadingShimmer extends StatelessWidget {
                       const SizedBox(width: 5),
                       Expanded(
                         child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: AppColors.greyColor,
                             shape: BoxShape.circle,
                           ),
@@ -1112,7 +1108,7 @@ class JewellerDetailsLoadingShimmer extends StatelessWidget {
                       const SizedBox(width: 5),
                       Expanded(
                         child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: AppColors.greyColor,
                             shape: BoxShape.circle,
                           ),
@@ -1121,7 +1117,7 @@ class JewellerDetailsLoadingShimmer extends StatelessWidget {
                       const SizedBox(width: 5),
                       Expanded(
                         child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: AppColors.greyColor,
                             shape: BoxShape.circle,
                           ),

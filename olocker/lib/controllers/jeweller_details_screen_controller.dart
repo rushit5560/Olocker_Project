@@ -25,6 +25,15 @@ class JewellerDetailsScreenController extends GetxController {
   Size size = Get.size;
   ApiHeader apiHeader = ApiHeader();
 
+  RxBool isSpecialFeaturesLoading = false.obs;
+  RxBool isAnnouncementOfferLoading = false.obs;
+  RxBool isJewelleryPushToAppDataLoading = false.obs;
+  RxBool isJewelleryTypeLoading = false.obs;
+  RxBool isBestSellerLoading = false.obs;
+  RxBool isTestimonialLoading = false.obs;
+  RxBool isGoldPriceLoading = false.obs;
+  RxBool isAboutYourSelfLoading = false.obs;
+
   List<SpecialFeatureItem> specialFeaturesList = [];
   List<GetPushOfferItem> announcementOfferList = [];
   List<GetPushCollectionItem> jewelleryCategoryList = [];
@@ -48,7 +57,7 @@ class JewellerDetailsScreenController extends GetxController {
   RxInt bannerCurrentIndex = 0.obs;
 
   Future<void> getSpecialFeaturesFunction() async {
-    isLoading(true);
+    isSpecialFeaturesLoading(true);
     String url = "${ApiUrl.getSpecialFeaturesApi}?PartnerSrNo=$jewellerId";
     log('getSpecialFeaturesFunction Api Url :$url');
 
@@ -74,12 +83,13 @@ class JewellerDetailsScreenController extends GetxController {
       log('getSpecialFeaturesFunction Error :$e');
       rethrow;
     }
-    // isLoading(false);
-    await getAnnouncementOfferFunction();
+
+    // await getAnnouncementOfferFunction();
+    isSpecialFeaturesLoading(false);
   }
 
   Future<void> getAnnouncementOfferFunction() async {
-    isLoading(true);
+    isAnnouncementOfferLoading(true);
     String url = "${ApiUrl.getAnnouncementOfferApi}?PartnerSrNo=$jewellerId";
     log('getAnnouncementOfferFunction Api Url :$url');
 
@@ -105,12 +115,13 @@ class JewellerDetailsScreenController extends GetxController {
       log('getAnnouncementOfferFunction Error :$e');
       rethrow;
     }
-    // isLoading(false);
-    await getJewelleryPushToAppDataFunction();
+
+    // await getJewelleryPushToAppDataFunction();
+    isAnnouncementOfferLoading(false);
   }
 
   Future<void> getJewelleryPushToAppDataFunction() async {
-    isLoading(true);
+    isJewelleryPushToAppDataLoading(true);
     String url =
         "${ApiUrl.getJewelleryGetPushToAppDataApi}?PartnerSrNo=$jewellerId";
     log('getJewelleryPushToAppDataFunction Api Url :$url');
@@ -151,13 +162,15 @@ class JewellerDetailsScreenController extends GetxController {
       log('getJewelleryPushToAppDataFunction Error :$e');
       rethrow;
     }
-    // isLoading(false);
-    await getJewelleryTypeFunction();
+
+    // await getJewelleryTypeFunction();
+    isJewelleryPushToAppDataLoading(false);
   }
 
   Future<void> getJewelleryTypeFunction() async {
-    isLoading(true);
+    isJewelleryTypeLoading(true);
     String url = "${ApiUrl.getJewelleryTypeApi}?PartnerSrNo=$jewellerId";
+    log('Get Jewellery Type Api Url : $url');
 
     try {
       http.Response response = await http.get(
@@ -191,12 +204,12 @@ class JewellerDetailsScreenController extends GetxController {
       rethrow;
     }
 
-    // isLoading(false);
-    await getBestSellerFunction();
+    // await getBestSellerFunction();
+    isJewelleryTypeLoading(false);
   }
 
   Future<void> getBestSellerFunction() async {
-    isLoading(true);
+    isBestSellerLoading(true);
     String url = "${ApiUrl.getBestSellerApi}?PartnerId=$jewellerId";
     log('getBestSellerFunction Api Url : $url');
 
@@ -223,12 +236,12 @@ class JewellerDetailsScreenController extends GetxController {
       rethrow;
     }
 
-    // isLoading(false);
-    await getClientTestimonialsFunction();
+    // await getClientTestimonialsFunction();
+    isBestSellerLoading(false);
   }
 
   Future<void> getClientTestimonialsFunction() async {
-    isLoading(true);
+    isTestimonialLoading(true);
     String url = "${ApiUrl.getClientTestimonialsApi}?PartnerSrno=$jewellerId";
     log('getClientTestimonialsFunction Api Url :$url');
 
@@ -255,12 +268,12 @@ class JewellerDetailsScreenController extends GetxController {
       rethrow;
     }
 
-    // isLoading(false);
-    await getGoldPriceFunction();
+    // await getGoldPriceFunction();
+    isTestimonialLoading(false);
   }
 
   Future<void> getGoldPriceFunction() async {
-    isLoading(true);
+    isGoldPriceLoading(true);
     String url = "${ApiUrl.getGoldPriceApi}?PartnerId=$jewellerId";
     log('getGoldPriceFunction Api Url : $url');
 
@@ -296,12 +309,13 @@ class JewellerDetailsScreenController extends GetxController {
       log('getGoldPriceFunction Error :$e');
       rethrow;
     }
-    // isLoading(false);
-    await getAboutYourSelfFunction();
+
+    // await getAboutYourSelfFunction();
+    isGoldPriceLoading(false);
   }
 
   Future<void> getAboutYourSelfFunction() async {
-    isLoading(true);
+    isAboutYourSelfLoading(true);
     String url =
         "${ApiUrl.getAboutYourSelfApi}?PartnerSrno=$jewellerId&CustomerId=${UserDetails.customerId}";
     log('getAboutYourSelfFunction Api Url : $url');
@@ -327,14 +341,21 @@ class JewellerDetailsScreenController extends GetxController {
       log('getAboutYourSelfFunction Error :$e');
       rethrow;
     }
-    isLoading(false);
+
+    isAboutYourSelfLoading(false);
   }
 
   @override
   void onInit() {
-    // log('jewellerId : $jewellerId');
-    // log('jewellerName : $jewellerName');
+    getBestSellerFunction();
     getSpecialFeaturesFunction();
+    getAnnouncementOfferFunction();
+    getJewelleryPushToAppDataFunction();
+    getJewelleryTypeFunction();
+    getClientTestimonialsFunction();
+    getGoldPriceFunction();
+    getAboutYourSelfFunction();
     super.onInit();
   }
+
 }
