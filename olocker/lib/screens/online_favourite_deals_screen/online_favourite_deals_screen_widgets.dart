@@ -5,7 +5,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 class FavouritesDealsListLoadingWidget extends StatelessWidget {
-  FavouritesDealsListLoadingWidget({Key? key}) : super(key: key);
+  const FavouritesDealsListLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

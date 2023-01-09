@@ -29,7 +29,7 @@ class _AddRecordingDetailsFormModuleState
   Widget build(BuildContext context) {
     return Obx(
       () => addOrnamentRecordingsController.isLoading.value
-          ? CommonLoader().showCircularLoader()
+          ? AddRecordingsLoadingWidget()
           : Stack(
               alignment: Alignment.bottomCenter,
               children: [

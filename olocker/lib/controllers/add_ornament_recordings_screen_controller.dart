@@ -10,7 +10,6 @@ import 'package:olocker/controllers/ornament_recordings_list_screen_controller.d
 import 'package:olocker/widgets/common_widgets.dart';
 import '../constants/api_url.dart';
 import '../constants/user_details.dart';
-import '../models/ornament_recording_models/add_recording_response_model.dart';
 import '../models/ornament_recording_models/get_ornament_recording_model.dart';
 
 class AddOrnamentRecordingsScreenController extends GetxController {
@@ -113,7 +112,7 @@ class AddOrnamentRecordingsScreenController extends GetxController {
                     var dateFormat = DateFormat('yyyy/MM/dd');
 
                     var formattedDate = dateFormat.format(val);
-                    log("selected op date is : : ${formattedDate}");
+                    log("selected op date is : : $formattedDate");
 
                     activityDateController.text = formattedDate;
                   }),
@@ -235,7 +234,6 @@ class AddOrnamentRecordingsScreenController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
   }
 }

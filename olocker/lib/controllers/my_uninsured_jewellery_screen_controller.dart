@@ -1,14 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:olocker/constants/user_details.dart';
-import 'package:olocker/widgets/common_widgets.dart';
 import '../constants/api_url.dart';
 import '../constants/app_colors.dart';
 import '../models/jewellery_models/get_all_uninsured_jewellery_model.dart';

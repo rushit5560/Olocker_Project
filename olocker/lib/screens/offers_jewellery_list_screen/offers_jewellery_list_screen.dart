@@ -5,12 +5,10 @@ import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
-import 'package:olocker/controllers/jeweller_jewellery_list_screen_controller.dart';
 import 'package:olocker/controllers/offers_jewellery_list_screen_controller.dart';
 import 'package:olocker/screens/my_favourites_screen/my_favourites_screen.dart';
 import 'package:olocker/screens/my_inquiries_list_screen/my_inquiries_list_screen.dart';
 import 'package:olocker/utils/extensions.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 import '../jeweller_jewellery_list_screen/jeweller_jewellery_list_screen_widgets.dart';

@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:another_stepper/dto/stepper_data.dart';
 import 'package:another_stepper/widgets/another_stepper.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +6,7 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/personal_loans_screen_controller.dart';
 import 'package:olocker/utils/extensions.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
-
 import 'personal_loans_screen_widgets.dart';
 
 class PersonalLoansScreen extends StatelessWidget {
@@ -132,7 +129,7 @@ class PersonalLoansScreen extends StatelessWidget {
                           iconWidget: Container(
                             height: 9.h,
                             width: 9.h,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: AppColors.accentBGColor,
                               shape: BoxShape.circle,
                             ),

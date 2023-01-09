@@ -4,11 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
-import 'package:olocker/constants/enum.dart';
 import 'package:olocker/constants/user_details.dart';
-import 'package:olocker/models/jeweller_jewellery_list_screen_model/all_jewellery_model.dart';
 import 'package:share_plus/share_plus.dart';
-
 import '../models/jeweller_details_screen_model/get_offer_details_list_model.dart';
 import '../models/refer_and_earn_screen_models/get_partner_by_code_model.dart';
 import '../models/user_profile_models/user_profile_get_model.dart';

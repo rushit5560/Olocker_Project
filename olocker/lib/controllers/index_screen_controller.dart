@@ -106,6 +106,7 @@ class IndexScreenController extends GetxController {
         headers: apiHeader.headers,
       );
 
+      log("Get Notification response.body : ${response.body}");
       NotificationCountModel notificationCountModel =
           NotificationCountModel.fromJson(json.decode(response.body));
       isSuccessStatus = notificationCountModel.success.obs;

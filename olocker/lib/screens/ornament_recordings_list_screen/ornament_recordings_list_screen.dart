@@ -3,12 +3,8 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/ornament_recordings_list_screen_controller.dart';
-import 'package:olocker/models/home_screen_models/smart_deals_online_model.dart';
-import 'package:olocker/screens/online_deals_list_screen/online_deals_list_screen.dart';
-import 'package:olocker/screens/online_favourite_deals_screen/online_favourite_deals_screen.dart';
 import 'package:olocker/screens/ornament_recordings_list_screen/ornament_recordings_list_screen_widgets.dart';
 import 'package:olocker/utils/extensions.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 class OrnamentRecordingsListScreen extends StatelessWidget {
@@ -49,7 +45,7 @@ class OrnamentRecordingsListScreen extends StatelessWidget {
           ),
           Obx(
             () => ornamentRecordingsListScreenController.isLoading.value
-                ? OrnamentRecordingsListLoadingWidget()
+                ? const OrnamentRecordingsListLoadingWidget()
                 : SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Padding(

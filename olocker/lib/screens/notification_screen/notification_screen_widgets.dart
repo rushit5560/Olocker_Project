@@ -58,7 +58,7 @@ class NotificationItem extends StatelessWidget {
     // HH:mm:ss aa
     return Obx(
       () => notificationScreenController.isLoading.value
-          ? CommonLoader().showCircularLoader()
+          ? NotificationScreenLoadingWidget()
           : GestureDetector(
               onTap: () async {
                 await notificationScreenController

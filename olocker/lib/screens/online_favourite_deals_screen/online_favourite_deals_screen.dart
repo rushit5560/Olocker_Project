@@ -7,7 +7,6 @@ import 'package:olocker/models/online_favourite_deals_screen_model/get_favourite
 import 'package:olocker/screens/online_favourite_deals_list_screen/online_favourite_deals_list_screen.dart';
 import 'package:olocker/screens/online_favourite_deals_screen/online_favourite_deals_screen_widgets.dart';
 import 'package:olocker/utils/extensions.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 class OnlineFavouriteDealsScreen extends StatelessWidget {

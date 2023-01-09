@@ -498,9 +498,10 @@ class ColoredCustomButton extends StatelessWidget {
           onPressed: onPressed,
           child: Text(
             text,
+            textAlign: TextAlign.center,
             style: TextStyle(
               color: AppColors.whiteColor,
-              fontSize: 12.sp,
+              fontSize: 11.sp,
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,
               fontFamily: "Roboto-Medium",

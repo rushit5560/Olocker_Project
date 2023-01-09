@@ -5,7 +5,6 @@ import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/otp_screen_controller.dart';
 import 'package:olocker/screens/otp_screen/otp_screen_widgets.dart';
 import 'package:olocker/utils/extensions.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../widgets/common_buttons.dart';

@@ -90,7 +90,7 @@ class OtpScreenLoadingWidget extends StatelessWidget {
                   Container(
                     height: 15,
                     width: 60.w,
-                    decoration: BoxDecoration(color: AppColors.greyColor),
+                    decoration:const BoxDecoration(color: AppColors.greyColor),
                   ),
                 ],
               ),
@@ -98,7 +98,7 @@ class OtpScreenLoadingWidget extends StatelessWidget {
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 10.w),
                 height: 45,
-                decoration: BoxDecoration(color: AppColors.greyColor),
+                decoration:const BoxDecoration(color: AppColors.greyColor),
               ),
               SizedBox(height: 4.h),
               Row(
@@ -136,9 +136,9 @@ class OtpScreenLoadingWidget extends StatelessWidget {
                   // vertical: 20,
                   horizontal: 6.w,
                 ),
-                decoration: BoxDecoration(
+                decoration:const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius:  BorderRadius.all(
                     Radius.circular(10),
                   ),
                 ),

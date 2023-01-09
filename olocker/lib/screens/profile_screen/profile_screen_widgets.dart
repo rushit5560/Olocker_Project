@@ -1,17 +1,12 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/profile_screen_controller.dart';
-import 'package:olocker/utils/extensions.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../utils/field_validation.dart';
-import '../../widgets/common_loader.dart';
 
 class ProfileDetailsFormModule extends StatelessWidget {
   ProfileDetailsFormModule({Key? key}) : super(key: key);
@@ -186,7 +181,6 @@ class NameFieldRow extends StatelessWidget {
             width: 18.w,
             child: DropdownButton<String>(
               isDense: true,
-
               value: profileScreenController.namePrefixDDvalue.value,
               alignment: Alignment.center,
               // hint: Text(
@@ -747,8 +741,8 @@ class ProfileScreenLoadingWidget extends StatelessWidget {
                           border: Border.all(color: AppColors.greyColor),
                           shape: BoxShape.circle,
                         ),
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.all(
+                        child: const ClipRRect(
+                          borderRadius: BorderRadius.all(
                             Radius.circular(200),
                           ),
                         ),

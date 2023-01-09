@@ -25,7 +25,7 @@ class BannerPageViewModule extends StatelessWidget {
         // String imgUrl = ApiUrl.apiMainPath +
         //     screenController.announcementOfferList[i].imageurl;
 
-        log("image url :: ${ApiUrl.apiImagePath + savingSchemesListScreenController.getSavingSchemesList[i].imagePath}");
+        // log("image url :: ${ApiUrl.apiImagePath + savingSchemesListScreenController.getSavingSchemesList[i].imagePath}");
         return Container(
           height: savingSchemesListScreenController.size.height * 0.25,
           width: double.infinity,

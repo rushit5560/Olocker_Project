@@ -26,7 +26,7 @@ class GetLoanContainerModule extends StatelessWidget {
         Container(
           margin: EdgeInsets.symmetric(horizontal: 20),
           padding: EdgeInsets.symmetric(horizontal: 8.w),
-          decoration: BoxDecoration(
+          decoration:const BoxDecoration(
             borderRadius: BorderRadius.all(
               Radius.circular(10),
             ),
@@ -149,7 +149,7 @@ class StepOneFormModule extends StatelessWidget {
         //     ],
         //   ),
         // ),
-        SizedBox(height: 20),
+      const  SizedBox(height: 20),
         Container(
           margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
           // .all(20),
@@ -1837,12 +1837,12 @@ class JewelleryOnEmiLoadingWidget extends StatelessWidget {
                       Container(
                         height: 9.h,
                         width: 9.h,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: AppColors.greyColor,
                           shape: BoxShape.circle,
                         ),
                       ),
-                      SizedBox(height: 10),
+                     const SizedBox(height: 10),
                       Container(
                         height: 10,
                         width: 80,

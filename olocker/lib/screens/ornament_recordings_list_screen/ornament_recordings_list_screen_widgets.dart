@@ -5,8 +5,6 @@ import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/ornament_recordings_list_screen_controller.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
-
-import '../../widgets/common_buttons.dart';
 import '../add_ornament_recordings_screen/add_ornament_recordings_screen.dart';
 
 class OrnamentDetailsModule extends StatelessWidget {
@@ -294,7 +292,7 @@ class DetailsRowWidget extends StatelessWidget {
 }
 
 class OrnamentRecordingsListLoadingWidget extends StatelessWidget {
-  OrnamentRecordingsListLoadingWidget({Key? key}) : super(key: key);
+  const OrnamentRecordingsListLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -314,9 +312,9 @@ class OrnamentRecordingsListLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-                decoration: BoxDecoration(
+                decoration:const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius:  BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),
@@ -327,9 +325,9 @@ class OrnamentRecordingsListLoadingWidget extends StatelessWidget {
                   Container(
                     height: 40,
                     width: 60.w,
-                    decoration: BoxDecoration(
+                    decoration:const BoxDecoration(
                       color: AppColors.greyColor,
-                      borderRadius: const BorderRadius.all(
+                      borderRadius:  BorderRadius.all(
                         Radius.circular(20),
                       ),
                     ),
@@ -348,9 +346,9 @@ class OrnamentRecordingsListLoadingWidget extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(horizontal: 12),
                     padding: const EdgeInsets.symmetric(
                         vertical: 15, horizontal: 12),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: AppColors.greyColor,
-                      borderRadius: const BorderRadius.all(
+                      borderRadius:  BorderRadius.all(
                         Radius.circular(12),
                       ),
                     ),

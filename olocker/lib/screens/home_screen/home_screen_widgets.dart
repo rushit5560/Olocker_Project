@@ -19,7 +19,6 @@ import 'package:olocker/screens/personal_loans_screen/personal_loans_screen.dart
 import 'package:olocker/utils/extensions.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
-
 import '../all_loyalty_points_screen/all_loyalty_points_screen.dart';
 import '../my_favourites_screen/my_favourites_screen.dart';
 import '../online_deals_list_screen/online_deals_list_screen.dart';
@@ -635,7 +634,6 @@ class HomeScreenLoadingWidget extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 2.h),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

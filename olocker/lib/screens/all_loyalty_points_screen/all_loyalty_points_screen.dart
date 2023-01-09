@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/all_loyalty_point_screen_controller.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 import 'all_loyalty_points_screen_widgets.dart';
@@ -35,7 +34,7 @@ class AllLoyaltyPointScreen extends StatelessWidget {
       ),
       body: Obx(
         () => allLoyaltyPointScreenController.isLoading.value
-            ? AllLoyaltyPointsLoadingWidget()
+            ? const AllLoyaltyPointsLoadingWidget()
             : allLoyaltyPointScreenController.loyaltyPointList.isEmpty
                 ? Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.h),

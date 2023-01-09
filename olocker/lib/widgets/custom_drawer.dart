@@ -298,8 +298,8 @@ class CustomDrawer extends StatelessWidget {
               indexScreenController.currentBottomIndex.value = 1;
             },
             child: Container(
-              width: homeScreenController.size.width * 0.042.w,
-              height: homeScreenController.size.width * 0.040.w,
+              width: 75,
+              height: 75,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: AppColors.whiteColor,

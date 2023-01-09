@@ -32,7 +32,7 @@ class NotificationScreen extends StatelessWidget {
       ),
       body: Obx(
         () => notificationScreenController.isLoading.value
-            ? CommonLoader().showCircularLoader()
+            ? NotificationScreenLoadingWidget()
             : LiquidPullToRefresh(
                 height: 5.h,
                 onRefresh:

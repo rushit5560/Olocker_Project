@@ -36,16 +36,12 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(height: 1.h),
                       AddNewJewellerButtonModule(),
                       SizedBox(height: 2.h),
-
                       MyJewellersListModule(),
                       // SizedBox(height: homeScreenController.size.height * 0.02),
-
                       BannerModule(),
                       SizedBox(height: 2.h),
-
                       SmartDealsModule(),
                       SizedBox(height: 2.h),
-
                       OlockerServiceModule(),
                       // SizedBox(height: homeScreenController.size.height * 0.02),
                     ],

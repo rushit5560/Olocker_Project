@@ -108,33 +108,30 @@ class ChatDisplayModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => screenController.isChatLoading.value
-          ? Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.h),
-              child: CommonLoader().showCircularLoader(),
-            )
-          : Column(
-              children: [
-                JewelleryDetailModule(),
-                screenController.getNotificationList == []
-                    ? const SizedBox()
-                    : ListView.builder(
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        itemCount: screenController.getNotificationList.length,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, i) {
-                          GetNotification singleMsg =
-                              screenController.getNotificationList[i];
-                          log('single Msg is ::: $singleMsg');
-                          return SingleMessageModule(
-                            msg: singleMsg,
-                          );
-                        },
-                      ),
-                const SizedBox(height: 10),
-              ],
-            ),
+      () => Column(
+        children: [
+          JewelleryDetailModule(),
+          screenController.getNotificationList == []
+              ? const SizedBox()
+              : screenController.isChatLoading.value
+                  ? ChatLoadingWidget()
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      itemCount: screenController.getNotificationList.length,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, i) {
+                        GetNotification singleMsg =
+                            screenController.getNotificationList[i];
+                        log('single Msg is ::: $singleMsg');
+                        return SingleMessageModule(
+                          msg: singleMsg,
+                        );
+                      },
+                    ),
+          const SizedBox(height: 10),
+        ],
+      ),
     );
   }
 }
@@ -374,6 +371,116 @@ class EnquireScreenLoadingWidget extends StatelessWidget {
                 width: double.infinity,
                 color: AppColors.greyColor,
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ChatLoadingWidget extends StatelessWidget {
+  ChatLoadingWidget({Key? key}) : super(key: key);
+
+  final screenController = Get.find<ProductEnquireScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: Column(
+          children: [
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  width: screenController.size.width * 0.45,
+                  alignment: Alignment.centerLeft,
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+                  decoration: const BoxDecoration(
+                    color: AppColors.greyColor,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(15),
+                      topLeft: Radius.circular(15),
+                      bottomRight: Radius.circular(0),
+                      bottomLeft: Radius.circular(15),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  width: screenController.size.width * 0.45,
+                  alignment: Alignment.centerLeft,
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+                  decoration: const BoxDecoration(
+                    color: AppColors.greyColor,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(15),
+                      topLeft: Radius.circular(15),
+                      bottomRight: const Radius.circular(0),
+                      bottomLeft: Radius.circular(15),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  width: screenController.size.width * 0.45,
+                  alignment: Alignment.centerLeft,
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+                  decoration: const BoxDecoration(
+                    color: AppColors.greyColor,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(15),
+                      topLeft: Radius.circular(15),
+                      bottomRight: Radius.circular(15),
+                      bottomLeft: Radius.circular(0),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  width: screenController.size.width * 0.45,
+                  alignment: Alignment.centerLeft,
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+                  decoration: const BoxDecoration(
+                    color: AppColors.greyColor,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(15),
+                      topLeft: Radius.circular(15),
+                      bottomRight: const Radius.circular(15),
+                      bottomLeft: Radius.circular(0),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

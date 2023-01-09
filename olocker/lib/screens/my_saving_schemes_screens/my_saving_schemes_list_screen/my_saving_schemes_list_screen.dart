@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../../constants/app_colors.dart';
@@ -43,7 +42,7 @@ class MySavingSchemesListScreen extends StatelessWidget {
                             vertical: 30.h, horizontal: 10.w),
                         child: Center(
                           child: Text(
-                            "You have not purchased any Saving schemes yet",
+                            "Currently, there is no savings scheme LIVE. Thank you for showing interest.",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 12.sp,
