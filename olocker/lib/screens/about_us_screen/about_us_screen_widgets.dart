@@ -110,6 +110,7 @@ class AboutUsDetailsModule extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class ContactDetailsModule extends StatelessWidget {
   IconData icon;
   Color? color;

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:olocker/constants/app_colors.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/notification_screen_controller.dart';

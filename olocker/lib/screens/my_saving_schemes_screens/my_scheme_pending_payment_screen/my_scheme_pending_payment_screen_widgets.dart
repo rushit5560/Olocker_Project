@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -11,9 +9,7 @@ import 'package:sizer/sizer.dart';
 import '../../../constants/app_colors.dart';
 import '../../../controllers/my_saving_schemes_screens_controllers/my_scheme_pending_payment_screen_controller.dart';
 import '../../../models/my_saving_schemes_models/get_pending_bills_model/get_pending_bills_list_model.dart';
-import '../../../widgets/common_loader.dart';
 import '../../saving_schemes_screens/scheme_choose_payment_method_screen/scheme_choose_payment_method_screen_widgets.dart';
-import '../my_scheme_payment_success_screen/my_scheme_payment_success_screen.dart';
 
 class PayNowButton extends StatelessWidget {
   PayNowButton({Key? key}) : super(key: key);
@@ -27,6 +23,7 @@ class PayNowButton extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
+          // ignore: unnecessary_null_comparison
           if (screenController.paymentTypeEnum == null) {
             CommonWidgets().showBorderSnackBar(
               context: context,
@@ -105,19 +102,7 @@ class PaymentDetails extends StatelessWidget {
             },
           ),
           SizedBox(height: 1.h),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.end,
-          //   children: [
-          //     Text(
-          //       "Late payment fee ₹ 100",
-          //       style: TextStyle(
-          //         color: AppColors.accentColor,
-          //         fontSize: 10.sp,
-          //         fontWeight: FontWeight.normal,
-          //       ),
-          //     ),
-          //   ],
-          // )
+       
         ],
       ),
     );
@@ -141,14 +126,12 @@ class SingleBillShowWidget extends StatelessWidget {
     var parsedDate =
         dateFormat.parse(pendingBillData.insatllmentDate.trim()).toString();
 
-    // log("get parsedDate is : : $parsedDate");
+
 
     var dateFormatSet = DateFormat('dd MMM yyyy');
     var formattedDate = dateFormatSet.format(DateTime.parse(parsedDate));
 
-    // selectedOrnamentPurchaseDate.value = formattedDate.replaceAll("-", "/");
-
-    // log("formattedDate is:: $formattedDate");
+   
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -192,7 +175,7 @@ class SingleBillShowWidget extends StatelessWidget {
             Text(
               formattedDate,
               style: const TextStyle(
-                color: const Color(0xFF052a45),
+                color:  Color(0xFF052a45),
                 fontWeight: FontWeight.bold,
               ),
             )
@@ -212,7 +195,7 @@ class PaymentMethods extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => screenController.isLoading.value
-          ? SchemePaymentLoadingWidget()
+          ? const SchemePaymentLoadingWidget()
           : Container(
               width: double.infinity,
               decoration: BoxDecoration(

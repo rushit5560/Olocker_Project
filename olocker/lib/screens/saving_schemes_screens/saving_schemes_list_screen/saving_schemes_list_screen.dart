@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/saving_schemes_screens_controllers/saving_schemes_list_screen_controller.dart';
 import 'package:olocker/screens/saving_schemes_screens/saving_schemes_list_screen/saving_schemes_list_screen_widgets.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 class SavingSchemesListScreen extends StatelessWidget {

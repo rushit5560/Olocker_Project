@@ -6,12 +6,10 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/my_saving_schemes_screens_controllers/my_saving_schemes_list_screen_controller.dart';
 import 'package:olocker/controllers/my_saving_schemes_screens_controllers/my_schemes_details_screen_controller.dart';
-import 'package:olocker/screens/my_saving_schemes_screens/my_scheme_payment_failure_screen/my_scheme_payment_failure_screen.dart';
 
 import 'package:sizer/sizer.dart';
 
 import '../../../controllers/my_saving_schemes_screens_controllers/my_scheme_payment_success_screen_controller.dart';
-import '../../../controllers/saving_schemes_screens_controllers/scheme_payment_success_screen_controller.dart';
 
 class PaymentSuccessContainerWidget extends StatelessWidget {
   PaymentSuccessContainerWidget({Key? key}) : super(key: key);

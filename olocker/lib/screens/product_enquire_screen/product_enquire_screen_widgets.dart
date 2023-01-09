@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,10 +8,8 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/models/enquire_screen_models/get_all_message_model.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../constants/user_details.dart';
 import '../../controllers/product_enquire_screen_controller.dart';
-import '../../widgets/common_loader.dart';
 
 class SendMessageTextField extends StatelessWidget {
   SendMessageTextField({Key? key}) : super(key: key);
@@ -431,7 +428,7 @@ class ChatLoadingWidget extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(15),
                       topLeft: Radius.circular(15),
-                      bottomRight: const Radius.circular(0),
+                      bottomRight:  Radius.circular(0),
                       bottomLeft: Radius.circular(15),
                     ),
                   ),
@@ -475,7 +472,7 @@ class ChatLoadingWidget extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(15),
                       topLeft: Radius.circular(15),
-                      bottomRight: const Radius.circular(15),
+                      bottomRight: Radius.circular(15),
                       bottomLeft: Radius.circular(0),
                     ),
                   ),

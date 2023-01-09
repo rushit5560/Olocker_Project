@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -237,7 +236,7 @@ class SingleSavingSchemeItem extends StatelessWidget {
 }
 
 class SavingSchemesListLoadingWidget extends StatelessWidget {
-  SavingSchemesListLoadingWidget({Key? key}) : super(key: key);
+  const SavingSchemesListLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -257,9 +256,9 @@ class SavingSchemesListLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),
@@ -277,9 +276,9 @@ class SavingSchemesListLoadingWidget extends StatelessWidget {
                         vertical: 10, horizontal: 12),
                     padding: const EdgeInsets.symmetric(
                         vertical: 15, horizontal: 12),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: AppColors.greyColor,
-                      borderRadius: const BorderRadius.all(
+                      borderRadius:  BorderRadius.all(
                         Radius.circular(12),
                       ),
                     ),

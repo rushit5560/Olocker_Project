@@ -157,7 +157,7 @@ class OffersJewelleryListScreen extends StatelessWidget {
       ),
       body: Obx(
         () => offersJewelleryListScreenController.isLoading.value
-            ? JewelleryListScreenLoadingWidget()
+            ? const JewelleryListScreenLoadingWidget()
             : offersJewelleryListScreenController.jewelleryList.isEmpty
                 ? Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.h),

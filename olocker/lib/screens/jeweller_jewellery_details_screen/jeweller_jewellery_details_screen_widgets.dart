@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,6 @@ import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/jeweller_jewellery_details_screen_controller.dart';
-import 'package:olocker/controllers/jeweller_jewellery_list_screen_controller.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:sizer/sizer.dart';
@@ -130,13 +128,10 @@ class ShowFullScreenImagesSliderModule extends StatelessWidget {
               jewelleryDetailsController.isLoading(false);
             },
             builder: (BuildContext context, int index) {
-              var singleImage = ApiUrl.apiImagePath +
-                  jewelleryDetailsController
+              var singleImage = "${ApiUrl.apiImagePath}${jewelleryDetailsController
                       .productDetailsData.productimages![index].imageLocation
-                      .replaceAll(r'\', "/") +
-                  "/" +
-                  jewelleryDetailsController
-                      .productDetailsData.productimages![index].imageName;
+                      .replaceAll(r'\', "/")}/${jewelleryDetailsController
+                      .productDetailsData.productimages![index].imageName}";
               return PhotoViewGalleryPageOptions(
                 imageProvider: NetworkImage(
                   singleImage,
@@ -307,7 +302,7 @@ class JewellerJewelleryApproxPriceModule extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         jewelleryDetailController.productDetailsData.price!.isEmpty
-            ? SizedBox()
+            ? const SizedBox()
             : Text(
                 jewelleryDetailController.productDetailsData.price
                         .toString()
@@ -328,7 +323,7 @@ class JewellerJewelleryApproxPriceModule extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-        SizedBox(width: 5),
+        const SizedBox(width: 5),
         jewelleryDetailController.productDetailsData.price.toString() ==
                 "PRICE ON REQUEST"
             ? const SizedBox()

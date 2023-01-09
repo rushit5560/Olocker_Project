@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/screens/claim_details_view_screen/claim_details_view_screen_widgets.dart';
-
 import 'package:sizer/sizer.dart';
 import '../../constants/app_images.dart';
 import '../../controllers/claim_details_view_screen_controller.dart';
-import '../../widgets/common_loader.dart';
 
 class ClaimDetailsScreen extends StatelessWidget {
   ClaimDetailsScreen({Key? key}) : super(key: key);
@@ -40,7 +37,7 @@ class ClaimDetailsScreen extends StatelessWidget {
       ),
       body: Obx(
         () => claimDetailsScreenController.isLoading.value
-            ? ClaimDetailsLoadingWidget()
+            ? const ClaimDetailsLoadingWidget()
             : SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
                 child: Stack(

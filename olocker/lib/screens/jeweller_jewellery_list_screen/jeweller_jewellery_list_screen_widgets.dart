@@ -182,7 +182,7 @@ class JewelleryGridviewModule extends StatelessWidget {
 }
 
 class JewelleryListScreenLoadingWidget extends StatelessWidget {
-  JewelleryListScreenLoadingWidget({Key? key}) : super(key: key);
+  const JewelleryListScreenLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

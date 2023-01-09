@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/controllers/my_favourites_controller.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/app_colors.dart';

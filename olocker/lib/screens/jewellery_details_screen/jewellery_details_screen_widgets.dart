@@ -1,14 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
-import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/jeweller_jewellery_list_screen_controller.dart';
-
 import 'package:olocker/utils/extensions.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:shimmer/shimmer.dart';
@@ -539,7 +536,7 @@ class JewellerFeaturesAvailableModule extends StatelessWidget {
 }
 
 class JewelleryDetailsLoadingWidget extends StatelessWidget {
-  JewelleryDetailsLoadingWidget({Key? key}) : super(key: key);
+  const JewelleryDetailsLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

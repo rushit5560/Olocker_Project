@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:olocker/controllers/my_saving_schemes_screens_controllers/my_schemes_details_screen_controller.dart';
 import 'package:olocker/screens/my_saving_schemes_screens/my_schemes_details_screen/my_schemes_details_screen_widgets.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../../constants/app_colors.dart';
 
 class MySchemesDetailsScreen extends StatelessWidget {

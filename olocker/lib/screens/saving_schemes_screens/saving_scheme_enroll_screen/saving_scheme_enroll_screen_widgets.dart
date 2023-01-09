@@ -1,18 +1,14 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/saving_schemes_screens_controllers/saving_scheme_enroll_screen_controller.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/utils/field_validation.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
-
-import '../scheme_payment_success_screen/scheme_payment_success_screen.dart';
 
 class MonthlyAmountModule extends StatelessWidget {
   MonthlyAmountModule({Key? key}) : super(key: key);
@@ -199,7 +195,7 @@ class MaturityAmountModule extends StatelessWidget {
         children: [
           _singleModule(
               heading: 'Our Contribution',
-              value: '${screenController.ourContributionAmount.value}'),
+              value: screenController.ourContributionAmount.value),
           _singleModule(
               heading: 'Maturity Amount',
               value: '${screenController.maturityAmount.value}'),
@@ -517,7 +513,7 @@ class SaveAndMakePaymentButtonModule extends StatelessWidget {
 }
 
 class SchemEnrollScreenLoadingWidget extends StatelessWidget {
-  SchemEnrollScreenLoadingWidget({Key? key}) : super(key: key);
+ const SchemEnrollScreenLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -537,9 +533,9 @@ class SchemEnrollScreenLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-                decoration: BoxDecoration(
+                decoration:const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius:  BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),
@@ -551,9 +547,9 @@ class SchemEnrollScreenLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-                decoration: BoxDecoration(
+                decoration:const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius:  BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),
@@ -565,9 +561,9 @@ class SchemEnrollScreenLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius:  BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),

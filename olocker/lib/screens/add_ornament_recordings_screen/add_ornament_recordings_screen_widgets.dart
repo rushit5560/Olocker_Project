@@ -1,15 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
-
 import 'package:olocker/utils/field_validation.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../controllers/add_ornament_recordings_screen_controller.dart';
 
 class AddRecordingDetailsFormModule extends StatefulWidget {
@@ -647,7 +642,7 @@ class _AddRecordingDetailsFormModuleState
 }
 
 class AddRecordingsLoadingWidget extends StatelessWidget {
-  AddRecordingsLoadingWidget({Key? key}) : super(key: key);
+  const AddRecordingsLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

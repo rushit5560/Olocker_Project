@@ -17,9 +17,9 @@ class YourClaimDetailsModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-      decoration: BoxDecoration(
+      margin:const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding:const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      decoration: const BoxDecoration(
         color: AppColors.whiteColor,
         borderRadius: BorderRadius.all(
           Radius.circular(10),
@@ -129,7 +129,7 @@ class DetailsRowWidget extends StatelessWidget {
 }
 
 class ClaimDetailsLoadingWidget extends StatelessWidget {
-  ClaimDetailsLoadingWidget({Key? key}) : super(key: key);
+  const ClaimDetailsLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -149,9 +149,9 @@ class ClaimDetailsLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-                decoration: BoxDecoration(
+                decoration:const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius:  BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),

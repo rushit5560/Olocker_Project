@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../controllers/jeweller_loyalty_point_screen_controller.dart';
 import 'jeweller_loyalty_points_screen_widgets.dart';
 

@@ -24,7 +24,7 @@ class GetLoanContainerModule extends StatelessWidget {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 20),
+          margin: const EdgeInsets.symmetric(horizontal: 20),
           padding: EdgeInsets.symmetric(horizontal: 8.w),
           decoration:const BoxDecoration(
             borderRadius: BorderRadius.all(
@@ -1856,12 +1856,12 @@ class JewelleryOnEmiLoadingWidget extends StatelessWidget {
                       Container(
                         height: 9.h,
                         width: 9.h,
-                        decoration: BoxDecoration(
+                        decoration:const BoxDecoration(
                           color: AppColors.greyColor,
                           shape: BoxShape.circle,
                         ),
                       ),
-                      SizedBox(height: 10),
+                  const    SizedBox(height: 10),
                       Container(
                         height: 10,
                         width: 80,
@@ -1875,12 +1875,12 @@ class JewelleryOnEmiLoadingWidget extends StatelessWidget {
                       Container(
                         height: 9.h,
                         width: 9.h,
-                        decoration: BoxDecoration(
+                        decoration:const BoxDecoration(
                           color: AppColors.greyColor,
                           shape: BoxShape.circle,
                         ),
                       ),
-                      SizedBox(height: 10),
+                  const    SizedBox(height: 10),
                       Container(
                         height: 10,
                         width: 80,
@@ -1890,31 +1890,31 @@ class JewelleryOnEmiLoadingWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+            const  SizedBox(height: 20),
               Container(
                 height: 62.h,
                 width: double.infinity,
-                margin: EdgeInsets.symmetric(horizontal: 20),
-                decoration: BoxDecoration(
+                margin:const EdgeInsets.symmetric(horizontal: 20),
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
                   borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+           const   SizedBox(height: 20),
               Container(
                 height: 60,
                 width: double.infinity,
-                margin: EdgeInsets.symmetric(horizontal: 20),
-                decoration: BoxDecoration(
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                decoration:const BoxDecoration(
                   color: AppColors.greyColor,
                   borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+             const SizedBox(height: 20),
             ],
           ),
         ),

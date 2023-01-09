@@ -1,8 +1,6 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/edit_uninsured_jewellery_screen_controller.dart';
@@ -11,8 +9,6 @@ import 'package:olocker/utils/field_validation.dart';
 import 'package:olocker/widgets/common_loader.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
-
-import '../../controllers/add_uninsured_jewellery_screen_controller.dart';
 
 class ProductDetailsFormModule extends StatelessWidget {
   ProductDetailsFormModule({Key? key}) : super(key: key);
@@ -445,7 +441,7 @@ class MetalDetailsFormModule extends StatelessWidget {
                                 );
                               },
                               separatorBuilder: (context, index) {
-                                return SizedBox(height: 8);
+                                return const SizedBox(height: 8);
                               },
                             ),
                           )
@@ -615,7 +611,7 @@ class StoneDetailsFormModule extends StatelessWidget {
                     SizedBox(height: 1.h),
                     unInsuredJewelController.stoneDataMapList.isNotEmpty
                         ? Container(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 6, vertical: 5),
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -676,7 +672,7 @@ class StoneDetailsFormModule extends StatelessWidget {
                                 );
                               },
                               separatorBuilder: (context, index) {
-                                return SizedBox(height: 8);
+                                return const SizedBox(height: 8);
                               },
                             ),
                           )
@@ -848,7 +844,7 @@ class DecorativeItemDetailsFormModule extends StatelessWidget {
                     SizedBox(height: 1.h),
                     unInsuredJewelController.decoItemsDataMapList.isNotEmpty
                         ? Container(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 6, vertical: 5),
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -911,7 +907,7 @@ class DecorativeItemDetailsFormModule extends StatelessWidget {
                                 );
                               },
                               separatorBuilder: (context, index) {
-                                return SizedBox(height: 8);
+                                return const SizedBox(height: 8);
                               },
                             ),
                           )
@@ -1143,7 +1139,7 @@ class SubmitCancelButtonsModule extends StatelessWidget {
 }
 
 class EditUninsuredJewelleryLoadingWidget extends StatelessWidget {
-  EditUninsuredJewelleryLoadingWidget({Key? key}) : super(key: key);
+  const EditUninsuredJewelleryLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

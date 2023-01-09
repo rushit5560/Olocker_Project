@@ -1,15 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/app_colors.dart';
-import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/screens/saving_schemes_screens/scheme_choose_payment_method_screen/scheme_choose_payment_method_screen.dart';
-import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 import 'package:sizer/sizer.dart';
-
-import '../../../constants/api_url.dart';
 import '../../../controllers/saving_schemes_screens_controllers/saving_scheme_confirmation_screen_controller.dart';
 
 class AmountDetailsModule extends StatelessWidget {
@@ -25,7 +20,7 @@ class AmountDetailsModule extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),

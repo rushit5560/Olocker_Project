@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 import 'package:shimmer/shimmer.dart';
-
 import 'package:sizer/sizer.dart';
-
 import '../../../constants/app_colors.dart';
 import '../../../constants/app_images.dart';
 import '../../../constants/enum.dart';
@@ -21,7 +18,7 @@ class PaymentMethods extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => screenController.isLoading.value
-          ? SchemePaymentLoadingWidget()
+          ? const SchemePaymentLoadingWidget()
           : Container(
               width: double.infinity,
               decoration: BoxDecoration(
@@ -184,7 +181,7 @@ class PayNowCustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       height: 48,
       width: double.infinity,
       child: ElevatedButton(
@@ -247,7 +244,7 @@ class PayNowCustomButton extends StatelessWidget {
 }
 
 class SchemePaymentLoadingWidget extends StatelessWidget {
-  SchemePaymentLoadingWidget({Key? key}) : super(key: key);
+  const SchemePaymentLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

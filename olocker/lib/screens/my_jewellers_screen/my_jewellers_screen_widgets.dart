@@ -142,7 +142,7 @@ class AllJewellersListModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       itemCount: screenController.allJewellersList.length,
-      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

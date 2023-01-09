@@ -1,12 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/jeweller_feedback_screen_controller.dart';
 import 'package:olocker/models/jeweller_feedback_screen_models/feedback_form_model.dart';
 import 'package:olocker/utils/extensions.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 import 'jeweller_feedback_screen_widgets.dart';

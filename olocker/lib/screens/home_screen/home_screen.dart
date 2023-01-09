@@ -8,6 +8,7 @@ import 'package:sizer/sizer.dart';
 import '../../controllers/home_screen_controller.dart';
 import 'home_screen_widgets.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
 

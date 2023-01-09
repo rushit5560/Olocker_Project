@@ -2,13 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
-import 'package:olocker/utils/extensions.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../../controllers/saving_schemes_screens_controllers/scheme_payment_success_screen_controller.dart';
-import '../scheme_payment_failure_screen/scheme_payment_failure_screen.dart';
 
 // class JewellerDetailImageInfoModule extends StatelessWidget {
 //   JewellerDetailImageInfoModule({Key? key}) : super(key: key);

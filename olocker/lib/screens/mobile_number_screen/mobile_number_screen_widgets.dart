@@ -48,7 +48,7 @@ class MobileNumberLoadingWidget extends StatelessWidget {
                   Container(
                     height: 15,
                     width: 50.w,
-                    decoration: BoxDecoration(color: AppColors.greyColor),
+                    decoration: const BoxDecoration(color: AppColors.greyColor),
                   ),
                 ],
               ),
@@ -56,7 +56,7 @@ class MobileNumberLoadingWidget extends StatelessWidget {
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 10.w),
                 height: 40,
-                decoration: BoxDecoration(color: AppColors.greyColor),
+                decoration: const BoxDecoration(color: AppColors.greyColor),
               ),
               SizedBox(height: 4.h),
               Padding(
@@ -68,7 +68,7 @@ class MobileNumberLoadingWidget extends StatelessWidget {
                     Container(
                       width: 25,
                       height: 25,
-                      decoration: BoxDecoration(color: AppColors.greyColor),
+                      decoration: const BoxDecoration(color: AppColors.greyColor),
                     ),
                     SizedBox(width: 2.w),
                     RichText(
@@ -102,9 +102,9 @@ class MobileNumberLoadingWidget extends StatelessWidget {
                   // vertical: 20,
                   horizontal: 6.w,
                 ),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(10),
                   ),
                 ),

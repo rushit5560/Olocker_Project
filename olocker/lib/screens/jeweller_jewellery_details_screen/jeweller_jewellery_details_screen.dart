@@ -52,7 +52,7 @@ class JewellerJewelleryDetailsScreen extends StatelessWidget {
         ),
         body: Obx(
           () => jewellerJewelleryDetailsScreenController.isLoading.value
-              ? JewelleryDetailsLoadingWidget()
+              ? const JewelleryDetailsLoadingWidget()
               : SingleChildScrollView(
                   child: Column(
                     children: [

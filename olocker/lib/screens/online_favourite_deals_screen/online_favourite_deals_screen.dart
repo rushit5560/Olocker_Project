@@ -37,7 +37,7 @@ class OnlineFavouriteDealsScreen extends StatelessWidget {
       ),
       body: Obx(
         () => onlineFavouriteDealsScreenController.isLoading.value
-            ? FavouritesDealsListLoadingWidget()
+            ? const FavouritesDealsListLoadingWidget()
             : onlineFavouriteDealsScreenController.favouriteDealsList.isEmpty
                 ? Center(
                     child: Text(

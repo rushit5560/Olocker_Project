@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/saving_schemes_screens_controllers/saving_scheme_enroll_screen_controller.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../widgets/saving_schemes_widgets.dart';
@@ -36,7 +35,7 @@ class SavingSchemeEnrollScreen extends StatelessWidget {
       ),
       body: Obx(
         () => savingSchemeEnrollScreenController.isLoading.value
-            ? SchemEnrollScreenLoadingWidget()
+            ? const SchemEnrollScreenLoadingWidget()
             : SingleChildScrollView(
                 child: Form(
                   key: savingSchemeEnrollScreenController.customerFormKey,

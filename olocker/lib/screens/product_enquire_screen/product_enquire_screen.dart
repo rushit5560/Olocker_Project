@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/screens/product_enquire_screen/product_enquire_screen_widgets.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../constants/app_colors.dart';
 import '../../controllers/product_enquire_screen_controller.dart';
-import '../../widgets/common_loader.dart';
 
 class ProductEnquireScreen extends StatelessWidget {
   ProductEnquireScreen({Key? key}) : super(key: key);

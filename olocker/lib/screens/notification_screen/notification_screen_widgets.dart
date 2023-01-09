@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -6,10 +5,8 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../controllers/notification_screen_controller.dart';
 import '../../models/enquire_screen_models/get_all_message_model.dart';
-import '../../widgets/common_loader.dart';
 
 class NotificationsListModule extends StatelessWidget {
   NotificationsListModule({Key? key}) : super(key: key);
@@ -176,7 +173,7 @@ class NotificationScreenLoadingWidget extends StatelessWidget {
         child: ListView.separated(
           shrinkWrap: true,
           itemCount: 2,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             return Stack(
               children: [

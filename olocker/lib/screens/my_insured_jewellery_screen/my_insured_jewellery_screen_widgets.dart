@@ -1,16 +1,12 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../constants/api_url.dart';
 import '../../constants/app_colors.dart';
-
 import '../../controllers/my_insured_jewellery_screen_controller.dart';
 import '../../models/jewellery_models/get_all_insured_jewellery_model.dart';
 import '../claim_details_view_screen/claim_details_view_screen.dart';
@@ -533,9 +529,9 @@ class InsuredLoadingWidget extends StatelessWidget {
                         Container(
                           width: insuredJewelleryController.size.width * 0.855,
                           height: 20.h,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: AppColors.greyColor,
-                            borderRadius: const BorderRadius.all(
+                            borderRadius: BorderRadius.all(
                               Radius.circular(8),
                             ),
                           ),

@@ -7,7 +7,6 @@ import 'package:olocker/screens/my_insured_jewellery_screen/my_insured_jewellery
 import 'package:olocker/screens/my_uninsured_jewellery_screen/my_uninsured_jewellery_screen.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../controllers/my_jewellery_portfolio_controller.dart';
 
 class TotalJewelleryPortfolioModule extends StatelessWidget {
@@ -407,9 +406,9 @@ class MyPortFolioLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),
@@ -421,9 +420,9 @@ class MyPortFolioLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),
@@ -435,9 +434,9 @@ class MyPortFolioLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../constants/app_colors.dart';
 import '../../controllers/my_jewellery_portfolio_controller.dart';
 import '../../controllers/my_uninsured_jewellery_screen_controller.dart';
@@ -52,7 +50,7 @@ class MyUnInsuredJewelleryScreen extends StatelessWidget {
         ),
         body: Obx(
           () => unInsuredJewelleryController.isLoading.value
-              ? MyUninsuredLoadingWidget()
+              ?const MyUninsuredLoadingWidget()
               : SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Column(

@@ -256,7 +256,7 @@ class InquiryListItem extends StatelessWidget {
 }
 
 class MyInquiriesLoadingWidget extends StatelessWidget {
-  MyInquiriesLoadingWidget({Key? key}) : super(key: key);
+  const MyInquiriesLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

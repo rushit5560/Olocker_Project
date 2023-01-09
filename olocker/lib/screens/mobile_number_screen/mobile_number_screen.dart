@@ -5,7 +5,6 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/utils/field_validation.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/mobile_number_screen_controller.dart';
@@ -97,7 +96,7 @@ class MobileNumberScreen extends StatelessWidget {
                           textInputAction: TextInputAction.done,
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.symmetric(horizontal: 10),
+                                const EdgeInsets.symmetric(horizontal: 10),
                             hintText: "Enter your mobile number",
                             prefix: Text(
                               "+91 - ",

@@ -157,9 +157,9 @@ class AddJewellerLoadingWidget extends StatelessWidget {
           baseColor: Colors.grey.shade300,
           highlightColor: Colors.grey.shade100,
           child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(AppImages.addJewelleryImage),
+            decoration: const BoxDecoration(
+              image:  DecorationImage(
+                image:  AssetImage(AppImages.addJewelleryImage),
                 fit: BoxFit.fill,
               ),
             ),

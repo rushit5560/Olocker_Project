@@ -1,12 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../controllers/invoice_details_screen_controller.dart';
 
 class InvoiceUploadModule extends StatelessWidget {
@@ -99,7 +97,7 @@ class InvoiceUploadModule extends StatelessWidget {
                       //   ),
                     ),
                   )
-                : Container(
+                : SizedBox(
                     height: 200,
                     width: 81.w,
                     child: Stack(
@@ -146,8 +144,8 @@ class InvoiceUploadModule extends StatelessWidget {
                             child: Container(
                               height: 30,
                               width: 30,
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
+                              padding: const EdgeInsets.all(5),
+                              decoration:const BoxDecoration(
                                 color: Color.fromARGB(255, 226, 2, 2),
                                 shape: BoxShape.circle,
                               ),
@@ -173,7 +171,7 @@ class InvoiceUploadModule extends StatelessWidget {
 }
 
 class InvoiceDetailsLoadingWidget extends StatelessWidget {
-  InvoiceDetailsLoadingWidget({Key? key}) : super(key: key);
+  const InvoiceDetailsLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

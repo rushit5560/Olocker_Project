@@ -315,7 +315,7 @@ class SinglePendingItem extends StatelessWidget {
 }
 
 class PendingBillsLoadingWidget extends StatelessWidget {
-  PendingBillsLoadingWidget({Key? key}) : super(key: key);
+  const PendingBillsLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

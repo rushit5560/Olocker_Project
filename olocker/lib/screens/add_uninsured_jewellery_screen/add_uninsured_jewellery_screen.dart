@@ -39,7 +39,7 @@ class AddUnInsuredJewelleryScreen extends StatelessWidget {
       ),
       body: Obx(
         () => addUnInsuredJewelleryScreenController.isLoading.value
-            ? AddUninsuredJewelleryLoadingWidget()
+            ? const AddUninsuredJewelleryLoadingWidget()
             : SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
                 child: Stack(

@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/screens/invoice_details_screen/invoice_details_screen_widgets.dart';
-
 import 'package:sizer/sizer.dart';
 import '../../constants/app_images.dart';
-
 import '../../controllers/invoice_details_screen_controller.dart';
 import '../../controllers/my_insured_jewellery_screen_controller.dart';
-import '../../widgets/common_loader.dart';
 
 class InvoiceDetailsScreen extends StatelessWidget {
   InvoiceDetailsScreen({Key? key}) : super(key: key);
@@ -46,7 +42,7 @@ class InvoiceDetailsScreen extends StatelessWidget {
       ),
       body: Obx(
         () => invoiceDetailsScreenController.isLoading.value
-            ? InvoiceDetailsLoadingWidget()
+            ? const InvoiceDetailsLoadingWidget()
             : SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
                 child: Stack(

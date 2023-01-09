@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -10,7 +8,6 @@ import 'package:olocker/screens/edit_uninsured_jewellery_screen/edit_uninsured_j
 import 'package:olocker/screens/ornament_recordings_list_screen/ornament_recordings_list_screen.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../controllers/my_uninsured_jewellery_screen_controller.dart';
 
 class UnInsuredJewelleryListModule extends StatelessWidget {
@@ -316,7 +313,7 @@ class JewelleryListItem extends StatelessWidget {
 }
 
 class MyUninsuredLoadingWidget extends StatelessWidget {
-  MyUninsuredLoadingWidget({Key? key}) : super(key: key);
+  const MyUninsuredLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

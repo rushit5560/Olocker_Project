@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
-import 'package:olocker/controllers/my_jewellers_screen_controller.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/my_inquiries_list_screen_controller.dart';
@@ -38,7 +36,7 @@ class MyInquiriesListScreen extends StatelessWidget {
       ),
       body: Obx(
         () => myInquiriesListScreenController.isLoading.value
-            ? MyInquiriesLoadingWidget()
+            ? const MyInquiriesLoadingWidget()
             : SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Column(

@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/screens/refer_and_earn_screen/refer_and_earn_screen_widgets.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../controllers/refer_and_earn_screen_controller.dart';
 
 class ReferAndEarnScreen extends StatelessWidget {
@@ -38,7 +36,7 @@ class ReferAndEarnScreen extends StatelessWidget {
       ),
       body: Obx(
         () => referAndEarnScreenController.isLoading.value
-            ? ReferEarnLoadingWidget()
+            ? const ReferEarnLoadingWidget()
             : SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Column(

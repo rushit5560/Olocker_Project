@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:get/get.dart';
@@ -9,7 +8,6 @@ import 'package:olocker/controllers/jeweller_jewellery_list_screen_controller.da
 import 'package:olocker/screens/my_favourites_screen/my_favourites_screen.dart';
 import 'package:olocker/screens/my_inquiries_list_screen/my_inquiries_list_screen.dart';
 import 'package:olocker/utils/extensions.dart';
-import 'package:olocker/widgets/common_loader.dart';
 import 'package:sizer/sizer.dart';
 // import 'package:sliding_switch/sliding_switch.dart';
 
@@ -146,7 +144,7 @@ class JewellerJewelleryListScreen extends StatelessWidget {
       ),
       body: Obx(
         () => jewellerJewelleryListScreenController.isLoading.value
-            ? JewelleryListScreenLoadingWidget()
+            ? const JewelleryListScreenLoadingWidget()
             : jewellerJewelleryListScreenController.jewelleryList.isEmpty
                 ? Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.h),

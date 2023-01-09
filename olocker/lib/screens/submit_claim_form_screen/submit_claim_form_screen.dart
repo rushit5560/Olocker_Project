@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/screens/submit_claim_form_screen/submit_claim_form_screen_widgets.dart';
-
 import 'package:sizer/sizer.dart';
-
 import '../../controllers/submit_claim_form_screen_controller.dart';
-import '../../widgets/common_loader.dart';
 
 class SubmitClaimFormScreen extends StatelessWidget {
   SubmitClaimFormScreen({Key? key}) : super(key: key);
@@ -38,7 +35,7 @@ class SubmitClaimFormScreen extends StatelessWidget {
       ),
       body: Obx(
         () => submitClaimController.isLoading.value
-            ? SubmitClaimLoadingWidget()
+            ? const SubmitClaimLoadingWidget()
             : SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

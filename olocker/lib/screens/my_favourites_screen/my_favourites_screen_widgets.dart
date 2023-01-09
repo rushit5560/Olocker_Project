@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,13 +6,10 @@ import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/screens/jeweller_jewellery_details_screen/jeweller_jewellery_details_screen.dart';
 import 'package:shimmer/shimmer.dart';
-
 import 'package:sizer/sizer.dart';
-
 import '../../controllers/my_favourites_controller.dart';
 import '../../models/favourites_model/categorize_fav_products_model.dart';
 import '../../models/favourites_model/favourites_model.dart';
-import '../jewellery_details_screen/jewellery_details_screen.dart';
 
 class FavouritesCategoriesListModule extends StatelessWidget {
   FavouritesCategoriesListModule({Key? key}) : super(key: key);
@@ -95,6 +90,7 @@ class FavouriteProductsListModule extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class FavouriteListItem extends StatelessWidget {
   FavouriteListItem({
     Key? key,
@@ -359,9 +355,9 @@ class MyFavouritesJewelleryLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),
@@ -373,9 +369,9 @@ class MyFavouritesJewelleryLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),
@@ -387,9 +383,9 @@ class MyFavouritesJewelleryLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),

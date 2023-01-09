@@ -16,7 +16,7 @@ import '../../../models/saving_scheme_screens_models/saving_schemes_success_fail
 import '../my_scheme_pending_bills_screen/my_scheme_pending_bills_screen.dart';
 
 class SchemeDetailsLoadingWidget extends StatelessWidget {
-  SchemeDetailsLoadingWidget({Key? key}) : super(key: key);
+  const SchemeDetailsLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class SchemeDetailsLoadingWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
@@ -54,24 +54,24 @@ class SchemeDetailsLoadingWidget extends StatelessWidget {
                         width: double.infinity,
                         padding: const EdgeInsets.symmetric(
                             vertical: 15, horizontal: 12),
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: AppColors.greyColor,
-                          borderRadius: const BorderRadius.all(
+                          borderRadius:  BorderRadius.all(
                             Radius.circular(27),
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(width: 50),
+                  const  SizedBox(width: 50),
                     Expanded(
                       child: Container(
                         height: 60,
                         width: double.infinity,
                         padding: const EdgeInsets.symmetric(
                             vertical: 15, horizontal: 12),
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: AppColors.greyColor,
-                          borderRadius: const BorderRadius.all(
+                          borderRadius: BorderRadius.all(
                             Radius.circular(27),
                           ),
                         ),
@@ -80,7 +80,7 @@ class SchemeDetailsLoadingWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               Container(
                 height: 11.h,
                 width: double.infinity,
@@ -88,9 +88,9 @@ class SchemeDetailsLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius:  BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),

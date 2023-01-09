@@ -461,7 +461,7 @@ class MyLoyaltyPointsLoadingWidget extends StatelessWidget {
                     Container(
                       height: 35,
                       width: 45.w,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: AppColors.greyColor,
                       ),
                     ),
@@ -506,7 +506,7 @@ class MyLoyaltyPointsLoadingWidget extends StatelessWidget {
               SizedBox(height: 2.h),
               Row(
                 children: [
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Image.asset(
                     AppImages.loyaltyPointTitleBGImage,
                     width: screenController.size.width * 0.65,
@@ -518,10 +518,10 @@ class MyLoyaltyPointsLoadingWidget extends StatelessWidget {
               SizedBox(height: 2.h),
               Container(
                 height: 8.h,
-                margin: EdgeInsets.symmetric(horizontal: 10),
-                decoration: BoxDecoration(
+                margin:const EdgeInsets.symmetric(horizontal: 10),
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius: const BorderRadius.all(
+                  borderRadius:  BorderRadius.all(
                     Radius.circular(10),
                   ),
                 ),
