@@ -184,8 +184,4 @@ class ProductEnquireScreenController extends GetxController {
     }
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
 }

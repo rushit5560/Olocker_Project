@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/screens/signup_screen/signup_screen_widgets.dart';
-import 'package:olocker/widgets/common_loader.dart';
-
 import 'package:sizer/sizer.dart';
-
 import '../../controllers/signup_screen_controller.dart';
 import '../../widgets/common_buttons.dart';
+
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
@@ -48,7 +46,6 @@ class SignUpScreen extends StatelessWidget {
                         onPressed: () async {
                           await signUpScreenController
                               .userRegisterFunction(context);
-                          // Get.to(() => IndexScreen());
                         },
                         centerChild: Text(
                           "Sign up",

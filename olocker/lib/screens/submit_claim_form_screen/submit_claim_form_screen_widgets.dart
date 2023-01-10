@@ -124,7 +124,7 @@ class OrnamentDetailsModule extends StatelessWidget {
         const SizedBox(height: 5),
         TextFormField(
           readOnly: true,
-          controller: submitClaimController.policyNoContorller,
+          controller: submitClaimController.policyNoController,
           style: TextStyle(
             fontFamily: "Roboto",
             color: AppColors.greyTextColor,
@@ -157,7 +157,7 @@ class OrnamentDetailsModule extends StatelessWidget {
         const SizedBox(height: 5),
         TextFormField(
           readOnly: true,
-          controller: submitClaimController.policyNoContorller,
+          controller: submitClaimController.policyNoController,
           style: TextStyle(
             fontFamily: "Roboto",
             color: AppColors.greyTextColor,
@@ -190,7 +190,7 @@ class OrnamentDetailsModule extends StatelessWidget {
         const SizedBox(height: 5),
         TextFormField(
           readOnly: true,
-          controller: submitClaimController.customerNameContorller,
+          controller: submitClaimController.customerNameController,
           style: TextStyle(
             fontFamily: "Roboto",
             color: AppColors.greyTextColor,
@@ -223,7 +223,7 @@ class OrnamentDetailsModule extends StatelessWidget {
         const SizedBox(height: 5),
         TextFormField(
           readOnly: true,
-          controller: submitClaimController.mobileNoContorller,
+          controller: submitClaimController.mobileNoController,
           style: TextStyle(
             fontFamily: "Roboto",
             color: AppColors.greyTextColor,
@@ -256,7 +256,7 @@ class OrnamentDetailsModule extends StatelessWidget {
         const SizedBox(height: 5),
         TextFormField(
           readOnly: true,
-          controller: submitClaimController.inrContorller,
+          controller: submitClaimController.inrController,
           style: TextStyle(
             fontFamily: "Roboto",
             color: AppColors.greyTextColor,
@@ -289,7 +289,7 @@ class OrnamentDetailsModule extends StatelessWidget {
         const SizedBox(height: 5),
         TextFormField(
           readOnly: true,
-          controller: submitClaimController.expiryDateContorller,
+          controller: submitClaimController.expiryDateController,
           style: TextStyle(
             fontFamily: "Roboto",
             color: AppColors.greyTextColor,
@@ -402,7 +402,7 @@ class EventOfLossDetailsModule extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           TextFormField(
-            controller: submitClaimController.locationOfLossContorller,
+            controller: submitClaimController.locationOfLossController,
             validator: (value) =>
                 FieldValidator().validateLocationOfLoss(value.toString()),
             style: TextStyle(
@@ -444,7 +444,7 @@ class EventOfLossDetailsModule extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           TextFormField(
-            controller: submitClaimController.describeEventOfLossContorller,
+            controller: submitClaimController.describeEventOfLossController,
             validator: (value) =>
                 FieldValidator().validateEventOfLoss(value.toString()),
             style: TextStyle(
@@ -512,14 +512,14 @@ class EventOfLossDetailsModule extends StatelessWidget {
 
               if (submitClaimController.selectedClaimTypeValue.value ==
                   "Claim Full Amount") {
-                submitClaimController.claimAmountContorller.text =
+                submitClaimController.claimAmountController.text =
                     submitClaimController.inrAmount;
               } else if (submitClaimController.selectedClaimTypeValue.value ==
                   "Claim Partial Amount") {
-                submitClaimController.claimAmountContorller.clear();
+                submitClaimController.claimAmountController.clear();
               }
 
-              log("submitClaimController.claimAmountContorller.text :: ${submitClaimController.claimAmountContorller.text}");
+              log("submitClaimController.claimAmountContorller.text :: ${submitClaimController.claimAmountController.text}");
 
               submitClaimController.isLoading(false);
               // });
@@ -545,7 +545,7 @@ class EventOfLossDetailsModule extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           TextFormField(
-            controller: submitClaimController.claimAmountContorller,
+            controller: submitClaimController.claimAmountController,
             validator: (value) =>
                 FieldValidator().validateClaimNumber(value.toString()),
             style: TextStyle(
@@ -604,7 +604,7 @@ class PoliceFirDetailsModule extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         TextFormField(
-          controller: submitClaimController.firNumberContorller,
+          controller: submitClaimController.firNumberController,
           validator: (value) =>
               FieldValidator().validateFirNumber(value.toString()),
           style: TextStyle(
@@ -646,7 +646,7 @@ class PoliceFirDetailsModule extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         TextFormField(
-          controller: submitClaimController.policeStationAddressContorller,
+          controller: submitClaimController.policeStationAddressController,
           validator: (value) =>
               FieldValidator().validatePoliceStationAddress(value.toString()),
           style: TextStyle(

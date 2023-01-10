@@ -32,7 +32,7 @@ class SavingSchemesListScreen extends StatelessWidget {
       ),
       body: Obx(
         () => savingSchemesListScreenController.isLoading.value
-            ? SavingSchemesListLoadingWidget()
+            ? const SavingSchemesListLoadingWidget()
             : SingleChildScrollView(
                 physics: const ClampingScrollPhysics(),
                 child: savingSchemesListScreenController

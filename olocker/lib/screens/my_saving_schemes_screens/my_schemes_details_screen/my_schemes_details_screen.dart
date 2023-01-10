@@ -39,7 +39,7 @@ class MySchemesDetailsScreen extends StatelessWidget {
       backgroundColor: Colors.orange.shade100,
       body: Obx(
         () => mySchemePendingPaymentScreenController.isLoading.value
-            ? SchemeDetailsLoadingWidget()
+            ? const SchemeDetailsLoadingWidget()
             : SingleChildScrollView(
                 child: Padding(
                   padding:

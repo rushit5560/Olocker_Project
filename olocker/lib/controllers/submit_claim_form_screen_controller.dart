@@ -47,20 +47,20 @@ class SubmitClaimFormScreenController extends GetxController {
   final claimFormKey = GlobalKey<FormState>();
 
   // submit claim text controller
-  TextEditingController policyNoContorller = TextEditingController();
-  TextEditingController itemNameContorller = TextEditingController();
-  TextEditingController customerNameContorller = TextEditingController();
-  TextEditingController mobileNoContorller = TextEditingController();
-  TextEditingController inrContorller = TextEditingController();
-  TextEditingController expiryDateContorller = TextEditingController();
+  TextEditingController policyNoController = TextEditingController();
+  TextEditingController itemNameController = TextEditingController();
+  TextEditingController customerNameController = TextEditingController();
+  TextEditingController mobileNoController = TextEditingController();
+  TextEditingController inrController = TextEditingController();
+  TextEditingController expiryDateController = TextEditingController();
 
   RxString selectedLossDate = "Select loss Date".obs;
-  TextEditingController locationOfLossContorller = TextEditingController();
-  TextEditingController describeEventOfLossContorller = TextEditingController();
-  TextEditingController claimAmountContorller = TextEditingController();
+  TextEditingController locationOfLossController = TextEditingController();
+  TextEditingController describeEventOfLossController = TextEditingController();
+  TextEditingController claimAmountController = TextEditingController();
 
-  TextEditingController firNumberContorller = TextEditingController();
-  TextEditingController policeStationAddressContorller =
+  TextEditingController firNumberController = TextEditingController();
+  TextEditingController policeStationAddressController =
       TextEditingController();
 
   submitFullForm() async {
@@ -100,13 +100,13 @@ class SubmitClaimFormScreenController extends GetxController {
         'OID': oID,
         'COI': policyNo,
         'DateOfLoss': selectedLossDate.value,
-        'LossLocation': locationOfLossContorller.text.trim().toString(),
+        'LossLocation': locationOfLossController.text.trim().toString(),
         'DescriptionOfLossEvent':
-            describeEventOfLossContorller.text.trim().toString(),
+            describeEventOfLossController.text.trim().toString(),
         'ClaimAmount': inrAmount,
         'FIRpoliceStation':
-            policeStationAddressContorller.text.trim().toString(),
-        'FIRnumber': firNumberContorller.text.trim().toString(),
+            policeStationAddressController.text.trim().toString(),
+        'FIRnumber': firNumberController.text.trim().toString(),
         'claimimage': [
           {
             "name": "MyImage.png",
@@ -131,7 +131,7 @@ class SubmitClaimFormScreenController extends GetxController {
       var isSuccessStatus = claimResponseModel.success;
 
       if (isSuccessStatus) {
-        log("certificateofInsuranceNo is a :: ${claimResponseModel.data.certificateofInsuranceNo}");
+        log("certificate of InsuranceNo is a :: ${claimResponseModel.data.certificateofInsuranceNo}");
 
         CommonWidgets().showBorderSnackBar(
           context: Get.context!,
@@ -293,12 +293,12 @@ class SubmitClaimFormScreenController extends GetxController {
 
   @override
   void onInit() {
-    policyNoContorller.text = policyNo;
-    itemNameContorller.text = itemName;
-    customerNameContorller.text = customerName;
-    mobileNoContorller.text = mobileNo;
-    inrContorller.text = inrAmount;
-    expiryDateContorller.text = expiryDate;
+    policyNoController.text = policyNo;
+    itemNameController.text = itemName;
+    customerNameController.text = customerName;
+    mobileNoController.text = mobileNo;
+    inrController.text = inrAmount;
+    expiryDateController.text = expiryDate;
     super.onInit();
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -660,7 +662,11 @@ class BestSellersListModule extends StatelessWidget {
               // physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, i) {
                 ListOfProduct singleItem = screenController.bestSellerList[i];
-                return _bestSellerListTile(singleItem);
+                String imgUrl = "";
+                // if (singleItem.productimages.isNotEmpty) {
+                  imgUrl = "${ApiUrl.apiImagePath}${singleItem.productimages[0].imageLocation}\\${singleItem.productimages[0].imageName}";
+                // }
+                return _bestSellerListTile(singleItem, imgUrl);
               },
             ),
           ),
@@ -669,16 +675,16 @@ class BestSellersListModule extends StatelessWidget {
     );
   }
 
-  Widget _bestSellerListTile(ListOfProduct singleItem) {
-    String imgUrl = "";
-    // log('imgUrl111 : $imgUrl');
-
-    if (singleItem.productimages.isNotEmpty) {
-      imgUrl = ApiUrl.apiImagePath + singleItem.productimages[0].imageLocation;
-    }
+  Widget _bestSellerListTile(ListOfProduct singleItem, imgUrl) {
+    // String imgUrl = "";
+    // if (singleItem.productimages.isNotEmpty) {
+    //   imgUrl = "${ApiUrl.apiImagePath}${singleItem.productimages[0].imageLocation}\\${singleItem.productimages[0].imageName}";
+    // }
+    log("imgUrl : $imgUrl");
 
     return GestureDetector(
       onTap: () {
+        log('singleItem.productsrno : ${singleItem.productsrno}');
         Get.to(
           () => JewellerJewelleryDetailsScreen(),
           arguments: [
@@ -698,7 +704,17 @@ class BestSellersListModule extends StatelessWidget {
           children: [
             Expanded(
               flex: 8,
-              child: CachedNetworkImage(
+              child: Image.network(
+                imgUrl,
+              fit: BoxFit.cover,
+                errorBuilder: (context, str, dyn) {
+                  return Image.asset(
+                    AppImages.noLogoImage,
+                    fit: BoxFit.cover,
+                  );
+                },
+              ).commonAllSidePadding(20),
+              /*child: CachedNetworkImage(
                 imageUrl: imgUrl,
                 fit: BoxFit.cover,
                 errorWidget: (context, str, dyn) {
@@ -707,7 +723,7 @@ class BestSellersListModule extends StatelessWidget {
                     fit: BoxFit.cover,
                   );
                 },
-              ).commonAllSidePadding(20),
+              ).commonAllSidePadding(20),*/
             ),
             Expanded(
               flex: 2,
