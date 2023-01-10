@@ -59,6 +59,15 @@ class SingleSchemeItemModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var format = DateFormat("dd MMM yyyy");
+    var totalAmount = schemeData.maturityAmount + schemeData.totalPaid;
+
+    var total = ((schemeData.totalPaid * 100) / totalAmount);
+
+    var percentage = total / 100;
+
+    var finalPer = percentage.toStringAsFixed(1);
+
+    var finalPer2 = double.parse(finalPer);
 
     return Column(
       children: [
@@ -162,7 +171,7 @@ class SingleSchemeItemModule extends StatelessWidget {
                       animation: true,
                       lineHeight: 10,
                       animationDuration: 2000,
-                      percent: 0.7,
+                      percent: finalPer2,
                       barRadius: const Radius.circular(10),
                       progressColor: AppColors.greenTintColor,
                     ),

@@ -10,8 +10,6 @@ import 'package:olocker/models/enquire_screen_models/get_all_message_model.dart'
 import '../models/enquire_screen_models/send_message_model.dart';
 import '../models/jewellery_details_screen_model/get_jewellery_detail_model.dart';
 
-
-
 class ProductEnquireScreenController extends GetxController {
   var partnerSrNo = Get.arguments[0]; // Coming from jewellery details screen
   var productSrNo = Get.arguments[1]; // Coming from jewellery details screen
@@ -178,10 +176,9 @@ class ProductEnquireScreenController extends GetxController {
   void onInit() {
     super.onInit();
     getProductDetailFunction();
-
     if (notificationSrNo != "") {
       getAllReplyFunction();
     }
+    // sendProductInquiryFunction();
   }
-
 }
