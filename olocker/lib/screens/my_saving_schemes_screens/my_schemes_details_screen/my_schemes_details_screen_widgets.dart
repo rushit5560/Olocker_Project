@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
-
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
@@ -56,13 +55,13 @@ class SchemeDetailsLoadingWidget extends StatelessWidget {
                             vertical: 15, horizontal: 12),
                         decoration: const BoxDecoration(
                           color: AppColors.greyColor,
-                          borderRadius:  BorderRadius.all(
+                          borderRadius: BorderRadius.all(
                             Radius.circular(27),
                           ),
                         ),
                       ),
                     ),
-                  const  SizedBox(width: 50),
+                    const SizedBox(width: 50),
                     Expanded(
                       child: Container(
                         height: 60,
@@ -90,7 +89,7 @@ class SchemeDetailsLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
                 decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius:  BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),
@@ -153,6 +152,15 @@ class UnmaturedSchemeDetailsModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var format = DateFormat("dd MMM yyyy");
+    var totalAmount = schemeData.maturityAmount + schemeData.totalPaid;
+
+    var total = ((schemeData.totalPaid * 100) / totalAmount);
+
+    var percentage = total / 100;
+
+    var finalPer = percentage.toStringAsFixed(1);
+
+    var finalPer2 = double.parse(finalPer);
 
     return Column(
       children: [
@@ -256,7 +264,9 @@ class UnmaturedSchemeDetailsModule extends StatelessWidget {
                       animation: true,
                       lineHeight: 10,
                       animationDuration: 2000,
-                      percent: 0.7,
+
+                      percent: finalPer2,
+                      // percent: 0.7,
                       barRadius: const Radius.circular(10),
                       progressColor: AppColors.greenTintColor,
                     ),

@@ -7,8 +7,6 @@ import '../../models/my_saving_schemes_models/get_saving_schemes_list_model/get_
 import '../../models/saving_scheme_screens_models/get_saving_scheme_list_models/get_saving_schemes_list_model.dart';
 import '../../models/saving_scheme_screens_models/saving_schemes_success_failure_models/get_transaction_status_details_model.dart';
 
-
-
 class MySchemesDetailsScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -42,8 +40,12 @@ class MySchemesDetailsScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         getSavingSchemeData = getSavingSchemesListModel.getSavingSchemeList[0];
+
+
         log('getSavingSchemeData schemeName ::: ${getSavingSchemeData!.schemeName}');
         log('getSavingSchemeData mobile no ::: ${getSavingSchemeData!.mobile}');
+
+        // double totalAmount= 
       } else {
         log('getMySavingSchemeDetailsFunction false');
       }

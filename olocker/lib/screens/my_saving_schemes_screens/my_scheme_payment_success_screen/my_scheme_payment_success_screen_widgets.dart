@@ -18,6 +18,7 @@ class PaymentSuccessContainerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // log("Order date  1111 : ${screenController.transactionsList[0].transactionDate.split(" ")[0]}");
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -43,7 +44,8 @@ class PaymentSuccessContainerWidget extends StatelessWidget {
           ),
           SizedBox(height: 3.h),
           Text(
-            "Order date : ${screenController.transactionsList[0].transactionDate.split(" ")[0]}",
+            // "Order date : ${screenController.transactionsList[0].transactionDate.split(" ")[0]}",
+            "Order date : ",
             style: TextStyle(
               color: AppColors.blueDarkColor,
               fontSize: 11.sp,
