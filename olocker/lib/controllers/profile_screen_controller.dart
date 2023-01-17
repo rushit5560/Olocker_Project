@@ -361,17 +361,11 @@ class ProfileScreenController extends GetxController {
 
       if (isSuccessResult.value) {
         log("city state get success");
-        // prefs.setString(
-        //     UserPrefsData().customerMobileNoKey, numberController.text);
-
-        // isEditable.value = true;
-
         cityController.text = cityStateGetModel.stateCityDetails.cityName;
         stateController.text = cityStateGetModel.stateCityDetails.stateName;
       } else {
         cityController.clear();
         stateController.clear();
-
         log("getCityStateDetailsByPinFunction not success");
         //do nothing
       }

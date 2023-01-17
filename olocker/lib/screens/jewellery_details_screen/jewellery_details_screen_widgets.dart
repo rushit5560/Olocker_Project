@@ -190,13 +190,10 @@ class ShowFullScreenImagesSliderModule extends StatelessWidget {
           PhotoViewGallery.builder(
             // scrollPhysics: const BouncingScrollPhysics(),
             gaplessPlayback: true,
-            pageController: PageController(
-              initialPage: initialPageViewIndex,
-            ),
-            onPageChanged: (ind) {
+            pageController: PageController(initialPage: initialPageViewIndex),
+            onPageChanged: (i) {
               jewelleryDetailsController.isLoading(true);
-              jewelleryDetailsController.fullScreenImageCurrentindex.value =
-                  ind;
+              jewelleryDetailsController.fullScreenImageCurrentindex.value = i;
               jewelleryDetailsController.isLoading(false);
             },
             builder: (BuildContext context, int index) {
@@ -283,6 +280,15 @@ class ShowFullScreenImagesSliderModule extends StatelessWidget {
               ),
             ),
           ).commonOnlyPadding(right: 1.h),
+          /*Positioned(
+            left: 10,
+            top: 10,
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.arrow_back_ios_new_rounded,
+              color: Colors.black),
+            ),
+          ),*/
         ],
       ),
     );

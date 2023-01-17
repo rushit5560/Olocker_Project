@@ -279,23 +279,25 @@ class SinglePendingItem extends StatelessWidget {
               SizedBox(
                 height: 25,
                 width: 25,
-                child: Checkbox(
-                  value: singlePendingItem.isSelected,
-                  fillColor: MaterialStateProperty.resolveWith(
-                      (states) => AppColors.accentColor),
-                  activeColor: AppColors.accentColor,
-                  checkColor: AppColors.whiteColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  onChanged: (value) {
-                    // setState(() {
-                    screenController.isLoading(true);
-                    singlePendingItem.isSelected = value!;
-                    screenController.isLoading(false);
-                    // });
-                  },
-                ),
+                child: singlePendingItem.isPending == false
+                    ? Container()
+                    : Checkbox(
+                        value: singlePendingItem.isSelected,
+                        fillColor: MaterialStateProperty.resolveWith(
+                            (states) => AppColors.accentColor),
+                        activeColor: AppColors.accentColor,
+                        checkColor: AppColors.whiteColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        onChanged: (value) {
+                          // setState(() {
+                          screenController.isLoading(true);
+                          singlePendingItem.isSelected = value!;
+                          screenController.isLoading(false);
+                          // });
+                        },
+                      ),
               ),
               SizedBox(height: 1.5.h),
               Text(

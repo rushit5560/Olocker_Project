@@ -217,12 +217,12 @@ class SingleSchemeItemModule extends StatelessWidget {
                       );
                     },
                   ),
-                  SizedBox(width: 3.w),
-                  ColoredCustomButton(
+                  // SizedBox(width: 3.w),
+                  /*ColoredCustomButton(
                     color: AppColors.orangeColor,
                     text: "REFUND",
                     onPressed: () {},
-                  ),
+                  ),*/
                 ],
               ),
               SizedBox(height: 1.h),
@@ -510,7 +510,7 @@ class ColoredCustomButton extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               color: AppColors.whiteColor,
-              fontSize: 11.sp,
+              fontSize: 12.sp,
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,
               fontFamily: "Roboto-Medium",

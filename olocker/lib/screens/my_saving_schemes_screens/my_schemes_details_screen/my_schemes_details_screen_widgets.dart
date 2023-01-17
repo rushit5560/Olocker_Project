@@ -127,12 +127,12 @@ class PaymentRefundRowModule extends StatelessWidget {
                 );
               },
             ),
-            SizedBox(width: 4.w),
-            ColoredCustomButton(
+            // SizedBox(width: 4.w),
+            /*ColoredCustomButton(
               color: AppColors.orangeColor,
               text: "REFUND",
               onPressed: () {},
-            ),
+            ),*/
             SizedBox(width: 2.w),
           ],
         ),
@@ -636,7 +636,7 @@ class MySchemesTransactionsListViewModule extends StatelessWidget {
                 itemBuilder: (context, index) {
                   var singleTransItem = mySchemePendingPaymentScreenController
                       .transactionsDataList![index];
-                  return TransationSingleItemModule(
+                  return TransactionSingleItemModule(
                     transData: singleTransItem,
                     index: index,
                   );
@@ -658,8 +658,8 @@ class MySchemesTransactionsListViewModule extends StatelessWidget {
   }
 }
 
-class TransationSingleItemModule extends StatelessWidget {
-  TransationSingleItemModule(
+class TransactionSingleItemModule extends StatelessWidget {
+  TransactionSingleItemModule(
       {Key? key, required this.transData, required this.index})
       : super(key: key);
 
@@ -777,7 +777,13 @@ class TransationSingleItemModule extends StatelessWidget {
             ),
             // Spacer(),
             GestureDetector(
-              onTap: () {},
+              onTap: () async {
+                //todo - download file
+                await mySchemePendingPaymentScreenController.downloadPdfFileFunction(
+                  url: 'https://www.africau.edu/images/default/sample.pdf',
+                  fileName: 'NewInvoiceNumber.pdf'
+                );
+              },
               child: SizedBox(
                 width: 10.w,
                 child: Image.asset(
@@ -899,7 +905,7 @@ class ColoredCustomButton extends StatelessWidget {
             text,
             style: TextStyle(
               color: AppColors.whiteColor,
-              fontSize: 11.sp,
+              fontSize: 12.sp,
               fontFamily: "Roboto-Medium",
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,

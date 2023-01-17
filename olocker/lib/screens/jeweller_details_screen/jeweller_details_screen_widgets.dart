@@ -664,7 +664,7 @@ class BestSellersListModule extends StatelessWidget {
                 ListOfProduct singleItem = screenController.bestSellerList[i];
                 String imgUrl = "";
                 if (singleItem.productimages.isNotEmpty) {
-                  imgUrl = "${ApiUrl.apiImagePath}${singleItem.productimages[0].imageLocation}\\${singleItem.productimages[0].imageName}";
+                  imgUrl = "${ApiUrl.apiImagePath}${singleItem.productimages[0].imageLocation}/${singleItem.productimages[0].imageName}";
                 }
                 return _bestSellerListTile(singleItem, imgUrl);
               },
@@ -704,16 +704,21 @@ class BestSellersListModule extends StatelessWidget {
           children: [
             Expanded(
               flex: 8,
-              child: Image.network(
-                imgUrl,
-              fit: BoxFit.cover,
-                errorBuilder: (context, str, dyn) {
-                  return Image.asset(
-                    AppImages.noLogoImage,
-                    fit: BoxFit.cover,
-                  );
-                },
-              ).commonAllSidePadding(20),
+              child: singleItem.productimages.isNotEmpty
+                  ? Image.network(
+                      "${ApiUrl.apiImagePath}${singleItem.productimages[0].imageLocation}/${singleItem.productimages[0].imageName}",
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, str, dyn) {
+                        return Image.asset(
+                          AppImages.noLogoImage,
+                          fit: BoxFit.cover,
+                        );
+                      },
+                    ).commonAllSidePadding(20)
+                  : Image.asset(
+                      AppImages.noLogoImage,
+                      fit: BoxFit.cover,
+                    ),
               /*child: CachedNetworkImage(
                 imageUrl: imgUrl,
                 fit: BoxFit.cover,

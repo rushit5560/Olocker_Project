@@ -145,18 +145,19 @@ class MySchemePendingPaymentScreenController extends GetxController {
             "savingSchemeSrNo": item.srNo.floor().toString(),
             "TransUuid": transUuid,
             "TransactionId": transactionId,
-            "PaymentStatus": "AUTHORISED",
-            "Amount": "${item.installmentAmount.floor()}",
+            // "PaymentStatus": "AUTHORISED",
+            "Amount": item.installmentAmount.floor(),
             "TransactionDate": transDate,
           },
         );
       }
 
       bodyData = {
-        "listPurchaseSavingSchemeDetail": savingSchemeBodyList,
+        "listPurchaseSavingSchemeDetail": jsonEncode(savingSchemeBodyList),
       };
 
       log('razorPayAfterPaymentApiFunction body passing is :: $bodyData');
+      log('apiHeader.headers :: ${apiHeader.headers}');
 
       http.Response response = await http.post(
         Uri.parse(url),

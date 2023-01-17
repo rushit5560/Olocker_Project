@@ -1,8 +1,13 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
+import 'package:dio/dio.dart';
+import 'package:external_path/external_path.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:olocker/constants/api_url.dart';
+import 'package:olocker/widgets/common_widgets.dart';
+import 'package:path_provider/path_provider.dart';
 import '../../models/my_saving_schemes_models/get_saving_schemes_list_model/get_saving_scheme_list_model.dart';
 import '../../models/saving_scheme_screens_models/get_saving_scheme_list_models/get_saving_schemes_list_model.dart';
 import '../../models/saving_scheme_screens_models/saving_schemes_success_failure_models/get_transaction_status_details_model.dart';
@@ -17,6 +22,9 @@ class MySchemesDetailsScreenController extends GetxController {
   GetSavingSchemeData? getSavingSchemeData;
 
   List<TransactionData>? transactionsDataList;
+  
+  Dio dio = Dio();
+  RxDouble downloadProgress = 0.0.obs;
 
   Future<void> getMySavingSchemeDetailsFunction() async {
     isLoading(true);
@@ -101,4 +109,73 @@ class MySchemesDetailsScreenController extends GetxController {
     getMySavingSchemeDetailsFunction();
     super.onInit();
   }
+
+
+  downloadPdfFileFunction({required String url, required String fileName}) async {
+    final appStorage = await ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOADS);
+    final file = File("$appStorage/$fileName");
+    var response = await dio.download(url, file);
+    log('response : ${response.data}');
+    // await dio.download(
+    //     url,
+    //     file,
+    //   onReceiveProgress: (receivedBytes, totalBytes) {
+    //     downloadProgress.value = receivedBytes / totalBytes;
+    //     log('downloadProgress.value :${downloadProgress.value}');
+    //   },
+    //   deleteOnError: true,
+    // ).then((value) {
+    //   CommonWidgets().showBorderSnackBar(
+    //     context: Get.context!,
+    //     displayText: "File downloaded",
+    //   );
+    // });
+  }
+
+  /*downloadPdfFileFunction({required String url, required String fileName}) async {
+    // CommonWidgets().showBorderSnackBar(
+    //   context: Get.context!,
+    //   displayText: "Please wait...",
+    // );
+      final file = await downloadFile(url, fileName);
+
+
+      if(file != null) {
+        log('File Path : ${file.path}');
+
+        CommonWidgets().showBorderSnackBar(
+          context: Get.context!,
+          displayText: "File downloaded",
+        );
+      } else {
+        CommonWidgets().showBorderSnackBar(
+          context: Get.context!,
+          displayText: "File not download",
+        );
+      }
+  }*/
+
+  /*Future<File?> downloadFile(String url, String fileName) async {
+    try {
+      final appStorage = await getApplicationDocumentsDirectory();
+      final file = File("${appStorage.path}/$fileName");
+      log('file1 :$url');
+      log('file2 :$file');
+
+      final response1 = await Dio().get(url);
+
+      log('response1 : ${response1.statusMessage}');
+
+      final raf = file.openSync(mode: FileMode.write);
+      raf.writeByteSync(response1.data);
+      await raf.close();
+
+      return file;
+    } catch(e) {
+      log('downloadFile Error : $e');
+      return null;
+    }
+
+  }*/
+
 }
