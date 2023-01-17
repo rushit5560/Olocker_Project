@@ -518,10 +518,10 @@ class MyLoyaltyPointsLoadingWidget extends StatelessWidget {
               SizedBox(height: 2.h),
               Container(
                 height: 8.h,
-                margin:const EdgeInsets.symmetric(horizontal: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 10),
                 decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius:  BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(10),
                   ),
                 ),

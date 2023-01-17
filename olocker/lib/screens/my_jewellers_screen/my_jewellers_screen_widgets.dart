@@ -57,7 +57,7 @@ class BannerSliderModule extends StatelessWidget {
               return _imageModule(singleBanner);
             },
             options: CarouselOptions(
-              height: 25.h,
+              height: 30.h,
               autoPlay: true,
               viewportFraction: 1,
               autoPlayInterval: const Duration(seconds: 10),

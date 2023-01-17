@@ -278,7 +278,7 @@ class SavingSchemesListLoadingWidget extends StatelessWidget {
                         vertical: 15, horizontal: 12),
                     decoration: const BoxDecoration(
                       color: AppColors.greyColor,
-                      borderRadius:  BorderRadius.all(
+                      borderRadius: BorderRadius.all(
                         Radius.circular(12),
                       ),
                     ),

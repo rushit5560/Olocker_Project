@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:flutter/material.dart';
 import '../../../constants/app_colors.dart';
-import '../../../controllers/my_saving_schemes_screens_controllers/my_saving_schemes_list_screen_controller.dart';
 import 'my_saving_schemes_list_screen_widgets.dart';
+import '../../../controllers/my_saving_schemes_screens_controllers/my_saving_schemes_list_screen_controller.dart';
 
 class MySavingSchemesListScreen extends StatelessWidget {
   MySavingSchemesListScreen({Key? key}) : super(key: key);
@@ -42,7 +42,7 @@ class MySavingSchemesListScreen extends StatelessWidget {
                             vertical: 30.h, horizontal: 10.w),
                         child: Center(
                           child: Text(
-                            "Currently, there is no savings scheme LIVE. Thank you for showing interest.",
+                            "Dear user you have not subscribed to any saving scheme as of now.",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 12.sp,

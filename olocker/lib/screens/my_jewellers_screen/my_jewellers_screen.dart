@@ -13,7 +13,7 @@ class MyJewellersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.whiteColor,
+      backgroundColor: AppColors.lightBrownBgColor,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => Get.back(),
@@ -33,7 +33,10 @@ class MyJewellersScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(() => MyFavouritesScreen());
+              Get.to(
+                () => MyFavouritesScreen(),
+                arguments: [myJewellersScreenController.activeIndex.toString()],
+              );
             },
             icon: const Icon(
               Icons.favorite_border_rounded,
@@ -46,7 +49,7 @@ class MyJewellersScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          const BackGroundModule(),
+          // const BackGroundModule(),
           Column(
             children: [
               BannerSliderModule(),

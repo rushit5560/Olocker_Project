@@ -46,7 +46,7 @@ class SavingSchemeEnrollScreen extends StatelessWidget {
                             vertical: 5, horizontal: 15),
                         child: JewellerDetailImageInfoModule(
                           imagePath: savingSchemeEnrollScreenController
-                              .savingSchemeData.imagePath,
+                              .savingSchemeData.partnerLogo,
                           schemeName: savingSchemeEnrollScreenController
                               .savingSchemeData.schemeName,
                           schemeTagLine: savingSchemeEnrollScreenController

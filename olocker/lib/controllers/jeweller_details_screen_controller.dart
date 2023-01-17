@@ -66,7 +66,7 @@ class JewellerDetailsScreenController extends GetxController {
         Uri.parse(url),
         headers: apiHeader.headers,
       );
-      log('response : ${response.body}');
+      log('getSpecialFeaturesFunction response : ${response.body}');
 
       SpecialFeaturesModel specialFeaturesModel =
           SpecialFeaturesModel.fromJson(json.decode(response.body));
@@ -98,7 +98,7 @@ class JewellerDetailsScreenController extends GetxController {
         Uri.parse(url),
         headers: apiHeader.headers,
       );
-      log('response : ${response.body}');
+      log('getAnnouncementOfferFunction response : ${response.body}');
 
       AnnouncementOfferModel announcementOfferModel =
           AnnouncementOfferModel.fromJson(json.decode(response.body));
@@ -218,7 +218,7 @@ class JewellerDetailsScreenController extends GetxController {
         Uri.parse(url),
         headers: apiHeader.headers,
       );
-      log('response : ${response.body}');
+      log('getBestSellerFunction response : ${response.body}');
 
       BestSellerModel bestSellerModel =
           BestSellerModel.fromJson(json.decode(response.body));
@@ -250,7 +250,7 @@ class JewellerDetailsScreenController extends GetxController {
         Uri.parse(url),
         headers: apiHeader.headers,
       );
-      log('response : ${response.body}');
+      log('getClientTestimonialsFunction response : ${response.body}');
 
       ClientTestimonialsModel clientTestimonialsModel =
           ClientTestimonialsModel.fromJson(json.decode(response.body));
@@ -282,7 +282,7 @@ class JewellerDetailsScreenController extends GetxController {
         Uri.parse(url),
         headers: apiHeader.headers,
       );
-      log('response : ${response.body}');
+      log('getGoldPriceFunction response : ${response.body}');
 
       GoldPriceModel goldPriceModel =
           GoldPriceModel.fromJson(json.decode(response.body));
@@ -325,7 +325,7 @@ class JewellerDetailsScreenController extends GetxController {
         Uri.parse(url),
         headers: apiHeader.headers,
       );
-      log('response : ${response.body}');
+      log('getAboutYourSelfFunction response : ${response.body}');
 
       AboutYourSelfModel aboutYourSelfModel =
           AboutYourSelfModel.fromJson(json.decode(response.body));
@@ -357,5 +357,4 @@ class JewellerDetailsScreenController extends GetxController {
     getAboutYourSelfFunction();
     super.onInit();
   }
-
 }

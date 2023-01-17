@@ -34,7 +34,7 @@ class JewellerDetailImageInfoModule extends StatelessWidget {
             width: 18.w,
             errorWidget: (context, url, error) {
               return Image.asset(
-                AppImages.diamondsIocn,
+                AppImages.noLogoImage,
                 fit: BoxFit.cover,
                 width: 18.w,
               );

@@ -57,7 +57,6 @@ class SavingSchemesListScreenController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     getSavingSchemesListFunction();
     super.onInit();
   }

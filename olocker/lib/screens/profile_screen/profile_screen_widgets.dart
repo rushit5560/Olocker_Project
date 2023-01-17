@@ -494,7 +494,7 @@ class PinCodeFieldRow extends StatelessWidget {
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
               readOnly: profileScreenController.isEditable.value,
-              validator: (value) => FieldValidator().validateFirstName(value!),
+              validator: (value) => FieldValidator().validatePinCode(value!),
               style: TextStyle(
                 color: AppColors.blackTextColor,
                 fontSize: 11.sp,
@@ -557,7 +557,7 @@ class CityFieldRow extends StatelessWidget {
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
               readOnly: profileScreenController.isEditable.value,
-              validator: (value) => FieldValidator().validateFirstName(value!),
+              validator: (value) => FieldValidator().validateCity(value!),
               style: TextStyle(
                 color: AppColors.blackTextColor,
                 fontSize: 11.sp,
@@ -614,7 +614,7 @@ class StateFieldRow extends StatelessWidget {
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
               readOnly: profileScreenController.isEditable.value,
-              validator: (value) => FieldValidator().validateFirstName(value!),
+              validator: (value) => FieldValidator().validateState(value!),
               style: TextStyle(
                 color: AppColors.blackTextColor,
                 fontSize: 11.sp,

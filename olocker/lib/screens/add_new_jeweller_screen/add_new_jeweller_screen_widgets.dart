@@ -117,7 +117,7 @@ class SubmitButtonModule extends StatelessWidget {
         await screenController.addMyJewellerFunction();
       },
       child: Container(
-        height: 35,
+        height: 45,
         width: screenController.size.width * 0.78,
         padding: EdgeInsets.symmetric(
           // vertical: 20,
@@ -158,8 +158,8 @@ class AddJewellerLoadingWidget extends StatelessWidget {
           highlightColor: Colors.grey.shade100,
           child: Container(
             decoration: const BoxDecoration(
-              image:  DecorationImage(
-                image:  AssetImage(AppImages.addJewelleryImage),
+              image: DecorationImage(
+                image: AssetImage(AppImages.addJewelleryImage),
                 fit: BoxFit.fill,
               ),
             ),

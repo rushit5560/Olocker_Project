@@ -88,8 +88,8 @@ class GetSavingSchemeData {
     // this.freeOnOrnamentPercentage,
     required this.schemeName,
     required this.schemeTagLine,
-    // this.partnerName,
-    // this.partnerLogo,
+    required this.partnerName,
+    required this.partnerLogo,
     required this.ourContribution,
     // this.paymentGatewayApiKey,
     // this.paymentGatewaySecret,
@@ -115,8 +115,8 @@ class GetSavingSchemeData {
   // final dynamic freeOnOrnamentPercentage;
   final String schemeName;
   final String schemeTagLine;
-  // final dynamic partnerName;
-  // final dynamic partnerLogo;
+  final dynamic partnerName;
+  final dynamic partnerLogo;
   final String ourContribution;
   // final dynamic paymentGatewayApiKey;
   // final dynamic paymentGatewaySecret;
@@ -143,8 +143,8 @@ class GetSavingSchemeData {
         // freeOnOrnamentPercentage: json["FreeOnOrnamentPercentage"],
         schemeName: json["SchemeName"] ?? "",
         schemeTagLine: json["SchemeTagLine"] ?? "",
-        // partnerName: json["PartnerName"],
-        // partnerLogo: json["PartnerLogo"],
+        partnerName: json["PartnerName"] ?? "",
+        partnerLogo: json["PartnerLogo"] ?? "",
         ourContribution: json["OurContribution"] ?? "",
         // paymentGatewayApiKey: json["PaymentGatewayApiKey"],
         // paymentGatewaySecret: json["PaymentGatewaySecret"],
@@ -171,8 +171,8 @@ class GetSavingSchemeData {
         // "FreeOnOrnamentPercentage": freeOnOrnamentPercentage,
         "SchemeName": schemeName,
         "SchemeTagLine": schemeTagLine,
-        // "PartnerName": partnerName,
-        // "PartnerLogo": partnerLogo,
+        "PartnerName": partnerName,
+        "PartnerLogo": partnerLogo,
         "OurContribution": ourContribution,
         // "PaymentGatewayApiKey": paymentGatewayApiKey,
         // "PaymentGatewaySecret": paymentGatewaySecret,
