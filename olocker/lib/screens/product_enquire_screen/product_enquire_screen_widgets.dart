@@ -75,8 +75,10 @@ class SendMessageTextField extends StatelessWidget {
                 ),
               ),
               onPressed: () async {
-                if (screenController.sendMsgController.text.isNotEmpty) {
+                if (screenController.sendMsgController.text.trim().isNotEmpty) {
                   await screenController.sendProductInquiryFunction();
+                } else {
+
                 }
               },
               child: Center(

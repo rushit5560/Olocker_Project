@@ -61,7 +61,7 @@ class SchemeDetailsLoadingWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 50),
+                    /*const SizedBox(width: 50),
                     Expanded(
                       child: Container(
                         height: 60,
@@ -75,7 +75,7 @@ class SchemeDetailsLoadingWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                    ),
+                    ),*/
                   ],
                 ),
               ),

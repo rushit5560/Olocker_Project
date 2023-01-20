@@ -129,11 +129,9 @@ class JewellerJewelleryListScreen extends StatelessWidget {
                   ],
                   selectedLabelIndex: (index) {
                     jewellerJewelleryListScreenController.isLoading(true);
-                    jewellerJewelleryListScreenController
-                        .selectedSortingIndex.value = index;
+                    jewellerJewelleryListScreenController.selectedSortingIndex.value = index;
                     jewellerJewelleryListScreenController.isLoading(false);
                     log('selected sorting index :: ${jewellerJewelleryListScreenController.selectedSortingIndex.value}');
-
                     jewellerJewelleryListScreenController.changeSortOption();
                   },
                 ),

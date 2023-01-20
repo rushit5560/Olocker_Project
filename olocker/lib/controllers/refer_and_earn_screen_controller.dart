@@ -112,7 +112,7 @@ class ReferAndEarnScreenController extends GetxController {
         log("user profile get success");
         userReferaalCode.value =
             userProfileGetModel.customerProfile.referralCode;
-        log("user userReferaalCode :: $userReferaalCode");
+        log("user userReferaalCode Refer code :: $userReferaalCode");
       } else {
         log("user profile get not success");
         //do nothing

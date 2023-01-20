@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/personal_loans_screen_controller.dart';
 import 'package:olocker/utils/extensions.dart';
+import 'package:olocker/widgets/common_widgets.dart';
 import 'package:sizer/sizer.dart';
 import 'personal_loans_screen_widgets.dart';
 
@@ -279,27 +280,38 @@ class PersonalLoansScreen extends StatelessWidget {
                     personalLoansScreenController.currentStep.value == 2
                         ? GestureDetector(
                             onTap: () async {
-                              if (personalLoansScreenController
-                                  .panCardFile.path.isEmpty) {
-                                log('Please select Pancard');
-                              } else if (personalLoansScreenController
-                                  .aadhaarCardFile.path.isEmpty) {
-                                log('Please select Aadhaar Card');
-                              } else if (personalLoansScreenController
-                                  .addressProofFile.path.isEmpty) {
-                                log('Please select Address Proof');
-                              } else if (personalLoansScreenController
-                                  .bankStatementFile.path.isEmpty) {
-                                log('Please select Bank Statement');
-                              } else if (personalLoansScreenController
-                                  .salarySlipsFile.path.isEmpty) {
-                                log('Please select Salary Sleep');
-                              } else if (personalLoansScreenController
-                                  .rentAgreementFile.path.isEmpty) {
-                                log('Please select Rent Agreement');
+                              if (personalLoansScreenController.panCardFile.path.isEmpty) {
+                                CommonWidgets().showBorderSnackBar(
+                                  context: context,
+                                  displayText: 'Please select Pancard',
+                                );
+                              } else if (personalLoansScreenController.aadhaarCardFile.path.isEmpty) {
+                                CommonWidgets().showBorderSnackBar(
+                                  context: context,
+                                  displayText: 'Please select Aadhaar Card',
+                                );
+                              } else if (personalLoansScreenController.addressProofFile.path.isEmpty) {
+                                CommonWidgets().showBorderSnackBar(
+                                  context: context,
+                                  displayText: 'Please select Address Proof',
+                                );
+                              } else if (personalLoansScreenController.bankStatementFile.path.isEmpty) {
+                                CommonWidgets().showBorderSnackBar(
+                                  context: context,
+                                  displayText: 'Please select Bank Statement',
+                                );
+                              } else if (personalLoansScreenController.salarySlipsFile.path.isEmpty) {
+                                CommonWidgets().showBorderSnackBar(
+                                  context: context,
+                                  displayText: 'Please select Salary Slips',
+                                );
+                              } else if (personalLoansScreenController.rentAgreementFile.path.isEmpty) {
+                                CommonWidgets().showBorderSnackBar(
+                                  context: context,
+                                  displayText: 'Please select Rent Agreement',
+                                );
                               } else {
-                                await personalLoansScreenController
-                                    .uploadEmiDocumentsFunction();
+                                await personalLoansScreenController.uploadEmiDocumentsFunction();
                               }
                             },
                             child: Container(

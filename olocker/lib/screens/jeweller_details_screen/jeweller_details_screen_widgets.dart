@@ -654,17 +654,15 @@ class BestSellersListModule extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1,
-                // crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
                 childAspectRatio: 1.30,
               ),
               scrollDirection: Axis.horizontal,
-              // physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, i) {
                 ListOfProduct singleItem = screenController.bestSellerList[i];
                 String imgUrl = "";
                 if (singleItem.productimages.isNotEmpty) {
-                  imgUrl = "${ApiUrl.apiImagePath}${singleItem.productimages[0].imageLocation}/${singleItem.productimages[0].imageName}";
+                  imgUrl = "${ApiUrl.apiImagePath}${singleItem.productimages[0].imageLocation}\\${singleItem.productimages[0].imageName}";
                 }
                 return _bestSellerListTile(singleItem, imgUrl);
               },
@@ -706,7 +704,8 @@ class BestSellersListModule extends StatelessWidget {
               flex: 8,
               child: singleItem.productimages.isNotEmpty
                   ? Image.network(
-                      "${ApiUrl.apiImagePath}${singleItem.productimages[0].imageLocation}/${singleItem.productimages[0].imageName}",
+                      "https://demo.olocker.in\\images\\ProductImages\\2021\\9\\kdnl1422342_1.jpg",
+                      // "${ApiUrl.apiImagePath}${singleItem.productimages[0].imageLocation}/${singleItem.productimages[0].imageName}",
                       fit: BoxFit.cover,
                       errorBuilder: (context, str, dyn) {
                         return Image.asset(
@@ -718,7 +717,7 @@ class BestSellersListModule extends StatelessWidget {
                   : Image.asset(
                       AppImages.noLogoImage,
                       fit: BoxFit.cover,
-                    ),
+                    ).commonAllSidePadding(20),
               /*child: CachedNetworkImage(
                 imageUrl: imgUrl,
                 fit: BoxFit.cover,
@@ -788,22 +787,20 @@ class CustomerSpeakModule extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(
-          height: screenController.size.height * 0.024.h,
-          child: GridView.builder(
-            itemCount: screenController.clientTestimonialsList.length,
-            scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1,
-              crossAxisSpacing: 10,
-              childAspectRatio: 0.38,
-            ),
-            itemBuilder: (context, i) {
-              Testimonial singleItem =
-                  screenController.clientTestimonialsList[i];
-              return _customerSpeakListTile(singleItem);
-            },
+
+        CarouselSlider.builder(
+          itemCount: screenController.clientTestimonialsList.length,
+          itemBuilder: (context, i, realIndex) {
+            Testimonial singleItem =
+            screenController.clientTestimonialsList[i];
+            return _customerSpeakListTile(singleItem);
+          },
+          options: CarouselOptions(
+
+            height: screenController.size.height * 0.024.h,
+            autoPlay: true,
+            viewportFraction: 1,
+            autoPlayInterval: const Duration(seconds: 4),
           ),
         ).commonSymmetricPadding(vertical: 8),
       ],
@@ -812,7 +809,7 @@ class CustomerSpeakModule extends StatelessWidget {
 
   Widget _customerSpeakListTile(Testimonial singleItem) {
     return Container(
-      margin: const EdgeInsets.only(left: 18, top: 5, bottom: 5, right: 5),
+      margin: const EdgeInsets.only(left: 5, top: 5, bottom: 5, right: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: AppColors.lightCoffeeColor,
@@ -949,20 +946,20 @@ class GoldPriceModule extends StatelessWidget {
                           ),
                           Text(
                             i == 0
-                                ? NumberFormat.currency(
+                                ? screenController.goldPrice1 == "0" ? "-" : NumberFormat.currency(
                                     symbol: '₹ ',
                                     locale: "HI",
                                     decimalDigits: 0,
                                   ).format(
                                     double.parse(screenController.goldPrice1))
                                 : i == 1
-                                    ? NumberFormat.currency(
+                                    ? screenController.goldPrice2 == "0" ? "-" : NumberFormat.currency(
                                         symbol: '₹ ',
                                         locale: "HI",
                                         decimalDigits: 0,
                                       ).format(double.parse(
                                         screenController.goldPrice2))
-                                    : NumberFormat.currency(
+                                    : screenController.goldPrice3 == "0" ? "-" : NumberFormat.currency(
                                         symbol: '₹ ',
                                         locale: "HI",
                                         decimalDigits: 0,

@@ -48,7 +48,7 @@ class JewellerJewelleryListScreenController extends GetxController {
           "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&CollectionID=$jewelleryCategoryId&CustomerId=${UserDetails.customerId}";
     } else {
       url =
-          "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$jewelleryCategoryId";
+          "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$jewelleryCategoryId&CustomerId=${UserDetails.customerId}";
     }
     log('getAllJewelleryListFunction Api Url : $url');
 
@@ -181,11 +181,11 @@ class JewellerJewelleryListScreenController extends GetxController {
         withPriceList.add(_jewelleryList[i]);
 
         if (selectedSortingIndex.value == 0) {
-          withPriceList
-              .sort((a, b) => a.productsPrice.compareTo(b.productsPrice));
+          withPriceList.sort((a, b) => a.productsPrice.compareTo(b.productsPrice));
+          log('With Price Value 0 $i: ${_jewelleryList[i].productsPrice}');
         } else if (selectedSortingIndex.value == 1) {
-          withPriceList
-              .sort((a, b) => b.productsPrice.compareTo(a.productsPrice));
+          withPriceList.sort((a, b) => b.productsPrice.compareTo(a.productsPrice));
+          log('With Price Value 1 $i: ${_jewelleryList[i].productsPrice}');
         }
       } else {
         withoutPriceList.add(_jewelleryList[i]);

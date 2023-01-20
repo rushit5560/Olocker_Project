@@ -50,14 +50,14 @@ class JewellerDetailsScreen extends StatelessWidget {
         ],
       ),
       body: Obx(
-        () => jewellerDetailsScreenController.isSpecialFeaturesLoading.value  ||
+        () => /*jewellerDetailsScreenController.isSpecialFeaturesLoading.value  ||
                 jewellerDetailsScreenController.isAnnouncementOfferLoading.value  ||
                 jewellerDetailsScreenController.isJewelleryPushToAppDataLoading.value  ||
                 jewellerDetailsScreenController.isJewelleryTypeLoading.value  ||
                 jewellerDetailsScreenController.isBestSellerLoading.value  ||
                 jewellerDetailsScreenController.isTestimonialLoading.value  ||
                 jewellerDetailsScreenController.isGoldPriceLoading.value  ||
-                jewellerDetailsScreenController.isAboutYourSelfLoading.value  ||
+                jewellerDetailsScreenController.isAboutYourSelfLoading.value  ||*/
                 jewellerDetailsScreenController.isLoading.value
             ? JewellerDetailsLoadingShimmer()
             : SingleChildScrollView(
