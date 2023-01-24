@@ -293,8 +293,8 @@ class ProceedToPayButtonModule extends StatelessWidget {
                       savingSelectionScreenController.schemeName,
                       savingSelectionScreenController.schemeTagLine,
                       savingSelectionScreenController.savingSchemeDetails,
-                      savingSelectionScreenController
-                          .partnerSavingSchemeDetails,
+                      savingSelectionScreenController.partnerSavingSchemeDetails,
+                      savingSelectionScreenController.jewellerLogo,
                     ],
                   );
                 } else {

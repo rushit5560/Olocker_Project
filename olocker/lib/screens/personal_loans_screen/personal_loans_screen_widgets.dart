@@ -1198,13 +1198,29 @@ class StepThreeFormModule extends StatelessWidget {
         ),
         Expanded(
           child: screenController.panCardFile.path.isNotEmpty
-              ? const Text(
-                  'SUCCESSFUL',
-                  style: TextStyle(
-                    color: AppColors.greenColor,
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.bold,
-                  ),
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'SUCCESSFUL',
+                      style: TextStyle(
+                        color: AppColors.greenColor,
+                        fontFamily: "Roboto",
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        screenController.panCardFile = File('');
+                        screenController.loadUI();
+                      },
+                      child: const Icon(
+                        Icons.close_rounded,
+                        color: AppColors.redColor,
+                      ),
+                    ),
+                    // IconButton(onPressed: (){}, icon: const Icon(Icons.close_rounded),),
+                  ],
                 )
               : GestureDetector(
                   onTap: () async {
@@ -1295,14 +1311,30 @@ class StepThreeFormModule extends StatelessWidget {
         ),
         Expanded(
           child: screenController.aadhaarCardFile.path.isNotEmpty
-              ? const Text(
-                  'SUCCESSFUL',
-                  style: TextStyle(
-                    color: AppColors.greenColor,
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.bold,
-                  ),
-                )
+              ? Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'SUCCESSFUL',
+                style: TextStyle(
+                  color: AppColors.greenColor,
+                  fontFamily: "Roboto",
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  screenController.aadhaarCardFile = File('');
+                  screenController.loadUI();
+                },
+                child: const Icon(
+                  Icons.close_rounded,
+                  color: AppColors.redColor,
+                ),
+              ),
+              // IconButton(onPressed: (){}, icon: const Icon(Icons.close_rounded),),
+            ],
+          )
               : GestureDetector(
                   onTap: () async =>
                       await selectAadhaarCardFromGalleryFunction(),
@@ -1391,14 +1423,30 @@ class StepThreeFormModule extends StatelessWidget {
         ),
         Expanded(
           child: screenController.addressProofFile.path.isNotEmpty
-              ? const Text(
-                  'SUCCESSFUL',
-                  style: TextStyle(
-                    color: AppColors.greenColor,
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.bold,
-                  ),
-                )
+              ? Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'SUCCESSFUL',
+                style: TextStyle(
+                  color: AppColors.greenColor,
+                  fontFamily: "Roboto",
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  screenController.addressProofFile = File('');
+                  screenController.loadUI();
+                },
+                child: const Icon(
+                  Icons.close_rounded,
+                  color: AppColors.redColor,
+                ),
+              ),
+              // IconButton(onPressed: (){}, icon: const Icon(Icons.close_rounded),),
+            ],
+          )
               : GestureDetector(
                   onTap: () async =>
                       await selectAddressProofFromGalleryFunction(),
@@ -1504,14 +1552,30 @@ class StepThreeFormModule extends StatelessWidget {
             ),
             Expanded(
               child: screenController.bankStatementFile.path.isNotEmpty
-                  ? const Text(
-                      'SUCCESSFUL',
-                      style: TextStyle(
-                        color: AppColors.greenColor,
-                        fontFamily: "Roboto",
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
+                  ? Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'SUCCESSFUL',
+                    style: TextStyle(
+                      color: AppColors.greenColor,
+                      fontFamily: "Roboto",
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      screenController.bankStatementFile = File('');
+                      screenController.loadUI();
+                    },
+                    child: const Icon(
+                      Icons.close_rounded,
+                      color: AppColors.redColor,
+                    ),
+                  ),
+                  // IconButton(onPressed: (){}, icon: const Icon(Icons.close_rounded),),
+                ],
+              )
                   : GestureDetector(
                       onTap: () async =>
                           await selectBankStatementFromStorageFunction(),
@@ -1645,14 +1709,30 @@ class StepThreeFormModule extends StatelessWidget {
             ),
             Expanded(
               child: screenController.salarySlipsFile.path.isNotEmpty
-                  ? const Text(
-                      'SUCCESSFUL',
-                      style: TextStyle(
-                        color: AppColors.greenColor,
-                        fontFamily: "Roboto",
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
+                  ? Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'SUCCESSFUL',
+                    style: TextStyle(
+                      color: AppColors.greenColor,
+                      fontFamily: "Roboto",
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      screenController.salarySlipsFile = File('');
+                      screenController.loadUI();
+                    },
+                    child: const Icon(
+                      Icons.close_rounded,
+                      color: AppColors.redColor,
+                    ),
+                  ),
+                  // IconButton(onPressed: (){}, icon: const Icon(Icons.close_rounded),),
+                ],
+              )
                   : GestureDetector(
                       onTap: () async =>
                           await selectSalarySlipsFromStorageFunction(),
@@ -1769,14 +1849,30 @@ class StepThreeFormModule extends StatelessWidget {
         ),
         Expanded(
           child: screenController.rentAgreementFile.path.isNotEmpty
-              ? const Text(
-                  'SUCCESSFUL',
-                  style: TextStyle(
-                    color: AppColors.greenColor,
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.bold,
-                  ),
-                )
+              ? Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'SUCCESSFUL',
+                style: TextStyle(
+                  color: AppColors.greenColor,
+                  fontFamily: "Roboto",
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  screenController.rentAgreementFile = File('');
+                  screenController.loadUI();
+                },
+                child: const Icon(
+                  Icons.close_rounded,
+                  color: AppColors.redColor,
+                ),
+              ),
+              // IconButton(onPressed: (){}, icon: const Icon(Icons.close_rounded),),
+            ],
+          )
               : GestureDetector(
                   onTap: () async =>
                       await selectRentAgreementFromGalleryFunction(),

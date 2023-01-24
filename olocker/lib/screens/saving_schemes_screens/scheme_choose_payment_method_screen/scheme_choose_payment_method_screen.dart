@@ -44,7 +44,7 @@ class SchemeChoosePaymentMethodScreen extends StatelessWidget {
           children: [
             JewellerDetailImageInfoModule(
               imagePath:
-                  schemeChoosePaymentMethodScreenController.schemeImagePath,
+                  schemeChoosePaymentMethodScreenController.jewellerLogo,
               schemeName: schemeChoosePaymentMethodScreenController.schemeName,
               schemeTagLine:
                   schemeChoosePaymentMethodScreenController.schemeTagLine,

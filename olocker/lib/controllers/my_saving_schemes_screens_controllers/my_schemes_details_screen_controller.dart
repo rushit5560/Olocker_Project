@@ -3,11 +3,13 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:external_path/external_path.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../../models/my_saving_schemes_models/get_saving_schemes_list_model/get_saving_scheme_list_model.dart';
 import '../../models/saving_scheme_screens_models/get_saving_scheme_list_models/get_saving_schemes_list_model.dart';
 import '../../models/saving_scheme_screens_models/saving_schemes_success_failure_models/get_transaction_status_details_model.dart';
@@ -20,6 +22,7 @@ class MySchemesDetailsScreenController extends GetxController {
 
   ApiHeader apiHeader = ApiHeader();
   GetSavingSchemeData? getSavingSchemeData;
+  String jewellerLogo = '';
 
   List<TransactionData>? transactionsDataList;
   
@@ -48,7 +51,7 @@ class MySchemesDetailsScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         getSavingSchemeData = getSavingSchemesListModel.getSavingSchemeList[0];
-
+        jewellerLogo = ApiUrl.apiImagePath + getSavingSchemeData!.partnerLogo;
 
         log('getSavingSchemeData schemeName ::: ${getSavingSchemeData!.schemeName}');
         log('getSavingSchemeData mobile no ::: ${getSavingSchemeData!.mobile}');
@@ -101,6 +104,45 @@ class MySchemesDetailsScreenController extends GetxController {
       rethrow;
     } finally {
       isLoading(false);
+    }
+  }
+
+  Future<bool> saveFile(String url, String fileName) async {
+    log('url : $url');
+    try {
+      // if (await _requestPermission(Permission.storage)) {
+        Directory? directory;
+        directory = await getExternalStorageDirectory();
+        String newPath = "";
+        List<String> paths = directory!.path.split("/");
+        for (int x = 1; x < paths.length; x++) {
+          String folder = paths[x];
+          if (folder != "Android") {
+            newPath += "/$folder";
+          } else {
+            break;
+          }
+        }
+        newPath = "$newPath/PDF_Download";
+        directory = Directory(newPath);
+
+        File saveFile = File("${directory.path}/$fileName");
+        if (kDebugMode) {
+          print(saveFile.path);
+        }
+        if (!await directory.exists()) {
+          await directory.create(recursive: true);
+        }
+        if (await directory.exists()) {
+          await Dio().download(
+            url,
+            saveFile.path,
+          );
+        }
+      // }
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 

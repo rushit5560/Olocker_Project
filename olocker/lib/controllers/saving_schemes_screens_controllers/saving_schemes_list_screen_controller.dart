@@ -15,6 +15,7 @@ class SavingSchemesListScreenController extends GetxController {
   final size = Get.size;
 
   ApiHeader apiHeader = ApiHeader();
+  String jewellerLogo = "";
 
   List<GetSavingSchemeData> getSavingSchemesList = [];
 // //  SpecialOfferModel?specialOfferModel;
@@ -43,6 +44,8 @@ class SavingSchemesListScreenController extends GetxController {
         getSavingSchemesList.clear();
         getSavingSchemesList
             .addAll(getSavingSchemesListModel.getSavingSchemeList);
+        jewellerLogo = ApiUrl.apiMainPath + getSavingSchemesListModel.partnerLogo;
+        log('jewellerLogo : $jewellerLogo');
         log('getSavingSchemesList ::: ${getSavingSchemesList.length}');
       } else {
         log('getSavingSchemesListFunction false');
@@ -57,7 +60,11 @@ class SavingSchemesListScreenController extends GetxController {
 
   @override
   void onInit() {
-    getSavingSchemesListFunction();
+    initMethod();
     super.onInit();
+  }
+
+  initMethod() async {
+    await getSavingSchemesListFunction();
   }
 }

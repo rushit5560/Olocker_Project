@@ -24,6 +24,7 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
   String schemeTagLine = Get.arguments[2];
   SavingSchemeDetails savingSchemeDetails = Get.arguments[3];
   PartnerSavingSchemeDetails partnerSavingSchemeDetails = Get.arguments[4];
+  String jewellerLogo = Get.arguments[5];
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -161,6 +162,7 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
             schemeTagLine,
             savingSchemeDetails,
             partnerSavingSchemeDetails,
+            jewellerLogo,
           ],
         );
       }
@@ -303,7 +305,8 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
             schemeTagLine,
             savingSchemeDetails,
             partnerSavingSchemeDetails,
-            customerPurchaseSchemeSrNo
+            customerPurchaseSchemeSrNo,
+            jewellerLogo,
           ],
         );
 

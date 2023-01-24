@@ -44,8 +44,6 @@ class ReferAndEarnScreenController extends GetxController {
     code ${userReferaalCode.value}-${partnerDetails!.partnerId} on ENTER CODE space on Sign up page https://www.olocker.in/''');
   }
 
-//${prof.ReferralCode}
-  // lgoae
 
   Future<void> getPartnerByCodeFunction() async {
     // if (formKey.currentState!.validate()) {
@@ -168,8 +166,7 @@ class ReferAndEarnScreenController extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
-
     getPartnerByCodeFunction();
+    super.onInit();
   }
 }

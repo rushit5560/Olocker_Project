@@ -13,7 +13,8 @@ import '../../screens/saving_schemes_screens/saving_scheme_confirmation_screen/s
 
 class SavingSchemeEnrollScreenController extends GetxController {
   // Getting from Saving Scheme List Screen
-  GetSavingSchemeData savingSchemeData = Get.arguments;
+  GetSavingSchemeData savingSchemeData = Get.arguments[0];
+  String jewellerLogo = Get.arguments[1];
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -132,6 +133,7 @@ class SavingSchemeEnrollScreenController extends GetxController {
             savingSchemeData.schemeTagLine,
             savingSchemeDetails,
             partnerSavingSchemeDetails,
+            jewellerLogo,
           ],
         );
 

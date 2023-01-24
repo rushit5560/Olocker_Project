@@ -29,14 +29,16 @@ class JewellerDetailImageInfoModule extends StatelessWidget {
       child: Row(
         children: [
           CachedNetworkImage(
-            imageUrl: ApiUrl.apiImagePath + imagePath,
-            fit: BoxFit.cover,
+            imageUrl: imagePath,
+            fit: BoxFit.contain,
             width: 18.w,
+            height: 18.w,
             errorWidget: (context, url, error) {
               return Image.asset(
                 AppImages.noLogoImage,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
                 width: 18.w,
+                height: 18.w,
               );
             },
           ),

@@ -60,7 +60,7 @@ class SavingSchemeConfirmationScreen extends StatelessWidget {
         body: Column(
           children: [
             JewellerDetailImageInfoModule(
-              imagePath: savingSelectionScreenController.schemeImagePath,
+              imagePath: savingSelectionScreenController.jewellerLogo,
               schemeName: savingSelectionScreenController.schemeName,
               schemeTagLine: savingSelectionScreenController.schemeTagLine,
             ),

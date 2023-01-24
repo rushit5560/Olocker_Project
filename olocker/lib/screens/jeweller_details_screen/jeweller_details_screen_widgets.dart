@@ -662,7 +662,7 @@ class BestSellersListModule extends StatelessWidget {
                 ListOfProduct singleItem = screenController.bestSellerList[i];
                 String imgUrl = "";
                 if (singleItem.productimages.isNotEmpty) {
-                  imgUrl = "${ApiUrl.apiImagePath}${singleItem.productimages[0].imageLocation}\\${singleItem.productimages[0].imageName}";
+                  imgUrl = "${ApiUrl.apiImagePath}${singleItem.productimages[0].imageLocation}/${singleItem.productimages[0].imageName}";
                 }
                 return _bestSellerListTile(singleItem, imgUrl);
               },
@@ -674,11 +674,7 @@ class BestSellersListModule extends StatelessWidget {
   }
 
   Widget _bestSellerListTile(ListOfProduct singleItem, imgUrl) {
-    // String imgUrl = "";
-    // if (singleItem.productimages.isNotEmpty) {
-    //   imgUrl = "${ApiUrl.apiImagePath}${singleItem.productimages[0].imageLocation}\\${singleItem.productimages[0].imageName}";
-    // }
-    log("imgUrl : $imgUrl");
+   log("imgUrl1212 : $imgUrl");
 
     return GestureDetector(
       onTap: () {
@@ -702,22 +698,40 @@ class BestSellersListModule extends StatelessWidget {
           children: [
             Expanded(
               flex: 8,
-              child: singleItem.productimages.isNotEmpty
-                  ? Image.network(
-                      "https://demo.olocker.in\\images\\ProductImages\\2021\\9\\kdnl1422342_1.jpg",
-                      // "${ApiUrl.apiImagePath}${singleItem.productimages[0].imageLocation}/${singleItem.productimages[0].imageName}",
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, str, dyn) {
-                        return Image.asset(
-                          AppImages.noLogoImage,
-                          fit: BoxFit.cover,
-                        );
-                      },
-                    ).commonAllSidePadding(20)
+              child: CachedNetworkImage(
+                imageUrl: "https://demo.olocker.in/images/ProductImages/2021/9/kdb1454346_1.jpg",
+                fit: BoxFit.cover,
+                // width: 18.w,
+                // height: 18.w,
+                errorWidget: (context, url, error) {
+                  return Image.asset(
+                    AppImages.noLogoImage,
+                    fit: BoxFit.cover,
+                    // width: 18.w,
+                    // height: 18.w,
+                  );
+                },
+              ).commonAllSidePadding(20),
+
+              /*singleItem.productimages.isNotEmpty
+                  ? CachedNetworkImage(
+                imageUrl: imgUrl,
+                fit: BoxFit.cover,
+                // width: 18.w,
+                // height: 18.w,
+                errorWidget: (context, url, error) {
+                  return Image.asset(
+                    AppImages.noLogoImage,
+                    fit: BoxFit.cover,
+                    // width: 18.w,
+                    // height: 18.w,
+                  );
+                },
+              ).commonAllSidePadding(20)
                   : Image.asset(
                       AppImages.noLogoImage,
                       fit: BoxFit.cover,
-                    ).commonAllSidePadding(20),
+                    ).commonAllSidePadding(20),*/
               /*child: CachedNetworkImage(
                 imageUrl: imgUrl,
                 fit: BoxFit.cover,

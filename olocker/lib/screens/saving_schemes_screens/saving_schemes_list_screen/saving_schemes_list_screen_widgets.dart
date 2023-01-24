@@ -189,7 +189,10 @@ class SingleSavingSchemeItem extends StatelessWidget {
                     onPressed: () {
                       Get.to(
                         () => SavingSchemeEnrollScreen(),
-                        arguments: singleScheme,
+                        arguments: [
+                          singleScheme,
+                          savingSchemesListScreenController.jewellerLogo,
+                        ],
                       );
                     },
                     style: ElevatedButton.styleFrom(

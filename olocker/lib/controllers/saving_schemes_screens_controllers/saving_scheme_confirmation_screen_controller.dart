@@ -8,6 +8,7 @@ class SavingSchemeConfirmationScreenController extends GetxController {
   String schemeTagLine = Get.arguments[2];
   SavingSchemeDetails savingSchemeDetails = Get.arguments[3];
   PartnerSavingSchemeDetails partnerSavingSchemeDetails = Get.arguments[4];
+  String jewellerLogo = Get.arguments[5];
 
   RxBool termConditionCheckValue = false.obs;
 

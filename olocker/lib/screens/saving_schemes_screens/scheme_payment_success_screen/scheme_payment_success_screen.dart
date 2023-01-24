@@ -59,7 +59,7 @@ class SchemePaymentSuccessScreen extends StatelessWidget {
           child: Column(
             children: [
               JewellerDetailImageInfoModule(
-                imagePath: schemePaymentSuccessScreenController.schemeImagePath,
+                imagePath: schemePaymentSuccessScreenController.jewellerLogo,
                 schemeName: schemePaymentSuccessScreenController.schemeName,
                 schemeTagLine:
                     schemePaymentSuccessScreenController.schemeTagLine,

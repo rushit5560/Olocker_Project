@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
+import 'package:olocker/utils/web_url_launcher.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
@@ -513,18 +516,17 @@ class JewellerCallDetailsModule extends StatelessWidget {
       child: Row(
         children: [
           CachedNetworkImage(
-            imageUrl: ApiUrl.apiImagePath +
-                mySchemePendingPaymentScreenController
-                    .getSavingSchemeData!.imagePath,
-
+            imageUrl: mySchemePendingPaymentScreenController.jewellerLogo,
             // ApiUrl.apiImagePath + imagePath,
-            fit: BoxFit.cover,
+            fit: BoxFit.contain,
             width: 18.w,
+            height: 18.w,
             errorWidget: (context, url, error) {
               return Image.asset(
-                AppImages.diamondsIocn,
-                fit: BoxFit.cover,
+                AppImages.noLogoImage,
+                fit: BoxFit.contain,
                 width: 18.w,
+                height: 18.w,
               );
             },
           ),
@@ -779,10 +781,13 @@ class TransactionSingleItemModule extends StatelessWidget {
             GestureDetector(
               onTap: () async {
                 //todo - download file
-                await mySchemePendingPaymentScreenController.downloadPdfFileFunction(
-                  url: 'https://www.africau.edu/images/default/sample.pdf',
-                  fileName: 'NewInvoiceNumber.pdf'
-                );
+                String url = "${ApiUrl.apiMainPath}${transData.invoicePath}";
+                await mySchemePendingPaymentScreenController.saveFile(url, "test123.pdf");
+                // await WebUrlLauncher().launchPdfInBrowser(url);
+                // await mySchemePendingPaymentScreenController.downloadPdfFileFunction(
+                //   url: 'https://www.africau.edu/images/default/sample.pdf',
+                //   fileName: 'NewInvoiceNumber.pdf'
+                // );
               },
               child: SizedBox(
                 width: 10.w,

@@ -23,8 +23,8 @@ class MyFavouritesScreenController extends GetxController {
   ApiHeader apiHeader = ApiHeader();
 
   Future<void> getFavouriteProductsFunction() async {
-    String url =
-        "${ApiUrl.getFavProductApi}?customerId=${UserDetails.customerId}&PartnerSRno=$partnerSRno";
+    // String url = "${ApiUrl.getFavProductApi}?customerId=${UserDetails.customerId}&PartnerSRno=$partnerSRno";
+    String url = "${ApiUrl.getFavProductApi}?customerId=${UserDetails.customerId}";
     log("getFavouriteProducts Api Url : $url");
 
     try {

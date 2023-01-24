@@ -16,12 +16,14 @@ class GetSavingSchemesListModel {
     // this.getSavingScheme,
     required this.success,
     required this.errorInfo,
+    required this.partnerLogo,
   });
 
   final List<GetSavingSchemeData> getSavingSchemeList;
   // final dynamic getSavingScheme;
   final bool success;
   final ErrorInfo errorInfo;
+  String partnerLogo;
 
   factory GetSavingSchemesListModel.fromJson(Map<String, dynamic> json) =>
       GetSavingSchemesListModel(
@@ -31,6 +33,7 @@ class GetSavingSchemesListModel {
         // getSavingScheme: json["GetSavingScheme"],
         success: json["success"] ?? false,
         errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
+        partnerLogo: json["PartnerLogo"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -116,7 +119,7 @@ class GetSavingSchemeData {
   final String schemeName;
   final String schemeTagLine;
   final dynamic partnerName;
-  final dynamic partnerLogo;
+  final String partnerLogo;
   final String ourContribution;
   // final dynamic paymentGatewayApiKey;
   // final dynamic paymentGatewaySecret;
