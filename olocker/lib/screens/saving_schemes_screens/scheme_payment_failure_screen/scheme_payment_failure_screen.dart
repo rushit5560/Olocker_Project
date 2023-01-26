@@ -41,7 +41,7 @@ class SchemePaymentFailureScreen extends StatelessWidget {
               schemeName: schemePaymentFailureScreenController.schemeName,
               schemeTagLine: schemePaymentFailureScreenController.schemeTagLine,
             ),
-            SizedBox(height: 2.h),
+            SizedBox(height: 1.h),
             PaymentDetailsWidget(
               monthlyAmount: schemePaymentFailureScreenController
                   .savingSchemeDetails.monthlyAmount,

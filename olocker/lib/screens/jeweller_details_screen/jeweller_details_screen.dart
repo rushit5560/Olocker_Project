@@ -71,6 +71,10 @@ class JewellerDetailsScreen extends StatelessWidget {
                         ? Container()
                         : JewellerFeaturesModule(),
                     FourFunctionalModule(),
+
+                    jewellerDetailsScreenController.newArrivalList.isEmpty
+                    ? Container() : NewArrivalListModule(),
+
                     JewelleryCategoryListModule(),
                     // NecklaceBannerModule(),
                     // BanglesBannerModule(),

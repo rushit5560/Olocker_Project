@@ -395,6 +395,46 @@ class FourFunctionalModule extends StatelessWidget {
   }
 }
 
+class NewArrivalListModule extends StatelessWidget {
+  NewArrivalListModule({Key? key}) : super(key: key);
+  final screenController = Get.find<JewellerDetailsScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: screenController.newArrivalList.length,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemBuilder: (context, i) {
+        String imgUrl = ApiUrl.apiMainPath +
+            screenController.newArrivalList[i].imageurl;
+        return GestureDetector(
+          onTap: () {
+            Get.to(
+                  () => JewellerJewelleryListScreen(),
+              arguments: [
+                screenController.newArrivalList[i].name,
+                screenController.newArrivalList[i].srNo,
+                screenController.jewellerId.toString(),
+                JewelleryListType.categoryId,
+              ],
+            );
+          },
+          child: Container(
+            height: screenController.size.height * 0.023.h,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: AppColors.greyTextColor.withOpacity(0.5),
+              image: DecorationImage(
+                  image: NetworkImage(imgUrl), fit: BoxFit.cover),
+            ),
+          ).commonSymmetricPadding(horizontal: 5, vertical: 5),
+        );
+      },
+    );
+  }
+}
+
 class JewelleryCategoryListModule extends StatelessWidget {
   JewelleryCategoryListModule({Key? key}) : super(key: key);
   final screenController = Get.find<JewellerDetailsScreenController>();
@@ -664,7 +704,8 @@ class BestSellersListModule extends StatelessWidget {
                 if (singleItem.productimages.isNotEmpty) {
                   imgUrl = "${ApiUrl.apiImagePath}${singleItem.productimages[0].imageLocation}/${singleItem.productimages[0].imageName}";
                 }
-                return _bestSellerListTile(singleItem, imgUrl);
+                String newImgUrl = imgUrl.replaceAll("\\", "/");
+                return _bestSellerListTile(singleItem, newImgUrl);
               },
             ),
           ),
@@ -675,7 +716,6 @@ class BestSellersListModule extends StatelessWidget {
 
   Widget _bestSellerListTile(ListOfProduct singleItem, imgUrl) {
    log("imgUrl1212 : $imgUrl");
-
     return GestureDetector(
       onTap: () {
         log('singleItem.productsrno : ${singleItem.productsrno}');
@@ -699,7 +739,7 @@ class BestSellersListModule extends StatelessWidget {
             Expanded(
               flex: 8,
               child: CachedNetworkImage(
-                imageUrl: "https://demo.olocker.in/images/ProductImages/2021/9/kdb1454346_1.jpg",
+                imageUrl: imgUrl,
                 fit: BoxFit.cover,
                 // width: 18.w,
                 // height: 18.w,
@@ -763,6 +803,7 @@ class BestSellersListModule extends StatelessWidget {
       ),
     );
   }
+
 }
 
 class CustomerSpeakModule extends StatelessWidget {
@@ -960,20 +1001,20 @@ class GoldPriceModule extends StatelessWidget {
                           ),
                           Text(
                             i == 0
-                                ? screenController.goldPrice1 == "0" ? "-" : NumberFormat.currency(
+                                ? screenController.goldPrice1 == "0" ? "--" : NumberFormat.currency(
                                     symbol: '₹ ',
                                     locale: "HI",
                                     decimalDigits: 0,
                                   ).format(
                                     double.parse(screenController.goldPrice1))
                                 : i == 1
-                                    ? screenController.goldPrice2 == "0" ? "-" : NumberFormat.currency(
+                                    ? screenController.goldPrice2 == "0" ? "--" : NumberFormat.currency(
                                         symbol: '₹ ',
                                         locale: "HI",
                                         decimalDigits: 0,
                                       ).format(double.parse(
                                         screenController.goldPrice2))
-                                    : screenController.goldPrice3 == "0" ? "-" : NumberFormat.currency(
+                                    : screenController.goldPrice3 == "0" ? "--" : NumberFormat.currency(
                                         symbol: '₹ ',
                                         locale: "HI",
                                         decimalDigits: 0,

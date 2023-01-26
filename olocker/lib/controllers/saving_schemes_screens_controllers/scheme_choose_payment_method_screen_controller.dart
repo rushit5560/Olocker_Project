@@ -133,7 +133,8 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
             schemeTagLine,
             savingSchemeDetails,
             partnerSavingSchemeDetails,
-            customerPurchaseSchemeSrNo
+            customerPurchaseSchemeSrNo,
+            jewellerLogo,
           ],
         );
 

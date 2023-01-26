@@ -179,7 +179,7 @@ class GetProductModel {
         productStatus: json["product_status"] ?? "",
         estimateDeliveryDays: json["estimate_delivery_days"] ?? "",
         isFav: json["IsFav"] ?? false,
-        favId: json["FavId"] ?? 0,
+        favId: json["favId"] ?? 0,
         metaldetails: List<Metaldetail>.from(
             (json["metaldetails"] ?? []).map((x) => Metaldetail.fromJson(x))),
         decorativedetails: List<Decorativedetail>.from(

@@ -782,8 +782,13 @@ class TransactionSingleItemModule extends StatelessWidget {
               onTap: () async {
                 //todo - download file
                 String url = "${ApiUrl.apiMainPath}${transData.invoicePath}";
-                await mySchemePendingPaymentScreenController.saveFile(url, "test123.pdf");
-                // await WebUrlLauncher().launchPdfInBrowser(url);
+                // String url = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
+                log('url : $url');
+                await WebUrlLauncher().launchPdfInBrowser(url);
+
+
+                // await mySchemePendingPaymentScreenController.downloadFile(url);
+                // await mySchemePendingPaymentScreenController.saveFile(url, "test123.pdf");
                 // await mySchemePendingPaymentScreenController.downloadPdfFileFunction(
                 //   url: 'https://www.africau.edu/images/default/sample.pdf',
                 //   fileName: 'NewInvoiceNumber.pdf'

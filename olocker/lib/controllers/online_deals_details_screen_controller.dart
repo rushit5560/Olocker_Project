@@ -72,6 +72,8 @@ class OnlineDealsDetailsScreenController extends GetxController {
           displayText: "Deal Activated and Added to favourites",
         );
 
+        onLineDealDetails.isFavoriteDeal = true;
+        log('onLineDealDetails.isFavoriteDeal : ${onLineDealDetails.isFavoriteDeal}');
         multiStateButtonController.setButtonState = activateSuccess;
       } else {
         log('addOnlineDealInFavouriteFunction Else');

@@ -3,9 +3,13 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:external_path/external_path.dart';
+// import 'package:file_utils/file_utils.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+// import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 import 'package:path_provider/path_provider.dart';
@@ -146,6 +150,68 @@ class MySchemesDetailsScreenController extends GetxController {
     }
   }
 
+
+  /// Download Pdf from Server function
+
+  var progress = "";
+  bool downloading = false;
+  var path = "No Data";
+
+
+  Future<void> downloadFile(String url) async {
+
+    List<String> nameList = url.split("/");
+    String fileName = "";
+    for(int i=0; i < nameList.length; i++) {
+      log('nameList : ${nameList[i]}');
+      fileName = nameList[i];
+    }
+
+    Dio dio = Dio();
+
+    final status = await Permission.storage.request();
+
+    if (status.isGranted) {
+      String dirLocation = "";
+
+      if (Platform.isAndroid) {
+        dirLocation = "${ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOADS)}";
+      } else {
+        dirLocation = (await getApplicationDocumentsDirectory()).path;
+      }
+
+      try {
+        CommonWidgets().showBorderSnackBar(context: Get.context!, displayText: "Downloading");
+        // FileUtils.mkdir([dirLocation]);
+        await dio.download(
+          "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+          "$dirLocation$fileName",
+          onReceiveProgress: (receivedBytes, totalBytes) {
+            log('here 1');
+            downloading = true;
+            progress = "${((receivedBytes / totalBytes) * 100).toStringAsFixed(0)}%";
+            log(progress);
+          },
+        );
+      } catch(e) {
+        log('catch catch catch :$e');
+        rethrow;
+      }
+
+      downloading = false;
+      progress = "Download Completed.";
+      path = "$dirLocation$fileName";
+      ScaffoldMessenger.of(Get.context!).hideCurrentSnackBar();
+      CommonWidgets().showBorderSnackBar(context: Get.context!, displayText: "Download Complete");
+      log(path);
+      log('here give alert-->completed');
+
+    }
+    else {
+        progress = "Permission Denied!";
+    }
+  }
+
   @override
   void onInit() {
     getMySavingSchemeDetailsFunction();
@@ -153,7 +219,7 @@ class MySchemesDetailsScreenController extends GetxController {
   }
 
 
-  downloadPdfFileFunction({required String url, required String fileName}) async {
+  /*downloadPdfFileFunction({required String url, required String fileName}) async {
     final appStorage = await ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOADS);
     final file = File("$appStorage/$fileName");
     var response = await dio.download(url, file);
@@ -172,7 +238,7 @@ class MySchemesDetailsScreenController extends GetxController {
     //     displayText: "File downloaded",
     //   );
     // });
-  }
+  }*/
 
   /*downloadPdfFileFunction({required String url, required String fileName}) async {
     // CommonWidgets().showBorderSnackBar(

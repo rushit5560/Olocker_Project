@@ -133,8 +133,8 @@ class ApiUrl {
       "${apiMainPath}api/Partner/GetAnnouncementOffer";
   static const String getOfferDetailApi =
       "${apiMainPath}api/Partner/GetOfferDetail";
-  static const String getJewelleryGetPushToAppDataApi =
-      "${apiMainPath}api/Partner/GetPushToAppData";
+  static const String getJewelleryGetPushToAppDataApi = "${apiMainPath}api/Partner/GetPushToAppData";
+  static const String getNewArrivalApi = "${apiMainPath}api/Partner/GetPushToAppCollections";
   static const String getJewelleryTypeApi =
       "${apiMainPath}api/Partner/GetUniqueList";
   static const String getBestSellerApi =

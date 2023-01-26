@@ -37,6 +37,7 @@ class JewellerDetailsScreenController extends GetxController {
   List<SpecialFeatureItem> specialFeaturesList = [];
   List<GetPushOfferItem> announcementOfferList = [];
   List<GetPushCollectionItem> jewelleryCategoryList = [];
+  List<GetPushCollectionItem> newArrivalList = [];
   List<ProductTypeItem> menTypeList = [];
   List<ProductTypeItem> womenTypeList = [];
   List<ListOfProduct> bestSellerList = [];
@@ -160,6 +161,46 @@ class JewellerDetailsScreenController extends GetxController {
       }
     } catch (e) {
       log('getJewelleryPushToAppDataFunction Error :$e');
+      rethrow;
+    }
+
+    await getNewArrivalFunction();
+    // isLoading(false);
+  }
+
+  Future<void> getNewArrivalFunction() async {
+    isLoading(true);
+    String url =
+        "${ApiUrl.getNewArrivalApi}?PartnerSrNo=$jewellerId";
+    log('getNewArrivalFunction Api Url :$url');
+
+    try {
+      http.Response response = await http.get(
+        Uri.parse(url),
+        headers: apiHeader.headers,
+      );
+      log('getNewArrivalFunction response : ${response.body}');
+
+      JewelleryCategoryModel jewelleryCategoryModel =
+      JewelleryCategoryModel.fromJson(json.decode(response.body));
+      isSuccessStatus = jewelleryCategoryModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        newArrivalList.clear();
+        for(int i=0; i < jewelleryCategoryModel.getPushCollection.length; i++) {
+          if(jewelleryCategoryModel.getPushCollection[i].name.toLowerCase() == "New Arrival".toLowerCase()) {
+            newArrivalList.add(jewelleryCategoryModel.getPushCollection[i]);
+          }
+        }
+
+
+
+        log('newArrivalList : ${newArrivalList.length}');
+      } else {
+        log('getNewArrivalFunction Else');
+      }
+    } catch (e) {
+      log('getNewArrivalFunction Error :$e');
       rethrow;
     }
 
