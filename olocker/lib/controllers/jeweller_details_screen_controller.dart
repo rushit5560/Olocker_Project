@@ -187,13 +187,7 @@ class JewellerDetailsScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         newArrivalList.clear();
-        for(int i=0; i < jewelleryCategoryModel.getPushCollection.length; i++) {
-          if(jewelleryCategoryModel.getPushCollection[i].name.toLowerCase() == "New Arrival".toLowerCase()) {
-            newArrivalList.add(jewelleryCategoryModel.getPushCollection[i]);
-          }
-        }
-
-
+        newArrivalList.addAll(jewelleryCategoryModel.getPushCollection);
 
         log('newArrivalList : ${newArrivalList.length}');
       } else {
