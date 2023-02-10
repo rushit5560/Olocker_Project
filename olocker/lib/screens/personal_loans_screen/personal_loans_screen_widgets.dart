@@ -26,7 +26,7 @@ class GetLoanContainerModule extends StatelessWidget {
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),
           padding: EdgeInsets.symmetric(horizontal: 8.w),
-          decoration:const BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(
               Radius.circular(10),
             ),
@@ -149,7 +149,7 @@ class StepOneFormModule extends StatelessWidget {
         //     ],
         //   ),
         // ),
-      const  SizedBox(height: 20),
+        const SizedBox(height: 20),
         Container(
           margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
           // .all(20),
@@ -247,7 +247,7 @@ class StepOneFormModule extends StatelessWidget {
 
   Widget _fLNameModule() {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
       // height: 45,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -275,7 +275,7 @@ class StepOneFormModule extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: "Roboto",
                     color: AppColors.greyColor,
-                    fontSize: 10.sp,
+                    fontSize: 11.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -323,7 +323,7 @@ class StepOneFormModule extends StatelessWidget {
                 focusedBorder: InputBorder.none,
                 errorMaxLines: 2,
                 hintStyle: TextStyle(
-                  fontSize: 10.sp,
+                  fontSize: 11.sp,
                   fontFamily: "Roboto",
                   color: AppColors.greyColor,
                 ),
@@ -347,7 +347,7 @@ class StepOneFormModule extends StatelessWidget {
                 errorMaxLines: 2,
                 hintStyle: TextStyle(
                   color: AppColors.greyColor,
-                  fontSize: 10.sp,
+                  fontSize: 11.sp,
                 ),
               ),
             ),
@@ -360,7 +360,7 @@ class StepOneFormModule extends StatelessWidget {
   Widget _birthDateModule(BuildContext context) {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.2),
@@ -384,7 +384,7 @@ class StepOneFormModule extends StatelessWidget {
             focusedBorder: InputBorder.none,
             hintStyle: TextStyle(
               color: AppColors.greyColor,
-              fontSize: 10.sp,
+              fontSize: 11.sp,
             ),
           ),
         ),
@@ -477,7 +477,7 @@ class StepOneFormModule extends StatelessWidget {
   Widget _mobileNumberModule() {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.2),
@@ -499,7 +499,7 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 10.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
           ),
         ),
       ),
@@ -509,7 +509,7 @@ class StepOneFormModule extends StatelessWidget {
   Widget _emailIdModule() {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.2),
@@ -529,7 +529,7 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 10.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
           ),
         ),
       ),
@@ -539,7 +539,7 @@ class StepOneFormModule extends StatelessWidget {
   Widget _residentialPinCodeModule() {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.2),
@@ -563,7 +563,7 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 10.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
           ),
         ),
       ),
@@ -573,7 +573,7 @@ class StepOneFormModule extends StatelessWidget {
   Widget _panNumberModule() {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.2),
@@ -596,7 +596,7 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 10.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
           ),
         ),
       ),
@@ -606,7 +606,7 @@ class StepOneFormModule extends StatelessWidget {
   Widget _loanNeededModule() {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
       width: double.infinity,
       // decoration: BoxDecoration(
       //   color: AppColors.greyColor.withOpacity(0.2),
@@ -700,7 +700,7 @@ class StepOneFormModule extends StatelessWidget {
               Text(
                 '₹ 0',
                 style: TextStyle(
-                  fontSize: 10.sp,
+                  fontSize: 11.sp,
                   color: AppColors.greyColor,
                   fontWeight: FontWeight.w500,
                 ),
@@ -708,7 +708,7 @@ class StepOneFormModule extends StatelessWidget {
               Text(
                 '₹15 L',
                 style: TextStyle(
-                  fontSize: 10.sp,
+                  fontSize: 11.sp,
                   color: AppColors.greyColor,
                   fontWeight: FontWeight.w500,
                 ),
@@ -751,7 +751,7 @@ class StepOneFormModule extends StatelessWidget {
   Widget _monthlyIncomeModule() {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.2),
@@ -771,7 +771,7 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 10.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
           ),
         ),
       ),
@@ -781,7 +781,7 @@ class StepOneFormModule extends StatelessWidget {
   Widget _employerNameModule() {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.2),
@@ -801,7 +801,7 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 10.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
           ),
         ),
       ),
@@ -811,7 +811,7 @@ class StepOneFormModule extends StatelessWidget {
   Widget _currentTotalEmiModule() {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.2),
@@ -832,7 +832,7 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 10.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
           ),
         ),
       ),
@@ -842,7 +842,7 @@ class StepOneFormModule extends StatelessWidget {
   Widget _whichBankModule() {
     return Container(
       // height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyColor.withOpacity(0.2),
@@ -862,7 +862,7 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 10.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
           ),
         ),
       ),
@@ -871,9 +871,13 @@ class StepOneFormModule extends StatelessWidget {
 
   Widget _homeLoanModule() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      // crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Do you have home loan ?'),
+        Row(
+          children: [
+            const Text('Do you have home loan ?').commonOnlyPadding(left: 7.w),
+          ],
+        ),
         Row(
           children: [
             Expanded(
@@ -943,7 +947,7 @@ class StepOneFormModule extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            'SUBMIT',
+            'Submit',
             style: TextStyle(
               color: AppColors.whiteColor,
               fontFamily: "Roboto",
@@ -1005,7 +1009,7 @@ class StepTwoFormModule extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 13),
+                            horizontal: 20, vertical: 13),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
@@ -1013,21 +1017,23 @@ class StepTwoFormModule extends StatelessWidget {
                               'LOAN AMOUNT ₹ ${singleItem.emiEligibleAmount}',
                               style: TextStyle(
                                 color: AppColors.accentColor,
-                                fontSize: 9.sp,
+                                fontSize: 10.sp,
                               ),
                             ),
+                            SizedBox(height: 0.5.h),
                             Text(
                               'YOUR EMI',
                               style: TextStyle(
                                 color: AppColors.greyColor,
-                                fontSize: 7.sp,
+                                fontSize: 7.5.sp,
                               ),
-                            ).commonSymmetricPadding(vertical: 3),
+                            ),
+                            SizedBox(height: 0.5.h),
                             Text(
                               '₹ ${singleItem.emiMonthlyLow} - ₹ ${singleItem.emiMonthlyHigh}',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 13.sp,
+                                fontSize: 14.sp,
                               ),
                             ),
                           ],
@@ -1035,7 +1041,7 @@ class StepTwoFormModule extends StatelessWidget {
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 3),
+                            horizontal: 8, vertical: 8),
                         decoration: const BoxDecoration(
                           color: Color(0xff052a47),
                           borderRadius: BorderRadius.only(
@@ -1065,7 +1071,7 @@ class StepTwoFormModule extends StatelessWidget {
                       ),
                     ],
                   ),
-                ).commonSymmetricPadding(vertical: 8),
+                ).commonSymmetricPadding(vertical: 9),
               );
             },
           ),
@@ -1082,7 +1088,7 @@ class StepTwoFormModule extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  'SUBMIT',
+                  'Submit',
                   style: TextStyle(
                     color: AppColors.whiteColor,
                     fontFamily: "Roboto",
@@ -1180,7 +1186,7 @@ class StepThreeFormModule extends StatelessWidget {
                   text: "Pan Card ",
                   style: TextStyle(
                     color: AppColors.blackColor,
-                    fontSize: 10.sp,
+                    fontSize: 12.sp,
                     fontFamily: "Roboto",
                   ),
                   children: [
@@ -1239,7 +1245,7 @@ class StepThreeFormModule extends StatelessWidget {
                         style: TextStyle(
                           fontFamily: "Roboto",
                           color: AppColors.whiteColor,
-                          fontSize: 8.sp,
+                          fontSize: 9.sp,
                         ),
                       ).commonSymmetricPadding(vertical: 12),
                     ),
@@ -1293,7 +1299,7 @@ class StepThreeFormModule extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: "Roboto",
                     color: AppColors.blackColor,
-                    fontSize: 10.sp,
+                    fontSize: 12.sp,
                   ),
                   children: [
                     TextSpan(
@@ -1314,29 +1320,29 @@ class StepThreeFormModule extends StatelessWidget {
         Expanded(
           child: screenController.aadhaarCardFile.path.isNotEmpty
               ? Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'SUCCESSFUL',
-                style: TextStyle(
-                  color: AppColors.greenColor,
-                  fontFamily: "Roboto",
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  screenController.aadhaarCardFile = File('');
-                  screenController.loadUI();
-                },
-                child: const Icon(
-                  Icons.close_rounded,
-                  color: AppColors.redColor,
-                ),
-              ),
-              // IconButton(onPressed: (){}, icon: const Icon(Icons.close_rounded),),
-            ],
-          )
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'SUCCESSFUL',
+                      style: TextStyle(
+                        color: AppColors.greenColor,
+                        fontFamily: "Roboto",
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        screenController.aadhaarCardFile = File('');
+                        screenController.loadUI();
+                      },
+                      child: const Icon(
+                        Icons.close_rounded,
+                        color: AppColors.redColor,
+                      ),
+                    ),
+                    // IconButton(onPressed: (){}, icon: const Icon(Icons.close_rounded),),
+                  ],
+                )
               : GestureDetector(
                   onTap: () async =>
                       await selectAadhaarCardFromGalleryFunction(),
@@ -1405,7 +1411,7 @@ class StepThreeFormModule extends StatelessWidget {
                   style: TextStyle(
                     color: AppColors.blackColor,
                     fontFamily: "Roboto",
-                    fontSize: 10.sp,
+                    fontSize: 12.sp,
                   ),
                   children: [
                     TextSpan(
@@ -1426,29 +1432,29 @@ class StepThreeFormModule extends StatelessWidget {
         Expanded(
           child: screenController.addressProofFile.path.isNotEmpty
               ? Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'SUCCESSFUL',
-                style: TextStyle(
-                  color: AppColors.greenColor,
-                  fontFamily: "Roboto",
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  screenController.addressProofFile = File('');
-                  screenController.loadUI();
-                },
-                child: const Icon(
-                  Icons.close_rounded,
-                  color: AppColors.redColor,
-                ),
-              ),
-              // IconButton(onPressed: (){}, icon: const Icon(Icons.close_rounded),),
-            ],
-          )
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'SUCCESSFUL',
+                      style: TextStyle(
+                        color: AppColors.greenColor,
+                        fontFamily: "Roboto",
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        screenController.addressProofFile = File('');
+                        screenController.loadUI();
+                      },
+                      child: const Icon(
+                        Icons.close_rounded,
+                        color: AppColors.redColor,
+                      ),
+                    ),
+                    // IconButton(onPressed: (){}, icon: const Icon(Icons.close_rounded),),
+                  ],
+                )
               : GestureDetector(
                   onTap: () async =>
                       await selectAddressProofFromGalleryFunction(),
@@ -1522,7 +1528,7 @@ class StepThreeFormModule extends StatelessWidget {
                           style: TextStyle(
                             color: AppColors.blackColor,
                             fontFamily: "Roboto",
-                            fontSize: 10.sp,
+                            fontSize: 12.sp,
                           ),
                           children: [
                             TextSpan(
@@ -1555,29 +1561,29 @@ class StepThreeFormModule extends StatelessWidget {
             Expanded(
               child: screenController.bankStatementFile.path.isNotEmpty
                   ? Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'SUCCESSFUL',
-                    style: TextStyle(
-                      color: AppColors.greenColor,
-                      fontFamily: "Roboto",
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      screenController.bankStatementFile = File('');
-                      screenController.loadUI();
-                    },
-                    child: const Icon(
-                      Icons.close_rounded,
-                      color: AppColors.redColor,
-                    ),
-                  ),
-                  // IconButton(onPressed: (){}, icon: const Icon(Icons.close_rounded),),
-                ],
-              )
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'SUCCESSFUL',
+                          style: TextStyle(
+                            color: AppColors.greenColor,
+                            fontFamily: "Roboto",
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            screenController.bankStatementFile = File('');
+                            screenController.loadUI();
+                          },
+                          child: const Icon(
+                            Icons.close_rounded,
+                            color: AppColors.redColor,
+                          ),
+                        ),
+                        // IconButton(onPressed: (){}, icon: const Icon(Icons.close_rounded),),
+                      ],
+                    )
                   : GestureDetector(
                       onTap: () async =>
                           await selectBankStatementFromStorageFunction(),
@@ -1679,7 +1685,7 @@ class StepThreeFormModule extends StatelessWidget {
                           style: TextStyle(
                             color: AppColors.blackColor,
                             fontFamily: "Roboto",
-                            fontSize: 10.sp,
+                            fontSize: 12.sp,
                           ),
                           children: [
                             TextSpan(
@@ -1712,29 +1718,29 @@ class StepThreeFormModule extends StatelessWidget {
             Expanded(
               child: screenController.salarySlipsFile.path.isNotEmpty
                   ? Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'SUCCESSFUL',
-                    style: TextStyle(
-                      color: AppColors.greenColor,
-                      fontFamily: "Roboto",
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      screenController.salarySlipsFile = File('');
-                      screenController.loadUI();
-                    },
-                    child: const Icon(
-                      Icons.close_rounded,
-                      color: AppColors.redColor,
-                    ),
-                  ),
-                  // IconButton(onPressed: (){}, icon: const Icon(Icons.close_rounded),),
-                ],
-              )
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'SUCCESSFUL',
+                          style: TextStyle(
+                            color: AppColors.greenColor,
+                            fontFamily: "Roboto",
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            screenController.salarySlipsFile = File('');
+                            screenController.loadUI();
+                          },
+                          child: const Icon(
+                            Icons.close_rounded,
+                            color: AppColors.redColor,
+                          ),
+                        ),
+                        // IconButton(onPressed: (){}, icon: const Icon(Icons.close_rounded),),
+                      ],
+                    )
                   : GestureDetector(
                       onTap: () async =>
                           await selectSalarySlipsFromStorageFunction(),
@@ -1831,7 +1837,7 @@ class StepThreeFormModule extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: "Roboto",
                     color: AppColors.blackColor,
-                    fontSize: 10.sp,
+                    fontSize: 12.sp,
                   ),
                   children: [
                     TextSpan(
@@ -1852,29 +1858,29 @@ class StepThreeFormModule extends StatelessWidget {
         Expanded(
           child: screenController.rentAgreementFile.path.isNotEmpty
               ? Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'SUCCESSFUL',
-                style: TextStyle(
-                  color: AppColors.greenColor,
-                  fontFamily: "Roboto",
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  screenController.rentAgreementFile = File('');
-                  screenController.loadUI();
-                },
-                child: const Icon(
-                  Icons.close_rounded,
-                  color: AppColors.redColor,
-                ),
-              ),
-              // IconButton(onPressed: (){}, icon: const Icon(Icons.close_rounded),),
-            ],
-          )
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'SUCCESSFUL',
+                      style: TextStyle(
+                        color: AppColors.greenColor,
+                        fontFamily: "Roboto",
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        screenController.rentAgreementFile = File('');
+                        screenController.loadUI();
+                      },
+                      child: const Icon(
+                        Icons.close_rounded,
+                        color: AppColors.redColor,
+                      ),
+                    ),
+                    // IconButton(onPressed: (){}, icon: const Icon(Icons.close_rounded),),
+                  ],
+                )
               : GestureDetector(
                   onTap: () async =>
                       await selectRentAgreementFromGalleryFunction(),
@@ -1940,7 +1946,7 @@ class JewelleryOnEmiLoadingWidget extends StatelessWidget {
                           shape: BoxShape.circle,
                         ),
                       ),
-                     const SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Container(
                         height: 10,
                         width: 80,
@@ -1954,12 +1960,12 @@ class JewelleryOnEmiLoadingWidget extends StatelessWidget {
                       Container(
                         height: 9.h,
                         width: 9.h,
-                        decoration:const BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: AppColors.greyColor,
                           shape: BoxShape.circle,
                         ),
                       ),
-                  const    SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Container(
                         height: 10,
                         width: 80,
@@ -1973,12 +1979,12 @@ class JewelleryOnEmiLoadingWidget extends StatelessWidget {
                       Container(
                         height: 9.h,
                         width: 9.h,
-                        decoration:const BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: AppColors.greyColor,
                           shape: BoxShape.circle,
                         ),
                       ),
-                  const    SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Container(
                         height: 10,
                         width: 80,
@@ -1988,11 +1994,11 @@ class JewelleryOnEmiLoadingWidget extends StatelessWidget {
                   ),
                 ],
               ),
-            const  SizedBox(height: 20),
+              const SizedBox(height: 20),
               Container(
                 height: 62.h,
                 width: double.infinity,
-                margin:const EdgeInsets.symmetric(horizontal: 20),
+                margin: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: const BoxDecoration(
                   color: AppColors.greyColor,
                   borderRadius: BorderRadius.all(
@@ -2000,19 +2006,19 @@ class JewelleryOnEmiLoadingWidget extends StatelessWidget {
                   ),
                 ),
               ),
-           const   SizedBox(height: 20),
+              const SizedBox(height: 20),
               Container(
                 height: 60,
                 width: double.infinity,
                 margin: const EdgeInsets.symmetric(horizontal: 20),
-                decoration:const BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
                   borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),
               ),
-             const SizedBox(height: 20),
+              const SizedBox(height: 20),
             ],
           ),
         ),

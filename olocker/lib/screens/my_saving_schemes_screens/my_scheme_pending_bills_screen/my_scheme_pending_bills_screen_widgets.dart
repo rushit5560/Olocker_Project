@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/screens/my_saving_schemes_screens/my_scheme_pending_payment_screen/my_scheme_pending_payment_screen.dart';
-
 import 'package:olocker/widgets/common_widgets.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../../constants/app_colors.dart';
 import '../../../controllers/my_saving_schemes_screens_controllers/my_scheme_pending_bills_screen_controller.dart';
 import '../../../models/my_saving_schemes_models/get_pending_bills_model/get_pending_bills_list_model.dart';
@@ -166,7 +163,6 @@ class PandingBillsSelectModule extends StatelessWidget {
       itemCount: screenController.getPendingBillsList.length,
       itemBuilder: (context, index) {
         var singlePendingItem = screenController.getPendingBillsList[index];
-
         return SinglePendingItem(
           singlePendingItem: singlePendingItem,
         );
@@ -220,7 +216,7 @@ class SinglePendingItem extends StatelessWidget {
                 style: TextStyle(
                   color: AppColors.accentColor,
                   fontWeight: FontWeight.bold,
-                  fontSize: 15.sp,
+                  fontSize: 16.sp,
                 ),
               ),
               SizedBox(
@@ -265,7 +261,7 @@ class SinglePendingItem extends StatelessWidget {
                 style: TextStyle(
                   color: AppColors.greyTextColor,
                   fontWeight: FontWeight.normal,
-                  fontSize: 10.sp,
+                  fontSize: 11.sp,
                 ),
               ),
               SizedBox(height: 1.h),

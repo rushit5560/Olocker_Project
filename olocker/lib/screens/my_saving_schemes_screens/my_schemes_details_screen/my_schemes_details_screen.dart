@@ -31,8 +31,8 @@ class MySchemesDetailsScreen extends StatelessWidget {
           'Schemes Details',
           style: TextStyle(
             color: AppColors.blackTextColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w500,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),
@@ -57,9 +57,10 @@ class MySchemesDetailsScreen extends StatelessWidget {
                               schemeData: mySchemePendingPaymentScreenController
                                   .schemeData,
                             ),
-                      PaymentRefundRowModule(),
                       SizedBox(height: 2.h),
                       JewellerCallDetailsModule(),
+                      SizedBox(height: 2.5.h),
+                      PaymentRefundRowModule(),
                       MySchemesTransactionsListViewModule(),
                     ],
                   ),

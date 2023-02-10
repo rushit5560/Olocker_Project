@@ -28,8 +28,8 @@ class MySchemePendingBillsScreen extends StatelessWidget {
           'Pending Bills',
           style: TextStyle(
             color: AppColors.blackTextColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w500,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),
@@ -42,7 +42,8 @@ class MySchemePendingBillsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     MyBillsModule(),
-                    mySchemePendingBillsScreenController.getPendingBillsList.isEmpty
+                    mySchemePendingBillsScreenController
+                            .getPendingBillsList.isEmpty
                         ? Container()
                         : PandingBillsSelectModule(),
                   ],

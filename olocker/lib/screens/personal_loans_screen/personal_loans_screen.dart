@@ -40,7 +40,7 @@ class PersonalLoansScreen extends StatelessWidget {
             fontFamily: "Roboto",
             color: AppColors.blackTextColor,
             fontSize: 13.sp,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
           ),
         ),
         centerTitle: true,
@@ -123,7 +123,7 @@ class PersonalLoansScreen extends StatelessWidget {
                             textStyle: TextStyle(
                               color: const Color(0xFFEC7773),
                               height: 1.6,
-                              fontSize: 9.5.sp,
+                              fontSize: 10.sp,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -153,7 +153,7 @@ class PersonalLoansScreen extends StatelessWidget {
                             textStyle: TextStyle(
                               color: const Color(0xFFEC7773),
                               height: 1.6,
-                              fontSize: 9.5.sp,
+                              fontSize: 10.sp,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -191,7 +191,7 @@ class PersonalLoansScreen extends StatelessWidget {
                             textStyle: TextStyle(
                               color: const Color(0xFFEC7773),
                               height: 1.6,
-                              fontSize: 9.5.sp,
+                              fontSize: 10.sp,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -280,38 +280,45 @@ class PersonalLoansScreen extends StatelessWidget {
                     personalLoansScreenController.currentStep.value == 2
                         ? GestureDetector(
                             onTap: () async {
-                              if (personalLoansScreenController.panCardFile.path.isEmpty) {
+                              if (personalLoansScreenController
+                                  .panCardFile.path.isEmpty) {
                                 CommonWidgets().showBorderSnackBar(
                                   context: context,
                                   displayText: 'Please select Pancard',
                                 );
-                              } else if (personalLoansScreenController.aadhaarCardFile.path.isEmpty) {
+                              } else if (personalLoansScreenController
+                                  .aadhaarCardFile.path.isEmpty) {
                                 CommonWidgets().showBorderSnackBar(
                                   context: context,
                                   displayText: 'Please select Aadhaar Card',
                                 );
-                              } else if (personalLoansScreenController.addressProofFile.path.isEmpty) {
+                              } else if (personalLoansScreenController
+                                  .addressProofFile.path.isEmpty) {
                                 CommonWidgets().showBorderSnackBar(
                                   context: context,
                                   displayText: 'Please select Address Proof',
                                 );
-                              } else if (personalLoansScreenController.bankStatementFile.path.isEmpty) {
+                              } else if (personalLoansScreenController
+                                  .bankStatementFile.path.isEmpty) {
                                 CommonWidgets().showBorderSnackBar(
                                   context: context,
                                   displayText: 'Please select Bank Statement',
                                 );
-                              } else if (personalLoansScreenController.salarySlipsFile.path.isEmpty) {
+                              } else if (personalLoansScreenController
+                                  .salarySlipsFile.path.isEmpty) {
                                 CommonWidgets().showBorderSnackBar(
                                   context: context,
                                   displayText: 'Please select Salary Slips',
                                 );
-                              } else if (personalLoansScreenController.rentAgreementFile.path.isEmpty) {
+                              } else if (personalLoansScreenController
+                                  .rentAgreementFile.path.isEmpty) {
                                 CommonWidgets().showBorderSnackBar(
                                   context: context,
                                   displayText: 'Please select Rent Agreement',
                                 );
                               } else {
-                                await personalLoansScreenController.uploadEmiDocumentsFunction();
+                                await personalLoansScreenController
+                                    .uploadEmiDocumentsFunction();
                               }
                             },
                             child: Container(
@@ -322,7 +329,7 @@ class PersonalLoansScreen extends StatelessWidget {
                               ),
                               child: Center(
                                 child: Text(
-                                  'SUBMIT',
+                                  'Submit',
                                   style: TextStyle(
                                     color: AppColors.whiteColor,
                                     fontFamily: "Roboto",

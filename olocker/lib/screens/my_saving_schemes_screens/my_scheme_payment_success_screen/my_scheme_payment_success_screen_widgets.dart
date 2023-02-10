@@ -127,7 +127,7 @@ class GoBackToSchemeDetailsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       height: 48,
       width: double.infinity,
       child: ElevatedButton(
@@ -145,9 +145,7 @@ class GoBackToSchemeDetailsButton extends StatelessWidget {
             Get.back();
             // final mySchemesDetailsScreenController =
             //     Get.find<MySchemesDetailsScreenController>();
-
             // mySchemesDetailsScreenController.getMySavingSchemeDetailsFunction();
-
             bool ifSavingSchemesListController =
                 Get.isRegistered<MySavingSchemesListScreenController>();
 

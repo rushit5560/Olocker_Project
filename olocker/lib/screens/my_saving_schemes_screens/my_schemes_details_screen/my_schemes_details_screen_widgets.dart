@@ -510,7 +510,7 @@ class JewellerCallDetailsModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10), color: Colors.white),
       child: Row(
@@ -540,9 +540,9 @@ class JewellerCallDetailsModule extends StatelessWidget {
                   mySchemePendingPaymentScreenController
                       .getSavingSchemeData!.schemeName,
                   style: TextStyle(
-                    fontSize: 11.sp,
-                    color: AppColors.accentColor,
-                    fontWeight: FontWeight.w500,
+                    fontSize: 14.sp,
+                    color: AppColors.blueDarkColor,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -552,7 +552,7 @@ class JewellerCallDetailsModule extends StatelessWidget {
                   maxLines: 2,
                   style: TextStyle(
                     fontSize: 10.sp,
-                    color: AppColors.greyColor,
+                    color: AppColors.blueDarkColor,
                     fontWeight: FontWeight.w400,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -704,6 +704,7 @@ class TransactionSingleItemModule extends StatelessWidget {
           ),
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -714,7 +715,7 @@ class TransactionSingleItemModule extends StatelessWidget {
                     style: TextStyle(
                       color: AppColors.accentColor,
                       fontWeight: FontWeight.bold,
-                      fontSize: 15.sp,
+                      fontSize: 16.sp,
                     ),
                   ),
                   Text(
@@ -738,7 +739,6 @@ class TransactionSingleItemModule extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(width: 3.w),
             Expanded(
               flex: 65,
               child: Column(
@@ -785,7 +785,6 @@ class TransactionSingleItemModule extends StatelessWidget {
                 // String url = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
                 log('url : $url');
                 await WebUrlLauncher().launchPdfInBrowser(url);
-
 
                 // await mySchemePendingPaymentScreenController.downloadFile(url);
                 // await mySchemePendingPaymentScreenController.saveFile(url, "test123.pdf");
@@ -870,7 +869,7 @@ class AmountDetailsColoredColumn extends StatelessWidget {
             style: TextStyle(
               fontSize: 14.sp,
               color: color,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(height: 4),
