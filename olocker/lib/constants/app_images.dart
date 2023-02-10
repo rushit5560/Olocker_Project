@@ -58,6 +58,7 @@ class AppImages {
   static const String referOfferBgImage = '$imageRootPath/referbg.png';
   static const String womenJewelleryImage = '$imageRootPath/womenjewellery.jpg';
   static const String menJewelleryImage = '$imageRootPath/menjewellery.png';
+  static const String kidsJewelleryImage = '$imageRootPath/kidsjewellery.png';
   static const String bestSellerBgImage = '$imageRootPath/best_seller.jpg';
   static const String customerSpeakBgImage =
       '$imageRootPath/customer_speak.png';

@@ -40,6 +40,7 @@ class JewellerDetailsScreenController extends GetxController {
   List<GetPushCollectionItem> newArrivalList = [];
   List<ProductTypeItem> menTypeList = [];
   List<ProductTypeItem> womenTypeList = [];
+  List<ProductTypeItem> kidsTypeList = [];
   List<ListOfProduct> bestSellerList = [];
   List<Testimonial> clientTestimonialsList = [];
 
@@ -231,6 +232,11 @@ class JewellerDetailsScreenController extends GetxController {
           womenTypeList.addAll(jewelleryTypeModel.productTypeWomen);
         }
         log('getJewelleryTypeFunction womenTypeList : ${womenTypeList.length}');
+        kidsTypeList.clear();
+        if (jewelleryTypeModel.productTypeKids.isNotEmpty) {
+          kidsTypeList.add(ProductTypeItem(name: '', image: ''));
+          kidsTypeList.addAll(jewelleryTypeModel.productTypeKids);
+        }
       } else {
         log('getJewelleryTypeFunction Else');
       }

@@ -12,7 +12,7 @@ class JewelleryTypeModel {
     required this.productTypes,
     required this.productTypeMen,
     required this.productTypeWomen,
-    // required this.productTypeKids,
+    required this.productTypeKids,
     required this.success,
     required this.errorInfo,
   });
@@ -23,7 +23,7 @@ class JewelleryTypeModel {
   List<ProductTypeItem> productTypes;
   List<ProductTypeItem> productTypeMen;
   List<ProductTypeItem> productTypeWomen;
-  // List<dynamic> productTypeKids;
+  List<ProductTypeItem> productTypeKids;
   bool success;
   ErrorInfo errorInfo;
 
@@ -34,7 +34,7 @@ class JewelleryTypeModel {
     productTypes: List<ProductTypeItem>.from((json["ProductTypes"] ?? []).map((x) => ProductTypeItem.fromJson(x ?? {}))),
     productTypeMen: List<ProductTypeItem>.from((json["ProductTypeMen"] ?? []).map((x) => ProductTypeItem.fromJson(x ?? {}))),
     productTypeWomen: List<ProductTypeItem>.from((json["ProductTypeWomen"] ?? []).map((x) => ProductTypeItem.fromJson(x ?? {}))),
-    // productTypeKids: List<dynamic>.from(json["ProductTypeKids"].map((x) => x)),
+    productTypeKids: List<ProductTypeItem>.from((json["ProductTypeKids"] ?? []).map((x) => ProductTypeItem.fromJson(x ?? {}))),
     success: json["success"] ?? false,
     errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
   );

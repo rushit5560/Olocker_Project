@@ -78,7 +78,7 @@ class OffersJewelleryListScreenController extends GetxController {
       log('getOfferDetailListFunction Error : $e');
       rethrow;
     } finally {
-      getPartnerByCodeFunction();
+      await getPartnerByCodeFunction();
       // isLoading(false);
     }
   }
@@ -215,7 +215,7 @@ class OffersJewelleryListScreenController extends GetxController {
       log("getPartnerByCodeFunction Error ::: $e");
       rethrow;
     } finally {
-      getUserProfileDetailsFunction();
+      await getUserProfileDetailsFunction();
       // isLoading(false);
     }
     // }

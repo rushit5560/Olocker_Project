@@ -72,13 +72,16 @@ class JewellerDetailsScreen extends StatelessWidget {
                         : JewellerFeaturesModule(),
                     FourFunctionalModule(),
 
-                    jewellerDetailsScreenController.newArrivalList.isEmpty
-                    ? Container() : NewArrivalListModule(),
-
                     JewelleryCategoryListModule(),
+
+                    ReferAndJewellerEmiModule(),
+
+                    jewellerDetailsScreenController.newArrivalList.isEmpty
+                        ? Container() : NewArrivalListModule(),
+
+
                     // NecklaceBannerModule(),
                     // BanglesBannerModule(),
-                    ReferAndJewellerEmiModule(),
                     jewellerDetailsScreenController.womenTypeList.isEmpty
                         ? Container()
                         : MenWomenJewelleryListModule(
@@ -98,6 +101,16 @@ class JewellerDetailsScreen extends StatelessWidget {
                             typeList:
                                 jewellerDetailsScreenController.menTypeList,
                           ),
+
+                    jewellerDetailsScreenController.kidsTypeList.isEmpty
+                        ? Container()
+                        : MenWomenJewelleryListModule(
+                      headerName: "KID'S JEWELLERY",
+                      headerBgColor: AppColors.lightNewCoffeeColor,
+                      bgImage: AppImages.kidsJewelleryImage,
+                      typeList:
+                      jewellerDetailsScreenController.kidsTypeList,
+                    ),
 
                     jewellerDetailsScreenController.bestSellerList.isEmpty
                         ? Container()

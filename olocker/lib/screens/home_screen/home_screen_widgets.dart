@@ -333,7 +333,17 @@ class SmartDealsModule extends StatelessWidget {
             ).commonSymmetricPadding(horizontal: 8),
           ),
           screenController.smartDealsSwitch.value == false
-              ? OnlineDealsListModule()
+              ? screenController.smartDealsOnlineList.isEmpty
+              ? Text(
+            'Online deals not available now',
+            style: TextStyle(
+              fontFamily: "Roboto",
+              color: AppColors.whiteColor,
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w500,
+            ),
+          )
+              : OnlineDealsListModule()
               : Text(
                   'Keep checking this space for exciting deals',
                   style: TextStyle(
@@ -345,7 +355,8 @@ class SmartDealsModule extends StatelessWidget {
                 ),
           SizedBox(height: screenController.size.height * 0.015),
           screenController.smartDealsSwitch.value == false
-              ? ViewAllButtonModule()
+              ?  screenController.smartDealsOnlineList.isEmpty
+              ? Container():ViewAllButtonModule()
               : Container(),
           SizedBox(height: screenController.size.height * 0.015),
         ],

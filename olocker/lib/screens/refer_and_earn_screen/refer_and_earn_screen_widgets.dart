@@ -28,34 +28,34 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
         Text(
           "Get 100 Points",
           style: TextStyle(
-            fontFamily: "latoregular",
+            fontFamily: "NexaBold",
             color: AppColors.accentColor,
             fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w500,
           ),
         ),
-        SizedBox(height: 1.h),
+        // SizedBox(height: 1.h),
         Text(
           "For every new user you refer",
           style: TextStyle(
-            fontFamily: "latoregular",
+            fontFamily: "NexaBold",
             color: AppColors.greyDarkColor,
             fontSize: 14.sp,
             fontWeight: FontWeight.bold,
             letterSpacing: 0.8,
           ),
         ),
-        SizedBox(height: 2.h),
+        SizedBox(height: 2.5.h),
         Text(
           "Share your referal link and earn 100 points",
           style: TextStyle(
-            fontFamily: "Roboto",
-            color: AppColors.greyColor,
+            fontFamily: "NexaBold",
+            color: AppColors.greyColor.withOpacity(0.6),
             fontSize: 12.sp,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 2.h),
+        SizedBox(height: 2.5.h),
         Container(
           margin: EdgeInsets.symmetric(horizontal: 5.w),
           padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 3),
@@ -90,7 +90,7 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
                       .toUpperCase(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontFamily: "Roboto",
+                    fontFamily: "Acephimere",
                     color: AppColors.greyColor,
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w500,
@@ -146,17 +146,17 @@ class UserBenefitPointsTextModule extends StatelessWidget {
             style: TextStyle(
               color: AppColors.accentColor,
               fontSize: 17.sp,
-              fontFamily: "Roboto",
+              fontFamily: "NexaBold",
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 1.h),
+          SizedBox(height: 0.5.h),
           Text(
             benefitDescription,
             style: TextStyle(
               color: AppColors.greyDarkColor,
               fontSize: 10.sp,
-              fontFamily: "Roboto",
+              fontFamily: "NexaBold",
               fontWeight: FontWeight.bold,
               letterSpacing: 0.5,
             ),
@@ -188,7 +188,7 @@ class ShareButtonModule extends StatelessWidget {
               style: TextStyle(
                 color: AppColors.whiteColor,
                 fontSize: 14.sp,
-                fontFamily: "Roboto",
+                fontFamily: "Acephimere",
                 fontWeight: FontWeight.w500,
               ),
             ),
