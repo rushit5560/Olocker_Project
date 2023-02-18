@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
+// import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:olocker/models/auth_screen_models/user_login_model.dart';
 import 'package:olocker/screens/otp_screen/otp_screen.dart';
 import 'package:olocker/utils/user_prefs_data.dart';
+import 'package:olocker/widgets/common_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../constants/api_url.dart';
@@ -221,4 +225,54 @@ class SignUpScreenController extends GetxController {
       }
     }
   }
+
+
+
+
+  // MobileScannerController  cameraController = MobileScannerController();
+  // RxBool screenOpened = false.obs;
+
+  // void screenWasClosed(){
+  //   screenOpened = false.obs;
+  // }
+
+  // void foundBarcode(Barcode barcode, MobileScannerArguments? args){
+  //   log("$barcode");
+  //   if(!screenOpened.value){
+  //     isLoading(true);
+  //     final String code = barcode.rawValue ?? "___";
+  //     log('code : $code');
+  //     CommonWidgets().showBorderSnackBar(context: Get.context!, displayText: code);
+  //
+  //     codeController.text = code;
+  //     screenOpened.value = false;
+  //     //here push navigation result page
+  //     isLoading(false);
+  //   }
+  // }
+
+
+  void scanQRCode() async {
+    try{
+      final qrCode = await FlutterBarcodeScanner.scanBarcode('#F16E68', 'Cancel', false, ScanMode.QR);
+
+      // if (!mounted) return;
+
+      // setState(() {
+      codeController.text = qrCode;
+      // });
+      print("QRCode_Result:--");
+      print(qrCode);
+    } on PlatformException {
+      // codeController.text = 'Failed to scan QR Code.';
+    }
+
+  }
+
+
+  // @override
+  // void onInit() {
+  //   screenWasClosed();
+  //   super.onInit();
+  // }
 }

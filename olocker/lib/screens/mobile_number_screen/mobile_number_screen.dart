@@ -164,7 +164,7 @@ class MobileNumberScreen extends StatelessWidget {
                               text: TextSpan(
                                 text: "I hereby agree to the ",
                                 style: TextStyle(
-                                  fontSize: 9.sp,
+                                  fontSize: 10.sp,
                                   fontWeight: FontWeight.w500,
                                   color: AppColors.greyColor,
                                 ),
@@ -172,7 +172,7 @@ class MobileNumberScreen extends StatelessWidget {
                                   TextSpan(
                                     text: "Terms & Conditions",
                                     style: TextStyle(
-                                      fontSize: 9.sp,
+                                      fontSize: 10.sp,
                                       fontWeight: FontWeight.w500,
                                       color: AppColors.blackColor,
                                     ),
@@ -210,7 +210,7 @@ class MobileNumberScreen extends StatelessWidget {
                             style: TextStyle(
                               color: AppColors.whiteColor,
                               fontFamily: "Acephimere",
-                              fontSize: 13.sp,
+                              fontSize: 12.5.sp,
                               fontWeight: FontWeight.w400,
                             ),
                           ),

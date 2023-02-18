@@ -85,7 +85,7 @@ class PaymentDetails extends StatelessWidget {
             ),
           ),
           SizedBox(height: 1.h),
-          const Divider(color: AppColors.accentColor),
+          const Divider(color: Colors.black),
           // SizedBox(height: 1.h),
           ListView.separated(
             itemCount: screenController.pendingBillsSelectedList.length,
@@ -152,7 +152,7 @@ class SingleBillShowWidget extends StatelessWidget {
                 style: const TextStyle(
                     color: Color(0xFF052a45),
                     fontWeight: FontWeight.bold,
-                    fontSize: 18))
+                    fontSize: 20))
           ],
         ),
         SizedBox(

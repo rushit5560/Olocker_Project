@@ -46,7 +46,7 @@ class JewellerJewelleryDetailsScreen extends StatelessWidget {
               color: AppColors.blackTextColor,
               fontSize: 13.sp,
               fontWeight: FontWeight.w400,
-              fontFamily: "latoregular",
+              fontFamily: "Acephimere",
             ),
           ),
         ),
@@ -64,7 +64,7 @@ class JewellerJewelleryDetailsScreen extends StatelessWidget {
                             width: double.infinity,
                             height: jewellerJewelleryDetailsScreenController
                                     .size.height *
-                                0.18,
+                                0.32,
                             fit: BoxFit.cover,
                           ),
                           jewellerJewelleryDetailsScreenController
@@ -134,7 +134,7 @@ class JewellerJewelleryDetailsScreen extends StatelessWidget {
                       child: Text(
                         "enquire now".toUpperCase(),
                         style: TextStyle(
-                          fontFamily: "Roboto",
+                          fontFamily: "Acephimere",
                           color: AppColors.whiteColor,
                           fontSize: 13.sp,
                         ),

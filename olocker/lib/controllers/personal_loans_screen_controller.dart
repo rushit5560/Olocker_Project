@@ -31,6 +31,7 @@ class PersonalLoansScreenController extends GetxController {
   TextEditingController pinCodeController = TextEditingController();
   TextEditingController panCardController = TextEditingController();
   RxDouble loanAmount = 0.0.obs;
+  TextEditingController lastDrawnSalaryController = TextEditingController();
   TextEditingController monthlyIncomeController = TextEditingController();
   TextEditingController employerNameController = TextEditingController();
   TextEditingController currentTotalEmiController = TextEditingController();

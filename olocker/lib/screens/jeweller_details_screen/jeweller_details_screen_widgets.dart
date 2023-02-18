@@ -217,6 +217,8 @@ class JewellerBannerModule extends StatelessWidget {
             arguments: [
               singleOffer.srNo.split(".")[0],
               screenController.jewellerId.toString(),
+              screenController.collectionNameList,
+              SearchCategory.offerType,
             ],
           );
         }
@@ -417,11 +419,13 @@ class NewArrivalListModule extends StatelessWidget {
                 screenController.newArrivalList[i].srNo,
                 screenController.jewellerId.toString(),
                 JewelleryListType.categoryId,
+                screenController.collectionNameList,
+                SearchCategory.collectionType,
               ],
             );
           },
           child: Container(
-            height: screenController.size.height * 0.023.h,
+            height: screenController.size.height * 0.027.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: AppColors.greyTextColor.withOpacity(0.5),
@@ -457,11 +461,13 @@ class JewelleryCategoryListModule extends StatelessWidget {
                 screenController.jewelleryCategoryList[i].srNo,
                 screenController.jewellerId.toString(),
                 JewelleryListType.categoryId,
+              screenController.collectionNameList,
+              SearchCategory.categoryType,
               ],
             );
           },
           child: Container(
-            height: screenController.size.height * 0.023.h,
+            height: screenController.size.height * 0.027.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: AppColors.greyTextColor.withOpacity(0.5),
@@ -501,16 +507,22 @@ class ReferAndJewellerEmiModule extends StatelessWidget {
                 );
               },
               child: Container(
-                height: screenController.size.height * 0.033.h,
+                height: screenController.size.height * 0.036.h,
                 decoration: BoxDecoration(
                   color: AppColors.creamBgColor,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.shade700,
+                      blurRadius: 12.0
+                    ),
+                  ],
                   image: const DecorationImage(
                     image: AssetImage(AppImages.referOffer1Image),
                     fit: BoxFit.cover,
                   ),
                 ),
-              ).commonSymmetricPadding(vertical: 8, horizontal: 14),
+              ).commonOnlyPadding(top: 8, bottom: 8, left: 14, right: 7),
             ),
           ),
           Expanded(
@@ -524,20 +536,26 @@ class ReferAndJewellerEmiModule extends StatelessWidget {
                 );
               },
               child: Container(
-                height: screenController.size.height * 0.033.h,
+                height: screenController.size.height * 0.036.h,
                 decoration: BoxDecoration(
                   color: AppColors.creamBgColor,
-                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.shade700,
+                        blurRadius: 12.0,
+                    ),
+                  ],
+                  borderRadius: BorderRadius.circular(8),
                   image: const DecorationImage(
                     image: AssetImage(AppImages.referOffer2Image),
                     fit: BoxFit.cover,
                   ),
                 ),
-              ).commonSymmetricPadding(vertical: 8, horizontal: 14),
+              ).commonOnlyPadding(top: 8, bottom: 8, right: 14, left: 7),
             ),
           ),
         ],
-      ),
+      ).commonSymmetricPadding(vertical: 5),
     );
   }
 }
@@ -563,7 +581,7 @@ class MenWomenJewelleryListModule extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: screenController.size.height * 0.035.h,
+          height: screenController.size.height * 0.038.h,
           width: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -598,6 +616,8 @@ class MenWomenJewelleryListModule extends StatelessWidget {
               color: AppColors.whiteColor,
               fontWeight: FontWeight.bold,
               fontSize: 15.sp,
+              fontFamily: "Brand",
+              letterSpacing: 2,
             ),
           ).commonSymmetricPadding(vertical: 10),
         ),
@@ -614,6 +634,8 @@ class MenWomenJewelleryListModule extends StatelessWidget {
           singleItem.name,
           screenController.jewellerId.toString(),
           JewelleryListType.categoryName,
+          screenController.collectionNameList,
+          SearchCategory.productType,
         ]);
         // Get.to(()=> JewellerJewelleryListScreen(),
         //     arguments: [
@@ -648,7 +670,8 @@ class MenWomenJewelleryListModule extends StatelessWidget {
               child: Text(
                 singleItem.name,
                 style: TextStyle(
-                  fontSize: 10.sp,
+                  fontSize: 12.sp,
+                  fontFamily: "Acephimere"
                 ),
               ),
             ),
@@ -666,7 +689,7 @@ class BestSellersListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 32.h,
+      height: 40.h,
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(AppImages.bestSellerBgImage),
@@ -674,20 +697,21 @@ class BestSellersListModule extends StatelessWidget {
         ),
       ),
       child: Column(
+        // mainAxisSize: MainAxisSize.max,
         children: [
           Text(
             "BEST SELLERS",
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontFamily: "Roboto",
+              // fontFamily: "Acephimere",
               color: AppColors.whiteColor,
               fontWeight: FontWeight.w600,
               fontSize: 15.sp,
               letterSpacing: 0.6,
             ),
-          ).commonSymmetricPadding(vertical: 12),
+          ).commonSymmetricPadding(vertical: 14),
           SizedBox(
-            height: 24.h,
+            height: 28.h,
             child: GridView.builder(
               itemCount: screenController.bestSellerList.length,
               shrinkWrap: true,
@@ -695,17 +719,17 @@ class BestSellersListModule extends StatelessWidget {
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1,
                 mainAxisSpacing: 10,
-                childAspectRatio: 1.30,
+                childAspectRatio: 1.40,
               ),
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, i) {
-                ListOfProduct singleItem = screenController.bestSellerList[i];
+                FavProductList singleItem = screenController.bestSellerList[i];
                 String imgUrl = "";
-                if (singleItem.productimages.isNotEmpty) {
-                  imgUrl = "${ApiUrl.apiImagePath}${singleItem.productimages[0].imageLocation}/${singleItem.productimages[0].imageName}";
-                }
-                String newImgUrl = imgUrl.replaceAll("\\", "/");
-                return _bestSellerListTile(singleItem, newImgUrl);
+                // if (singleItem.productImage.isNotEmpty) {
+                  imgUrl = "${ApiUrl.apiImagePath}${singleItem.productImage}";
+                // }
+                // String newImgUrl = imgUrl.replaceAll("\\", "/");
+                return _bestSellerListTile(singleItem, imgUrl);
               },
             ),
           ),
@@ -714,17 +738,17 @@ class BestSellersListModule extends StatelessWidget {
     );
   }
 
-  Widget _bestSellerListTile(ListOfProduct singleItem, imgUrl) {
+  Widget _bestSellerListTile(FavProductList singleItem, imgUrl) {
    log("imgUrl1212 : $imgUrl");
     return GestureDetector(
       onTap: () {
-        log('singleItem.productsrno : ${singleItem.productsrno}');
+        log('singleItem.productsrno : ${singleItem.srNo}');
         Get.to(
           () => JewellerJewelleryDetailsScreen(),
           arguments: [
             screenController.jewellerId.toString(),
-            singleItem.productsrno,
-            singleItem.name,
+            singleItem.srNo,
+            singleItem.itemName,
           ],
         );
       },
@@ -738,20 +762,24 @@ class BestSellersListModule extends StatelessWidget {
           children: [
             Expanded(
               flex: 8,
-              child: CachedNetworkImage(
-                imageUrl: imgUrl,
-                fit: BoxFit.cover,
-                // width: 18.w,
-                // height: 18.w,
-                errorWidget: (context, url, error) {
-                  return Image.asset(
-                    AppImages.noLogoImage,
-                    fit: BoxFit.cover,
-                    // width: 18.w,
-                    // height: 18.w,
-                  );
-                },
-              ).commonAllSidePadding(20),
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(10),
+                topRight: Radius.circular(10)),
+                child: CachedNetworkImage(
+                  imageUrl: imgUrl,
+                  fit: BoxFit.cover,
+                  // width: 18.w,
+                  // height: 18.w,
+                  errorWidget: (context, url, error) {
+                    return Image.asset(
+                      AppImages.noLogoImage,
+                      fit: BoxFit.cover,
+                      // width: 18.w,
+                      // height: 18.w,
+                    );
+                  },
+                ),
+              ).commonOnlyPadding(bottom: 0),
 
               /*singleItem.productimages.isNotEmpty
                   ? CachedNetworkImage(
@@ -785,16 +813,18 @@ class BestSellersListModule extends StatelessWidget {
             ),
             Expanded(
               flex: 2,
-              child: Text(
-                NumberFormat.currency(
-                  symbol: '₹ ',
-                  locale: "HI",
-                  decimalDigits: 2,
-                ).format(double.parse(singleItem.price)),
-                style: TextStyle(
-                  color: AppColors.blackColor,
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w600,
+              child: Center(
+                child: Text(
+                  NumberFormat.currency(
+                    symbol: '₹ ',
+                    locale: "HI",
+                    decimalDigits: 2,
+                  ).format(double.parse(singleItem.productPrice)),
+                  style: TextStyle(
+                    color: AppColors.blackColor,
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ),
@@ -834,7 +864,7 @@ class CustomerSpeakModule extends StatelessWidget {
                       color: AppColors.whiteColor,
                       fontSize: 13.sp,
                       fontWeight: FontWeight.bold,
-                      letterSpacing: 0.5,
+                      letterSpacing: 0.6,
                     ),
                   ).commonSymmetricPadding(horizontal: 8),
                 ],
@@ -910,6 +940,7 @@ class CustomerSpeakModule extends StatelessWidget {
                 style: TextStyle(
                   color: AppColors.whiteColor,
                   fontSize: 13.sp,
+                  fontFamily: "Acephimere",
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -924,7 +955,8 @@ class CustomerSpeakModule extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: AppColors.whiteColor,
-                  fontSize: 10.sp,
+                  fontSize: 10.5.sp,
+                  fontFamily: "Acephimere",
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -961,6 +993,8 @@ class GoldPriceModule extends StatelessWidget {
                   fontSize: 15.sp,
                   color: AppColors.darkCoffeeColor,
                   fontWeight: FontWeight.bold,
+                  fontFamily: "Acephimere",
+                  letterSpacing: 0.5,
                 ),
               ),
             ],
@@ -1022,8 +1056,9 @@ class GoldPriceModule extends StatelessWidget {
                                         screenController.goldPrice3)),
                             style: TextStyle(
                               color: AppColors.whiteColor,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w600,
                               fontSize: 15.sp,
+                              fontFamily: "Roboto"
                             ),
                           ).commonAllSidePadding(5),
                         ],

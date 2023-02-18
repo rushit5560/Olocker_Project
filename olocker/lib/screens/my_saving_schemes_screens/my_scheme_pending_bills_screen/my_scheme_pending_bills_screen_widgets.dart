@@ -123,11 +123,12 @@ class MyBillsModule extends StatelessWidget {
                         locale: "HI",
                         decimalDigits: 2,
                       ).format(double.parse(
-                          screenController.selectedAmountTotal.value)),
+                          screenController.selectedAmountTotal.value),
+                      ),
                       style: const TextStyle(
                         color: Colors.red,
                         fontSize: 20,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
@@ -201,7 +202,7 @@ class SinglePendingItem extends StatelessWidget {
     // log("formattedDate is:: $formattedDate");
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,

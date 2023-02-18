@@ -37,7 +37,7 @@ class PersonalLoansScreen extends StatelessWidget {
         title: Text(
           'Jewellery on EMI',
           style: TextStyle(
-            fontFamily: "Roboto",
+            fontFamily: "Acephimere",
             color: AppColors.blackTextColor,
             fontSize: 13.sp,
             fontWeight: FontWeight.w600,
@@ -124,7 +124,8 @@ class PersonalLoansScreen extends StatelessWidget {
                               color: const Color(0xFFEC7773),
                               height: 1.6,
                               fontSize: 10.sp,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "Acephimere",
                             ),
                           ),
                           iconWidget: Container(
@@ -154,7 +155,8 @@ class PersonalLoansScreen extends StatelessWidget {
                               color: const Color(0xFFEC7773),
                               height: 1.6,
                               fontSize: 10.sp,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "Acephimere",
                             ),
                           ),
                           iconWidget: Container(
@@ -192,7 +194,8 @@ class PersonalLoansScreen extends StatelessWidget {
                               color: const Color(0xFFEC7773),
                               height: 1.6,
                               fontSize: 10.sp,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "Acephimere",
                             ),
                           ),
                           iconWidget: Container(

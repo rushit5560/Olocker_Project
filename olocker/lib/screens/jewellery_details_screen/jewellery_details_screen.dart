@@ -19,15 +19,18 @@ class JewelleryDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.lightBrownBgColor,
         elevation: 0,
+        centerTitle: true,
         leading: IconButton(
           onPressed: () => Get.back(),
           icon:
-              const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor),
+              const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor,
+              ),
         ),
         title: Text(
           '${jewelleryDetailsController.jewelleryTypeName}',
+          textAlign: TextAlign.center,
           style: TextStyle(
-            fontFamily: "latoregular",
+            fontFamily: "Acephimere",
             color: AppColors.blackTextColor,
             fontSize: 13.sp,
             fontWeight: FontWeight.w500,
@@ -46,7 +49,7 @@ class JewelleryDetailsScreen extends StatelessWidget {
                         Image.asset(
                           AppImages.jewelleryProductBgShapeImage,
                           width: double.infinity,
-                          height: jewelleryDetailsController.size.height * 0.18,
+                          height: jewelleryDetailsController.size.height * 0.32,
                           fit: BoxFit.cover,
                         ),
                         jewelleryDetailsController
@@ -58,6 +61,7 @@ class JewelleryDetailsScreen extends StatelessWidget {
                                     color: AppColors.blackTextColor,
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.w500,
+                                    fontFamily: "Acephimere"
                                   ),
                                 ),
                               )
@@ -116,6 +120,7 @@ class JewelleryDetailsScreen extends StatelessWidget {
                       style: TextStyle(
                         color: AppColors.whiteColor,
                         fontSize: 13.sp,
+                        fontFamily: "Acephimere",
                       ),
                     ),
                   ),

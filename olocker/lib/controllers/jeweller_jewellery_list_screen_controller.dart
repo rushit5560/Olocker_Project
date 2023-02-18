@@ -20,6 +20,8 @@ class JewellerJewelleryListScreenController extends GetxController {
   String jewellerId = Get.arguments[2];
   JewelleryListType jewelleryListType =
       Get.arguments[3] ?? JewelleryListType.categoryId;
+  List<String> collectionNameList = Get.arguments[4] ?? [];
+  SearchCategory searchCategory = Get.arguments[5];
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -30,13 +32,76 @@ class JewellerJewelleryListScreenController extends GetxController {
 
   RxBool sortPriceValue = false.obs;
 
+  // List<String> get collectionNameList => _collectionNameList;
+
+  RxBool isSearchOn = false.obs;
+
   final List<SearchProductListDatum> _jewelleryList = [];
 
   List<SearchProductListDatum> get jewelleryList => _jewelleryList;
 
+  List<SearchProductListDatum> searchJewelleryList = [];
+
   PartnerDetails? partnerDetails;
 
   RxString userReferaalCode = "".obs;
+
+  TextEditingController searchFieldController = TextEditingController();
+
+
+  // SearchField Search Function
+  getSearchTextListFunction(String searchText) {
+    return searchFieldController.text.trim().isEmpty
+        ? collectionNameList
+        : collectionNameList.where((element) {
+      String searchListString = element.toLowerCase();
+      String searchTextNew = searchText.toLowerCase();
+      return searchListString.contains(searchTextNew);
+    }).toList();
+  }
+
+  Future<void> getSearchProductsFunction(String searchName) async {
+    isLoading(true);
+    String url = "";
+
+    if(SearchCategory.collectionType == searchCategory) {
+      url = "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&CollectionID=$searchName&CustomerId=${UserDetails.customerId}";
+    } else if(SearchCategory.categoryType == searchCategory) {
+      url = "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&Category=$searchName&CustomerId=${UserDetails.customerId}";
+    } else if(SearchCategory.productType == searchCategory) {
+      url = "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$searchName&CustomerId=${UserDetails.customerId}";
+    }
+    log('Url : $url');
+
+    try {
+      http.Response response = await http.get(
+        Uri.parse(url),
+        headers: apiHeader.headers,
+      );
+      log('getSearchProductsFunction response : ${response.body}');
+
+      AllJewelleryModel allJewelleryModel =
+      AllJewelleryModel.fromJson(json.decode(response.body));
+      isSuccessStatus = allJewelleryModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        searchJewelleryList.clear();
+        searchJewelleryList.addAll(allJewelleryModel.searchProductListData);
+
+
+        log('getSearchProductsFunction : ${searchJewelleryList.length}');
+      } else {
+        log('getSearchProductsFunction Else');
+      }
+    } catch (e) {
+      log('getSearchProductsFunction Error : $e');
+      rethrow;
+    }
+
+    isLoading(false);
+    // loadUI();
+  }
+
 
   // Get Category All Product
   Future<void> getAllJewelleryListFunction() async {
@@ -80,6 +145,8 @@ class JewellerJewelleryListScreenController extends GetxController {
       // isLoading(false);
     }
   }
+
+
 
   // Add product in Fav
   Future<void> addFavouriteProductFunction(
@@ -292,5 +359,10 @@ class JewellerJewelleryListScreenController extends GetxController {
   void onInit() {
     getAllJewelleryListFunction();
     super.onInit();
+  }
+
+  loadUI() {
+    isLoading(true);
+    isLoading(false);
   }
 }

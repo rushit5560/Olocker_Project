@@ -133,6 +133,7 @@ class MyJewellersListModule extends StatelessWidget {
               style: TextStyle(
                 fontSize: 13.sp,
                 color: AppColors.accentColor,
+                fontFamily: "Acephimere"
               ),
             ),
             GestureDetector(
@@ -212,7 +213,8 @@ class MyJewellersListModule extends StatelessWidget {
           Text(
             jewellerData.companyName,
             style: TextStyle(
-              fontSize: 9.sp,
+              fontSize: 8.sp,
+              fontFamily: "Acephimere"
             ),
           ),
         ],
@@ -288,6 +290,7 @@ class SmartDealsModule extends StatelessWidget {
                   style: TextStyle(
                     color: AppColors.whiteColor,
                     fontSize: 12.sp,
+                    fontFamily: "Acephimere"
                   ),
                 ),
                 Row(
@@ -335,7 +338,7 @@ class SmartDealsModule extends StatelessWidget {
           screenController.smartDealsSwitch.value == false
               ? screenController.smartDealsOnlineList.isEmpty
               ? Text(
-            'Online deals not available now',
+            'Keep checking this space for online deals',
             style: TextStyle(
               fontFamily: "Roboto",
               color: AppColors.whiteColor,
@@ -454,9 +457,10 @@ class OlockerServiceModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250,
+      height: 270,
       child: Stack(
         children: [
+          // Background module
           Column(
             children: [
               Expanded(
@@ -473,9 +477,11 @@ class OlockerServiceModule extends StatelessWidget {
               ),
             ],
           ),
+
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Service Logo
               Row(
                 children: [
                   Container(
@@ -490,27 +496,28 @@ class OlockerServiceModule extends StatelessWidget {
                 ],
               ),
               SizedBox(height: screenController.size.height * 0.0025.h),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   _serviceModule(
-                    width: 150,
-                    height: 170,
+                    width: 138,
+                    height: 185,
                     onTap: () {
                       Get.to(() => MyJewelleryPortFolioScreen());
                     },
                     title: 'Jewellery Insurance',
                     image: AppImages.olockerServiceLogo1Image,
                   ),
-                  SizedBox(width: screenController.size.width * 0.008.w),
+                  SizedBox(width: screenController.size.width * 0.005.w),
                   _serviceModule(
-                    width: 150,
-                    height: 170,
+                    width: 138,
+                    height: 185,
                     onTap: () {
                       Get.to(() => PersonalLoansScreen());
                     },
-                    title: 'Personal Loans',
+                    title: 'Load Against Jewellery',
                     image: AppImages.olockerServiceLogo2Image,
                   ),
                 ],
@@ -582,7 +589,7 @@ class OlockerServiceModule extends StatelessWidget {
                             title,
                             style: TextStyle(
                               color: AppColors.whiteColor,
-                              fontSize: 9.5.sp,
+                              fontSize: 8.0.sp,
                             ),
                           ),
                         ),

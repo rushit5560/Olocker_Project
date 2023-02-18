@@ -34,6 +34,8 @@ class JewellerDetailsScreenController extends GetxController {
   // RxBool isGoldPriceLoading = false.obs;
   // RxBool isAboutYourSelfLoading = false.obs;
 
+  List<String> collectionNameList = [];
+
   List<SpecialFeatureItem> specialFeaturesList = [];
   List<GetPushOfferItem> announcementOfferList = [];
   List<GetPushCollectionItem> jewelleryCategoryList = [];
@@ -41,7 +43,7 @@ class JewellerDetailsScreenController extends GetxController {
   List<ProductTypeItem> menTypeList = [];
   List<ProductTypeItem> womenTypeList = [];
   List<ProductTypeItem> kidsTypeList = [];
-  List<ListOfProduct> bestSellerList = [];
+  List<FavProductList> bestSellerList = [];
   List<Testimonial> clientTestimonialsList = [];
 
   RxBool isFeedbackValue = false.obs;
@@ -220,23 +222,39 @@ class JewellerDetailsScreenController extends GetxController {
       isSuccessStatus = jewelleryTypeModel.success.obs;
 
       if (isSuccessStatus.value) {
+        collectionNameList.clear();
         menTypeList.clear();
         if (jewelleryTypeModel.productTypeMen.isNotEmpty) {
           menTypeList.add(ProductTypeItem(name: '', image: ''));
           menTypeList.addAll(jewelleryTypeModel.productTypeMen);
+          for (var element in jewelleryTypeModel.productTypeMen) {
+            collectionNameList.add(element.name);
+          }
         }
         log('getJewelleryTypeFunction menTypeList : ${menTypeList.length}');
         womenTypeList.clear();
         if (jewelleryTypeModel.productTypeWomen.isNotEmpty) {
           womenTypeList.add(ProductTypeItem(name: '', image: ''));
           womenTypeList.addAll(jewelleryTypeModel.productTypeWomen);
+          for (var element in jewelleryTypeModel.productTypeWomen) {
+            collectionNameList.add(element.name);
+          }
         }
         log('getJewelleryTypeFunction womenTypeList : ${womenTypeList.length}');
         kidsTypeList.clear();
         if (jewelleryTypeModel.productTypeKids.isNotEmpty) {
           kidsTypeList.add(ProductTypeItem(name: '', image: ''));
           kidsTypeList.addAll(jewelleryTypeModel.productTypeKids);
+          for (var element in jewelleryTypeModel.productTypeKids) {
+            collectionNameList.add(element.name);
+          }
         }
+
+        log("collectionNameList Length :${collectionNameList.length}");
+        for(var element in collectionNameList) {
+          log('collectionNameList : $element');
+        }
+
       } else {
         log('getJewelleryTypeFunction Else');
       }
@@ -267,7 +285,7 @@ class JewellerDetailsScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         bestSellerList.clear();
-        bestSellerList.addAll(bestSellerModel.listOfProducts);
+        bestSellerList.addAll(bestSellerModel.favProductList);
         log('bestSellerList : ${bestSellerList.length}');
       } else {
         log('getBestSellerFunction Else');

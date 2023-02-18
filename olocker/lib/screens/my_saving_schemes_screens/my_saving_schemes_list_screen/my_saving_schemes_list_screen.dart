@@ -22,11 +22,11 @@ class MySavingSchemesListScreen extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
         ),
         title: Text(
-          'My Saving Schemes',
+          'My Savings Schemes',
           style: TextStyle(
             color: AppColors.blackTextColor,
             fontSize: 13.sp,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
@@ -52,13 +52,13 @@ class MySavingSchemesListScreen extends StatelessWidget {
                           ),
                         ),
                       )
-                    : Column(
+                    : MySchemesListViewModule(),/*Column(
                         children: [
                           // SizedBox(height: 1.h),
                           MySchemesListViewModule(),
                           SizedBox(height: 1.h),
                         ],
-                      ),
+                      ),*/
               ),
       ),
     );

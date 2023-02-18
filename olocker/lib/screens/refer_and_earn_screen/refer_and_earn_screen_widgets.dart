@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
+import 'package:olocker/utils/extensions.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
@@ -57,6 +58,7 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
         ),
         SizedBox(height: 2.5.h),
         Container(
+          width: Get.width,
           margin: EdgeInsets.symmetric(horizontal: 5.w),
           padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 3),
           decoration: BoxDecoration(
@@ -72,8 +74,25 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
               ),
             ],
           ),
-          child: Row(
+          child: Stack(
             children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                      referAndEarnScreenController.userReferaalCode.value
+                          .toUpperCase(),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: "Acephimere",
+                        color: AppColors.greyColor,
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ).commonSymmetricPadding(vertical: 12),
+                ],
+              ),
               IconButton(
                 onPressed: () {
                   referAndEarnScreenController.copyRefferalCode();
@@ -83,20 +102,8 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
                   color: AppColors.greyTextColor,
                   size: 15.sp,
                 ),
-              ),
-              Expanded(
-                child: Text(
-                  referAndEarnScreenController.userReferaalCode.value
-                      .toUpperCase(),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: "Acephimere",
-                    color: AppColors.greyColor,
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
+              )
+
             ],
           ),
         ),
@@ -150,7 +157,7 @@ class UserBenefitPointsTextModule extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 0.5.h),
+          // SizedBox(height: 0.5.h),
           Text(
             benefitDescription,
             style: TextStyle(

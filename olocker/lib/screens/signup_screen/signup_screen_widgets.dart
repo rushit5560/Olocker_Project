@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/signup_screen_controller.dart';
+import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/utils/field_validation.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
@@ -33,7 +34,7 @@ class RegisterHeaderModule extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontFamily: "elephantregular",
-                    fontSize: 14.sp,
+                    fontSize: 13.sp,
                     color: AppColors.blackColor,
                     letterSpacing: 0.6,
                   ),
@@ -44,7 +45,7 @@ class RegisterHeaderModule extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontFamily: "elephantregular",
-                    fontSize: 30.sp,
+                    fontSize: 26.sp,
                     color: AppColors.blackColor,
                     height: 0.9,
                     // letterSpacing: 0.8,
@@ -74,7 +75,7 @@ class NameFieldRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15),
-      height: 60,
+      height: 50,
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyTextColor.withOpacity(0.3),
@@ -178,11 +179,33 @@ class EmailField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   /* return TextFormField(
+      keyboardType: TextInputType.text,
+      textInputAction: TextInputAction.next,
+      validator: (value) => FieldValidator().validateEmail(value!),
+      controller: signUpScreenController.emailController,
+      decoration: InputDecoration(
+        isDense: true,
+        isCollapsed: true,
+        hintText: "Enter Email",
+        border: InputBorder.none,
+        enabledBorder: InputBorder.none,
+        focusedBorder: InputBorder.none,
+        hintStyle:
+        TextStyle(color: AppColors.greyTextColor, fontSize: 11.sp),
+        prefixIcon:  SvgPicture.asset(
+          "assets/svgs/message.svg",
+          color: AppColors.blackColor,
+          height: 8,
+          width: 8,
+        ),
+      ),
+    ).commonSymmetricPadding(horizontal: 15);*/
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
       ),
-      height: 60,
+      height: 50,
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyTextColor.withOpacity(0.3),
@@ -236,7 +259,7 @@ class MobileNumberField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
       ),
-      height: 60,
+      height: 50,
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyTextColor.withOpacity(0.3),
@@ -302,7 +325,7 @@ class EnterCodeField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
       ),
-      height: 60,
+      height: 50,
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.greyTextColor.withOpacity(0.3),
@@ -340,6 +363,22 @@ class EnterCodeField extends StatelessWidget {
               ),
             ),
           ),
+          // SizedBox(width: 5.w),
+
+          GestureDetector(
+            onTap: () {
+              // signUpScreenController.screenOpened.value = true;
+              signUpScreenController.scanQRCode();
+            },
+            child: Image.asset(
+              AppImages.qrImage,
+              // color: AppColors.blackColor,
+              height: 24,
+              width: 24,
+            ),
+          ),
+
+
         ],
       ),
     );

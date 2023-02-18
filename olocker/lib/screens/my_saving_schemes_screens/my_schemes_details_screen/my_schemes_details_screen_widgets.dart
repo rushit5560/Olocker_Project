@@ -611,6 +611,7 @@ class MySchemesTransactionsListViewModule extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: AppColors.blueDarkColor,
                   fontStyle: FontStyle.italic,
+                  fontFamily: "Acephimere"
                 ),
               ),
             ],
@@ -749,7 +750,7 @@ class TransactionSingleItemModule extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 12.sp,
                       color: AppColors.blueDarkColor,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                   const SizedBox(height: 5),
@@ -773,7 +774,7 @@ class TransactionSingleItemModule extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 13.sp,
                   color: AppColors.blackColor,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),

@@ -83,6 +83,7 @@ class AppImages {
   static const String pendingBillsImage = '$imageRootPath/my_bills_right.png';
   static const String declinedCardimage = '$imageRootPath/declined_card.png';
   static const String paymentDoneCardimage = '$imageRootPath/payment_card.png';
+  static const String qrImage = '$imageRootPath/qr.jpeg';
 }
 
 class AppIcons {

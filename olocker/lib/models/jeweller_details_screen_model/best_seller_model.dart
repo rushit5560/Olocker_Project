@@ -1,3 +1,4 @@
+/*
 import 'dart:convert';
 
 BestSellerModel bestSellerModelFromJson(String str) => BestSellerModel.fromJson(json.decode(str));
@@ -16,13 +17,14 @@ class BestSellerModel {
   ErrorInfo errorInfo;
 
   factory BestSellerModel.fromJson(Map<String, dynamic> json) => BestSellerModel(
-    listOfProducts: List<ListOfProduct>.from((json["ListOfProducts"] ?? []).map((x) => ListOfProduct.fromJson(x ?? {}))),
+    listOfProducts: List<ListOfProduct>.from((json["FavProductList"] ?? []).map((x) => ListOfProduct.fromJson(x ?? {}))),
+    // listOfProducts: List<ListOfProduct>.from((json["ListOfProducts"] ?? []).map((x) => ListOfProduct.fromJson(x ?? {}))),
     success: json["success"] ?? false,
     errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
   );
 
   Map<String, dynamic> toJson() => {
-    "ListOfProducts": List<dynamic>.from(listOfProducts.map((x) => x.toJson())),
+    "FavProductList": List<dynamic>.from(listOfProducts.map((x) => x.toJson())),
     "success": success,
     "error_info": errorInfo.toJson(),
   };
@@ -380,4 +382,97 @@ class SubCategoryIdItem {
 
 
 
+
+*/
+
+
+import 'dart:convert';
+
+BestSellerModel bestSellerModelFromJson(String str) => BestSellerModel.fromJson(json.decode(str));
+
+String bestSellerModelToJson(BestSellerModel data) => json.encode(data.toJson());
+
+class BestSellerModel {
+  BestSellerModel({
+    required this.favProductList,
+    required this.success,
+    required this.errorInfo,
+  });
+
+  List<FavProductList> favProductList;
+  bool success;
+  ErrorInfo errorInfo;
+
+  factory BestSellerModel.fromJson(Map<String, dynamic> json) => BestSellerModel(
+    favProductList: List<FavProductList>.from((json["FavProductList"] ?? []).map((x) => FavProductList.fromJson(x))),
+    success: json["success"] ?? false,
+    errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "FavProductList": List<dynamic>.from(favProductList.map((x) => x.toJson())),
+    "success": success,
+    "error_info": errorInfo.toJson(),
+  };
+}
+
+class ErrorInfo {
+  ErrorInfo({
+    required this.errorType,
+    required this.extraInfo,
+    required this.description,
+    // this.errorData,
+  });
+
+  int errorType;
+  String extraInfo;
+  String description;
+  // dynamic errorData;
+
+  factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
+    errorType: json["error_type"] ?? 0,
+    extraInfo: json["extra_info"] ?? "",
+    description: json["description"] ?? "",
+    // errorData: json["error_data"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "error_type": errorType,
+    "extra_info": extraInfo,
+    "description": description,
+    // "error_data": errorData,
+  };
+}
+
+class FavProductList {
+  FavProductList({
+    required this.srNo,
+    required this.itemName,
+    required this.partnerSrNo,
+    required this.productImage,
+    required this.productPrice,
+  });
+
+  int srNo;
+  String itemName;
+  int partnerSrNo;
+  String productImage;
+  String productPrice;
+
+  factory FavProductList.fromJson(Map<String, dynamic> json) => FavProductList(
+    srNo: json["SrNo"] ?? 0,
+    itemName: json["ItemName"] ?? "",
+    partnerSrNo: json["PartnerSrNo"] ?? 0,
+    productImage: json["ProductImage"] ?? "",
+    productPrice: json["ProductPrice"] ?? "",
+  );
+
+  Map<String, dynamic> toJson() => {
+    "SrNo": srNo,
+    "ItemName": itemName,
+    "PartnerSrNo": partnerSrNo,
+    "ProductImage": productImage,
+    "ProductPrice": productPrice,
+  };
+}
 

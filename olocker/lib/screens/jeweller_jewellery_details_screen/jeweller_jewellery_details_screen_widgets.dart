@@ -71,6 +71,7 @@ class JewellerProductImagesSliderModule extends StatelessWidget {
               width: jewelleryDetailsController.size.height * 0.25,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
+                color: AppColors.whiteColor
               ),
               child: ClipRRect(
                 borderRadius: const BorderRadius.all(
@@ -86,12 +87,13 @@ class JewellerProductImagesSliderModule extends StatelessWidget {
                     return Container(
                       color: AppColors.whiteColor,
                       child: const Center(
-                        child: Text("no image"),
+                        child: Text("no image",
+                        style: TextStyle(fontFamily: "Acephimere"),),
                       ),
                     );
                   },
                 ),
-              ),
+              ).commonAllSidePadding(5),
             ),
           );
         },
@@ -139,7 +141,8 @@ class ShowFullScreenImagesSliderModule extends StatelessWidget {
                 ),
                 errorBuilder: (context, error, stackTrace) {
                   return const Center(
-                    child: Text("Image not loaded"),
+                    child: Text("Image not loaded",
+                    style: TextStyle(fontFamily: "Acephimere"),),
                   );
                 },
                 // initialScale: 0.32,
@@ -317,7 +320,7 @@ class JewellerJewelleryApproxPriceModule extends StatelessWidget {
 
                 // "₹${jewelleryDetailController.productDetailsData.price.toString()}",
                 style: TextStyle(
-                  fontFamily: "Roboto",
+                  fontFamily: "Acephimere",
                   color: AppColors.whiteColor,
                   fontSize: 13.sp,
                   fontWeight: FontWeight.w600,
@@ -330,7 +333,7 @@ class JewellerJewelleryApproxPriceModule extends StatelessWidget {
             : Text(
                 "(Approximate Price)",
                 style: TextStyle(
-                  fontFamily: "Roboto",
+                  fontFamily: "Acephimere",
                   color: AppColors.whiteColor,
                   fontSize: 13.sp,
                   fontWeight: FontWeight.w500,
@@ -358,13 +361,13 @@ class JewellerProductDescriptionModule extends StatelessWidget {
         ),
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        // mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             "product description".toUpperCase(),
             style: TextStyle(
-              fontFamily: "Roboto",
+              fontFamily: "Acephimere",
               color: AppColors.blueDarkColor,
               fontSize: 13.sp,
               fontWeight: FontWeight.w500,
@@ -442,7 +445,7 @@ class ProductDescRow extends StatelessWidget {
               textTitle,
               maxLines: 2,
               style: TextStyle(
-                fontFamily: "Roboto",
+                fontFamily: "Acephimere",
                 color: AppColors.blueDarkColor,
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w500,
@@ -452,7 +455,7 @@ class ProductDescRow extends StatelessWidget {
           Text(
             ":  ",
             style: TextStyle(
-              fontFamily: "Roboto",
+              fontFamily: "Acephimere",
               color: AppColors.blueDarkColor,
               fontSize: 12.sp,
               fontWeight: FontWeight.w500,
@@ -464,7 +467,7 @@ class ProductDescRow extends StatelessWidget {
               textValue,
               maxLines: 2,
               style: TextStyle(
-                fontFamily: "Roboto",
+                fontFamily: "Acephimere",
                 color: AppColors.blueDarkColor,
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w500,
@@ -502,7 +505,7 @@ class JewellerJewellerFeaturesAvailableModule extends StatelessWidget {
           Text(
             "what makes us stand out".toUpperCase(),
             style: TextStyle(
-              fontFamily: "Roboto",
+              fontFamily: "Acephimere",
               color: AppColors.blueDarkColor,
               fontSize: 13.sp,
               fontWeight: FontWeight.w500,
@@ -533,7 +536,7 @@ class JewellerJewellerFeaturesAvailableModule extends StatelessWidget {
                         .toUpperCase(),
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontFamily: "Roboto",
+                      fontFamily: "Acephimere",
                       color: AppColors.blackColor,
                       fontSize: 8.5.sp,
                       fontWeight: FontWeight.w500,

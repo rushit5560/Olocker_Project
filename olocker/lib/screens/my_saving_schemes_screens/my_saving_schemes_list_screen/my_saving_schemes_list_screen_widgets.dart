@@ -85,8 +85,8 @@ class SingleSchemeItemModule extends StatelessWidget {
                   Container(
                     height: 15,
                     width: 15,
-                    decoration: const BoxDecoration(
-                      color: AppColors.greenTintColor,
+                    decoration: BoxDecoration(
+                      color: schemeData.status == "UNMATURED" ? AppColors.greenTintColor : Colors.red,
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -145,7 +145,7 @@ class SingleSchemeItemModule extends StatelessWidget {
                           schemeData.partnerName,
                           style: TextStyle(
                             fontSize: 16.sp,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.bold,
                             color: AppColors.blackColor,
                           ),
                         ),
@@ -464,7 +464,7 @@ class AmountDetailsColoredColumn extends StatelessWidget {
             style: TextStyle(
               fontSize: 14.sp,
               color: color,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(height: 4),
@@ -473,7 +473,7 @@ class AmountDetailsColoredColumn extends StatelessWidget {
             style: TextStyle(
               fontSize: 10.sp,
               color: AppColors.blackColor,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ],

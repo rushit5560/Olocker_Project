@@ -20,144 +20,272 @@ class JewellerJewelleryListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.blueDarkColor,
-      appBar: AppBar(
-        backgroundColor: AppColors.whiteColor,
-        elevation: 0,
-        leading: IconButton(
-          onPressed: () => Get.back(),
-          icon:
-              const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor),
-        ),
-        title: Text(
-          jewellerJewelleryListScreenController.jewelleryName,
-          style: TextStyle(
-            fontFamily: "Roboto",
-            color: AppColors.blackTextColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w400,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.blueDarkColor,
+        appBar: AppBar(
+          backgroundColor: AppColors.whiteColor,
+          elevation: 0,
+          leading: IconButton(
+            onPressed: () => Get.back(),
+            icon:
+                const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor),
           ),
-        ),
-        actions: [
-          /*IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.search_rounded,
-              color: AppColors.greyColor,
-            ),
-          ),*/
-          IconButton(
-            onPressed: () {
-              Get.to(
-                () => MyFavouritesScreen(),
-                arguments: [
-                  jewellerJewelleryListScreenController.jewellerId.toString(),
-                ],
-              )!
-                  .then((value) async {
-                await jewellerJewelleryListScreenController
-                    .getAllJewelleryListFunction();
-              });
-            },
-            icon: const Icon(
-              Icons.favorite_outline_rounded,
-              color: AppColors.greyColor,
+          title: Text(
+            jewellerJewelleryListScreenController.jewelleryName,
+            style: TextStyle(
+              fontFamily: "Roboto",
+              color: AppColors.blackTextColor,
+              fontSize: 13.sp,
+              fontWeight: FontWeight.w400,
             ),
           ),
-          IconButton(
-            onPressed: () {
-              Get.to(
-                () => MyInquiriesListScreen(),
-                arguments: [
-                  jewellerJewelleryListScreenController.jewellerId.toString(),
-                ],
-              );
-            },
-            icon: const Icon(
-              Icons.mail_outline_rounded,
-              color: AppColors.greyColor,
+          actions: [
+            /*IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.search_rounded,
+                color: AppColors.greyColor,
+              ),
+            ),*/
+            IconButton(
+              onPressed: () {
+                jewellerJewelleryListScreenController.isSearchOn.value =
+                !jewellerJewelleryListScreenController.isSearchOn.value;
+                log('${jewellerJewelleryListScreenController.isSearchOn.value}');
+              },
+              icon: const Icon(
+                Icons.search_rounded,
+                color: AppColors.greyColor,
+              ),
             ),
-          ),
-        ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(40),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+            IconButton(
+              onPressed: () {
+                Get.to(
+                  () => MyFavouritesScreen(),
+                  arguments: [
+                    jewellerJewelleryListScreenController.jewellerId.toString(),
+                  ],
+                )!
+                    .then((value) async {
+                  await jewellerJewelleryListScreenController
+                      .getAllJewelleryListFunction();
+                });
+              },
+              icon: const Icon(
+                Icons.favorite_outline_rounded,
+                color: AppColors.greyColor,
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                Get.to(
+                  () => MyInquiriesListScreen(),
+                  arguments: [
+                    jewellerJewelleryListScreenController.jewellerId.toString(),
+                  ],
+                );
+              },
+              icon: const Icon(
+                Icons.mail_outline_rounded,
+                color: AppColors.greyColor,
+              ),
+            ),
+          ],
+          /*bottom: PreferredSize(
+            preferredSize: jewellerJewelleryListScreenController.isSearchOn.value == true
+                ? Size.fromHeight(70)
+                : Size.fromHeight(40),
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Image.asset(
-                    AppIcons.filterIcon,
-                    height: 18.sp,
+                  Obx(
+                      ()=> jewellerJewelleryListScreenController.isSearchOn.value
+                          ? TextFormField(
+                        decoration: const InputDecoration(
+                            hintText: 'Search By Product Name'
+                        ),
+                      )
+                          : Container(),
                   ),
-                  const Text(
-                    'SORT BT PRICE',
-                  ),
-                ],
-              ),
-              Obx(
-                () => FlutterToggleTab(
-                  height: 5.h,
-                  width: 10.w,
-                  marginSelected: const EdgeInsets.all(3),
-                  borderRadius: 28,
-                  selectedIndex: jewellerJewelleryListScreenController
-                      .selectedSortingIndex.value,
-                  unSelectedBackgroundColors: const [
-                    AppColors.greenColor,
-                  ],
-                  selectedBackgroundColors: const [
-                    AppColors.whiteColor,
-                  ],
-                  selectedTextStyle: TextStyle(
-                    fontFamily: "Roboto",
-                    color: AppColors.greenColor,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  unSelectedTextStyle: TextStyle(
-                    fontFamily: "Roboto",
-                    color: AppColors.whiteColor,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  labels: const [
-                    "LOW",
-                    "HIGH",
-                  ],
-                  selectedLabelIndex: (index) {
-                    jewellerJewelleryListScreenController.isLoading(true);
-                    jewellerJewelleryListScreenController.selectedSortingIndex.value = index;
-                    jewellerJewelleryListScreenController.isLoading(false);
-                    log('selected sorting index :: ${jewellerJewelleryListScreenController.selectedSortingIndex.value}');
-                    jewellerJewelleryListScreenController.changeSortOption();
-                  },
-                ),
-              ),
-            ],
-          ).commonOnlyPadding(bottom: 5, left: 10),
-        ),
-      ),
-      body: Obx(
-        () => jewellerJewelleryListScreenController.isLoading.value
-            ? const JewelleryListScreenLoadingWidget()
-            : jewellerJewelleryListScreenController.jewelleryList.isEmpty
-                ? Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20.h),
-                    child: Center(
-                      child: Text(
-                        "No Jewellery Found",
-                        style: TextStyle(
-                          color: AppColors.whiteColor,
-                          fontSize: 13.sp,
-                          fontWeight: FontWeight.w400,
+
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            AppIcons.filterIcon,
+                            height: 18.sp,
+                          ),
+                          const Text(
+                            'SORT BT PRICE',
+                          ),
+                        ],
+                      ),
+                      Obx(
+                        () => FlutterToggleTab(
+                          height: 5.h,
+                          width: 10.w,
+                          marginSelected: const EdgeInsets.all(3),
+                          borderRadius: 28,
+                          selectedIndex: jewellerJewelleryListScreenController
+                              .selectedSortingIndex.value,
+                          unSelectedBackgroundColors: const [
+                            AppColors.greenColor,
+                          ],
+                          selectedBackgroundColors: const [
+                            AppColors.whiteColor,
+                          ],
+                          selectedTextStyle: TextStyle(
+                            fontFamily: "Roboto",
+                            color: AppColors.greenColor,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          unSelectedTextStyle: TextStyle(
+                            fontFamily: "Roboto",
+                            color: AppColors.whiteColor,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          labels: const [
+                            "LOW",
+                            "HIGH",
+                          ],
+                          selectedLabelIndex: (index) {
+                            jewellerJewelleryListScreenController.isLoading(true);
+                            jewellerJewelleryListScreenController.selectedSortingIndex.value = index;
+                            jewellerJewelleryListScreenController.isLoading(false);
+                            log('selected sorting index :: ${jewellerJewelleryListScreenController.selectedSortingIndex.value}');
+                            jewellerJewelleryListScreenController.changeSortOption();
+                          },
                         ),
                       ),
+                    ],
+                  ).commonOnlyPadding(bottom: 5, left: 10),
+                ],
+              ),
+
+          ),*/
+        ),
+        body: Obx(
+          () => jewellerJewelleryListScreenController.isLoading.value
+              ? const JewelleryListScreenLoadingWidget()
+              : /*jewellerJewelleryListScreenController.jewelleryList.isEmpty
+                  ? Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20.h),
+                      child: Center(
+                        child: Text(
+                          "No Jewellery Found",
+                          style: TextStyle(
+                            color: AppColors.whiteColor,
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                    )
+                  : */Column(
+                      children: [
+                        Container(
+                          decoration: const BoxDecoration(color: Colors.white),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Obx(
+                                () => jewellerJewelleryListScreenController.isSearchOn.value
+                                    ? SearchFieldModule().commonSymmetricPadding(horizontal: 5)
+                                    : Container(),
+                              ).commonOnlyPadding(bottom: 5),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        AppIcons.filterIcon,
+                                        height: 18.sp,
+                                      ),
+                                      const Text(
+                                        'SORT BT PRICE',
+                                      ),
+                                    ],
+                                  ),
+                                  Obx(
+                                        () => FlutterToggleTab(
+                                      height: 5.h,
+                                      width: 10.w,
+                                      marginSelected: const EdgeInsets.all(3),
+                                      borderRadius: 28,
+                                      selectedIndex:
+                                      jewellerJewelleryListScreenController
+                                          .selectedSortingIndex.value,
+                                      unSelectedBackgroundColors: const [
+                                        AppColors.greenColor,
+                                      ],
+                                      selectedBackgroundColors: const [
+                                        AppColors.whiteColor,
+                                      ],
+                                      selectedTextStyle: TextStyle(
+                                        fontFamily: "Roboto",
+                                        color: AppColors.greenColor,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                      unSelectedTextStyle: TextStyle(
+                                        fontFamily: "Roboto",
+                                        color: AppColors.whiteColor,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                      labels: const [
+                                        "LOW",
+                                        "HIGH",
+                                      ],
+                                      selectedLabelIndex: (index) {
+                                        jewellerJewelleryListScreenController
+                                            .isLoading(true);
+                                        jewellerJewelleryListScreenController
+                                            .selectedSortingIndex.value = index;
+                                        jewellerJewelleryListScreenController
+                                            .isLoading(false);
+                                        log('selected sorting index :: ${jewellerJewelleryListScreenController.selectedSortingIndex.value}');
+                                        jewellerJewelleryListScreenController
+                                            .changeSortOption();
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ).commonOnlyPadding(bottom: 5, left: 10)
+                            ],
+                          ),
+                        ),
+                    Expanded(
+                      child: jewellerJewelleryListScreenController.searchJewelleryList.isNotEmpty
+                        ? SearchJewelleryGridviewModule()
+                      : jewellerJewelleryListScreenController.jewelleryList.isNotEmpty
+                          ? JewelleryGridviewModule()
+                          : Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 20.h),
+                                  child: Center(
+                                    child: Text(
+                                      "No Jewellery Found",
+                                      style: TextStyle(
+                                        color: AppColors.whiteColor,
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                     ),
-                  )
-                : JewelleryGridviewModule(),
+                  ],
+                    ),
+        ),
       ),
     );
   }

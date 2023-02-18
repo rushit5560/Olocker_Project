@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
+import 'package:olocker/constants/enum.dart';
 import 'package:olocker/constants/user_details.dart';
 import 'package:share_plus/share_plus.dart';
 import '../models/jeweller_details_screen_model/get_offer_details_list_model.dart';
@@ -17,6 +18,8 @@ class OffersJewelleryListScreenController extends GetxController {
   // String offerName = Get.arguments[0];
   String offerId = Get.arguments[0];
   String jewellerId = Get.arguments[1];
+  List<String> collectionNameList = Get.arguments[2] ?? [];
+  SearchCategory searchCategory = Get.arguments[3];
   // JewelleryListType jewelleryListType =
   //     Get.arguments[3] ?? JewelleryListType.categoryId;
 
@@ -32,12 +35,28 @@ class OffersJewelleryListScreenController extends GetxController {
   GetOfferDetailResultModel? offerDetailResultModeldata;
 
   final List<GetProduct> _jewelleryList = [];
+  final List<GetProduct> searchJewelleryList = [];
 
   List<GetProduct> get jewelleryList => _jewelleryList;
 
   PartnerDetails? partnerDetails;
 
   RxString userReferaalCode = "".obs;
+
+  RxBool isSearchOn = false.obs;
+  TextEditingController searchFieldController = TextEditingController();
+
+
+  // SearchField Search Function
+  getOfferSearchTextListFunction(String searchText) {
+    return searchFieldController.text.trim().isEmpty
+        ? collectionNameList
+        : collectionNameList.where((element) {
+      String searchListString = element.toLowerCase();
+      String searchTextNew = searchText.toLowerCase();
+      return searchListString.contains(searchTextNew);
+    }).toList();
+  }
 
   // Get Category All Product
   Future<void> getOfferDetailListFunction() async {
@@ -81,6 +100,53 @@ class OffersJewelleryListScreenController extends GetxController {
       await getPartnerByCodeFunction();
       // isLoading(false);
     }
+  }
+
+  Future<void> getSearchProductsFunction(String searchName) async {
+    isLoading(true);
+    String url = "${ApiUrl.getOfferDetailApi}?OfferId=$offerId&CustomerSrNo=${UserDetails.customerId}";
+
+    // "${ApiUrl.getOfferDetailApi}?OfferId=$offerId&CustomerSrNo=${UserDetails.customerId}"
+    // "api/Partner/GetOfferDetail?OfferId=$offerId&CustomerSrNo=${UserDetails.customerId}"
+
+
+    // if(SearchCategory.collectionType == searchCategory) {
+    //   url = "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&CollectionID=$searchName&CustomerId=${UserDetails.customerId}";
+    // } else if(SearchCategory.categoryType == searchCategory) {
+    //   url = "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&Category=$searchName&CustomerId=${UserDetails.customerId}";
+    // } else if(SearchCategory.productType == searchCategory) {
+    //   url = "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$searchName&CustomerId=${UserDetails.customerId}";
+    // }
+    log('Url : $url');
+
+    try {
+      http.Response response = await http.get(
+        Uri.parse(url),
+        headers: apiHeader.headers,
+      );
+      log('getOfferDetailListFunction response : ${response.body}');
+
+      GetOfferDetailResultModel getOfferDetailResultModel =
+      GetOfferDetailResultModel.fromJson(json.decode(response.body));
+      isSuccessStatus = getOfferDetailResultModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        offerDetailResultModeldata = getOfferDetailResultModel;
+        searchJewelleryList.clear();
+        searchJewelleryList.addAll(getOfferDetailResultModel.getProduct);
+
+        // _jewelleryList.
+        log('getOfferDetailListFunction _jewelleryList : ${_jewelleryList.length}');
+      } else {
+        log('getOfferDetailListFunction Else');
+      }
+    } catch (e) {
+      log('getOfferDetailListFunction Error : $e');
+      rethrow;
+    }
+
+    isLoading(false);
+    // loadUI();
   }
 
   // Add product in Fav

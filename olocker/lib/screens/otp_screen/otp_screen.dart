@@ -42,7 +42,7 @@ class OtpScreen extends StatelessWidget {
                         right: 6.w,
                         bottom: 3.h,
                       ),
-                      // height: otpScreenController.size.height * 0.4,
+                      height: otpScreenController.size.height * 0.35,
                       width: otpScreenController.size.width,
                       color: AppColors.accentBGColor,
                       child: Image.asset(
@@ -59,9 +59,9 @@ class OtpScreen extends StatelessWidget {
                         Text(
                           "Enter 6 digit code sent for you",
                           style: TextStyle(
-                            color: AppColors.blackColor,
-                            fontSize: 13.sp,
-                            fontWeight: FontWeight.w400,
+                            color: AppColors.greyColor,
+                            fontSize: 11.sp,
+                            // fontWeight: FontWeight.w400,
                           ),
                         )
                       ],
@@ -73,14 +73,14 @@ class OtpScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Don't receive the OTP?",
+                          "Don't receive the OTP ?",
                           style: TextStyle(
                             color: AppColors.greyColor,
                             fontSize: 11.sp,
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                        const SizedBox(width: 10),
+                        const SizedBox(width: 5),
                         GestureDetector(
                           onTap: () async {
                             await otpScreenController
@@ -113,7 +113,7 @@ class OtpScreen extends StatelessWidget {
                             "Verify & Proceed",
                             style: TextStyle(
                               color: AppColors.whiteColor,
-                              fontSize: 15.sp,
+                              fontSize: 12.sp,
                               fontWeight: FontWeight.w400,
                             ),
                           ),

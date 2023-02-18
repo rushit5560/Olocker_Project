@@ -55,7 +55,8 @@ class MySchemesDetailsScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         getSavingSchemeData = getSavingSchemesListModel.getSavingSchemeList[0];
-        jewellerLogo = ApiUrl.apiImagePath + getSavingSchemeData!.partnerLogo;
+        jewellerLogo = ApiUrl.apiImagePath + getSavingSchemesListModel.partnerLogo;
+        // jewellerLogo = ApiUrl.apiImagePath + getSavingSchemeData!.partnerLogo;
 
         log('getSavingSchemeData schemeName ::: ${getSavingSchemeData!.schemeName}');
         log('getSavingSchemeData mobile no ::: ${getSavingSchemeData!.mobile}');

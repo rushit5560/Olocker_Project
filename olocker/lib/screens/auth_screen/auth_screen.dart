@@ -28,7 +28,7 @@ class AuthScreen extends StatelessWidget {
                 right: 6.w,
                 bottom: 5.h,
               ),
-              // height: authScreenController.size.height * 0.4,
+              height: authScreenController.size.height * 0.50,
               width: authScreenController.size.width,
               color: AppColors.accentBGColor,
               child: Image.asset(

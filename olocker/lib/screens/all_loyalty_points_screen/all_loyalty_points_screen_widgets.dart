@@ -20,6 +20,15 @@ class AllLoyaltyPointListModule extends StatelessWidget {
       itemBuilder: (context, i) {
         String imgUrl =
             ApiUrl.apiMainPath + screenController.loyaltyPointList[i].logoUrl;
+        String redeemedPoint = "";
+
+        if(screenController.loyaltyPointList[i].totalReedemedPoint.contains(".")) {
+          redeemedPoint = screenController.loyaltyPointList[i].totalReedemedPoint.split(".")[0];
+        } else {
+          redeemedPoint = screenController.loyaltyPointList[i].totalReedemedPoint;
+        }
+
+
         return Container(
           decoration: BoxDecoration(
             color: AppColors.whiteColor,
@@ -109,8 +118,7 @@ class AllLoyaltyPointListModule extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          screenController.loyaltyPointList[i]
-                                              .totalReedemedPoint,
+                                          redeemedPoint,
                                           style: TextStyle(
                                             fontFamily: "Roboto",
                                             color: AppColors.whiteColor,

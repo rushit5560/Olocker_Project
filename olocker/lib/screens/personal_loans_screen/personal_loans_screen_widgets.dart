@@ -137,7 +137,7 @@ class StepOneFormModule extends StatelessWidget {
         //                   "GET LOAN",
         //                   style: TextStyle(
         //                     fontSize: 11.sp,
-        //                     fontFamily: "Roboto",
+        //                     fontFamily: "Acephimere",
         //                     color: AppColors.whiteColor,
         //                   ),
         //                 ),
@@ -170,7 +170,7 @@ class StepOneFormModule extends StatelessWidget {
                       'Your personal data',
                       style: TextStyle(
                         fontSize: 16.sp,
-                        fontFamily: "Roboto",
+                        fontFamily: "Acephimere",
                         fontWeight: FontWeight.bold,
                         color: AppColors.blueDarkColor,
                       ),
@@ -183,7 +183,7 @@ class StepOneFormModule extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 11.sp,
-                          fontFamily: "Roboto",
+                          fontFamily: "Acephimere",
                           color: AppColors.greyColor,
                         ),
                       ),
@@ -218,11 +218,13 @@ class StepOneFormModule extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 9.5.sp,
-                        fontFamily: "Roboto",
+                        fontFamily: "Acephimere",
                         color: AppColors.greyColor,
                       ),
                     ),
                     SizedBox(height: screenController.size.height * 0.0030.h),
+                    _lastDrawnSalaryModule(),
+                    const SizedBox(height: 10),
                     _monthlyIncomeModule(),
                     const SizedBox(height: 10),
                     _employerNameModule(),
@@ -273,7 +275,7 @@ class StepOneFormModule extends StatelessWidget {
                 hint: Text(
                   screenController.namePrefixDDValue.value,
                   style: TextStyle(
-                    fontFamily: "Roboto",
+                    fontFamily: "Acephimere",
                     color: AppColors.greyColor,
                     fontSize: 11.sp,
                     fontWeight: FontWeight.w500,
@@ -285,7 +287,7 @@ class StepOneFormModule extends StatelessWidget {
                           child: Text(
                             item,
                             style: TextStyle(
-                              fontFamily: "Roboto",
+                              fontFamily: "Acephimere",
                               color: AppColors.greyColor,
                               fontSize: 10.sp,
                             ),
@@ -324,7 +326,7 @@ class StepOneFormModule extends StatelessWidget {
                 errorMaxLines: 2,
                 hintStyle: TextStyle(
                   fontSize: 11.sp,
-                  fontFamily: "Roboto",
+                  fontFamily: "Acephimere",
                   color: AppColors.greyColor,
                 ),
               ),
@@ -348,6 +350,7 @@ class StepOneFormModule extends StatelessWidget {
                 hintStyle: TextStyle(
                   color: AppColors.greyColor,
                   fontSize: 11.sp,
+                  fontFamily: "Acephimere",
                 ),
               ),
             ),
@@ -385,6 +388,7 @@ class StepOneFormModule extends StatelessWidget {
             hintStyle: TextStyle(
               color: AppColors.greyColor,
               fontSize: 11.sp,
+              fontFamily: "Acephimere",
             ),
           ),
         ),
@@ -416,7 +420,7 @@ class StepOneFormModule extends StatelessWidget {
                       child: const Text(
                         'CANCEL',
                         style: TextStyle(
-                          fontFamily: "Roboto",
+                          fontFamily: "Acephimere",
                           color: AppColors.blueDarkColor,
                         ),
                       ),
@@ -440,7 +444,7 @@ class StepOneFormModule extends StatelessWidget {
                         'DONE',
                         style: TextStyle(
                           color: AppColors.blueDarkColor,
-                          fontFamily: "Roboto",
+                          fontFamily: "Acephimere",
                         ),
                       ),
                     ),
@@ -499,7 +503,8 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp,
+              fontFamily: "Acephimere",),
           ),
         ),
       ),
@@ -529,7 +534,8 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp,
+              fontFamily: "Acephimere",),
           ),
         ),
       ),
@@ -563,7 +569,8 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp,
+              fontFamily: "Acephimere",),
           ),
         ),
       ),
@@ -596,7 +603,9 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp,
+              fontFamily: "Acephimere",
+            ),
           ),
         ),
       ),
@@ -622,6 +631,7 @@ class StepOneFormModule extends StatelessWidget {
                 fontSize: 11.sp,
                 color: AppColors.greyColor,
                 fontWeight: FontWeight.w500,
+                fontFamily: "Acephimere",
               ),
             ),
           ),
@@ -643,6 +653,8 @@ class StepOneFormModule extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: AppColors.accentColor,
+                        fontFamily: "Acephimere",
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
@@ -653,6 +665,8 @@ class StepOneFormModule extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: AppColors.accentColor,
+                        fontFamily: "Acephimere",
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
@@ -703,6 +717,7 @@ class StepOneFormModule extends StatelessWidget {
                   fontSize: 11.sp,
                   color: AppColors.greyColor,
                   fontWeight: FontWeight.w500,
+                  fontFamily: "Acephimere",
                 ),
               ),
               Text(
@@ -711,6 +726,7 @@ class StepOneFormModule extends StatelessWidget {
                   fontSize: 11.sp,
                   color: AppColors.greyColor,
                   fontWeight: FontWeight.w500,
+                  fontFamily: "Acephimere",
                 ),
               ),
             ],
@@ -748,6 +764,38 @@ class StepOneFormModule extends StatelessWidget {
   //   );
   // }
 
+  Widget _lastDrawnSalaryModule() {
+    return Container(
+      // height: 45,
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: AppColors.greyColor.withOpacity(0.2),
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
+      ),
+      child: Center(
+        child: TextFormField(
+          controller: screenController.lastDrawnSalaryController,
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.number,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: (value) => FieldValidator().validateMonthlyIncome(value!),
+          decoration: InputDecoration(
+            isDense: true,
+            isCollapsed: true,
+            hintText: "Your last drawn salary (INR)",
+            border: InputBorder.none,
+            enabledBorder: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp,
+              fontFamily: "Acephimere",),
+          ),
+        ),
+      ),
+    );
+  }
+
+
   Widget _monthlyIncomeModule() {
     return Container(
       // height: 45,
@@ -771,7 +819,8 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp,
+              fontFamily: "Acephimere",),
           ),
         ),
       ),
@@ -801,7 +850,8 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp,
+              fontFamily: "Acephimere",),
           ),
         ),
       ),
@@ -862,7 +912,8 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp,
+              fontFamily: "Acephimere",),
           ),
         ),
       ),
@@ -875,14 +926,15 @@ class StepOneFormModule extends StatelessWidget {
       children: [
         Row(
           children: [
-            const Text('Do you have home loan ?').commonOnlyPadding(left: 7.w),
+            const Text('Do you have home loan ?',
+            style: TextStyle(fontFamily: "Acephimere",),).commonOnlyPadding(left: 7.w),
           ],
         ),
         Row(
           children: [
             Expanded(
               child: RadioListTile(
-                title: const Text("Yes"),
+                title: const Text("Yes", style: TextStyle(fontFamily: "Acephimere",),),
                 value: "yes",
                 groupValue: screenController.homeLoanValue.value,
                 onChanged: (value) {
@@ -894,7 +946,7 @@ class StepOneFormModule extends StatelessWidget {
             ),
             Expanded(
               child: RadioListTile(
-                title: const Text("No"),
+                title: const Text("No", style: TextStyle(fontFamily: "Acephimere",),),
                 value: "no",
                 groupValue: screenController.homeLoanValue.value,
                 onChanged: (value) {
@@ -950,7 +1002,7 @@ class StepOneFormModule extends StatelessWidget {
             'Submit',
             style: TextStyle(
               color: AppColors.whiteColor,
-              fontFamily: "Roboto",
+              fontFamily: "Acephimere",
               fontSize: 12.sp,
             ),
           ),
@@ -1091,7 +1143,7 @@ class StepTwoFormModule extends StatelessWidget {
                   'Submit',
                   style: TextStyle(
                     color: AppColors.whiteColor,
-                    fontFamily: "Roboto",
+                    fontFamily: "Acephimere",
                     fontSize: 12.sp,
                   ),
                 ),
@@ -1132,7 +1184,7 @@ class StepThreeFormModule extends StatelessWidget {
                 fontSize: 10.sp,
                 fontStyle: FontStyle.italic,
                 color: AppColors.greyDarkColor,
-                fontFamily: "Roboto",
+                fontFamily: "Acephimere",
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -1187,7 +1239,7 @@ class StepThreeFormModule extends StatelessWidget {
                   style: TextStyle(
                     color: AppColors.blackColor,
                     fontSize: 12.sp,
-                    fontFamily: "Roboto",
+                    fontFamily: "Acephimere",
                   ),
                   children: [
                     TextSpan(
@@ -1195,7 +1247,7 @@ class StepThreeFormModule extends StatelessWidget {
                       style: TextStyle(
                         color: AppColors.redColor,
                         fontSize: 12.sp,
-                        fontFamily: "Roboto",
+                        fontFamily: "Acephimere",
                       ),
                     ),
                   ],
@@ -1213,7 +1265,7 @@ class StepThreeFormModule extends StatelessWidget {
                       'SUCCESSFUL',
                       style: TextStyle(
                         color: AppColors.greenColor,
-                        fontFamily: "Roboto",
+                        fontFamily: "Acephimere",
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -1243,7 +1295,7 @@ class StepThreeFormModule extends StatelessWidget {
                       child: Text(
                         'IMAGE/PHOTO UPLOAD',
                         style: TextStyle(
-                          fontFamily: "Roboto",
+                          fontFamily: "Acephimere",
                           color: AppColors.whiteColor,
                           fontSize: 9.sp,
                         ),
@@ -1297,7 +1349,7 @@ class StepThreeFormModule extends StatelessWidget {
                 text: TextSpan(
                   text: "Aadhaar Card ",
                   style: TextStyle(
-                    fontFamily: "Roboto",
+                    fontFamily: "Acephimere",
                     color: AppColors.blackColor,
                     fontSize: 12.sp,
                   ),
@@ -1305,7 +1357,7 @@ class StepThreeFormModule extends StatelessWidget {
                     TextSpan(
                       text: "*",
                       style: TextStyle(
-                        fontFamily: "Roboto",
+                        fontFamily: "Acephimere",
                         color: AppColors.redColor,
                         fontSize: 12.sp,
                       ),
@@ -1326,7 +1378,7 @@ class StepThreeFormModule extends StatelessWidget {
                       'SUCCESSFUL',
                       style: TextStyle(
                         color: AppColors.greenColor,
-                        fontFamily: "Roboto",
+                        fontFamily: "Acephimere",
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -1355,7 +1407,7 @@ class StepThreeFormModule extends StatelessWidget {
                       child: Text(
                         'IMAGE/PHOTO UPLOAD',
                         style: TextStyle(
-                          fontFamily: "Roboto",
+                          fontFamily: "Acephimere",
                           color: AppColors.whiteColor,
                           fontSize: 8.sp,
                         ),
@@ -1410,7 +1462,7 @@ class StepThreeFormModule extends StatelessWidget {
                   text: "Address Proof",
                   style: TextStyle(
                     color: AppColors.blackColor,
-                    fontFamily: "Roboto",
+                    fontFamily: "Acephimere",
                     fontSize: 12.sp,
                   ),
                   children: [
@@ -1418,7 +1470,7 @@ class StepThreeFormModule extends StatelessWidget {
                       text: "*",
                       style: TextStyle(
                         color: AppColors.redColor,
-                        fontFamily: "Roboto",
+                        fontFamily: "Acephimere",
                         fontSize: 12.sp,
                       ),
                     ),
@@ -1438,7 +1490,7 @@ class StepThreeFormModule extends StatelessWidget {
                       'SUCCESSFUL',
                       style: TextStyle(
                         color: AppColors.greenColor,
-                        fontFamily: "Roboto",
+                        fontFamily: "Acephimere",
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -1468,7 +1520,7 @@ class StepThreeFormModule extends StatelessWidget {
                         'IMAGE/PHOTO UPLOAD',
                         style: TextStyle(
                           color: AppColors.whiteColor,
-                          fontFamily: "Roboto",
+                          fontFamily: "Acephimere",
                           fontSize: 8.sp,
                         ),
                       ).commonSymmetricPadding(vertical: 12),
@@ -1527,7 +1579,7 @@ class StepThreeFormModule extends StatelessWidget {
                           text: "Bank Statement ",
                           style: TextStyle(
                             color: AppColors.blackColor,
-                            fontFamily: "Roboto",
+                            fontFamily: "Acephimere",
                             fontSize: 12.sp,
                           ),
                           children: [
@@ -1535,7 +1587,7 @@ class StepThreeFormModule extends StatelessWidget {
                               text: "*",
                               style: TextStyle(
                                 color: AppColors.redColor,
-                                fontFamily: "Roboto",
+                                fontFamily: "Acephimere",
                                 fontSize: 12.sp,
                               ),
                             ),
@@ -1549,7 +1601,7 @@ class StepThreeFormModule extends StatelessWidget {
                           'Last 6 months',
                           style: TextStyle(
                             fontSize: 8.sp,
-                            fontFamily: "Roboto",
+                            fontFamily: "Acephimere",
                           ),
                         ),
                       ),
@@ -1567,7 +1619,7 @@ class StepThreeFormModule extends StatelessWidget {
                           'SUCCESSFUL',
                           style: TextStyle(
                             color: AppColors.greenColor,
-                            fontFamily: "Roboto",
+                            fontFamily: "Acephimere",
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -1597,7 +1649,7 @@ class StepThreeFormModule extends StatelessWidget {
                             'DOCUMENT UPLOAD',
                             style: TextStyle(
                               color: AppColors.whiteColor,
-                              fontFamily: "Roboto",
+                              fontFamily: "Acephimere",
                               fontSize: 8.sp,
                             ),
                           ).commonSymmetricPadding(vertical: 12),
@@ -1618,7 +1670,7 @@ class StepThreeFormModule extends StatelessWidget {
                         '(Only PDF allowed)',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontFamily: "Roboto",
+                          fontFamily: "Acephimere",
                           fontStyle: FontStyle.italic,
                           fontSize: 8.sp,
                           color: AppColors.greyColor,
@@ -1684,7 +1736,7 @@ class StepThreeFormModule extends StatelessWidget {
                           text: "Salary Slips ",
                           style: TextStyle(
                             color: AppColors.blackColor,
-                            fontFamily: "Roboto",
+                            fontFamily: "Acephimere",
                             fontSize: 12.sp,
                           ),
                           children: [
@@ -1692,7 +1744,7 @@ class StepThreeFormModule extends StatelessWidget {
                               text: "*",
                               style: TextStyle(
                                 color: AppColors.redColor,
-                                fontFamily: "Roboto",
+                                fontFamily: "Acephimere",
                                 fontSize: 12.sp,
                               ),
                             ),
@@ -1706,7 +1758,7 @@ class StepThreeFormModule extends StatelessWidget {
                           'Last 3 months',
                           style: TextStyle(
                             fontSize: 8.sp,
-                            fontFamily: "Roboto",
+                            fontFamily: "Acephimere",
                           ),
                         ),
                       ),
@@ -1724,7 +1776,7 @@ class StepThreeFormModule extends StatelessWidget {
                           'SUCCESSFUL',
                           style: TextStyle(
                             color: AppColors.greenColor,
-                            fontFamily: "Roboto",
+                            fontFamily: "Acephimere",
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -1754,7 +1806,7 @@ class StepThreeFormModule extends StatelessWidget {
                             'DOCUMENT UPLOAD',
                             style: TextStyle(
                               color: AppColors.whiteColor,
-                              fontFamily: "Roboto",
+                              fontFamily: "Acephimere",
                               fontSize: 8.sp,
                             ),
                           ).commonSymmetricPadding(vertical: 12),
@@ -1776,7 +1828,7 @@ class StepThreeFormModule extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontStyle: FontStyle.italic,
-                          fontFamily: "Roboto",
+                          fontFamily: "Acephimere",
                           fontSize: 8.sp,
                           color: AppColors.greyColor,
                         ),
@@ -1835,7 +1887,7 @@ class StepThreeFormModule extends StatelessWidget {
                 text: TextSpan(
                   text: "Rent Agreement ",
                   style: TextStyle(
-                    fontFamily: "Roboto",
+                    fontFamily: "Acephimere",
                     color: AppColors.blackColor,
                     fontSize: 12.sp,
                   ),
@@ -1843,7 +1895,7 @@ class StepThreeFormModule extends StatelessWidget {
                     TextSpan(
                       text: "*",
                       style: TextStyle(
-                        fontFamily: "Roboto",
+                        fontFamily: "Acephimere",
                         color: AppColors.redColor,
                         fontSize: 12.sp,
                       ),
@@ -1864,7 +1916,7 @@ class StepThreeFormModule extends StatelessWidget {
                       'SUCCESSFUL',
                       style: TextStyle(
                         color: AppColors.greenColor,
-                        fontFamily: "Roboto",
+                        fontFamily: "Acephimere",
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -1893,7 +1945,7 @@ class StepThreeFormModule extends StatelessWidget {
                       child: Text(
                         'IMAGE/PHOTO UPLOAD',
                         style: TextStyle(
-                          fontFamily: "Roboto",
+                          fontFamily: "Acephimere",
                           color: AppColors.whiteColor,
                           fontSize: 8.sp,
                         ),

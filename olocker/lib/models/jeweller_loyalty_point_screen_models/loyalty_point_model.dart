@@ -83,7 +83,7 @@ class PartnerPoint {
     partner: json["Partner"] ?? "",
     totalPoints: json["TotalPoints"].toString(),
     valuePerPoint: json["ValuePerPoint"].toString(),
-    totalReedemedPoint: json["TotalReedemedPoint"].toString(),
+    totalReedemedPoint: (json["TotalReedemedPoint"] ?? 0).toString(),
     totalRemainingPoint: json["TotalRemainingPoint"].toString(),
     logoUrl: json["LogoUrl"] ?? "",
     partnerSrNo: json["PartnerSrNo"].toString(),

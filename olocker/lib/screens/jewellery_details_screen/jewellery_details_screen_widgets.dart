@@ -27,7 +27,7 @@ class FavouriteButtonModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       left: 15,
-      top: 10,
+      top: 0,
       child: GestureDetector(
         onTap: () async {
           jewellerJewelleryListScreenController
@@ -72,7 +72,7 @@ class ShareButtonModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       right: 15,
-      top: 10,
+      top: 0,
       child: GestureDetector(
         onTap: () async {
           await jewelleryDetailsController.shareJewelleryReferFriend();
@@ -103,7 +103,7 @@ class ProductImagesSliderModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: jewelleryDetailsController.size.height * 0.3,
-      width: double.infinity,
+      // width: double.infinity,
       child: Swiper.list(
         autoplay: false,
         loop: false,
@@ -158,12 +158,13 @@ class ProductImagesSliderModule extends StatelessWidget {
                     return Container(
                       color: AppColors.whiteColor,
                       child: const Center(
-                        child: Text("no image"),
+                        child: Text("no image",
+                        style: TextStyle(fontFamily: "Acephimere"),),
                       ),
                     );
                   },
                 ),
-              ),
+              ).commonAllSidePadding(5),
             ),
           );
         },
@@ -322,6 +323,7 @@ class JewelleryApproxPriceModule extends StatelessWidget {
             color: AppColors.whiteColor,
             fontSize: 13.sp,
             fontWeight: FontWeight.w500,
+            fontFamily: "Acephimere",
           ),
         ),
         const SizedBox(width: 5),
@@ -334,6 +336,7 @@ class JewelleryApproxPriceModule extends StatelessWidget {
                   color: AppColors.whiteColor,
                   fontSize: 13.sp,
                   fontWeight: FontWeight.w500,
+                  fontFamily: "Acephimere"
                 ),
               ),
       ],
@@ -367,6 +370,7 @@ class ProductDescriptionModule extends StatelessWidget {
               color: AppColors.blackColor,
               fontSize: 12.sp,
               fontWeight: FontWeight.w500,
+              fontFamily: "Acephimere"
             ),
           ),
           SizedBox(height: 2.h),
@@ -442,6 +446,7 @@ class ProductDescRow extends StatelessWidget {
               style: TextStyle(
                 color: AppColors.blackColor,
                 fontSize: 12.sp,
+                fontFamily: "Acephimere"
                 // fontWeight: FontWeight.w400,
               ),
             ),
@@ -452,6 +457,7 @@ class ProductDescRow extends StatelessWidget {
               color: AppColors.blackColor,
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
+              fontFamily: "Acephimere"
             ),
           ),
           Expanded(
@@ -499,6 +505,7 @@ class JewellerFeaturesAvailableModule extends StatelessWidget {
               color: AppColors.blackColor,
               fontSize: 12.sp,
               fontWeight: FontWeight.w500,
+              fontFamily: "Acephimere"
             ),
           ),
           GridView.builder(
@@ -527,6 +534,7 @@ class JewellerFeaturesAvailableModule extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: AppColors.blackColor,
+                      fontFamily: "Acephimere",
                       fontSize: 8.5.sp,
                       fontWeight: FontWeight.w500,
                     ),
