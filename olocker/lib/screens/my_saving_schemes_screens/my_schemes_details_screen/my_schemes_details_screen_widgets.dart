@@ -510,7 +510,7 @@ class JewellerCallDetailsModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10), color: Colors.white),
       child: Row(
@@ -607,12 +607,11 @@ class MySchemesTransactionsListViewModule extends StatelessWidget {
               Text(
                 "TRANSACTIONS",
                 style: TextStyle(
-                  fontSize: 11.sp,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.blueDarkColor,
-                  fontStyle: FontStyle.italic,
-                  fontFamily: "Acephimere"
-                ),
+                    fontSize: 11.sp,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.blueDarkColor,
+                    fontStyle: FontStyle.italic,
+                    fontFamily: "Acephimere"),
               ),
             ],
           ),
@@ -716,7 +715,7 @@ class TransactionSingleItemModule extends StatelessWidget {
                     style: TextStyle(
                       color: AppColors.accentColor,
                       fontWeight: FontWeight.bold,
-                      fontSize: 16.sp,
+                      fontSize: 20.sp,
                     ),
                   ),
                   Text(
@@ -778,6 +777,7 @@ class TransactionSingleItemModule extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(width: 10),
             // Spacer(),
             GestureDetector(
               onTap: () async {
@@ -839,7 +839,7 @@ class SavingDetailsTextCustom extends StatelessWidget {
             textValue,
             style: TextStyle(
               fontSize: 12.sp,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
               color: AppColors.blackColor,
             ),
           ),

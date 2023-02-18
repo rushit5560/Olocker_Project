@@ -122,8 +122,9 @@ class MyBillsModule extends StatelessWidget {
                         symbol: '₹ ',
                         locale: "HI",
                         decimalDigits: 2,
-                      ).format(double.parse(
-                          screenController.selectedAmountTotal.value),
+                      ).format(
+                        double.parse(
+                            screenController.selectedAmountTotal.value),
                       ),
                       style: const TextStyle(
                         color: Colors.red,
@@ -217,7 +218,7 @@ class SinglePendingItem extends StatelessWidget {
                 style: TextStyle(
                   color: AppColors.accentColor,
                   fontWeight: FontWeight.bold,
-                  fontSize: 16.sp,
+                  fontSize: 20.sp,
                 ),
               ),
               SizedBox(
@@ -302,7 +303,7 @@ class SinglePendingItem extends StatelessWidget {
                 style: TextStyle(
                   color: AppColors.blackColor,
                   fontWeight: FontWeight.w600,
-                  fontSize: 13.sp,
+                  fontSize: 15.sp,
                 ),
               ),
             ],

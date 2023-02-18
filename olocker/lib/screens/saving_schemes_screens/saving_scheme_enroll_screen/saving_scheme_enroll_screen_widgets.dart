@@ -277,7 +277,7 @@ class CustomerDetailsFormModule extends StatelessWidget {
         Obx(
           () => SizedBox(
             height: 4.h,
-            width: 15.w,
+            width: 16.w,
             child: DropdownButton<String>(
               isDense: true,
               value: screenController.namePrefixDDValue.value,
@@ -513,7 +513,7 @@ class SaveAndMakePaymentButtonModule extends StatelessWidget {
 }
 
 class SchemEnrollScreenLoadingWidget extends StatelessWidget {
- const SchemEnrollScreenLoadingWidget({Key? key}) : super(key: key);
+  const SchemEnrollScreenLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -533,9 +533,9 @@ class SchemEnrollScreenLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-                decoration:const BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius:  BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),
@@ -547,9 +547,9 @@ class SchemEnrollScreenLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-                decoration:const BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius:  BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),
@@ -563,7 +563,7 @@ class SchemEnrollScreenLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
                 decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius:  BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),

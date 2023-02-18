@@ -86,7 +86,9 @@ class SingleSchemeItemModule extends StatelessWidget {
                     height: 15,
                     width: 15,
                     decoration: BoxDecoration(
-                      color: schemeData.status == "UNMATURED" ? AppColors.greenTintColor : Colors.red,
+                      color: schemeData.status == "UNMATURED"
+                          ? AppColors.greenTintColor
+                          : Colors.red,
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -206,7 +208,7 @@ class SingleSchemeItemModule extends StatelessWidget {
               Row(
                 children: [
                   ColoredCustomButton(
-                    color: AppColors.greenTintColor,
+                    color: AppColors.waGreenColor,
                     text: "MAKE PAYMENT",
                     onPressed: () {
                       Get.to(
@@ -433,7 +435,7 @@ class SavingDetailsTextCustom extends StatelessWidget {
             textValue,
             style: TextStyle(
               fontSize: 12.sp,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
               color: AppColors.blackColor,
             ),
           ),

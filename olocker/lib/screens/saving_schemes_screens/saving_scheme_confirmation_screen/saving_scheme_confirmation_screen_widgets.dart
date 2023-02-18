@@ -75,7 +75,7 @@ class AmountDetailsModule extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 20.sp,
                                     color: AppColors.accentColor,
-                                    fontWeight: FontWeight.w500,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ],
@@ -106,7 +106,7 @@ class AmountDetailsModule extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 20.sp,
                                     color: AppColors.accentColor,
-                                    fontWeight: FontWeight.w500,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 SizedBox(height: 0.4.h),
@@ -165,7 +165,7 @@ class AmountDetailsModule extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 20.sp,
                                 color: AppColors.accentColor,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ],
@@ -196,7 +196,7 @@ class AmountDetailsModule extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 20.sp,
                                 color: AppColors.accentColor,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w600,
                               ),
                             )
                           ],
@@ -293,7 +293,8 @@ class ProceedToPayButtonModule extends StatelessWidget {
                       savingSelectionScreenController.schemeName,
                       savingSelectionScreenController.schemeTagLine,
                       savingSelectionScreenController.savingSchemeDetails,
-                      savingSelectionScreenController.partnerSavingSchemeDetails,
+                      savingSelectionScreenController
+                          .partnerSavingSchemeDetails,
                       savingSelectionScreenController.jewellerLogo,
                     ],
                   );

@@ -11,6 +11,8 @@ class AppColors {
   static const Color yellowBgColor = Colors.yellow;
   static const Color greenColor = Colors.green;
   static const Color waGreenColor = Color(0xFF25D366);
+  // static const Color waGreenColor2 = Color(0xFF21c23e);
+
   static const Color lightBrownBgColor = Color(0xffffdac1);
 
   static const Color creamBgColor = Color(0xfffdf3da);

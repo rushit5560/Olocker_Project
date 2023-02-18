@@ -27,7 +27,6 @@ import '../my_favourites_screen/my_favourites_screen.dart';
 import '../offers_jewellery_list_screen/offers_jewellery_list_screen.dart';
 import '../saving_schemes_screens/saving_schemes_list_screen/saving_schemes_list_screen.dart';
 
-
 class JewellerFeaturesModule extends StatelessWidget {
   JewellerFeaturesModule({Key? key}) : super(key: key);
   final screenController = Get.find<JewellerDetailsScreenController>();
@@ -69,7 +68,7 @@ class JewellerFeaturesModule extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        color: Colors.grey,
+                        color: Colors.grey.shade600,
                         fontSize: 9.sp,
                       ),
                     ),
@@ -98,7 +97,8 @@ class JewellerFeaturesModule extends StatelessWidget {
                       textAlign: TextAlign.left,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(color: Colors.grey, fontSize: 9.sp),
+                      style: TextStyle(
+                          color: Colors.grey.shade600, fontSize: 9.sp),
                     ),
                   ),
                 ],
@@ -125,7 +125,8 @@ class JewellerFeaturesModule extends StatelessWidget {
                       textAlign: TextAlign.left,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(color: Colors.grey, fontSize: 9.sp),
+                      style: TextStyle(
+                          color: Colors.grey.shade600, fontSize: 9.sp),
                     ),
                   ),
                 ],
@@ -361,7 +362,8 @@ class FourFunctionalModule extends StatelessWidget {
                     Get.to(
                       () => JewellerFeedbackScreen(),
                       arguments: screenController.jewellerId,
-                    )!.then((value) {
+                    )!
+                        .then((value) {
                       screenController.isLoading(true);
                       screenController.isLoading(false);
                     });
@@ -408,12 +410,12 @@ class NewArrivalListModule extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, i) {
-        String imgUrl = ApiUrl.apiMainPath +
-            screenController.newArrivalList[i].imageurl;
+        String imgUrl =
+            ApiUrl.apiMainPath + screenController.newArrivalList[i].imageurl;
         return GestureDetector(
           onTap: () {
             Get.to(
-                  () => JewellerJewelleryListScreen(),
+              () => JewellerJewelleryListScreen(),
               arguments: [
                 screenController.newArrivalList[i].name,
                 screenController.newArrivalList[i].srNo,
@@ -461,8 +463,8 @@ class JewelleryCategoryListModule extends StatelessWidget {
                 screenController.jewelleryCategoryList[i].srNo,
                 screenController.jewellerId.toString(),
                 JewelleryListType.categoryId,
-              screenController.collectionNameList,
-              SearchCategory.categoryType,
+                screenController.collectionNameList,
+                SearchCategory.categoryType,
               ],
             );
           },
@@ -512,10 +514,7 @@ class ReferAndJewellerEmiModule extends StatelessWidget {
                   color: AppColors.creamBgColor,
                   borderRadius: BorderRadius.circular(8),
                   boxShadow: [
-                    BoxShadow(
-                        color: Colors.grey.shade700,
-                      blurRadius: 12.0
-                    ),
+                    BoxShadow(color: Colors.grey.shade700, blurRadius: 12.0),
                   ],
                   image: const DecorationImage(
                     image: AssetImage(AppImages.referOffer1Image),
@@ -541,8 +540,8 @@ class ReferAndJewellerEmiModule extends StatelessWidget {
                   color: AppColors.creamBgColor,
                   boxShadow: [
                     BoxShadow(
-                        color: Colors.grey.shade700,
-                        blurRadius: 12.0,
+                      color: Colors.grey.shade700,
+                      blurRadius: 12.0,
                     ),
                   ],
                   borderRadius: BorderRadius.circular(8),
@@ -669,10 +668,7 @@ class MenWomenJewelleryListModule extends StatelessWidget {
               flex: 2,
               child: Text(
                 singleItem.name,
-                style: TextStyle(
-                  fontSize: 12.sp,
-                  fontFamily: "Acephimere"
-                ),
+                style: TextStyle(fontSize: 12.sp, fontFamily: "Acephimere"),
               ),
             ),
           ],
@@ -726,7 +722,7 @@ class BestSellersListModule extends StatelessWidget {
                 FavProductList singleItem = screenController.bestSellerList[i];
                 String imgUrl = "";
                 // if (singleItem.productImage.isNotEmpty) {
-                  imgUrl = "${ApiUrl.apiImagePath}${singleItem.productImage}";
+                imgUrl = "${ApiUrl.apiImagePath}${singleItem.productImage}";
                 // }
                 // String newImgUrl = imgUrl.replaceAll("\\", "/");
                 return _bestSellerListTile(singleItem, imgUrl);
@@ -739,7 +735,7 @@ class BestSellersListModule extends StatelessWidget {
   }
 
   Widget _bestSellerListTile(FavProductList singleItem, imgUrl) {
-   log("imgUrl1212 : $imgUrl");
+    log("imgUrl1212 : $imgUrl");
     return GestureDetector(
       onTap: () {
         log('singleItem.productsrno : ${singleItem.srNo}');
@@ -763,8 +759,9 @@ class BestSellersListModule extends StatelessWidget {
             Expanded(
               flex: 8,
               child: ClipRRect(
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(10),
-                topRight: Radius.circular(10)),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10)),
                 child: CachedNetworkImage(
                   imageUrl: imgUrl,
                   fit: BoxFit.cover,
@@ -833,7 +830,6 @@ class BestSellersListModule extends StatelessWidget {
       ),
     );
   }
-
 }
 
 class CustomerSpeakModule extends StatelessWidget {
@@ -872,16 +868,13 @@ class CustomerSpeakModule extends StatelessWidget {
             ),
           ],
         ),
-
         CarouselSlider.builder(
           itemCount: screenController.clientTestimonialsList.length,
           itemBuilder: (context, i, realIndex) {
-            Testimonial singleItem =
-            screenController.clientTestimonialsList[i];
+            Testimonial singleItem = screenController.clientTestimonialsList[i];
             return _customerSpeakListTile(singleItem);
           },
           options: CarouselOptions(
-
             height: screenController.size.height * 0.024.h,
             autoPlay: true,
             viewportFraction: 1,
@@ -1019,47 +1012,51 @@ class GoldPriceModule extends StatelessWidget {
                       child: Column(
                         children: [
                           Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: AppColors.whiteColor,
-                                borderRadius: BorderRadius.circular(10),
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                    screenController.goldCaratImagesList[i],
-                                  ),
-                                  // fit: BoxFit.fill,
+                              child: Container(
+                            decoration: BoxDecoration(
+                              color: AppColors.whiteColor,
+                              borderRadius: BorderRadius.circular(10),
+                              image: DecorationImage(
+                                image: AssetImage(
+                                  screenController.goldCaratImagesList[i],
                                 ),
+                                // fit: BoxFit.fill,
                               ),
-                            ).commonSymmetricPadding(
-                                vertical: 20, horizontal: 30),
-                          ),
+                            ),
+                          ).commonOnlyPadding(
+                                  top: 10, bottom: 25, left: 25, right: 25)),
                           Text(
                             i == 0
-                                ? screenController.goldPrice1 == "0" ? "--" : NumberFormat.currency(
-                                    symbol: '₹ ',
-                                    locale: "HI",
-                                    decimalDigits: 0,
-                                  ).format(
-                                    double.parse(screenController.goldPrice1))
+                                ? screenController.goldPrice1 == "0"
+                                    ? "--"
+                                    : NumberFormat.currency(
+                                        symbol: '₹ ',
+                                        locale: "HI",
+                                        decimalDigits: 0,
+                                      ).format(double.parse(
+                                        screenController.goldPrice1))
                                 : i == 1
-                                    ? screenController.goldPrice2 == "0" ? "--" : NumberFormat.currency(
-                                        symbol: '₹ ',
-                                        locale: "HI",
-                                        decimalDigits: 0,
-                                      ).format(double.parse(
-                                        screenController.goldPrice2))
-                                    : screenController.goldPrice3 == "0" ? "--" : NumberFormat.currency(
-                                        symbol: '₹ ',
-                                        locale: "HI",
-                                        decimalDigits: 0,
-                                      ).format(double.parse(
-                                        screenController.goldPrice3)),
+                                    ? screenController.goldPrice2 == "0"
+                                        ? "--"
+                                        : NumberFormat.currency(
+                                            symbol: '₹ ',
+                                            locale: "HI",
+                                            decimalDigits: 0,
+                                          ).format(double.parse(
+                                            screenController.goldPrice2))
+                                    : screenController.goldPrice3 == "0"
+                                        ? "--"
+                                        : NumberFormat.currency(
+                                            symbol: '₹ ',
+                                            locale: "HI",
+                                            decimalDigits: 0,
+                                          ).format(double.parse(
+                                            screenController.goldPrice3)),
                             style: TextStyle(
-                              color: AppColors.whiteColor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 15.sp,
-                              fontFamily: "Roboto"
-                            ),
+                                color: AppColors.whiteColor,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14.sp,
+                                fontFamily: "Roboto"),
                           ).commonAllSidePadding(5),
                         ],
                       ),

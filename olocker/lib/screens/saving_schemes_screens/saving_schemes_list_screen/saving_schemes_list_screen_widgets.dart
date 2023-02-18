@@ -23,7 +23,6 @@ class BannerPageViewModule extends StatelessWidget {
       itemBuilder: (context, i, realIndex) {
         // String imgUrl = ApiUrl.apiMainPath +
         //     screenController.announcementOfferList[i].imageurl;
-
         // log("image url :: ${ApiUrl.apiImagePath + savingSchemesListScreenController.getSavingSchemesList[i].imagePath}");
         return Container(
           height: savingSchemesListScreenController.size.height * 0.25,
@@ -130,7 +129,7 @@ class SingleSavingSchemeItem extends StatelessWidget {
               singleScheme.schemeName,
               style: TextStyle(
                 fontSize: 15.sp,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w600,
                 color: AppColors.accentColor,
               ),
             ),

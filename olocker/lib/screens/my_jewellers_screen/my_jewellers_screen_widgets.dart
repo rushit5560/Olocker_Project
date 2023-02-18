@@ -1,7 +1,7 @@
+import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
@@ -9,7 +9,6 @@ import 'package:olocker/controllers/my_jewellers_screen_controller.dart';
 import 'package:olocker/models/home_screen_models/banner_model.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
-
 import '../jeweller_details_screen/jeweller_details_screen.dart';
 
 class BackGroundModule extends StatelessWidget {
@@ -182,7 +181,7 @@ class AllJewellersListModule extends StatelessWidget {
               children: [
                 Container(
                   width: screenController.size.width * 0.11.w,
-                  height: screenController.size.height * 0.015.h,
+                  height: screenController.size.height * 0.013.h,
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(
                       Radius.circular(8),

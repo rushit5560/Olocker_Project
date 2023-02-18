@@ -102,7 +102,6 @@ class PaymentDetails extends StatelessWidget {
             },
           ),
           SizedBox(height: 1.h),
-       
         ],
       ),
     );
@@ -126,12 +125,9 @@ class SingleBillShowWidget extends StatelessWidget {
     var parsedDate =
         dateFormat.parse(pendingBillData.insatllmentDate.trim()).toString();
 
-
-
     var dateFormatSet = DateFormat('dd MMM yyyy');
     var formattedDate = dateFormatSet.format(DateTime.parse(parsedDate));
 
-   
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -149,10 +145,10 @@ class SingleBillShowWidget extends StatelessWidget {
                   fontSize: 17),
             ),
             Text("₹ ${pendingBillData.installmentAmount.floor()}",
-                style: const TextStyle(
-                    color: Color(0xFF052a45),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20))
+                style: TextStyle(
+                    color: const Color(0xFF052a45),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 15.sp))
           ],
         ),
         SizedBox(
@@ -175,7 +171,7 @@ class SingleBillShowWidget extends StatelessWidget {
             Text(
               formattedDate,
               style: const TextStyle(
-                color:  Color(0xFF052a45),
+                color: Color(0xFF052a45),
                 fontWeight: FontWeight.bold,
               ),
             )
@@ -215,15 +211,15 @@ class PaymentMethods extends StatelessWidget {
                           style: TextStyle(
                             color: AppColors.blueDarkColor,
                             fontSize: 16.sp,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                         Text(
                           "₹ ${screenController.totalEmiPaymentAmount}",
                           style: TextStyle(
                             color: AppColors.accentColor,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ],

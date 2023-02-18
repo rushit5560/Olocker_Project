@@ -6,8 +6,6 @@ import 'package:olocker/controllers/index_screen_controller.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
-
-
 class BottomNavBar extends StatelessWidget {
   BottomNavBar({Key? key}) : super(key: key);
 
@@ -25,7 +23,7 @@ class BottomNavBar extends StatelessWidget {
       onTap: (index) {
         indexScreenController.currentBottomIndex.value = index;
 
-        if(index == 2) {
+        if (index == 2) {
           indexScreenController.notificationCount.value = 0;
         }
       },
@@ -76,35 +74,47 @@ class BottomNavBar extends StatelessWidget {
               alignment: Alignment.topCenter,
               clipBehavior: Clip.none,
               children: [
-                SvgPicture.asset(
-                  "assets/svgs/message.svg",
+                Image.asset(
+                  "assets/icons/notification.png",
                   color: AppColors.whiteColor,
-                  height:
-                  indexScreenController.currentBottomIndex.value == 2 ? 24 : 23,
-                  width:
-                  indexScreenController.currentBottomIndex.value == 2 ? 24 : 23,
+                  height: indexScreenController.currentBottomIndex.value == 2
+                      ? 24
+                      : 23,
+                  width: indexScreenController.currentBottomIndex.value == 2
+                      ? 24
+                      : 23,
                 ),
+                // SvgPicture.asset(
+                //   "assets/icons/notification.png",
+                //   color: AppColors.whiteColor,
+                //   height: indexScreenController.currentBottomIndex.value == 2
+                //       ? 24
+                //       : 23,
+                //   width: indexScreenController.currentBottomIndex.value == 2
+                //       ? 24
+                //       : 23,
+                // ),
                 indexScreenController.notificationCount.value == 0
-                ? Container()
-                : Positioned(
-                  top: -5,
-                  right: -5,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.whiteColor,
-                    ),
-                    child: Center(
-                      child: Text(
-                        '${indexScreenController.notificationCount.value}',
-                        style: TextStyle(
-                          color: AppColors.accentColor,
-                          fontSize: 9.sp,
+                    ? Container()
+                    : Positioned(
+                        top: -5,
+                        right: -5,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.whiteColor,
+                          ),
+                          child: Center(
+                            child: Text(
+                              '${indexScreenController.notificationCount.value}',
+                              style: TextStyle(
+                                color: AppColors.accentColor,
+                                fontSize: 9.sp,
+                              ),
+                            ).commonAllSidePadding(3),
+                          ),
                         ),
-                      ).commonAllSidePadding(3),
-                    ),
-                  ),
-                ),
+                      ),
               ],
             ),
           ),

@@ -53,7 +53,7 @@ class JewellerDetailImageInfoModule extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 13.sp,
                     color: AppColors.accentColor,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 const SizedBox(height: 4),
