@@ -44,7 +44,7 @@ class OrnamentDetailsModule extends StatelessWidget {
                   fontFamily: "Roboto",
                   color: AppColors.blackColor,
                   fontSize: 13.sp,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ],
@@ -121,7 +121,7 @@ class AddRecordingButton extends StatelessWidget {
           child: Text(
             "ADD RECORDINGS",
             style: TextStyle(
-              fontSize: 12.sp,
+              fontSize: 14.sp,
               fontFamily: "Roboto",
               color: AppColors.whiteColor,
             ),
@@ -312,9 +312,9 @@ class OrnamentRecordingsListLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-                decoration:const BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius:  BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),
@@ -325,9 +325,9 @@ class OrnamentRecordingsListLoadingWidget extends StatelessWidget {
                   Container(
                     height: 40,
                     width: 60.w,
-                    decoration:const BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: AppColors.greyColor,
-                      borderRadius:  BorderRadius.all(
+                      borderRadius: BorderRadius.all(
                         Radius.circular(20),
                       ),
                     ),
@@ -348,7 +348,7 @@ class OrnamentRecordingsListLoadingWidget extends StatelessWidget {
                         vertical: 15, horizontal: 12),
                     decoration: const BoxDecoration(
                       color: AppColors.greyColor,
-                      borderRadius:  BorderRadius.all(
+                      borderRadius: BorderRadius.all(
                         Radius.circular(12),
                       ),
                     ),

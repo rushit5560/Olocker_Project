@@ -19,75 +19,79 @@ class SubmitClaimFormModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          decoration: const BoxDecoration(
-            color: AppColors.whiteColor,
-            borderRadius: BorderRadius.all(
-              Radius.circular(12),
+        Stack(alignment: Alignment.bottomCenter, children: [
+          Container(
+            margin:
+                const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 35),
+            // margin: const EdgeInsets.symmetric(vertical: 50, horizontal: 10),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            decoration: const BoxDecoration(
+              color: AppColors.whiteColor,
+              borderRadius: BorderRadius.all(
+                Radius.circular(12),
+              ),
             ),
-          ),
-          child: Form(
-            key: submitClaimController.claimFormKey,
-            child: Column(
-              children: [
-                OrnamentDetailsModule(),
-                EventOfLossDetailsModule(),
-                PoliceFirDetailsModule(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    SizedBox(
-                      height: submitClaimController.size.height * 0.15,
-                      width: submitClaimController.size.width * 0.4,
-                      child: submitClaimController.imageFile == null
-                          ? Image.asset("assets/images/select-image.png")
-                          : Image.file(
-                              submitClaimController.imageFile!,
-                              fit: BoxFit.cover,
-                            ),
-                    ),
-                    SizedBox(width: 1.w),
-                    ElevatedButton(
-                      onPressed: () {
-                        submitClaimController.showImagePickerBottomSheet(
-                            context: context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        primary: AppColors.blueDarkColor,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(28),
-                          ),
-                        ),
+            child: Form(
+              key: submitClaimController.claimFormKey,
+              child: Column(
+                children: [
+                  OrnamentDetailsModule(),
+                  EventOfLossDetailsModule(),
+                  PoliceFirDetailsModule(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        height: submitClaimController.size.height * 0.15,
+                        width: submitClaimController.size.width * 0.4,
+                        child: submitClaimController.imageFile == null
+                            ? Image.asset("assets/images/select-image.png")
+                            : Image.file(
+                                submitClaimController.imageFile!,
+                                fit: BoxFit.cover,
+                              ),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Center(
-                          child: Text(
-                            "Upload File",
-                            style: TextStyle(
-                              fontFamily: "Roboto",
-                              color: AppColors.whiteColor,
-                              fontSize: 13.sp,
-                              fontWeight: FontWeight.w400,
+                      SizedBox(width: 1.w),
+                      ElevatedButton(
+                        onPressed: () {
+                          submitClaimController.showImagePickerBottomSheet(
+                              context: context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          primary: AppColors.blueDarkColor,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(28),
                             ),
                           ),
                         ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Center(
+                            child: Text(
+                              "Upload File",
+                              style: TextStyle(
+                                fontFamily: "Roboto",
+                                color: AppColors.whiteColor,
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 3.h),
-              ],
+                    ],
+                  ),
+                  SizedBox(height: 3.h),
+                ],
+              ),
             ),
           ),
-        ),
-        SizedBox(height: 1.h),
-        SubmitCancelButtonModule(),
-        SizedBox(height: 1.h),
+          SubmitCancelButtonModule(),
+        ]),
+        // SizedBox(height: 1.h),
+        // SizedBox(height: 1.h),
       ],
     );
   }
@@ -747,7 +751,7 @@ class SubmitCancelButtonModule extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: "Roboto",
                     color: AppColors.whiteColor,
-                    fontSize: 13.sp,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -775,7 +779,7 @@ class SubmitCancelButtonModule extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: "Roboto",
                     color: AppColors.whiteColor,
-                    fontSize: 13.sp,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
