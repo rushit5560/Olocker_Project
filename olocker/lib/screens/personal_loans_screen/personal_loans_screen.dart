@@ -38,7 +38,7 @@ class PersonalLoansScreen extends StatelessWidget {
           style: TextStyle(
             fontFamily: "Acephimere",
             color: AppColors.blackTextColor,
-            fontSize: 13.sp,
+            fontSize: 14.sp,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -112,7 +112,7 @@ class PersonalLoansScreen extends StatelessWidget {
                       inverted: true,
                       stepperDirection: Axis.horizontal,
                       activeBarColor: AppColors.accentBGColor,
-                      inActiveBarColor: AppColors.whiteColor,
+                      inActiveBarColor: AppColors.accentBGColor,
                       activeIndex:
                           personalLoansScreenController.currentStep.value,
                       stepperList: [
@@ -130,7 +130,9 @@ class PersonalLoansScreen extends StatelessWidget {
                           iconWidget: Container(
                             height: 9.h,
                             width: 9.h,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: AppColors.accentBGColor, width: 4),
                               color: AppColors.accentBGColor,
                               shape: BoxShape.circle,
                             ),
@@ -168,6 +170,10 @@ class PersonalLoansScreen extends StatelessWidget {
                                   ? AppColors.accentBGColor
                                   : AppColors.whiteColor,
                               shape: BoxShape.circle,
+                              // border: Border.all(
+                              //   color: AppColors.accentBGColor,
+                              //   width: 4,
+                              // ),
                             ),
                             child: Center(
                               child: Text(
@@ -207,6 +213,10 @@ class PersonalLoansScreen extends StatelessWidget {
                                   ? AppColors.accentBGColor
                                   : AppColors.whiteColor,
                               shape: BoxShape.circle,
+                              // border: Border.all(
+                              //   color: AppColors.accentBGColor,
+                              //   width: 4,
+                              // ),
                             ),
                             child: Center(
                               child: Text(

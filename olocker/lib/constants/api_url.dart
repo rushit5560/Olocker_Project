@@ -7,6 +7,8 @@ class ApiHeader {
 
 class ApiUrl {
   static const String apiMainPath = "https://devappapi.olocker.in/";
+  // static const String apiMainPath = "http://5.189.147.159:7009/";
+
 
   // static const String apiImageUrlPath = "https://devappapi.olocker.in/";
 

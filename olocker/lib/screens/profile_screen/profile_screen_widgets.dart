@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/profile_screen_controller.dart';
@@ -92,31 +93,44 @@ class DisplayImageDetailsFieldRow extends StatelessWidget {
                     shape: BoxShape.circle,
                   ),
                   child: ClipRRect(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(200),
-                    ),
-                    child: profileScreenController.selectedProfileImage != null
-                        ? Image.file(
-                            profileScreenController.selectedProfileImage!,
-                            height: 75,
-                            width: 75,
-                            fit: BoxFit.cover,
-                          )
-                        : Image.network(
-                            profileScreenController.apiGetProfileImage!.path,
-                            height: 75,
-                            width: 75,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Image.asset(
-                                AppIcons.drawerSavingSchemeIcon,
-                                height: 75,
-                                width: 75,
-                                fit: BoxFit.fill,
-                              );
-                            },
-                          ),
-                  ),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(200),
+                      ),
+                      child: profileScreenController.selectedProfileImage !=
+                              null
+                          ? Container(
+                              decoration: BoxDecoration(
+                              color: Colors.black,
+                              shape: BoxShape.circle,
+                              // border: Border.all(
+                              //     color: AppColors.whiteColor, width: 3),
+                              image: DecorationImage(
+                                image: FileImage(
+                                  profileScreenController.selectedProfileImage!,
+                                ),
+                                fit: BoxFit.cover,
+                              ),
+                              // child: Image.file(
+                              //     profileScreenController.selectedProfileImage!,
+                              //     height: 75,
+                              //     width: 75,
+                              //     fit: BoxFit.cover,
+                              //   ),
+                            ))
+                          : Container(
+                              decoration: const BoxDecoration(
+                                color: Colors.black,
+                                shape: BoxShape.circle,
+                                // border: Border.all(
+                                //     color: AppColors.whiteColor, width: 3),
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                    "${ApiUrl.apiImagePath}/images/JewelleryApp/2020/5/9e926966718148acaedc690e4a55d5f8_1.png",
+                                  ),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            )),
                 ),
               ),
               const SizedBox(width: 18),

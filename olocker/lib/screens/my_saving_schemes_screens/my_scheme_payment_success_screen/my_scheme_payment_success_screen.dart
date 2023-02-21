@@ -46,9 +46,10 @@ class MySchemePaymentSuccessScreen extends StatelessWidget {
           title: Text(
             'Payment Status',
             style: TextStyle(
+              fontFamily: "Roboto",
               color: AppColors.blackTextColor,
-              fontSize: 13.sp,
-              fontWeight: FontWeight.w500,
+              fontSize: 15.sp,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),

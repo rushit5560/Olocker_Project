@@ -27,8 +27,8 @@ class MyJewelleryPortFolioScreen extends StatelessWidget {
           style: TextStyle(
             fontFamily: "Roboto",
             color: AppColors.blackTextColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w400,
+            fontSize: 15.sp,
+            fontWeight: FontWeight.w600,
           ),
         ),
         elevation: 0,

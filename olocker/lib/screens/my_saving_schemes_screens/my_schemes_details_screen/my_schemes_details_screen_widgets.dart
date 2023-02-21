@@ -236,15 +236,15 @@ class UnmaturedSchemeDetailsModule extends StatelessWidget {
                   children: [
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          schemeData.partnerName,
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.blackColor,
-                          ),
-                        ),
+                      children: const [
+                        // Text(
+                        //   schemeData.partnerName,
+                        //   style: TextStyle(
+                        //     fontSize: 16.sp,
+                        //     fontWeight: FontWeight.w500,
+                        //     color: AppColors.blackColor,
+                        //   ),
+                        // ),
                       ],
                     ),
                     SizedBox(height: 1.5.h),

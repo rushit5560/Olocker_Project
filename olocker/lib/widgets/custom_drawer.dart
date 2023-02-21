@@ -1,6 +1,7 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/constants/user_details.dart';
@@ -202,7 +203,7 @@ class CustomDrawer extends StatelessWidget {
                     height: homeScreenController.size.width * 0.010.w,
                   ),
                   SizedBox(width: homeScreenController.size.width * 0.008.w),
-                  const Text("My Jewellery portfolio"),
+                  const Text("My Jewellery Portfolio"),
                 ],
               ).commonSymmetricPadding(horizontal: 30, vertical: 14),
             ),
@@ -284,7 +285,17 @@ class CustomDrawer extends StatelessWidget {
     return Container(
       height: homeScreenController.size.height * 0.018.h,
       decoration: const BoxDecoration(
-        color: AppColors.accentColor,
+        // color: AppColors.accentColor,
+
+        image: DecorationImage(
+            image: AssetImage(AppImages.sidmenuImage),
+            opacity: 0.2,
+            colorFilter: ColorFilter.mode(
+              // AppColors.accentColor.withOpacity(0.7),
+              Colors.redAccent,
+              BlendMode.color,
+            ),
+            fit: BoxFit.cover),
       ),
       child: Row(
         children: [
@@ -308,25 +319,54 @@ class CustomDrawer extends StatelessWidget {
                   Radius.circular(200),
                 ),
                 child: profileScreenController.selectedProfileImage != null
-                    ? Image.file(
-                        profileScreenController.selectedProfileImage!,
-                        height: 75,
-                        width: 75,
-                        fit: BoxFit.cover,
-                      )
-                    : Image.network(
-                        profileScreenController.apiGetProfileImage!.path,
-                        height: 75,
-                        width: 75,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Image.asset(
-                            AppIcons.drawerSavingSchemeIcon,
-                            height: 75,
-                            width: 75,
-                            fit: BoxFit.fill,
-                          );
-                        },
+                    ? Container(
+                        decoration: BoxDecoration(
+                        color: Colors.black,
+                        shape: BoxShape.circle,
+                        border:
+                            Border.all(color: AppColors.whiteColor, width: 3),
+                        image: DecorationImage(
+                          image: FileImage(
+                            profileScreenController.selectedProfileImage!,
+                          ),
+                          fit: BoxFit.cover,
+                        ),
+                        // child: Image.file(
+                        //     profileScreenController.selectedProfileImage!,
+                        //     height: 75,
+                        //     width: 75,
+                        //     fit: BoxFit.cover,
+                        //   ),
+                      ))
+                    : Container(
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          shape: BoxShape.circle,
+                          border:
+                              Border.all(color: AppColors.whiteColor, width: 3),
+                          image: const DecorationImage(
+                            image: NetworkImage(
+                              "${ApiUrl.apiImagePath}/images/JewelleryApp/2020/5/9e926966718148acaedc690e4a55d5f8_1.png",
+                            ),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        // child: Image.network(
+                        //   "${ApiUrl.apiImagePath}/images/JewelleryApp/2020/5/9e926966718148acaedc690e4a55d5f8_1.png",
+                        //   // profileScreenController.apiGetProfileImage!.path,
+                        //   height: 75,
+                        //   width: 75,
+
+                        //   fit: BoxFit.cover,
+                        //   errorBuilder: (context, error, stackTrace) {
+                        //     return Image.asset(
+                        //       AppIcons.drawerSavingSchemeIcon,
+                        //       height: 75,
+                        //       width: 75,
+                        //       fit: BoxFit.fill,
+                        //     );
+                        //   },
+                        // ),
                       ),
               ),
             ),
@@ -342,7 +382,7 @@ class CustomDrawer extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: AppColors.whiteColor,
-                  fontSize: 11.sp,
+                  fontSize: 12.sp,
                 ),
               ),
               SizedBox(height: 0.25.h),
@@ -354,7 +394,7 @@ class CustomDrawer extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: AppColors.whiteColor,
-                    fontSize: 12.sp,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

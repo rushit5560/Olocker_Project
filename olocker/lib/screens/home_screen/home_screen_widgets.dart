@@ -517,7 +517,7 @@ class OlockerServiceModule extends StatelessWidget {
                     onTap: () {
                       Get.to(() => PersonalLoansScreen());
                     },
-                    title: 'Load Against Jewellery',
+                    title: 'Loan Against Jewellery',
                     image: AppImages.olockerServiceLogo2Image,
                   ),
                 ],

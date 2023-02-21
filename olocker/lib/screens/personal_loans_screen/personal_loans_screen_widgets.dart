@@ -503,8 +503,11 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp,
-              fontFamily: "Acephimere",),
+            hintStyle: TextStyle(
+              color: AppColors.greyColor,
+              fontSize: 11.sp,
+              fontFamily: "Acephimere",
+            ),
           ),
         ),
       ),
@@ -534,8 +537,11 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp,
-              fontFamily: "Acephimere",),
+            hintStyle: TextStyle(
+              color: AppColors.greyColor,
+              fontSize: 11.sp,
+              fontFamily: "Acephimere",
+            ),
           ),
         ),
       ),
@@ -569,8 +575,11 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp,
-              fontFamily: "Acephimere",),
+            hintStyle: TextStyle(
+              color: AppColors.greyColor,
+              fontSize: 11.sp,
+              fontFamily: "Acephimere",
+            ),
           ),
         ),
       ),
@@ -603,7 +612,9 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp,
+            hintStyle: TextStyle(
+              color: AppColors.greyColor,
+              fontSize: 11.sp,
               fontFamily: "Acephimere",
             ),
           ),
@@ -787,14 +798,16 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp,
-              fontFamily: "Acephimere",),
+            hintStyle: TextStyle(
+              color: AppColors.greyColor,
+              fontSize: 11.sp,
+              fontFamily: "Acephimere",
+            ),
           ),
         ),
       ),
     );
   }
-
 
   Widget _monthlyIncomeModule() {
     return Container(
@@ -819,8 +832,11 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp,
-              fontFamily: "Acephimere",),
+            hintStyle: TextStyle(
+              color: AppColors.greyColor,
+              fontSize: 11.sp,
+              fontFamily: "Acephimere",
+            ),
           ),
         ),
       ),
@@ -850,8 +866,11 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp,
-              fontFamily: "Acephimere",),
+            hintStyle: TextStyle(
+              color: AppColors.greyColor,
+              fontSize: 11.sp,
+              fontFamily: "Acephimere",
+            ),
           ),
         ),
       ),
@@ -912,8 +931,11 @@ class StepOneFormModule extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintStyle: TextStyle(color: AppColors.greyColor, fontSize: 11.sp,
-              fontFamily: "Acephimere",),
+            hintStyle: TextStyle(
+              color: AppColors.greyColor,
+              fontSize: 11.sp,
+              fontFamily: "Acephimere",
+            ),
           ),
         ),
       ),
@@ -926,15 +948,24 @@ class StepOneFormModule extends StatelessWidget {
       children: [
         Row(
           children: [
-            const Text('Do you have home loan ?',
-            style: TextStyle(fontFamily: "Acephimere",),).commonOnlyPadding(left: 7.w),
+            const Text(
+              'Do you have home loan ?',
+              style: TextStyle(
+                fontFamily: "Acephimere",
+              ),
+            ).commonOnlyPadding(left: 7.w),
           ],
         ),
         Row(
           children: [
             Expanded(
               child: RadioListTile(
-                title: const Text("Yes", style: TextStyle(fontFamily: "Acephimere",),),
+                title: const Text(
+                  "Yes",
+                  style: TextStyle(
+                    fontFamily: "Acephimere",
+                  ),
+                ),
                 value: "yes",
                 groupValue: screenController.homeLoanValue.value,
                 onChanged: (value) {
@@ -946,7 +977,12 @@ class StepOneFormModule extends StatelessWidget {
             ),
             Expanded(
               child: RadioListTile(
-                title: const Text("No", style: TextStyle(fontFamily: "Acephimere",),),
+                title: const Text(
+                  "No",
+                  style: TextStyle(
+                    fontFamily: "Acephimere",
+                  ),
+                ),
                 value: "no",
                 groupValue: screenController.homeLoanValue.value,
                 onChanged: (value) {

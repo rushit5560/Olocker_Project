@@ -146,7 +146,7 @@ class AllJewellersListModule extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 1.28,
+        childAspectRatio: 1.18,
         crossAxisSpacing: 4,
         mainAxisSpacing: 4,
       ),
@@ -181,8 +181,9 @@ class AllJewellersListModule extends StatelessWidget {
               children: [
                 Container(
                   width: screenController.size.width * 0.11.w,
-                  height: screenController.size.height * 0.013.h,
+                  height: screenController.size.height * 0.015.h,
                   decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey.shade200),
                     borderRadius: const BorderRadius.all(
                       Radius.circular(8),
                     ),

@@ -28,7 +28,7 @@ class MySchemePendingBillsScreen extends StatelessWidget {
           'Pending Bills',
           style: TextStyle(
             color: AppColors.blackTextColor,
-            fontSize: 14.sp,
+            fontSize: 15.sp,
             fontWeight: FontWeight.w600,
           ),
         ),

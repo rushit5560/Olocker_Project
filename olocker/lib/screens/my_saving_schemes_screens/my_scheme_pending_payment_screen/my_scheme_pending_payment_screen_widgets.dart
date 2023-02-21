@@ -80,7 +80,7 @@ class PaymentDetails extends StatelessWidget {
             "${screenController.pendingBillsSelectedList.length} Invoices",
             style: TextStyle(
               color: AppColors.accentColor,
-              fontSize: 14.sp,
+              fontSize: 16.sp,
               fontWeight: FontWeight.bold,
             ),
           ),

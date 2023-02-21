@@ -52,7 +52,7 @@ class SavingSchemeConfirmationScreen extends StatelessWidget {
             style: TextStyle(
               color: Colors.black,
               fontSize: 15.sp,
-              fontWeight: FontWeight.normal,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),

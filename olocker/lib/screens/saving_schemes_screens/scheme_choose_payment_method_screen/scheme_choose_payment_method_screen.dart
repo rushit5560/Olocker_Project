@@ -33,8 +33,8 @@ class SchemeChoosePaymentMethodScreen extends StatelessWidget {
           style: TextStyle(
             fontFamily: "Roboto",
             color: AppColors.blackColor,
-            fontSize: 14.sp,
-            fontWeight: FontWeight.normal,
+            fontSize: 15.sp,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),
@@ -43,8 +43,7 @@ class SchemeChoosePaymentMethodScreen extends StatelessWidget {
         child: Column(
           children: [
             JewellerDetailImageInfoModule(
-              imagePath:
-                  schemeChoosePaymentMethodScreenController.jewellerLogo,
+              imagePath: schemeChoosePaymentMethodScreenController.jewellerLogo,
               schemeName: schemeChoosePaymentMethodScreenController.schemeName,
               schemeTagLine:
                   schemeChoosePaymentMethodScreenController.schemeTagLine,

@@ -94,7 +94,7 @@ class JewelleryGridviewModule extends StatelessWidget {
               ),
             ),
             Expanded(
-              flex: 35,
+              flex: 40,
               child: Column(
                 children: [
                   // Price Show Module
@@ -200,7 +200,8 @@ class SearchJewelleryGridviewModule extends StatelessWidget {
         childAspectRatio: 0.82,
       ),
       itemBuilder: (context, i) {
-        SearchProductListDatum singleItem = screenController.searchJewelleryList[i];
+        SearchProductListDatum singleItem =
+            screenController.searchJewelleryList[i];
         return _jewelleryListTile(singleItem, i);
       },
     ).commonAllSidePadding(10);
@@ -401,11 +402,10 @@ class SearchFieldModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TypeAheadField(
-      suggestionsCallback: (text)  {
+      suggestionsCallback: (text) {
         String searchText = screenController.searchFieldController.text.trim();
         return screenController.getSearchTextListFunction(searchText);
       },
-
       textFieldConfiguration: TextFieldConfiguration(
         controller: screenController.searchFieldController,
         onChanged: (value) {
@@ -435,13 +435,12 @@ class SearchFieldModule extends StatelessWidget {
           title: Text(cat.toString()),
         );
       },
-
       onSuggestionSelected: (suggestion) async {
         screenController.searchFieldController.text = suggestion.toString();
-        await screenController.getSearchProductsFunction(screenController.searchFieldController.text);
+        await screenController.getSearchProductsFunction(
+            screenController.searchFieldController.text);
         log("Text : ${screenController.searchFieldController.text}");
       },
     );
   }
 }
-

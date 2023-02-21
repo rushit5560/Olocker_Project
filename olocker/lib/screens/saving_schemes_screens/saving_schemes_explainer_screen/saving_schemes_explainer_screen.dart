@@ -27,12 +27,12 @@ class SavingSchemesExplainerScreen extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
         ),
         title: Text(
-          'Saving Schemes',
+          'Savings Schemes',
           style: TextStyle(
             fontFamily: "Roboto",
             color: Colors.black,
             fontSize: 15.sp,
-            fontWeight: FontWeight.normal,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),

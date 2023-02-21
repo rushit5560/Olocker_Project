@@ -25,6 +25,8 @@ class AppImages {
   static const String jewelleryProductBgShapeImage =
       '$imageRootPath/product_detail.png';
   static const String dealsBgShapeImage = '$imageRootPath/deal_bg.png';
+  static const String sidmenuImage = '$imageRootPath/sidmenu.png';
+
   static const String ornamentBgShapeImage = '$imageRootPath/ornament.png';
 
   //add ornament screen images

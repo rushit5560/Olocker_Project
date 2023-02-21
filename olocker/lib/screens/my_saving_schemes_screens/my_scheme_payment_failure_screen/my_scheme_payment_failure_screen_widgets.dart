@@ -27,7 +27,7 @@ class PaymentUnSuccessContainerWidget extends StatelessWidget {
           Text(
             "Your payment is unsuccessful !",
             style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 16.sp,
               color: AppColors.accentBGColor,
               fontWeight: FontWeight.bold,
             ),

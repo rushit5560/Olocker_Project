@@ -26,11 +26,11 @@ class MySchemePaymentFailureScreen extends StatelessWidget {
               const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor),
         ),
         title: Text(
-          'Make Payments',
+          'Payment Status',
           style: TextStyle(
             color: AppColors.blackTextColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w500,
+            fontSize: 15.sp,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),

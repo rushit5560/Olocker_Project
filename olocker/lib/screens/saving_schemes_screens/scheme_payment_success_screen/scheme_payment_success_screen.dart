@@ -46,11 +46,13 @@ class SchemePaymentSuccessScreen extends StatelessWidget {
           //     color: Colors.black,
           //   ),
           // ),
-          title: const Text(
-            "Payment Status",
+          title: Text(
+            "Make payments",
             style: TextStyle(
               fontFamily: "Roboto",
               color: AppColors.blackColor,
+              fontSize: 15.sp,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),

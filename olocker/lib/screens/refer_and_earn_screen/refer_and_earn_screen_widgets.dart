@@ -31,8 +31,8 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
           style: TextStyle(
             fontFamily: "NexaBold",
             color: AppColors.accentColor,
-            fontSize: 20.sp,
-            fontWeight: FontWeight.w500,
+            fontSize: 19.sp,
+            fontWeight: FontWeight.w600,
           ),
         ),
         // SizedBox(height: 1.h),
@@ -81,16 +81,16 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                      referAndEarnScreenController.userReferaalCode.value
-                          .toUpperCase(),
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: "Acephimere",
-                        color: AppColors.greyColor,
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ).commonSymmetricPadding(vertical: 12),
+                    referAndEarnScreenController.userReferaalCode.value
+                        .toUpperCase(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: "Acephimere",
+                      color: AppColors.greyColor,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ).commonSymmetricPadding(vertical: 12),
                 ],
               ),
               IconButton(
@@ -103,7 +103,6 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
                   size: 15.sp,
                 ),
               )
-
             ],
           ),
         ),
@@ -152,7 +151,7 @@ class UserBenefitPointsTextModule extends StatelessWidget {
             benefitText,
             style: TextStyle(
               color: AppColors.accentColor,
-              fontSize: 17.sp,
+              fontSize: 15.sp,
               fontFamily: "NexaBold",
               fontWeight: FontWeight.bold,
             ),
@@ -227,9 +226,9 @@ class ReferEarnLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-                decoration:const BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius:  BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(28),
                   ),
                 ),
@@ -300,7 +299,7 @@ class ReferEarnLoadingWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
                 decoration: const BoxDecoration(
                   color: AppColors.greyColor,
-                  borderRadius:  BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(5),
                   ),
                 ),

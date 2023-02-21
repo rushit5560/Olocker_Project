@@ -11,7 +11,9 @@ import '../models/favourites_model/categorize_fav_products_model.dart';
 class MyFavouritesScreenController extends GetxController {
   final size = Get.size;
 
-  final String partnerSRno = Get.arguments[0];
+  // final String partnerSRno = Get.arguments[0];
+  var jewellerId = Get.arguments[0]; // Coming From Home Screen Jeweller List
+
 
   RxBool isLoading = false.obs;
 

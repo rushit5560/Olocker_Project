@@ -25,8 +25,8 @@ class MySavingSchemesListScreen extends StatelessWidget {
           'My Savings Schemes',
           style: TextStyle(
             color: AppColors.blackTextColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.bold,
+            fontSize: 15.sp,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),
@@ -52,7 +52,7 @@ class MySavingSchemesListScreen extends StatelessWidget {
                           ),
                         ),
                       )
-                    : MySchemesListViewModule(),/*Column(
+                    : MySchemesListViewModule(), /*Column(
                         children: [
                           // SizedBox(height: 1.h),
                           MySchemesListViewModule(),

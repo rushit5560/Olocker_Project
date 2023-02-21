@@ -29,7 +29,7 @@ class PaymentSuccessContainerWidget extends StatelessWidget {
           Text(
             "Your payment is successful !",
             style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 16.sp,
               color: AppColors.accentBGColor,
               fontWeight: FontWeight.bold,
             ),
@@ -60,10 +60,10 @@ class PaymentSuccessContainerWidget extends StatelessWidget {
           ),
           SizedBox(height: 1.h),
           PaymenTInvoiceNoListview(),
-          SizedBox(height: 2.h),
+          SizedBox(height: 3.h),
           Image.asset(
             AppImages.pdfImage,
-            height: 7.h,
+            height: 10.h,
           ),
           // SizedBox(height: 1.h),
         ],

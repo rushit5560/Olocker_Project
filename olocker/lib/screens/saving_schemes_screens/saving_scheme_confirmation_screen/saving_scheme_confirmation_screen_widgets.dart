@@ -54,7 +54,7 @@ class AmountDetailsModule extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 color: AppColors.blackColor,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                             SizedBox(height: 1.h),
@@ -93,7 +93,7 @@ class AmountDetailsModule extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 color: AppColors.blackColor,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                             SizedBox(height: 1.h),
@@ -106,7 +106,7 @@ class AmountDetailsModule extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 20.sp,
                                     color: AppColors.accentColor,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.w500,
                                   ),
                                 ),
                                 SizedBox(height: 0.4.h),
@@ -115,7 +115,7 @@ class AmountDetailsModule extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 12.sp,
                                     color: AppColors.accentColor,
-                                    fontWeight: FontWeight.w500,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 )
                               ],
@@ -149,7 +149,7 @@ class AmountDetailsModule extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 13.sp,
                                 color: AppColors.blackColor,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                             const SizedBox(height: 12),
@@ -180,7 +180,7 @@ class AmountDetailsModule extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 13.sp,
                                 color: AppColors.blackColor,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                             const SizedBox(height: 12),

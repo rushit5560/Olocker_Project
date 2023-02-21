@@ -31,7 +31,7 @@ class MySchemesDetailsScreen extends StatelessWidget {
           'Schemes Details',
           style: TextStyle(
             color: AppColors.blackTextColor,
-            fontSize: 14.sp,
+            fontSize: 15.sp,
             fontWeight: FontWeight.w600,
           ),
         ),

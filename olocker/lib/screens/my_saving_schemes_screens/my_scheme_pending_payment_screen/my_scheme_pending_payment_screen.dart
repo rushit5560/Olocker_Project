@@ -40,8 +40,8 @@ class MySchemePendingPaymentScreen extends StatelessWidget {
             'Make Payments',
             style: TextStyle(
               color: AppColors.blackTextColor,
-              fontSize: 13.sp,
-              fontWeight: FontWeight.w500,
+              fontSize: 15.sp,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),
@@ -58,9 +58,7 @@ class MySchemePendingPaymentScreen extends StatelessWidget {
             ),
           ),
         ),
-
         bottomNavigationBar: PayNowButton(),
-
       ),
     );
   }

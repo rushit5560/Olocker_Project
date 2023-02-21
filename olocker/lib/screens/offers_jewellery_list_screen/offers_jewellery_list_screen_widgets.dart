@@ -210,7 +210,7 @@ class OfferSearchJewelleryGridviewModule extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Get.to(
-              () => JewellerJewelleryDetailsScreen(),
+          () => JewellerJewelleryDetailsScreen(),
           arguments: [
             screenController.jewellerId.toString(),
             singleItem.productSrNo,
@@ -278,31 +278,31 @@ class OfferSearchJewelleryGridviewModule extends StatelessWidget {
                     ),
                     child: singleItem.productsPrice == "PRICE ON REQUEST"
                         ? Text(
-                      singleItem.productsPrice,
-                      textAlign: TextAlign.center,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        fontFamily: "Roboto",
-                        color: AppColors.whiteColor,
-                      ),
-                    ).commonSymmetricPadding(vertical: 5)
+                            singleItem.productsPrice,
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              fontFamily: "Roboto",
+                              color: AppColors.whiteColor,
+                            ),
+                          ).commonSymmetricPadding(vertical: 5)
                         : Text(
-                      NumberFormat.currency(
-                        symbol: '₹ ',
-                        locale: "HI",
-                        decimalDigits: 0,
-                      ).format(double.parse(singleItem.productsPrice)),
-                      textAlign: TextAlign.center,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontFamily: "Roboto",
-                        color: AppColors.whiteColor,
-                        fontSize: 12.sp,
-                      ),
-                    ).commonSymmetricPadding(vertical: 5),
+                            NumberFormat.currency(
+                              symbol: '₹ ',
+                              locale: "HI",
+                              decimalDigits: 0,
+                            ).format(double.parse(singleItem.productsPrice)),
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontFamily: "Roboto",
+                              color: AppColors.whiteColor,
+                              fontSize: 12.sp,
+                            ),
+                          ).commonSymmetricPadding(vertical: 5),
                   ).commonSymmetricPadding(horizontal: 5),
 
                   Row(
@@ -312,16 +312,16 @@ class OfferSearchJewelleryGridviewModule extends StatelessWidget {
                         onPressed: () async {
                           singleItem.isFav == false
                               ? await screenController
-                              .addFavouriteProductFunction(
-                            productSrNo:
-                            singleItem.productSrNo.toString(),
-                            singleProduct: singleItem,
-                          )
+                                  .addFavouriteProductFunction(
+                                  productSrNo:
+                                      singleItem.productSrNo.toString(),
+                                  singleProduct: singleItem,
+                                )
                               : await screenController
-                              .removeFavouriteProductListFunction(
-                            favouriteId: singleItem.favId.toString(),
-                            singleProduct: singleItem,
-                          );
+                                  .removeFavouriteProductListFunction(
+                                  favouriteId: singleItem.favId.toString(),
+                                  singleProduct: singleItem,
+                                );
                         },
                         icon: Icon(
                           singleItem.isFav == true
@@ -353,7 +353,6 @@ class OfferSearchJewelleryGridviewModule extends StatelessWidget {
   }
 }
 
-
 class OfferSearchFieldModule extends StatelessWidget {
   OfferSearchFieldModule({Key? key}) : super(key: key);
   final screenController = Get.find<OffersJewelleryListScreenController>();
@@ -361,11 +360,10 @@ class OfferSearchFieldModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TypeAheadField(
-      suggestionsCallback: (text)  {
+      suggestionsCallback: (text) {
         String searchText = screenController.searchFieldController.text.trim();
         return screenController.getOfferSearchTextListFunction(searchText);
       },
-
       textFieldConfiguration: TextFieldConfiguration(
         controller: screenController.searchFieldController,
         onChanged: (value) {
@@ -376,17 +374,17 @@ class OfferSearchFieldModule extends StatelessWidget {
           suffixIcon: screenController.searchFieldController.text == ""
               ? null
               : IconButton(
-            icon: const Icon(Icons.close),
-            color: Colors.grey,
-            iconSize: 20,
-            onPressed: () {
-              screenController.isLoading(true);
-              screenController.searchFieldController.clear();
-              screenController.searchJewelleryList.clear();
-              screenController.isSearchOn.value = false;
-              screenController.isLoading(false);
-            },
-          ),
+                  icon: const Icon(Icons.close),
+                  color: Colors.grey,
+                  iconSize: 20,
+                  onPressed: () {
+                    screenController.isLoading(true);
+                    screenController.searchFieldController.clear();
+                    screenController.searchJewelleryList.clear();
+                    screenController.isSearchOn.value = false;
+                    screenController.isLoading(false);
+                  },
+                ),
         ),
       ),
       itemBuilder: (context, suggestion) {
@@ -395,10 +393,10 @@ class OfferSearchFieldModule extends StatelessWidget {
           title: Text(cat.toString()),
         );
       },
-
       onSuggestionSelected: (suggestion) async {
         screenController.searchFieldController.text = suggestion.toString();
-        await screenController.getSearchProductsFunction(screenController.searchFieldController.text);
+        await screenController.getSearchProductsFunction(
+            screenController.searchFieldController.text);
         log("Text : ${screenController.searchFieldController.text}");
       },
     );

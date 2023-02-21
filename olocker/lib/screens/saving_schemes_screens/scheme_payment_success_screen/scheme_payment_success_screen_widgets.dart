@@ -166,9 +166,9 @@ class PaymentSuccessDetailsModule extends StatelessWidget {
                   Text(
                     "Your payment is successful !",
                     style: TextStyle(
-                      fontSize: 15.sp,
+                      fontSize: 16.sp,
                       color: AppColors.accentColor,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(height: 3.h),
@@ -213,15 +213,15 @@ class PaymentSuccessDetailsModule extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 3.h),
-                  // Text(
-                  //   "Next installment date : ${screenController.transactionData.billingDate.split(" ")[0]}",
-                  //   style: TextStyle(
-                  //     fontSize: 11.sp,
-                  //     color: AppColors.blackColor,
-                  //     fontWeight: FontWeight.w500,
-                  //   ),
-                  // ),
-                  // SizedBox(height: 4.h),
+                  Text(
+                    "Next installment date : ${screenController.transactionData.billingDate.split(" ")[0]}",
+                    style: TextStyle(
+                      fontSize: 11.sp,
+                      color: AppColors.blackColor,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(height: 4.h),
                   Text(
                     "You can dowanload the receipt and check status of your schemes from MYOLOCKER section on this app.",
                     style: TextStyle(

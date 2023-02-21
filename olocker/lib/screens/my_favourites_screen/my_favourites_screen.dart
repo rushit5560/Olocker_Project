@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/controllers/my_favourites_controller.dart';
+import 'package:olocker/screens/my_inquiries_list_screen/my_inquiries_list_screen.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/app_colors.dart';
@@ -21,6 +22,22 @@ class MyFavouritesScreen extends StatelessWidget {
           icon:
               const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.to(
+                () => MyInquiriesListScreen(),
+                arguments: [
+                  myFavouritesScreenController.jewellerId,
+                ],
+              );
+            },
+            icon: const Icon(
+              Icons.mail_outline_rounded,
+              color: AppColors.accentColor,
+            ),
+          ),
+        ],
         titleSpacing: 0,
         title: Text(
           'My Favourites',

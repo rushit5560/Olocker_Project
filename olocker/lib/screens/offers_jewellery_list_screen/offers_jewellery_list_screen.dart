@@ -243,7 +243,7 @@ class OffersJewelleryListScreen extends StatelessWidget {
                             ),
                           ),
                         ],
-                      ).commonOnlyPadding(bottom: 5, left: 10)
+                      ).commonOnlyPadding(bottom: 5, left: 10,right: 10)
                     ],
                   ),
                 ),

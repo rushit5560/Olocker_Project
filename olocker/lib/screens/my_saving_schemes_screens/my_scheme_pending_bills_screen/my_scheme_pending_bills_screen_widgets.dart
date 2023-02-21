@@ -87,15 +87,14 @@ class MyBillsModule extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
+        // alignment: Alignment.topLeft,
+        alignment: Alignment.centerRight,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                padding: const EdgeInsets.only(
-                    left: 30, top: 20, bottom: 20, right: 15),
+                padding: const EdgeInsets.only(left: 30, top: 20, bottom: 20),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,7 +112,7 @@ class MyBillsModule extends StatelessWidget {
                       "Total due payments",
                       style: TextStyle(
                         color: AppColors.accentColor,
-                        fontSize: 10.sp,
+                        fontSize: 12.sp,
                       ),
                     ),
                     const SizedBox(height: 5),
@@ -135,14 +134,16 @@ class MyBillsModule extends StatelessWidget {
                   ],
                 ),
               ),
-              const Spacer(),
-              Image.asset(
-                AppImages.pendingBillsImage,
-                fit: BoxFit.cover,
-                height: Get.size.height * 0.18,
-                width: Get.size.width * 0.45,
-              ),
             ],
+          ),
+          Positioned(
+            right: -5,
+            child: Image.asset(
+              AppImages.pendingBillsImage,
+              fit: BoxFit.fill,
+              height: Get.size.height * 0.18,
+              width: Get.size.width * 0.45,
+            ),
           ),
         ],
       ),

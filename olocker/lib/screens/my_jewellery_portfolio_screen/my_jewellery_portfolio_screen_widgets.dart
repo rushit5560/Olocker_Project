@@ -170,7 +170,7 @@ class MyInsuredJewelleryModule extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: "Roboto",
                   color: AppColors.blackColor,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w600,
                   fontSize: 12.sp,
                 ),
               ),
@@ -281,7 +281,7 @@ class MyUnInsuredJewelleryModule extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: "Roboto",
                       color: AppColors.blackColor,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                       fontSize: 12.sp,
                     ),
                   ),

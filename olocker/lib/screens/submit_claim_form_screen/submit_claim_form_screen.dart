@@ -26,8 +26,8 @@ class SubmitClaimFormScreen extends StatelessWidget {
           style: TextStyle(
             fontFamily: "Roboto",
             color: AppColors.blackColor,
-            fontSize: 14.sp,
-            fontWeight: FontWeight.normal,
+            fontSize: 15.sp,
+            fontWeight: FontWeight.w500,
           ),
         ),
         backgroundColor: AppColors.whiteColor,
