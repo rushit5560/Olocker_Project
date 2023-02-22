@@ -5,7 +5,6 @@ import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../constants/app_images.dart';
 import '../../controllers/jeweller_loyalty_point_screen_controller.dart';
 import '../../models/jeweller_loyalty_point_screen_models/loyalty_point_model.dart';

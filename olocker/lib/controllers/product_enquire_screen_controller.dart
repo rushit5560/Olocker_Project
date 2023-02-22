@@ -74,6 +74,8 @@ class ProductEnquireScreenController extends GetxController {
     log(" sendProductInquiryFunction url: $url");
 
     log("isChatLoading :: ${isChatLoading.value}");
+
+
     try {
       var requestMap = {
         "PartnerSrNo": partnerSrNo,
@@ -151,6 +153,7 @@ class ProductEnquireScreenController extends GetxController {
         headers: apiHeader.headers,
       );
       log(' getAllReplyFunction response : ${response.body}');
+      
 
       GetAllMessageModel getAllMessageModel =
           GetAllMessageModel.fromJson(json.decode(response.body));
@@ -161,6 +164,7 @@ class ProductEnquireScreenController extends GetxController {
         getNotificationList.addAll(getAllMessageModel.getNotification);
 
         log('getAllReplyFunction getNotificationList is  : ${getNotificationList.length}');
+
       } else {
         log('getAllReplyFunction Else');
       }

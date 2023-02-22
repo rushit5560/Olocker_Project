@@ -22,12 +22,15 @@ class AllLoyaltyPointListModule extends StatelessWidget {
             ApiUrl.apiMainPath + screenController.loyaltyPointList[i].logoUrl;
         String redeemedPoint = "";
 
-        if(screenController.loyaltyPointList[i].totalReedemedPoint.contains(".")) {
-          redeemedPoint = screenController.loyaltyPointList[i].totalReedemedPoint.split(".")[0];
+        if (screenController.loyaltyPointList[i].totalReedemedPoint
+            .contains(".")) {
+          redeemedPoint = screenController
+              .loyaltyPointList[i].totalReedemedPoint
+              .split(".")[0];
         } else {
-          redeemedPoint = screenController.loyaltyPointList[i].totalReedemedPoint;
+          redeemedPoint =
+              screenController.loyaltyPointList[i].totalReedemedPoint;
         }
-
 
         return Container(
           decoration: BoxDecoration(
@@ -199,8 +202,8 @@ class AllLoyaltyPointListModule extends StatelessWidget {
                       Expanded(
                         flex: 2,
                         child: Container(
-                          height: screenController.size.width * 0.035.w,
-                          width: screenController.size.width * 0.035.w,
+                          height: screenController.size.width * 0.045.w,
+                          width: screenController.size.width * 0.045.w,
                           // alignment: Alignment.center,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,

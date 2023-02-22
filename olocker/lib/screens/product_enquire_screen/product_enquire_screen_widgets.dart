@@ -77,9 +77,7 @@ class SendMessageTextField extends StatelessWidget {
               onPressed: () async {
                 if (screenController.sendMsgController.text.trim().isNotEmpty) {
                   await screenController.sendProductInquiryFunction();
-                } else {
-
-                }
+                } else {}
               },
               child: Center(
                 child: Text(
@@ -150,13 +148,16 @@ class SingleMessageModule extends StatelessWidget {
     bool isSendByMe;
 
     // ignore: unrelated_type_equality_checks
-    msg.customerId == UserDetails.customerId
-        ? isSendByMe = false
-        : isSendByMe = true;
+    msg.sentBy == 1 ? isSendByMe = false : isSendByMe = true;
 
+    log('------');
+    log('msg.customerId : ${msg.customerId}');
+    log('UserDetails.customerId : ${UserDetails.customerId}');
+    log("msg.message : ${msg.message}");
+    log("isSendByMe is :: $isSendByMe");
+    log('------');
     var msgTime = DateFormat("HH:mm aa").format(msg.timestamp).toString();
 
-    log("isSendByMe is :: $isSendByMe");
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5),
       child: Column(
@@ -430,7 +431,7 @@ class ChatLoadingWidget extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(15),
                       topLeft: Radius.circular(15),
-                      bottomRight:  Radius.circular(0),
+                      bottomRight: Radius.circular(0),
                       bottomLeft: Radius.circular(15),
                     ),
                   ),

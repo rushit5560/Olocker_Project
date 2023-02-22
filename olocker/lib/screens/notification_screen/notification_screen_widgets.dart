@@ -104,11 +104,11 @@ class NotificationItem extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 11.sp,
                                   fontFamily: "Roboto",
-                                  fontWeight: FontWeight.normal,
+                                  fontWeight: FontWeight.w600,
                                   color: AppColors.blackTextColor,
                                 ),
                               ),
-                              const SizedBox(height: 5),
+                              // const SizedBox(height: 3),
                               Text(
                                 singleMsg.isAdminNotification ? "Admin" : "",
                                 style: TextStyle(
@@ -118,7 +118,7 @@ class NotificationItem extends StatelessWidget {
                                   color: AppColors.blackTextColor,
                                 ),
                               ),
-                              const SizedBox(height: 5),
+                              // const SizedBox(height: 2),
                               SizedBox(
                                 width: 72.w,
                                 child: Text(

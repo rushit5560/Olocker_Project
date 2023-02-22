@@ -18,7 +18,7 @@ class NotificationScreen extends StatelessWidget {
       backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
         title: Text(
-          'Notifications',
+          'Notification',
           style: TextStyle(
             fontFamily: "Roboto",
             color: AppColors.blackColor,

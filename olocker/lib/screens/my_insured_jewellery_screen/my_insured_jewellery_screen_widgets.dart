@@ -109,7 +109,10 @@ class JewelleryListItem extends StatelessWidget {
                             child: GestureDetector(
                               onTap: () async {
                                 if (insuredItem.pdfUrl.isNotEmpty) {
+                                  log("insuredItem.pdfUrl : ${insuredItem.pdfUrl}");
                                   await launchUrl(
+                                      // Uri.parse(
+                                      //       "https://www.olocker.in/manage/view-certificate.aspx?id=MTGV9NPEYLY2NSG%20")
                                       Uri.parse(insuredItem.pdfUrl));
                                 }
 
