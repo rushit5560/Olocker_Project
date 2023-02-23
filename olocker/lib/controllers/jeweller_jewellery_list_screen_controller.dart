@@ -12,7 +12,6 @@ import '../models/refer_and_earn_screen_models/get_partner_by_code_model.dart';
 import '../models/user_profile_models/user_profile_get_model.dart';
 import '../widgets/common_widgets.dart';
 
-
 class JewellerJewelleryListScreenController extends GetxController {
   // Getting from jeweller details screen
   String jewelleryName = Get.arguments[0];
@@ -48,28 +47,30 @@ class JewellerJewelleryListScreenController extends GetxController {
 
   TextEditingController searchFieldController = TextEditingController();
 
-
   // SearchField Search Function
   getSearchTextListFunction(String searchText) {
     return searchFieldController.text.trim().isEmpty
         ? collectionNameList
         : collectionNameList.where((element) {
-      String searchListString = element.toLowerCase();
-      String searchTextNew = searchText.toLowerCase();
-      return searchListString.contains(searchTextNew);
-    }).toList();
+            String searchListString = element.toLowerCase();
+            String searchTextNew = searchText.toLowerCase();
+            return searchListString.contains(searchTextNew);
+          }).toList();
   }
 
   Future<void> getSearchProductsFunction(String searchName) async {
     isLoading(true);
     String url = "";
 
-    if(SearchCategory.collectionType == searchCategory) {
-      url = "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&CollectionID=$searchName&CustomerId=${UserDetails.customerId}";
-    } else if(SearchCategory.categoryType == searchCategory) {
-      url = "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&Category=$searchName&CustomerId=${UserDetails.customerId}";
-    } else if(SearchCategory.productType == searchCategory) {
-      url = "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$searchName&CustomerId=${UserDetails.customerId}";
+    if (SearchCategory.collectionType == searchCategory) {
+      url =
+          "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&CollectionID=$searchName&CustomerId=${UserDetails.customerId}";
+    } else if (SearchCategory.categoryType == searchCategory) {
+      url =
+          "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&Category=$searchName&CustomerId=${UserDetails.customerId}";
+    } else if (SearchCategory.productType == searchCategory) {
+      url =
+          "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$searchName&CustomerId=${UserDetails.customerId}";
     }
     log('Url : $url');
 
@@ -81,13 +82,12 @@ class JewellerJewelleryListScreenController extends GetxController {
       log('getSearchProductsFunction response : ${response.body}');
 
       AllJewelleryModel allJewelleryModel =
-      AllJewelleryModel.fromJson(json.decode(response.body));
+          AllJewelleryModel.fromJson(json.decode(response.body));
       isSuccessStatus = allJewelleryModel.success.obs;
 
       if (isSuccessStatus.value) {
         searchJewelleryList.clear();
         searchJewelleryList.addAll(allJewelleryModel.searchProductListData);
-
 
         log('getSearchProductsFunction : ${searchJewelleryList.length}');
       } else {
@@ -101,7 +101,6 @@ class JewellerJewelleryListScreenController extends GetxController {
     isLoading(false);
     // loadUI();
   }
-
 
   // Get Category All Product
   Future<void> getAllJewelleryListFunction() async {
@@ -145,8 +144,6 @@ class JewellerJewelleryListScreenController extends GetxController {
       // isLoading(false);
     }
   }
-
-
 
   // Add product in Fav
   Future<void> addFavouriteProductFunction(
@@ -248,10 +245,12 @@ class JewellerJewelleryListScreenController extends GetxController {
         withPriceList.add(_jewelleryList[i]);
 
         if (selectedSortingIndex.value == 0) {
-          withPriceList.sort((a, b) => a.productsPrice.compareTo(b.productsPrice));
+          withPriceList
+              .sort((a, b) => a.productsPrice.compareTo(b.productsPrice));
           log('With Price Value 0 $i: ${_jewelleryList[i].productsPrice}');
         } else if (selectedSortingIndex.value == 1) {
-          withPriceList.sort((a, b) => b.productsPrice.compareTo(a.productsPrice));
+          withPriceList
+              .sort((a, b) => b.productsPrice.compareTo(a.productsPrice));
           log('With Price Value 1 $i: ${_jewelleryList[i].productsPrice}');
         }
       } else {

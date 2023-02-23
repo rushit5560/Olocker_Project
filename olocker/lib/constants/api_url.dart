@@ -9,7 +9,6 @@ class ApiUrl {
   static const String apiMainPath = "https://devappapi.olocker.in/";
   // static const String apiMainPath = "http://5.189.147.159:7009/";
 
-
   // static const String apiImageUrlPath = "https://devappapi.olocker.in/";
 
   static const String apiImagePath = "https://demo.olocker.in";
@@ -135,8 +134,10 @@ class ApiUrl {
       "${apiMainPath}api/Partner/GetAnnouncementOffer";
   static const String getOfferDetailApi =
       "${apiMainPath}api/Partner/GetOfferDetail";
-  static const String getJewelleryGetPushToAppDataApi = "${apiMainPath}api/Partner/GetPushToAppData";
-  static const String getNewArrivalApi = "${apiMainPath}api/Partner/GetPushToAppCollections";
+  static const String getJewelleryGetPushToAppDataApi =
+      "${apiMainPath}api/Partner/GetPushToAppData";
+  static const String getNewArrivalApi =
+      "${apiMainPath}api/Partner/GetPushToAppCollections";
   static const String getJewelleryTypeApi =
       "${apiMainPath}api/Partner/GetUniqueList";
   static const String getBestSellerApi =
@@ -186,5 +187,5 @@ class ApiUrl {
   static const String setFeedbackFormApi =
       "${apiMainPath}api/User/AddCustomerFeedback";
   static const String getJewellerJewelleriesApi =
-      "${apiMainPath}api/Partner/SearchProductList";
+      "${apiMainPath}api/Partner/SearchProductList1";
 }

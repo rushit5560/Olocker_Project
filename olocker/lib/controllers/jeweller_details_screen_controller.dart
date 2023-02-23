@@ -173,8 +173,7 @@ class JewellerDetailsScreenController extends GetxController {
 
   Future<void> getNewArrivalFunction() async {
     isLoading(true);
-    String url =
-        "${ApiUrl.getNewArrivalApi}?PartnerSrNo=$jewellerId";
+    String url = "${ApiUrl.getNewArrivalApi}?PartnerSrNo=$jewellerId";
     log('getNewArrivalFunction Api Url :$url');
 
     try {
@@ -185,7 +184,7 @@ class JewellerDetailsScreenController extends GetxController {
       log('getNewArrivalFunction response : ${response.body}');
 
       JewelleryCategoryModel jewelleryCategoryModel =
-      JewelleryCategoryModel.fromJson(json.decode(response.body));
+          JewelleryCategoryModel.fromJson(json.decode(response.body));
       isSuccessStatus = jewelleryCategoryModel.success.obs;
 
       if (isSuccessStatus.value) {
@@ -251,10 +250,9 @@ class JewellerDetailsScreenController extends GetxController {
         }
 
         log("collectionNameList Length :${collectionNameList.length}");
-        for(var element in collectionNameList) {
+        for (var element in collectionNameList) {
           log('collectionNameList : $element');
         }
-
       } else {
         log('getJewelleryTypeFunction Else');
       }
@@ -364,7 +362,6 @@ class JewellerDetailsScreenController extends GetxController {
           log('goldPrice2 : $goldPrice2');
           log('goldPrice3 : $goldPrice3');
         }
-
       } else {
         log('getGoldPriceFunction Else');
       }
@@ -373,40 +370,40 @@ class JewellerDetailsScreenController extends GetxController {
       rethrow;
     }
 
-    await getAboutYourSelfFunction();
-    // isLoading(false);
-  }
-
-  Future<void> getAboutYourSelfFunction() async {
-    isLoading(true);
-    String url =
-        "${ApiUrl.getAboutYourSelfApi}?PartnerSrno=$jewellerId&CustomerId=${UserDetails.customerId}";
-    log('getAboutYourSelfFunction Api Url : $url');
-
-    try {
-      http.Response response = await http.get(
-        Uri.parse(url),
-        headers: apiHeader.headers,
-      );
-      log('getAboutYourSelfFunction response : ${response.body}');
-
-      AboutYourSelfModel aboutYourSelfModel =
-          AboutYourSelfModel.fromJson(json.decode(response.body));
-      isSuccessStatus = aboutYourSelfModel.success.obs;
-
-      if (isSuccessStatus.value) {
-        isFeedbackValue = aboutYourSelfModel.ratingGivenByCustomer.obs;
-        log('isFeedbackValue : $isFeedbackValue');
-      } else {
-        log('getAboutYourSelfFunction Else');
-      }
-    } catch (e) {
-      log('getAboutYourSelfFunction Error :$e');
-      rethrow;
-    }
-
+    // await getAboutYourSelfFunction();
     isLoading(false);
   }
+
+  // Future<void> getAboutYourSelfFunction() async {
+  //   isLoading(true);
+  //   String url =
+  //       "${ApiUrl.getAboutYourSelfApi}?PartnerSrno=$jewellerId&CustomerId=${UserDetails.customerId}";
+  //   log('getAboutYourSelfFunction Api Url : $url');
+
+  //   try {
+  //     http.Response response = await http.get(
+  //       Uri.parse(url),
+  //       headers: apiHeader.headers,
+  //     );
+  //     log('getAboutYourSelfFunction response : ${response.body}');
+
+  //     AboutYourSelfModel aboutYourSelfModel =
+  //         AboutYourSelfModel.fromJson(json.decode(response.body));
+  //     isSuccessStatus = aboutYourSelfModel.success.obs;
+
+  //     if (isSuccessStatus.value) {
+  //       isFeedbackValue = aboutYourSelfModel.ratingGivenByCustomer.obs;
+  //       log('isFeedbackValue : $isFeedbackValue');
+  //     } else {
+  //       log('getAboutYourSelfFunction Else');
+  //     }
+  //   } catch (e) {
+  //     log('getAboutYourSelfFunction Error :$e');
+  //     rethrow;
+  //   }
+
+  //   isLoading(false);
+  // }
 
   @override
   void onInit() {
@@ -425,5 +422,4 @@ class JewellerDetailsScreenController extends GetxController {
   initMethodFunction() async {
     await getSpecialFeaturesFunction();
   }
-
 }

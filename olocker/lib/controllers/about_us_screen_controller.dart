@@ -8,7 +8,6 @@ import 'package:olocker/constants/user_details.dart';
 import '../models/about_us_models/about_us_details_model.dart';
 import '../models/about_us_models/owner_detail_model.dart';
 
-
 class AboutUsPageController extends GetxController {
   var partnerSrno = Get.arguments[0];
   var jewellerName = Get.arguments[1];
@@ -24,10 +23,6 @@ class AboutUsPageController extends GetxController {
   List<OwnerDetailModel> teamMembersList = [];
 
   List<String> sliderImageList = [];
-
-
-  
-
 
   Future<void> getAboutUsDetailsFunction() async {
     isLoading(true);
