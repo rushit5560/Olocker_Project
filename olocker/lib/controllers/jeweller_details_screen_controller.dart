@@ -25,6 +25,10 @@ class JewellerDetailsScreenController extends GetxController {
   Size size = Get.size;
   ApiHeader apiHeader = ApiHeader();
 
+  final ScrollController scrollController = ScrollController();
+  RxBool hasMore = true.obs;
+  // RxBool hasMoreLoading = true.obs;
+
   // RxBool isSpecialFeaturesLoading = false.obs;
   // RxBool isAnnouncementOfferLoading = false.obs;
   // RxBool isJewelleryPushToAppDataLoading = false.obs;
@@ -60,6 +64,7 @@ class JewellerDetailsScreenController extends GetxController {
 
   RxInt bannerCurrentIndex = 0.obs;
 
+  // This 4 Function api calling in 1st Phase
   Future<void> getSpecialFeaturesFunction() async {
     isLoading(true);
     String url = "${ApiUrl.getSpecialFeaturesApi}?PartnerSrNo=$jewellerId";
@@ -167,106 +172,117 @@ class JewellerDetailsScreenController extends GetxController {
       rethrow;
     }
 
-    await getNewArrivalFunction();
-    // isLoading(false);
+    // await getNewArrivalFunction();
+    isLoading(false);
   }
 
+  // This 5 Function api calling in 2nd Phase
   Future<void> getNewArrivalFunction() async {
-    isLoading(true);
-    String url = "${ApiUrl.getNewArrivalApi}?PartnerSrNo=$jewellerId";
-    log('getNewArrivalFunction Api Url :$url');
+    if(hasMore.value) {
+      // isLoading(true);
+      String url = "${ApiUrl.getNewArrivalApi}?PartnerSrNo=$jewellerId";
+      log('getNewArrivalFunction Api Url :$url');
 
-    try {
-      http.Response response = await http.get(
-        Uri.parse(url),
-        headers: apiHeader.headers,
-      );
-      log('getNewArrivalFunction response : ${response.body}');
+      try {
+        http.Response response = await http.get(
+          Uri.parse(url),
+          headers: apiHeader.headers,
+        );
+        log('getNewArrivalFunction response : ${response.body}');
 
-      JewelleryCategoryModel jewelleryCategoryModel =
-          JewelleryCategoryModel.fromJson(json.decode(response.body));
-      isSuccessStatus = jewelleryCategoryModel.success.obs;
+        JewelleryCategoryModel jewelleryCategoryModel =
+        JewelleryCategoryModel.fromJson(json.decode(response.body));
+        isSuccessStatus = jewelleryCategoryModel.success.obs;
 
-      if (isSuccessStatus.value) {
-        newArrivalList.clear();
-        newArrivalList.addAll(jewelleryCategoryModel.getPushCollection);
+        if (isSuccessStatus.value) {
+          newArrivalList.clear();
+          newArrivalList.addAll(jewelleryCategoryModel.getPushCollection);
 
-        log('newArrivalList : ${newArrivalList.length}');
-      } else {
-        log('getNewArrivalFunction Else');
+          log('newArrivalList : ${newArrivalList.length}');
+        } else {
+          log('getNewArrivalFunction Else');
+        }
+      } catch (e) {
+        log('getNewArrivalFunction Error :$e');
+        rethrow;
       }
-    } catch (e) {
-      log('getNewArrivalFunction Error :$e');
-      rethrow;
-    }
 
-    await getJewelleryTypeFunction();
-    // isLoading(false);
+      await getJewelleryTypeFunction();
+      // isLoading(false);
+    } else {
+      isLoading(false);
+    }
   }
 
   Future<void> getJewelleryTypeFunction() async {
-    isLoading(true);
-    String url = "${ApiUrl.getJewelleryTypeApi}?PartnerSrNo=$jewellerId";
-    log('Get Jewellery Type Api Url : $url');
+    if(hasMore.value) {
+      // isLoading(true);
+      String url = "${ApiUrl.getJewelleryTypeApi}?PartnerSrNo=$jewellerId";
+      log('Get Jewellery Type Api Url : $url');
 
-    try {
-      http.Response response = await http.get(
-        Uri.parse(url),
-        headers: apiHeader.headers,
-      );
-      log('getJewelleryTypeFunction response : ${response.body}');
+      try {
+        http.Response response = await http.get(
+          Uri.parse(url),
+          headers: apiHeader.headers,
+        );
+        log('getJewelleryTypeFunction response : ${response.body}');
 
-      JewelleryTypeModel jewelleryTypeModel =
-          JewelleryTypeModel.fromJson(json.decode(response.body));
-      isSuccessStatus = jewelleryTypeModel.success.obs;
+        JewelleryTypeModel jewelleryTypeModel =
+        JewelleryTypeModel.fromJson(json.decode(response.body));
+        isSuccessStatus = jewelleryTypeModel.success.obs;
 
-      if (isSuccessStatus.value) {
-        collectionNameList.clear();
-        menTypeList.clear();
-        if (jewelleryTypeModel.productTypeMen.isNotEmpty) {
-          menTypeList.add(ProductTypeItem(name: '', image: ''));
-          menTypeList.addAll(jewelleryTypeModel.productTypeMen);
-          for (var element in jewelleryTypeModel.productTypeMen) {
-            collectionNameList.add(element.name);
+        if (isSuccessStatus.value) {
+          collectionNameList.clear();
+          menTypeList.clear();
+          if (jewelleryTypeModel.productTypeMen.isNotEmpty) {
+            menTypeList.add(ProductTypeItem(name: '', image: ''));
+            menTypeList.addAll(jewelleryTypeModel.productTypeMen);
+            for (var element in jewelleryTypeModel.productTypeMen) {
+              collectionNameList.add(element.name);
+            }
           }
-        }
-        log('getJewelleryTypeFunction menTypeList : ${menTypeList.length}');
-        womenTypeList.clear();
-        if (jewelleryTypeModel.productTypeWomen.isNotEmpty) {
-          womenTypeList.add(ProductTypeItem(name: '', image: ''));
-          womenTypeList.addAll(jewelleryTypeModel.productTypeWomen);
-          for (var element in jewelleryTypeModel.productTypeWomen) {
-            collectionNameList.add(element.name);
+          log('getJewelleryTypeFunction menTypeList : ${menTypeList.length}');
+          womenTypeList.clear();
+          if (jewelleryTypeModel.productTypeWomen.isNotEmpty) {
+            womenTypeList.add(ProductTypeItem(name: '', image: ''));
+            womenTypeList.addAll(jewelleryTypeModel.productTypeWomen);
+            for (var element in jewelleryTypeModel.productTypeWomen) {
+              collectionNameList.add(element.name);
+            }
           }
-        }
-        log('getJewelleryTypeFunction womenTypeList : ${womenTypeList.length}');
-        kidsTypeList.clear();
-        if (jewelleryTypeModel.productTypeKids.isNotEmpty) {
-          kidsTypeList.add(ProductTypeItem(name: '', image: ''));
-          kidsTypeList.addAll(jewelleryTypeModel.productTypeKids);
-          for (var element in jewelleryTypeModel.productTypeKids) {
-            collectionNameList.add(element.name);
+          log('getJewelleryTypeFunction womenTypeList : ${womenTypeList
+              .length}');
+          kidsTypeList.clear();
+          if (jewelleryTypeModel.productTypeKids.isNotEmpty) {
+            kidsTypeList.add(ProductTypeItem(name: '', image: ''));
+            kidsTypeList.addAll(jewelleryTypeModel.productTypeKids);
+            for (var element in jewelleryTypeModel.productTypeKids) {
+              collectionNameList.add(element.name);
+            }
           }
-        }
 
-        log("collectionNameList Length :${collectionNameList.length}");
-        for (var element in collectionNameList) {
-          log('collectionNameList : $element');
+          log("collectionNameList Length :${collectionNameList.length}");
+          for (var element in collectionNameList) {
+            log('collectionNameList : $element');
+          }
+        } else {
+          log('getJewelleryTypeFunction Else');
         }
-      } else {
-        log('getJewelleryTypeFunction Else');
+      } catch (e) {
+        log('getJewelleryTypeFunction Error :$e');
+        rethrow;
       }
-    } catch (e) {
-      log('getJewelleryTypeFunction Error :$e');
-      rethrow;
-    }
 
-    await getBestSellerFunction();
-    // isLoading(false);
+      await getBestSellerFunction();
+      // isLoading(false);
+    } else {
+      isLoading(false);
+    }
   }
 
   Future<void> getBestSellerFunction() async {
-    isLoading(true);
+    if(hasMore.value) {
+    // isLoading(true);
     String url = "${ApiUrl.getBestSellerApi}?PartnerId=$jewellerId";
     log('getBestSellerFunction Api Url : $url');
 
@@ -295,10 +311,14 @@ class JewellerDetailsScreenController extends GetxController {
 
     await getClientTestimonialsFunction();
     // isLoading(false);
+    } else {
+      isLoading(false);
+    }
   }
 
   Future<void> getClientTestimonialsFunction() async {
-    isLoading(true);
+    if(hasMore.value) {
+    // isLoading(true);
     String url = "${ApiUrl.getClientTestimonialsApi}?PartnerSrno=$jewellerId";
     log('getClientTestimonialsFunction Api Url :$url');
 
@@ -327,10 +347,14 @@ class JewellerDetailsScreenController extends GetxController {
 
     await getGoldPriceFunction();
     // isLoading(false);
+    } else {
+      isLoading(false);
+    }
   }
 
   Future<void> getGoldPriceFunction() async {
-    isLoading(true);
+    if(hasMore.value) {
+    // isLoading(true);
     String url = "${ApiUrl.getGoldPriceApi}?PartnerId=$jewellerId";
     log('getGoldPriceFunction Api Url : $url');
 
@@ -372,6 +396,10 @@ class JewellerDetailsScreenController extends GetxController {
 
     // await getAboutYourSelfFunction();
     isLoading(false);
+    hasMore(false);
+    } else {
+      isLoading(false);
+    }
   }
 
   // Future<void> getAboutYourSelfFunction() async {
@@ -408,6 +436,16 @@ class JewellerDetailsScreenController extends GetxController {
   @override
   void onInit() {
     initMethodFunction();
+
+    scrollController.addListener(() async {
+      if (scrollController.position.maxScrollExtent == scrollController.offset) {
+        if(hasMore.value) {
+          await getJewelleryTypeFunction();
+        }
+        // hasMore = false;
+      }
+    });
+
     // getBestSellerFunction();
     // getSpecialFeaturesFunction();
     // getAnnouncementOfferFunction();
