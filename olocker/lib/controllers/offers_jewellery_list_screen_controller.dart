@@ -46,6 +46,13 @@ class OffersJewelleryListScreenController extends GetxController {
   RxBool isSearchOn = false.obs;
   TextEditingController searchFieldController = TextEditingController();
 
+  final ScrollController scrollController = ScrollController();
+  RxBool hasMore = true.obs;
+  int pageIndex = 1;
+
+  RxBool hasSearchMore = true.obs;
+  int pageSearchIndex = 1;
+
 
   // SearchField Search Function
   getOfferSearchTextListFunction(String searchText) {

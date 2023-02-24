@@ -22,6 +22,8 @@ class JewelleryGridviewModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       itemCount: screenController.jewelleryList.length,
+      // controller: screenController.scrollController,
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -31,7 +33,25 @@ class JewelleryGridviewModule extends StatelessWidget {
       ),
       itemBuilder: (context, i) {
         SearchProductListDatum singleItem = screenController.jewelleryList[i];
-        return _jewelleryListTile(singleItem, i);
+
+        if(i < screenController.jewelleryList.length) {
+          return _jewelleryListTile(singleItem, i);
+        } else {
+          return screenController.hasMore.value
+              ? const CircularProgressIndicator()
+              : Center(
+                  child: Text(
+                    "No More Jewellery!!",
+                    style: TextStyle(
+                      color: AppColors.whiteColor,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                );
+        }
+
+
       },
     ).commonAllSidePadding(10);
   }
@@ -424,6 +444,8 @@ class SearchFieldModule extends StatelessWidget {
                     screenController.searchFieldController.clear();
                     screenController.searchJewelleryList.clear();
                     screenController.isSearchOn.value = false;
+                    screenController.hasSearchMore = true.obs;
+                    screenController.pageSearchIndex = 1;
                     screenController.isLoading(false);
                   },
                 ),
@@ -437,8 +459,9 @@ class SearchFieldModule extends StatelessWidget {
       },
       onSuggestionSelected: (suggestion) async {
         screenController.searchFieldController.text = suggestion.toString();
-        await screenController.getSearchProductsFunction(
-            screenController.searchFieldController.text);
+        // screenController.hasMore = true.obs;
+        // screenController.pageIndex = 1;
+        await screenController.getSearchProductsFunction(screenController.searchFieldController.text);
         log("Text : ${screenController.searchFieldController.text}");
       },
     );

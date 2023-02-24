@@ -25,6 +25,13 @@ class JewellerJewelleryListScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
+  final ScrollController scrollController = ScrollController();
+  RxBool hasMore = true.obs;
+  int pageIndex = 1;
+
+  RxBool hasSearchMore = true.obs;
+  int pageSearchIndex = 1;
+
   Size size = Get.size;
   ApiHeader apiHeader = ApiHeader();
   RxInt selectedSortingIndex = 0.obs;
@@ -59,89 +66,117 @@ class JewellerJewelleryListScreenController extends GetxController {
   }
 
   Future<void> getSearchProductsFunction(String searchName) async {
-    isLoading(true);
-    String url = "";
+    if(hasSearchMore.value) {
+      // isLoading(true);
+      String url = "";
 
-    if (SearchCategory.collectionType == searchCategory) {
-      url =
-          "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&CollectionID=$searchName&CustomerId=${UserDetails.customerId}";
-    } else if (SearchCategory.categoryType == searchCategory) {
-      url =
-          "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&Category=$searchName&CustomerId=${UserDetails.customerId}";
-    } else if (SearchCategory.productType == searchCategory) {
-      url =
-          "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$searchName&CustomerId=${UserDetails.customerId}";
-    }
-    log('Url : $url');
-
-    try {
-      http.Response response = await http.get(
-        Uri.parse(url),
-        headers: apiHeader.headers,
-      );
-      log('getSearchProductsFunction response : ${response.body}');
-
-      AllJewelleryModel allJewelleryModel =
-          AllJewelleryModel.fromJson(json.decode(response.body));
-      isSuccessStatus = allJewelleryModel.success.obs;
-
-      if (isSuccessStatus.value) {
-        searchJewelleryList.clear();
-        searchJewelleryList.addAll(allJewelleryModel.searchProductListData);
-
-        log('getSearchProductsFunction : ${searchJewelleryList.length}');
-      } else {
-        log('getSearchProductsFunction Else');
+      if (SearchCategory.collectionType == searchCategory) {
+        url =
+        "${ApiUrl
+            .getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&CollectionID=$searchName&CustomerId=${UserDetails
+            .customerId}&PageIndex=$pageSearchIndex";
       }
-    } catch (e) {
-      log('getSearchProductsFunction Error : $e');
-      rethrow;
-    }
+      else if (SearchCategory.categoryType == searchCategory) {
+        url =
+        "${ApiUrl
+            .getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&Category=$searchName&CustomerId=${UserDetails
+            .customerId}&PageIndex=$pageSearchIndex";
+      }
+      else if (SearchCategory.productType == searchCategory) {
+        url =
+        "${ApiUrl
+            .getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$searchName&CustomerId=${UserDetails
+            .customerId}&PageIndex=$pageSearchIndex";
+      }
+      log('Url : $url');
 
-    isLoading(false);
-    // loadUI();
+      try {
+        http.Response response = await http.get(
+          Uri.parse(url),
+          headers: apiHeader.headers,
+        );
+        log('getSearchProductsFunction response : ${response.body}');
+
+        AllJewelleryModel allJewelleryModel =
+        AllJewelleryModel.fromJson(json.decode(response.body));
+        isSuccessStatus = allJewelleryModel.success.obs;
+
+        if (isSuccessStatus.value) {
+          searchJewelleryList.clear();
+          searchJewelleryList.addAll(allJewelleryModel.searchProductListData);
+
+          log('getSearchProductsFunction : ${searchJewelleryList.length}');
+        }
+        else {
+          log('getSearchProductsFunction Else');
+        }
+      } catch (e) {
+        log('getSearchProductsFunction Error : $e');
+        rethrow;
+      }
+      loadUI();
+      // isLoading(false);
+      // loadUI();
+    } else {
+      isLoading(false);
+    }
   }
 
   // Get Category All Product
   Future<void> getAllJewelleryListFunction() async {
-    isLoading(true);
-    String url = "";
+    if(hasMore.value) {
+      // isLoading(true);
+      String url = "";
 
-    if (jewelleryListType == JewelleryListType.categoryId) {
-      url =
-          "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&CollectionID=$jewelleryCategoryId&CustomerId=${UserDetails.customerId}";
-    } else {
-      url =
-          "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$jewelleryCategoryId&CustomerId=${UserDetails.customerId}";
-    }
-    log('getAllJewelleryListFunction Api Url : $url');
-
-    try {
-      http.Response response = await http.get(
-        Uri.parse(url),
-        headers: apiHeader.headers,
-      );
-      log('getAllJewelleryListFunction response : ${response.body}');
-
-      AllJewelleryModel allJewelleryModel =
-          AllJewelleryModel.fromJson(json.decode(response.body));
-      isSuccessStatus = allJewelleryModel.success.obs;
-
-      if (isSuccessStatus.value) {
-        _jewelleryList.clear();
-        _jewelleryList.addAll(allJewelleryModel.searchProductListData);
-
-        // _jewelleryList.
-        log('_jewelleryList : ${_jewelleryList.length}');
+      if (jewelleryListType == JewelleryListType.categoryId) {
+        url =
+        "${ApiUrl
+            .getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&CollectionID=$jewelleryCategoryId&CustomerId=${UserDetails
+            .customerId}&PageIndex=$pageIndex";
       } else {
-        log('getAllJewelleryListFunction Else');
+        url =
+        "${ApiUrl
+            .getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$jewelleryCategoryId&CustomerId=${UserDetails
+            .customerId}&PageIndex=$pageIndex";
       }
-    } catch (e) {
-      log('getAllJewelleryListFunction Error : $e');
-      rethrow;
-    } finally {
-      getPartnerByCodeFunction();
-      // isLoading(false);
+      log('getAllJewelleryListFunction Api Url : $url');
+
+      try {
+        http.Response response = await http.get(
+          Uri.parse(url),
+          headers: apiHeader.headers,
+        );
+        log('getAllJewelleryListFunction response : ${response.body}');
+
+        AllJewelleryModel allJewelleryModel =
+        AllJewelleryModel.fromJson(json.decode(response.body));
+        isSuccessStatus = allJewelleryModel.success.obs;
+
+        if (isSuccessStatus.value) {
+          // _jewelleryList.clear();
+          // _jewelleryList.addAll(allJewelleryModel.searchProductListData);
+          if(allJewelleryModel.searchProductListData.isEmpty) {
+            hasMore = false.obs;
+          } else {
+            _jewelleryList.addAll(allJewelleryModel.searchProductListData);
+            if(allJewelleryModel.searchProductListData.length < 20) {
+              hasMore = false.obs;
+            }
+          }
+
+          log('_jewelleryList : ${_jewelleryList.length}');
+        } else {
+          log('getAllJewelleryListFunction Else');
+        }
+      } catch (e) {
+        log('getAllJewelleryListFunction Error : $e');
+        rethrow;
+      } finally {
+        // isLoading(false);
+        loadUI();
+      }
+    } else {
+      isLoading(false);
     }
   }
 
@@ -349,15 +384,45 @@ class JewellerJewelleryListScreenController extends GetxController {
     } catch (e) {
       log("getUserProfileDetailsFunction Error ::: $e");
       rethrow;
-    } finally {
-      isLoading(false);
     }
+
+    await getAllJewelleryListFunction(); //todo - jewellery list function
   }
 
   @override
   void onInit() {
-    getAllJewelleryListFunction();
+    log('jewelleryCategoryId : $jewelleryCategoryId');
+    initMethodFunction();
+
+    scrollController.addListener(() {
+      if (scrollController.position.maxScrollExtent == scrollController.offset) {
+        //api call for more pet
+
+        if(searchJewelleryList.isEmpty) {
+          if (hasMore.value) {
+            pageIndex++;
+            CommonWidgets().showBorderSnackBar(
+                context: Get.context!, displayText: "Loading more jewellery");
+            getAllJewelleryListFunction();
+          }
+        } else {
+          if(hasSearchMore.value) {
+            pageSearchIndex++;
+            CommonWidgets().showBorderSnackBar(
+                context: Get.context!, displayText: "Loading more jewellery");
+            getSearchProductsFunction(searchFieldController.text.trim());
+          }
+        }
+        log("pageIndex Init Method: $pageIndex");
+
+
+      }
+    });
+
     super.onInit();
+  }
+  initMethodFunction() async {
+    await getPartnerByCodeFunction();
   }
 
   loadUI() {
