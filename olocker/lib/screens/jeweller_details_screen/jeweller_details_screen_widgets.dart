@@ -521,7 +521,7 @@ class ReferAndJewellerEmiModule extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-              ).commonOnlyPadding(top: 8, bottom: 8, left: 14, right: 7),
+              ).commonOnlyPadding(top: 10, bottom: 10, left: 14, right: 7),
             ),
           ),
           Expanded(
@@ -875,7 +875,7 @@ class CustomerSpeakModule extends StatelessWidget {
             return _customerSpeakListTile(singleItem);
           },
           options: CarouselOptions(
-            height: screenController.size.height * 0.024.h,
+            height: 150,
             autoPlay: true,
             viewportFraction: 1,
             autoPlayInterval: const Duration(seconds: 4),
@@ -887,7 +887,7 @@ class CustomerSpeakModule extends StatelessWidget {
 
   Widget _customerSpeakListTile(Testimonial singleItem) {
     return Container(
-      margin: const EdgeInsets.only(left: 5, top: 5, bottom: 5, right: 5),
+      margin: const EdgeInsets.only(left: 5, right: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: AppColors.lightCoffeeColor,
@@ -898,16 +898,14 @@ class CustomerSpeakModule extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                height: screenController.size.width * 0.030.w,
+                // height: screenController.size.width * 0.030.w,
                 width: screenController.size.width * 0.030.w,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: AppColors.whiteColor,
                   // image: DecorationImage(
                   //   image: NetworkImage(
-                  //       "${ApiUrl.apiImageUrlPath}/images/JewelleryApp/2020/5/9e926966718148acaedc690e4a55d5f8_1.png"),
-
-                  //   // AssetImage(AppImages.aboutTileBGImage),
+                  //       "${ApiUrl.apiImageUrlPath}/images/JewelleryApp/2020/5/9e926966718148acaedc690e4a55d5f8_1.png"), //   // AssetImage(AppImages.aboutTileBGImage),
                   // ),
                 ),
                 child: ClipRRect(
@@ -946,9 +944,9 @@ class CustomerSpeakModule extends StatelessWidget {
                 maxLines: 3,
                 textAlign: TextAlign.left,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
+                style: const TextStyle(
                   color: AppColors.whiteColor,
-                  fontSize: 10.5.sp,
+                  fontSize: 15,
                   fontFamily: "Acephimere",
                   fontWeight: FontWeight.w500,
                 ),
