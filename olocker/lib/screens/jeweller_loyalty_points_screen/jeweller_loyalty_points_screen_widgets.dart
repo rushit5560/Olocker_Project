@@ -93,7 +93,8 @@ class JewellerLoyaltyPointsModule extends StatelessWidget {
                             Text(
                               "total points".toUpperCase(),
                               style: TextStyle(
-                                fontFamily: "Roboto-Medium",
+                                // fontFamily: "Roboto-Medium",
+                                fontFamily: "Acephimere",
                                 color: AppColors.blackColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 11.sp,
@@ -108,7 +109,9 @@ class JewellerLoyaltyPointsModule extends StatelessWidget {
                             Text(
                               "redeemed".toUpperCase(),
                               style: TextStyle(
-                                fontFamily: "Roboto-Medium",
+                                // fontFamily: "Roboto-Medium",
+                                fontFamily: "Acephimere",
+
                                 color: AppColors.blackColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 11.sp,
@@ -121,7 +124,8 @@ class JewellerLoyaltyPointsModule extends StatelessWidget {
                                   .toString()
                                   .split(".")[0],
                               style: TextStyle(
-                                fontFamily: "Roboto-Medium",
+                                // fontFamily: "Roboto-Medium",
+                                fontFamily: "Acephimere",
                                 color: AppColors.accentColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 13.sp,

@@ -107,7 +107,10 @@ class PersonalLoansScreen extends StatelessWidget {
                     //   },
                     // ),
                     AnotherStepper(
-                      gap: 15.w,
+                      iconHeight: 15.w,
+                      iconWidth: 15.w,
+                      // gap: 15.w,
+                      // verticalGap: 15.w,
                       barThickness: 5,
                       inverted: true,
                       stepperDirection: Axis.horizontal,

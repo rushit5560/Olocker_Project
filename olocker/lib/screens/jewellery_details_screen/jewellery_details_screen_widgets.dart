@@ -143,21 +143,19 @@ class ProductImagesSliderModule extends StatelessWidget {
               height: 150,
               width: 150,
               decoration: BoxDecoration(
-                  // color: Colors.black,
-                  shape: BoxShape.circle,
-                  color: AppColors.whiteColor,
-                  border: Border.all(width: 3, color: AppColors.whiteColor)),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(200),
-                ),
-                child: CachedNetworkImage(
-                  imageUrl: ApiUrl.apiImagePath +
-                      jewelleryDetailsController.productDetailsData
-                          .productImageList[index].imageLocation,
+                // color: Colors.black,
+                shape: BoxShape.circle,
+                color: AppColors.whiteColor,
+                border: Border.all(width: 5, color: AppColors.whiteColor),
+                image: DecorationImage(
+                  image: NetworkImage(
+                    ApiUrl.apiImagePath +
+                        jewelleryDetailsController.productDetailsData
+                            .productImageList[index].imageLocation,
+                  ),
                   fit: BoxFit.cover,
-                  errorWidget: (context, url, error) {
-                    return Container(
+                  onError: (obj, st) {
+                    Container(
                       color: AppColors.whiteColor,
                       child: const Center(
                         child: Text(
@@ -168,7 +166,24 @@ class ProductImagesSliderModule extends StatelessWidget {
                     );
                   },
                 ),
-              ).commonAllSidePadding(5),
+              ),
+              // child: CachedNetworkImage(
+              //   imageUrl: ApiUrl.apiImagePath +
+              //       jewelleryDetailsController.productDetailsData
+              //           .productImageList[index].imageLocation,
+              //   fit: BoxFit.cover,
+              //   errorWidget: (context, url, error) {
+              //     return Container(
+              //       color: AppColors.whiteColor,
+              //       child: const Center(
+              //         child: Text(
+              //           "no image",
+              //           style: TextStyle(fontFamily: "Acephimere"),
+              //         ),
+              //       ),
+              //     );
+              //   },
+              // ).commonAllSidePadding(5),
             ),
           );
         },
@@ -389,7 +404,7 @@ class ProductDescriptionModule extends StatelessWidget {
               : ProductDescRow(
                   textTitle: "Metal",
                   textValue:
-                      "${jewelleryDetailController.productDetailsData.metaldetails[0].metalType} ${jewelleryDetailController.productDetailsData.metaldetails[0].metalPurity} ${double.parse(jewelleryDetailController.productDetailsData.metaldetails[0].metalWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.metaldetails[0].unitMetalWt}",
+                      "${jewelleryDetailController.productDetailsData.metaldetails[0].metalType}-${jewelleryDetailController.productDetailsData.metaldetails[0].metalPurity}-${double.parse(jewelleryDetailController.productDetailsData.metaldetails[0].metalWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.metaldetails[0].unitMetalWt}",
                 ),
           jewelleryDetailController.productDetailsData.decorativedetails.isEmpty
               ? const SizedBox()

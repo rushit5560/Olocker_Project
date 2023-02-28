@@ -28,6 +28,7 @@ class JewellerFeedbackScreen extends StatelessWidget {
         title: Text(
           'Feedback',
           style: TextStyle(
+            fontFamily: "Acephimere",
             color: AppColors.blackTextColor,
             fontSize: 13.sp,
             fontWeight: FontWeight.w400,
@@ -77,8 +78,10 @@ class JewellerFeedbackScreen extends StatelessWidget {
                                         ? TextFieldModule(
                                             singleItem: singleItem,
                                             index: i,
-                                            text: jewellerFeedbackScreenController
-                                    .feedBackFormList[i].question,
+                                            text:
+                                                jewellerFeedbackScreenController
+                                                    .feedBackFormList[i]
+                                                    .question,
                                           )
                                         : Container();
                           },

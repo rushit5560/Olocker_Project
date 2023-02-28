@@ -66,25 +66,50 @@ class JewellerProductImagesSliderModule extends StatelessWidget {
                   index;
               jewelleryDetailsController.isLoading(false);
             },
+            // child: Container(
+            //   height: 150,
+            //   width: 150,
+            //   decoration: BoxDecoration(
+            //       border: Border.all(width: 3, color: AppColors.whiteColor),
+            //       shape: BoxShape.circle,
+            //       color: AppColors.whiteColor),
+            //   child: ClipRRect(
+            //     borderRadius: const BorderRadius.all(
+            //       Radius.circular(200),
+            //     ),
+            //     child: CachedNetworkImage(
+            //       imageUrl: singleImage,
+            //       // imageUrl: ApiUrl.apiImagePath +
+            //       //     jewelleryDetailsController.productDetailsData
+            //       //         .productimages![index].imageLocation,
+            //       fit: BoxFit.cover,
+            //       errorWidget: (context, url, error) {
+            //         return Container(
+            //           color: AppColors.whiteColor,
+            //           child: const Center(
+            //             child: Text(
+            //               "no image",
+            //               style: TextStyle(fontFamily: "Acephimere"),
+            //             ),
+            //           ),
+            //         );
+            //       },
+            //     ),
+            //   ).commonAllSidePadding(5),
+            // ),
             child: Container(
               height: 150,
               width: 150,
               decoration: BoxDecoration(
-                  border: Border.all(width: 3, color: AppColors.whiteColor),
-                  shape: BoxShape.circle,
-                  color: AppColors.whiteColor),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(200),
-                ),
-                child: CachedNetworkImage(
-                  imageUrl: singleImage,
-                  // imageUrl: ApiUrl.apiImagePath +
-                  //     jewelleryDetailsController.productDetailsData
-                  //         .productimages![index].imageLocation,
+                // color: Colors.black,
+                shape: BoxShape.circle,
+                color: AppColors.whiteColor,
+                border: Border.all(width: 5, color: AppColors.whiteColor),
+                image: DecorationImage(
+                  image: NetworkImage(singleImage),
                   fit: BoxFit.cover,
-                  errorWidget: (context, url, error) {
-                    return Container(
+                  onError: (obj, st) {
+                    Container(
                       color: AppColors.whiteColor,
                       child: const Center(
                         child: Text(
@@ -95,7 +120,7 @@ class JewellerProductImagesSliderModule extends StatelessWidget {
                     );
                   },
                 ),
-              ).commonAllSidePadding(5),
+              ),
             ),
           );
         },
@@ -389,7 +414,7 @@ class JewellerProductDescriptionModule extends StatelessWidget {
               : ProductDescRow(
                   textTitle: "Metal",
                   textValue:
-                      "${jewelleryDetailController.productDetailsData.metaldetails![0].metalType} ${jewelleryDetailController.productDetailsData.metaldetails![0].metalPurity} ${double.parse(jewelleryDetailController.productDetailsData.metaldetails![0].metalWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.metaldetails![0].unitMetalWt}",
+                      "${jewelleryDetailController.productDetailsData.metaldetails![0].metalType}-${jewelleryDetailController.productDetailsData.metaldetails![0].metalPurity}-${double.parse(jewelleryDetailController.productDetailsData.metaldetails![0].metalWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.metaldetails![0].unitMetalWt}",
                 ),
           jewelleryDetailController
                   .productDetailsData.decorativedetails!.isEmpty
