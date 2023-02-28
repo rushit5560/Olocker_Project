@@ -90,7 +90,7 @@ class FavProduct {
         product: json["Product"] ?? 0,
         isSupplierProduct: json["IsSupplierProduct"] ?? false,
         partnerName: json["PartnerName"] ?? "",
-        partnerSrNo: json["partnersrno"] ?? 0,
+        partnerSrNo: json["PartnerSrNo"] ?? 0,
         customerId: json["CustomerId"] ?? 0,
         dateAdded: json["DateAdded"] ?? "",
         productDetails: ProductDetails.fromJson(json["ProductDetails"] ?? {}),

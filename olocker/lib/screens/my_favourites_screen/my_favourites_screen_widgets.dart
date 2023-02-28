@@ -284,6 +284,7 @@ class FavouriteListItem extends StatelessWidget {
                 SizedBox(height: favouritesController.size.height * 0.02),
                 GestureDetector(
                   onTap: () {
+                    log("singleProd.partnerSrNo :${singleProd.partnerSrNo}");
                     Get.to(
                       () => JewellerJewelleryDetailsScreen(),
                       arguments: [

@@ -140,15 +140,13 @@ class ProductImagesSliderModule extends StatelessWidget {
               jewelleryDetailsController.isLoading(false);
             },
             child: Container(
-              height: Get.width * 0.30,
-              width: Get.width * 0.30,
+              height: 150,
+              width: 150,
               decoration: BoxDecoration(
                   // color: Colors.black,
                   shape: BoxShape.circle,
-                  color: AppColors.whiteColor
-                  // border: Border.all(width: 5, color: AppColors.whiteColor)
-
-                  ),
+                  color: AppColors.whiteColor,
+                  border: Border.all(width: 3, color: AppColors.whiteColor)),
               child: ClipRRect(
                 borderRadius: const BorderRadius.all(
                   Radius.circular(200),

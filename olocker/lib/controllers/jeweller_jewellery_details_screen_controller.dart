@@ -12,7 +12,6 @@ import '../models/jewellery_details_screen_model/get_offer_jewellery_detail_mode
 import '../models/refer_and_earn_screen_models/get_partner_by_code_model.dart';
 import '../models/user_profile_models/user_profile_get_model.dart';
 
-
 class JewellerJewelleryDetailsScreenController extends GetxController {
   /// Getting this jeweller details screen
   String partnerSrNo = Get.arguments[0];
@@ -35,6 +34,7 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
   RxInt fullScreenImageCurrentindex = 0.obs;
 
   Future<void> getJewellerJewelleryProductDetailFunction() async {
+    log("getJewellerJewelleryProductDetailFunction PartnerSrNo:: $partnerSrNo");
     isLoading(true);
     String url = "${ApiUrl.getOfferJewelleryDetailApi}"
         "?ProductId=$productSrNo"

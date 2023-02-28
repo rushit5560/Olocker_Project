@@ -73,6 +73,7 @@ class JewelleryDetailsScreenController extends GetxController {
     isLoading(true);
     String url =
         "${ApiUrl.getJewelleryDetailApi}?partnerSrNo=$partnerSrNo&productSrno=$productSrNo";
+        
     log('getJewelleryProductDetailFunction Api Url :: $url');
 
     try {

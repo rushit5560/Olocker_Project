@@ -9,7 +9,6 @@ import 'package:olocker/models/jeweller_feedback_screen_models/add_feedback_form
 import 'package:olocker/models/jeweller_feedback_screen_models/feedback_form_model.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 
-
 class JewellerFeedbackScreenController extends GetxController {
   var jewellerId = Get.arguments; // Getting from Jeweller Details screen
   RxBool isLoading = false.obs;

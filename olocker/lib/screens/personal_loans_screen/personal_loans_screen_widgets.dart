@@ -633,9 +633,10 @@ class StepOneFormModule extends StatelessWidget {
       //   borderRadius: const BorderRadius.all(Radius.circular(8)),
       // ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-            flex: 55,
+            flex: 40,
             child: Text(
               'Loan Needed',
               style: TextStyle(
@@ -647,7 +648,7 @@ class StepOneFormModule extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 50,
+            flex: 60,
             child: Container(
               // height: 45,
               padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
@@ -670,33 +671,35 @@ class StepOneFormModule extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                      flex: 60,
-                      child: TextFormField(
-                        controller: screenController.loanAmountController,
-                        maxLength: 7,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly
-                        ],
-                        onChanged: (value) {
-                          screenController.isLoading(true);
-                          if (value.isNotEmpty) {
-                            screenController.loanAmount.value =
-                                double.parse(value);
-                          } else {
-                            screenController.loanAmount.value = 0;
-                          }
-                          screenController.isLoading(false);
-                        },
-                        decoration: const InputDecoration(
-                            contentPadding:
-                                EdgeInsets.symmetric(horizontal: 10),
-                            enabledBorder: InputBorder.none,
-                            border: InputBorder.none,
-                            focusedBorder: InputBorder.none,
-                            errorBorder: InputBorder.none,
-                            focusedErrorBorder: InputBorder.none,
-                            counterText: ''),
-                        style: const TextStyle(),
+                      flex: 80,
+                      child: Center(
+                        child: TextFormField(
+                          controller: screenController.loanAmountController,
+                          maxLength: 7,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                          onChanged: (value) {
+                            screenController.isLoading(true);
+                            if (value.isNotEmpty) {
+                              screenController.loanAmount.value =
+                                  double.parse(value);
+                            } else {
+                              screenController.loanAmount.value = 0;
+                            }
+                            screenController.isLoading(false);
+                          },
+                          decoration: const InputDecoration(
+                              contentPadding:
+                                  EdgeInsets.symmetric(horizontal: 10),
+                              enabledBorder: InputBorder.none,
+                              border: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                              errorBorder: InputBorder.none,
+                              focusedErrorBorder: InputBorder.none,
+                              counterText: ''),
+                          style: const TextStyle(),
+                        ),
                       )
 
                       //  Text(
@@ -709,10 +712,10 @@ class StepOneFormModule extends StatelessWidget {
                       //   ),
                       // ),
                       ),
-                  Expanded(
-                    flex: 20,
-                    child: Container(),
-                  ),
+                  // Expanded(
+                  //   flex: 20,
+                  //   child: Container(),
+                  // ),
                 ],
               ),
             ),
