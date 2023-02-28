@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 // import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/screens/signup_screen/signup_screen_widgets.dart';
@@ -64,10 +65,11 @@ class SignUpScreen extends StatelessWidget {
 
                     ],
                   )
-                : */SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: /*signUpScreenController.screenOpened.value
+                : */
+            SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: /*signUpScreenController.screenOpened.value
                       ? Column(
                         children: [
                           MobileScanner(
@@ -79,32 +81,32 @@ class SignUpScreen extends StatelessWidget {
                         ],
                       )
                       : */
-                          Column(
-                        children: [
-                          RegisterHeaderModule(),
-                          SizedBox(height: 4.h),
-                          RegisterForm(),
-                          SizedBox(height: 3.h),
-                          RectangleRoundedButton(
-                            buttonColor: AppColors.accentColor,
-                            onPressed: () async {
-                              await signUpScreenController
-                                  .userRegisterFunction(context);
-                            },
-                            centerChild: Text(
-                              "Sign up",
-                              style: TextStyle(
-                                color: AppColors.whiteColor,
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
+                      Column(
+                    children: [
+                      RegisterHeaderModule(),
+                      SizedBox(height: 4.h),
+                      RegisterForm(),
+                      SizedBox(height: 3.h),
+                      RectangleRoundedButton(
+                        buttonColor: AppColors.accentColor,
+                        onPressed: () async {
+                          await signUpScreenController
+                              .userRegisterFunction(context);
+                        },
+                        centerChild: Text(
+                          "Sign up",
+                          style: TextStyle(
+                            color: AppColors.whiteColor,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w400,
                           ),
-                          SizedBox(height: 2.h),
-                        ],
+                        ),
                       ),
-                    ),
+                      SizedBox(height: 2.h),
+                    ],
                   ),
+                ),
+              ),
       ),
     );
   }

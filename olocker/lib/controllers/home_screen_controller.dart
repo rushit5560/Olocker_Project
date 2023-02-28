@@ -19,7 +19,7 @@ class HomeScreenController extends GetxController {
   ApiHeader apiHeader = ApiHeader();
 
   RxBool smartDealsSwitch = false.obs;
-  RxBool getPermission = false.obs;
+  RxBool getLocationPermission = false.obs;
 
   List<JewellerData> myAllJewellersList = [];
   List<VendorDealsList> smartDealsOnlineList = [];
@@ -118,32 +118,44 @@ class HomeScreenController extends GetxController {
     isLoading(false);
   }
 
-  Future<bool> handleLocationPermission(context) async {
+  Future<bool> handleLocationPermission() async {
     bool serviceEnabled;
     LocationPermission permission;
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text(
-              'Location services are disabled. Please enable the services')));
-      return false;
+      ScaffoldMessenger.of(Get.context!).showSnackBar(const SnackBar(
+          content: Text('Location services are disabled. Please enable the services')));
+      getLocationPermission = false.obs;
+      return getLocationPermission.value;
     }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        ScaffoldMessenger.of(context).showSnackBar(
+        permission = await Geolocator.requestPermission();
+        ScaffoldMessenger.of(Get.context!).showSnackBar(
             const SnackBar(content: Text('Location permissions are denied')));
-        return false;
+        getLocationPermission = false.obs;
+        return getLocationPermission.value;
       }
     }
     if (permission == LocationPermission.deniedForever) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      permission = await Geolocator.requestPermission();
+      ScaffoldMessenger.of(Get.context!).showSnackBar(const SnackBar(
           content: Text(
               'Location permissions are permanently denied, we cannot request permissions.')));
-      return false;
+      getLocationPermission = false.obs;
+      return getLocationPermission.value;
     }
+
+    if(permission == LocationPermission.always){
+      getLocationPermission.value = true;
+    }
+    if(permission == LocationPermission.whileInUse){
+      getLocationPermission.value = true;
+    }
+
     return true;
   }
 

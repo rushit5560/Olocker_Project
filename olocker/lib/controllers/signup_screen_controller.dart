@@ -36,6 +36,9 @@ class SignUpScreenController extends GetxController {
     'Miss',
   ];
 
+  // bool isCustomerExist = false;
+  // CommonWidgets commonWidgets = CommonWidgets();
+
   Future<void> checkMobileNumber(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -67,30 +70,13 @@ class SignUpScreenController extends GetxController {
 
       if (isCustomerExist == true) {
         log("mobile number is verfied");
-        prefs.setString(
-            UserPrefsData().customerMobileNoKey, numberController.text);
-
+        prefs.setString(UserPrefsData().customerMobileNoKey, numberController.text);
+        // commonWidgets.showBorderSnackBar(context: Get.context!, displayText: "User Is Already Registered");
         // ignore: use_build_context_synchronously
         await userLoginFunction(context);
 
-        // Get.off(() => OtpScreen());
-        log("111");
-        // var snackBar = const SnackBar(
-        //   // backgroundColor: AppColors.whiteColor,
-        //   elevation: 8,
-        //   behavior: SnackBarBehavior.floating,
-        //   margin: EdgeInsets.all(8),
-        //   content: Text(
-        //     "User Is Already Registered",
-        //     style: TextStyle(
-        //       color: AppColors.whiteColor,
-        //     ),
-        //   ),
-        // );
 
-        // ignore: use_build_context_synchronously
-        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        log("222");
+
       } else {
         log("mobile number is new");
         //do nothing
@@ -137,16 +123,11 @@ class SignUpScreenController extends GetxController {
       log("is customer exist : $isCustomerExist");
 
       if (isCustomerExist == true) {
-        log("mobile number is verfied");
-        prefs.setString(
-            UserPrefsData().customerMobileNoKey, numberController.text);
-        Get.back();
-        CommonWidgets().showBorderSnackBar(
-              context: context, displayText: "User Is Already Registered");
-        Get.to(() => OtpScreen())!.then((value) {
-          CommonWidgets().showBorderSnackBar(
-              context: context, displayText: "User Is Already Registered");
-        });
+        log("mobile number is verified");
+        prefs.setString(UserPrefsData().customerMobileNoKey, numberController.text);
+        // Get.back();
+        CommonWidgets().showBorderSnackBar(context: Get.context!, displayText: "User Is Already Registered");
+        Get.off(() => OtpScreen());
       } else {
         log("mobile number is new");
         final snackBar = SnackBar(

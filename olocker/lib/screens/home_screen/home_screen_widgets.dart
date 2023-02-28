@@ -307,15 +307,13 @@ class SmartDealsModule extends StatelessWidget {
                         inactiveTrackColor: AppColors.whiteColor,
                         activeColor: AppColors.accentColor,
                         inactiveThumbColor: AppColors.accentColor,
-                        onChanged: (value) {
-                          screenController.isLoading(true);
-                          screenController.smartDealsSwitch.value =
-                              !screenController.smartDealsSwitch.value;
+                        onChanged: (value) async {
+                          screenController.smartDealsSwitch.value = !screenController.smartDealsSwitch.value;
                           log('${screenController.smartDealsSwitch.value}');
-                          screenController.getPermission.value =
-                              !screenController.getPermission.value;
-                          // screenController.handleLocationPermission(context);
-
+                          if(screenController.smartDealsSwitch.value) {
+                            await screenController.handleLocationPermission();
+                          }
+                          screenController.isLoading(true);
                           screenController.isLoading(false);
                         },
                       ),
@@ -346,10 +344,20 @@ class SmartDealsModule extends StatelessWidget {
                       ),
                     )
                   : OnlineDealsListModule()
-              : screenController.getPermission.value == false
-                  ? Text("data")
+              : screenController.getLocationPermission.value == false
+                  ? Text(
+            'To see local deals you need to give us location access permission in mobile settings',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: "Roboto",
+              color: AppColors.whiteColor,
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w500,
+            ),
+          )
                   : Text(
                       'Keep checking this space for exciting deals',
+            textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: "Roboto",
                         color: AppColors.whiteColor,
