@@ -20,6 +20,7 @@ class NotificationsListModule extends StatelessWidget {
           ? NotificationScreenLoadingWidget()
           : ListView.separated(
               shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
               itemCount:
                   notificationScreenController.getNotificationList.length,
               itemBuilder: (context, index) {
@@ -109,23 +110,27 @@ class NotificationItem extends StatelessWidget {
                                 ),
                               ),
                               // const SizedBox(height: 3),
-                              Text(
-                                singleMsg.isAdminNotification ? "Admin" : "",
-                                style: TextStyle(
-                                  fontSize: 11.sp,
-                                  fontFamily: "Roboto",
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.blackTextColor,
-                                ),
-                              ),
-                              // const SizedBox(height: 2),
+                              singleMsg.isAdminNotification
+                                  ? Text(
+                                      "Admin",
+                                      style: TextStyle(
+                                        fontSize: 11.sp,
+                                        fontFamily: "Roboto",
+                                        fontWeight: FontWeight.w500,
+                                        color: AppColors.blackTextColor,
+                                      ),
+                                    )
+                                  : Container(),
+                              singleMsg.isAdminNotification
+                                  ? Container()
+                                  : const SizedBox(height: 6),
                               SizedBox(
                                 width: 72.w,
                                 child: Text(
                                   singleMsg.message,
                                   maxLines: 1,
                                   style: TextStyle(
-                                    fontSize: 11.sp,
+                                    fontSize: 10.sp,
                                     fontFamily: "Roboto",
                                     fontWeight: FontWeight.normal,
                                     color: AppColors.greyTextColor,

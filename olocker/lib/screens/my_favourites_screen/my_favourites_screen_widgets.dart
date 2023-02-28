@@ -107,7 +107,7 @@ class FavouriteListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     log("1111");
-    // log("single images:  ${ApiUrl.apiImagePath}${singleProd.productDetails.productImageList[].imageLocation.replaceAll(r'\', "/")}");
+    log("single images:  ${ApiUrl.apiImagePath}${singleProd.productDetails.productImageList[0].imageLocation}");
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Stack(
@@ -234,7 +234,7 @@ class FavouriteListItem extends StatelessWidget {
                 child: CachedNetworkImage(
                   imageUrl: singleProd.productDetails.productImageList.isEmpty
                       // : "${ApiUrl.apiImagePath}${singleProd.productDetails.productImageList[0].imageLocation.replaceAll(r'\', "/")}/${singleProd.productDetails.productImageList[0].imageName}",
-                      ? ""
+                      ? "https://demo.olocker.in/images/ProductImages/2021/9/kdnl2428343_1.jpg"
                       : "${ApiUrl.apiImagePath}${singleProd.productDetails.productImageList[0].imageLocation.replaceAll(r'\', "/")}",
                   fit: BoxFit.cover,
                   placeholder: (context, url) {

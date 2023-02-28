@@ -757,9 +757,9 @@ class BestSellersListModule extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              flex: 8,
+              flex: 85,
               child: ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10)),
                 child: CachedNetworkImage(
@@ -809,7 +809,7 @@ class BestSellersListModule extends StatelessWidget {
               ).commonAllSidePadding(20),*/
             ),
             Expanded(
-              flex: 2,
+              flex: 15,
               child: Center(
                 child: Text(
                   NumberFormat.currency(
@@ -819,7 +819,7 @@ class BestSellersListModule extends StatelessWidget {
                   ).format(double.parse(singleItem.productPrice)),
                   style: TextStyle(
                     color: AppColors.blackColor,
-                    fontSize: 12.sp,
+                    fontSize: 11.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

@@ -43,9 +43,9 @@ class AllLoyaltyPointListModule extends StatelessWidget {
               Text(
                 screenController.loyaltyPointList[i].partner,
                 style: const TextStyle(
-                  color: AppColors.blueDarkColor,
-                  fontFamily: "Roboto",
-                ),
+                    color: AppColors.blueDarkColor,
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.w500),
               ),
               Stack(
                 alignment: Alignment.centerLeft,

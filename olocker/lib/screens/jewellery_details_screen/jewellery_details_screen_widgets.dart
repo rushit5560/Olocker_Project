@@ -142,9 +142,13 @@ class ProductImagesSliderModule extends StatelessWidget {
             child: Container(
               height: Get.width * 0.30,
               width: Get.width * 0.30,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-              ),
+              decoration: BoxDecoration(
+                  // color: Colors.black,
+                  shape: BoxShape.circle,
+                  color: AppColors.whiteColor
+                  // border: Border.all(width: 5, color: AppColors.whiteColor)
+
+                  ),
               child: ClipRRect(
                 borderRadius: const BorderRadius.all(
                   Radius.circular(200),
@@ -324,7 +328,7 @@ class JewelleryApproxPriceModule extends StatelessWidget {
           style: TextStyle(
             color: AppColors.whiteColor,
             fontSize: 13.sp,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w600,
             fontFamily: "Acephimere",
           ),
         ),
@@ -337,7 +341,7 @@ class JewelleryApproxPriceModule extends StatelessWidget {
                 style: TextStyle(
                     color: AppColors.whiteColor,
                     fontSize: 13.sp,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                     fontFamily: "Acephimere"),
               ),
       ],
@@ -370,7 +374,7 @@ class ProductDescriptionModule extends StatelessWidget {
             style: TextStyle(
                 color: AppColors.blackColor,
                 fontSize: 12.sp,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w600,
                 fontFamily: "Acephimere"),
           ),
           SizedBox(height: 2.h),
@@ -486,7 +490,9 @@ class JewellerFeaturesAvailableModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+
+      // padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
       decoration: const BoxDecoration(
         color: AppColors.whiteColor,
         borderRadius: BorderRadius.all(
@@ -503,7 +509,7 @@ class JewellerFeaturesAvailableModule extends StatelessWidget {
             style: TextStyle(
                 color: AppColors.blackColor,
                 fontSize: 12.sp,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w600,
                 fontFamily: "Acephimere"),
           ),
           GridView.builder(
@@ -521,11 +527,11 @@ class JewellerFeaturesAvailableModule extends StatelessWidget {
                     imageUrl: ApiUrl.apiImagePath +
                         jewelleryDetailController
                             .specialFeaturesList[index].iconUrl,
-                    height: 55,
-                    width: 55,
+                    height: 40,
+                    width: 40,
                     color: AppColors.blueDarkColor,
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 12),
                   Text(
                     jewelleryDetailController.specialFeaturesList[index].feature
                         .toUpperCase(),

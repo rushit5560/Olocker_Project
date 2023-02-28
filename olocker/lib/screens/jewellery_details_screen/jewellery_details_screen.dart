@@ -50,7 +50,7 @@ class JewelleryDetailsScreen extends StatelessWidget {
                         Image.asset(
                           AppImages.jewelleryProductBgShapeImage,
                           width: double.infinity,
-                          height: jewelleryDetailsController.size.height * 0.32,
+                          height: jewelleryDetailsController.size.height * 0.37,
                           fit: BoxFit.cover,
                         ),
                         jewelleryDetailsController

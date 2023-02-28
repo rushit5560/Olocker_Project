@@ -9,7 +9,6 @@ import 'package:sizer/sizer.dart';
 import '../constants/api_url.dart';
 import '../models/enquire_screen_models/get_all_message_model.dart';
 
-
 class NotificationScreenController extends GetxController {
   final size = Get.size;
 
@@ -121,7 +120,7 @@ class NotificationScreenController extends GetxController {
       log('readMarkUserNotificationApiFunction Error :$e');
       rethrow;
     } finally {
-      // isLoading(false);
+      isLoading(false);
     }
   }
 

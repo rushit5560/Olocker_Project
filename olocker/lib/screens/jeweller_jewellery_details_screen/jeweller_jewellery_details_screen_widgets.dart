@@ -70,9 +70,7 @@ class JewellerProductImagesSliderModule extends StatelessWidget {
               height: jewelleryDetailsController.size.height * 0.25,
               width: jewelleryDetailsController.size.height * 0.25,
               decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.whiteColor
-              ),
+                  shape: BoxShape.circle, color: AppColors.whiteColor),
               child: ClipRRect(
                 borderRadius: const BorderRadius.all(
                   Radius.circular(200),
@@ -87,8 +85,10 @@ class JewellerProductImagesSliderModule extends StatelessWidget {
                     return Container(
                       color: AppColors.whiteColor,
                       child: const Center(
-                        child: Text("no image",
-                        style: TextStyle(fontFamily: "Acephimere"),),
+                        child: Text(
+                          "no image",
+                          style: TextStyle(fontFamily: "Acephimere"),
+                        ),
                       ),
                     );
                   },
@@ -130,10 +130,8 @@ class ShowFullScreenImagesSliderModule extends StatelessWidget {
               jewelleryDetailsController.isLoading(false);
             },
             builder: (BuildContext context, int index) {
-              var singleImage = "${ApiUrl.apiImagePath}${jewelleryDetailsController
-                      .productDetailsData.productimages![index].imageLocation
-                      .replaceAll(r'\', "/")}/${jewelleryDetailsController
-                      .productDetailsData.productimages![index].imageName}";
+              var singleImage =
+                  "${ApiUrl.apiImagePath}${jewelleryDetailsController.productDetailsData.productimages![index].imageLocation.replaceAll(r'\', "/")}/${jewelleryDetailsController.productDetailsData.productimages![index].imageName}";
               return PhotoViewGalleryPageOptions(
                 imageProvider: NetworkImage(
                   singleImage,
@@ -141,8 +139,10 @@ class ShowFullScreenImagesSliderModule extends StatelessWidget {
                 ),
                 errorBuilder: (context, error, stackTrace) {
                   return const Center(
-                    child: Text("Image not loaded",
-                    style: TextStyle(fontFamily: "Acephimere"),),
+                    child: Text(
+                      "Image not loaded",
+                      style: TextStyle(fontFamily: "Acephimere"),
+                    ),
                   );
                 },
                 // initialScale: 0.32,

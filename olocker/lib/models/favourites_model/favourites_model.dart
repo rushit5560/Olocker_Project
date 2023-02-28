@@ -202,7 +202,7 @@ class ProductDetails {
         productStatus: json["ProductStatus"] ?? "",
         estimateDeliveryDays: json["EstimateDeliveryDays"] ?? "",
         productImageList: List<ProductImageList>.from(
-            (json["productimages"] ?? [])
+            (json["ProductImageList"] ?? [])
                 .map((x) => ProductImageList.fromJson(x))),
         similarProductList: List<SimilarProductList>.from(
             (json["SimilarProductList"] ?? [])

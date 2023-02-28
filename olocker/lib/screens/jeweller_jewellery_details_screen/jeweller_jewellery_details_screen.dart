@@ -64,7 +64,7 @@ class JewellerJewelleryDetailsScreen extends StatelessWidget {
                             width: double.infinity,
                             height: jewellerJewelleryDetailsScreenController
                                     .size.height *
-                                0.32,
+                                0.37,
                             fit: BoxFit.cover,
                           ),
                           jewellerJewelleryDetailsScreenController

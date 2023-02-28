@@ -257,10 +257,12 @@ class CheckBoxListModule extends StatelessWidget {
 class TextFieldModule extends StatelessWidget {
   final RatingQuestionList singleItem;
   final int index;
+  final String text;
   TextFieldModule({
     Key? key,
     required this.singleItem,
     required this.index,
+    required this.text,
   }) : super(key: key);
 
   final screenController = Get.find<JewellerFeedbackScreenController>();
@@ -287,6 +289,9 @@ class TextFieldModule extends StatelessWidget {
           TextFormField(
             // validator: ,
             cursorColor: AppColors.blueDarkColor,
+            keyboardType: text.contains("Rate Us")
+                ? TextInputType.number
+                : TextInputType.text,
             decoration: const InputDecoration(
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
@@ -327,6 +332,7 @@ class FeedbackSubmitButtonModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
+        log("feedback");
         screenController.allDataValid = true.obs;
 
         for (int i = 0; i < screenController.finalFeedBackAnsList.length; i++) {
@@ -336,6 +342,8 @@ class FeedbackSubmitButtonModule extends StatelessWidget {
         }
 
         if (screenController.allDataValid.value) {
+          log("feedback 111");
+
           await screenController.setFeedbackFormFunction();
         } else {
           //todo - fail snackbar show here

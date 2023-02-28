@@ -77,6 +77,8 @@ class JewellerFeedbackScreen extends StatelessWidget {
                                         ? TextFieldModule(
                                             singleItem: singleItem,
                                             index: i,
+                                            text: jewellerFeedbackScreenController
+                                    .feedBackFormList[i].question,
                                           )
                                         : Container();
                           },
