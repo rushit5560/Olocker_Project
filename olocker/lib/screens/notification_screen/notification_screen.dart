@@ -40,8 +40,7 @@ class NotificationScreen extends StatelessWidget {
                 springAnimationDurationInMilliseconds: 500,
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
-                  child: Column(
-                    children: [
+                  child:
                       notificationScreenController.getNotificationList.isEmpty
                           ? Padding(
                               padding: EdgeInsets.symmetric(vertical: 35.h),
@@ -55,8 +54,6 @@ class NotificationScreen extends StatelessWidget {
                               ),
                             )
                           : NotificationsListModule(),
-                    ],
-                  ),
                 ),
               ),
       ),

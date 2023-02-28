@@ -15,6 +15,9 @@ class NotificationScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
+  RxBool isLoadingMessage = false.obs;
+  RxBool isSuccessMessageStatus = false.obs;
+
   ApiHeader apiHeader = ApiHeader();
 
   List<GetNotification> getNotificationList = [];
@@ -89,8 +92,9 @@ class NotificationScreenController extends GetxController {
     required int notificationId,
     required bool isPartnerNotification,
     required bool isAdminNotification,
+    required int index,
   }) async {
-    isLoading(true);
+    isLoadingMessage(true);
 
     String url =
         "${ApiUrl.readMarkUserNotificationApi}?customerId=${UserDetails.customerId}&notificationId=$notificationId&IsPartnerNotification=$isPartnerNotification&IsAdminNotification=$isAdminNotification";
@@ -109,8 +113,10 @@ class NotificationScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         showMessageInDialog(messageText: messageText);
-
-        getAllNotificationsFunction();
+        getNotificationList[index].isRead = true;
+        isLoading(true);
+        isLoading(false);
+        // await getAllNotificationsFunction();
 
         log('readMarkUserNotificationApiFunction if case ');
       } else {
@@ -120,7 +126,7 @@ class NotificationScreenController extends GetxController {
       log('readMarkUserNotificationApiFunction Error :$e');
       rethrow;
     } finally {
-      isLoading(false);
+      isLoadingMessage(false);
     }
   }
 

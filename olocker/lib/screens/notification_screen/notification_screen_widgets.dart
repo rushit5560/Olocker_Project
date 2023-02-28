@@ -18,34 +18,44 @@ class NotificationsListModule extends StatelessWidget {
     return Obx(
       () => notificationScreenController.isLoading.value
           ? NotificationScreenLoadingWidget()
-          : ListView.separated(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount:
-                  notificationScreenController.getNotificationList.length,
-              itemBuilder: (context, index) {
-                var singleMsg =
-                    notificationScreenController.getNotificationList[index];
-                return NotificationItem(
-                  singleMsg: singleMsg,
-                );
-              },
-              separatorBuilder: (context, index) {
-                return const Divider(
-                  color: AppColors.greyTextColor,
-                  height: 5,
-                  thickness: 1,
-                );
-              },
-            ),
+          : Stack(
+        alignment: Alignment.center,
+        children: [
+          ListView.separated(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount:
+            notificationScreenController.getNotificationList.length,
+            itemBuilder: (context, index) {
+              var singleMsg =
+              notificationScreenController.getNotificationList[index];
+              return NotificationItem(
+                singleMsg: singleMsg,
+                index: index,
+              );
+            },
+            separatorBuilder: (context, index) {
+              return const Divider(
+                color: AppColors.greyTextColor,
+                height: 5,
+                thickness: 1,
+              );
+            },
+          ),
+          notificationScreenController.isLoadingMessage.value
+          ? const Center(child: CircularProgressIndicator())
+              : Container()
+        ],
+      ),
     );
   }
 }
 
 class NotificationItem extends StatelessWidget {
-  NotificationItem({Key? key, required this.singleMsg}) : super(key: key);
+  NotificationItem({Key? key, required this.singleMsg, required this.index}) : super(key: key);
 
   final GetNotification singleMsg;
+  final int index;
 
   final notificationScreenController = Get.find<NotificationScreenController>();
 
@@ -66,6 +76,7 @@ class NotificationItem extends StatelessWidget {
                   isPartnerNotification:
                       singleMsg.partnerSrNo == 0 ? false : true,
                   isAdminNotification: singleMsg.isAdminNotification,
+                  index: index
                 );
               },
               child: Container(
@@ -177,7 +188,7 @@ class NotificationScreenLoadingWidget extends StatelessWidget {
         highlightColor: Colors.grey.shade100,
         child: ListView.separated(
           shrinkWrap: true,
-          itemCount: 2,
+          itemCount: 4,
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             return Stack(

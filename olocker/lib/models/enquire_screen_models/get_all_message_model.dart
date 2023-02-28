@@ -91,7 +91,7 @@ class GetNotification {
   final String message;
   final int sentBy;
   final DateTime timestamp;
-  final bool isRead;
+  bool isRead;
   final int messageType;
   final int replyMsgId;
   final int productId;
