@@ -1,20 +1,16 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../constants/app_images.dart';
 import '../../controllers/submit_claim_form_screen_controller.dart';
 import '../../utils/field_validation.dart';
 
 class SubmitClaimFormModule extends StatelessWidget {
   SubmitClaimFormModule({Key? key}) : super(key: key);
-
   final submitClaimController = Get.find<SubmitClaimFormScreenController>();
-
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -102,7 +102,7 @@ class ProductImagesSliderModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: jewelleryDetailsController.size.height * 0.3,
+      height: 240,
       // width: double.infinity,
       child: Swiper.list(
         autoplay: false,
@@ -140,8 +140,8 @@ class ProductImagesSliderModule extends StatelessWidget {
               jewelleryDetailsController.isLoading(false);
             },
             child: Container(
-              height: jewelleryDetailsController.size.height * 0.25,
-              width: jewelleryDetailsController.size.height * 0.25,
+              height: Get.width * 0.30,
+              width: Get.width * 0.30,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
               ),
@@ -158,8 +158,10 @@ class ProductImagesSliderModule extends StatelessWidget {
                     return Container(
                       color: AppColors.whiteColor,
                       child: const Center(
-                        child: Text("no image",
-                        style: TextStyle(fontFamily: "Acephimere"),),
+                        child: Text(
+                          "no image",
+                          style: TextStyle(fontFamily: "Acephimere"),
+                        ),
                       ),
                     );
                   },
@@ -281,15 +283,15 @@ class ShowFullScreenImagesSliderModule extends StatelessWidget {
               ),
             ),
           ).commonOnlyPadding(right: 1.h),
-          /*Positioned(
+          Positioned(
             left: 10,
             top: 10,
             child: IconButton(
               onPressed: () {},
               icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              color: Colors.black),
+                  color: Colors.black),
             ),
-          ),*/
+          ),
         ],
       ),
     );
@@ -333,11 +335,10 @@ class JewelleryApproxPriceModule extends StatelessWidget {
             : Text(
                 "(Approximate Price)",
                 style: TextStyle(
-                  color: AppColors.whiteColor,
-                  fontSize: 13.sp,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: "Acephimere"
-                ),
+                    color: AppColors.whiteColor,
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: "Acephimere"),
               ),
       ],
     ).commonAllSidePadding(10);
@@ -367,11 +368,10 @@ class ProductDescriptionModule extends StatelessWidget {
           Text(
             "product description".toUpperCase(),
             style: TextStyle(
-              color: AppColors.blackColor,
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w500,
-              fontFamily: "Acephimere"
-            ),
+                color: AppColors.blackColor,
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w500,
+                fontFamily: "Acephimere"),
           ),
           SizedBox(height: 2.h),
           ProductDescRow(
@@ -444,21 +444,20 @@ class ProductDescRow extends StatelessWidget {
               textTitle,
               maxLines: 2,
               style: TextStyle(
-                color: AppColors.blackColor,
-                fontSize: 12.sp,
-                fontFamily: "Acephimere"
-                // fontWeight: FontWeight.w400,
-              ),
+                  color: AppColors.blackColor,
+                  fontSize: 12.sp,
+                  fontFamily: "Acephimere"
+                  // fontWeight: FontWeight.w400,
+                  ),
             ),
           ),
           Text(
             ":  ",
             style: TextStyle(
-              color: AppColors.blackColor,
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w400,
-              fontFamily: "Acephimere"
-            ),
+                color: AppColors.blackColor,
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w400,
+                fontFamily: "Acephimere"),
           ),
           Expanded(
             flex: 7,
@@ -502,11 +501,10 @@ class JewellerFeaturesAvailableModule extends StatelessWidget {
           Text(
             "what makes us stand out".toUpperCase(),
             style: TextStyle(
-              color: AppColors.blackColor,
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w500,
-              fontFamily: "Acephimere"
-            ),
+                color: AppColors.blackColor,
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w500,
+                fontFamily: "Acephimere"),
           ),
           GridView.builder(
             shrinkWrap: true,

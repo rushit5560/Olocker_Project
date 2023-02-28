@@ -22,9 +22,10 @@ class JewelleryDetailsScreen extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           onPressed: () => Get.back(),
-          icon:
-              const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor,
-              ),
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: AppColors.blackTextColor,
+          ),
         ),
         title: Text(
           '${jewelleryDetailsController.jewelleryTypeName}',
@@ -58,11 +59,10 @@ class JewelleryDetailsScreen extends StatelessWidget {
                                 child: Text(
                                   "No Product Images Available",
                                   style: TextStyle(
-                                    color: AppColors.blackTextColor,
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: "Acephimere"
-                                  ),
+                                      color: AppColors.blackTextColor,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: "Acephimere"),
                                 ),
                               )
                             : ProductImagesSliderModule(),

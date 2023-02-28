@@ -161,7 +161,7 @@ class JewellerBannerModule extends StatelessWidget {
             onPageChanged: ((index, reason) {
               screenController.bannerCurrentIndex.value = index;
             }),
-            height: 28.h,
+            height: 240,
             autoPlay: true,
             viewportFraction: 1,
             // autoPlayAnimationDuration: const Duration(seconds: 10),
@@ -225,7 +225,7 @@ class JewellerBannerModule extends StatelessWidget {
         }
       },
       child: SizedBox(
-        height: 28.h,
+        height: 25.h,
         width: double.infinity,
         // decoration: BoxDecoration(
         //   borderRadius: BorderRadius.circular(20),

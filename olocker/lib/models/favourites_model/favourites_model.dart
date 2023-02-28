@@ -90,7 +90,7 @@ class FavProduct {
         product: json["Product"] ?? 0,
         isSupplierProduct: json["IsSupplierProduct"] ?? false,
         partnerName: json["PartnerName"] ?? "",
-        partnerSrNo: json["PartnerSrNo"] ?? 0,
+        partnerSrNo: json["partnersrno"] ?? 0,
         customerId: json["CustomerId"] ?? 0,
         dateAdded: json["DateAdded"] ?? "",
         productDetails: ProductDetails.fromJson(json["ProductDetails"] ?? {}),
@@ -177,7 +177,7 @@ class ProductDetails {
 
   factory ProductDetails.fromJson(Map<String, dynamic> json) => ProductDetails(
         srNo: json["SrNo"] ?? 0,
-        productSku: json["ProductSku"] ?? "",
+        productSku: json["productsku"] ?? "",
         itemType: json["ItemType"] ?? "",
         itemTypeName: json["ItemTypeName"] ?? "",
         productTypeName: json["ProductTypeName"] ?? "",
@@ -202,7 +202,7 @@ class ProductDetails {
         productStatus: json["ProductStatus"] ?? "",
         estimateDeliveryDays: json["EstimateDeliveryDays"] ?? "",
         productImageList: List<ProductImageList>.from(
-            (json["ProductImageList"] ?? [])
+            (json["productimages"] ?? [])
                 .map((x) => ProductImageList.fromJson(x))),
         similarProductList: List<SimilarProductList>.from(
             (json["SimilarProductList"] ?? [])

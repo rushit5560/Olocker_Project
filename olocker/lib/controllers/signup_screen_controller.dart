@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
-// import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:olocker/models/auth_screen_models/user_login_model.dart';
 import 'package:olocker/screens/otp_screen/otp_screen.dart';
 import 'package:olocker/utils/user_prefs_data.dart';
@@ -14,7 +13,6 @@ import 'package:http/http.dart' as http;
 import '../constants/api_url.dart';
 import '../constants/app_colors.dart';
 import '../models/auth_screen_models/register_model.dart';
-
 
 class SignUpScreenController extends GetxController {
   final size = Get.size;
@@ -72,21 +70,27 @@ class SignUpScreenController extends GetxController {
         prefs.setString(
             UserPrefsData().customerMobileNoKey, numberController.text);
 
+        // ignore: use_build_context_synchronously
         await userLoginFunction(context);
-        Get.off(() => OtpScreen());
-        var snackBar = const SnackBar(
-          // backgroundColor: AppColors.whiteColor,
-          elevation: 8,
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.all(8),
-          content: Text(
-            "User Is Already Registered",
-            style: TextStyle(
-              color: AppColors.whiteColor,
-            ),
-          ),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+        // Get.off(() => OtpScreen());
+        log("111");
+        // var snackBar = const SnackBar(
+        //   // backgroundColor: AppColors.whiteColor,
+        //   elevation: 8,
+        //   behavior: SnackBarBehavior.floating,
+        //   margin: EdgeInsets.all(8),
+        //   content: Text(
+        //     "User Is Already Registered",
+        //     style: TextStyle(
+        //       color: AppColors.whiteColor,
+        //     ),
+        //   ),
+        // );
+
+        // ignore: use_build_context_synchronously
+        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        log("222");
       } else {
         log("mobile number is new");
         //do nothing
@@ -101,6 +105,7 @@ class SignUpScreenController extends GetxController {
   }
 
   Future<void> userLoginFunction(BuildContext context) async {
+    log('userLoginFunction Inner');
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     String mobNumber = numberController.text.toString();
@@ -135,7 +140,13 @@ class SignUpScreenController extends GetxController {
         log("mobile number is verfied");
         prefs.setString(
             UserPrefsData().customerMobileNoKey, numberController.text);
-        Get.off(() => OtpScreen());
+        Get.back();
+        CommonWidgets().showBorderSnackBar(
+              context: context, displayText: "User Is Already Registered");
+        Get.to(() => OtpScreen())!.then((value) {
+          CommonWidgets().showBorderSnackBar(
+              context: context, displayText: "User Is Already Registered");
+        });
       } else {
         log("mobile number is new");
         final snackBar = SnackBar(
@@ -226,9 +237,6 @@ class SignUpScreenController extends GetxController {
     }
   }
 
-
-
-
   // MobileScannerController  cameraController = MobileScannerController();
   // RxBool screenOpened = false.obs;
 
@@ -251,10 +259,10 @@ class SignUpScreenController extends GetxController {
   //   }
   // }
 
-
   void scanQRCode() async {
-    try{
-      final qrCode = await FlutterBarcodeScanner.scanBarcode('#F16E68', 'Cancel', false, ScanMode.QR);
+    try {
+      final qrCode = await FlutterBarcodeScanner.scanBarcode(
+          '#F16E68', 'Cancel', false, ScanMode.QR);
 
       // if (!mounted) return;
 
@@ -266,9 +274,7 @@ class SignUpScreenController extends GetxController {
     } on PlatformException {
       // codeController.text = 'Failed to scan QR Code.';
     }
-
   }
-
 
   // @override
   // void onInit() {

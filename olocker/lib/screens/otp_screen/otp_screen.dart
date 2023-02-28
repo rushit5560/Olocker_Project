@@ -32,105 +32,110 @@ class OtpScreen extends StatelessWidget {
       body: Obx(
         () => otpScreenController.isLoading.value
             ? OtpScreenLoadingWidget()
-            : SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.only(
-                        top: 2.h,
-                        left: 6.w,
-                        right: 6.w,
-                        bottom: 3.h,
-                      ),
-                      height: otpScreenController.size.height * 0.35,
-                      width: otpScreenController.size.width,
-                      color: AppColors.accentBGColor,
-                      child: Image.asset(
-                        AppImages.otpTopImage,
-                        fit: BoxFit.contain,
-                        height: 35.h,
-                        width: 70.w,
-                      ),
-                    ),
-                    SizedBox(height: 3.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Enter 6 digit code sent for you",
-                          style: TextStyle(
-                            color: AppColors.greyColor,
-                            fontSize: 11.sp,
-                            // fontWeight: FontWeight.w400,
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(height: 2.h),
-                    OtpEnterForm(),
-                    SizedBox(height: 3.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Don't receive the OTP ?",
-                          style: TextStyle(
-                            color: AppColors.greyColor,
-                            fontSize: 11.sp,
-                            fontWeight: FontWeight.w400,
-                          ),
+            : GestureDetector(
+                onTap: () {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(
+                          top: 2.h,
+                          left: 6.w,
+                          right: 6.w,
+                          bottom: 3.h,
                         ),
-                        const SizedBox(width: 5),
-                        GestureDetector(
-                          onTap: () async {
-                            await otpScreenController
-                                .userResendOtpFunction(context);
-                          },
-                          child: Text(
-                            "RESEND OTP",
-                            style: TextStyle(
-                              color: AppColors.accentTextColor,
-                              fontSize: 11.sp,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
+                        height: otpScreenController.size.height * 0.35,
+                        width: otpScreenController.size.width,
+                        color: AppColors.accentBGColor,
+                        child: Image.asset(
+                          AppImages.otpTopImage,
+                          fit: BoxFit.contain,
+                          height: 35.h,
+                          width: 70.w,
                         ),
-                      ],
-                    ),
-                    SizedBox(height: 3.h),
-                    RectangleRoundedButton(
-                      buttonColor: AppColors.accentColor,
-                      onPressed: () async {
-                        await otpScreenController
-                            .validateOtpNumberFunction(context);
-                      },
-                      centerChild: Row(
+                      ),
+                      SizedBox(height: 3.h),
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const Spacer(),
                           Text(
-                            "Verify & Proceed",
+                            "Enter 6 digit code sent for you",
                             style: TextStyle(
-                              color: AppColors.whiteColor,
-                              fontSize: 12.sp,
+                              color: AppColors.greyColor,
+                              fontSize: 11.sp,
+                              // fontWeight: FontWeight.w400,
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 2.h),
+                      OtpEnterForm(),
+                      SizedBox(height: 3.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Don't receive the OTP ?",
+                            style: TextStyle(
+                              color: AppColors.greyColor,
+                              fontSize: 11.sp,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          // SizedBox(width: 6.w),
-                          const Spacer(),
-                          Icon(
-                            Icons.arrow_forward_rounded,
-                            color: AppColors.whiteColor,
-                            size: 20.sp,
+                          const SizedBox(width: 5),
+                          GestureDetector(
+                            onTap: () async {
+                              await otpScreenController
+                                  .userResendOtpFunction(context);
+                            },
+                            child: Text(
+                              "RESEND OTP",
+                              style: TextStyle(
+                                color: AppColors.accentTextColor,
+                                fontSize: 11.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
                           ),
                         ],
                       ),
-                    ).commonSymmetricPadding(
-                      horizontal: 3.w,
-                      vertical: 1.5.h,
-                    ),
-                  ],
+                      SizedBox(height: 3.h),
+                      RectangleRoundedButton(
+                        buttonColor: AppColors.accentColor,
+                        onPressed: () async {
+                          await otpScreenController
+                              .validateOtpNumberFunction(context);
+                        },
+                        centerChild: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Spacer(),
+                            Text(
+                              "Verify & Proceed",
+                              style: TextStyle(
+                                color: AppColors.whiteColor,
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            // SizedBox(width: 6.w),
+                            const Spacer(),
+                            Icon(
+                              Icons.arrow_forward_rounded,
+                              color: AppColors.whiteColor,
+                              size: 20.sp,
+                            ),
+                          ],
+                        ),
+                      ).commonSymmetricPadding(
+                        horizontal: 3.w,
+                        vertical: 1.5.h,
+                      ),
+                    ],
+                  ),
                 ),
               ),
       ),

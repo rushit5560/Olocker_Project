@@ -36,6 +36,7 @@ class PersonalLoansScreenController extends GetxController {
   TextEditingController employerNameController = TextEditingController();
   TextEditingController currentTotalEmiController = TextEditingController();
   TextEditingController whichBankController = TextEditingController();
+  TextEditingController loanAmountController = TextEditingController();
 
   String tempSelectedDate = "";
   RxString salariedValue = "Salaried".obs;

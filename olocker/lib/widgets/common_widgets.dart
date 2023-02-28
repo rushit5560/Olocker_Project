@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:sizer/sizer.dart';
@@ -7,6 +9,7 @@ class CommonWidgets {
     required BuildContext context,
     required String displayText,
   }) {
+    log('Snackbar Inner');
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         behavior: SnackBarBehavior.floating,

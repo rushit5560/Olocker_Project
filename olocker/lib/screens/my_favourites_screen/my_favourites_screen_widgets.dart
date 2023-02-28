@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -104,7 +106,8 @@ class FavouriteListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // log(" one image path  :: ${ApiUrl.apiImagePath}${singleProd.productDetails.productImageList[0].imageLocation}");
+    log("1111");
+    // log("single images:  ${ApiUrl.apiImagePath}${singleProd.productDetails.productImageList[].imageLocation.replaceAll(r'\', "/")}");
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Stack(
@@ -230,8 +233,9 @@ class FavouriteListItem extends StatelessWidget {
                 ),
                 child: CachedNetworkImage(
                   imageUrl: singleProd.productDetails.productImageList.isEmpty
+                      // : "${ApiUrl.apiImagePath}${singleProd.productDetails.productImageList[0].imageLocation.replaceAll(r'\', "/")}/${singleProd.productDetails.productImageList[0].imageName}",
                       ? ""
-                      : "${ApiUrl.apiImagePath}${singleProd.productDetails.productImageList[0].imageLocation}",
+                      : "${ApiUrl.apiImagePath}${singleProd.productDetails.productImageList[0].imageLocation.replaceAll(r'\', "/")}",
                   fit: BoxFit.cover,
                   placeholder: (context, url) {
                     return Center(

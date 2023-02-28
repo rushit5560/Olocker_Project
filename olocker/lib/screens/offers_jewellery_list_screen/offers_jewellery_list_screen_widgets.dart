@@ -72,7 +72,7 @@ class OfferJewelleryGridviewModule extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              flex: 60,
+              flex: 70,
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.only(
@@ -96,7 +96,7 @@ class OfferJewelleryGridviewModule extends StatelessWidget {
               ).commonOnlyPadding(bottom: 5),
             ),
             Expanded(
-              flex: 40,
+              flex: 30,
               child: Column(
                 children: [
                   // Price Show Module
@@ -138,8 +138,8 @@ class OfferJewelleryGridviewModule extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      IconButton(
-                        onPressed: () async {
+                      GestureDetector(
+                        onTap: () async {
                           singleItem.isFav == false
                               ? await screenController
                                   .addFavouriteProductFunction(
@@ -153,7 +153,7 @@ class OfferJewelleryGridviewModule extends StatelessWidget {
                                   singleProduct: singleItem,
                                 );
                         },
-                        icon: Icon(
+                        child: Icon(
                           singleItem.isFav == true
                               ? Icons.favorite_rounded
                               : Icons.favorite_outline_rounded,
@@ -161,18 +161,91 @@ class OfferJewelleryGridviewModule extends StatelessWidget {
                           size: 18.sp,
                         ),
                       ),
-                      IconButton(
-                        onPressed: () async {
+                      // IconButton(
+                      //   onPressed: () async {
+                      //     singleItem.isFav == false
+                      //         ? await screenController
+                      //             .addFavouriteProductFunction(
+                      //             productSrNo:
+                      //                 singleItem.productSrNo.toString(),
+                      //             singleProduct: singleItem,
+                      //           )
+                      //         : await screenController
+                      //             .removeFavouriteProductListFunction(
+                      //             productSrNo:
+                      //                 singleItem.productSrNo.toString(),
+                      //             singleProduct: singleItem,
+                      //           );
+                      //   },
+                      //   icon: Icon(
+                      //     singleItem.isFav == true
+                      //         ? Icons.favorite_rounded
+                      //         : Icons.favorite_outline_rounded,
+                      //     color: AppColors.accentColor,
+                      //     size: 18.sp,
+                      //   ),
+                      // ),
+                      GestureDetector(
+                        onTap: () async {
                           await screenController.shareJewelleryReferFriend();
                         },
-                        icon: Icon(
+                        child: Icon(
                           Icons.share_rounded,
                           color: AppColors.accentColor,
                           size: 18.sp,
                         ),
                       ),
+                      // IconButton(
+                      //   onPressed: () async {
+                      //     await screenController.shareJewelleryReferFriend();
+                      //   },
+                      //   icon: Icon(
+                      //     Icons.share_rounded,
+                      //     color: AppColors.accentColor,
+                      //     size: 18.sp,
+                      //   ),
+                      // ),
                     ],
-                  ),
+                  ).commonOnlyPadding(left: 8, right: 8, top: 5),
+
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
+                  //     IconButton(
+                  //       onPressed: () async {
+                  //         singleItem.isFav == false
+                  //             ? await screenController
+                  //                 .addFavouriteProductFunction(
+                  //                 productSrNo:
+                  //                     singleItem.productSrNo.toString(),
+                  //                 singleProduct: singleItem,
+                  //               )
+                  //             : await screenController
+                  //                 .removeFavouriteProductListFunction(
+                  //                 favouriteId: singleItem.favId.toString(),
+                  //                 singleProduct: singleItem,
+                  //               );
+                  //       },
+                  //       icon: Icon(
+                  //         singleItem.isFav == true
+                  //             ? Icons.favorite_rounded
+                  //             : Icons.favorite_outline_rounded,
+                  //         color: AppColors.accentColor,
+                  //         size: 18.sp,
+                  //       ),
+                  //     ),
+                  //     IconButton(
+                  //       onPressed: () async {
+                  //         await screenController.shareJewelleryReferFriend();
+                  //       },
+                  //       icon: Icon(
+                  //         Icons.share_rounded,
+                  //         color: AppColors.accentColor,
+                  //         size: 18.sp,
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),

@@ -650,7 +650,7 @@ class StepOneFormModule extends StatelessWidget {
             flex: 50,
             child: Container(
               // height: 45,
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: Colors.grey.shade500),
@@ -670,17 +670,45 @@ class StepOneFormModule extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    flex: 60,
-                    child: Text(
-                      '${screenController.loanAmount.value.toInt()}',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: AppColors.accentColor,
-                        fontFamily: "Acephimere",
-                        fontWeight: FontWeight.w500,
+                      flex: 60,
+                      child: TextFormField(
+                        controller: screenController.loanAmountController,
+                        maxLength: 7,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        onChanged: (value) {
+                          screenController.isLoading(true);
+                          if (value.isNotEmpty) {
+                            screenController.loanAmount.value =
+                                double.parse(value);
+                          } else {
+                            screenController.loanAmount.value = 0;
+                          }
+                          screenController.isLoading(false);
+                        },
+                        decoration: const InputDecoration(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 10),
+                            enabledBorder: InputBorder.none,
+                            border: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            errorBorder: InputBorder.none,
+                            focusedErrorBorder: InputBorder.none,
+                            counterText: ''),
+                        style: const TextStyle(),
+                      )
+
+                      //  Text(
+                      //   '${screenController.loanAmount.value.toInt()}',
+                      //   textAlign: TextAlign.center,
+                      //   style: const TextStyle(
+                      //     color: AppColors.accentColor,
+                      //     fontFamily: "Acephimere",
+                      //     fontWeight: FontWeight.w500,
+                      //   ),
+                      // ),
                       ),
-                    ),
-                  ),
                   Expanded(
                     flex: 20,
                     child: Container(),
@@ -714,6 +742,8 @@ class StepOneFormModule extends StatelessWidget {
               onChanged: (value) {
                 screenController.isLoading(true);
                 screenController.loanAmount.value = value;
+                screenController.loanAmountController.text =
+                    value.toInt().toString();
                 screenController.isLoading(false);
               },
             ),

@@ -34,7 +34,7 @@ class JewelleryGridviewModule extends StatelessWidget {
       itemBuilder: (context, i) {
         SearchProductListDatum singleItem = screenController.jewelleryList[i];
 
-        if(i < screenController.jewelleryList.length) {
+        if (i < screenController.jewelleryList.length) {
           return _jewelleryListTile(singleItem, i);
         } else {
           return screenController.hasMore.value
@@ -50,8 +50,6 @@ class JewelleryGridviewModule extends StatelessWidget {
                   ),
                 );
         }
-
-
       },
     ).commonAllSidePadding(10);
   }
@@ -82,39 +80,52 @@ class JewelleryGridviewModule extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              flex: 60,
+              flex: 70,
               child: Container(
                 width: double.infinity,
                 margin: const EdgeInsets.only(bottom: 8),
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
                     topRight: Radius.circular(10),
                     topLeft: Radius.circular(10),
                   ),
-                  child: CachedNetworkImage(
-                    imageUrl: imgUrl,
-                    fit: BoxFit.cover,
-                    errorWidget: (context, url, error) {
-                      return Container(
-                        color: AppColors.greyTextColor.withOpacity(0.25),
-                        child: Center(
-                          child: Text(
-                            'No Image',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                            ),
+                  image: DecorationImage(
+                      image: NetworkImage(imgUrl),
+                      fit: BoxFit.cover,
+                      onError: (obj, st) {
+                        Text(
+                          'No Image',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 12.sp,
                           ),
-                        ),
-                      );
-                    },
-                  ),
+                        );
+                      }),
                 ),
-              ),
+                // child: CachedNetworkImage(
+                //   imageUrl: imgUrl,
+                //   fit: BoxFit.cover,
+                //   errorWidget: (context, url, error) {
+                //     return Container(
+                //       color: AppColors.greyTextColor.withOpacity(0.25),
+                //       child: Center(
+                //         child: Text(
+                //           'No Image',
+                //           maxLines: 1,
+                //           overflow: TextOverflow.ellipsis,
+                //           style: TextStyle(
+                //             fontSize: 12.sp,
+                //           ),
+                //         ),
+                //       ),
+                //     );
+                //   },
+                // ),
+              ).commonOnlyPadding(bottom: 5),
             ),
             Expanded(
-              flex: 40,
+              flex: 30,
               child: Column(
                 children: [
                   // Price Show Module
@@ -135,7 +146,7 @@ class JewelleryGridviewModule extends StatelessWidget {
                               color: AppColors.whiteColor,
                               fontSize: 12.sp,
                             ),
-                          ).commonSymmetricPadding(vertical: 5)
+                          ).commonSymmetricPadding(vertical: 1)
                         : Text(
                             NumberFormat.currency(
                               symbol: '₹ ',
@@ -158,8 +169,8 @@ class JewelleryGridviewModule extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      IconButton(
-                        onPressed: () async {
+                      GestureDetector(
+                        onTap: () async {
                           singleItem.isFav == false
                               ? await screenController
                                   .addFavouriteProductFunction(
@@ -174,7 +185,7 @@ class JewelleryGridviewModule extends StatelessWidget {
                                   singleProduct: singleItem,
                                 );
                         },
-                        icon: Icon(
+                        child: Icon(
                           singleItem.isFav == true
                               ? Icons.favorite_rounded
                               : Icons.favorite_outline_rounded,
@@ -182,18 +193,52 @@ class JewelleryGridviewModule extends StatelessWidget {
                           size: 18.sp,
                         ),
                       ),
-                      IconButton(
-                        onPressed: () async {
+                      // IconButton(
+                      //   onPressed: () async {
+                      //     singleItem.isFav == false
+                      //         ? await screenController
+                      //             .addFavouriteProductFunction(
+                      //             productSrNo:
+                      //                 singleItem.productSrNo.toString(),
+                      //             singleProduct: singleItem,
+                      //           )
+                      //         : await screenController
+                      //             .removeFavouriteProductListFunction(
+                      //             productSrNo:
+                      //                 singleItem.productSrNo.toString(),
+                      //             singleProduct: singleItem,
+                      //           );
+                      //   },
+                      //   icon: Icon(
+                      //     singleItem.isFav == true
+                      //         ? Icons.favorite_rounded
+                      //         : Icons.favorite_outline_rounded,
+                      //     color: AppColors.accentColor,
+                      //     size: 18.sp,
+                      //   ),
+                      // ),
+                      GestureDetector(
+                        onTap: () async {
                           await screenController.shareJewelleryReferFriend();
                         },
-                        icon: Icon(
+                        child: Icon(
                           Icons.share_rounded,
                           color: AppColors.accentColor,
                           size: 18.sp,
                         ),
                       ),
+                      // IconButton(
+                      //   onPressed: () async {
+                      //     await screenController.shareJewelleryReferFriend();
+                      //   },
+                      //   icon: Icon(
+                      //     Icons.share_rounded,
+                      //     color: AppColors.accentColor,
+                      //     size: 18.sp,
+                      //   ),
+                      // ),
                     ],
-                  ),
+                  ).commonOnlyPadding(left: 8, right: 8, top: 5),
                 ],
               ),
             ),
@@ -461,7 +506,8 @@ class SearchFieldModule extends StatelessWidget {
         screenController.searchFieldController.text = suggestion.toString();
         // screenController.hasMore = true.obs;
         // screenController.pageIndex = 1;
-        await screenController.getSearchProductsFunction(screenController.searchFieldController.text);
+        await screenController.getSearchProductsFunction(
+            screenController.searchFieldController.text);
         log("Text : ${screenController.searchFieldController.text}");
       },
     );

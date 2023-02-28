@@ -131,10 +131,9 @@ class MyJewellersListModule extends StatelessWidget {
             Text(
               'My Jewellers',
               style: TextStyle(
-                fontSize: 13.sp,
-                color: AppColors.accentColor,
-                fontFamily: "Acephimere"
-              ),
+                  fontSize: 13.sp,
+                  color: AppColors.accentColor,
+                  fontFamily: "Acephimere"),
             ),
             GestureDetector(
               onTap: () => Get.to(
@@ -212,10 +211,7 @@ class MyJewellersListModule extends StatelessWidget {
           SizedBox(height: screenController.size.height * 0.001.h),
           Text(
             jewellerData.companyName,
-            style: TextStyle(
-              fontSize: 8.sp,
-              fontFamily: "Acephimere"
-            ),
+            style: TextStyle(fontSize: 8.sp, fontFamily: "Acephimere"),
           ),
         ],
       ).commonAllSidePadding(8),
@@ -288,10 +284,9 @@ class SmartDealsModule extends StatelessWidget {
                 Text(
                   'Smart Deals',
                   style: TextStyle(
-                    color: AppColors.whiteColor,
-                    fontSize: 12.sp,
-                    fontFamily: "Acephimere"
-                  ),
+                      color: AppColors.whiteColor,
+                      fontSize: 12.sp,
+                      fontFamily: "Acephimere"),
                 ),
                 Row(
                   children: [
@@ -317,6 +312,10 @@ class SmartDealsModule extends StatelessWidget {
                           screenController.smartDealsSwitch.value =
                               !screenController.smartDealsSwitch.value;
                           log('${screenController.smartDealsSwitch.value}');
+                          screenController.getPermission.value =
+                              !screenController.getPermission.value;
+                          // screenController.handleLocationPermission(context);
+
                           screenController.isLoading(false);
                         },
                       ),
@@ -337,29 +336,32 @@ class SmartDealsModule extends StatelessWidget {
           ),
           screenController.smartDealsSwitch.value == false
               ? screenController.smartDealsOnlineList.isEmpty
-              ? Text(
-            'Keep checking this space for online deals',
-            style: TextStyle(
-              fontFamily: "Roboto",
-              color: AppColors.whiteColor,
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w500,
-            ),
-          )
-              : OnlineDealsListModule()
-              : Text(
-                  'Keep checking this space for exciting deals',
-                  style: TextStyle(
-                    fontFamily: "Roboto",
-                    color: AppColors.whiteColor,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+                  ? Text(
+                      'Keep checking this space for online deals',
+                      style: TextStyle(
+                        fontFamily: "Roboto",
+                        color: AppColors.whiteColor,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    )
+                  : OnlineDealsListModule()
+              : screenController.getPermission.value == false
+                  ? Text("data")
+                  : Text(
+                      'Keep checking this space for exciting deals',
+                      style: TextStyle(
+                        fontFamily: "Roboto",
+                        color: AppColors.whiteColor,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
           SizedBox(height: screenController.size.height * 0.015),
           screenController.smartDealsSwitch.value == false
-              ?  screenController.smartDealsOnlineList.isEmpty
-              ? Container():ViewAllButtonModule()
+              ? screenController.smartDealsOnlineList.isEmpty
+                  ? Container()
+                  : ViewAllButtonModule()
               : Container(),
           SizedBox(height: screenController.size.height * 0.015),
         ],
