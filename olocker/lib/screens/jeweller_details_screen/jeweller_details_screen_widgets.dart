@@ -684,6 +684,7 @@ class BestSellersListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("screenController.bestSellerList.length: ${screenController.bestSellerList.length}");
     return Container(
       height: 40.h,
       decoration: const BoxDecoration(

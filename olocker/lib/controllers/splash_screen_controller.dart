@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../screens/auth_screen/auth_screen.dart';
 
 class SplashScreenController extends GetxController {
-  UserPrefsData userPrefsData = UserPrefsData();
+  UserPrefsData userPrefsData =  UserPrefsData();
 
   goToNextScreenFunction() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +23,9 @@ class AboutUsDetailsModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-      padding: const EdgeInsets.symmetric(vertical: 12),
+
+      // padding: const EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.only(bottom: 12),
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.lightBrownBgColor,
@@ -32,19 +33,31 @@ class AboutUsDetailsModule extends StatelessWidget {
       ),
       child: Column(
         children: [
-          SizedBox(
-            height: aboutUsPageController.size.height * 0.15,
-            width: aboutUsPageController.size.width * 0.3,
-            child: aboutUsPageController.aboutUsData!.partnerLogo != null
-                ? Image.network(
-                    ApiUrl.apiImagePath +
-                        aboutUsPageController.aboutUsData!.partnerLogo,
-                    fit: BoxFit.cover,
-                  )
-                : Image.asset(
-                    AppImages.noLogoImage,
-                    fit: BoxFit.cover,
-                  ),
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Image.asset(
+                AppImages.aboutUsImage,
+                width: double.infinity,
+                height: 160,
+                fit: BoxFit.cover,
+                color: Colors.white,
+              ),
+              SizedBox(
+                height: aboutUsPageController.size.height * 0.15,
+                width: aboutUsPageController.size.width * 0.3,
+                child: aboutUsPageController.aboutUsData!.partnerLogo != null
+                    ? Image.network(
+                        ApiUrl.apiImagePath +
+                            aboutUsPageController.aboutUsData!.partnerLogo,
+                        fit: BoxFit.cover,
+                      )
+                    : Image.asset(
+                        AppImages.noLogoImage,
+                        fit: BoxFit.cover,
+                      ),
+              ),
+            ],
           ),
           SizedBox(height: 1.h),
           TitleAboutModule(text: "About us"),

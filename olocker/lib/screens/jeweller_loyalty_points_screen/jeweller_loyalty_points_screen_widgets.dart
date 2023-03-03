@@ -231,7 +231,7 @@ class JewellerLoyaltyPointsModule extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            "* Note : 1 Loyalty Point = 1 INR",
+            "* Note : 1 Loyalty Point = ${screenController.loyaltyPoints!.valuePerPoint} INR",
             style: TextStyle(
               fontFamily: "Roboto",
               color: AppColors.whiteColor,

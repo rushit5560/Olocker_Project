@@ -8,7 +8,7 @@ class AppImages {
   static const String mobileNumberTopImage = "$imageRootPath/login_top_img.png";
   static const String otpTopImage = "$imageRootPath/otp.png";
   static const String registrationImage = "$imageRootPath/registration_img.png";
-
+  static const String aboutUsImage = "$imageRootPath/about_us.png";
   static const String dealLogoImage = '$imageRootPath/deal_logo.png';
   static const String olockerServiceLogoImage =
       '$imageRootPath/olocker_logo_home.png';

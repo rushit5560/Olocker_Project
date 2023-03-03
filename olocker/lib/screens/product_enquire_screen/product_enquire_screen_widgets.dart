@@ -170,10 +170,11 @@ class SingleMessageModule extends StatelessWidget {
                 isSendByMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
             children: [
               Container(
-                width: screenController.size.width * 0.45,
-                alignment: Alignment.centerLeft,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                margin: isSendByMe
+                    ? const EdgeInsets.only(left: 30)
+                    : const EdgeInsets.only(right: 30),
                 decoration: BoxDecoration(
                   color: isSendByMe
                       ? AppColors.creamBgColor
@@ -186,43 +187,31 @@ class SingleMessageModule extends StatelessWidget {
                   ),
                 ),
                 child: Column(
+                  crossAxisAlignment: isSendByMe
+                      ? CrossAxisAlignment.end
+                      : CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: isSendByMe
-                          ? MainAxisAlignment.start
-                          : MainAxisAlignment.end,
-                      children: [
-                        SizedBox(
-                          width: screenController.size.width * 0.38,
-                          child: Text(
-                            msg.message,
-                            maxLines: 3,
-                            style: TextStyle(
-                              fontSize: 11.sp,
-                              fontFamily: "Roboto",
-                              color: AppColors.blackColor,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
+                    SizedBox(
+                      child: Text(
+                        msg.message,
+                        style: TextStyle(
+                          fontSize: 11.sp,
+                          fontFamily: "Roboto",
+                          color: AppColors.blackColor,
+                          fontWeight: FontWeight.normal,
                         ),
-                      ],
+                      ),
                     ),
-                    const SizedBox(height: 3),
-                    Row(
-                      mainAxisAlignment: isSendByMe
-                          ? MainAxisAlignment.end
-                          : MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          msgTime,
-                          style: TextStyle(
-                            fontSize: 9.sp,
-                            fontFamily: "Roboto",
-                            color: AppColors.greyTextColor,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                      ],
+                    Text(
+                      msgTime,
+                      textAlign:
+                          isSendByMe == true ? TextAlign.left : TextAlign.right,
+                      style: TextStyle(
+                        fontSize: 9.sp,
+                        fontFamily: "Roboto",
+                        color: AppColors.greyTextColor,
+                        fontWeight: FontWeight.normal,
+                      ),
                     ),
                   ],
                 ),
