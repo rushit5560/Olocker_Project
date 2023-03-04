@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/controllers/my_saving_schemes_screens_controllers/my_schemes_details_screen_controller.dart';
 import 'package:olocker/screens/my_saving_schemes_screens/my_schemes_details_screen/my_schemes_details_screen_widgets.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
 import '../../../constants/app_colors.dart';
 
@@ -29,11 +30,7 @@ class MySchemesDetailsScreen extends StatelessWidget {
         ),
         title: Text(
           'Schemes Details',
-          style: TextStyle(
-            color: AppColors.blackTextColor,
-            fontSize: 15.sp,
-            fontWeight: FontWeight.w600,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
       ),
       backgroundColor: Colors.orange.shade100,

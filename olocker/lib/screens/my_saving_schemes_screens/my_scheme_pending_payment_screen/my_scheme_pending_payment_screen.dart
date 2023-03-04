@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/controllers/my_saving_schemes_screens_controllers/my_scheme_pending_payment_screen_controller.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constants/app_colors.dart';
@@ -38,11 +39,7 @@ class MySchemePendingPaymentScreen extends StatelessWidget {
           ),
           title: Text(
             'Make Payments',
-            style: TextStyle(
-              color: AppColors.blackTextColor,
-              fontSize: 15.sp,
-              fontWeight: FontWeight.w600,
-            ),
+            style: TextStyleConfig.appbarTextStyle(),
           ),
         ),
         body: SingleChildScrollView(

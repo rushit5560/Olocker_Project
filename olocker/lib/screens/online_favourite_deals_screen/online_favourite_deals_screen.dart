@@ -6,6 +6,7 @@ import 'package:olocker/controllers/online_favourite_deals_screen_controller.dar
 import 'package:olocker/models/online_favourite_deals_screen_model/get_favourite_deals_model.dart';
 import 'package:olocker/screens/online_favourite_deals_list_screen/online_favourite_deals_list_screen.dart';
 import 'package:olocker/screens/online_favourite_deals_screen/online_favourite_deals_screen_widgets.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
@@ -23,12 +24,7 @@ class OnlineFavouriteDealsScreen extends StatelessWidget {
         backgroundColor: AppColors.whiteColor,
         title: Text(
           'Favourite Deals',
-          style: TextStyle(
-            fontFamily: "Roboto",
-            color: AppColors.blackColor,
-            fontSize: 14.sp,
-            fontWeight: FontWeight.normal,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
         leading: IconButton(
           onPressed: () => Get.back(),

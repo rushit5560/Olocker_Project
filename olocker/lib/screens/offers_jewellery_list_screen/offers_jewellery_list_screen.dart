@@ -9,6 +9,7 @@ import 'package:olocker/controllers/offers_jewellery_list_screen_controller.dart
 import 'package:olocker/screens/jeweller_jewellery_list_screen/jeweller_jewellery_list_screen_widgets.dart';
 import 'package:olocker/screens/my_favourites_screen/my_favourites_screen.dart';
 import 'package:olocker/screens/my_inquiries_list_screen/my_inquiries_list_screen.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
@@ -39,12 +40,7 @@ class OffersJewelleryListScreen extends StatelessWidget {
               : Text(
                   offersJewelleryListScreenController
                       .offerDetailResultModeldata!.offerType,
-                  style: TextStyle(
-                    fontFamily: "Roboto",
-                    color: AppColors.blackTextColor,
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w400,
-                  ),
+                  style: TextStyleConfig.appbarTextStyle(),
                 ),
         ),
         actions: [
@@ -58,7 +54,7 @@ class OffersJewelleryListScreen extends StatelessWidget {
           IconButton(
             onPressed: () {
               offersJewelleryListScreenController.isSearchOn.value =
-              !offersJewelleryListScreenController.isSearchOn.value;
+                  !offersJewelleryListScreenController.isSearchOn.value;
               log('${offersJewelleryListScreenController.isSearchOn.value}');
             },
             icon: const Icon(
@@ -171,87 +167,89 @@ class OffersJewelleryListScreen extends StatelessWidget {
         () => offersJewelleryListScreenController.isLoading.value
             ? const JewelleryListScreenLoadingWidget()
             : Column(
-              children: [
-
-                Container(
-                  decoration: const BoxDecoration(color: Colors.white),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Obx(
-                            () => offersJewelleryListScreenController.isSearchOn.value
-                            ? OfferSearchFieldModule().commonSymmetricPadding(horizontal: 5)
-                            : Container(),
-                      ).commonOnlyPadding(bottom: 5),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                AppIcons.filterIcon,
-                                height: 18.sp,
-                              ),
-                              const Text(
-                                'SORT BT PRICE',
-                              ),
-                            ],
-                          ),
-                          Obx(
-                                () => FlutterToggleTab(
-                              height: 5.h,
-                              width: 10.w,
-                              marginSelected: const EdgeInsets.all(3),
-                              borderRadius: 28,
-                              selectedIndex:
-                              offersJewelleryListScreenController
-                                  .selectedSortingIndex.value,
-                              unSelectedBackgroundColors: const [
-                                AppColors.greenColor,
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(color: Colors.white),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Obx(
+                          () => offersJewelleryListScreenController
+                                  .isSearchOn.value
+                              ? OfferSearchFieldModule()
+                                  .commonSymmetricPadding(horizontal: 5)
+                              : Container(),
+                        ).commonOnlyPadding(bottom: 5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  AppIcons.filterIcon,
+                                  height: 18.sp,
+                                ),
+                                const Text(
+                                  'SORT BT PRICE',
+                                ),
                               ],
-                              selectedBackgroundColors: const [
-                                AppColors.whiteColor,
-                              ],
-                              selectedTextStyle: TextStyle(
-                                fontFamily: "Roboto",
-                                color: AppColors.greenColor,
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              unSelectedTextStyle: TextStyle(
-                                fontFamily: "Roboto",
-                                color: AppColors.whiteColor,
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              labels: const [
-                                "LOW",
-                                "HIGH",
-                              ],
-                              selectedLabelIndex: (index) {
-                                offersJewelleryListScreenController
-                                    .isLoading(true);
-                                offersJewelleryListScreenController
-                                    .selectedSortingIndex.value = index;
-                                offersJewelleryListScreenController
-                                    .isLoading(false);
-                                log('selected sorting index :: ${offersJewelleryListScreenController.selectedSortingIndex.value}');
-                                offersJewelleryListScreenController
-                                    .changeSortOption();
-                              },
                             ),
-                          ),
-                        ],
-                      ).commonOnlyPadding(bottom: 5, left: 10,right: 10)
-                    ],
+                            Obx(
+                              () => FlutterToggleTab(
+                                height: 5.h,
+                                width: 10.w,
+                                marginSelected: const EdgeInsets.all(3),
+                                borderRadius: 28,
+                                selectedIndex:
+                                    offersJewelleryListScreenController
+                                        .selectedSortingIndex.value,
+                                unSelectedBackgroundColors: const [
+                                  AppColors.greenColor,
+                                ],
+                                selectedBackgroundColors: const [
+                                  AppColors.whiteColor,
+                                ],
+                                selectedTextStyle: TextStyle(
+                                  fontFamily: "Roboto",
+                                  color: AppColors.greenColor,
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                unSelectedTextStyle: TextStyle(
+                                  fontFamily: "Roboto",
+                                  color: AppColors.whiteColor,
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                labels: const [
+                                  "LOW",
+                                  "HIGH",
+                                ],
+                                selectedLabelIndex: (index) {
+                                  offersJewelleryListScreenController
+                                      .isLoading(true);
+                                  offersJewelleryListScreenController
+                                      .selectedSortingIndex.value = index;
+                                  offersJewelleryListScreenController
+                                      .isLoading(false);
+                                  log('selected sorting index :: ${offersJewelleryListScreenController.selectedSortingIndex.value}');
+                                  offersJewelleryListScreenController
+                                      .changeSortOption();
+                                },
+                              ),
+                            ),
+                          ],
+                        ).commonOnlyPadding(bottom: 5, left: 10, right: 10)
+                      ],
+                    ),
                   ),
-                ),
-
-                Expanded(
-                    child: offersJewelleryListScreenController.searchJewelleryList.isNotEmpty
+                  Expanded(
+                    child: offersJewelleryListScreenController
+                            .searchJewelleryList.isNotEmpty
                         ? OfferSearchJewelleryGridviewModule()
-                        : offersJewelleryListScreenController.jewelleryList.isNotEmpty
+                        : offersJewelleryListScreenController
+                                .jewelleryList.isNotEmpty
                             ? OfferJewelleryGridviewModule()
                             : Padding(
                                 padding: EdgeInsets.symmetric(vertical: 20.h),
@@ -267,8 +265,8 @@ class OffersJewelleryListScreen extends StatelessWidget {
                                 ),
                               ),
                   ),
-              ],
-            ),
+                ],
+              ),
       ),
     );
   }

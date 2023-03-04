@@ -68,9 +68,16 @@ class CustomDrawer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-          Image.asset(
-            AppIcons.drawerHomeIcon,
-            height: homeScreenController.size.width * 0.010.w,
+          Container(
+            height: homeScreenController.size.width * 0.018.w,
+            width: homeScreenController.size.width * 0.018.w,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  AppIcons.drawerHomeIcon,
+                ),
+              ),
+            ),
           ),
           SizedBox(width: homeScreenController.size.width * 0.008.w),
           const Text('Home'),
@@ -86,10 +93,21 @@ class CustomDrawer extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Row(
           children: [
-            Image.asset(
-              AppIcons.drawerJewellerIcon,
-              height: homeScreenController.size.width * 0.014.w,
+            Container(
+              height: homeScreenController.size.width * 0.018.w,
+              width: homeScreenController.size.width * 0.018.w,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    AppIcons.drawerJewellerIcon,
+                  ),
+                ),
+              ),
             ),
+            // Image.asset(
+            //   AppIcons.drawerJewellerIcon,
+            //   height: homeScreenController.size.width * 0.015.w,
+            // ),
             SizedBox(width: homeScreenController.size.width * 0.008.w),
             const Text('My Jeweller'),
           ],
@@ -110,36 +128,73 @@ class CustomDrawer extends StatelessWidget {
               );
             },
             child: Container(
-              color: AppColors.accentBGColor.withOpacity(0.5),
+              // color: AppColors.accentBGColor.withOpacity(0.5),
+              color: AppColors.accentPinkColor,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    AppIcons.drawerRetailerIcon,
-                    height: homeScreenController.size.width * 0.010.w,
+                  Container(
+                    height: homeScreenController.size.width * 0.017.w,
+                    width: homeScreenController.size.width * 0.017.w,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          AppIcons.drawerRetailerIcon,
+                        ),
+                      ),
+                    ),
                   ),
+                  // Image.asset(
+                  //   AppIcons.drawerRetailerIcon,
+                  //   height: homeScreenController.size.width * 0.010.w,
+                  // ),
                   SizedBox(width: homeScreenController.size.width * 0.008.w),
-                  const Text("Retailer's Home"),
+                  const Text(
+                    "Retailer's Home",
+                    style: TextStyle(
+                      color: AppColors.blueDarkColor,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ],
               ).commonSymmetricPadding(horizontal: 30, vertical: 14),
             ),
           ),
+          _divider(),
           GestureDetector(
             onTap: () {
               homeScreenController.scaffoldKey.currentState!.closeDrawer();
               Get.to(() => AddNewJewellerScreen());
             },
             child: Container(
-              color: AppColors.accentBGColor.withOpacity(0.5),
+              // color: AppColors.accentBGColor.withOpacity(0.5),
+              color: AppColors.accentPinkColor,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    AppIcons.drawerAddJewellerIcon,
-                    height: homeScreenController.size.width * 0.010.w,
+                  Container(
+                    height: homeScreenController.size.width * 0.017.w,
+                    width: homeScreenController.size.width * 0.017.w,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          AppIcons.drawerAddJewellerIcon,
+                        ),
+                      ),
+                    ),
                   ),
+                  // Image.asset(
+                  //   AppIcons.drawerAddJewellerIcon,
+                  //   height: homeScreenController.size.width * 0.010.w,
+                  // ),
                   SizedBox(width: homeScreenController.size.width * 0.008.w),
-                  const Text("Add Jeweller"),
+                  const Text(
+                    "Add Jeweller",
+                    style: TextStyle(
+                      color: AppColors.blueDarkColor,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ],
               ).commonSymmetricPadding(horizontal: 30, vertical: 14),
             ),
@@ -156,10 +211,21 @@ class CustomDrawer extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Row(
           children: [
-            Image.asset(
-              AppIcons.drawerOlockerIcon,
-              height: homeScreenController.size.width * 0.014.w,
+            Container(
+              height: homeScreenController.size.width * 0.018.w,
+              width: homeScreenController.size.width * 0.018.w,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    AppIcons.drawerOlockerIcon,
+                  ),
+                ),
+              ),
             ),
+            // Image.asset(
+            //   AppIcons.drawerOlockerIcon,
+            //   height: homeScreenController.size.width * 0.014.w,
+            // ),
             SizedBox(width: homeScreenController.size.width * 0.008.w),
             const Text('My Olocker'),
           ],
@@ -174,36 +240,73 @@ class CustomDrawer extends StatelessWidget {
               Get.to(() => MyInsuredJewelleryScreen());
             },
             child: Container(
-              color: AppColors.accentBGColor.withOpacity(0.5),
+              // color: AppColors.accentBGColor.withOpacity(0.5),
+              color: AppColors.accentPinkColor,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    AppIcons.drawerInsuredJewelleryIcon,
-                    height: homeScreenController.size.width * 0.010.w,
+                  Container(
+                    height: homeScreenController.size.width * 0.017.w,
+                    width: homeScreenController.size.width * 0.017.w,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          AppIcons.drawerInsuredJewelleryIcon,
+                        ),
+                      ),
+                    ),
                   ),
+                  // Image.asset(
+                  //   AppIcons.drawerInsuredJewelleryIcon,
+                  //   height: homeScreenController.size.width * 0.010.w,
+                  // ),
                   SizedBox(width: homeScreenController.size.width * 0.008.w),
-                  const Text("My insured Jewellery"),
+                  const Text(
+                    "My insured Jewellery",
+                    style: TextStyle(
+                      color: AppColors.blueDarkColor,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ],
               ).commonSymmetricPadding(horizontal: 30, vertical: 14),
             ),
           ),
+          _divider(),
           GestureDetector(
             onTap: () {
               homeScreenController.scaffoldKey.currentState!.closeDrawer();
               Get.to(() => MyJewelleryPortFolioScreen());
             },
             child: Container(
-              color: AppColors.accentBGColor.withOpacity(0.5),
+              // color: AppColors.accentBGColor.withOpacity(0.5),
+              color: AppColors.accentPinkColor,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    AppIcons.drawerInsuredJewelleryPortfolioIcon,
-                    height: homeScreenController.size.width * 0.010.w,
+                  Container(
+                    height: homeScreenController.size.width * 0.017.w,
+                    width: homeScreenController.size.width * 0.017.w,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          AppIcons.drawerInsuredJewelleryPortfolioIcon,
+                        ),
+                      ),
+                    ),
                   ),
+                  // Image.asset(
+                  //   AppIcons.drawerInsuredJewelleryPortfolioIcon,
+                  //   height: homeScreenController.size.width * 0.010.w,
+                  // ),
                   SizedBox(width: homeScreenController.size.width * 0.008.w),
-                  const Text("My Jewellery Portfolio"),
+                  const Text(
+                    "My Jewellery Portfolio",
+                    style: TextStyle(
+                      color: AppColors.blueDarkColor,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ],
               ).commonSymmetricPadding(horizontal: 30, vertical: 14),
             ),
@@ -225,10 +328,22 @@ class CustomDrawer extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(
-            AppIcons.drawerSavingSchemeIcon,
-            height: homeScreenController.size.width * 0.010.w,
+          Container(
+            height: homeScreenController.size.width * 0.018.w,
+            width: homeScreenController.size.width * 0.018.w,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  AppIcons.drawerSavingSchemeIcon,
+                ),
+              ),
+            ),
           ),
+
+          // Image.asset(
+          //   AppIcons.drawerSavingSchemeIcon,
+          //   height: homeScreenController.size.width * 0.010.w,
+          // ),
           SizedBox(width: homeScreenController.size.width * 0.008.w),
           const Text('My Saving Scheme'),
         ],
@@ -246,10 +361,22 @@ class CustomDrawer extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(
-            AppIcons.drawerSavingSchemeIcon,
-            height: homeScreenController.size.width * 0.010.w,
+          Container(
+            height: homeScreenController.size.width * 0.018.w,
+            width: homeScreenController.size.width * 0.018.w,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  AppIcons.drawerSavingSchemeIcon,
+                ),
+              ),
+            ),
           ),
+
+          // Image.asset(
+          //   AppIcons.drawerSavingSchemeIcon,
+          //   height: homeScreenController.size.width * 0.010.w,
+          // ),
           SizedBox(width: homeScreenController.size.width * 0.008.w),
           const Text('My Deals'),
         ],
@@ -268,12 +395,23 @@ class CustomDrawer extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              AppIcons.drawerMyPointsIcon,
-              height: homeScreenController.size.width * 0.010.w,
+            Container(
+              height: homeScreenController.size.width * 0.018.w,
+              width: homeScreenController.size.width * 0.018.w,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    AppIcons.drawerMyPointsIcon,
+                  ),
+                ),
+              ),
             ),
+            // Image.asset(
+            //   AppIcons.drawerMyPointsIcon,
+            //   height: homeScreenController.size.width * 0.010.w,
+            // ),
             SizedBox(width: homeScreenController.size.width * 0.008.w),
-            const Text('My points'),
+            const Text('My Points'),
           ],
         ).commonSymmetricPadding(horizontal: 15, vertical: 12),
       ),
@@ -376,26 +514,24 @@ class CustomDrawer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'Welcome',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  color: AppColors.whiteColor,
-                  fontSize: 12.sp,
-                ),
+                    color: AppColors.whiteColor, fontSize: 17, fontFamily: ""),
               ),
-              SizedBox(height: 0.25.h),
               SizedBox(
                 // width: 45.w,
                 child: Text(
                   "${UserDetails.customerFname.capitalizeFirst!} ${UserDetails.customerLname.capitalizeFirst!}",
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: AppColors.whiteColor,
-                    fontSize: 13.sp,
+                    fontSize: 15,
                     fontWeight: FontWeight.bold,
+                    fontFamily: "Roboto-Regular",
                   ),
                 ),
               ),
@@ -424,12 +560,13 @@ class CustomDrawer extends StatelessWidget {
               color: AppColors.whiteColor,
               size: 6.w,
             ),
-            SizedBox(width: 5.w),
-            Text(
+            SizedBox(width: 2.w),
+            const Text(
               'Logout',
               style: TextStyle(
                 color: AppColors.whiteColor,
-                fontSize: 13.sp,
+                fontSize: 20,
+                fontFamily: "",
               ),
             ),
           ],
@@ -439,6 +576,10 @@ class CustomDrawer extends StatelessWidget {
   }
 
   Widget _divider() {
-    return const Divider(height: 1, thickness: 1);
+    return const Divider(
+      height: 1,
+      thickness: 1,
+      color: Colors.black26,
+    );
   }
 }

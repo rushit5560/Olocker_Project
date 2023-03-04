@@ -4,11 +4,9 @@ import 'package:get/get.dart';
 // import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/screens/signup_screen/signup_screen_widgets.dart';
-import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 import '../../controllers/signup_screen_controller.dart';
 import '../../widgets/common_buttons.dart';
-import 'qr_scanner_overlay.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);

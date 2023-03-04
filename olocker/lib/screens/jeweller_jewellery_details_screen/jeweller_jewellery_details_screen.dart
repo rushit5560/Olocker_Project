@@ -5,6 +5,7 @@ import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/jeweller_jewellery_details_screen_controller.dart';
 import 'package:olocker/controllers/my_favourites_controller.dart';
 import 'package:olocker/screens/product_enquire_screen/product_enquire_screen.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
 
 import '../jewellery_details_screen/jewellery_details_screen_widgets.dart';
@@ -42,12 +43,8 @@ class JewellerJewelleryDetailsScreen extends StatelessWidget {
           ),
           title: Text(
             jewellerJewelleryDetailsScreenController.jewelleryTypeName,
-            style: TextStyle(
-              color: AppColors.blackTextColor,
-              fontSize: 13.sp,
-              fontWeight: FontWeight.w400,
-              fontFamily: "Acephimere",
-            ),
+                       style: TextStyleConfig.appbarTextStyle(),
+
           ),
         ),
         body: Obx(

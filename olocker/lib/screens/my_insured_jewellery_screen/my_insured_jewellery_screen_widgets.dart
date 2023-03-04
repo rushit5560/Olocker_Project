@@ -91,8 +91,8 @@ class JewelleryListItem extends StatelessWidget {
                               "Policy No.",
                               style: TextStyle(
                                 fontFamily: "Roboto",
-                                fontSize: 10.sp,
-                                color: AppColors.greyColor,
+                                fontSize: 11.sp,
+                                color: AppColors.greyDark,
                               ),
                             ),
                           ),
@@ -127,8 +127,8 @@ class JewelleryListItem extends StatelessWidget {
                                 insuredItem.policyNo,
                                 style: TextStyle(
                                   fontFamily: "Roboto",
-                                  fontSize: 10.sp,
-                                  color: AppColors.blackTextColor,
+                                  fontSize: 11.sp,
+                                  color: AppColors.darkBlack,
                                   decoration: TextDecoration.underline,
                                 ),
                               ),
@@ -136,16 +136,16 @@ class JewelleryListItem extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 5),
+                      const SizedBox(height: 10),
                       Row(
                         children: [
                           Expanded(
                             child: Text(
                               "Insured Amount",
                               style: TextStyle(
-                                fontSize: 10.sp,
+                                fontSize: 11.sp,
                                 fontFamily: "Roboto",
-                                color: AppColors.greyColor,
+                                color: AppColors.greyDark,
                               ),
                             ),
                           ),
@@ -167,8 +167,8 @@ class JewelleryListItem extends StatelessWidget {
                               ).format(insuredItem.insuredForAmt),
                               style: TextStyle(
                                 fontFamily: "Roboto",
-                                fontSize: 10.sp,
-                                color: AppColors.blackTextColor,
+                                fontSize: 11.sp,
+                                color: AppColors.darkBlack,
                               ),
                               // insuredJewelleryController
                               //     .getInsuredOrnamentList[index].purchaseDate
@@ -243,14 +243,14 @@ class JewelleryListItem extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 25,
-                          child: VerticalDivider(
-                            color: AppColors.whiteColor,
-                            thickness: 1,
-                            width: 1,
-                          ),
-                        ),
+                        // const SizedBox(
+                        //   height: 25,
+                        //   child: VerticalDivider(
+                        //     color: AppColors.whiteColor,
+                        //     thickness: 1,
+                        //     width: 1,
+                        //   ),
+                        // ),
                         Expanded(
                           child: TextButton(
                             style: TextButton.styleFrom(
@@ -279,14 +279,14 @@ class JewelleryListItem extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 25,
-                          child: VerticalDivider(
-                            color: AppColors.whiteColor,
-                            thickness: 1,
-                            width: 1,
-                          ),
-                        ),
+                        // const SizedBox(
+                        //   height: 25,
+                        //   child: VerticalDivider(
+                        //     color: AppColors.whiteColor,
+                        //     thickness: 1,
+                        //     width: 1,
+                        //   ),
+                        // ),
                         Expanded(
                           child: TextButton(
                             style: TextButton.styleFrom(
@@ -329,9 +329,17 @@ class JewelleryListItem extends StatelessWidget {
               child: Container(
                 height: insuredJewelleryController.size.width * 0.19,
                 width: insuredJewelleryController.size.width * 0.19,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: AppColors.whiteColor,
                   shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      // spreadRadius: 0,
+                      blurRadius: 7,
+                      offset: const Offset(0, 0),
+                    ),
+                  ],
                 ),
                 child: Container(
                   margin: const EdgeInsets.all(4),
@@ -385,7 +393,7 @@ class ItemSummaryDetailsTable extends StatelessWidget {
       children: [
         Container(
           decoration: const BoxDecoration(color: AppColors.lightBrownBgColor),
-          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -395,8 +403,8 @@ class ItemSummaryDetailsTable extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    color: AppColors.blackTextColor,
-                    fontSize: 9.sp,
+                    color: AppColors.darkBlack,
+                    fontSize: 8.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -407,8 +415,8 @@ class ItemSummaryDetailsTable extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    color: AppColors.blackTextColor,
-                    fontSize: 9.sp,
+                    color: AppColors.darkBlack,
+                    fontSize: 8.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -419,8 +427,8 @@ class ItemSummaryDetailsTable extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    color: AppColors.blackTextColor,
-                    fontSize: 9.sp,
+                    color: AppColors.darkBlack,
+                    fontSize: 8.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -431,8 +439,8 @@ class ItemSummaryDetailsTable extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    color: AppColors.blackTextColor,
-                    fontSize: 9.sp,
+                    color: AppColors.darkBlack,
+                    fontSize: 8.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -441,7 +449,7 @@ class ItemSummaryDetailsTable extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 7),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -450,8 +458,8 @@ class ItemSummaryDetailsTable extends StatelessWidget {
                   insuredItem.itemName,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: AppColors.blackTextColor,
-                    fontSize: 9.sp,
+                    color: AppColors.darkBlack,
+                    fontSize: 8.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -462,8 +470,8 @@ class ItemSummaryDetailsTable extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    color: AppColors.blackTextColor,
-                    fontSize: 9.sp,
+                    color: AppColors.darkBlack,
+                    fontSize: 8.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -474,8 +482,8 @@ class ItemSummaryDetailsTable extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    color: AppColors.blackTextColor,
-                    fontSize: 9.sp,
+                    color: AppColors.darkBlack,
+                    fontSize: 8.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -486,8 +494,8 @@ class ItemSummaryDetailsTable extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    color: AppColors.blackTextColor,
-                    fontSize: 9.sp,
+                    color: AppColors.darkBlack,
+                    fontSize: 8.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

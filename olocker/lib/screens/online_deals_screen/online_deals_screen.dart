@@ -6,6 +6,7 @@ import 'package:olocker/controllers/online_deals_screen_controller.dart';
 import 'package:olocker/models/home_screen_models/smart_deals_online_model.dart';
 import 'package:olocker/screens/online_deals_list_screen/online_deals_list_screen.dart';
 import 'package:olocker/screens/online_favourite_deals_screen/online_favourite_deals_screen.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
@@ -22,12 +23,7 @@ class OnlineDealsScreen extends StatelessWidget {
         backgroundColor: AppColors.whiteColor,
         title: Text(
           'Online Deals',
-          style: TextStyle(
-            fontFamily: "Roboto",
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w400,
-            color: AppColors.blackColor,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
         leading: IconButton(
           onPressed: () => Get.back(),

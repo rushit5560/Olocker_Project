@@ -385,10 +385,10 @@ class ProductDescriptionModule extends StatelessWidget {
           Text(
             "product description".toUpperCase(),
             style: TextStyle(
-                color: AppColors.blackColor,
+                color: AppColors.darkBlack,
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w600,
-                fontFamily: "Acephimere"),
+                fontFamily: "Roboto"),
           ),
           SizedBox(height: 2.h),
           ProductDescRow(
@@ -463,7 +463,7 @@ class ProductDescRow extends StatelessWidget {
               style: TextStyle(
                   color: AppColors.blackColor,
                   fontSize: 12.sp,
-                  fontFamily: "Acephimere"
+                  fontFamily: "Roboto"
                   // fontWeight: FontWeight.w400,
                   ),
             ),
@@ -474,7 +474,7 @@ class ProductDescRow extends StatelessWidget {
                 color: AppColors.blackColor,
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w400,
-                fontFamily: "Acephimere"),
+                fontFamily: "Roboto"),
           ),
           Expanded(
             flex: 7,
@@ -482,10 +482,11 @@ class ProductDescRow extends StatelessWidget {
               textValue,
               maxLines: 2,
               style: TextStyle(
-                color: AppColors.blackColor,
-                fontSize: 12.sp,
-                // fontWeight: FontWeight.w400,
-              ),
+                  color: AppColors.blackColor,
+                  fontSize: 12.sp,
+                  fontFamily: "Roboto"
+                  // fontWeight: FontWeight.w400,
+                  ),
             ),
           ),
         ],
@@ -517,13 +518,17 @@ class JewellerFeaturesAvailableModule extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "what makes us stand out".toUpperCase(),
-            style: TextStyle(
-                color: AppColors.blackColor,
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w600,
-                fontFamily: "Acephimere"),
+          Row(
+            children: [
+              Text(
+                "what makes us stand out".toUpperCase(),
+                style: TextStyle(
+                    color: AppColors.darkBlack,
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: "Roboto"),
+              ),
+            ],
           ),
           GridView.builder(
             shrinkWrap: true,
@@ -551,9 +556,9 @@ class JewellerFeaturesAvailableModule extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: AppColors.blackColor,
-                      fontFamily: "Acephimere",
+                      fontFamily: "Roboto",
                       fontSize: 8.5.sp,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ],

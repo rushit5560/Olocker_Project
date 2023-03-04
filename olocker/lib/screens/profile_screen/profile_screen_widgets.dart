@@ -139,6 +139,7 @@ class DisplayImageDetailsFieldRow extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: "Roboto",
                   fontSize: 18.sp,
+                  color: AppColors.darkBlue,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -236,7 +237,7 @@ class NameFieldRow extends StatelessWidget {
               readOnly: profileScreenController.isEditable.value,
               validator: (value) => FieldValidator().validateFirstName(value!),
               style: TextStyle(
-                color: AppColors.blackTextColor,
+                color: AppColors.darkBlue,
                 fontSize: 11.sp,
                 fontFamily: "Roboto",
               ),
@@ -262,7 +263,7 @@ class NameFieldRow extends StatelessWidget {
               validator: (value) => FieldValidator().validateLastName(value!),
               readOnly: profileScreenController.isEditable.value,
               style: TextStyle(
-                color: AppColors.blackTextColor,
+                color: AppColors.darkBlue,
                 fontSize: 11.sp,
                 fontFamily: "Roboto",
               ),
@@ -319,7 +320,7 @@ class EmailFieldRow extends StatelessWidget {
               readOnly: profileScreenController.isEditable.value,
               validator: (value) => FieldValidator().validateFirstName(value!),
               style: TextStyle(
-                color: AppColors.blackTextColor,
+                color: AppColors.darkBlue,
                 fontSize: 11.sp,
                 fontFamily: "Roboto",
               ),
@@ -386,7 +387,7 @@ class DobFieldRow extends StatelessWidget {
                     child: Text(
                       profileScreenController.selectedDobNumber.value,
                       style: TextStyle(
-                        color: AppColors.greyDarkColor,
+                        color: AppColors.darkBlue,
                         fontFamily: "Roboto",
                         fontSize: 11.sp,
                         fontWeight: FontWeight.w400,
@@ -506,11 +507,11 @@ class PinCodeFieldRow extends StatelessWidget {
             child: TextFormField(
               controller: profileScreenController.pinCodeController,
               textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.text,
+              keyboardType: TextInputType.number,
               readOnly: profileScreenController.isEditable.value,
               validator: (value) => FieldValidator().validatePinCode(value!),
               style: TextStyle(
-                color: AppColors.blackTextColor,
+                color: AppColors.darkBlue,
                 fontSize: 11.sp,
                 fontFamily: "Roboto",
               ),
@@ -573,7 +574,7 @@ class CityFieldRow extends StatelessWidget {
               readOnly: profileScreenController.isEditable.value,
               validator: (value) => FieldValidator().validateCity(value!),
               style: TextStyle(
-                color: AppColors.blackTextColor,
+                color: AppColors.darkBlue,
                 fontSize: 11.sp,
                 fontFamily: "Roboto",
               ),
@@ -630,7 +631,7 @@ class StateFieldRow extends StatelessWidget {
               readOnly: profileScreenController.isEditable.value,
               validator: (value) => FieldValidator().validateState(value!),
               style: TextStyle(
-                color: AppColors.blackTextColor,
+                color: AppColors.darkBlue,
                 fontSize: 11.sp,
                 fontFamily: "Roboto",
               ),

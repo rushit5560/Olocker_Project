@@ -84,6 +84,7 @@ class JewellerLoyaltyPointsModule extends StatelessWidget {
                                   style: TextStyle(
                                     color: AppColors.whiteColor,
                                     fontWeight: FontWeight.bold,
+                                    fontFamily: "Roboto-Medium",
                                     fontSize: 18.sp,
                                   ),
                                 ),
@@ -94,7 +95,7 @@ class JewellerLoyaltyPointsModule extends StatelessWidget {
                               "total points".toUpperCase(),
                               style: TextStyle(
                                 // fontFamily: "Roboto-Medium",
-                                fontFamily: "Acephimere",
+                                fontFamily: "Roboto-Medium",
                                 color: AppColors.blackColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 11.sp,
@@ -161,7 +162,7 @@ class JewellerLoyaltyPointsModule extends StatelessWidget {
                                     fontFamily: "Roboto-Medium",
                                     color: AppColors.whiteColor,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 18.sp,
+                                    fontSize: 16.sp,
                                   ),
                                 ),
                               ),
@@ -207,7 +208,7 @@ class JewellerLoyaltyPointsModule extends StatelessWidget {
           children: [
             Image.asset(
               AppImages.loyaltyPointTitleBGImage,
-              width: screenController.size.width * 0.65,
+              width: screenController.size.width * 0.70,
               height: 35,
               fit: BoxFit.fill,
             ),
@@ -217,9 +218,9 @@ class JewellerLoyaltyPointsModule extends StatelessWidget {
                 "Points earned summary",
                 style: TextStyle(
                   fontFamily: "Roboto",
-                  color: AppColors.blackColor,
-                  fontSize: 13.sp,
-                  fontWeight: FontWeight.w500,
+                  color: AppColors.darkBlue,
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),
@@ -394,6 +395,7 @@ class SingleEarnedPointTile extends StatelessWidget {
                   color: AppColors.blackTextColor,
                   fontSize: 10.sp,
                   fontWeight: FontWeight.w500,
+                  fontFamily: "Roboto",
                 ),
               ),
             ),

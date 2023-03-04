@@ -28,16 +28,16 @@ class BottomNavBar extends StatelessWidget {
         }
       },
       backgroundColor: AppColors.accentColor,
-      selectedLabelStyle: TextStyle(
-        fontSize: 11.sp,
-        fontWeight: FontWeight.w500,
-        color: AppColors.whiteColor,
-      ),
-      unselectedLabelStyle: TextStyle(
-        fontSize: 11.sp,
-        fontWeight: FontWeight.w400,
-        color: AppColors.whiteColor,
-      ),
+      selectedLabelStyle: const TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.w500,
+          color: AppColors.whiteColor,
+          fontFamily: ""),
+      unselectedLabelStyle: const TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.w400,
+          color: AppColors.whiteColor,
+          fontFamily: ""),
       items: [
         BottomNavigationBarItem(
           icon: Padding(

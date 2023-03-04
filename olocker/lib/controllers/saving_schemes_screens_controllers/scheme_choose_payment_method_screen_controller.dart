@@ -1,10 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
 import 'package:olocker/constants/api_url.dart';
 import 'package:http/http.dart' as http;
 import 'package:olocker/constants/payment_keys.dart';
@@ -12,7 +10,6 @@ import 'package:olocker/constants/user_details.dart';
 import 'package:olocker/screens/saving_schemes_screens/scheme_payment_failure_screen/scheme_payment_failure_screen.dart';
 import 'package:olocker/screens/saving_schemes_screens/scheme_payment_success_screen/scheme_payment_success_screen.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
-
 import '../../constants/enum.dart';
 import '../../models/saving_scheme_screens_models/payment_saving_scheme_result_models/payment_scheme_result_model.dart';
 import '../../models/saving_scheme_screens_models/saving_scheme_enroll_screen_models/add_enroll_saving_scheme_model.dart';
@@ -145,7 +142,6 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
         // SavingSchemeDetails savingSchemeDetails = Get.arguments[3];
         // PartnerSavingSchemeDetails partnerSavingSchemeDetails = Get.arguments[4];
         // int savingSchemeSrNo = Get.arguments[5];
-
       } else {
         // if (paymentSchemeResultModel.errorInfo.description.contains(
         //     "Customer not found matching with email address and mobile number")) {
@@ -318,7 +314,6 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
         // SavingSchemeDetails savingSchemeDetails = Get.arguments[3];
         // PartnerSavingSchemeDetails partnerSavingSchemeDetails = Get.arguments[4];
         // int savingSchemeSrNo = Get.arguments[5];
-
       } else {
         // if (paymentSchemeResultModel.errorInfo.description.contains(
         //     "Customer not found matching with email address and mobile number")) {

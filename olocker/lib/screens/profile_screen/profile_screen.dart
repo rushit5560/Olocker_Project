@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/screens/profile_screen/profile_screen_widgets.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
 import '../../controllers/profile_screen_controller.dart';
 
@@ -17,12 +18,7 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Profile',
-          style: TextStyle(
-            fontFamily: "Roboto",
-            color: AppColors.blackColor,
-            fontSize: 14.sp,
-            fontWeight: FontWeight.normal,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
         backgroundColor: AppColors.whiteColor,
         elevation: 0,

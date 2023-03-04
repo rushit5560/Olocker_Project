@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/screens/invoice_details_screen/invoice_details_screen_widgets.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
 import '../../constants/app_images.dart';
 import '../../controllers/invoice_details_screen_controller.dart';
@@ -30,12 +31,7 @@ class InvoiceDetailsScreen extends StatelessWidget {
         ),
         title: Text(
           'Invoice Details',
-          style: TextStyle(
-            fontFamily: "Roboto",
-            color: AppColors.blackColor,
-            fontSize: 15.sp,
-            fontWeight: FontWeight.w500,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
         backgroundColor: AppColors.whiteColor,
         elevation: 0,

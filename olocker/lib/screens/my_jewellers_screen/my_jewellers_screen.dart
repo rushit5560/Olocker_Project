@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/my_jewellers_screen_controller.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
 import '../my_favourites_screen/my_favourites_screen.dart';
 import 'my_jewellers_screen_widgets.dart';
@@ -23,12 +24,7 @@ class MyJewellersScreen extends StatelessWidget {
         titleSpacing: 0,
         title: Text(
           'My Jewellers',
-          style: TextStyle(
-            fontFamily: "Roboto",
-            color: AppColors.blackTextColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w400,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
         actions: [
           IconButton(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/my_inquiries_list_screen_controller.dart';
@@ -24,12 +25,7 @@ class MyInquiriesListScreen extends StatelessWidget {
         titleSpacing: 0,
         title: Text(
           'My Enquiries',
-          style: TextStyle(
-            fontFamily: "Roboto",
-            color: AppColors.blackTextColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w400,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
         elevation: 0,
         backgroundColor: AppColors.whiteColor,

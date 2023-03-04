@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/personal_loans_screen_controller.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 import 'package:sizer/sizer.dart';
@@ -35,12 +36,7 @@ class PersonalLoansScreen extends StatelessWidget {
         ),
         title: Text(
           'Jewellery on EMI',
-          style: TextStyle(
-            fontFamily: "Acephimere",
-            color: AppColors.blackTextColor,
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w600,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
         centerTitle: true,
       ),

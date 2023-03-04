@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/jeweller_details_screen_controller.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 import '../my_inquiries_list_screen/my_inquiries_list_screen.dart';
@@ -27,11 +28,7 @@ class JewellerDetailsScreen extends StatelessWidget {
         ),
         title: Text(
           '${jewellerDetailsScreenController.jewellerName}',
-          style: TextStyle(
-            color: AppColors.blackTextColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w400,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
         actions: [
           IconButton(

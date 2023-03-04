@@ -19,40 +19,42 @@ class NotificationsListModule extends StatelessWidget {
       () => notificationScreenController.isLoading.value
           ? NotificationScreenLoadingWidget()
           : Stack(
-        alignment: Alignment.center,
-        children: [
-          ListView.separated(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount:
-            notificationScreenController.getNotificationList.length,
-            itemBuilder: (context, index) {
-              var singleMsg =
-              notificationScreenController.getNotificationList[index];
-              return NotificationItem(
-                singleMsg: singleMsg,
-                index: index,
-              );
-            },
-            separatorBuilder: (context, index) {
-              return const Divider(
-                color: AppColors.greyTextColor,
-                height: 5,
-                thickness: 1,
-              );
-            },
-          ),
-          notificationScreenController.isLoadingMessage.value
-          ? const Center(child: CircularProgressIndicator())
-              : Container()
-        ],
-      ),
+              alignment: Alignment.center,
+              children: [
+                ListView.separated(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount:
+                      notificationScreenController.getNotificationList.length,
+                  itemBuilder: (context, index) {
+                    var singleMsg =
+                        notificationScreenController.getNotificationList[index];
+                    return NotificationItem(
+                      singleMsg: singleMsg,
+                      index: index,
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return Divider(
+                      // color: AppColors.greyTextColor,
+                      color: Colors.grey.shade300,
+                      height: 5,
+                      thickness: 1,
+                    );
+                  },
+                ),
+                notificationScreenController.isLoadingMessage.value
+                    ? const Center(child: CircularProgressIndicator())
+                    : Container()
+              ],
+            ),
     );
   }
 }
 
 class NotificationItem extends StatelessWidget {
-  NotificationItem({Key? key, required this.singleMsg, required this.index}) : super(key: key);
+  NotificationItem({Key? key, required this.singleMsg, required this.index})
+      : super(key: key);
 
   final GetNotification singleMsg;
   final int index;
@@ -71,13 +73,12 @@ class NotificationItem extends StatelessWidget {
               onTap: () async {
                 await notificationScreenController
                     .readMarkUserNotificationApiFunction(
-                  messageText: singleMsg.message,
-                  notificationId: singleMsg.srNo,
-                  isPartnerNotification:
-                      singleMsg.partnerSrNo == 0 ? false : true,
-                  isAdminNotification: singleMsg.isAdminNotification,
-                  index: index
-                );
+                        messageText: singleMsg.message,
+                        notificationId: singleMsg.srNo,
+                        isPartnerNotification:
+                            singleMsg.partnerSrNo == 0 ? false : true,
+                        isAdminNotification: singleMsg.isAdminNotification,
+                        index: index);
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -125,8 +126,8 @@ class NotificationItem extends StatelessWidget {
                                   ? Text(
                                       "Admin",
                                       style: TextStyle(
-                                        fontSize: 11.sp,
-                                        fontFamily: "Roboto",
+                                        fontSize: 10.sp,
+                                        // fontFamily: "Roboto",
                                         fontWeight: FontWeight.w500,
                                         color: AppColors.blackTextColor,
                                       ),

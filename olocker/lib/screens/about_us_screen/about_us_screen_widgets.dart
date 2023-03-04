@@ -36,12 +36,27 @@ class AboutUsDetailsModule extends StatelessWidget {
           Stack(
             alignment: Alignment.center,
             children: [
-              Image.asset(
-                AppImages.aboutUsImage,
-                width: double.infinity,
+              Container(
                 height: 160,
-                fit: BoxFit.cover,
-                color: Colors.white,
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  // color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15),
+                    topRight: Radius.circular(15),
+                  ),
+                  image: DecorationImage(
+                    image: AssetImage(AppImages.aboutUsImage),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                // child: Image.asset(
+                //   AppImages.aboutUsImage,
+                //   width: double.infinity,
+                //   height: 160,
+                //   fit: BoxFit.cover,
+                //   color: Colors.white,
+                // ),
               ),
               SizedBox(
                 height: aboutUsPageController.size.height * 0.15,
@@ -156,9 +171,9 @@ class ContactDetailsModule extends StatelessWidget {
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontFamily: "Roboto",
-                fontSize: 10.sp,
-              ),
+                  fontFamily: "Roboto",
+                  fontSize: 10.sp,
+                  color: AppColors.darkBlack),
             )),
           ],
         ),
@@ -279,9 +294,9 @@ class TeamDetailsListItemModule extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontFamily: "Roboto",
-                            color: AppColors.blackColor,
+                            color: AppColors.darkBlack,
                             fontSize: 11.sp,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                         const SizedBox(height: 5),

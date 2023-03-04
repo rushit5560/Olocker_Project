@@ -38,8 +38,8 @@ class SubmitClaimFormModule extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       SizedBox(
-                        height: submitClaimController.size.height * 0.15,
-                        width: submitClaimController.size.width * 0.4,
+                        height: 100,
+                        width: 100,
                         child: submitClaimController.imageFile == null
                             ? Image.asset("assets/images/select-image.png")
                             : Image.file(
@@ -113,22 +113,22 @@ class OrnamentDetailsModule extends StatelessWidget {
                 "POLICY NO",
                 style: TextStyle(
                   fontFamily: "Roboto",
-                  color: AppColors.blackColor,
-                  fontSize: 10.sp,
-                  fontWeight: FontWeight.w600,
+                  color: Colors.grey.shade400,
+                  fontSize: 12,
+                  // fontWeight: FontWeight.w200,
                 ),
               ),
             ],
           ),
         ),
-        const SizedBox(height: 5),
+        // const SizedBox(height: 3),
         TextFormField(
           readOnly: true,
           controller: submitClaimController.policyNoController,
-          style: TextStyle(
+          style: const TextStyle(
             fontFamily: "Roboto",
             color: AppColors.greyTextColor,
-            fontSize: 10.sp,
+            fontSize: 16,
             fontWeight: FontWeight.w400,
           ),
           decoration: const InputDecoration(
@@ -146,22 +146,22 @@ class OrnamentDetailsModule extends StatelessWidget {
                 "ITEM NAME",
                 style: TextStyle(
                   fontFamily: "Roboto",
-                  color: AppColors.blackColor,
-                  fontSize: 10.sp,
+                  color: Colors.grey.shade400,
+                  fontSize: 12,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ],
           ),
         ),
-        const SizedBox(height: 5),
+        // const SizedBox(height: 5),
         TextFormField(
           readOnly: true,
           controller: submitClaimController.policyNoController,
-          style: TextStyle(
+          style: const TextStyle(
             fontFamily: "Roboto",
             color: AppColors.greyTextColor,
-            fontSize: 10.sp,
+            fontSize: 16,
             fontWeight: FontWeight.w400,
           ),
           decoration: const InputDecoration(
@@ -179,22 +179,22 @@ class OrnamentDetailsModule extends StatelessWidget {
                 "CUSTOMER NAME",
                 style: TextStyle(
                   fontFamily: "Roboto",
-                  color: AppColors.blackColor,
-                  fontSize: 10.sp,
+                  color: Colors.grey.shade400,
+                  fontSize: 12,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ],
           ),
         ),
-        const SizedBox(height: 5),
+        // const SizedBox(height: 5),
         TextFormField(
           readOnly: true,
           controller: submitClaimController.customerNameController,
-          style: TextStyle(
+          style: const TextStyle(
             fontFamily: "Roboto",
             color: AppColors.greyTextColor,
-            fontSize: 10.sp,
+            fontSize: 16,
             fontWeight: FontWeight.w400,
           ),
           decoration: const InputDecoration(
@@ -212,22 +212,22 @@ class OrnamentDetailsModule extends StatelessWidget {
                 "MOBILE NO",
                 style: TextStyle(
                   fontFamily: "Roboto",
-                  color: AppColors.blackColor,
-                  fontSize: 10.sp,
+                  color: Colors.grey.shade400,
+                  fontSize: 12,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ],
           ),
         ),
-        const SizedBox(height: 5),
+        // const SizedBox(height: 5),
         TextFormField(
           readOnly: true,
           controller: submitClaimController.mobileNoController,
-          style: TextStyle(
+          style: const TextStyle(
             fontFamily: "Roboto",
             color: AppColors.greyTextColor,
-            fontSize: 10.sp,
+            fontSize: 16,
             fontWeight: FontWeight.w400,
           ),
           decoration: const InputDecoration(
@@ -245,22 +245,22 @@ class OrnamentDetailsModule extends StatelessWidget {
                 "INR",
                 style: TextStyle(
                   fontFamily: "Roboto",
-                  color: AppColors.blackColor,
-                  fontSize: 10.sp,
+                  color: Colors.grey.shade400,
+                  fontSize: 12,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ],
           ),
         ),
-        const SizedBox(height: 5),
+        // const SizedBox(height: 5),
         TextFormField(
           readOnly: true,
           controller: submitClaimController.inrController,
-          style: TextStyle(
+          style: const TextStyle(
             fontFamily: "Roboto",
             color: AppColors.greyTextColor,
-            fontSize: 10.sp,
+            fontSize: 16,
             fontWeight: FontWeight.w400,
           ),
           decoration: const InputDecoration(
@@ -278,22 +278,22 @@ class OrnamentDetailsModule extends StatelessWidget {
                 "EXPIRY DATE",
                 style: TextStyle(
                   fontFamily: "Roboto",
-                  color: AppColors.blackColor,
-                  fontSize: 10.sp,
+                  color: Colors.grey.shade400,
+                  fontSize: 12,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ],
           ),
         ),
-        const SizedBox(height: 5),
+        // const SizedBox(height: 5),
         TextFormField(
           readOnly: true,
           controller: submitClaimController.expiryDateController,
-          style: TextStyle(
+          style: const TextStyle(
             fontFamily: "Roboto",
             color: AppColors.greyTextColor,
-            fontSize: 10.sp,
+            fontSize: 16,
             fontWeight: FontWeight.w400,
           ),
           decoration: const InputDecoration(
@@ -323,35 +323,36 @@ class EventOfLossDetailsModule extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
                   "ENTER LOSS DATE",
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    color: AppColors.blackColor,
-                    fontSize: 10.sp,
-                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ],
             ),
           ),
+          const SizedBox(height: 3),
           GestureDetector(
             onTap: () {
               submitClaimController.showDatePicker(context);
             },
             child: Container(
-              height: 45,
+              // height: 35,
               width: double.infinity,
               alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               color: AppColors.whiteColor,
               child: Text(
                 submitClaimController.selectedLossDate.value,
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: "Roboto",
-                  color: AppColors.greyColor,
-                  fontSize: 11.sp,
+                  color: AppColors.greyDark,
+                  fontSize: 16,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -365,15 +366,15 @@ class EventOfLossDetailsModule extends StatelessWidget {
               ? submitClaimController.selectedLossDate.value ==
                       "Select loss Date"
                   ? Row(
-                      children: [
+                      children: const [
                         Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 5),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 16, vertical: 5),
                           child: Text(
                             "Enter Loss Date",
                             style: TextStyle(
-                              color: const Color.fromARGB(255, 201, 0, 0),
-                              fontSize: 9.sp,
+                              color: Color.fromARGB(255, 201, 0, 0),
+                              fontSize: 16,
                               fontWeight: FontWeight.normal,
                             ),
                           ),
@@ -387,39 +388,38 @@ class EventOfLossDetailsModule extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
                   "LOCATION OF LOSS",
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    color: AppColors.blackColor,
-                    fontSize: 10.sp,
-                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 5),
+          // const SizedBox(height: 5),
           TextFormField(
             controller: submitClaimController.locationOfLossController,
             validator: (value) =>
                 FieldValidator().validateLocationOfLoss(value.toString()),
-            style: TextStyle(
+            style: const TextStyle(
               fontFamily: "Roboto",
-              color: AppColors.blackTextColor,
-              fontSize: 10.sp,
+              color: AppColors.greyTextColor,
+              fontSize: 16,
               fontWeight: FontWeight.w400,
             ),
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               isDense: true,
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 3),
               hintText: "Address",
               hintStyle: TextStyle(
                 fontFamily: "Roboto",
                 color: AppColors.greyTextColor,
-                fontSize: 10.sp,
+                fontSize: 16,
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -429,140 +429,141 @@ class EventOfLossDetailsModule extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
                   "DESCRIBE THE EVENT OF LOSS",
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    color: AppColors.blackColor,
-                    fontSize: 10.sp,
-                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 5),
+          // const SizedBox(height: 5),
           TextFormField(
             controller: submitClaimController.describeEventOfLossController,
             validator: (value) =>
                 FieldValidator().validateEventOfLoss(value.toString()),
-            style: TextStyle(
+            style: const TextStyle(
               fontFamily: "Roboto",
-              color: AppColors.blackTextColor,
-              fontSize: 10.sp,
+              color: AppColors.greyTextColor,
+              fontSize: 16,
               fontWeight: FontWeight.w400,
             ),
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               isDense: true,
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 3),
               hintText: "Describe the event of loss*",
               hintStyle: TextStyle(
                 fontFamily: "Roboto",
                 color: AppColors.greyTextColor,
-                fontSize: 10.sp,
+                fontSize: 16,
                 fontWeight: FontWeight.w400,
               ),
             ),
           ),
           const SizedBox(height: 10),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
                   "SELECT CLAIM TYPE",
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    color: AppColors.blackColor,
-                    fontSize: 10.sp,
-                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 5),
-          DropdownButtonFormField<String>(
-            isExpanded: true,
-            value: submitClaimController.selectedClaimTypeValue.value,
-            validator: (value) =>
-                FieldValidator().validateCurrentLocation(value.toString()),
-            decoration: const InputDecoration(
-              contentPadding: EdgeInsets.symmetric(horizontal: 16),
+          // const SizedBox(height: 5),
+          SizedBox(
+            height: 40,
+            child: DropdownButtonFormField<String>(
+              isExpanded: true,
+              value: submitClaimController.selectedClaimTypeValue.value,
+              validator: (value) =>
+                  FieldValidator().validateCurrentLocation(value.toString()),
+              decoration: const InputDecoration(
+                contentPadding: EdgeInsets.symmetric(horizontal: 16),
+              ),
+              style: const TextStyle(
+                fontFamily: "Roboto",
+                color: AppColors.greyTextColor,
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),
+              items: submitClaimController.claimTypeList.map((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              onChanged: (val) {
+                // setState(() {
+                submitClaimController.isLoading(true);
+                submitClaimController.selectedClaimTypeValue.value = val!;
+
+                if (submitClaimController.selectedClaimTypeValue.value ==
+                    "Claim Full Amount") {
+                  submitClaimController.claimAmountController.text =
+                      submitClaimController.inrAmount;
+                } else if (submitClaimController.selectedClaimTypeValue.value ==
+                    "Claim Partial Amount") {
+                  submitClaimController.claimAmountController.clear();
+                }
+
+                log("submitClaimController.claimAmountContorller.text :: ${submitClaimController.claimAmountController.text}");
+
+                submitClaimController.isLoading(false);
+                // });
+              },
             ),
-            style: TextStyle(
-              fontFamily: "Roboto",
-              color: AppColors.blackTextColor,
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w400,
-            ),
-            items: submitClaimController.claimTypeList.map((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
-            onChanged: (val) {
-              // setState(() {
-              submitClaimController.isLoading(true);
-              submitClaimController.selectedClaimTypeValue.value = val!;
-
-              if (submitClaimController.selectedClaimTypeValue.value ==
-                  "Claim Full Amount") {
-                submitClaimController.claimAmountController.text =
-                    submitClaimController.inrAmount;
-              } else if (submitClaimController.selectedClaimTypeValue.value ==
-                  "Claim Partial Amount") {
-                submitClaimController.claimAmountController.clear();
-              }
-
-              log("submitClaimController.claimAmountContorller.text :: ${submitClaimController.claimAmountController.text}");
-
-              submitClaimController.isLoading(false);
-              // });
-            },
           ),
           const SizedBox(height: 10),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
                   "CLAIM AMOUNT(INR)",
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    color: AppColors.blackColor,
-                    fontSize: 10.sp,
-                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 5),
+          // const SizedBox(height: 5),
           TextFormField(
             controller: submitClaimController.claimAmountController,
             validator: (value) =>
                 FieldValidator().validateClaimNumber(value.toString()),
-            style: TextStyle(
+            style: const TextStyle(
               fontFamily: "Roboto",
-              color: AppColors.blackTextColor,
-              fontSize: 10.sp,
+              color: AppColors.greyTextColor,
+              fontSize: 16,
               fontWeight: FontWeight.w400,
             ),
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               isDense: true,
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
               hintText: "Claim Amount(INR)",
               hintStyle: TextStyle(
                 fontFamily: "Roboto",
                 color: AppColors.greyTextColor,
-                fontSize: 10.sp,
+                fontSize: 16,
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -589,39 +590,38 @@ class PoliceFirDetailsModule extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
-            children: [
+            children: const [
               Text(
                 "ENTER FIR NUMBER",
                 style: TextStyle(
                   fontFamily: "Roboto",
-                  color: AppColors.blackColor,
-                  fontSize: 10.sp,
-                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ],
           ),
         ),
-        const SizedBox(height: 5),
+        // const SizedBox(height: 5),
         TextFormField(
           controller: submitClaimController.firNumberController,
           validator: (value) =>
               FieldValidator().validateFirNumber(value.toString()),
-          style: TextStyle(
+          style: const TextStyle(
             fontFamily: "Roboto",
-            color: AppColors.blackTextColor,
-            fontSize: 10.sp,
+            color: AppColors.greyTextColor,
+            fontSize: 16,
             fontWeight: FontWeight.w400,
           ),
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             isDense: true,
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 3),
             hintText: "Enter fir number",
             hintStyle: TextStyle(
               fontFamily: "Roboto",
               color: AppColors.greyTextColor,
-              fontSize: 10.sp,
+              fontSize: 16,
               fontWeight: FontWeight.w400,
             ),
           ),
@@ -631,44 +631,43 @@ class PoliceFirDetailsModule extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
-            children: [
+            children: const [
               Text(
                 "POLICE STATION ADDRESS",
                 style: TextStyle(
                   fontFamily: "Roboto",
-                  color: AppColors.blackColor,
-                  fontSize: 10.sp,
-                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ],
           ),
         ),
-        const SizedBox(height: 5),
+        // const SizedBox(height: 5),
         TextFormField(
           controller: submitClaimController.policeStationAddressController,
           validator: (value) =>
               FieldValidator().validatePoliceStationAddress(value.toString()),
-          style: TextStyle(
+          style: const TextStyle(
             fontFamily: "Roboto",
-            color: AppColors.blackTextColor,
-            fontSize: 10.sp,
+            color: AppColors.greyTextColor,
+            fontSize: 16,
             fontWeight: FontWeight.w400,
           ),
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             isDense: true,
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 3),
             hintText: "Police station address",
             hintStyle: TextStyle(
               fontFamily: "Roboto",
               color: AppColors.greyTextColor,
-              fontSize: 10.sp,
+              fontSize: 16,
               fontWeight: FontWeight.w400,
             ),
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
       ],
     );
   }
@@ -731,7 +730,7 @@ class SubmitCancelButtonModule extends StatelessWidget {
               Get.back();
             },
             style: ElevatedButton.styleFrom(
-              primary: AppColors.blackTextColor.withOpacity(0.9),
+              primary: AppColors.greyDark,
               elevation: 0,
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
 import '../../constants/app_colors.dart';
 import '../../controllers/my_jewellery_portfolio_controller.dart';
@@ -24,12 +25,7 @@ class MyJewelleryPortFolioScreen extends StatelessWidget {
         titleSpacing: 0,
         title: Text(
           'My Jewellery Portfolio',
-          style: TextStyle(
-            fontFamily: "Roboto",
-            color: AppColors.blackTextColor,
-            fontSize: 15.sp,
-            fontWeight: FontWeight.w600,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
         elevation: 0,
         backgroundColor: AppColors.whiteColor,

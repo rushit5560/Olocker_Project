@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/all_loyalty_point_screen_controller.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
 
 import 'all_loyalty_points_screen_widgets.dart';
@@ -25,11 +26,7 @@ class AllLoyaltyPointScreen extends StatelessWidget {
         ),
         title: Text(
           'Loyalty Points',
-          style: TextStyle(
-            color: AppColors.blackTextColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w400,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
       ),
       body: Obx(

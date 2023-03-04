@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/controllers/my_insured_jewellery_screen_controller.dart';
+import 'package:olocker/utils/appbar_style.dart';
 
 import 'package:sizer/sizer.dart';
 
@@ -42,12 +43,7 @@ class MyInsuredJewelleryScreen extends StatelessWidget {
           titleSpacing: 0,
           title: Text(
             'My Insured Jewellery',
-            style: TextStyle(
-              fontFamily: "Roboto",
-              color: AppColors.blackTextColor,
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w500,
-            ),
+            style: TextStyleConfig.appbarTextStyle(),
           ),
           elevation: 0,
           backgroundColor: AppColors.whiteColor,

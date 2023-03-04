@@ -42,7 +42,7 @@ class OrnamentDetailsModule extends StatelessWidget {
                 "Ornament Details",
                 style: TextStyle(
                   fontFamily: "Roboto",
-                  color: AppColors.blackColor,
+                  color: AppColors.darkBlue,
                   fontSize: 13.sp,
                   fontWeight: FontWeight.w500,
                 ),
@@ -57,9 +57,10 @@ class OrnamentDetailsModule extends StatelessWidget {
                 child: Text(
                   ornamentRecordingsController.coiNumber,
                   style: TextStyle(
-                    fontFamily: "Roboto",
+                    // fontFamily: "Roboto",
+                    fontFamily: "",
                     color: AppColors.greyColor,
-                    fontSize: 11.sp,
+                    fontSize: 13.sp,
                   ),
                 ),
               ),
@@ -67,9 +68,10 @@ class OrnamentDetailsModule extends StatelessWidget {
               Text(
                 ornamentRecordingsController.trackingDetail!.itemName,
                 style: TextStyle(
-                  fontFamily: "Roboto",
+                  // fontFamily: "Roboto",
+                  fontFamily: "",
                   color: AppColors.greyColor,
-                  fontSize: 11.sp,
+                  fontSize: 13.sp,
                 ),
               ),
               const SizedBox(width: 20),

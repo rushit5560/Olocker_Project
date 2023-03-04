@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/saving_schemes_screens_controllers/saving_schemes_list_screen_controller.dart';
 import 'package:olocker/screens/saving_schemes_screens/saving_schemes_list_screen/saving_schemes_list_screen_widgets.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
 
 class SavingSchemesListScreen extends StatelessWidget {
@@ -23,11 +24,7 @@ class SavingSchemesListScreen extends StatelessWidget {
         ),
         title: Text(
           'Savings Schemes',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 15.sp,
-            fontWeight: FontWeight.w600,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
       ),
       body: Obx(

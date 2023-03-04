@@ -3,6 +3,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/online_deals_details_screen_controller.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'online_deals_details_screen_widgets.dart';
@@ -21,12 +22,7 @@ class OnlineDealsDetailsScreen extends StatelessWidget {
         elevation: 0,
         title: Text(
           'Deal Details',
-          style: TextStyle(
-            fontFamily: "Roboto",
-            color: AppColors.blackColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w500,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
         leading: IconButton(
           onPressed: () => Get.back(),

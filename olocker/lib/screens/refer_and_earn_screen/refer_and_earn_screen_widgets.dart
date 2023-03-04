@@ -22,9 +22,9 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
         Image.asset(
           AppImages.referAndEarnImage,
           // height: referAndEarnScreenController.size.height * 0.25,
-          width: referAndEarnScreenController.size.width * 0.88,
+          // width: referAndEarnScreenController.size.width * 0.88,
           fit: BoxFit.cover,
-        ),
+        ).commonSymmetricPadding(horizontal: 10),
         SizedBox(height: 3.h),
         Text(
           "Get 100 Points",
@@ -142,7 +142,7 @@ class UserBenefitPointsTextModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

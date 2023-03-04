@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/screens/submit_claim_form_screen/submit_claim_form_screen_widgets.dart';
-import 'package:sizer/sizer.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import '../../controllers/submit_claim_form_screen_controller.dart';
 
 class SubmitClaimFormScreen extends StatelessWidget {
@@ -23,12 +23,7 @@ class SubmitClaimFormScreen extends StatelessWidget {
         ),
         title: Text(
           'Submit Claim',
-          style: TextStyle(
-            fontFamily: "Roboto",
-            color: AppColors.blackColor,
-            fontSize: 15.sp,
-            fontWeight: FontWeight.w500,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
         backgroundColor: AppColors.whiteColor,
         elevation: 0,

@@ -179,44 +179,50 @@ class AllJewellersListModule extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Container(
-                  width: screenController.size.width * 0.11.w,
-                  height: screenController.size.height * 0.015.h,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.shade200),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(8),
+                Expanded(
+                  flex: 85,
+                  child: Container(
+                    width: screenController.size.width * 0.11.w,
+                    // height: screenController.size.height * 0.015.h,
+                    decoration: BoxDecoration(
+                      // border: Border.all(color: Colors.grey.shade200),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                      color: AppColors.greyColor.withOpacity(0.15),
                     ),
-                    color: AppColors.greyColor.withOpacity(0.15),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: CachedNetworkImage(
-                      imageUrl: imgUrl,
-                      fit: BoxFit.fill,
-                      errorWidget: (context, error, stackTrace) {
-                        return Container(
-                          color: AppColors.greyColor.withOpacity(0.15),
-                          child: const Center(
-                            child: Text("No Image"),
-                          ),
-                        );
-                      },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: CachedNetworkImage(
+                        imageUrl: imgUrl,
+                        fit: BoxFit.fill,
+                        errorWidget: (context, error, stackTrace) {
+                          return Container(
+                            color: AppColors.greyColor.withOpacity(0.15),
+                            child: const Center(
+                              child: Text("No Image"),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(height: 1.h),
-                Text(
-                  jewellerData.companyName.toUpperCase(),
-                  maxLines: 2,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: "Roboto",
-                    fontSize: 9.sp,
-                    letterSpacing: 0.4,
-                    color: AppColors.blackColor,
-                    fontWeight: FontWeight.normal,
-                    overflow: TextOverflow.ellipsis,
+                Expanded(
+                  flex: 15,
+                  child: Text(
+                    jewellerData.companyName.toUpperCase(),
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontFamily: "Roboto",
+                      fontSize: 13,
+                      letterSpacing: 0.4,
+                      color: Color(0xff052a47),
+                      fontWeight: FontWeight.normal,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                 ),
               ],

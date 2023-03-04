@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 
 import 'package:olocker/screens/saving_schemes_screens/saving_scheme_confirmation_screen/saving_scheme_confirmation_screen_widgets.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 import 'package:sizer/sizer.dart';
@@ -49,11 +50,7 @@ class SavingSchemeConfirmationScreen extends StatelessWidget {
           ),
           title: Text(
             'Enroll',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 15.sp,
-              fontWeight: FontWeight.w600,
-            ),
+            style: TextStyleConfig.appbarTextStyle(),
           ),
         ),
         bottomNavigationBar: ProceedToPayButtonModule(),

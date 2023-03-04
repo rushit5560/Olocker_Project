@@ -363,7 +363,7 @@ class JewellerJewelleryApproxPriceModule extends StatelessWidget {
                   fontFamily: "Acephimere",
                   color: AppColors.whiteColor,
                   fontSize: 13.sp,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
       ],
@@ -394,10 +394,10 @@ class JewellerProductDescriptionModule extends StatelessWidget {
           Text(
             "product description".toUpperCase(),
             style: TextStyle(
-              fontFamily: "Acephimere",
-              color: AppColors.blueDarkColor,
+              fontFamily: "Roboto",
+              color: AppColors.darkBlack,
               fontSize: 13.sp,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
             ),
           ),
           SizedBox(height: 2.h),
@@ -472,7 +472,7 @@ class ProductDescRow extends StatelessWidget {
               textTitle,
               maxLines: 2,
               style: TextStyle(
-                fontFamily: "Acephimere",
+                fontFamily: "Roboto",
                 color: AppColors.blueDarkColor,
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w500,
@@ -482,7 +482,7 @@ class ProductDescRow extends StatelessWidget {
           Text(
             ":  ",
             style: TextStyle(
-              fontFamily: "Acephimere",
+              fontFamily: "Roboto",
               color: AppColors.blueDarkColor,
               fontSize: 12.sp,
               fontWeight: FontWeight.w500,
@@ -494,7 +494,7 @@ class ProductDescRow extends StatelessWidget {
               textValue,
               maxLines: 2,
               style: TextStyle(
-                fontFamily: "Acephimere",
+                fontFamily: "Roboto",
                 color: AppColors.blueDarkColor,
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w500,
@@ -529,14 +529,18 @@ class JewellerJewellerFeaturesAvailableModule extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            "what makes us stand out".toUpperCase(),
-            style: TextStyle(
-              fontFamily: "Acephimere",
-              color: AppColors.blueDarkColor,
-              fontSize: 13.sp,
-              fontWeight: FontWeight.w500,
-            ),
+          Row(
+            children: [
+              Text(
+                "what makes us stand out".toUpperCase(),
+                style: TextStyle(
+                  fontFamily: "Roboto",
+                  color: AppColors.darkBlack,
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
           ),
           GridView.builder(
             shrinkWrap: true,
@@ -553,20 +557,20 @@ class JewellerJewellerFeaturesAvailableModule extends StatelessWidget {
                     imageUrl: ApiUrl.apiImagePath +
                         jewelleryDetailController
                             .specialFeaturesList[index].iconUrl,
-                    height: 55,
-                    width: 55,
+                    height: 40,
+                    width: 40,
                     color: AppColors.blueDarkColor,
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 12),
                   Text(
                     jewelleryDetailController.specialFeaturesList[index].feature
                         .toUpperCase(),
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontFamily: "Acephimere",
-                      color: AppColors.blackColor,
+                      fontFamily: "Roboto",
+                      color: AppColors.darkBlack,
                       fontSize: 8.5.sp,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ],

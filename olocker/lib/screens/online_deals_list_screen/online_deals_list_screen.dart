@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/online_deals_list_screen_controller.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
@@ -20,12 +21,7 @@ class OnlineDealsListScreen extends StatelessWidget {
         backgroundColor: AppColors.whiteColor,
         title: Text(
           onlineDealsListScreenController.singleDealList.category,
-          style: TextStyle(
-            fontFamily: "Roboto",
-            color: AppColors.blackColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w500,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
         leading: IconButton(
           onPressed: () => Get.back(),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:olocker/constants/app_colors.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/notification_screen_controller.dart';
@@ -19,12 +20,7 @@ class NotificationScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Notification',
-          style: TextStyle(
-            fontFamily: "Roboto",
-            color: AppColors.blackColor,
-            fontSize: 14.sp,
-            fontWeight: FontWeight.normal,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
         backgroundColor: AppColors.whiteColor,
         elevation: 0,

@@ -4,6 +4,7 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/ornament_recordings_list_screen_controller.dart';
 import 'package:olocker/screens/ornament_recordings_list_screen/ornament_recordings_list_screen_widgets.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
@@ -25,12 +26,7 @@ class OrnamentRecordingsListScreen extends StatelessWidget {
         titleSpacing: 0,
         title: Text(
           'Ornament Recordings',
-          style: TextStyle(
-            fontFamily: "Roboto",
-            color: AppColors.blackTextColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w400,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
         elevation: 0,
         backgroundColor: AppColors.whiteColor,

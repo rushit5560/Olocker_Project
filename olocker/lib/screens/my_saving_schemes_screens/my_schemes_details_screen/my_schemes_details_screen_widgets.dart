@@ -829,7 +829,7 @@ class SavingDetailsTextCustom extends StatelessWidget {
             style: TextStyle(
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
-              color: AppColors.greyDarkColor,
+              color: Colors.grey,
             ),
           ),
         ),

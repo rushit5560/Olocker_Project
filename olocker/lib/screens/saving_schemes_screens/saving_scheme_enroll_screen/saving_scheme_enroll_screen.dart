@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/saving_schemes_screens_controllers/saving_scheme_enroll_screen_controller.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../widgets/saving_schemes_widgets.dart';
@@ -26,11 +27,7 @@ class SavingSchemeEnrollScreen extends StatelessWidget {
         ),
         title: Text(
           'Enroll',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 15.sp,
-            fontWeight: FontWeight.normal,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
       ),
       body: Obx(
@@ -45,8 +42,8 @@ class SavingSchemeEnrollScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             vertical: 5, horizontal: 15),
                         child: JewellerDetailImageInfoModule(
-                          imagePath: savingSchemeEnrollScreenController
-                              .jewellerLogo,
+                          imagePath:
+                              savingSchemeEnrollScreenController.jewellerLogo,
                           schemeName: savingSchemeEnrollScreenController
                               .savingSchemeData.schemeName,
                           schemeTagLine: savingSchemeEnrollScreenController

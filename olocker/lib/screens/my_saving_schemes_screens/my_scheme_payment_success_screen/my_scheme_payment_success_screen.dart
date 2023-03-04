@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
@@ -45,12 +46,7 @@ class MySchemePaymentSuccessScreen extends StatelessWidget {
           // ),
           title: Text(
             'Payment Status',
-            style: TextStyle(
-              fontFamily: "Roboto",
-              color: AppColors.blackTextColor,
-              fontSize: 15.sp,
-              fontWeight: FontWeight.w600,
-            ),
+            style: TextStyleConfig.appbarTextStyle(),
           ),
         ),
         bottomNavigationBar: GoBackToSchemeDetailsButton(),

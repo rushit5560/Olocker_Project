@@ -4,7 +4,9 @@ import 'package:flutter_html/flutter_html.dart';
 
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
+import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/screens/saving_schemes_screens/saving_schemes_explainer_screen/saving_schemes_explainer_screen_widgets.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../controllers/saving_schemes_screens_controllers/saving_schemes_explainer_screen_controller.dart';
@@ -28,12 +30,7 @@ class SavingSchemesExplainerScreen extends StatelessWidget {
         ),
         title: Text(
           'Savings Schemes',
-          style: TextStyle(
-            fontFamily: "Roboto",
-            color: Colors.black,
-            fontSize: 15.sp,
-            fontWeight: FontWeight.w600,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
       ),
       backgroundColor: Colors.orange.shade100,

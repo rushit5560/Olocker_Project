@@ -41,9 +41,9 @@ class TotalJewelleryPortfolioModule extends StatelessWidget {
             "Total Jewellery Portfolio",
             style: TextStyle(
               fontFamily: "Roboto",
-              color: AppColors.blueDarkColor,
-              fontWeight: FontWeight.w600,
-              fontSize: 12.sp,
+              color: AppColors.darkBlue,
+              fontWeight: FontWeight.bold,
+              fontSize: 13.sp,
             ),
           ),
           const SizedBox(height: 15),
@@ -60,8 +60,8 @@ class TotalJewelleryPortfolioModule extends StatelessWidget {
                 "Insured Input value",
                 style: TextStyle(
                   fontFamily: "Roboto",
-                  color: AppColors.greyDarkColor,
-                  fontWeight: FontWeight.w500,
+                  color: AppColors.greyDark,
+                  fontWeight: FontWeight.w600,
                   fontSize: 12.sp,
                 ),
               ),
@@ -115,8 +115,8 @@ class DetailsRowWidget extends StatelessWidget {
           titleText,
           style: TextStyle(
             fontFamily: "Roboto",
-            color: AppColors.greyDarkColor,
-            fontWeight: FontWeight.w500,
+            color: AppColors.greyDark,
+            fontWeight: FontWeight.w600,
             fontSize: 12.sp,
           ),
         ),
@@ -124,7 +124,7 @@ class DetailsRowWidget extends StatelessWidget {
           valueText,
           style: TextStyle(
             fontFamily: "Roboto",
-            color: AppColors.greyDarkColor,
+            color: AppColors.greyColor,
             fontWeight: FontWeight.w500,
             fontSize: 12.sp,
           ),
@@ -169,9 +169,9 @@ class MyInsuredJewelleryModule extends StatelessWidget {
                 "My Insured Jewellery",
                 style: TextStyle(
                   fontFamily: "Roboto",
-                  color: AppColors.blackColor,
+                  color: AppColors.darkBlue,
                   fontWeight: FontWeight.w600,
-                  fontSize: 12.sp,
+                  fontSize: 13.sp,
                 ),
               ),
               GestureDetector(
@@ -182,9 +182,9 @@ class MyInsuredJewelleryModule extends StatelessWidget {
                   "VIEW ALL",
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    color: AppColors.accentDarkColor,
+                    color: AppColors.darkCoffee,
                     fontWeight: FontWeight.w500,
-                    fontSize: 11.sp,
+                    fontSize: 12.sp,
                     decoration: TextDecoration.underline,
                     height: 1,
                   ),
@@ -206,8 +206,8 @@ class MyInsuredJewelleryModule extends StatelessWidget {
                 "Insured Input value",
                 style: TextStyle(
                   fontFamily: "Roboto",
-                  color: AppColors.greyDarkColor,
-                  fontWeight: FontWeight.w500,
+                  color: AppColors.greyDark,
+                  fontWeight: FontWeight.w600,
                   fontSize: 12.sp,
                 ),
               ),
@@ -280,9 +280,9 @@ class MyUnInsuredJewelleryModule extends StatelessWidget {
                     "My Uninsured Jewellery",
                     style: TextStyle(
                       fontFamily: "Roboto",
-                      color: AppColors.blackColor,
+                      color: AppColors.darkBlue,
                       fontWeight: FontWeight.w600,
-                      fontSize: 12.sp,
+                      fontSize: 13.sp,
                     ),
                   ),
                   GestureDetector(
@@ -293,9 +293,9 @@ class MyUnInsuredJewelleryModule extends StatelessWidget {
                       "VIEW ALL",
                       style: TextStyle(
                         fontFamily: "Roboto",
-                        color: AppColors.accentDarkColor,
+                        color: AppColors.darkCoffee,
                         fontWeight: FontWeight.w500,
-                        fontSize: 11.sp,
+                        fontSize: 12.sp,
                         decoration: TextDecoration.underline,
                         height: 1,
                       ),
@@ -316,9 +316,9 @@ class MyUnInsuredJewelleryModule extends StatelessWidget {
                   Text(
                     "Uninsured Input Value",
                     style: TextStyle(
-                      color: AppColors.greyDarkColor,
+                      color: AppColors.greyDark,
                       fontFamily: "Roboto",
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                       fontSize: 12.sp,
                     ),
                   ),

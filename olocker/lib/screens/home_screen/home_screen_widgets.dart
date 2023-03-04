@@ -182,23 +182,17 @@ class MyJewellersListModule extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            width: screenController.size.width * 0.37,
+            width: screenController.size.width * 0.41,
             height: screenController.size.height * 0.11,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: Colors.grey.shade300, width: 2),
               // color: AppColors.greyColor,
-              // image: DecorationImage(
-              //   image: NetworkImage(imgUrl),
-              //   fit: BoxFit.fill,
-              // ),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: CachedNetworkImage(
-                imageUrl: imgUrl,
+              image: DecorationImage(
+                image: NetworkImage(imgUrl),
                 fit: BoxFit.fill,
-                errorWidget: (context, error, stackTrace) {
-                  return Container(
+                onError: (exception, stackTrace) {
+                  Container(
                     color: AppColors.greyTextColor.withOpacity(0.5),
                     child: const Center(
                       child: Text("No Image"),
@@ -285,7 +279,7 @@ class SmartDealsModule extends StatelessWidget {
                   'Smart Deals',
                   style: TextStyle(
                       color: AppColors.whiteColor,
-                      fontSize: 12.sp,
+                      fontSize: 15.sp,
                       fontFamily: "Acephimere"),
                 ),
                 Row(
@@ -308,9 +302,10 @@ class SmartDealsModule extends StatelessWidget {
                         activeColor: AppColors.accentColor,
                         inactiveThumbColor: AppColors.accentColor,
                         onChanged: (value) async {
-                          screenController.smartDealsSwitch.value = !screenController.smartDealsSwitch.value;
+                          screenController.smartDealsSwitch.value =
+                              !screenController.smartDealsSwitch.value;
                           log('${screenController.smartDealsSwitch.value}');
-                          if(screenController.smartDealsSwitch.value) {
+                          if (screenController.smartDealsSwitch.value) {
                             await screenController.handleLocationPermission();
                           }
                           screenController.isLoading(true);
@@ -339,29 +334,29 @@ class SmartDealsModule extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: "Roboto",
                         color: AppColors.whiteColor,
-                        fontSize: 12.sp,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     )
                   : OnlineDealsListModule()
               : screenController.getLocationPermission.value == false
                   ? Text(
-            'To see local deals you need to give us location access permission in mobile settings',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontFamily: "Roboto",
-              color: AppColors.whiteColor,
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w500,
-            ),
-          )
-                  : Text(
-                      'Keep checking this space for exciting deals',
-            textAlign: TextAlign.center,
+                      'To see local deals you need to give us location access permission in mobile settings',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: "Roboto",
                         color: AppColors.whiteColor,
-                        fontSize: 12.sp,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    )
+                  : Text(
+                      'Keep checking this space for exciting deals',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: "Roboto",
+                        color: AppColors.whiteColor,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -599,7 +594,7 @@ class OlockerServiceModule extends StatelessWidget {
                             title,
                             style: TextStyle(
                               color: AppColors.whiteColor,
-                              fontSize: 8.0.sp,
+                              fontSize: 9.0.sp,
                             ),
                           ),
                         ),

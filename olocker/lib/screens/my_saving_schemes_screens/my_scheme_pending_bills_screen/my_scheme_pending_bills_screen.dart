@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/my_saving_schemes_screens_controllers/my_scheme_pending_bills_screen_controller.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
 
 import 'my_scheme_pending_bills_screen_widgets.dart';
@@ -26,11 +27,7 @@ class MySchemePendingBillsScreen extends StatelessWidget {
         ),
         title: Text(
           'Pending Bills',
-          style: TextStyle(
-            color: AppColors.blackTextColor,
-            fontSize: 15.sp,
-            fontWeight: FontWeight.w600,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
       ),
       bottomNavigationBar: PayNowBottomButton(),

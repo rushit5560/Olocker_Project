@@ -397,7 +397,7 @@ class MetalDetailsFormModule extends StatelessWidget {
                     SizedBox(height: 1.h),
                     unInsuredJewelController.metalDataMapList.isNotEmpty
                         ? Container(
-                            padding:const EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 6, vertical: 5),
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -645,7 +645,7 @@ class StoneDetailsFormModule extends StatelessWidget {
                     SizedBox(height: 1.h),
                     unInsuredJewelController.stoneDataMapList.isNotEmpty
                         ? Container(
-                            padding:const EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 6, vertical: 5),
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -894,7 +894,7 @@ class DecorativeItemDetailsFormModule extends StatelessWidget {
                     SizedBox(height: 1.h),
                     unInsuredJewelController.decoItemsDataMapList.isNotEmpty
                         ? Container(
-                            padding:const  EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 6, vertical: 5),
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -995,7 +995,7 @@ class UploadImageFileFormModule extends StatelessWidget {
       ),
       child: Column(
         children: [
-          SizedBox(height: 3.h),
+          SizedBox(height: 1.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -1041,7 +1041,8 @@ class UploadImageFileFormModule extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 3.h),
+          SizedBox(height: 2.h),
+          SubmitCancelFormModule(),
 
           // SizedBox(height: 1.h),
         ],

@@ -29,7 +29,7 @@ class RetailerCodeFormModule extends StatelessWidget {
               style: TextStyle(
                 fontSize: 12.sp,
                 fontFamily: "Roboto",
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
                 color: AppColors.blackColor,
               ),
             ),

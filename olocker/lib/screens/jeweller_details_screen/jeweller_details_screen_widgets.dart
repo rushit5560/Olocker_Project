@@ -69,6 +69,7 @@ class JewellerFeaturesModule extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: Colors.grey.shade600,
+                        fontWeight: FontWeight.w500,
                         fontSize: 9.sp,
                       ),
                     ),
@@ -279,7 +280,7 @@ class FourFunctionalModule extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      'My \nFavourite',
+                      'My \nFavourites',
                       maxLines: 2,
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
@@ -476,7 +477,7 @@ class JewelleryCategoryListModule extends StatelessWidget {
               image: DecorationImage(
                   image: NetworkImage(imgUrl), fit: BoxFit.cover),
             ),
-          ).commonSymmetricPadding(horizontal: 5, vertical: 5),
+          ).commonSymmetricPadding(horizontal: 5, vertical: 2),
         );
       },
     );
@@ -611,14 +612,14 @@ class MenWomenJewelleryListModule extends StatelessWidget {
           child: Text(
             headerName,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               color: AppColors.whiteColor,
               fontWeight: FontWeight.bold,
-              fontSize: 15.sp,
-              fontFamily: "Brand",
+              fontSize: 21,
+              fontFamily: "Brandregular",
               letterSpacing: 2,
             ),
-          ).commonSymmetricPadding(vertical: 10),
+          ).commonSymmetricPadding(vertical: 14),
         ),
       ],
     );
@@ -700,7 +701,7 @@ class BestSellersListModule extends StatelessWidget {
             "BEST SELLERS",
             textAlign: TextAlign.center,
             style: TextStyle(
-              // fontFamily: "Acephimere",
+              fontFamily: "Acephimere",
               color: AppColors.whiteColor,
               fontWeight: FontWeight.w600,
               fontSize: 15.sp,
@@ -847,19 +848,19 @@ class CustomerSpeakModule extends StatelessWidget {
             Image.asset(
               AppImages.customerSpeakBgImage,
               width: double.infinity,
-              height: 35,
+              height: 45,
               fit: BoxFit.fill,
             ),
             Center(
               child: Row(
                 children: [
-                  Text(
+                  const Text(
                     "CUSTOMER'S SPEAK",
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       fontFamily: "latoregular",
                       color: AppColors.whiteColor,
-                      fontSize: 13.sp,
+                      fontSize: 17,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 0.6,
                     ),
@@ -947,7 +948,7 @@ class CustomerSpeakModule extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   color: AppColors.whiteColor,
-                  fontSize: 15,
+                  fontSize: 13,
                   fontFamily: "Acephimere",
                   fontWeight: FontWeight.w500,
                 ),
@@ -983,8 +984,8 @@ class GoldPriceModule extends StatelessWidget {
                 'Gold Price',
                 style: TextStyle(
                   fontSize: 15.sp,
-                  color: AppColors.darkCoffeeColor,
-                  fontWeight: FontWeight.bold,
+                  color: AppColors.darkBlack,
+                  fontWeight: FontWeight.w500,
                   fontFamily: "Acephimere",
                   letterSpacing: 0.5,
                 ),
@@ -998,7 +999,7 @@ class GoldPriceModule extends StatelessWidget {
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
                     crossAxisSpacing: 10,
-                    childAspectRatio: 0.9,
+                    childAspectRatio: 0.75,
                   ),
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -1011,19 +1012,20 @@ class GoldPriceModule extends StatelessWidget {
                       child: Column(
                         children: [
                           Expanded(
-                              child: Container(
-                            decoration: BoxDecoration(
-                              color: AppColors.whiteColor,
-                              borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                image: AssetImage(
-                                  screenController.goldCaratImagesList[i],
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: AppColors.whiteColor,
+                                borderRadius: BorderRadius.circular(10),
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                    screenController.goldCaratImagesList[i],
+                                  ),
+                                  // fit: BoxFit.fill,
                                 ),
-                                // fit: BoxFit.fill,
                               ),
-                            ),
-                          ).commonOnlyPadding(
-                                  top: 10, bottom: 25, left: 25, right: 25)),
+                            ).commonOnlyPadding(
+                                top: 10, bottom: 35, left: 25, right: 25),
+                          ),
                           Text(
                             i == 0
                                 ? screenController.goldPrice1 == "0"
@@ -1052,11 +1054,13 @@ class GoldPriceModule extends StatelessWidget {
                                           ).format(double.parse(
                                             screenController.goldPrice3)),
                             style: TextStyle(
-                                color: AppColors.whiteColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14.sp,
-                                fontFamily: "Roboto"),
-                          ).commonAllSidePadding(5),
+                              color: AppColors.whiteColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14.sp,
+                              fontFamily: "Roboto",
+                            ),
+                          ).commonOnlyPadding(
+                              left: 7, right: 7, top: 7, bottom: 12)
                         ],
                       ),
                     );

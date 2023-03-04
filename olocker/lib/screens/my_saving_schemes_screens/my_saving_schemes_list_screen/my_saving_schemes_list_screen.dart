@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
 import '../../../constants/app_colors.dart';
@@ -23,11 +24,7 @@ class MySavingSchemesListScreen extends StatelessWidget {
         ),
         title: Text(
           'My Savings Schemes',
-          style: TextStyle(
-            color: AppColors.blackTextColor,
-            fontSize: 15.sp,
-            fontWeight: FontWeight.w600,
-          ),
+          style: TextStyleConfig.appbarTextStyle(),
         ),
       ),
       body: Obx(

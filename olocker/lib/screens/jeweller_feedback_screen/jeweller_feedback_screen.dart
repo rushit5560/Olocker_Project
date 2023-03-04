@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/jeweller_feedback_screen_controller.dart';
 import 'package:olocker/models/jeweller_feedback_screen_models/feedback_form_model.dart';
+import 'package:olocker/utils/appbar_style.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
@@ -27,12 +28,8 @@ class JewellerFeedbackScreen extends StatelessWidget {
         ),
         title: Text(
           'Feedback',
-          style: TextStyle(
-            fontFamily: "Acephimere",
-            color: AppColors.blackTextColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w400,
-          ),
+                     style: TextStyleConfig.appbarTextStyle(),
+
         ),
       ),
       body: Obx(

@@ -425,7 +425,7 @@ class SavingDetailsTextCustom extends StatelessWidget {
             style: TextStyle(
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
-              color: AppColors.greyDarkColor,
+              color: Colors.grey,
             ),
           ),
         ),
@@ -472,8 +472,8 @@ class AmountDetailsColoredColumn extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             text,
-            style: TextStyle(
-              fontSize: 10.sp,
+            style: const TextStyle(
+              fontSize: 12,
               color: AppColors.blackColor,
               fontWeight: FontWeight.w500,
             ),
