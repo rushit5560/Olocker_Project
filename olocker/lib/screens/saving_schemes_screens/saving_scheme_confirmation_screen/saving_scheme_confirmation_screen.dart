@@ -19,53 +19,54 @@ class SavingSchemeConfirmationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        CommonWidgets().showBorderSnackBar(
-          context: context,
-          displayText: "You can not go back from this page.",
-        );
+    return
+        // WillPopScope(
+        //   onWillPop: () async {
+        //     CommonWidgets().showBorderSnackBar(
+        //       context: context,
+        //       displayText: "You can not go back from this page.",
+        //     );
 
-        // can not go back if false
-        return false;
-      },
-      child: Scaffold(
-        resizeToAvoidBottomInset: true,
+        //     // can not go back if false
+        //     return false;
+        //   },
+        Scaffold(
+      resizeToAvoidBottomInset: true,
+      backgroundColor: AppColors.lightBrownBgColor,
+      appBar: AppBar(
         backgroundColor: AppColors.lightBrownBgColor,
-        appBar: AppBar(
-          backgroundColor: AppColors.lightBrownBgColor,
-          elevation: 0,
-          centerTitle: true,
-          leading: IconButton(
-            onPressed: () {
-              CommonWidgets().showBorderSnackBar(
-                context: context,
-                displayText: "You can not go back from this page.",
-              );
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-            ),
-          ),
-          title: Text(
-            'Enroll',
-            style: TextStyleConfig.appbarTextStyle(),
+        elevation: 0,
+        centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            CommonWidgets().showBorderSnackBar(
+              context: context,
+              displayText: "You can not go back from this page.",
+            );
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
           ),
         ),
-        bottomNavigationBar: ProceedToPayButtonModule(),
-        body: Column(
-          children: [
-            JewellerDetailImageInfoModule(
-              imagePath: savingSelectionScreenController.jewellerLogo,
-              schemeName: savingSelectionScreenController.schemeName,
-              schemeTagLine: savingSelectionScreenController.schemeTagLine,
-            ),
-            SizedBox(height: 2.h),
-            AmountDetailsModule(),
-          ],
-        ).commonAllSidePadding(15),
+        title: Text(
+          'Enroll',
+          style: TextStyleConfig.appbarTextStyle(),
+        ),
       ),
+      bottomNavigationBar: ProceedToPayButtonModule(),
+      body: Column(
+        children: [
+          JewellerDetailImageInfoModule(
+            imagePath: savingSelectionScreenController.jewellerLogo,
+            schemeName: savingSelectionScreenController.schemeName,
+            schemeTagLine: savingSelectionScreenController.schemeTagLine,
+          ),
+          SizedBox(height: 2.h),
+          AmountDetailsModule(),
+        ],
+      ).commonAllSidePadding(15),
     );
+    // );
   }
 }

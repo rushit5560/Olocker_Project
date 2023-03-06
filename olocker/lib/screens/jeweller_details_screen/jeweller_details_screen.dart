@@ -5,7 +5,6 @@ import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/jeweller_details_screen_controller.dart';
 import 'package:olocker/utils/appbar_style.dart';
 import 'package:olocker/utils/extensions.dart';
-import 'package:sizer/sizer.dart';
 import '../my_inquiries_list_screen/my_inquiries_list_screen.dart';
 import 'jeweller_details_screen_widgets.dart';
 

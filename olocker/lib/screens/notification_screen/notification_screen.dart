@@ -8,10 +8,20 @@ import 'package:sizer/sizer.dart';
 import '../../controllers/notification_screen_controller.dart';
 import 'notification_screen_widgets.dart';
 
-class NotificationScreen extends StatelessWidget {
-  NotificationScreen({Key? key}) : super(key: key);
+class NotificationScreen extends StatefulWidget {
+  const NotificationScreen({Key? key}) : super(key: key);
 
+  @override
+  State<NotificationScreen> createState() => _NotificationScreenState();
+}
+
+class _NotificationScreenState extends State<NotificationScreen> {
   final notificationScreenController = Get.put(NotificationScreenController());
+  @override
+  void initState() {
+    notificationScreenController.getAllNotificationsFunction();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

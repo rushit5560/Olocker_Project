@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:http/http.dart' as http;
 import 'package:olocker/constants/app_images.dart';
+import 'package:olocker/constants/enum.dart';
 import 'package:olocker/constants/user_details.dart';
 import 'package:olocker/models/jeweller_details_screen_model/about_your_self_model.dart';
 import 'package:olocker/models/jeweller_details_screen_model/announcement_offer_model.dart';
@@ -176,6 +177,42 @@ class JewellerDetailsScreenController extends GetxController {
     // isLoading(false);
   }
 
+  Future<void> getAboutYourSelfFunction() async {
+    isLoading(true);
+    String url =
+        "${ApiUrl.getAboutYourSelfApi}?PartnerSrno=$jewellerId&CustomerId=${UserDetails.customerId}";
+    log('getAboutYourSelfFunction Api Url : $url');
+
+    try {
+      http.Response response = await http.get(
+        Uri.parse(url),
+        headers: apiHeader.headers,
+      );
+      log('getAboutYourSelfFunction response : ${response.body}');
+
+      AboutYourSelfModel aboutYourSelfModel =
+          AboutYourSelfModel.fromJson(json.decode(response.body));
+      isSuccessStatus = aboutYourSelfModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        isFeedbackValue = aboutYourSelfModel.ratingGivenByCustomer.obs;
+        log('isFeedbackValue : $isFeedbackValue');
+      } else {
+        log('getAboutYourSelfFunction Else');
+      }
+    } catch (e) {
+      log('getAboutYourSelfFunction Error :$e');
+      rethrow;
+    }
+
+    if (announcementOfferList.isEmpty && jewelleryCategoryList.length < 2) {
+      await getJewelleryTypeFunction(
+          jewellerDetailsScroll: JewellerDetailsScroll.continueScroll);
+    } else {
+      isLoading(false);
+    }
+  }
+
   // This 5 Function api calling in 2nd Phase
   Future<void> getNewArrivalFunction() async {
     if (hasMore.value) {
@@ -214,7 +251,9 @@ class JewellerDetailsScreenController extends GetxController {
     }
   }
 
-  Future<void> getJewelleryTypeFunction() async {
+  Future<void> getJewelleryTypeFunction(
+      {jewellerDetailsScroll = JewellerDetailsScroll.stopScroll}) async {
+    // if (jewellerDetailsScroll == JewellerDetailsScroll.stopScroll) {
     if (hasMore.value) {
       // isLoading(true);
       String url = "${ApiUrl.getJewelleryTypeApi}?PartnerSrNo=$jewellerId";
@@ -399,37 +438,6 @@ class JewellerDetailsScreenController extends GetxController {
     } else {
       isLoading(false);
     }
-  }
-
-  Future<void> getAboutYourSelfFunction() async {
-    isLoading(true);
-    String url =
-        "${ApiUrl.getAboutYourSelfApi}?PartnerSrno=$jewellerId&CustomerId=${UserDetails.customerId}";
-    log('getAboutYourSelfFunction Api Url : $url');
-
-    try {
-      http.Response response = await http.get(
-        Uri.parse(url),
-        headers: apiHeader.headers,
-      );
-      log('getAboutYourSelfFunction response : ${response.body}');
-
-      AboutYourSelfModel aboutYourSelfModel =
-          AboutYourSelfModel.fromJson(json.decode(response.body));
-      isSuccessStatus = aboutYourSelfModel.success.obs;
-
-      if (isSuccessStatus.value) {
-        isFeedbackValue = aboutYourSelfModel.ratingGivenByCustomer.obs;
-        log('isFeedbackValue : $isFeedbackValue');
-      } else {
-        log('getAboutYourSelfFunction Else');
-      }
-    } catch (e) {
-      log('getAboutYourSelfFunction Error :$e');
-      rethrow;
-    }
-
-    isLoading(false);
   }
 
   @override

@@ -34,9 +34,13 @@ class MonthlyAmountModule extends StatelessWidget {
           TextFormField(
             controller: screenController.monthlyAmountFieldController,
             keyboardType: TextInputType.number,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) {
               if (value!.isEmpty) {
                 return 'Please enter monthly amount';
+              } else if (int.parse(value) <
+                  screenController.savingSchemeData.minimumMonthlyAmount) {
+                return 'Please enter minimum amount ${screenController.savingSchemeData.minimumMonthlyAmount.toInt()}';
               }
               return null;
             },

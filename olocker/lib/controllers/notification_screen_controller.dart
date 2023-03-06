@@ -129,10 +129,4 @@ class NotificationScreenController extends GetxController {
       isLoadingMessage(false);
     }
   }
-
-  @override
-  void onInit() {
-    super.onInit();
-    getAllNotificationsFunction();
-  }
 }
