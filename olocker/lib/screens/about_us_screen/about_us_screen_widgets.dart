@@ -129,7 +129,7 @@ class AboutUsDetailsModule extends StatelessWidget {
             onTap: () {},
           ),
           SizedBox(height: 1.h),
-          TitleAboutModule(text: 'Showroom Details'),
+          TitleAboutModule(text: 'Showroom Gallery'),
           SizedBox(height: 2.h),
           SliderModule(),
         ],
@@ -402,6 +402,7 @@ class SliderModule extends StatelessWidget {
                   );
                 }),
                 options: CarouselOptions(
+                  autoPlay: true,
                   onPageChanged: ((index, reason) {
                     aboutUsPageController.currentIndex.value = index;
                   }),

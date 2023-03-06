@@ -34,6 +34,7 @@ class ProfileScreenController extends GetxController {
   TextEditingController pinCodeController = TextEditingController();
   TextEditingController cityController = TextEditingController();
   TextEditingController stateController = TextEditingController();
+  TextEditingController dateofbrithController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
 
@@ -75,6 +76,7 @@ class ProfileScreenController extends GetxController {
                     log("selected Dob date is :: $formattedDate");
 
                     selectedDobNumber.value = formattedDate;
+                    dateofbrithController.text = selectedDobNumber.value;
                   }),
             ),
             // Close the modal
@@ -187,7 +189,6 @@ class ProfileScreenController extends GetxController {
   }
 
   Future<void> updateUserProfileDetailsFunction() async {
-
     // if (formKey.currentState!.validate()) {
     String url = ApiUrl.updateUserProfileApi;
     log(" updateUserProfileDetailsFunction url: $url");
@@ -335,7 +336,6 @@ class ProfileScreenController extends GetxController {
   }
 
   Future<void> getCityStateDetailsByPinFunction() async {
-
     // if (formKey.currentState!.validate()) {
     String url =
         "${ApiUrl.getCityStateByPincodeApi}?pincode=${pinCodeController.text.toString()}";

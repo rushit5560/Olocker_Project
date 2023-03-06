@@ -369,49 +369,51 @@ class DobFieldRow extends StatelessWidget {
           ),
           SizedBox(width: 2.w),
           Expanded(
-            child: SizedBox(
-              // height: 5.h,
               child: AbsorbPointer(
-                absorbing: profileScreenController.isEditable.value,
-                child: GestureDetector(
-                  onTap: () {
-                    profileScreenController.showDatePicker(context);
-                  },
-                  child: Container(
-                    height: 45,
-                    width: double.infinity,
-                    alignment: Alignment.centerLeft,
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-                    color: AppColors.whiteColor,
-                    child: Text(
-                      profileScreenController.selectedDobNumber.value,
-                      style: TextStyle(
-                        color: AppColors.darkBlue,
-                        fontFamily: "Roboto",
-                        fontSize: 11.sp,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
+            absorbing: profileScreenController.isEditable.value,
+            child: TextFormField(
+              readOnly: true,
+              controller: profileScreenController.dateofbrithController,
+              // maxLength: 10,
+              style: TextStyle(
+                color: AppColors.darkBlue,
+                fontFamily: "Roboto",
+                fontSize: 11.sp,
+                fontWeight: FontWeight.w400,
+              ),
+              onTap: () {
+                profileScreenController.showDatePicker(context);
+              },
+              decoration: InputDecoration(
+                isDense: true,
+                hintText: "Enter dob brith",
+                hintStyle: TextStyle(
+                  color: AppColors.greyColor,
+                  fontSize: 11.sp,
+                  fontFamily: "Roboto",
                 ),
               ),
-              // TextFormField(
-              //   controller: profileScreenController.fnameController,
-              //   textInputAction: TextInputAction.next,
-              //   keyboardType: TextInputType.text,
-              //   validator: (value) => FieldValidator().validateFirstName(value!),
-              //   style:
-              //       TextStyle(color: AppColors.blackTextColor, fontSize: 11.sp),
-              //   decoration: InputDecoration(
+            ),
+          )
 
-              //     hintText: "Oct 12 1999 date",
-              //     hintStyle:
-              //         TextStyle(color: AppColors.greyColor, fontSize: 11.sp),
+              //  AbsorbPointer(
+              //   absorbing: profileScreenController.isEditable.value,
+              //   child: GestureDetector(
+              //     onTap: () {
+              //       profileScreenController.showDatePicker(context);
+              //     },
+              //     child: Text(
+              //       profileScreenController.selectedDobNumber.value,
+              //       style: TextStyle(
+              //         color: AppColors.darkBlue,
+              //         fontFamily: "Roboto",
+              //         fontSize: 11.sp,
+              //         fontWeight: FontWeight.w400,
+              //       ),
+              //     ),
               //   ),
               // ),
-            ),
-          ),
+              ),
         ],
       ),
     );
