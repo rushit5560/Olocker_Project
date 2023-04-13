@@ -51,6 +51,10 @@ class CustomDrawer extends StatelessWidget {
               ),
             ),
           ),
+          const Text(
+            'Version : 1.0.0',
+            style: TextStyle(fontSize: 16),
+          ).commonSymmetricPadding(vertical: 5),
           _logoutButton(),
         ],
       ),

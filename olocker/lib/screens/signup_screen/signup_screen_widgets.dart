@@ -41,11 +41,11 @@ class RegisterHeaderModule extends StatelessWidget {
                 ),
                 Text(
                   "to complete registration",
-                  maxLines: null,
+                  maxLines: 2,
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontFamily: "elephantregular",
-                    fontSize: 26.sp,
+                    fontSize: 24.sp,
                     color: AppColors.blackColor,
                     height: 0.9,
                     // letterSpacing: 0.8,
