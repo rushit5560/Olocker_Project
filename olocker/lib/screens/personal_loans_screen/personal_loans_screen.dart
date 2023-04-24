@@ -321,13 +321,16 @@ class PersonalLoansScreen extends StatelessWidget {
                                   context: context,
                                   displayText: 'Please select Salary Slips',
                                 );
-                              } else if (personalLoansScreenController
-                                  .rentAgreementFile.path.isEmpty) {
-                                CommonWidgets().showBorderSnackBar(
-                                  context: context,
-                                  displayText: 'Please select Rent Agreement',
-                                );
-                              } else {
+                              }
+
+                              // else if (personalLoansScreenController
+                              //     .rentAgreementFile.path.isEmpty) {
+                              //   CommonWidgets().showBorderSnackBar(
+                              //     context: context,
+                              //     displayText: 'Please select Rent Agreement',
+                              //   );
+                              // }
+                              else {
                                 await personalLoansScreenController
                                     .uploadEmiDocumentsFunction();
                               }

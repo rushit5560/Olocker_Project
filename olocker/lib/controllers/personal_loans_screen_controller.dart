@@ -23,8 +23,8 @@ class PersonalLoansScreenController extends GetxController {
 
   GlobalKey<FormState> stepOneFormKey = GlobalKey<FormState>();
 
-  TextEditingController fnameController = TextEditingController();
-  TextEditingController lnameController = TextEditingController();
+  TextEditingController fnameController = TextEditingController(text: "abc");
+  TextEditingController lnameController = TextEditingController(text: "");
   TextEditingController dobController = TextEditingController();
   TextEditingController mobileNoController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -277,7 +277,7 @@ class PersonalLoansScreenController extends GetxController {
         "BankStatement_Base64":
             base64Encode(bankStatementFile.readAsBytesSync()),
         "SalarySlip_Base64": base64Encode(salarySlipsFile.readAsBytesSync()),
-        "RentAgreement_Base64":
+        "RentAgreement_Base64":rentAgreementFile.path==""?"":
             base64Encode(rentAgreementFile.readAsBytesSync()),
       };
       // requestMap["Base64"]
