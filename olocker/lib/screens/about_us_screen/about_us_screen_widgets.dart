@@ -52,7 +52,7 @@ class AboutUsDetailsModule extends StatelessWidget {
                 ),
                 // child: Image.asset(
                 //   AppImages.aboutUsImage,
-                //   width: double.infinity,
+                //   width: double.infinity,                                                                                       
                 //   height: 160,
                 //   fit: BoxFit.cover,
                 //   color: Colors.white,
@@ -65,11 +65,11 @@ class AboutUsDetailsModule extends StatelessWidget {
                     ? Image.network(
                         ApiUrl.apiImagePath +
                             aboutUsPageController.aboutUsData!.partnerLogo,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                       )
                     : Image.asset(
                         AppImages.noLogoImage,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                       ),
               ),
             ],

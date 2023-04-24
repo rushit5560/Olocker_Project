@@ -10,6 +10,7 @@ import 'package:sizer/sizer.dart';
 import '../../controllers/mobile_number_screen_controller.dart';
 import '../../widgets/common_buttons.dart';
 import '../../widgets/common_widgets.dart';
+import '../terms_and_condition_screen/terms_and_condition_screen.dart';
 import 'mobile_number_screen_widgets.dart';
 
 class MobileNumberScreen extends StatelessWidget {
@@ -169,12 +170,21 @@ class MobileNumberScreen extends StatelessWidget {
                                   color: AppColors.greyColor,
                                 ),
                                 children: [
-                                  TextSpan(
-                                    text: "Terms & Conditions",
-                                    style: TextStyle(
-                                      fontSize: 10.sp,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColors.blackColor,
+                                  WidgetSpan(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Get.to(
+                                          () => TermsAndConditionsScreen(),
+                                        );
+                                      },
+                                      child: Text(
+                                        "Terms & Conditions",
+                                        style: TextStyle(
+                                          fontSize: 10.sp,
+                                          fontWeight: FontWeight.w600,
+                                          color: AppColors.blackColor,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ],

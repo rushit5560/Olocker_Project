@@ -597,7 +597,7 @@ class OlockerServiceModule extends StatelessWidget {
                               fontSize: 9.0.sp,
                             ),
                           ),
-                        ),
+                        ).commonOnlyPadding(left: 5, bottom: 5),
                       ),
                       Positioned(
                         top: -12,

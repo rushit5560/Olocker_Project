@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:olocker/screens/terms_and_condition_screen/terms_and_condition_screen.dart';
 
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
@@ -68,29 +71,40 @@ class MobileNumberLoadingWidget extends StatelessWidget {
                     Container(
                       width: 25,
                       height: 25,
-                      decoration: const BoxDecoration(color: AppColors.greyColor),
+                      decoration:
+                          const BoxDecoration(color: AppColors.greyColor),
                     ),
                     SizedBox(width: 2.w),
-                    RichText(
-                      text: TextSpan(
-                        text: "I hereby agree to the ",
-                        style: TextStyle(
-                          fontSize: 9.sp,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.greyColor,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: "Terms & Conditions",
-                            style: TextStyle(
-                              fontSize: 9.sp,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.blackColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
+
+                    // RichText(
+                    //   text: TextSpan(
+                    //     text: "I hereby agree to the ",
+                    //     style: TextStyle(
+                    //       fontSize: 9.sp,
+                    //       fontWeight: FontWeight.w500,
+                    //       color: AppColors.greyColor,
+                    //     ),
+                    //     children: [
+                    //       WidgetSpan(
+                    //         child: GestureDetector(
+                    //           onTap: () {
+                    //             log("Terms & Conditions 1");
+                    //             Get.to(() => const TermsAndConditionsScreen());
+                    //             log("Terms & Conditions 2");
+                    //           },
+                    //           child: Text(
+                    //             "Terms & Conditions",
+                    //             style: TextStyle(
+                    //               fontSize: 9.sp,
+                    //               fontWeight: FontWeight.w500,
+                    //               color: AppColors.blackColor,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // )
                   ],
                 ),
               ),

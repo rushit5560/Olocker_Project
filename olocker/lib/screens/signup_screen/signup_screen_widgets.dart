@@ -179,7 +179,7 @@ class EmailField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   /* return TextFormField(
+    /* return TextFormField(
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
       validator: (value) => FieldValidator().validateEmail(value!),
@@ -228,7 +228,7 @@ class EmailField extends StatelessWidget {
             child: TextFormField(
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
-              validator: (value) => FieldValidator().validateEmail(value!),
+              // validator: (value) => FieldValidator().validateEmail(value!),
               controller: signUpScreenController.emailController,
               decoration: InputDecoration(
                 isDense: true,
@@ -377,8 +377,6 @@ class EnterCodeField extends StatelessWidget {
               width: 24,
             ),
           ),
-
-
         ],
       ),
     );

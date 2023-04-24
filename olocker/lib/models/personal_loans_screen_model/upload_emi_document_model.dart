@@ -7,8 +7,8 @@ import 'dart:convert';
 UploadEmiDocumentModel uploadEmiDocumentModelFromJson(String str) =>
     UploadEmiDocumentModel.fromJson(json.decode(str));
 
-String uploadEmiDocumentModelToJson(UploadEmiDocumentModel data) =>
-    json.encode(data.toJson());
+// String uploadEmiDocumentModelToJson(UploadEmiDocumentModel data) =>
+//     json.encode(data.toJson());
 
 class UploadEmiDocumentModel {
   UploadEmiDocumentModel({
@@ -37,14 +37,14 @@ class UploadEmiDocumentModel {
         errorInfo: ErrorInfo.fromJson((json["error_info"] ?? {})),
       );
 
-  Map<String, dynamic> toJson() => {
-        "emiSrNo": emiSrNo,
-        // "EMITenorOptions": emiTenorOptions,
-        // "LoanApplicationId": loanApplicationId,
-        "Message": message,
-        "success": success,
-        "error_info": errorInfo.toJson(),
-      };
+  // Map<String, dynamic> toJson() => {
+  //       "emiSrNo": emiSrNo,
+  //       // "EMITenorOptions": emiTenorOptions,
+  //       // "LoanApplicationId": loanApplicationId,
+  //       "Message": message,
+  //       "success": success,
+  //       "error_info": errorInfo.toJson(),
+      // };
 }
 
 class ErrorInfo {
@@ -52,13 +52,13 @@ class ErrorInfo {
     required this.errorType,
     required this.extraInfo,
     required this.description,
-    this.errorData,
+    required this.errorData,
   });
 
   final int errorType;
   final String extraInfo;
   final String description;
-  final dynamic errorData;
+  final String errorData;
 
   factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
         errorType: json["error_type"] ?? 0,
@@ -67,10 +67,10 @@ class ErrorInfo {
         errorData: json["error_data"] ?? "",
       );
 
-  Map<String, dynamic> toJson() => {
-        "error_type": errorType,
-        "extra_info": extraInfo,
-        "description": description,
-        "error_data": errorData,
-      };
+  // Map<String, dynamic> toJson() => {
+  //       "error_type": errorType,
+  //       "extra_info": extraInfo,
+  //       "description": description,
+  //       "error_data": errorData,
+  //     };
 }

@@ -25,7 +25,7 @@ class ReferAndEarnScreen extends StatelessWidget {
         titleSpacing: 0,
         title: Text(
           'Refer & Earn',
-          style: TextStyleConfig.appbarTextStyle(),
+          style: TextStyleConfig.appbarTextStyle(fontWeight: FontWeight.bold),
         ),
         backgroundColor: AppColors.whiteColor,
         elevation: 0,

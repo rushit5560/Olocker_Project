@@ -44,6 +44,8 @@ class JewellerDetailsScreenController extends GetxController {
   List<SpecialFeatureItem> specialFeaturesList = [];
   List<GetPushOfferItem> announcementOfferList = [];
   List<GetPushCollectionItem> jewelleryCategoryList = [];
+  List<GetPushCollectionItem> jewellerysubCategoryList = []; //subCategoryList
+
   List<GetPushCollectionItem> newArrivalList = [];
   List<ProductTypeItem> menTypeList = [];
   List<ProductTypeItem> womenTypeList = [];
@@ -162,9 +164,16 @@ class JewellerDetailsScreenController extends GetxController {
             ));
             // jewelleryCategoryModel.getPushOffer
           }
-        }
 
-        log('jewelleryCategoryList : ${jewelleryCategoryList.length}');
+          if (jewelleryCategoryList.length > 2) {
+            for (int i = 2; i < jewelleryCategoryList.length; i++) {
+              jewellerysubCategoryList.add(jewelleryCategoryList[i]);
+            }
+
+            log("jewellerysubCategoryList.length ${jewellerysubCategoryList.length}");
+          }
+          log("jewelleryCategoryList.length ${jewelleryCategoryList.length}");
+        }
       } else {
         log('getJewelleryPushToAppDataFunction Else');
       }

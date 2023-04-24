@@ -73,10 +73,13 @@ class JewellerDetailsScreen extends StatelessWidget {
                             : JewellerBannerModule(),
 
                         FourFunctionalModule(),
-
-                        JewelleryCategoryListModule(),
-
+                        // JewelleryFirstCategoryListModule(),
+                        jewellerDetailsScreenController
+                                .jewelleryCategoryList.isNotEmpty
+                            ? JewelleryFirstCategoryListModule()
+                            : Container(),
                         ReferAndJewellerEmiModule(),
+                        JewellerySubCategoryListModule(),
 
                         /// Below all module in 2nd phase
                         Column(

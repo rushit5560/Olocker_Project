@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/user_details.dart';
+import 'package:olocker/controllers/index_screen_controller.dart';
+import 'package:olocker/screens/index_screen/index_screen.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -35,6 +37,7 @@ class ProfileScreenController extends GetxController {
   TextEditingController cityController = TextEditingController();
   TextEditingController stateController = TextEditingController();
   TextEditingController dateofbrithController = TextEditingController();
+  // final indexScreenController = Get.put(IndexScreenController());
 
   final formKey = GlobalKey<FormState>();
 
@@ -249,14 +252,19 @@ class ProfileScreenController extends GetxController {
 
         if (isSuccessResult.value) {
           log("updateUserProfileDetailsFunction success");
+          log("111");
           // prefs.setString(
           //     UserPrefsData().customerMobileNoKey, numberController.text);
           isEditable.value = true;
-
           CommonWidgets().showBorderSnackBar(
             context: Get.context!,
             displayText: "Profile Updated Successfully.",
           );
+          Get.offAll(() => IndexScreen());
+          // indexScreenController.currentBottomIndex.value = 0;
+          // isLoading(true);
+          // isLoading(false);
+          // log("indexScreenController.currentBottomIndex.value ${indexScreenController.currentBottomIndex.value}");
         } else {
           log("updateUserProfileDetailsFunction not success");
           //do nothing
@@ -313,6 +321,8 @@ class ProfileScreenController extends GetxController {
         isSuccessResult.value = userProfileGetModel.success;
 
         if (isSuccessResult.value) {
+          log("222");
+
           log("updateUserProfileDetailsFunction success");
           // prefs.setString(
           //     UserPrefsData().customerMobileNoKey, numberController.text);
@@ -321,6 +331,7 @@ class ProfileScreenController extends GetxController {
             context: Get.context!,
             displayText: "Profile Updated Successfully.",
           );
+          Get.offAll(() => IndexScreen());
         } else {
           log("updateUserProfileDetailsFunction not success");
           //do nothing

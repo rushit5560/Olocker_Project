@@ -114,7 +114,7 @@ class AllLoyaltyPointListModule extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "Redeemed",
+                                          "Redeemed".toUpperCase(),
                                           style: TextStyle(
                                             color: AppColors.whiteColor,
                                             fontSize: 11.sp,
@@ -143,7 +143,7 @@ class AllLoyaltyPointListModule extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "Remaining",
+                                          "Remaining".toUpperCase(),
                                           style: TextStyle(
                                             // fontFamily: "Roboto",
                                             color: AppColors.whiteColor,

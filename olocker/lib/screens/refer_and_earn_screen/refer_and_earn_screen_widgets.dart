@@ -151,7 +151,7 @@ class UserBenefitPointsTextModule extends StatelessWidget {
             benefitText,
             style: TextStyle(
               color: AppColors.accentColor,
-              fontSize: 15.sp,
+              fontSize: 13.sp,
               fontFamily: "NexaBold",
               fontWeight: FontWeight.bold,
             ),

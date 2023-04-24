@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
@@ -442,14 +443,16 @@ class NewArrivalListModule extends StatelessWidget {
   }
 }
 
-class JewelleryCategoryListModule extends StatelessWidget {
-  JewelleryCategoryListModule({Key? key}) : super(key: key);
+class JewelleryFirstCategoryListModule extends StatelessWidget {
+  JewelleryFirstCategoryListModule({Key? key}) : super(key: key);
   final screenController = Get.find<JewellerDetailsScreenController>();
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: screenController.jewelleryCategoryList.length,
+      itemCount: screenController.jewelleryCategoryList.length <= 2
+          ? screenController.jewelleryCategoryList.length
+          : 2,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, i) {
@@ -478,6 +481,50 @@ class JewelleryCategoryListModule extends StatelessWidget {
                   image: NetworkImage(imgUrl), fit: BoxFit.cover),
             ),
           ).commonSymmetricPadding(horizontal: 5, vertical: 2),
+        );
+      },
+    );
+  }
+}
+
+class JewellerySubCategoryListModule extends StatelessWidget {
+  JewellerySubCategoryListModule({Key? key}) : super(key: key);
+  final screenController = Get.find<JewellerDetailsScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: screenController.jewellerysubCategoryList.length,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemBuilder: (context, i) {
+        String imgUrl = ApiUrl.apiMainPath +
+            screenController.jewellerysubCategoryList[i].imageurl;
+        return GestureDetector(
+          onTap: () {
+            Get.to(
+              () => JewellerJewelleryListScreen(),
+              arguments: [
+                screenController.jewellerysubCategoryList[i].name,
+                screenController.jewellerysubCategoryList[i].srNo,
+                screenController.jewellerId.toString(),
+                JewelleryListType.categoryId,
+                screenController.collectionNameList,
+                SearchCategory.categoryType,
+              ],
+            );
+          },
+          child: imgUrl.isNotEmpty
+              ? Container(
+                  height: screenController.size.height * 0.027.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColors.greyTextColor.withOpacity(0.5),
+                    image: DecorationImage(
+                        image: NetworkImage(imgUrl), fit: BoxFit.cover),
+                  ),
+                ).commonSymmetricPadding(horizontal: 5, vertical: 2)
+              : Container(),
         );
       },
     );
