@@ -224,8 +224,8 @@ class StepOneFormModule extends StatelessWidget {
                     ),
                     SizedBox(height: screenController.size.height * 0.0030.h),
                     _lastDrawnSalaryModule(),
-                    const SizedBox(height: 10),
-                    _monthlyIncomeModule(),
+                    // const SizedBox(height: 10),
+                    // _monthlyIncomeModule(),
                     const SizedBox(height: 10),
                     _employerNameModule(),
                     const SizedBox(height: 10),
@@ -819,7 +819,7 @@ class StepOneFormModule extends StatelessWidget {
       ),
       child: Center(
         child: TextFormField(
-          controller: screenController.lastDrawnSalaryController,
+          controller: screenController.monthlyIncomeController,
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.number,
           autovalidateMode: AutovalidateMode.onUserInteraction,

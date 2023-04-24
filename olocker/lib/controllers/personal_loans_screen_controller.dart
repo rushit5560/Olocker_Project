@@ -11,6 +11,9 @@ import 'package:olocker/models/personal_loans_screen_model/emi_schedule_model.da
 import 'package:olocker/models/personal_loans_screen_model/upload_emi_document_model.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 
+import '../constants/app_colors.dart';
+import '../screens/index_screen/index_screen.dart';
+
 
 class PersonalLoansScreenController extends GetxController {
   RxBool isLoading = false.obs;
@@ -300,11 +303,21 @@ class PersonalLoansScreenController extends GetxController {
         UploadEmiDocumentModel uploadEmiDocumentModel =
             UploadEmiDocumentModel.fromJson(resBody);
         log('uploadEmiDocumentsFunction success call ::: ${uploadEmiDocumentModel.message}');
-        CommonWidgets().showBorderSnackBar(
+        CustomAlertDialog().showAlertDialog(
+          textContent: uploadEmiDocumentModel.message,
           context: Get.context!,
-          displayText: uploadEmiDocumentModel.message,
+          onYesTap: () {
+            Get.offAll(() => IndexScreen());
+          },
+          onCancelTap: () {
+            Get.back();
+          },
         );
-        Get.back();
+        // CommonWidgets().showBorderSnackBar(
+        //   context: Get.context!,
+        //   displayText: uploadEmiDocumentModel.message,
+        // );
+        // Get.back();
       } else {
         log('uploadEmiDocumentsFunction Else');
         var resultBody = json.decode(response.body);
@@ -324,5 +337,50 @@ class PersonalLoansScreenController extends GetxController {
   loadUI() {
     isLoading(true);
     isLoading(false);
+  }
+}
+
+
+class CustomAlertDialog {
+  void showAlertDialog({
+    required BuildContext context,
+    required String textContent,
+    required Function() onYesTap,
+    required Function() onCancelTap,
+  }) {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: AppColors.whiteColor,
+          title: Text(
+            textContent,
+            textAlign: TextAlign.center,
+          ),
+          actionsAlignment: MainAxisAlignment.spaceBetween,
+          contentPadding: const EdgeInsets.symmetric(vertical: 40),
+          shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                OutlinedButton(
+                  onPressed: onYesTap,
+                  style: OutlinedButton.styleFrom(
+                      backgroundColor: AppColors.accentColor),
+                  child: const Text(
+                    "yes",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+
+              ],
+            ),
+          ],
+        );
+      },
+    );
   }
 }
