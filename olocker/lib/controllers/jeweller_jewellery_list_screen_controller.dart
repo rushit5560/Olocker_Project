@@ -343,10 +343,11 @@ class JewellerJewelleryListScreenController extends GetxController {
     } catch (e) {
       log("getPartnerByCodeFunction Error ::: $e");
       rethrow;
-    } finally {
+    } /*finally {
       getUserProfileDetailsFunction();
       // isLoading(false);
-    }
+    }*/
+    await getUserProfileDetailsFunction();
     // }
   }
 
