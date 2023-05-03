@@ -887,6 +887,7 @@ class CustomerSpeakModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("screenController.clientTestimonialsList.length ${screenController.clientTestimonialsList.length}");
     return Column(
       children: [
         Stack(
@@ -917,19 +918,121 @@ class CustomerSpeakModule extends StatelessWidget {
             ),
           ],
         ),
-        CarouselSlider.builder(
-          itemCount: screenController.clientTestimonialsList.length,
-          itemBuilder: (context, i, realIndex) {
-            Testimonial singleItem = screenController.clientTestimonialsList[i];
-            return _customerSpeakListTile(singleItem);
-          },
-          options: CarouselOptions(
-            height: 150,
-            autoPlay: true,
-            viewportFraction: 1,
-            autoPlayInterval: const Duration(seconds: 4),
-          ),
-        ).commonSymmetricPadding(vertical: 8),
+        screenController.clientTestimonialsList.length == 1
+            ? CarouselSlider.builder(
+                itemCount: screenController.clientTestimonialsList.length,
+                itemBuilder: (context, i, realIndex) {
+                  log("222");
+                  Testimonial singleItem =
+                      screenController.clientTestimonialsList[i];
+                  return _customerSpeakListTile(singleItem);
+                },
+                options: CarouselOptions(
+                  height: 150,
+                  autoPlay: false,
+                  viewportFraction: 1,
+                  autoPlayInterval: const Duration(seconds: 4),
+                ),
+              ).commonSymmetricPadding(vertical: 8)
+            // Container(
+            //     height: 150,
+            //     // width: 500,
+            //     margin: const EdgeInsets.only(left: 5, right: 5),
+            //     decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(10),
+            //       color: AppColors.lightCoffeeColor,
+            //     ),
+            //     child: ListView.builder(
+            //       shrinkWrap: true,
+            //       physics: const NeverScrollableScrollPhysics(),
+            //       scrollDirection: Axis.horizontal,
+            //       itemCount: screenController.clientTestimonialsList.length,
+            //       itemBuilder: (context, i) {
+            //         log("11");
+            //         Testimonial singleItem =
+            //             screenController.clientTestimonialsList[i];
+            //         return Column(
+            //           crossAxisAlignment: CrossAxisAlignment.start,
+            //           children: [
+            //             Row(
+            //               crossAxisAlignment: CrossAxisAlignment.center,
+            //               children: [
+            //                 Container(
+            //                   // height: screenController.size.width * 0.030.w,
+            //                   width: screenController.size.width * 0.030.w,
+            //                   decoration: const BoxDecoration(
+            //                     shape: BoxShape.circle,
+            //                     color: AppColors.whiteColor,
+            //                     // image: DecorationImage(
+            //                     //   image: NetworkImage(
+            //                     //       "${ApiUrl.apiImageUrlPath}/images/JewelleryApp/2020/5/9e926966718148acaedc690e4a55d5f8_1.png"), //   // AssetImage(AppImages.aboutTileBGImage),
+            //                     // ),
+            //                   ),
+            //                   child: ClipRRect(
+            //                     borderRadius: BorderRadius.circular(200),
+            //                     child: CachedNetworkImage(
+            //                       imageUrl:
+            //                           "${ApiUrl.apiImagePath}/images/JewelleryApp/2020/5/9e926966718148acaedc690e4a55d5f8_1.png",
+            //                       fit: BoxFit.cover,
+            //                       errorWidget: (context, url, error) {
+            //                         return Image.asset(
+            //                           AppImages.noLogoImage,
+            //                           fit: BoxFit.cover,
+            //                         );
+            //                       },
+            //                     ),
+            //                   ),
+            //                 ),
+            //                 SizedBox(width: 4.w),
+            //                 Text(
+            //                   singleItem.clientName,
+            //                   maxLines: 2,
+            //                   overflow: TextOverflow.ellipsis,
+            //                   style: TextStyle(
+            //                     color: AppColors.whiteColor,
+            //                     fontSize: 13.sp,
+            //                     fontFamily: "Acephimere",
+            //                     fontWeight: FontWeight.w500,
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //             Expanded(
+            //               child: Center(
+            //                 child: Text(
+            //                   singleItem.testimonials,
+            //                   maxLines: 3,
+            //                   textAlign: TextAlign.left,
+            //                   overflow: TextOverflow.ellipsis,
+            //                   style: const TextStyle(
+            //                     color: AppColors.whiteColor,
+            //                     fontSize: 13,
+            //                     fontFamily: "Acephimere",
+            //                     fontWeight: FontWeight.w500,
+            //                   ),
+            //                 ),
+            //               ),
+            //             ),
+            //           ],
+            //         ).commonSymmetricPadding(horizontal: 20, vertical: 15);
+            //       },
+            //     ),
+            //   ).commonSymmetricPadding(vertical: 8)
+            : CarouselSlider.builder(
+                itemCount: screenController.clientTestimonialsList.length,
+                itemBuilder: (context, i, realIndex) {
+                  log("222");
+                  Testimonial singleItem =
+                      screenController.clientTestimonialsList[i];
+                  return _customerSpeakListTile(singleItem);
+                },
+                options: CarouselOptions(
+                  height: 150,
+                  autoPlay: true,
+                  viewportFraction: 1,
+                  autoPlayInterval: const Duration(seconds: 4),
+                ),
+              ).commonSymmetricPadding(vertical: 8)
       ],
     );
   }
@@ -1129,7 +1232,7 @@ class JewellerDetailsLoadingShimmer extends StatelessWidget {
       width: double.infinity,
       child: Shimmer.fromColors(
         baseColor: Colors.grey.shade300,
-        highlightColor: Colors.grey.shade100,
+        highlightColor: Colors.grey.shade50,
         child: SingleChildScrollView(
           child: Column(
             children: [

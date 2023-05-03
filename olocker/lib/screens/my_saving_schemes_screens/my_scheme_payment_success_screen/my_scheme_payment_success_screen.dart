@@ -55,8 +55,8 @@ class MySchemePaymentSuccessScreen extends StatelessWidget {
               ? SizedBox(
                   width: double.infinity,
                   child: Shimmer.fromColors(
-                    baseColor: Colors.grey.shade300,
-                    highlightColor: Colors.grey.shade100,
+                     baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade50,
                     child: SingleChildScrollView(
                       child: Column(
                         children: [

@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-MyJewellersModel myJewellersModelFromJson(String str) => MyJewellersModel.fromJson(json.decode(str));
+MyJewellersModel myJewellersModelFromJson(String str) =>
+    MyJewellersModel.fromJson(json.decode(str));
 
-String myJewellersModelToJson(MyJewellersModel data) => json.encode(data.toJson());
+String myJewellersModelToJson(MyJewellersModel data) =>
+    json.encode(data.toJson());
 
 class MyJewellersModel {
   MyJewellersModel({
@@ -15,17 +17,21 @@ class MyJewellersModel {
   bool success;
   ErrorInfo errorInfo;
 
-  factory MyJewellersModel.fromJson(Map<String, dynamic> json) => MyJewellersModel(
-    addMyJewellerdata: List<JewellerData>.from((json["AddMyJewellerdata"]! ?? []).map((x) => JewellerData.fromJson(x ?? {}))),
-    success: json["success"] ?? false,
-    errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
-  );
+  factory MyJewellersModel.fromJson(Map<String, dynamic> json) =>
+      MyJewellersModel(
+        addMyJewellerdata: List<JewellerData>.from(
+            (json["AddMyJewellerdata"] ?? [])
+                .map((x) => JewellerData.fromJson(x ?? {}))),
+        success: json["success"] ?? false,
+        errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
+      );
 
   Map<String, dynamic> toJson() => {
-    "AddMyJewellerdata": List<dynamic>.from(addMyJewellerdata.map((x) => x.toJson())),
-    "success": success,
-    "error_info": errorInfo.toJson(),
-  };
+        "AddMyJewellerdata":
+            List<dynamic>.from(addMyJewellerdata.map((x) => x.toJson())),
+        "success": success,
+        "error_info": errorInfo.toJson(),
+      };
 }
 
 class JewellerData {
@@ -50,26 +56,26 @@ class JewellerData {
   int partnerSrNo;
 
   factory JewellerData.fromJson(Map<String, dynamic> json) => JewellerData(
-    customerName: json["CustomerName"] ?? "",
-    logoFileName: json["LogoFileName"] ?? "",
-    companyName: json["CompanyName"] ?? "",
-    ownersName: json["OwnersName"] ?? "",
-    registrationDate: json["RegistrationDate"] ?? "",
-    activationDate: json["ActivationDate"] ?? "",
-    paymentMode: json["PaymentMode"] ?? "",
-    partnerSrNo: json["PartnerSrNo"] ?? 0,
-  );
+        customerName: json["CustomerName"] ?? "",
+        logoFileName: json["LogoFileName"] ?? "",
+        companyName: json["CompanyName"] ?? "",
+        ownersName: json["OwnersName"] ?? "",
+        registrationDate: json["RegistrationDate"] ?? "",
+        activationDate: json["ActivationDate"] ?? "",
+        paymentMode: json["PaymentMode"] ?? "",
+        partnerSrNo: json["PartnerSrNo"] ?? 0,
+      );
 
   Map<String, dynamic> toJson() => {
-    "CustomerName": customerName,
-    "LogoFileName": logoFileName,
-    "CompanyName": companyName,
-    "OwnersName": ownersName,
-    "RegistrationDate": registrationDate,
-    "ActivationDate": activationDate,
-    "PaymentMode": paymentMode,
-    "PartnerSrNo": partnerSrNo,
-  };
+        "CustomerName": customerName,
+        "LogoFileName": logoFileName,
+        "CompanyName": companyName,
+        "OwnersName": ownersName,
+        "RegistrationDate": registrationDate,
+        "ActivationDate": activationDate,
+        "PaymentMode": paymentMode,
+        "PartnerSrNo": partnerSrNo,
+      };
 }
 
 class ErrorInfo {
@@ -86,16 +92,16 @@ class ErrorInfo {
   String errorData;
 
   factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
-    errorType: json["error_type"] ?? 0,
-    extraInfo: json["extra_info"] ?? "",
-    description: json["description"] ?? "",
-    errorData: json["error_data"].toString(),
-  );
+        errorType: json["error_type"] ?? 0,
+        extraInfo: json["extra_info"] ?? "",
+        description: json["description"] ?? "",
+        errorData: json["error_data"].toString(),
+      );
 
   Map<String, dynamic> toJson() => {
-    "error_type": errorType,
-    "extra_info": extraInfo,
-    "description": description,
-    "error_data": errorData,
-  };
+        "error_type": errorType,
+        "extra_info": extraInfo,
+        "description": description,
+        "error_data": errorData,
+      };
 }

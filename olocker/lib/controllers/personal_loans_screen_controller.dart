@@ -14,7 +14,6 @@ import 'package:olocker/widgets/common_widgets.dart';
 import '../constants/app_colors.dart';
 import '../screens/index_screen/index_screen.dart';
 
-
 class PersonalLoansScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -26,8 +25,8 @@ class PersonalLoansScreenController extends GetxController {
 
   GlobalKey<FormState> stepOneFormKey = GlobalKey<FormState>();
 
-  TextEditingController fnameController = TextEditingController(text: "abc");
-  TextEditingController lnameController = TextEditingController(text: "");
+  TextEditingController fnameController = TextEditingController();
+  TextEditingController lnameController = TextEditingController();
   TextEditingController dobController = TextEditingController();
   TextEditingController mobileNoController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -280,8 +279,9 @@ class PersonalLoansScreenController extends GetxController {
         "BankStatement_Base64":
             base64Encode(bankStatementFile.readAsBytesSync()),
         "SalarySlip_Base64": base64Encode(salarySlipsFile.readAsBytesSync()),
-        "RentAgreement_Base64":rentAgreementFile.path==""?"":
-            base64Encode(rentAgreementFile.readAsBytesSync()),
+        "RentAgreement_Base64": rentAgreementFile.path == ""
+            ? ""
+            : base64Encode(rentAgreementFile.readAsBytesSync()),
       };
       // requestMap["Base64"]
 
@@ -340,7 +340,6 @@ class PersonalLoansScreenController extends GetxController {
   }
 }
 
-
 class CustomAlertDialog {
   void showAlertDialog({
     required BuildContext context,
@@ -361,7 +360,7 @@ class CustomAlertDialog {
           actionsAlignment: MainAxisAlignment.spaceBetween,
           contentPadding: const EdgeInsets.symmetric(vertical: 40),
           shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
           actions: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -375,7 +374,6 @@ class CustomAlertDialog {
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
-
               ],
             ),
           ],

@@ -125,7 +125,8 @@ class HomeScreenController extends GetxController {
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(const SnackBar(
-          content: Text('Location services are disabled. Please enable the services')));
+          content: Text(
+              'Location services are disabled. Please enable the services')));
       getLocationPermission = false.obs;
       return getLocationPermission.value;
     }
@@ -142,17 +143,20 @@ class HomeScreenController extends GetxController {
     }
     if (permission == LocationPermission.deniedForever) {
       permission = await Geolocator.requestPermission();
-      ScaffoldMessenger.of(Get.context!).showSnackBar(const SnackBar(
+      ScaffoldMessenger.of(Get.context!).showSnackBar(
+        const SnackBar(
           content: Text(
-              'Location permissions are permanently denied, we cannot request permissions.')));
+              'Location permissions are permanently denied, we cannot request permissions.'),
+        ),
+      );
       getLocationPermission = false.obs;
       return getLocationPermission.value;
     }
 
-    if(permission == LocationPermission.always){
+    if (permission == LocationPermission.always) {
       getLocationPermission.value = true;
     }
-    if(permission == LocationPermission.whileInUse){
+    if (permission == LocationPermission.whileInUse) {
       getLocationPermission.value = true;
     }
 

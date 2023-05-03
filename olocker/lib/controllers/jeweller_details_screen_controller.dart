@@ -383,7 +383,7 @@ class JewellerDetailsScreenController extends GetxController {
         if (isSuccessStatus.value) {
           clientTestimonialsList.clear();
           clientTestimonialsList.addAll(clientTestimonialsModel.testimonials);
-          log('clientTestimonialsList : ${clientTestimonialsList.length}');
+          log('getClientTestimonialsFunction clientTestimonialsList : ${clientTestimonialsList.length}');
         } else {
           log('getClientTestimonialsFunction Else');
         }

@@ -186,7 +186,7 @@ class NotificationScreenLoadingWidget extends StatelessWidget {
       width: double.infinity,
       child: Shimmer.fromColors(
         baseColor: Colors.grey.shade300,
-        highlightColor: Colors.grey.shade100,
+        highlightColor: Colors.grey.shade50,
         child: ListView.separated(
           shrinkWrap: true,
           itemCount: 4,
