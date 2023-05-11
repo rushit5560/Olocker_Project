@@ -318,7 +318,7 @@ class EmailFieldRow extends StatelessWidget {
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
               readOnly: profileScreenController.isEditable.value,
-              validator: (value) => FieldValidator().validateFirstName(value!),
+              // validator: (value) => FieldValidator().validateFirstName(value!),
               style: TextStyle(
                 color: AppColors.darkBlue,
                 fontSize: 11.sp,
@@ -386,7 +386,7 @@ class DobFieldRow extends StatelessWidget {
               },
               decoration: InputDecoration(
                 isDense: true,
-                hintText: "Enter dob brith",
+                hintText: "Enter DOB",
                 hintStyle: TextStyle(
                   color: AppColors.greyColor,
                   fontSize: 11.sp,
@@ -739,7 +739,7 @@ class ProfileScreenLoadingWidget extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Shimmer.fromColors(
-         baseColor: Colors.grey.shade300,
+        baseColor: Colors.grey.shade300,
         highlightColor: Colors.grey.shade50,
         child: SingleChildScrollView(
           child: Column(

@@ -150,9 +150,40 @@ class FavouriteListItem extends StatelessWidget {
                               color: AppColors.blackTextColor,
                             ),
                           ),
+                          // SizedBox(height: 0.3.h),
+                          // Text(
+                          //   "SKU Code: ${singleProd.productDetails.productSku}",
+                          //   style: TextStyle(
+                          //     fontFamily: "Roboto",
+                          //     fontSize: 10.sp,
+                          //     fontWeight: FontWeight.w500,
+                          //     color: AppColors.blackTextColor,
+                          //   ),
+                          // ),
+                          // SizedBox(height: 0.3.h),
+                          // singleProd.productDetails.price.toString() !=
+                          //         "PRICE ON REQUEST"
+                          //     ? const SizedBox(height: 8)
+                          //     :
                           SizedBox(height: 0.3.h),
+
                           Text(
-                            "SKU Code: ${singleProd.productDetails.productSku}",
+                            singleProd.productDetails.price
+                                    .toString()
+                                    .contains("PRICE ON REQUEST")
+                                ? "PRICE ON REQUEST"
+                                : NumberFormat.currency(
+                                    symbol: '₹ ',
+                                    locale: "HI",
+                                    decimalDigits: 2,
+                                  ).format(
+                                    double.parse(favouritesController
+                                        .favouriteProductsList[index]
+                                        .productDetails
+                                        .price),
+                                  ),
+                            // singleProd
+                            //     .productDetails.price,
                             style: TextStyle(
                               fontFamily: "Roboto",
                               fontSize: 10.sp,
@@ -160,34 +191,6 @@ class FavouriteListItem extends StatelessWidget {
                               color: AppColors.blackTextColor,
                             ),
                           ),
-                          SizedBox(height: 0.3.h),
-                          singleProd.productDetails.price.toString() !=
-                                  "PRICE ON REQUEST"
-                              ? const SizedBox(height: 8)
-                              : Text(
-                                  singleProd.productDetails.price
-                                          .toString()
-                                          .contains("PRICE ON REQUEST")
-                                      ? "PRICE ON REQUEST"
-                                      : NumberFormat.currency(
-                                          symbol: '₹ ',
-                                          locale: "HI",
-                                          decimalDigits: 2,
-                                        ).format(
-                                          double.parse(favouritesController
-                                              .favouriteProductsList[index]
-                                              .productDetails
-                                              .price),
-                                        ),
-                                  // singleProd
-                                  //     .productDetails.price,
-                                  style: TextStyle(
-                                    fontFamily: "Roboto",
-                                    fontSize: 10.sp,
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.blackTextColor,
-                                  ),
-                                ),
                           SizedBox(height: 0.3.h),
                           Text(
                             singleProd.partnerName,

@@ -1,9 +1,7 @@
 import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
@@ -71,7 +69,7 @@ class JewellerFeaturesModule extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.grey.shade600,
                         fontWeight: FontWeight.w500,
-                        fontSize: 9.sp,
+                        fontSize: 11,
                       ),
                     ),
                   ),
@@ -99,8 +97,8 @@ class JewellerFeaturesModule extends StatelessWidget {
                       textAlign: TextAlign.left,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          color: Colors.grey.shade600, fontSize: 9.sp),
+                      style:
+                          TextStyle(color: Colors.grey.shade600, fontSize: 11),
                     ),
                   ),
                 ],
@@ -127,8 +125,8 @@ class JewellerFeaturesModule extends StatelessWidget {
                       textAlign: TextAlign.left,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          color: Colors.grey.shade600, fontSize: 9.sp),
+                      style:
+                          TextStyle(color: Colors.grey.shade600, fontSize: 11),
                     ),
                   ),
                 ],
@@ -227,8 +225,8 @@ class JewellerBannerModule extends StatelessWidget {
         }
       },
       child: SizedBox(
-        height: 25.h,
-        width: double.infinity,
+        // height: 25.h,
+        // width: double.infinity,
         // decoration: BoxDecoration(
         //   borderRadius: BorderRadius.circular(20),
         //   color: AppColors.greyTextColor,
@@ -247,7 +245,7 @@ class JewellerBannerModule extends StatelessWidget {
             },
           ),
         ),
-      ).commonSymmetricPadding(horizontal: 10),
+      ).commonSymmetricPadding(horizontal: 6),
     );
   }
 }
@@ -261,7 +259,8 @@ class FourFunctionalModule extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: SizedBox(
-        height: screenController.size.height * 0.015.h,
+        // height: screenController.size.height * 0.015.h,
+        height: 80,
         child: Row(
           children: [
             Expanded(
@@ -279,7 +278,7 @@ class FourFunctionalModule extends StatelessWidget {
                     color: AppColors.accentColor,
                     shape: BoxShape.circle,
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       'My \nFavourites',
                       maxLines: 2,
@@ -287,7 +286,7 @@ class FourFunctionalModule extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: AppColors.whiteColor,
-                        fontSize: 10.sp,
+                        fontSize: 13,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -309,7 +308,7 @@ class FourFunctionalModule extends StatelessWidget {
                     color: AppColors.accentColor,
                     shape: BoxShape.circle,
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       'Loyalty \nPoints',
                       maxLines: 2,
@@ -317,7 +316,7 @@ class FourFunctionalModule extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: AppColors.whiteColor,
-                        fontSize: 10.sp,
+                        fontSize: 13,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -340,7 +339,7 @@ class FourFunctionalModule extends StatelessWidget {
                     color: AppColors.accentColor,
                     shape: BoxShape.circle,
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       'About us',
                       maxLines: 2,
@@ -348,7 +347,7 @@ class FourFunctionalModule extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: AppColors.whiteColor,
-                        fontSize: 10.sp,
+                        fontSize: 13,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -378,7 +377,7 @@ class FourFunctionalModule extends StatelessWidget {
                         : AppColors.accentColor.withOpacity(0.5),
                     shape: BoxShape.circle,
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       'Feedback',
                       maxLines: 2,
@@ -386,7 +385,7 @@ class FourFunctionalModule extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: AppColors.whiteColor,
-                        fontSize: 10.sp,
+                        fontSize: 13,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -429,12 +428,16 @@ class NewArrivalListModule extends StatelessWidget {
             );
           },
           child: Container(
-            height: screenController.size.height * 0.027.h,
+            // height: screenController.size.height * 0.027.h,
+            height: 170,
+
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: AppColors.greyTextColor.withOpacity(0.5),
               image: DecorationImage(
-                  image: NetworkImage(imgUrl), fit: BoxFit.cover),
+                image: NetworkImage(imgUrl),
+                fit: BoxFit.fill,
+              ),
             ),
           ).commonSymmetricPadding(horizontal: 5, vertical: 5),
         );
@@ -449,6 +452,7 @@ class JewelleryFirstCategoryListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("screenController.jewelleryCategoryList.length111  ${screenController.jewelleryCategoryList.length}");
     return ListView.builder(
       itemCount: screenController.jewelleryCategoryList.length <= 2
           ? screenController.jewelleryCategoryList.length
@@ -473,12 +477,15 @@ class JewelleryFirstCategoryListModule extends StatelessWidget {
             );
           },
           child: Container(
-            height: screenController.size.height * 0.027.h,
+            height: 170,
+            // height: screenController.size.height * 0.027.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: AppColors.greyTextColor.withOpacity(0.5),
               image: DecorationImage(
-                  image: NetworkImage(imgUrl), fit: BoxFit.cover),
+                image: NetworkImage(imgUrl),
+                fit: BoxFit.fill,
+              ),
             ),
           ).commonSymmetricPadding(horizontal: 5, vertical: 2),
         );
@@ -493,6 +500,8 @@ class JewellerySubCategoryListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("jewellerysubCategoryList 111");
+    log("screenController.jewellerysubCategoryList.length 222222 ${screenController.jewellerysubCategoryList.length}");
     return ListView.builder(
       itemCount: screenController.jewellerysubCategoryList.length,
       shrinkWrap: true,
@@ -516,93 +525,21 @@ class JewellerySubCategoryListModule extends StatelessWidget {
           },
           child: imgUrl.isNotEmpty
               ? Container(
-                  height: screenController.size.height * 0.027.h,
+                  height: 170,
+
+                  // height: screenController.size.height * 0.027.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: AppColors.greyTextColor.withOpacity(0.5),
                     image: DecorationImage(
-                        image: NetworkImage(imgUrl), fit: BoxFit.cover),
+                      image: NetworkImage(imgUrl),
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ).commonSymmetricPadding(horizontal: 5, vertical: 2)
               : Container(),
         );
       },
-    );
-  }
-}
-
-class ReferAndJewellerEmiModule extends StatelessWidget {
-  ReferAndJewellerEmiModule({Key? key}) : super(key: key);
-  final screenController = Get.find<JewellerDetailsScreenController>();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(AppImages.referOfferBgImage),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: GestureDetector(
-              onTap: () {
-                Get.to(
-                  () => ReferAndEarnScreen(),
-                  arguments: [
-                    screenController.jewellerId,
-                  ],
-                );
-              },
-              child: Container(
-                height: screenController.size.height * 0.036.h,
-                decoration: BoxDecoration(
-                  color: AppColors.creamBgColor,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    BoxShadow(color: Colors.grey.shade700, blurRadius: 12.0),
-                  ],
-                  image: const DecorationImage(
-                    image: AssetImage(AppImages.referOffer1Image),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ).commonOnlyPadding(top: 10, bottom: 10, left: 14, right: 7),
-            ),
-          ),
-          Expanded(
-            child: GestureDetector(
-              onTap: () {
-                Get.to(
-                  () => SavingSchemesListScreen(),
-                  arguments: [
-                    screenController.jewellerId,
-                  ],
-                );
-              },
-              child: Container(
-                height: screenController.size.height * 0.036.h,
-                decoration: BoxDecoration(
-                  color: AppColors.creamBgColor,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.shade700,
-                      blurRadius: 12.0,
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(8),
-                  image: const DecorationImage(
-                    image: AssetImage(AppImages.referOffer2Image),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ).commonOnlyPadding(top: 8, bottom: 8, right: 14, left: 7),
-            ),
-          ),
-        ],
-      ).commonSymmetricPadding(vertical: 5),
     );
   }
 }
@@ -628,7 +565,9 @@ class MenWomenJewelleryListModule extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: screenController.size.height * 0.038.h,
+          // height: screenController.size.height * 0.038.h,
+          height: 230,
+
           width: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -726,15 +665,94 @@ class MenWomenJewelleryListModule extends StatelessWidget {
   }
 }
 
+class ReferAndJewellerEmiModule extends StatelessWidget {
+  ReferAndJewellerEmiModule({Key? key}) : super(key: key);
+  final screenController = Get.find<JewellerDetailsScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(AppImages.referOfferBgImage),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: GestureDetector(
+              onTap: () {
+                Get.to(
+                  () => ReferAndEarnScreen(),
+                  arguments: [
+                    screenController.jewellerId,
+                  ],
+                );
+              },
+              child: Container(
+                // height: screenController.size.height * 0.036.h,
+                height: 235,
+                decoration: BoxDecoration(
+                  color: AppColors.creamBgColor,
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(color: Colors.grey.shade700, blurRadius: 12.0),
+                  ],
+                  image: const DecorationImage(
+                    image: AssetImage(AppImages.referOffer1Image),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ).commonOnlyPadding(top: 10, bottom: 10, left: 14, right: 7),
+            ),
+          ),
+          Expanded(
+            child: GestureDetector(
+              onTap: () {
+                Get.to(
+                  () => SavingSchemesListScreen(),
+                  arguments: [
+                    screenController.jewellerId,
+                  ],
+                );
+              },
+              child: Container(
+                // height: screenController.size.height * 0.036.h,
+                height: 235,
+
+                decoration: BoxDecoration(
+                  color: AppColors.creamBgColor,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade700,
+                      blurRadius: 12.0,
+                    ),
+                  ],
+                  borderRadius: BorderRadius.circular(8),
+                  image: const DecorationImage(
+                    image: AssetImage(AppImages.referOffer2Image),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ).commonOnlyPadding(top: 8, bottom: 8, right: 14, left: 7),
+            ),
+          ),
+        ],
+      ).commonSymmetricPadding(vertical: 5),
+    );
+  }
+}
+
 class BestSellersListModule extends StatelessWidget {
   BestSellersListModule({Key? key}) : super(key: key);
   final screenController = Get.find<JewellerDetailsScreenController>();
 
   @override
   Widget build(BuildContext context) {
-    log("screenController.bestSellerList.length: ${screenController.bestSellerList.length}");
+    // log("screenController.bestSellerList.length: ${screenController.bestSellerList.length}");
     return Container(
-      height: 40.h,
+      height: 300,
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(AppImages.bestSellerBgImage),
@@ -744,19 +762,19 @@ class BestSellersListModule extends StatelessWidget {
       child: Column(
         // mainAxisSize: MainAxisSize.max,
         children: [
-          Text(
+          const Text(
             "BEST SELLERS",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: "Acephimere",
               color: AppColors.whiteColor,
               fontWeight: FontWeight.w600,
-              fontSize: 15.sp,
+              fontSize: 18,
               letterSpacing: 0.6,
             ),
           ).commonSymmetricPadding(vertical: 14),
           SizedBox(
-            height: 28.h,
+            height: 220,
             child: GridView.builder(
               itemCount: screenController.bestSellerList.length,
               shrinkWrap: true,
@@ -866,9 +884,9 @@ class BestSellersListModule extends StatelessWidget {
                     locale: "HI",
                     decimalDigits: 2,
                   ).format(double.parse(singleItem.productPrice)),
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: AppColors.blackColor,
-                    fontSize: 11.sp,
+                    fontSize: 14,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -963,14 +981,14 @@ class CustomerSpeakModule extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(width: 4.w),
+                            const SizedBox(width: 18),
                             Text(
                               singleItem.clientName,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: AppColors.whiteColor,
-                                fontSize: 13.sp,
+                                fontSize: 17,
                                 fontFamily: "Acephimere",
                                 fontWeight: FontWeight.w500,
                               ),
@@ -1031,7 +1049,8 @@ class CustomerSpeakModule extends StatelessWidget {
             children: [
               Container(
                 // height: screenController.size.width * 0.030.w,
-                width: screenController.size.width * 0.030.w,
+                // width: screenController.size.width * 0.030.w,
+                width: 45,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: AppColors.whiteColor,
@@ -1055,14 +1074,14 @@ class CustomerSpeakModule extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(width: 4.w),
+              const SizedBox(width: 18),
               Text(
                 singleItem.clientName,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
+                style: const TextStyle(
                   color: AppColors.whiteColor,
-                  fontSize: 13.sp,
+                  fontSize: 17,
                   fontFamily: "Acephimere",
                   fontWeight: FontWeight.w500,
                 ),
@@ -1106,14 +1125,16 @@ class GoldPriceModule extends StatelessWidget {
             children: [
               Image.asset(
                 AppImages.goldNameIconImage,
-                width: screenController.size.width * 0.020.w,
-                height: screenController.size.width * 0.020.w,
+                // width: screenController.size.width * 0.020.w,
+                // height: screenController.size.width * 0.020.w,
+                width: 30,
+                height: 30,
               ),
               const SizedBox(width: 10),
-              Text(
+              const Text(
                 'Gold Price',
                 style: TextStyle(
-                  fontSize: 15.sp,
+                  fontSize: 19,
                   color: AppColors.darkBlack,
                   fontWeight: FontWeight.w500,
                   fontFamily: "Acephimere",

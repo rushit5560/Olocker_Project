@@ -152,6 +152,14 @@ class JewellerDetailsScreenController extends GetxController {
       if (isSuccessStatus.value) {
         jewelleryCategoryList.clear();
         jewelleryCategoryList.addAll(jewelleryCategoryModel.getPushCollection);
+
+        if (jewelleryCategoryList.length > 2) {
+          for (int i = 2; i < jewelleryCategoryList.length; i++) {
+            jewellerysubCategoryList.add(jewelleryCategoryList[i]);
+          }
+        }
+        log("jewellerysubCategoryList.length ${jewellerysubCategoryList.length}");
+
         if (jewelleryCategoryModel.getPushOffer.isNotEmpty) {
           for (int i = 0; i < jewelleryCategoryModel.getPushOffer.length; i++) {
             var singleItem = jewelleryCategoryModel.getPushOffer[i];
@@ -165,15 +173,14 @@ class JewellerDetailsScreenController extends GetxController {
             // jewelleryCategoryModel.getPushOffer
           }
 
-          if (jewelleryCategoryList.length > 2) {
-            for (int i = 2; i < jewelleryCategoryList.length; i++) {
-              jewellerysubCategoryList.add(jewelleryCategoryList[i]);
-            }
-
-            log("jewellerysubCategoryList.length ${jewellerysubCategoryList.length}");
-          }
-          log("jewelleryCategoryList.length ${jewelleryCategoryList.length}");
+          // if (jewelleryCategoryList.length > 2) {
+          //   for (int i = 2; i < jewelleryCategoryList.length; i++) {
+          //     jewellerysubCategoryList.add(jewelleryCategoryList[i]);
+          //   }
+          // }
+          // log("jewellerysubCategoryList.length ${jewellerysubCategoryList.length}");
         }
+        log("jewelleryCategoryList.length ${jewelleryCategoryList.length}");
       } else {
         log('getJewelleryPushToAppDataFunction Else');
       }
@@ -451,6 +458,7 @@ class JewellerDetailsScreenController extends GetxController {
 
   @override
   void onInit() {
+    log("jewellerId :$jewellerId");
     initMethodFunction();
 
     scrollController.addListener(() async {

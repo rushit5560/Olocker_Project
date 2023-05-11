@@ -103,8 +103,8 @@ class PersonalLoansScreen extends StatelessWidget {
                     //   },
                     // ),
                     AnotherStepper(
-                      iconHeight: 15.w,
-                      iconWidth: 15.w,
+                      iconHeight: 60,
+                      iconWidth: 60,
                       // gap: 15.w,
                       // verticalGap: 15.w,
                       barThickness: 5,
@@ -235,7 +235,7 @@ class PersonalLoansScreen extends StatelessWidget {
                           ),
                         ),
                       ],
-                    ),
+                    ).commonSymmetricPadding(horizontal: 10),
                     // Stepper Step Text Module
                     // Row(
                     //   // mainAxisAlignment: MainAxisAlignment.spaceBetween,

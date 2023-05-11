@@ -61,8 +61,8 @@ class MainAppBar extends StatelessWidget with PreferredSizeWidget {
             color: AppColors.accentColor,
           ),
         ),
-        IconButton(
-          onPressed: () {
+        GestureDetector(
+          onTap: () {
             Get.to(
               () => MyFavouritesScreen(),
               arguments: [
@@ -70,12 +70,27 @@ class MainAppBar extends StatelessWidget with PreferredSizeWidget {
               ],
             );
           },
-          icon: const Icon(
+          child: const Icon(
             Icons.favorite_rounded,
             color: AppColors.accentColor,
             size: 22,
           ),
-        ),
+        ).commonOnlyPadding(right: 8),
+        // IconButton(
+        //   onPressed: () {
+        //     Get.to(
+        //       () => MyFavouritesScreen(),
+        //       arguments: [
+        //         "undefined",
+        //       ],
+        //     );
+        //   },
+        //   icon: const Icon(
+        //     Icons.favorite_rounded,
+        //     color: AppColors.accentColor,
+        //     size: 22,
+        //   ),
+        // ),
       ],
     );
   }

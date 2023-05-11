@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
@@ -14,7 +15,6 @@ import 'package:olocker/utils/user_prefs_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
-
 class IndexScreenController extends GetxController {
   final size = Get.size;
 
@@ -24,6 +24,7 @@ class IndexScreenController extends GetxController {
   RxInt notificationCount = 0.obs;
 
   RxBool isSuccessStatus = false.obs;
+  RxBool isLoading = false.obs;
 
   final pagesList = <Widget>[
     HomeScreen(),
@@ -96,7 +97,7 @@ class IndexScreenController extends GetxController {
     log("UserDetails.updateProfileCount ::: ${UserDetails.updateProfileCount}");
   }
 
-  Future<void> getNotificationCountFunction() async {
+  getNotificationCountFunction() async {
     String url =
         "${ApiUrl.getNotificationCountApi}?customerId=${UserDetails.customerId}";
     log("Get Notification Count Api Url : $url");
@@ -123,12 +124,18 @@ class IndexScreenController extends GetxController {
       log("getNotificationCountFunction Error :$e");
       rethrow;
     }
+    isLoading(true);
+
+    isLoading(false);
   }
 
   @override
   void onInit() {
     checkUserDOBData();
-    getNotificationCountFunction();
+
+    Timer.periodic(const Duration(minutes: 5), (timer) {
+      getNotificationCountFunction();
+    });
     super.onInit();
   }
 }

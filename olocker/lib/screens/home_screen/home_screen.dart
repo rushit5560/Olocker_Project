@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                       MyJewellersListModule(),
                       // SizedBox(height: homeScreenController.size.height * 0.02),
                       BannerModule(),
-                      SizedBox(height: 2.h),
+                      const SizedBox(height: 5),
                       SmartDealsModule(),
                       // SizedBox(height: 2.h),
                       OlockerServiceModule(),

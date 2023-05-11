@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -13,6 +15,7 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("indexScreenController.notificationCount.value ${indexScreenController.notificationCount.value}");
     return BottomNavigationBar(
       currentIndex: indexScreenController.currentBottomIndex.value,
       type: BottomNavigationBarType.fixed,
@@ -94,27 +97,36 @@ class BottomNavBar extends StatelessWidget {
                 //       ? 24
                 //       : 23,
                 // ),
-                indexScreenController.notificationCount.value == 0
-                    ? Container()
-                    : Positioned(
-                        top: -5,
-                        right: -5,
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.whiteColor,
-                          ),
-                          child: Center(
-                            child: Text(
-                              '${indexScreenController.notificationCount.value}',
-                              style: TextStyle(
-                                color: AppColors.accentColor,
-                                fontSize: 9.sp,
+
+                // ignore: unnecessary_null_comparison
+
+                Obx(
+                  () => indexScreenController.notificationCount.value == 0
+                      ? Container()
+                      : Positioned(
+                          top: -5,
+                          right: -5,
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.whiteColor,
+                            ),
+                            child: Center(
+                              child: Obx(
+                                () => indexScreenController.isLoading.value
+                                    ? Container()
+                                    : Text(
+                                        '${indexScreenController.notificationCount.value}',
+                                        style: TextStyle(
+                                          color: AppColors.accentColor,
+                                          fontSize: 9.sp,
+                                        ),
+                                      ).commonAllSidePadding(3),
                               ),
-                            ).commonAllSidePadding(3),
+                            ),
                           ),
                         ),
-                      ),
+                ),
               ],
             ),
           ),

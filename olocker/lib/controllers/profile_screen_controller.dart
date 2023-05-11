@@ -131,11 +131,11 @@ class ProfileScreenController extends GetxController {
         userName.value = userProfileGetModel.customerProfile.firstName;
         // namePrefixDDvalue.value = userProfileGetModel.customerProfile.gender == "Male" ? "" :;
         fnameController.text = userProfileGetModel.customerProfile.firstName;
-
         lnameController.text = userProfileGetModel.customerProfile.lastName;
         emailController.text = userProfileGetModel.customerProfile.userEmail;
+        dateofbrithController.text = userProfileGetModel.customerProfile.dob;
         log("getting date is :: ${userProfileGetModel.customerProfile.dob}");
-
+        log("dateofbrithController.text ${dateofbrithController.text}");
         if (userProfileGetModel.customerProfile.dob != "") {
           var dateGetPassing = DateFormat("MMM dd, yyyy")
               .parse(userProfileGetModel.customerProfile.dob);
@@ -260,6 +260,8 @@ class ProfileScreenController extends GetxController {
             context: Get.context!,
             displayText: "Profile Updated Successfully.",
           );
+          //todo
+          await updateProfileUpdateCount();
           Get.offAll(() => IndexScreen());
           // indexScreenController.currentBottomIndex.value = 0;
           // isLoading(true);
@@ -331,6 +333,7 @@ class ProfileScreenController extends GetxController {
             context: Get.context!,
             displayText: "Profile Updated Successfully.",
           );
+          await updateProfileUpdateCount();
           Get.offAll(() => IndexScreen());
         } else {
           log("updateUserProfileDetailsFunction not success");
@@ -344,6 +347,11 @@ class ProfileScreenController extends GetxController {
       isLoading(false);
     }
     // }
+  }
+
+  updateProfileUpdateCount() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt(UserPrefsData().updateProfileCountKey, 3);
   }
 
   Future<void> getCityStateDetailsByPinFunction() async {
@@ -500,7 +508,6 @@ class ProfileScreenController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     getUserProfileDetailsFunction();
     super.onInit();
   }
