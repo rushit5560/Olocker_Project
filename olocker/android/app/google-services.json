@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "537728344553",
+    "project_id": "myjeweller-flutter",
+    "storage_bucket": "myjeweller-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537728344553:android:c409952a2005721a21ab78",
+        "android_client_info": {
+          "package_name": "com.myjeweller.olocker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537728344553-svii97d0uevi7gc90qbkq0eommdk4b0p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.myjeweller.olocker",
+            "certificate_hash": "63ac6bc040b75912ce629331db25a2e8cd62bbee"
+          }
+        },
+        {
+          "client_id": "537728344553-vd862pfjo32d08f5qa70jn5r932k88fj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBSYOcx5524TNHFdqIOOzIDfaG32zOngE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537728344553-vd862pfjo32d08f5qa70jn5r932k88fj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

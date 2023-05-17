@@ -25,10 +25,9 @@ class BottomNavBar extends StatelessWidget {
       showSelectedLabels: true,
       onTap: (index) {
         indexScreenController.currentBottomIndex.value = index;
-
-        if (index == 2) {
-          indexScreenController.notificationCount.value = 0;
-        }
+        // if (index == 2) {
+          // indexScreenController.notificationCount.value = 0;
+        // }
       },
       backgroundColor: AppColors.accentColor,
       selectedLabelStyle: const TextStyle(
@@ -100,33 +99,33 @@ class BottomNavBar extends StatelessWidget {
 
                 // ignore: unnecessary_null_comparison
 
-                Obx(
-                  () => indexScreenController.notificationCount.value == 0
-                      ? Container()
-                      : Positioned(
-                          top: -5,
-                          right: -5,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppColors.whiteColor,
-                            ),
-                            child: Center(
-                              child: Obx(
-                                () => indexScreenController.isLoading.value
-                                    ? Container()
-                                    : Text(
-                                        '${indexScreenController.notificationCount.value}',
-                                        style: TextStyle(
-                                          color: AppColors.accentColor,
-                                          fontSize: 9.sp,
-                                        ),
-                                      ).commonAllSidePadding(3),
-                              ),
+                Obx(() => 
+                indexScreenController.isLoading.value ? Container() :
+                indexScreenController.notificationCount.value != 0
+                    ? Positioned(
+                        top: -5,
+                        right: -5,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.whiteColor,
+                          ),
+                          child: Center(
+                            child: Obx(
+                              () => indexScreenController.isLoading.value
+                                  ? Container()
+                                  : Text(
+                                      '${indexScreenController.notificationCount.value}',
+                                      style: TextStyle(
+                                        color: AppColors.accentColor,
+                                        fontSize: 9.sp,
+                                      ),
+                                    ).commonAllSidePadding(3),
                             ),
                           ),
                         ),
-                ),
+                      )
+                    : Container()),
               ],
             ),
           ),

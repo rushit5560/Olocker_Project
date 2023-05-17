@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -16,10 +17,12 @@ import '../models/auth_screen_models/register_model.dart';
 
 class SignUpScreenController extends GetxController {
   final size = Get.size;
+  UserPrefsData userPrefsData = UserPrefsData();
 
   RxBool isLoading = false.obs;
 
   final apiHeader = ApiHeader();
+  String deviceTokenToSendPushNotification = "";
 
   TextEditingController fnameController = TextEditingController();
   TextEditingController lnameController = TextEditingController();
@@ -70,13 +73,11 @@ class SignUpScreenController extends GetxController {
 
       if (isCustomerExist == true) {
         log("mobile number is verfied");
-        prefs.setString(UserPrefsData().customerMobileNoKey, numberController.text);
+        prefs.setString(
+            UserPrefsData().customerMobileNoKey, numberController.text);
         // commonWidgets.showBorderSnackBar(context: Get.context!, displayText: "User Is Already Registered");
         // ignore: use_build_context_synchronously
         await userLoginFunction(context);
-
-
-
       } else {
         log("mobile number is new");
         //do nothing
@@ -124,9 +125,11 @@ class SignUpScreenController extends GetxController {
 
       if (isCustomerExist == true) {
         log("mobile number is verified");
-        prefs.setString(UserPrefsData().customerMobileNoKey, numberController.text);
+        prefs.setString(
+            UserPrefsData().customerMobileNoKey, numberController.text);
         // Get.back();
-        CommonWidgets().showBorderSnackBar(context: Get.context!, displayText: "User Is Already Registered");
+        CommonWidgets().showBorderSnackBar(
+            context: Get.context!, displayText: "User Is Already Registered");
         Get.off(() => OtpScreen());
       } else {
         log("mobile number is new");
@@ -153,12 +156,13 @@ class SignUpScreenController extends GetxController {
   }
 
   Future<void> userRegisterFunction(BuildContext context) async {
+    log("deviceTokenToSendPushNotification device token: $deviceTokenToSendPushNotification");
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     if (formKey.currentState!.validate()) {
       isLoading(true);
       String url = ApiUrl.registerApi;
-      log(" checkMobileNumber url: $url");
+      log("checkMobileNumber url: $url");
 
       try {
         var formData = {
@@ -167,10 +171,11 @@ class SignUpScreenController extends GetxController {
           "MobileNo": numberController.text.trim(),
           "UserEmail": emailController.text.trim(),
           "ReferralCode": codeController.text.trim(),
-          "Salutation": namePrefixDDvalue.value
+          "Salutation": namePrefixDDvalue.value,
+          "DeviceMacId": deviceTokenToSendPushNotification,
         };
 
-        log(" checkMobileNumber formdata passing is : $formData");
+        log("checkMobileNumber formdata passing is : $formData");
 
         http.Response response = await http.post(
           Uri.parse(url),
@@ -218,6 +223,7 @@ class SignUpScreenController extends GetxController {
     }
   }
 
+
   // MobileScannerController  cameraController = MobileScannerController();
   // RxBool screenOpened = false.obs;
 
@@ -250,16 +256,24 @@ class SignUpScreenController extends GetxController {
       // setState(() {
       codeController.text = qrCode;
       // });
-      print("QRCode_Result:--");
-      print(qrCode);
+      log("QRCode_Result:--");
+      log(qrCode);
     } on PlatformException {
       // codeController.text = 'Failed to scan QR Code.';
     }
   }
 
-  // @override
-  // void onInit() {
-  //   screenWasClosed();
-  //   super.onInit();
-  // }
+  @override
+  void onInit() {
+    getDeviceTokenToSendNotification();
+    super.onInit();
+  }
+
+  Future<void> getDeviceTokenToSendNotification() async {
+    log("getDeviceTokenToSendNotification");
+    final FirebaseMessaging fcm = FirebaseMessaging.instance;
+    final token = await fcm.getToken();
+    deviceTokenToSendPushNotification = token.toString();
+    await userPrefsData.setFcmInPrefs(deviceTokenToSendPushNotification);
+  }
 }

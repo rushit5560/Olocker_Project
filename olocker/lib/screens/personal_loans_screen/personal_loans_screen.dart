@@ -121,7 +121,7 @@ class PersonalLoansScreen extends StatelessWidget {
                             textStyle: TextStyle(
                               color: const Color(0xFFEC7773),
                               height: 1.6,
-                              fontSize: 10.sp,
+                              fontSize: 9.sp,
                               fontWeight: FontWeight.bold,
                               fontFamily: "Acephimere",
                             ),
@@ -154,7 +154,7 @@ class PersonalLoansScreen extends StatelessWidget {
                             textStyle: TextStyle(
                               color: const Color(0xFFEC7773),
                               height: 1.6,
-                              fontSize: 10.sp,
+                              fontSize: 9.sp,
                               fontWeight: FontWeight.bold,
                               fontFamily: "Acephimere",
                             ),
@@ -197,7 +197,7 @@ class PersonalLoansScreen extends StatelessWidget {
                             textStyle: TextStyle(
                               color: const Color(0xFFEC7773),
                               height: 1.6,
-                              fontSize: 10.sp,
+                              fontSize: 9.sp,
                               fontWeight: FontWeight.bold,
                               fontFamily: "Acephimere",
                             ),
@@ -235,7 +235,7 @@ class PersonalLoansScreen extends StatelessWidget {
                           ),
                         ),
                       ],
-                    ).commonSymmetricPadding(horizontal: 10),
+                    ).commonOnlyPadding(left: 10, right: 12),
                     // Stepper Step Text Module
                     // Row(
                     //   // mainAxisAlignment: MainAxisAlignment.spaceBetween,

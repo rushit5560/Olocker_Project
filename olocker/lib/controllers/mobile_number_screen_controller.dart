@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/models/auth_screen_models/user_login_model.dart';
@@ -20,11 +21,15 @@ class MobileNumberScreenController extends GetxController {
   TextEditingController numberController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
+  String deviceTokenToSendPushNotification = "";
 
   ApiHeader apiHeader = ApiHeader();
   RxBool termConditionCheckValue = false.obs;
 
+  UserPrefsData userPrefsData = UserPrefsData();
+
   Future<void> userLoginFunction(BuildContext context) async {
+    log("DeviceTokenToSendPushNotification login time: $deviceTokenToSendPushNotification");
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     String mobNumber = numberController.text.toString();
@@ -32,11 +37,12 @@ class MobileNumberScreenController extends GetxController {
     if (formKey.currentState!.validate()) {
       isLoading(true);
       String url = ApiUrl.userLoginApi;
-      log(" checkMobileNumber url: $url");
+      log("checkMobileNumber url: $url");
 
       try {
         var formData = {
           "MobileNo": mobNumber,
+          // "DeviceMacId": deviceTokenToSendPushNotification,
         };
         http.Response response = await http.post(
           Uri.parse(url),
@@ -78,6 +84,7 @@ class MobileNumberScreenController extends GetxController {
               ),
             ),
           );
+          // ignore: use_build_context_synchronously
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
           Get.to(() => SignUpScreen());
@@ -88,5 +95,19 @@ class MobileNumberScreenController extends GetxController {
         rethrow;
       }
     }
+  }
+
+  @override
+  void onInit() {
+    getDeviceTokenToSendNotification();
+    super.onInit();
+  }
+
+  Future<void> getDeviceTokenToSendNotification() async {
+    log("getDeviceTokenToSendNotification");
+    final FirebaseMessaging fcm = FirebaseMessaging.instance;
+    final token = await fcm.getToken();
+    deviceTokenToSendPushNotification = token.toString();
+    await userPrefsData.setFcmInPrefs(deviceTokenToSendPushNotification);
   }
 }

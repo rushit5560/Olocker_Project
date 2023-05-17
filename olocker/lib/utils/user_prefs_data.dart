@@ -27,6 +27,7 @@ class UserPrefsData {
   String updateProfileCountKey = "updateProfileCountKey";
 
   String customerSalutationKey = "customerSalutationKey";
+  String fcmTokenKey = "fcmTokenKey";
 
   setCustomerPrefsData({
     required String customerMobileNo,
@@ -214,5 +215,11 @@ class UserPrefsData {
     log("UserDetails.customerDob ::: ${UserDetails.customerDob}");
 
     log("UserDetails.customerId ::: ${UserDetails.customerId}");
+  }
+
+  Future<void> setFcmInPrefs(String fcmToken) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(fcmTokenKey, fcmToken);
+    log('fcmToken : ${prefs.getString(fcmTokenKey)}');
   }
 }

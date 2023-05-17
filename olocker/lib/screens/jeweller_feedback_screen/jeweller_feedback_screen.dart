@@ -28,8 +28,7 @@ class JewellerFeedbackScreen extends StatelessWidget {
         ),
         title: Text(
           'Feedback',
-                     style: TextStyleConfig.appbarTextStyle(),
-
+          style: TextStyleConfig.appbarTextStyle(),
         ),
       ),
       body: Obx(

@@ -29,7 +29,7 @@ class IndexScreenController extends GetxController {
   final pagesList = <Widget>[
     HomeScreen(),
     ProfileScreen(),
-    NotificationScreen(),
+    const NotificationScreen(),
   ];
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -98,6 +98,8 @@ class IndexScreenController extends GetxController {
   }
 
   getNotificationCountFunction() async {
+    isLoading(true);
+
     String url =
         "${ApiUrl.getNotificationCountApi}?customerId=${UserDetails.customerId}";
     log("Get Notification Count Api Url : $url");
@@ -124,18 +126,21 @@ class IndexScreenController extends GetxController {
       log("getNotificationCountFunction Error :$e");
       rethrow;
     }
-    isLoading(true);
 
     isLoading(false);
   }
 
   @override
   void onInit() {
-    checkUserDOBData();
-
-    Timer.periodic(const Duration(minutes: 5), (timer) {
-      getNotificationCountFunction();
-    });
+    initMethod();
     super.onInit();
+  }
+
+  Future<void> initMethod() async {
+    Timer.periodic(const Duration(minutes: 1), (timer) async {
+      await getNotificationCountFunction();
+      log('notificationCount 1111: ${notificationCount.value}');
+    });
+    checkUserDOBData();
   }
 }
