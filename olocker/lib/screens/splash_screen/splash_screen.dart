@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/controllers/splash_screen_controller.dart';
 import 'package:olocker/main.dart';
+import 'package:olocker/screens/service/local_notification.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   final splashScreenController = Get.put(SplashScreenController());
-  // final notifications = FlutterLocalNotificationsPlugin();
+    // final notifications = FlutterLocalNotificationsPlugin();
 
   // @override
   // void initState() {

@@ -3,10 +3,10 @@ import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/user_details.dart';
-import 'package:olocker/main.dart';
+// import 'package:olocker/main.dart';
 import 'package:olocker/screens/index_screen/index_screen.dart';
 import 'package:olocker/utils/user_prefs_data.dart';
-import 'package:rxdart/subjects.dart';
+// import 'package:rxdart/subjects.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../screens/auth_screen/auth_screen.dart';
 // import 'package:http/http.dart' as http;
@@ -14,6 +14,7 @@ import '../screens/auth_screen/auth_screen.dart';
 // import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class SplashScreenController extends GetxController {
+  RxBool isLoading = false.obs;
   UserPrefsData userPrefsData = UserPrefsData();
 
   // final notifications = FlutterLocalNotificationsPlugin();
@@ -47,6 +48,8 @@ class SplashScreenController extends GetxController {
     // initMethod();
 
     requestPermission();
+
+
     // await getDeviceTokenToSendNotification();
     // var initializationSettingsAndroid =
     //     const AndroidInitializationSettings('@mipmap/ic_launcher');

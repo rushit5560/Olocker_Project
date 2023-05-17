@@ -4,46 +4,46 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/screens/splash_screen/splash_screen.dart';
 import 'package:olocker/utils/themes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:sizer/sizer.dart';
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+Future<void> firebseMessagenigBackgroundhendler(RemoteMessage message) async {
+  // await Firebase.initializeApp();
+  log("firebseMessagenigBackgroundhendler message.messageId ${message.messageId}");
+  log("message.notification!.title ${message.notification!.title}");
+  log("message.notification!.body, ${message.notification!.body}");
 
-// Future<void> firebseMessagenigBackgroundhendler(RemoteMessage message) async {
-//   await Firebase.initializeApp();
-//   log("firebseMessagenigBackgroundhendler message.messageId ${message.messageId}");
-//   log("message.notification!.title ${message.notification!.title}");
-//   log("message.notification!.body, ${message.notification!.body}");
-
-//   flutterLocalNotificationsPlugin.show(
-//     message.notification.hashCode,
-//     message.notification!.title,
-//     message.notification!.body,
-//     const NotificationDetails(
-//       android: AndroidNotificationDetails(
-//         '1',
-//         'User Activity',
-//         channelDescription: "myjeweller",
-//         importance: Importance.max,
-//         priority: Priority.high,
-//         ticker: 'ticker',
-//         icon: 'ic_launcher',
-//       ),
-//     ),
-//     payload: message.notification!.android!.smallIcon,
-//   );
-// }
+  // flutterLocalNotificationsPlugin.show(
+  //   message.notification.hashCode,
+  //   message.notification!.title,
+  //   message.notification!.body,
+  //   const NotificationDetails(
+  //     android: AndroidNotificationDetails(
+  //       '1',
+  //       'User Activity',
+  //       channelDescription: "myjeweller",
+  //       importance: Importance.max,
+  //       priority: Priority.high,
+  //       ticker: 'ticker',
+  //       icon: 'ic_launcher',
+  //     ),
+  //   ),
+  //   payload: message.notification!.android!.smallIcon,
+  // );
+}
 
 // const AndroidNotificationChannel channel = AndroidNotificationChannel(
 //   "high_importance_channel",
 //   "High importance notification",
 //   importance: Importance.high,
 // );
-// final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-//     FlutterLocalNotificationsPlugin();
+
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -59,7 +59,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  // FirebaseMessaging.onBackgroundMessage(firebseMessagenigBackgroundhendler);
+  FirebaseMessaging.onBackgroundMessage(firebseMessagenigBackgroundhendler);
   // await flutterLocalNotificationsPlugin
   //     .resolvePlatformSpecificImplementation<
   //         AndroidFlutterLocalNotificationsPlugin>()
