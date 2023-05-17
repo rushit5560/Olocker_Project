@@ -97,9 +97,40 @@ class IndexScreenController extends GetxController {
     log("UserDetails.updateProfileCount ::: ${UserDetails.updateProfileCount}");
   }
 
-  getNotificationCountFunction() async {
-    isLoading(true);
+  // getNotificationCountFunction() async {
+  //   isLoading(true);
 
+  //   String url =
+  //       "${ApiUrl.getNotificationCountApi}?customerId=${UserDetails.customerId}";
+  //   log("Get Notification Count Api Url : $url");
+
+  //   try {
+  //     http.Response response = await http.get(
+  //       Uri.parse(url),
+  //       headers: apiHeader.headers,
+  //     );
+
+  //     log("Get Notification response.body : ${response.body}");
+  //     NotificationCountModel notificationCountModel =
+  //         NotificationCountModel.fromJson(json.decode(response.body));
+  //     isSuccessStatus = notificationCountModel.success.obs;
+
+  //     if (isSuccessStatus.value) {
+  //       notificationCount = notificationCountModel
+  //           .parNotificationCount.numberofNotification.obs;
+  //       log('notificationCount : ${notificationCount.value}');
+  //     } else {
+  //       log('getNotificationCountFunction Else');
+  //     }
+  //   } catch (e) {
+  //     log("getNotificationCountFunction Error :$e");
+  //     rethrow;
+  //   }
+
+  //   isLoading(false);
+  // }
+
+  getNotificationCountFunction() async {
     String url =
         "${ApiUrl.getNotificationCountApi}?customerId=${UserDetails.customerId}";
     log("Get Notification Count Api Url : $url");
@@ -126,7 +157,7 @@ class IndexScreenController extends GetxController {
       log("getNotificationCountFunction Error :$e");
       rethrow;
     }
-
+    isLoading(true);
     isLoading(false);
   }
 
@@ -137,7 +168,7 @@ class IndexScreenController extends GetxController {
   }
 
   Future<void> initMethod() async {
-    Timer.periodic(const Duration(minutes: 1), (timer) async {
+    Timer.periodic(const Duration(seconds: 1), (timer) async {
       await getNotificationCountFunction();
       log('notificationCount 1111: ${notificationCount.value}');
     });
