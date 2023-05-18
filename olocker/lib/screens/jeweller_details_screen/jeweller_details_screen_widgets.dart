@@ -500,8 +500,6 @@ class JewellerySubCategoryListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log("jewellerysubCategoryList 111");
-    log("screenController.jewellerysubCategoryList.length 222222 ${screenController.jewellerysubCategoryList.length}");
     return ListView.builder(
       itemCount: screenController.jewellerysubCategoryList.length,
       shrinkWrap: true,
@@ -509,6 +507,8 @@ class JewellerySubCategoryListModule extends StatelessWidget {
       itemBuilder: (context, i) {
         String imgUrl = ApiUrl.apiMainPath +
             screenController.jewellerysubCategoryList[i].imageurl;
+        log("screenController.jewellerysubCategoryList.imgUrl 222222 ${imgUrl}");
+
         return GestureDetector(
           onTap: () {
             Get.to(
@@ -951,6 +951,7 @@ class CustomerSpeakModule extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: screenController.clientTestimonialsList.length,
                   itemBuilder: (context, i) {
+                    log("screenController.clientTestimonialsList.length11${screenController.clientTestimonialsList.length}");
                     log("11");
                     Testimonial singleItem =
                         screenController.clientTestimonialsList[i];
@@ -1019,6 +1020,8 @@ class CustomerSpeakModule extends StatelessWidget {
             : CarouselSlider.builder(
                 itemCount: screenController.clientTestimonialsList.length,
                 itemBuilder: (context, i, realIndex) {
+                  log("screenController.clientTestimonialsList.length22 ${screenController.clientTestimonialsList.length}");
+
                   log("222");
                   Testimonial singleItem =
                       screenController.clientTestimonialsList[i];

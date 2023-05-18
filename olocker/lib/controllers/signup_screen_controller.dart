@@ -172,7 +172,7 @@ class SignUpScreenController extends GetxController {
           "UserEmail": emailController.text.trim(),
           "ReferralCode": codeController.text.trim(),
           "Salutation": namePrefixDDvalue.value,
-          "DeviceMacId": deviceTokenToSendPushNotification,
+          // "DeviceMacId": deviceTokenToSendPushNotification,
         };
 
         log("checkMobileNumber formdata passing is : $formData");
@@ -265,7 +265,7 @@ class SignUpScreenController extends GetxController {
 
   @override
   void onInit() {
-    getDeviceTokenToSendNotification();
+    // getDeviceTokenToSendNotification();
     super.onInit();
   }
 

@@ -178,10 +178,9 @@ class FavouriteListItem extends StatelessWidget {
                                     decimalDigits: 2,
                                   ).format(
                                     double.parse(favouritesController
-                                        .favouriteProductsList[index]
-                                        .productDetails
-                                        .price),
-                                  ),
+                                    .favouriteProductsList[index]
+                                    .productDetails
+                                    .price)),
                             // singleProd
                             //     .productDetails.price,
                             style: TextStyle(

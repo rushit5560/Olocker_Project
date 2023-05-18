@@ -5,6 +5,7 @@ import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/profile_screen_controller.dart';
+import 'package:olocker/widgets/common_widgets.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 import '../../utils/field_validation.dart';
@@ -670,8 +671,40 @@ class SaveProfileButton extends StatelessWidget {
           width: 50.w,
           child: ElevatedButton(
             onPressed: () {
+              int daysBetween(DateTime from, DateTime to) {
+                from = DateTime(from.year, from.month, from.day);
+                to = DateTime(to.year, to.month, to.day);
+                return (to.difference(from).inHours / 24).round();
+              }
+
+              // int year = DateTime.now().year;
+              // int month = DateTime.now().month;
+              // int day = DateTime.now().day;
+              final selecteddate = DateTime(DateTime.now().year,
+                  DateTime.now().month, DateTime.now().day);
+              // final selectedDOB = DateTime(year, month, day);
+              DateTime todayDate = DateTime.now();
+
+              final difference = daysBetween(selecteddate, todayDate);
+              log('Date difference :$difference');
+
               if (profileScreenController.formKey.currentState!.validate()) {
-                profileScreenController.updateUserProfileDetailsFunction();
+                if (profileScreenController
+                    .dateofbrithController.text.isEmpty) {
+                  CommonWidgets().showBorderSnackBar(
+                    context: Get.context!,
+                    displayText: "Please select correct date.",
+                  );
+                }
+                // if (difference < 0) {
+                //   CommonWidgets().showBorderSnackBar(
+                //     context: Get.context!,
+                //     displayText: "Please select correct date.",
+                //   );
+                // }
+                else {
+                  profileScreenController.updateUserProfileDetailsFunction();
+                }
               }
             },
             style: ElevatedButton.styleFrom(

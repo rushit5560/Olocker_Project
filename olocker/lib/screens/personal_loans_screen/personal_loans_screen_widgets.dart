@@ -1962,7 +1962,7 @@ class StepThreeFormModule extends StatelessWidget {
                   ),
                   children: [
                     TextSpan(
-                      text: "*",
+                      text: "",
                       style: TextStyle(
                         fontFamily: "Acephimere",
                         color: AppColors.redColor,

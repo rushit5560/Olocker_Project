@@ -133,7 +133,7 @@ class IndexScreenController extends GetxController {
   getNotificationCountFunction() async {
     String url =
         "${ApiUrl.getNotificationCountApi}?customerId=${UserDetails.customerId}";
-    log("Get Notification Count Api Url : $url");
+    // log("Get Notification Count Api Url : $url");
 
     try {
       http.Response response = await http.get(
@@ -141,7 +141,7 @@ class IndexScreenController extends GetxController {
         headers: apiHeader.headers,
       );
 
-      log("Get Notification response.body : ${response.body}");
+      // log("Get Notification response.body : ${response.body}");
       NotificationCountModel notificationCountModel =
           NotificationCountModel.fromJson(json.decode(response.body));
       isSuccessStatus = notificationCountModel.success.obs;
@@ -149,7 +149,7 @@ class IndexScreenController extends GetxController {
       if (isSuccessStatus.value) {
         notificationCount = notificationCountModel
             .parNotificationCount.numberofNotification.obs;
-        log('notificationCount : ${notificationCount.value}');
+        // log('notificationCount : ${notificationCount.value}');
       } else {
         log('getNotificationCountFunction Else');
       }
@@ -170,7 +170,7 @@ class IndexScreenController extends GetxController {
   Future<void> initMethod() async {
     Timer.periodic(const Duration(seconds: 1), (timer) async {
       await getNotificationCountFunction();
-      log('notificationCount 1111: ${notificationCount.value}');
+      // log('notificationCount 1111: ${notificationCount.value}');
     });
     checkUserDOBData();
   }

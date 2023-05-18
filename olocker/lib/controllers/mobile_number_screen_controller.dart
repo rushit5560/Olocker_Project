@@ -42,7 +42,7 @@ class MobileNumberScreenController extends GetxController {
       try {
         var formData = {
           "MobileNo": mobNumber,
-          // "DeviceMacId": deviceTokenToSendPushNotification,
+          "DeviceMacId": deviceTokenToSendPushNotification,
         };
         http.Response response = await http.post(
           Uri.parse(url),
