@@ -18,36 +18,34 @@ class LocalNotificationService {
   static void showNotificationOnForeground(RemoteMessage message) {
     final notificationDetail = NotificationDetails(
         android: AndroidNotificationDetails(
-            "com.example.firebase_push_notification",
-            "com.myjeweller.olocker",
-            importance: Importance.max,
-            priority: Priority.high));
-
-    // _notificationsPlugin.show(
-    //     DateTime.now().microsecond,
-    //     message.notification!.title,
-    //     message.notification!.body,
-    //     notificationDetail,
-    //     payload: message.data["message"]);
+            "com.example.firebase_push_notification", "com.myjeweller.olocker",
+            importance: Importance.max, priority: Priority.high));
 
     _notificationsPlugin.show(
-            message.notification.hashCode,
-            message.notification!.title,
-            message.notification!.body,
-            
-            const NotificationDetails(
-              android: AndroidNotificationDetails(
-                '1',
-                'User Activity',
-                channelDescription: "myjeweller",
-                importance: Importance.max,
-                priority: Priority.high,
-                ticker: 'ticker',
-                icon: 'ic_launcher',
-              ),
-            ),
-            
-            payload: message.notification!.android!.smallIcon,
-          );
+        DateTime.now().microsecond,
+        message.notification!.title,
+        message.notification!.body,
+        notificationDetail,
+        payload: message.data["message"]);
+
+    // _notificationsPlugin.show(
+    //         message.notification.hashCode,
+    //         message.notification!.title,
+    //         message.notification!.body,
+
+    //         const NotificationDetails(
+    //           android: AndroidNotificationDetails(
+    //             '1',
+    //             'User Activity',
+    //             channelDescription: "myjeweller",
+    //             importance: Importance.max,
+    //             priority: Priority.high,
+    //             ticker: 'ticker',
+    //             icon: 'ic_launcher',
+    //           ),
+    //         ),
+
+    //         payload: message.notification!.android!.smallIcon,
+    //       );
   }
 }

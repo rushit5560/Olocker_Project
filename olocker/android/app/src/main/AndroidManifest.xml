@@ -29,7 +29,10 @@
               android:resource="@style/NormalTheme"
               />
             <meta-data
-                android:name="com.google.firebase.messaging.default_notification_channel_id"
+                android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
+                android:value="true" />
+            <meta-data
+                android:name="com.google.firebase.messaging.com.myjeweller.olocker"
                 android:value="com.myjeweller.olocker"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
