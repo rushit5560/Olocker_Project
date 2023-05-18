@@ -11,6 +11,7 @@ import 'package:olocker/screens/splash_screen/splash_screen.dart';
 import 'package:olocker/utils/themes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:sizer/sizer.dart';
+
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 Future<void> firebseMessagenigBackgroundhendler(RemoteMessage message) async {
@@ -43,7 +44,6 @@ Future<void> firebseMessagenigBackgroundhendler(RemoteMessage message) async {
 //   "High importance notification",
 //   importance: Importance.high,
 // );
-
 
 class MyHttpOverrides extends HttpOverrides {
   @override
