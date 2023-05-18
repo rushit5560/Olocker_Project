@@ -222,4 +222,16 @@ class UserPrefsData {
     prefs.setString(fcmTokenKey, fcmToken);
     log('fcmToken : ${prefs.getString(fcmTokenKey)}');
   }
+
+   getCustSrNoPrefs(String customerId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(customerIdKey,customerId );
+    log('customerIdKey : ${prefs.getString(customerIdKey)}');
+  }
+
+  // Get String Permission
+  // Future<String> getCustSrNoPrefs({required String keyId}) async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   return prefs.getString(keyId) ?? "";
+  // }
 }

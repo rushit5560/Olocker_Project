@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -9,8 +10,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/api_url.dart';
 import '../constants/app_colors.dart';
+import '../constants/user_details.dart';
 import '../models/auth_screen_models/login_response_model.dart';
 import '../models/auth_screen_models/user_login_model.dart';
+import '../models/update_device_id_model/update_device_id_model.dart';
 import '../utils/user_prefs_data.dart';
 
 class OtpScreenController extends GetxController {
@@ -21,6 +24,9 @@ class OtpScreenController extends GetxController {
   final apiHeader = ApiHeader();
 
   TextEditingController otpController = TextEditingController();
+  String deviceTokenToSendPushNotification = "";
+  String customerId = "";
+  UserPrefsData userPrefsData = UserPrefsData();
 
   final formKey = GlobalKey<FormState>();
 
@@ -191,7 +197,8 @@ class OtpScreenController extends GetxController {
                   ? ""
                   : loginModel.userRequestValidateOtp[0].dob,
             );
-            Get.offAll(() => IndexScreen());
+
+            await updateDeviceIdFunction();
           } else {
             final snackBar = SnackBar(
               backgroundColor: AppColors.whiteColor,
@@ -221,5 +228,51 @@ class OtpScreenController extends GetxController {
         isLoading(false);
       }
     }
+  }
+
+  updateDeviceIdFunction() async {
+    isLoading(true);
+    final FirebaseMessaging fcm = FirebaseMessaging.instance;
+    final token = await fcm.getToken();
+    deviceTokenToSendPushNotification = token.toString();
+    await userPrefsData.setFcmInPrefs(deviceTokenToSendPushNotification);
+    // customerId =
+    //     await userPrefsData.getCustSrNoPrefs(userPrefsData.customerIdKey);
+
+    log("deviceTokenToSendPushNotification $deviceTokenToSendPushNotification");
+    // log("customerId 1 $customerId");
+    log("UserDetails.customerId ${UserDetails.customerId}");
+
+    String url = ApiUrl.updateDeviceIdApi;
+    log("updateDeviceIdFunction url : $url");
+    try {
+      var formData = {
+        "CustSrNo": UserDetails.customerId,
+        "DeviceMacId": deviceTokenToSendPushNotification,
+      };
+      log("updateDeviceIdFunction formData $formData");
+      http.Response response = await http.post(
+        Uri.parse(url),
+        body: json.encode(formData),
+        headers: apiHeader.headers,
+      );
+      log("updateDeviceIdFunction res body : ${response.body}");
+
+      var resBody = json.decode(response.body);
+
+      UpdateDeviceIdModel updateDeviceIdModel =
+          UpdateDeviceIdModel.fromJson(resBody);
+      var isSuccessStatus = updateDeviceIdModel.success;
+      if (isSuccessStatus == true) {
+        log("updateDeviceIdFunction Device id updated");
+        Get.offAll(() => IndexScreen());
+      } else {
+        log("updateDeviceIdFunction Device id not updated");
+      }
+    } catch (e) {
+      log("updateDeviceIdFunction rethrow $e");
+      rethrow;
+    }
+    isLoading(false);
   }
 }

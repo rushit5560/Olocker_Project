@@ -5,6 +5,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/models/auth_screen_models/user_login_model.dart';
+import 'package:olocker/models/update_device_id_model/update_device_id_model.dart';
 import 'package:olocker/screens/otp_screen/otp_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:olocker/screens/signup_screen/signup_screen.dart';
@@ -12,6 +13,7 @@ import 'package:olocker/utils/user_prefs_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/api_url.dart';
 import '../constants/app_colors.dart';
+import '../constants/user_details.dart';
 
 class MobileNumberScreenController extends GetxController {
   final size = Get.size;
@@ -22,11 +24,12 @@ class MobileNumberScreenController extends GetxController {
 
   final formKey = GlobalKey<FormState>();
   String deviceTokenToSendPushNotification = "";
+  String customerId = "";
+  UserPrefsData userPrefsData = UserPrefsData();
 
   ApiHeader apiHeader = ApiHeader();
   RxBool termConditionCheckValue = false.obs;
 
-  UserPrefsData userPrefsData = UserPrefsData();
 
   Future<void> userLoginFunction(BuildContext context) async {
     log("DeviceTokenToSendPushNotification login time: $deviceTokenToSendPushNotification");
@@ -42,7 +45,7 @@ class MobileNumberScreenController extends GetxController {
       try {
         var formData = {
           "MobileNo": mobNumber,
-          "DeviceMacId": deviceTokenToSendPushNotification,
+          // "DeviceMacId": deviceTokenToSendPushNotification,
         };
         http.Response response = await http.post(
           Uri.parse(url),
@@ -90,6 +93,7 @@ class MobileNumberScreenController extends GetxController {
           Get.to(() => SignUpScreen());
         }
         isLoading(false);
+        // await updateDeviceIdFunction();
       } catch (e) {
         log("checkMobileNumber Error ::: $e");
         rethrow;
@@ -97,17 +101,6 @@ class MobileNumberScreenController extends GetxController {
     }
   }
 
-  @override
-  void onInit() {
-    getDeviceTokenToSendNotification();
-    super.onInit();
-  }
 
-  Future<void> getDeviceTokenToSendNotification() async {
-    log("getDeviceTokenToSendNotification");
-    final FirebaseMessaging fcm = FirebaseMessaging.instance;
-    final token = await fcm.getToken();
-    deviceTokenToSendPushNotification = token.toString();
-    await userPrefsData.setFcmInPrefs(deviceTokenToSendPushNotification);
-  }
+  
 }

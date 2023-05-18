@@ -188,4 +188,8 @@ class ApiUrl {
       "${apiMainPath}api/User/AddCustomerFeedback";
   static const String getJewellerJewelleriesApi =
       "${apiMainPath}api/Partner/SearchProductList1";
+
+  // update device id api
+  static String updateDeviceIdApi =
+      "${apiMainPath}api/User/UpdateCustomerDeviceId";
 }
