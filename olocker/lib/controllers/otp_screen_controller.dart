@@ -231,7 +231,6 @@ class OtpScreenController extends GetxController {
   }
 
   updateDeviceIdFunction() async {
-    isLoading(true);
     final FirebaseMessaging fcm = FirebaseMessaging.instance;
     final token = await fcm.getToken();
     deviceTokenToSendPushNotification = token.toString();
@@ -273,6 +272,7 @@ class OtpScreenController extends GetxController {
       log("updateDeviceIdFunction rethrow $e");
       rethrow;
     }
+    isLoading(true);
     isLoading(false);
   }
 }

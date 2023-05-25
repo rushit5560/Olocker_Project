@@ -17,8 +17,8 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   final splashScreenController = Get.put(SplashScreenController());
-    // final notifications = FlutterLocalNotificationsPlugin();
-@override
+  // final notifications = FlutterLocalNotificationsPlugin();
+  @override
   void initState() {
     LocalNotificationService.initilize();
     // trminated state
@@ -34,21 +34,21 @@ class _SplashScreenState extends State<SplashScreen> {
 //forground state
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       LocalNotificationService.showNotificationOnForeground(message);
-  
-      setState(() {
-        message.notification!.hashCode;
-        message.notification!.title;
-        message.notification!.body;
-      });
+
+      // setState(() {
+      //   message.notification!.hashCode;
+      //   message.notification!.title;
+      //   message.notification!.body;
+      // });
     });
 
     //background state
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      setState(() {
-        message.notification!.hashCode;
-        message.notification!.title;
-        message.notification!.body;
-      });
+      // setState(() {
+      //   message.notification!.hashCode;
+      //   message.notification!.title;
+      //   message.notification!.body;
+      // });
     });
 
     super.initState();
