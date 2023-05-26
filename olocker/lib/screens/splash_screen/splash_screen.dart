@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 // import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:olocker/controllers/splash_screen_controller.dart';
@@ -17,7 +18,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   final splashScreenController = Get.put(SplashScreenController());
-  // final notifications = FlutterLocalNotificationsPlugin();
+  final notifications = FlutterLocalNotificationsPlugin();
   @override
   void initState() {
     LocalNotificationService.initilize();

@@ -40,14 +40,19 @@ class OnlineDealsDetailsScreen extends StatelessWidget {
               data: onlineDealsDetailsScreenController
                   .onLineDealDetails.termsAndCondition,
               shrinkWrap: true,
-              onLinkTap: (url, context, attributes, element) async {
-                // var url = Uri.parse(url);
-                await launchUrl(Uri.parse(url.toString()));
-                // if (await canLaunchUrl(Uri.parse(url.toString()))) {
-                // } else {
-                //   throw 'Could not launch $url';
-                // }
+              onLinkTap: (url, attributes, element) {
+                launchUrl(
+                  Uri.parse(url.toString()),
+                );
               },
+              // onLinkTap: (url, context, attributes, element) {
+              //   // var url = Uri.parse(url);
+              //    launchUrl(Uri.parse(url.toString()));
+              //   // if (await canLaunchUrl(Uri.parse(url.toString()))) { 
+              //   // } else {
+              //   //   throw 'Could not launch $url';
+              //   // }
+              // },
             ),
             SizedBox(height: 5.h),
             ActivateDealButtonModule(),

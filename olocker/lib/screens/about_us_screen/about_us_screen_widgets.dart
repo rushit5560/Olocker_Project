@@ -11,6 +11,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../constants/app_colors.dart';
 import '../../constants/app_images.dart';
 import '../../controllers/about_us_screen_controller.dart';
+import '../../utils/common_module.dart';
 
 class AboutUsDetailsModule extends StatelessWidget {
   AboutUsDetailsModule({
@@ -182,7 +183,7 @@ class ContactDetailsModule extends StatelessWidget {
   }
 }
 
-class CustemAppbarModule extends StatelessWidget with PreferredSizeWidget {
+class CustemAppbarModule extends StatelessWidget with MyPreferredSizeMixin {
   final aboutUsPageController = Get.find<AboutUsPageController>();
   CustemAppbarModule({
     Key? key,
