@@ -34,6 +34,7 @@ class AboutUsPageController extends GetxController {
     try {
       http.Response response = await http.get(
         Uri.parse(url),
+        headers: ApiHeader().headers,
       );
       log("getAboutUsDetailsFunction Response : ${response.body}");
 

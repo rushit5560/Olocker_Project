@@ -53,7 +53,7 @@ class AboutUsDetailsModule extends StatelessWidget {
                 ),
                 // child: Image.asset(
                 //   AppImages.aboutUsImage,
-                //   width: double.infinity,                                                                                       
+                //   width: double.infinity,
                 //   height: 160,
                 //   fit: BoxFit.cover,
                 //   color: Colors.white,
@@ -267,7 +267,7 @@ class TeamDetailsListItemModule extends StatelessWidget {
           children: [
             Container(
               width: aboutUsPageController.size.width * 0.79,
-              height: 90,
+              // height: 90,
               decoration: const BoxDecoration(
                 color: AppColors.whiteColor,
                 borderRadius: BorderRadius.all(
@@ -494,7 +494,7 @@ class AboutUsLoadingWidget extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Shimmer.fromColors(
-       baseColor: Colors.grey.shade300,
+        baseColor: Colors.grey.shade300,
         highlightColor: Colors.grey.shade50,
         child: SingleChildScrollView(
           child: Column(

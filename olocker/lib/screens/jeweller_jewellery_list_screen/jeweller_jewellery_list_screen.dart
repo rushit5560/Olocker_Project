@@ -34,8 +34,7 @@ class JewellerJewelleryListScreen extends StatelessWidget {
           ),
           title: Text(
             jewellerJewelleryListScreenController.jewelleryName,
-                        style: TextStyleConfig.appbarTextStyle(),
-
+            style: TextStyleConfig.appbarTextStyle(),
           ),
           actions: [
             /*IconButton(
@@ -187,9 +186,10 @@ class JewellerJewelleryListScreen extends StatelessWidget {
                     )
                   : */
               SingleChildScrollView(
-                controller: jewellerJewelleryListScreenController.scrollController,
-                // physics: const BouncingScrollPhysics(),
-                child: Column(
+                  controller:
+                      jewellerJewelleryListScreenController.scrollController,
+                  // physics: const BouncingScrollPhysics(),
+                  child: Column(
                     children: [
                       Container(
                         decoration: const BoxDecoration(color: Colors.white),
@@ -197,8 +197,10 @@ class JewellerJewelleryListScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Obx(
-                              () => jewellerJewelleryListScreenController.isSearchOn.value
-                                  ? SearchFieldModule().commonSymmetricPadding(horizontal: 5)
+                              () => jewellerJewelleryListScreenController
+                                      .isSearchOn.value
+                                  ? SearchFieldModule()
+                                      .commonSymmetricPadding(horizontal: 5)
                                   : Container(),
                             ).commonOnlyPadding(bottom: 5),
                             Row(
@@ -280,27 +282,28 @@ class JewellerJewelleryListScreen extends StatelessWidget {
                               ),
                             ),*/
 
-                      jewellerJewelleryListScreenController.searchJewelleryList.isNotEmpty
-                            ? SearchJewelleryGridviewModule()
-                            : jewellerJewelleryListScreenController.jewelleryList.isNotEmpty
-                                ? JewelleryGridviewModule()
-                                : Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 20.h),
-                                    child: Center(
-                                      child: Text(
-                                        "No Jewellery Found",
-                                        style: TextStyle(
-                                          color: AppColors.whiteColor,
-                                          fontSize: 13.sp,
-                                          fontWeight: FontWeight.w400,
-                                        ),
+                      jewellerJewelleryListScreenController
+                              .searchJewelleryList.isNotEmpty
+                          ? SearchJewelleryGridviewModule()
+                          : jewellerJewelleryListScreenController
+                                  .mainJewelleryList.isNotEmpty
+                              ? JewelleryGridviewModule()
+                              : Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 20.h),
+                                  child: Center(
+                                    child: Text(
+                                      "No Jewellery Found",
+                                      style: TextStyle(
+                                        color: AppColors.whiteColor,
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeight.w400,
                                       ),
                                     ),
                                   ),
-
+                                ),
                     ],
                   ),
-              ),
+                ),
         ),
       ),
     );

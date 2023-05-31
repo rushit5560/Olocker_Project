@@ -21,7 +21,7 @@ class JewelleryGridviewModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: screenController.jewelleryList.length,
+      itemCount: screenController.mainJewelleryList.length,
       // controller: screenController.scrollController,
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
@@ -32,9 +32,9 @@ class JewelleryGridviewModule extends StatelessWidget {
         childAspectRatio: 0.82,
       ),
       itemBuilder: (context, i) {
-        SearchProductListDatum singleItem = screenController.jewelleryList[i];
+        SearchProductListDatum singleItem = screenController.mainJewelleryList[i];
 
-        if (i < screenController.jewelleryList.length) {
+        if (i < screenController.mainJewelleryList.length) {
           return _jewelleryListTile(singleItem, i);
         } else {
           return screenController.hasMore.value
@@ -85,7 +85,7 @@ class JewelleryGridviewModule extends StatelessWidget {
                 width: double.infinity,
                 margin: const EdgeInsets.only(bottom: 8),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(10),
                     topLeft: Radius.circular(10),
                   ),

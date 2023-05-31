@@ -14,7 +14,6 @@ import '../models/refer_and_earn_screen_models/get_partner_by_code_model.dart';
 import '../models/user_profile_models/user_profile_get_model.dart';
 import 'jeweller_jewellery_list_screen_controller.dart';
 
-
 class JewelleryDetailsScreenController extends GetxController {
   var partnerSrNo = Get.arguments[0]; // Coming From Home Screen Jeweller List
   var productSrNo = Get.arguments[1]; // Coming From Home Screen Jeweller List
@@ -73,7 +72,7 @@ class JewelleryDetailsScreenController extends GetxController {
     isLoading(true);
     String url =
         "${ApiUrl.getJewelleryDetailApi}?partnerSrNo=$partnerSrNo&productSrno=$productSrNo";
-        
+
     log('getJewelleryProductDetailFunction Api Url :: $url');
 
     try {
@@ -180,7 +179,7 @@ class JewelleryDetailsScreenController extends GetxController {
 
           /// Add favourite button change in previous screen list
           jewellerJewelleryListScreenController
-              .jewelleryList[indexOfThisProduct].isFav = true;
+              .mainJewelleryList[indexOfThisProduct].isFav = true;
           // getFavouriteProductFunction();
         }
       } else {
@@ -221,7 +220,7 @@ class JewelleryDetailsScreenController extends GetxController {
 
           /// Remove favourite button change in previous screen list
           jewellerJewelleryListScreenController
-              .jewelleryList[indexOfThisProduct].isFav = false;
+              .mainJewelleryList[indexOfThisProduct].isFav = false;
           // getFavouriteProductFunction();
         }
       } else {

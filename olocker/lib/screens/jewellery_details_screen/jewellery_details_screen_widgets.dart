@@ -31,7 +31,7 @@ class FavouriteButtonModule extends StatelessWidget {
       child: GestureDetector(
         onTap: () async {
           jewellerJewelleryListScreenController
-                      .jewelleryList[
+                      .mainJewelleryList[
                           jewelleryDetailsController.indexOfThisProduct]
                       .isFav ==
                   true
@@ -47,7 +47,7 @@ class FavouriteButtonModule extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           child: Icon(
             jewellerJewelleryListScreenController
-                        .jewelleryList[
+                        .mainJewelleryList[
                             jewelleryDetailsController.indexOfThisProduct]
                         .isFav ==
                     true

@@ -42,9 +42,9 @@ class JewellerJewelleryListScreenController extends GetxController {
 
   RxBool isSearchOn = false.obs;
 
-  final List<SearchProductListDatum> _jewelleryList = [];
-
-  List<SearchProductListDatum> get jewelleryList => _jewelleryList;
+  final List<SearchProductListDatum> mainJewelleryList = [];
+// List<SearchProductListDatum> jewelleryList = [];
+  // List<SearchProductListDatum> get jewelleryList => mainJewelleryList;
 
   List<SearchProductListDatum> searchJewelleryList = [];
 
@@ -66,27 +66,19 @@ class JewellerJewelleryListScreenController extends GetxController {
   }
 
   Future<void> getSearchProductsFunction(String searchName) async {
-    if(hasSearchMore.value) {
+    if (hasSearchMore.value) {
       // isLoading(true);
       String url = "";
 
       if (SearchCategory.collectionType == searchCategory) {
         url =
-        "${ApiUrl
-            .getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&CollectionID=$searchName&CustomerId=${UserDetails
-            .customerId}&PageIndex=$pageSearchIndex";
-      }
-      else if (SearchCategory.categoryType == searchCategory) {
+            "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&CollectionID=$searchName&CustomerId=${UserDetails.customerId}&PageIndex=$pageSearchIndex";
+      } else if (SearchCategory.categoryType == searchCategory) {
         url =
-        "${ApiUrl
-            .getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&Category=$searchName&CustomerId=${UserDetails
-            .customerId}&PageIndex=$pageSearchIndex";
-      }
-      else if (SearchCategory.productType == searchCategory) {
+            "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&Category=$searchName&CustomerId=${UserDetails.customerId}&PageIndex=$pageSearchIndex";
+      } else if (SearchCategory.productType == searchCategory) {
         url =
-        "${ApiUrl
-            .getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$searchName&CustomerId=${UserDetails
-            .customerId}&PageIndex=$pageSearchIndex";
+            "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$searchName&CustomerId=${UserDetails.customerId}&PageIndex=$pageSearchIndex";
       }
       log('Url : $url');
 
@@ -98,7 +90,7 @@ class JewellerJewelleryListScreenController extends GetxController {
         log('getSearchProductsFunction response : ${response.body}');
 
         AllJewelleryModel allJewelleryModel =
-        AllJewelleryModel.fromJson(json.decode(response.body));
+            AllJewelleryModel.fromJson(json.decode(response.body));
         isSuccessStatus = allJewelleryModel.success.obs;
 
         if (isSuccessStatus.value) {
@@ -106,8 +98,7 @@ class JewellerJewelleryListScreenController extends GetxController {
           searchJewelleryList.addAll(allJewelleryModel.searchProductListData);
 
           log('getSearchProductsFunction : ${searchJewelleryList.length}');
-        }
-        else {
+        } else {
           log('getSearchProductsFunction Else');
         }
       } catch (e) {
@@ -124,20 +115,16 @@ class JewellerJewelleryListScreenController extends GetxController {
 
   // Get Category All Product
   Future<void> getAllJewelleryListFunction() async {
-    if(hasMore.value) {
+    if (hasMore.value) {
       // isLoading(true);
       String url = "";
 
       if (jewelleryListType == JewelleryListType.categoryId) {
         url =
-        "${ApiUrl
-            .getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&CollectionID=$jewelleryCategoryId&CustomerId=${UserDetails
-            .customerId}&PageIndex=$pageIndex";
+            "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&CollectionID=$jewelleryCategoryId&CustomerId=${UserDetails.customerId}&PageIndex=$pageIndex";
       } else {
         url =
-        "${ApiUrl
-            .getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$jewelleryCategoryId&CustomerId=${UserDetails
-            .customerId}&PageIndex=$pageIndex";
+            "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$jewelleryCategoryId&CustomerId=${UserDetails.customerId}&PageIndex=$pageIndex";
       }
       log('getAllJewelleryListFunction Api Url : $url');
 
@@ -149,22 +136,22 @@ class JewellerJewelleryListScreenController extends GetxController {
         log('getAllJewelleryListFunction response : ${response.body}');
 
         AllJewelleryModel allJewelleryModel =
-        AllJewelleryModel.fromJson(json.decode(response.body));
+            AllJewelleryModel.fromJson(json.decode(response.body));
         isSuccessStatus = allJewelleryModel.success.obs;
 
         if (isSuccessStatus.value) {
           // _jewelleryList.clear();
           // _jewelleryList.addAll(allJewelleryModel.searchProductListData);
-          if(allJewelleryModel.searchProductListData.isEmpty) {
+          if (allJewelleryModel.searchProductListData.isEmpty) {
             hasMore = false.obs;
           } else {
-            _jewelleryList.addAll(allJewelleryModel.searchProductListData);
-            if(allJewelleryModel.searchProductListData.length < 20) {
+            mainJewelleryList.addAll(allJewelleryModel.searchProductListData);
+            if (allJewelleryModel.searchProductListData.length < 20) {
               hasMore = false.obs;
             }
           }
 
-          log('_jewelleryList : ${_jewelleryList.length}');
+          log('_jewelleryList : ${mainJewelleryList.length}');
         } else {
           log('getAllJewelleryListFunction Else');
         }
@@ -275,27 +262,37 @@ class JewellerJewelleryListScreenController extends GetxController {
     List<SearchProductListDatum> withPriceList = [];
     List<SearchProductListDatum> withoutPriceList = [];
 
-    for (int i = 0; i < _jewelleryList.length; i++) {
-      if (_jewelleryList[i].productsPrice.contains(".")) {
-        withPriceList.add(_jewelleryList[i]);
+    for (int i = 0; i < mainJewelleryList.length; i++) {
+      if (mainJewelleryList[i].productsPrice.contains(".")) {
+        withPriceList.add(mainJewelleryList[i]);
 
+        //todo
         if (selectedSortingIndex.value == 0) {
-          withPriceList
-              .sort((a, b) => a.productsPrice.compareTo(b.productsPrice));
-          log('With Price Value 0 $i: ${_jewelleryList[i].productsPrice}');
+          // low to high
+          withPriceList.sort((a, b) {
+            double aValue = double.parse(a.productsPrice);
+            double bValue = double.parse(b.productsPrice);
+
+            return aValue.compareTo(bValue);
+          });
+          log('With Price Value 0 $i: ${mainJewelleryList[i].productsPrice}');
         } else if (selectedSortingIndex.value == 1) {
-          withPriceList
-              .sort((a, b) => b.productsPrice.compareTo(a.productsPrice));
-          log('With Price Value 1 $i: ${_jewelleryList[i].productsPrice}');
+          // high to low
+          withPriceList.sort((a, b) {
+            double aValue = double.parse(a.productsPrice);
+            double bValue = double.parse(b.productsPrice);
+            return bValue.compareTo(aValue);
+          });
+          log('With Price Value 1 $i: ${mainJewelleryList[i].productsPrice}');
         }
       } else {
-        withoutPriceList.add(_jewelleryList[i]);
+        withoutPriceList.add(mainJewelleryList[i]);
       }
     }
 
-    _jewelleryList.clear();
-    _jewelleryList.addAll(withPriceList);
-    _jewelleryList.addAll(withoutPriceList);
+    mainJewelleryList.clear();
+    mainJewelleryList.addAll(withPriceList);
+    mainJewelleryList.addAll(withoutPriceList);
 
     isLoading(false);
   }
@@ -396,10 +393,11 @@ class JewellerJewelleryListScreenController extends GetxController {
     initMethodFunction();
 
     scrollController.addListener(() {
-      if (scrollController.position.maxScrollExtent == scrollController.offset) {
+      if (scrollController.position.maxScrollExtent ==
+          scrollController.offset) {
         //api call for more pet
 
-        if(searchJewelleryList.isEmpty) {
+        if (searchJewelleryList.isEmpty) {
           if (hasMore.value) {
             pageIndex++;
             CommonWidgets().showBorderSnackBar(
@@ -407,7 +405,7 @@ class JewellerJewelleryListScreenController extends GetxController {
             getAllJewelleryListFunction();
           }
         } else {
-          if(hasSearchMore.value) {
+          if (hasSearchMore.value) {
             pageSearchIndex++;
             CommonWidgets().showBorderSnackBar(
                 context: Get.context!, displayText: "Loading more jewellery");
@@ -415,13 +413,12 @@ class JewellerJewelleryListScreenController extends GetxController {
           }
         }
         log("pageIndex Init Method: $pageIndex");
-
-
       }
     });
 
     super.onInit();
   }
+
   initMethodFunction() async {
     await getPartnerByCodeFunction();
   }
