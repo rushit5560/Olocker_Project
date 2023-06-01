@@ -17,6 +17,7 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
   String partnerSrNo = Get.arguments[0];
   int productSrNo = Get.arguments[1];
   String jewelleryTypeName = Get.arguments[2];
+  // String productimage = Get.arguments[3];
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -197,17 +198,7 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
     }
   }
 
-  shareJewelleryReferFriend() async {
-    // var urlPreview = "";
-    String shareText =
-        '''I loved this beautiful jewellery from ${partnerDetails!.partnerName.capitalize!} on olocker app. 
-    You must download this app to witness their excellent jewellery collections, get fabulous deals & 
-    rewards too. Click here https://olocker.in/DetectOS.aspx and use my referral 
-    code ${userReferaalCode.value}-${partnerDetails!.partnerId} on ENTER CODE space on Sign up page https://www.olocker.in/''';
-
-    await Share.share(shareText);
-  }
-
+ 
   Future<void> getPartnerByCodeFunction() async {
     // if (formKey.currentState!.validate()) {
     String url = "${ApiUrl.getPartnerByCodeApi}?PartnerCode=$partnerSrNo";

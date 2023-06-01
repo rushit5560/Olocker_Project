@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/signup_screen_controller.dart';
-import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/utils/field_validation.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';

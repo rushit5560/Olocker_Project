@@ -1,10 +1,13 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:share_plus/share_plus.dart';
+import 'package:sizer/sizer.dart';
 import '../constants/api_url.dart';
+import '../constants/app_colors.dart';
 import '../constants/user_details.dart';
 import '../models/refer_and_earn_screen_models/get_loyality_plan_model.dart';
 import '../models/refer_and_earn_screen_models/get_partner_by_code_model.dart';
@@ -30,9 +33,42 @@ class ReferAndEarnScreenController extends GetxController {
       ClipboardData(text: userReferaalCode.value),
     );
 
-    CommonWidgets().showBorderSnackBar(
-      context: Get.context!,
-      displayText: "The code has been Copied Successfully, kindly REFER NOW.",
+    // CommonWidgets().showBorderSnackBar(
+    //   context: Get.context!,
+    //   displayText: "The code has been Copied Successfully, kindly REFER NOW.",
+    // );
+    ScaffoldMessenger.of(Get.context!).showSnackBar(
+      SnackBar(
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 3),
+        shape: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(12),
+          ),
+          borderSide: BorderSide(
+            color: AppColors.blackTextColor,
+          ),
+        ),
+        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        backgroundColor: AppColors.whiteColor,
+        content: Text(
+          "The code has been Copied Successfully, kindly REFER NOW.",
+          style: TextStyle(
+            color: AppColors.blackTextColor,
+            fontFamily: "Roboto",
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        action: SnackBarAction(
+          label: "Okay",
+          onPressed: () async {
+            ScaffoldMessenger.of(Get.context!).removeCurrentSnackBar();
+
+            await shareReferUserFunction();
+          },
+        ),
+      ),
     );
   }
 
@@ -43,7 +79,6 @@ class ReferAndEarnScreenController extends GetxController {
     rewards too. Click here https://olocker.in/DetectOS.aspx and use my referral 
     code ${userReferaalCode.value}-${partnerDetails!.partnerId} on ENTER CODE space on Sign up page https://www.olocker.in/''');
   }
-
 
   Future<void> getPartnerByCodeFunction() async {
     // if (formKey.currentState!.validate()) {

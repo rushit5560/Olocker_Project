@@ -5,9 +5,8 @@ import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/ornament_recordings_list_screen_controller.dart';
 import 'package:olocker/screens/ornament_recordings_list_screen/ornament_recordings_list_screen_widgets.dart';
 import 'package:olocker/utils/appbar_style.dart';
-import 'package:olocker/utils/extensions.dart';
-import 'package:sizer/sizer.dart';
 
+import 'package:olocker/utils/extensions.dart';
 class OrnamentRecordingsListScreen extends StatelessWidget {
   OrnamentRecordingsListScreen({Key? key}) : super(key: key);
   final ornamentRecordingsListScreenController =

@@ -7,7 +7,6 @@ import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/models/jeweller_loyalty_point_screen_models/loyalty_point_model.dart';
 import '../constants/user_details.dart';
 
-
 class JewellerLoyaltyPointScreenController extends GetxController {
   String jewellerName = Get.arguments[0];
 

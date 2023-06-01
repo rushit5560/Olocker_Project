@@ -7,7 +7,6 @@ import 'package:olocker/controllers/my_favourites_controller.dart';
 import 'package:olocker/screens/product_enquire_screen/product_enquire_screen.dart';
 import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
-
 import '../jewellery_details_screen/jewellery_details_screen_widgets.dart';
 import 'jeweller_jewellery_details_screen_widgets.dart';
 
@@ -43,8 +42,7 @@ class JewellerJewelleryDetailsScreen extends StatelessWidget {
           ),
           title: Text(
             jewellerJewelleryDetailsScreenController.jewelleryTypeName,
-                       style: TextStyleConfig.appbarTextStyle(),
-
+            style: TextStyleConfig.appbarTextStyle(),
           ),
         ),
         body: Obx(
@@ -61,7 +59,7 @@ class JewellerJewelleryDetailsScreen extends StatelessWidget {
                             width: double.infinity,
                             height: jewellerJewelleryDetailsScreenController
                                     .size.height *
-                                0.37,
+                                0.32,
                             fit: BoxFit.cover,
                           ),
                           jewellerJewelleryDetailsScreenController
@@ -99,7 +97,7 @@ class JewellerJewelleryDetailsScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(
             horizontal:
                 jewellerJewelleryDetailsScreenController.size.width * 0.2,
-            vertical: 2.h,
+            vertical: 1.h,
           ),
           child: SizedBox(
             height: 45,
@@ -133,7 +131,7 @@ class JewellerJewelleryDetailsScreen extends StatelessWidget {
                         style: TextStyle(
                           fontFamily: "Acephimere",
                           color: AppColors.whiteColor,
-                          fontSize: 13.sp,
+                          fontSize: 11.sp,
                         ),
                       ),
                     ),

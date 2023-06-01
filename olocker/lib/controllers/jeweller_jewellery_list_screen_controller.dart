@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,6 +9,7 @@ import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/enum.dart';
 import 'package:olocker/constants/user_details.dart';
 import 'package:olocker/models/jeweller_jewellery_list_screen_model/all_jewellery_model.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import '../models/refer_and_earn_screen_models/get_partner_by_code_model.dart';
 import '../models/user_profile_models/user_profile_get_model.dart';
@@ -146,6 +149,41 @@ class JewellerJewelleryListScreenController extends GetxController {
             hasMore = false.obs;
           } else {
             mainJewelleryList.addAll(allJewelleryModel.searchProductListData);
+            List<SearchProductListDatum> withPriceList = [];
+            List<SearchProductListDatum> withoutPriceList = [];
+
+            for (int i = 0; i < mainJewelleryList.length; i++) {
+              if (mainJewelleryList[i].productsPrice.contains(".")) {
+                withPriceList.add(mainJewelleryList[i]);
+
+                //todo
+                if (selectedSortingIndex.value == 0) {
+                  // low to high
+                  withPriceList.sort((a, b) {
+                    double aValue = double.parse(a.productsPrice);
+                    double bValue = double.parse(b.productsPrice);
+
+                    return aValue.compareTo(bValue);
+                  });
+                  log('With Price Value 0 $i: ${mainJewelleryList[i].productsPrice}');
+                }
+                // else if (selectedSortingIndex.value == 1) {
+                //   // high to low
+                //   withPriceList.sort((a, b) {
+                //     double aValue = double.parse(a.productsPrice);
+                //     double bValue = double.parse(b.productsPrice);
+                //     return bValue.compareTo(aValue);
+                //   });
+                //   log('With Price Value 1 $i: ${mainJewelleryList[i].productsPrice}');
+                // }
+              } else {
+                withoutPriceList.add(mainJewelleryList[i]);
+              }
+            }
+            mainJewelleryList.clear();
+            mainJewelleryList.addAll(withPriceList);
+            mainJewelleryList.addAll(withoutPriceList);
+
             if (allJewelleryModel.searchProductListData.length < 20) {
               hasMore = false.obs;
             }
@@ -297,21 +335,10 @@ class JewellerJewelleryListScreenController extends GetxController {
     isLoading(false);
   }
 
-  shareJewelleryReferFriend() async {
-    // var urlPreview = "";
-    String shareText =
-        '''I loved this beautiful jewellery from ${partnerDetails!.partnerName.capitalize!} on olocker app. 
-    You must download this app to witness their excellent jewellery collections, get fabulous deals & 
-    rewards too. Click here https://olocker.in/DetectOS.aspx and use my referral 
-    code ${userReferaalCode.value}-${partnerDetails!.partnerId} on ENTER CODE space on Sign up page https://www.olocker.in/''';
-
-    await Share.share(shareText);
-  }
-
   Future<void> getPartnerByCodeFunction() async {
     // if (formKey.currentState!.validate()) {
     String url = "${ApiUrl.getPartnerByCodeApi}?PartnerCode=$jewellerId";
-    log(" getPartnerByCodeFunction url: $url");
+    log("getPartnerByCodeFunction url: $url");
 
     try {
       isLoading(true);

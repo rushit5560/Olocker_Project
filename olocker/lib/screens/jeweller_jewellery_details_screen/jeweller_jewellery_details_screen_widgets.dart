@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +9,11 @@ import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/jeweller_jewellery_details_screen_controller.dart';
 import 'package:olocker/utils/extensions.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
+import 'package:http/http.dart' as http;
 
 class JewellerProductImagesSliderModule extends StatelessWidget {
   JewellerProductImagesSliderModule({Key? key}) : super(key: key);
@@ -19,14 +23,14 @@ class JewellerProductImagesSliderModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: jewelleryDetailsController.size.height * 0.3,
-      width: double.infinity,
+      height: 225,
+      // width: double.infinity,
       child: Swiper.list(
         autoplay: false,
         loop: false,
         curve: Curves.fastOutSlowIn,
         scrollDirection: Axis.horizontal,
-        // fade: 0.45,
+        fade: 0.45,
 
         viewportFraction: 0.6, // this is displaying images size
         scale: 0.35, // this is non displaying images size
@@ -98,8 +102,8 @@ class JewellerProductImagesSliderModule extends StatelessWidget {
             //   ).commonAllSidePadding(5),
             // ),
             child: Container(
-              height: 150,
-              width: 150,
+              height: 140,
+              width: 140,
               decoration: BoxDecoration(
                 // color: Colors.black,
                 shape: BoxShape.circle,
@@ -302,7 +306,31 @@ class JewellerShareButtonModule extends StatelessWidget {
       top: 10,
       child: GestureDetector(
         onTap: () async {
-          await jewelleryDetailsController.shareJewelleryReferFriend();
+          log("share 22");
+          String imgUrl = ApiUrl.apiImagePath +
+              jewelleryDetailsController.productDetailsData.productimages
+                  .toString();
+
+          final imagePath = Uri.parse(imgUrl);
+          final res = await http.get(imagePath);
+          final bytes = res.bodyBytes;
+          final temp = await getTemporaryDirectory();
+          final path = '${temp.path}/image.jpg';
+          File(path).writeAsBytesSync(bytes);
+          String shareText =
+              '''I loved this beautiful jewellery from ${jewelleryDetailsController.partnerDetails!.partnerName.capitalize!} on olocker app. 
+    You must download this app to witness their excellent jewellery collections, get fabulous deals & 
+    rewards too. Click here https://olocker.in/DetectOS.aspx and use my referral 
+    code ${jewelleryDetailsController.userReferaalCode.value}-${jewelleryDetailsController.partnerDetails!.partnerId} on ENTER CODE space on Sign up page https://www.olocker.in/''';
+          try {
+            await Share.shareFiles(
+              [path],
+              text: shareText,
+            );
+          } catch (e) {
+            // Handle the exception or show an error message
+            print('Error sharing image: $e');
+          }
         },
         child: Container(
           decoration: const BoxDecoration(
@@ -349,7 +377,7 @@ class JewellerJewelleryApproxPriceModule extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: "Acephimere",
                   color: AppColors.whiteColor,
-                  fontSize: 13.sp,
+                  fontSize: 11.sp,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -362,7 +390,7 @@ class JewellerJewelleryApproxPriceModule extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: "Acephimere",
                   color: AppColors.whiteColor,
-                  fontSize: 13.sp,
+                  fontSize: 11.sp,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -396,11 +424,11 @@ class JewellerProductDescriptionModule extends StatelessWidget {
             style: TextStyle(
               fontFamily: "Roboto",
               color: AppColors.darkBlack,
-              fontSize: 13.sp,
+              fontSize: 11.sp,
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(height: 2.h),
+          const SizedBox(height: 5),
           ProductDescRow(
             textTitle: "Collection",
             textValue: jewelleryDetailController.jewelleryTypeName,
@@ -443,7 +471,7 @@ class JewellerProductDescriptionModule extends StatelessWidget {
             textValue: jewelleryDetailController
                 .productDetailsData.productStatus!.capitalizeFirst!,
           ),
-          SizedBox(height: 1.h),
+          // const SizedBox(height: 5),
         ],
       ),
     );
@@ -474,7 +502,7 @@ class ProductDescRow extends StatelessWidget {
               style: TextStyle(
                 fontFamily: "Roboto",
                 color: AppColors.blueDarkColor,
-                fontSize: 12.sp,
+                fontSize: 11.sp,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -484,7 +512,7 @@ class ProductDescRow extends StatelessWidget {
             style: TextStyle(
               fontFamily: "Roboto",
               color: AppColors.blueDarkColor,
-              fontSize: 12.sp,
+              fontSize: 11.sp,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -496,7 +524,7 @@ class ProductDescRow extends StatelessWidget {
               style: TextStyle(
                 fontFamily: "Roboto",
                 color: AppColors.blueDarkColor,
-                fontSize: 12.sp,
+                fontSize: 11.sp,
                 fontWeight: FontWeight.w500,
                 // fontWeight: FontWeight.w400,
               ),
@@ -517,7 +545,7 @@ class JewellerJewellerFeaturesAvailableModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
       decoration: const BoxDecoration(
         color: AppColors.whiteColor,
         borderRadius: BorderRadius.all(
@@ -536,7 +564,7 @@ class JewellerJewellerFeaturesAvailableModule extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: "Roboto",
                   color: AppColors.darkBlack,
-                  fontSize: 13.sp,
+                  fontSize: 11.sp,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -545,7 +573,7 @@ class JewellerJewellerFeaturesAvailableModule extends StatelessWidget {
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            padding: const EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.only(top: 8),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
             ),
@@ -561,7 +589,7 @@ class JewellerJewellerFeaturesAvailableModule extends StatelessWidget {
                     width: 40,
                     color: AppColors.blueDarkColor,
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 8),
                   Text(
                     jewelleryDetailController.specialFeaturesList[index].feature
                         .toUpperCase(),

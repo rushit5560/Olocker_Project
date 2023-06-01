@@ -20,6 +20,7 @@ class JewelleryDetailsScreenController extends GetxController {
   var jewelleryTypeName =
       Get.arguments[2]; // Coming From Home Screen Jeweller List
   int indexOfThisProduct = Get.arguments[3];
+  String productImage = Get.arguments[4];
 
   // Find Previous screen controller here for Product fav or unFav.
   final jewellerJewelleryListController =
@@ -269,16 +270,7 @@ class JewelleryDetailsScreenController extends GetxController {
     }
   }
 
-  shareJewelleryReferFriend() async {
-    // var urlPreview = "";
-    String shareText =
-        '''I loved this beautiful jewellery from ${partnerDetails!.partnerName.capitalize!} on olocker app. 
-    You must download this app to witness their excellent jewellery collections, get fabulous deals & 
-    rewards too. Click here https://olocker.in/DetectOS.aspx and use my referral 
-    code ${userReferaalCode.value}-${partnerDetails!.partnerId} on ENTER CODE space on Sign up page https://www.olocker.in/''';
 
-    await Share.share(shareText);
-  }
 
   Future<void> getPartnerByCodeFunction() async {
     // if (formKey.currentState!.validate()) {

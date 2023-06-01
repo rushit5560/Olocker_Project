@@ -62,6 +62,7 @@ class AboutUsDetailsModule extends StatelessWidget {
               SizedBox(
                 height: aboutUsPageController.size.height * 0.15,
                 width: aboutUsPageController.size.width * 0.3,
+                // ignore: unnecessary_null_comparison
                 child: aboutUsPageController.aboutUsData!.partnerLogo != null
                     ? Image.network(
                         ApiUrl.apiImagePath +

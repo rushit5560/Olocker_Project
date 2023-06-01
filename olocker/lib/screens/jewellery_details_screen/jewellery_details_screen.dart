@@ -46,7 +46,7 @@ class JewelleryDetailsScreen extends StatelessWidget {
                         Image.asset(
                           AppImages.jewelleryProductBgShapeImage,
                           width: double.infinity,
-                          height: jewelleryDetailsController.size.height * 0.37,
+                          height: jewelleryDetailsController.size.height * 0.33,
                           fit: BoxFit.cover,
                         ),
                         jewelleryDetailsController
@@ -55,10 +55,11 @@ class JewelleryDetailsScreen extends StatelessWidget {
                                 child: Text(
                                   "No Product Images Available",
                                   style: TextStyle(
-                                      color: AppColors.blackTextColor,
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: "Acephimere"),
+                                    color: AppColors.blackTextColor,
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: "Acephimere",
+                                  ),
                                 ),
                               )
                             : ProductImagesSliderModule(),
@@ -82,7 +83,7 @@ class JewelleryDetailsScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: jewelleryDetailsController.size.width * 0.2,
-          vertical: 2.h,
+          vertical: 1.h,
         ),
         child: SizedBox(
           height: 45,
@@ -115,7 +116,7 @@ class JewelleryDetailsScreen extends StatelessWidget {
                       "enquire now".toUpperCase(),
                       style: TextStyle(
                         color: AppColors.whiteColor,
-                        fontSize: 13.sp,
+                        fontSize: 11.sp,
                         fontFamily: "Acephimere",
                       ),
                     ),

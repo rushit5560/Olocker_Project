@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
-import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/profile_screen_controller.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 import 'package:shimmer/shimmer.dart';

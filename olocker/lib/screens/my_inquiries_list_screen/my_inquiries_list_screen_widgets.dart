@@ -35,6 +35,7 @@ class InquiriesListModule extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class InquiryListItem extends StatelessWidget {
   InquiryListItem({
     Key? key,

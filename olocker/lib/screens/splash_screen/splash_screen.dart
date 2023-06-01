@@ -1,12 +1,8 @@
-import 'dart:developer';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:olocker/controllers/splash_screen_controller.dart';
-import 'package:olocker/main.dart';
 import 'package:olocker/screens/service/local_notification.dart';
 
 class SplashScreen extends StatefulWidget {

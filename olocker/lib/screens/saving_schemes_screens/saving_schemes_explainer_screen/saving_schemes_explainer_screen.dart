@@ -1,14 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
-import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/screens/saving_schemes_screens/saving_schemes_explainer_screen/saving_schemes_explainer_screen_widgets.dart';
 import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../../controllers/saving_schemes_screens_controllers/saving_schemes_explainer_screen_controller.dart';
 
 class SavingSchemesExplainerScreen extends StatelessWidget {

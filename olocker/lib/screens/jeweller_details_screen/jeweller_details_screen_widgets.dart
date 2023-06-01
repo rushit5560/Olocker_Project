@@ -812,6 +812,7 @@ class BestSellersListModule extends StatelessWidget {
             screenController.jewellerId.toString(),
             singleItem.srNo,
             singleItem.itemName,
+            singleItem.productImage
           ],
         );
       },
@@ -937,86 +938,89 @@ class CustomerSpeakModule extends StatelessWidget {
           ],
         ),
         screenController.clientTestimonialsList.length == 1
-            ? Container(
-                height: 150,
-                // width: 500,
-                margin: const EdgeInsets.only(left: 5, right: 5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: AppColors.lightCoffeeColor,
-                ),
+            ? SizedBox(
+                height: 200,
                 child: ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: screenController.clientTestimonialsList.length,
-                  itemBuilder: (context, i) {
-                    log("screenController.clientTestimonialsList.length11${screenController.clientTestimonialsList.length}");
-                    log("11");
-                    Testimonial singleItem =
-                        screenController.clientTestimonialsList[i];
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          // crossAxisAlignment: CrossAxisAlignment.center,
+                    scrollDirection: Axis.horizontal,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: screenController.clientTestimonialsList.length,
+                    itemBuilder: (context, i) {
+                      Testimonial singleItem =
+                          screenController.clientTestimonialsList[i];
+                      return Container(
+                        width: Get.width * 1,
+                        margin: const EdgeInsets.only(left: 5, right: 5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColors.lightCoffeeColor,
+                        ),
+                        child: Column(
                           children: [
-                            Container(
-                              width: screenController.size.width * 0.030.w,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: AppColors.whiteColor,
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(200),
-                                child: CachedNetworkImage(
-                                  imageUrl:
-                                      "${ApiUrl.apiImagePath}/images/JewelleryApp/2020/5/9e926966718148acaedc690e4a55d5f8_1.png",
-                                  fit: BoxFit.cover,
-                                  errorWidget: (context, url, error) {
-                                    return Image.asset(
-                                      AppImages.noLogoImage,
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  // height: screenController.size.width * 0.030.w,
+                                  // width: screenController.size.width * 0.030.w,
+                                  width: 45,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: AppColors.whiteColor,
+                                    // image: DecorationImage(
+                                    //   image: NetworkImage(
+                                    //       "${ApiUrl.apiImageUrlPath}/images/JewelleryApp/2020/5/9e926966718148acaedc690e4a55d5f8_1.png"), //   // AssetImage(AppImages.aboutTileBGImage),
+                                    // ),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(200),
+                                    child: CachedNetworkImage(
+                                      imageUrl:
+                                          "${ApiUrl.apiImagePath}/images/JewelleryApp/2020/5/9e926966718148acaedc690e4a55d5f8_1.png",
                                       fit: BoxFit.cover,
-                                    );
-                                  },
+                                      errorWidget: (context, url, error) {
+                                        return Image.asset(
+                                          AppImages.noLogoImage,
+                                          fit: BoxFit.cover,
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 18),
+                                Text(
+                                  singleItem.clientName,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    color: AppColors.whiteColor,
+                                    fontSize: 17,
+                                    fontFamily: "Acephimere",
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Expanded(
+                              child: Center(
+                                child: Text(
+                                  singleItem.testimonials,
+                                  // maxLines: 3,
+                                  textAlign: TextAlign.left,
+                                  // overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    color: AppColors.whiteColor,
+                                    fontSize: 13,
+                                    fontFamily: "Acephimere",
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 18),
-                            Text(
-                              singleItem.clientName,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                color: AppColors.whiteColor,
-                                fontSize: 17,
-                                fontFamily: "Acephimere",
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
                           ],
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: Text(
-                              singleItem.testimonials,
-                              maxLines: 3,
-                              textAlign: TextAlign.left,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                color: AppColors.whiteColor,
-                                fontSize: 13,
-                                fontFamily: "Acephimere",
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ).commonSymmetricPadding(horizontal: 20, vertical: 15);
-                  },
-                ),
-              ).commonSymmetricPadding(vertical: 8)
+                        ).commonSymmetricPadding(horizontal: 20, vertical: 15),
+                      );
+                    }).commonSymmetricPadding(vertical: 8),
+              )
             : CarouselSlider.builder(
                 itemCount: screenController.clientTestimonialsList.length,
                 itemBuilder: (context, i, realIndex) {
@@ -1028,7 +1032,7 @@ class CustomerSpeakModule extends StatelessWidget {
                   return _customerSpeakListTile(singleItem);
                 },
                 options: CarouselOptions(
-                  height: 150,
+                  // height: 150,
                   autoPlay: true,
                   viewportFraction: 1,
                   autoPlayInterval: const Duration(seconds: 4),
@@ -1095,9 +1099,9 @@ class CustomerSpeakModule extends StatelessWidget {
             child: Center(
               child: Text(
                 singleItem.testimonials,
-                maxLines: 3,
+                // maxLines: 3,
                 textAlign: TextAlign.left,
-                overflow: TextOverflow.ellipsis,
+                // overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   color: AppColors.whiteColor,
                   fontSize: 13,

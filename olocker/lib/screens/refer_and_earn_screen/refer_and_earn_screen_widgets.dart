@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
@@ -27,7 +29,7 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
         ).commonSymmetricPadding(horizontal: 10),
         SizedBox(height: 3.h),
         Text(
-          "Get 100 Points",
+          "Get ${referAndEarnScreenController.loyalityPlan!.perReferralPoints} Points",
           style: TextStyle(
             fontFamily: "NexaBold",
             color: AppColors.accentColor,
@@ -48,7 +50,7 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
         ),
         SizedBox(height: 2.5.h),
         Text(
-          "Share your referal link and earn 100 points",
+          "Share your referal link and earn ${referAndEarnScreenController.loyalityPlan!.perReferralPoints} points",
           style: TextStyle(
             fontFamily: "NexaBold",
             color: AppColors.greyColor.withOpacity(0.6),
@@ -120,7 +122,7 @@ class ReferAndEarnDetailsModule extends StatelessWidget {
             ? const SizedBox()
             : UserBenefitPointsTextModule(
                 benefitText:
-                    "${referAndEarnScreenController.loyalityPlan!.valuePerPoint} Loyalty Point is equal to Rs. ${referAndEarnScreenController.loyalityPlan!.valuePerPoint}",
+                    "1 Loyalty Point is equal to Rs. ${referAndEarnScreenController.loyalityPlan!.valuePerPoint}",
                 benefitDescription:
                     "You get the loyalty point when your friend registers",
               ),
@@ -186,7 +188,9 @@ class ShareButtonModule extends StatelessWidget {
         height: 50,
         child: ElevatedButton(
           onPressed: () async {
+            log("onPressed 1");
             await referAndEarnScreenController.shareReferUserFunction();
+            log("onPressed 2");
           },
           child: Center(
             child: Text(

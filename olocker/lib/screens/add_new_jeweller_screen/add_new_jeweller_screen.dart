@@ -4,8 +4,6 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/add_new_jeweller_screen_controller.dart';
 import 'package:olocker/utils/appbar_style.dart';
-import 'package:sizer/sizer.dart';
-
 import 'add_new_jeweller_screen_widgets.dart';
 
 class AddNewJewellerScreen extends StatelessWidget {

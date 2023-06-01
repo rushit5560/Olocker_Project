@@ -1,13 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:olocker/screens/terms_and_condition_screen/terms_and_condition_screen.dart';
-
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../constants/app_colors.dart';
 import '../../constants/app_images.dart';
 import '../../controllers/mobile_number_screen_controller.dart';

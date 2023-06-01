@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
@@ -193,31 +192,75 @@ class JewellerLoyaltyPointsModule extends StatelessWidget {
           ],
         ),
         SizedBox(height: 2.h),
-        Stack(
-          alignment: Alignment.centerLeft,
-          children: [
-            Image.asset(
-              AppImages.loyaltyPointTitleBGImage,
-              width: screenController.size.width * 0.70,
-              height: 35,
-              fit: BoxFit.fill,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(
-                "Points earned summary",
-                style: TextStyle(
-                  fontFamily: "Roboto",
-                  color: AppColors.darkBlue,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
-                ),
+        screenController.loyaltyPoints!.pointsEarnedSummary.isEmpty
+            ? Container()
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Stack(
+                    alignment: Alignment.centerLeft,
+                    children: [
+                      Image.asset(
+                        AppImages.loyaltyPointTitleBGImage,
+                        width: screenController.size.width * 0.70,
+                        height: 35,
+                        fit: BoxFit.fill,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Text(
+                          "Points earned summary",
+                          style: TextStyle(
+                            fontFamily: "Roboto",
+                            color: AppColors.darkBlue,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 2.h),
+                  PointsEarnedSummaryTable(),
+                ],
               ),
-            ),
-          ],
-        ),
-        SizedBox(height: 2.h),
-        PointsEarnedSummaryTable(),
+
+        SizedBox(height: 1.5.h),
+
+        screenController.loyaltyPoints!.pointsRedeemedSummary.isEmpty
+            ? Container()
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Stack(
+                    alignment: Alignment.centerLeft,
+                    children: [
+                      Image.asset(
+                        AppImages.loyaltyPointTitleBGImage,
+                        width: screenController.size.width * 0.70,
+                        height: 35,
+                        fit: BoxFit.fill,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Text(
+                          "Points reedemed summary",
+                          style: TextStyle(
+                            fontFamily: "Roboto",
+                            color: AppColors.darkBlue,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 2.h),
+                  PointsReedemedSummaryTable()
+                ],
+              ),
+        // Points Reedemed Module
+
         SizedBox(height: 1.5.h),
         Row(
           children: [
@@ -351,6 +394,99 @@ class PointsEarnedSummaryTable extends StatelessWidget {
   }
 }
 
+class PointsReedemedSummaryTable extends StatelessWidget {
+  PointsReedemedSummaryTable({Key? key}) : super(key: key);
+
+  final screenController = Get.put(JewellerLoyaltyPointScreenController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 2.w),
+      // padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(
+          Radius.circular(12),
+        ),
+      ),
+      child: Column(
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(12),
+                  topRight: Radius.circular(12),
+                ),
+                child: Image.asset(AppImages.loyaltyTableTitleHeaderBGImage),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "Date",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: "Roboto",
+                          color: AppColors.blackTextColor,
+                          fontSize: 11.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        "Points",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: "Roboto",
+                          color: AppColors.blackTextColor,
+                          fontSize: 11.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        "Reedemed Type",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: "Roboto",
+                          color: AppColors.blackTextColor,
+                          fontSize: 11.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount:
+                screenController.loyaltyPoints!.pointsRedeemedSummary.length,
+            itemBuilder: (context, index) {
+              var singleRedeemedPoint =
+                  screenController.loyaltyPoints!.pointsRedeemedSummary[index];
+              return SingleReedemedPointTile(
+                singleRedeemedPoint: singleRedeemedPoint,
+                index: index,
+              );
+            },
+          ),
+        ],
+      ),
+    ).commonSymmetricPadding(horizontal: 2.w);
+  }
+}
+
 class SingleEarnedPointTile extends StatelessWidget {
   SingleEarnedPointTile(
       {Key? key, required this.singleEarnedPoint, required this.index})
@@ -426,6 +562,87 @@ class SingleEarnedPointTile extends StatelessWidget {
             Expanded(
               child: Text(
                 singleEarnedPoint.pointExpiryDate.toString(),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: "Roboto",
+                  color: AppColors.blackTextColor,
+                  fontSize: 10.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// scf
+
+class SingleReedemedPointTile extends StatelessWidget {
+  SingleReedemedPointTile(
+      {Key? key, required this.singleRedeemedPoint, required this.index})
+      : super(key: key);
+
+  final PointsRedeemedSummary singleRedeemedPoint;
+  final int index;
+
+  final screenController = Get.put(JewellerLoyaltyPointScreenController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: index.floor().isEven
+            ? const Color(0xFFE6E6E6)
+            : const Color(0xFFDBDBDB),
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(index ==
+                  screenController.loyaltyPoints!.pointsEarnedSummary.length - 1
+              ? 12
+              : 0),
+          bottomRight: Radius.circular(
+            index ==
+                    screenController.loyaltyPoints!.pointsEarnedSummary.length -
+                        1
+                ? 12
+                : 0,
+          ),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 8),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Text(
+                singleRedeemedPoint.dateRedeemed.toString(),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: AppColors.blackTextColor,
+                  fontSize: 10.sp,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: "Roboto",
+                ),
+              ),
+            ),
+            Expanded(
+              child: Text(
+                singleRedeemedPoint.pointsRdeemed.toString(),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: "Roboto",
+                  color: AppColors.blackTextColor,
+                  fontSize: 10.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            Expanded(
+              child: Text(
+                singleRedeemedPoint.redeemtionType.toString(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: "Roboto",

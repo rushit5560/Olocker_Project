@@ -4,7 +4,6 @@ import 'package:olocker/controllers/my_saving_schemes_screens_controllers/my_sch
 import 'package:olocker/screens/my_saving_schemes_screens/my_schemes_details_screen/my_schemes_details_screen_widgets.dart';
 import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
-import '../../../constants/app_colors.dart';
 
 class MySchemesDetailsScreen extends StatelessWidget {
   MySchemesDetailsScreen({Key? key}) : super(key: key);

@@ -243,8 +243,8 @@ class JewelleryDetailModule extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-            height: 75,
-            width: 75,
+            height: 80,
+            width: 80,
             child: screenController.productDetailsData.productImageList.isEmpty
                 ? Container(color: AppColors.greyTextColor)
                 : CachedNetworkImage(
@@ -279,12 +279,12 @@ class JewelleryDetailModule extends StatelessWidget {
                 SizedBox(height: 0.25.h),
                 Text(
                   screenController.productDetailsData.description,
-                  maxLines: 1,
+                  // "vsdhvfghsd sdbvfsdbs jksdbgvjksdfvbnkjdf kdsbnfvjkdf dfbnvkjdf jksdfnvjkd djfbv dfbkjvb dfjkb fjbv dgfbvbdfbvjdfbvjbdfjhbv dfjhbvjdb",
                   style: TextStyle(
                     fontSize: 8.5.sp,
                     color: AppColors.darkBlack,
                     fontWeight: FontWeight.w400,
-                    overflow: TextOverflow.ellipsis,
+                    // overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 SizedBox(height: 0.25.h),

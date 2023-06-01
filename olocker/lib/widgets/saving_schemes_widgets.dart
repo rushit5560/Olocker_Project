@@ -2,8 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
-
-import '../constants/api_url.dart';
 import '../constants/app_colors.dart';
 import '../constants/app_images.dart';
 

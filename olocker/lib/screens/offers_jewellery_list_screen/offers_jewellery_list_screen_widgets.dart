@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -9,7 +10,10 @@ import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/models/jeweller_details_screen_model/get_offer_details_list_model.dart';
 import 'package:olocker/screens/jeweller_jewellery_details_screen/jeweller_jewellery_details_screen.dart';
 import 'package:olocker/utils/extensions.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
+import 'package:http/http.dart' as http;
 
 import '../../controllers/offers_jewellery_list_screen_controller.dart';
 
@@ -187,7 +191,28 @@ class OfferJewelleryGridviewModule extends StatelessWidget {
                       // ),
                       GestureDetector(
                         onTap: () async {
-                          await screenController.shareJewelleryReferFriend();
+                          final imagePath = Uri.parse(imgUrl);
+                          final res = await http.get(imagePath);
+                          final bytes = res.bodyBytes;
+                          final temp = await getTemporaryDirectory();
+                          final path = '${temp.path}/image.jpg';
+                          File(path).writeAsBytesSync(bytes);
+                          String shareText =
+                              '''I loved this beautiful jewellery from ${screenController.partnerDetails!.partnerName.capitalize!} on olocker app. 
+    You must download this app to witness their excellent jewellery collections, get fabulous deals & 
+    rewards too. Click here https://olocker.in/DetectOS.aspx and use my referral 
+    code ${screenController.userReferaalCode.value}-${screenController.partnerDetails!.partnerId} on ENTER CODE space on Sign up page https://www.olocker.in/''';
+                          try {
+                            await Share.shareFiles(
+                              [path],
+                              text: shareText,
+                            );
+                          } catch (e) {
+                            // Handle the exception or show an error message
+                            print('Error sharing image: $e');
+                          }
+
+                          // await screenController.shareJewelleryReferFriend();
                         },
                         child: Icon(
                           Icons.share_rounded,
@@ -406,7 +431,26 @@ class OfferSearchJewelleryGridviewModule extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () async {
-                          await screenController.shareJewelleryReferFriend();
+                          final imagePath = Uri.parse(imgUrl);
+                          final res = await http.get(imagePath);
+                          final bytes = res.bodyBytes;
+                          final temp = await getTemporaryDirectory();
+                          final path = '${temp.path}/image.jpg';
+                          File(path).writeAsBytesSync(bytes);
+                          String shareText =
+                              '''I loved this beautiful jewellery from ${screenController.partnerDetails!.partnerName.capitalize!} on olocker app. 
+    You must download this app to witness their excellent jewellery collections, get fabulous deals & 
+    rewards too. Click here https://olocker.in/DetectOS.aspx and use my referral 
+    code ${screenController.userReferaalCode.value}-${screenController.partnerDetails!.partnerId} on ENTER CODE space on Sign up page https://www.olocker.in/''';
+                          try {
+                            await Share.shareFiles(
+                              [path],
+                              text: shareText,
+                            );
+                          } catch (e) {
+                            // Handle the exception or show an error message
+                            print('Error sharing image: $e');
+                          }
                         },
                         icon: Icon(
                           Icons.share_rounded,

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/screens/invoice_details_screen/invoice_details_screen_widgets.dart';
 import 'package:olocker/utils/appbar_style.dart';
-import 'package:sizer/sizer.dart';
 import '../../constants/app_images.dart';
 import '../../controllers/invoice_details_screen_controller.dart';
 import '../../controllers/my_insured_jewellery_screen_controller.dart';

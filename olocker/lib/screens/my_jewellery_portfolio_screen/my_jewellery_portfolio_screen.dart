@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/utils/appbar_style.dart';
-import 'package:sizer/sizer.dart';
 import '../../constants/app_colors.dart';
 import '../../controllers/my_jewellery_portfolio_controller.dart';
 import 'my_jewellery_portfolio_screen_widgets.dart';

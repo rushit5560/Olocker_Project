@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/screens/product_enquire_screen/product_enquire_screen_widgets.dart';
 import 'package:olocker/utils/appbar_style.dart';
-import 'package:sizer/sizer.dart';
 import '../../constants/app_colors.dart';
 import '../../controllers/product_enquire_screen_controller.dart';
 

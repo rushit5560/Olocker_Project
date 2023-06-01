@@ -66,7 +66,7 @@ class PartnerPoint {
     required this.logoUrl,
     required this.partnerSrNo,
     required this.pointsEarnedSummary,
-    // required this.pointsRedeemedSummary,
+    required this.pointsRedeemedSummary,
   });
 
   String partner;
@@ -77,7 +77,7 @@ class PartnerPoint {
   String logoUrl;
   String partnerSrNo;
   List<PointsEarnedSummary> pointsEarnedSummary;
-  // List<dynamic> pointsRedeemedSummary;
+  List<PointsRedeemedSummary> pointsRedeemedSummary;
 
   factory PartnerPoint.fromJson(Map<String, dynamic> json) => PartnerPoint(
     partner: json["Partner"] ?? "",
@@ -88,7 +88,7 @@ class PartnerPoint {
     logoUrl: json["LogoUrl"] ?? "",
     partnerSrNo: json["PartnerSrNo"].toString(),
     pointsEarnedSummary: List<PointsEarnedSummary>.from((json["PointsEarnedSummary"] ?? []).map((x) => PointsEarnedSummary.fromJson(x))),
-    // pointsRedeemedSummary: List<dynamic>.from(json["PointsRedeemedSummary"].map((x) => x)),
+    pointsRedeemedSummary: List<PointsRedeemedSummary>.from((json["PointsRedeemedSummary"] ??[ ]).map((x) => PointsRedeemedSummary.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -133,3 +133,21 @@ class PointsEarnedSummary {
 }
 
 
+class PointsRedeemedSummary {
+    String dateRedeemed;
+    int pointsRdeemed;
+    String redeemtionType;
+
+    PointsRedeemedSummary({
+        required this.dateRedeemed,
+        required this.pointsRdeemed,
+        required this.redeemtionType,
+    });
+
+    factory PointsRedeemedSummary.fromJson(Map<String, dynamic> json) => PointsRedeemedSummary(
+        dateRedeemed: json["DateRedeemed"] ?? "",
+        pointsRdeemed: json["PointsRdeemed"] ?? 0,
+        redeemtionType: json["RedeemtionType"] ?? "",
+    );
+
+}
