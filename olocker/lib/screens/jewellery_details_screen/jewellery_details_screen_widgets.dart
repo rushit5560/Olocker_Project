@@ -249,6 +249,7 @@ class ShowFullScreenImagesSliderModule extends StatelessWidget {
             builder: (BuildContext context, int index) {
               return PhotoViewGalleryPageOptions(
                 imageProvider: NetworkImage(
+
                   ApiUrl.apiImagePath +
                       jewelleryDetailsController.productDetailsData
                           .productImageList[index].imageLocation,

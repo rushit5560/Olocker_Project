@@ -948,8 +948,8 @@ class CustomerSpeakModule extends StatelessWidget {
                       Testimonial singleItem =
                           screenController.clientTestimonialsList[i];
                       return Container(
-                        width: Get.width * 1,
-                        margin: const EdgeInsets.only(left: 5, right: 5),
+                        width: Get.width * 0.96,
+                        // margin: const EdgeInsets.only( right: 15,),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: AppColors.lightCoffeeColor,
@@ -1007,9 +1007,9 @@ class CustomerSpeakModule extends StatelessWidget {
                                   // maxLines: 3,
                                   textAlign: TextAlign.left,
                                   // overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
+                                  style:  TextStyle(
                                     color: AppColors.whiteColor,
-                                    fontSize: 13,
+                                    fontSize: 12.sp,
                                     fontFamily: "Acephimere",
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -1019,7 +1019,7 @@ class CustomerSpeakModule extends StatelessWidget {
                           ],
                         ).commonSymmetricPadding(horizontal: 20, vertical: 15),
                       );
-                    }).commonSymmetricPadding(vertical: 8),
+                    }).commonSymmetricPadding(vertical: 8,horizontal: 8),
               )
             : CarouselSlider.builder(
                 itemCount: screenController.clientTestimonialsList.length,
@@ -1086,7 +1086,7 @@ class CustomerSpeakModule extends StatelessWidget {
                 singleItem.clientName,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
+                style:const  TextStyle(
                   color: AppColors.whiteColor,
                   fontSize: 17,
                   fontFamily: "Acephimere",
@@ -1102,9 +1102,9 @@ class CustomerSpeakModule extends StatelessWidget {
                 // maxLines: 3,
                 textAlign: TextAlign.left,
                 // overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
+                style:  TextStyle(
                   color: AppColors.whiteColor,
-                  fontSize: 13,
+                  fontSize: 12.sp,
                   fontFamily: "Acephimere",
                   fontWeight: FontWeight.w500,
                 ),
