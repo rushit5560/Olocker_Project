@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_super_html_viewer/flutter_super_html_viewer.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/online_deals_details_screen_controller.dart';
@@ -36,19 +36,25 @@ class OnlineDealsDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Html(
-              data: onlineDealsDetailsScreenController
+            HtmlContentViewer(
+              htmlContent: onlineDealsDetailsScreenController
                   .onLineDealDetails.termsAndCondition,
-              shrinkWrap: true,
-              onLinkTap: (url, attributes, element) {
-                launchUrl(
+
+              urlLauncherDelegate: (url) {
+                return launchUrl(
                   Uri.parse(url.toString()),
                 );
               },
+              // shrinkWrap: true,
+              // onLinkTap: (url, attributes, element) {
+              //   launchUrl(
+              //     Uri.parse(url.toString()),
+              //   );
+              // },
               // onLinkTap: (url, context, attributes, element) {
               //   // var url = Uri.parse(url);
               //    launchUrl(Uri.parse(url.toString()));
-              //   // if (await canLaunchUrl(Uri.parse(url.toString()))) { 
+              //   // if (await canLaunchUrl(Uri.parse(url.toString()))) {
               //   // } else {
               //   //   throw 'Could not launch $url';
               //   // }

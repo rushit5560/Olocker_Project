@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_super_html_viewer/flutter_super_html_viewer.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/screens/saving_schemes_screens/saving_schemes_explainer_screen/saving_schemes_explainer_screen_widgets.dart';
@@ -69,8 +69,8 @@ class SavingSchemesExplainerScreen extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 12, horizontal: 15),
 
-                              child: Html(
-                                data: savingSchemesExplainerScreenController
+                              child: HtmlContentViewer(
+                                htmlContent: savingSchemesExplainerScreenController
                                     .getSavingSchemesList[0].termsAndCondition,
                               ),
                               // Text(),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_super_html_viewer/flutter_super_html_viewer.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/online_favourite_deals_details_screen_controller.dart';
@@ -33,8 +33,8 @@ class OnlineFavouriteDealsDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Html(
-              data: onlineFavouriteDealsDetailsScreenController
+            HtmlContentViewer(
+             htmlContent : onlineFavouriteDealsDetailsScreenController
                   .favDealsDetails.termsAndCondition,
             ),
             SizedBox(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_super_html_viewer/flutter_super_html_viewer.dart';
 import 'package:get/get.dart';
 
 import '../../constants/app_colors.dart';
@@ -26,8 +26,8 @@ class TermsAndConditionsScreen extends StatelessWidget {
         ),
         elevation: 0,
       ),
-      body: Html(
-        data: 'Terms & Conditions',
+      body: const HtmlContentViewer(
+        htmlContent: 'Terms & Conditions',
       ),
     );
   }
