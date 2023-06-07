@@ -128,19 +128,24 @@ class ProductTypeItem {
   ProductTypeItem({
     required this.name,
     required this.image,
+     this.productCount,
+
   });
 
   String name;
   String image;
+  int? productCount;
 
   factory ProductTypeItem.fromJson(Map<String, dynamic> json) => ProductTypeItem(
     name: json["Name"] ?? "",
     image: json["Image"] ?? "",
+    productCount: json["ProductCount"]??0,
   );
 
   Map<String, dynamic> toJson() => {
     "Name": name,
     "Image": image,
+    "ProductCount": productCount,
   };
 }
 
