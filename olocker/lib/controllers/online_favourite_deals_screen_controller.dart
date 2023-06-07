@@ -7,10 +7,7 @@ import 'package:olocker/constants/user_details.dart';
 import 'package:http/http.dart' as http;
 import 'package:olocker/models/online_favourite_deals_screen_model/get_favourite_deals_model.dart';
 
-
-
 class OnlineFavouriteDealsScreenController extends GetxController {
-
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
@@ -19,23 +16,23 @@ class OnlineFavouriteDealsScreenController extends GetxController {
 
   List<VendorDealsList1> favouriteDealsList = [];
 
-
   Future<void> getOnlineFavouriteDealsFunction() async {
     isLoading(true);
-    String url = "${ApiUrl.getCustomerFavouriteDealsApi}?customerId=${UserDetails.customerId}";
+    String url =
+        "${ApiUrl.getCustomerFavouriteDealsApi}?customerId=${UserDetails.customerId}";
     log('Favourite Deals Api url : $url');
 
     try {
-
       http.Response response = await http.get(
         Uri.parse(url),
         headers: apiHeader.headers,
       );
 
-      FavouriteOnlineDealsModel smartDealsOnlineModel = FavouriteOnlineDealsModel.fromJson(json.decode(response.body));
+      FavouriteOnlineDealsModel smartDealsOnlineModel =
+          FavouriteOnlineDealsModel.fromJson(json.decode(response.body));
       isSuccessStatus = smartDealsOnlineModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         favouriteDealsList.clear();
         favouriteDealsList.addAll(smartDealsOnlineModel.vendorDealsList);
         log('Length1 : ${smartDealsOnlineModel.vendorDealsList.length}');
@@ -45,10 +42,9 @@ class OnlineFavouriteDealsScreenController extends GetxController {
       }
 
       // log("response : ${response.body}");
-
-    } catch(e) {
+    } catch (e) {
       log('getOnlineFavouriteDealsFunction Error :$e');
-     rethrow;
+      rethrow;
     }
     isLoading(false);
   }

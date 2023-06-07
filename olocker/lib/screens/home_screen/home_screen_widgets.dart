@@ -19,9 +19,12 @@ import 'package:olocker/screens/personal_loans_screen/personal_loans_screen.dart
 import 'package:olocker/utils/extensions.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
+import '../../models/home_screen_models/smart_offline_deats_model.dart';
 import '../../utils/common_module.dart';
 import '../all_loyalty_points_screen/all_loyalty_points_screen.dart';
 import '../my_favourites_screen/my_favourites_screen.dart';
+import '../offline_deals_list_screen/offline_dealse_list_screen.dart';
+import '../offline_dealse_screen/offline_deals_screen.dart';
 import '../online_deals_list_screen/online_deals_list_screen.dart';
 
 class MainAppBar extends StatelessWidget with MyPreferredSizeMixin {
@@ -322,7 +325,12 @@ class SmartDealsModule extends StatelessWidget {
                               !screenController.smartDealsSwitch.value;
                           log('${screenController.smartDealsSwitch.value}');
                           if (screenController.smartDealsSwitch.value) {
-                            await screenController.handleLocationPermission();
+                            screenController.isLoading(true);
+                            screenController.isLoading(false);
+                            if (screenController.isLocalDataCalled.value ==
+                                false) {
+                              await screenController.handleLocationPermission();
+                            }
                           }
                           screenController.isLoading(true);
                           screenController.isLoading(false);
@@ -354,34 +362,60 @@ class SmartDealsModule extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     )
-                  : OnlineDealsListModule()
+                  : screenController.smartDealsOnlineList.isEmpty
+                      ? Container()
+                      : Column(
+                          children: [
+                            OnlineDealsListModule(),
+                            SizedBox(
+                                height: screenController.size.height * 0.015),
+                            ViewAllButtonModule(),
+                            SizedBox(
+                                height: screenController.size.height * 0.015),
+                          ],
+                        )
               : screenController.getLocationPermission.value == false
-                  ? Text(
-                      'To see local deals you need to give us location access permission in mobile settings',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: "Roboto",
-                        color: AppColors.whiteColor,
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
+                  ? Obx(
+                      () => screenController.isOfflineDeals.value
+                          ? const CircularProgressIndicator()
+                          : Text(
+                              'To see local deals you need to give us location access permission in mobile settings',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: "Roboto",
+                                color: AppColors.whiteColor,
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
                     )
-                  : Text(
-                      'Keep checking this space for exciting deals',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: "Roboto",
-                        color: AppColors.whiteColor,
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-          SizedBox(height: screenController.size.height * 0.015),
-          screenController.smartDealsSwitch.value == false
-              ? screenController.smartDealsOnlineList.isEmpty
-                  ? Container()
-                  : ViewAllButtonModule()
-              : Container(),
+                  : screenController.smartDealsOfflineList.isEmpty
+                      ? Text(
+                          'Keep checking this space for exciting deals',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: "Roboto",
+                            color: AppColors.whiteColor,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        )
+                      : Obx(
+                          () => screenController.isOfflineDeals.value
+                              ? const CircularProgressIndicator()
+                              : screenController.smartDealsOnlineList.isEmpty
+                                  ? Container()
+                                  : Column(
+                                      children: [
+                                        OfflineDealsListModule(),
+                                        SizedBox(
+                                            height:
+                                                screenController.size.height *
+                                                    0.015),
+                                        OfflineViewAllButtonModule(),
+                                      ],
+                                    ),
+                        ),
           SizedBox(height: screenController.size.height * 0.015),
         ],
       ),
@@ -443,6 +477,61 @@ class OnlineDealsListModule extends StatelessWidget {
   }
 }
 
+class OfflineDealsListModule extends StatelessWidget {
+  OfflineDealsListModule({Key? key}) : super(key: key);
+  final screenController = Get.find<HomeScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: screenController.size.height * 0.022.h,
+      child: ListView.builder(
+        itemCount: screenController.smartDealsOfflineList.length,
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        shrinkWrap: true,
+        itemBuilder: (context, i) {
+          VendorOfflineDealsList vendorOfflineDeals =
+              screenController.smartDealsOfflineList[i];
+          return _OfflineDealsListTile(vendorOfflineDeals);
+        },
+      ),
+    );
+  }
+
+  Widget _OfflineDealsListTile(VendorOfflineDealsList vendorOfflineDeals) {
+    String imgUrl = "${ApiUrl.apiImagePath}${vendorOfflineDeals.categoryImage}";
+    log("imgUrl $imgUrl");
+    return GestureDetector(
+      onTap: () {
+        Get.to(
+          () => OfflineDealsListScreen(),
+          arguments: vendorOfflineDeals,
+        );
+      },
+      child: Container(
+        width: screenController.size.height * 0.019.h,
+        decoration: BoxDecoration(
+          color: AppColors.whiteColor,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: CachedNetworkImage(
+          imageUrl: imgUrl,
+          fit: BoxFit.contain,
+          width: screenController.size.height * 0.019.h,
+          height: screenController.size.height * 0.019.h,
+        ).commonAllSidePadding(8),
+        // Image.network(
+        //   imgUrl,
+        //   fit: BoxFit.contain,
+        //   width: screenController.size.height * 0.019.h,
+        //   height: screenController.size.height * 0.019.h,
+        // ).commonAllSidePadding(8),
+      ).commonAllSidePadding(2),
+    );
+  }
+}
+
 class ViewAllButtonModule extends StatelessWidget {
   ViewAllButtonModule({Key? key}) : super(key: key);
   final screenController = Get.find<HomeScreenController>();
@@ -453,6 +542,34 @@ class ViewAllButtonModule extends StatelessWidget {
       onTap: () => Get.to(
         () => OnlineDealsScreen(),
         arguments: screenController.smartDealsOnlineList,
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25),
+          color: AppColors.accentColor,
+        ),
+        child: const Text(
+          'VIEW ALL',
+          style: TextStyle(
+            color: AppColors.whiteColor,
+            fontWeight: FontWeight.w500,
+          ),
+        ).commonSymmetricPadding(horizontal: 20, vertical: 10),
+      ),
+    );
+  }
+}
+
+class OfflineViewAllButtonModule extends StatelessWidget {
+  OfflineViewAllButtonModule({Key? key}) : super(key: key);
+  final screenController = Get.find<HomeScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => Get.to(
+        () => OfflineDealsScreen(),
+        arguments: screenController.smartDealsOfflineList,
       ),
       child: Container(
         decoration: BoxDecoration(

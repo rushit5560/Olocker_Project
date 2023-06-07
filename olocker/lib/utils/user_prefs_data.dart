@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class UserPrefsData {
   String customerLoggedInKey = "customerLoggedInKey";
   String customerIdKey = "customerIdKey";
-
+String locationZipCodeKey="locationZipCodeKey";
   String customerUserNameKey = "customerUserNameKey";
 
   String customerGenderKey = "customerGenderKey";
@@ -228,7 +228,13 @@ class UserPrefsData {
     prefs.setString(customerIdKey,customerId );
     log('customerIdKey : ${prefs.getString(customerIdKey)}');
   }
+getLocationZipCode(String locationZipCode)async{
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setString(locationZipCodeKey,locationZipCode );
+  log('locationZipCodeKey : ${prefs.getString(locationZipCode)}');
 
+
+}
   // Get String Permission
   // Future<String> getCustSrNoPrefs({required String keyId}) async {
   //   SharedPreferences prefs = await SharedPreferences.getInstance();

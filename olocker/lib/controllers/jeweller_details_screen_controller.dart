@@ -28,6 +28,7 @@ class JewellerDetailsScreenController extends GetxController {
 
   final ScrollController scrollController = ScrollController();
   RxBool hasMore = true.obs;
+
   // RxBool hasMoreLoading = true.obs;
 
   // RxBool isSpecialFeaturesLoading = false.obs;
@@ -151,11 +152,23 @@ class JewellerDetailsScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         jewelleryCategoryList.clear();
-        jewelleryCategoryList.addAll(jewelleryCategoryModel.getPushCollection);
+
+        // jewelleryCategoryList.addAll(jewelleryCategoryModel.getPushCollection);
+//
+          for (var element in jewelleryCategoryModel.getPushCollection) {
+            if (element.productCount != 0) {
+              log("jewelleryCategoryList element.productCount ${element.productCount}");
+              // jewelleryCategoryList.addAll(jewelleryCategoryModel.getPushCollection);
+              jewelleryCategoryList.add(element);
+            }
+          }
 
         if (jewelleryCategoryList.length > 2) {
           for (int i = 2; i < jewelleryCategoryList.length; i++) {
-            jewellerysubCategoryList.add(jewelleryCategoryList[i]);
+            if (jewelleryCategoryList[i].productCount != 0) {
+              log("jewellerysubCategoryList jewelleryCategoryList[i].productCount ${jewelleryCategoryList[i].productCount}");
+              jewellerysubCategoryList.add(jewelleryCategoryList[i]);
+            }
           }
         }
         log("jewellerysubCategoryList.length ${jewellerysubCategoryList.length}");
@@ -249,6 +262,7 @@ class JewellerDetailsScreenController extends GetxController {
 
         if (isSuccessStatus.value) {
           newArrivalList.clear();
+
           newArrivalList.addAll(jewelleryCategoryModel.getPushCollection);
 
           log('newArrivalList : ${newArrivalList.length}');

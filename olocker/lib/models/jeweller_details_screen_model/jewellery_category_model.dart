@@ -19,6 +19,7 @@ class JewelleryCategoryModel {
 
   List<GetPushCollectionItem> getPushCollection;
   List<GetPushOfferItem> getPushOffer;
+
   // List<GetPushSubCategory> getPushSubCategory;
   bool success;
   ErrorInfo errorInfo;
@@ -55,6 +56,7 @@ class ErrorInfo {
 
   // int errorType;
   String extraInfo;
+
   // String description;
   // dynamic errorData;
 
@@ -82,6 +84,7 @@ class GetPushCollectionItem {
     required this.isActive,
     required this.pushSortOrder,
     required this.imageurl,
+    required this.productCount,
   });
 
   String srNo;
@@ -91,6 +94,7 @@ class GetPushCollectionItem {
   bool isActive;
   String pushSortOrder;
   String imageurl;
+  int productCount;
 
   factory GetPushCollectionItem.fromJson(Map<String, dynamic> json) =>
       GetPushCollectionItem(
@@ -101,6 +105,7 @@ class GetPushCollectionItem {
         isActive: json["IsActive"] ?? false,
         pushSortOrder: json["PushSortOrder"].toString(),
         imageurl: json["Imageurl"] ?? "",
+        productCount: json["ProductCount"] ?? 0,
       );
 
   Map<String, dynamic> toJson() => {
@@ -111,6 +116,7 @@ class GetPushCollectionItem {
         "IsActive": isActive,
         "PushSortOrder": pushSortOrder,
         "Imageurl": imageurl,
+        "ProductCount": productCount,
       };
 }
 
