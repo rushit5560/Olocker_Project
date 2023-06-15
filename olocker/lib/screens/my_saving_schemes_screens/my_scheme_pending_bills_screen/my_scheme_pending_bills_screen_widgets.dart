@@ -107,7 +107,7 @@ class MyBillsModule extends StatelessWidget {
                         fontSize: 20.sp,
                       ),
                     ),
-                    SizedBox(height: 2.5.h),
+                    // SizedBox(height: 2.5.h),
                     Text(
                       "Total due payments",
                       style: TextStyle(

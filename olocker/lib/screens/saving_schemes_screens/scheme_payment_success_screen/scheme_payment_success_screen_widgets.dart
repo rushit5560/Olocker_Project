@@ -185,7 +185,7 @@ class PaymentSuccessDetailsModule extends StatelessWidget {
                   ),
                   SizedBox(height: 3.h),
                   Text(
-                    "Order date : ${screenController.transactionData.transactionDate.split(" ")[0]}",
+                    "Order date : ${screenController.transactionData.nextPaymentDate.split(" ")[0]}",
 
                     // 18-06-2021",
                     style: TextStyle(

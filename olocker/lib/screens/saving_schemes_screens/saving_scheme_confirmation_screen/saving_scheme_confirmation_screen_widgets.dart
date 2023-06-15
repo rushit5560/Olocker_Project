@@ -68,10 +68,13 @@ class AmountDetailsModule extends StatelessWidget {
                                     symbol: '₹ ',
                                     locale: "HI",
                                     decimalDigits: 0,
-                                  ).format(double.parse(
+                                  ).format(
+                                    double.parse(
                                       savingSelectionScreenController
                                           .savingSchemeDetails.monthlyAmount
-                                          .toString())),
+                                          .toString(),
+                                    ),
+                                  ),
                                   style: TextStyle(
                                     fontSize: 20.sp,
                                     color: AppColors.accentColor,
@@ -278,7 +281,7 @@ class ProceedToPayButtonModule extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 2.h),
+          SizedBox(height: 1.h),
           SizedBox(
             height: 46,
             width: double.infinity,

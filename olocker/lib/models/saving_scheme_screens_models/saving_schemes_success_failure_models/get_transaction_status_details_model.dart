@@ -82,6 +82,7 @@ class TransactionData {
     required this.billingDate,
     required this.invoicePath,
     required this.isOnlinePayment,
+    required this.nextPaymentDate,
   });
 
   final int srNo;
@@ -97,6 +98,7 @@ class TransactionData {
   final String billingDate;
   final String invoicePath;
   final String isOnlinePayment;
+  final String nextPaymentDate;
 
   factory TransactionData.fromJson(Map<String, dynamic> json) =>
       TransactionData(
@@ -114,6 +116,7 @@ class TransactionData {
         billingDate: json["BillingDate"] ?? "",
         invoicePath: json["InvoicePath"] ?? "",
         isOnlinePayment: json["IsOnlinePayment"] ?? "",
+        nextPaymentDate: json["NextPaymentDate"]??"",
       );
 
   Map<String, dynamic> toJson() => {
@@ -130,5 +133,6 @@ class TransactionData {
         "BillingDate": billingDate,
         "InvoicePath": invoicePath,
         "IsOnlinePayment": isOnlinePayment,
+        "NextPaymentDate": nextPaymentDate,
       };
 }
