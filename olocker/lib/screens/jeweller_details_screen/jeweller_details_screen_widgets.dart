@@ -714,6 +714,7 @@ class ReferAndJewellerEmiModule extends StatelessWidget {
                   () => SavingSchemesListScreen(),
                   arguments: [
                     screenController.jewellerId,
+                    screenController.jewellerName,
                   ],
                 );
               },

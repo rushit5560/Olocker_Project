@@ -42,12 +42,11 @@ class SavingSchemeEnrollScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             vertical: 5, horizontal: 15),
                         child: JewellerDetailImageInfoModule(
-                          imagePath:
-                              savingSchemeEnrollScreenController.jewellerLogo,
-                          schemeName: savingSchemeEnrollScreenController
-                              .savingSchemeData.schemeName,
-                          schemeTagLine: savingSchemeEnrollScreenController
-                              .savingSchemeData.schemeTagLine,
+                          imagePath: savingSchemeEnrollScreenController.jewellerLogo,
+                          schemeName: savingSchemeEnrollScreenController.jewellerName,
+                          schemeTagLine: savingSchemeEnrollScreenController.savingSchemeData.schemeName,
+                          // schemeName: savingSchemeEnrollScreenController.savingSchemeData.schemeName,
+                          // schemeTagLine: savingSchemeEnrollScreenController.savingSchemeData.schemeTagLine,
                         ),
                       ),
                       Container(height: 10),

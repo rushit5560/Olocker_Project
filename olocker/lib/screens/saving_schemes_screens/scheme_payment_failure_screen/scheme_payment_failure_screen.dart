@@ -36,8 +36,8 @@ class SchemePaymentFailureScreen extends StatelessWidget {
           children: [
             JewellerDetailImageInfoModule(
               imagePath: schemePaymentFailureScreenController.jewellerLogo,
-              schemeName: schemePaymentFailureScreenController.schemeName,
-              schemeTagLine: schemePaymentFailureScreenController.schemeTagLine,
+              schemeName: schemePaymentFailureScreenController.jewellerName,
+              schemeTagLine: schemePaymentFailureScreenController.schemeName,
             ),
             SizedBox(height: 1.h),
             PaymentDetailsWidget(

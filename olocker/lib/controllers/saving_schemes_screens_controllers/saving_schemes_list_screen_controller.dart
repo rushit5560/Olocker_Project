@@ -9,6 +9,7 @@ import '../../models/saving_scheme_screens_models/get_saving_scheme_list_models/
 
 class SavingSchemesListScreenController extends GetxController {
   var jewellerId = Get.arguments[0];
+  String jewellerName = Get.arguments[1];
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 

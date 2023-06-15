@@ -27,6 +27,7 @@ class ProfileScreenController extends GetxController {
   RxString userName = "".obs;
 
   File? apiGetProfileImage;
+  String userApiImageFile = "";
   File? selectedProfileImage;
 
   TextEditingController fnameController = TextEditingController();
@@ -127,6 +128,7 @@ class ProfileScreenController extends GetxController {
         isEditable.value = true;
         apiGetProfileImage = File(ApiUrl.apiImagePath +
             userProfileGetModel.customerProfile.imageLocation);
+        userApiImageFile = userProfileGetModel.customerProfile.imageLocation;
 
         userName.value = userProfileGetModel.customerProfile.firstName;
         // namePrefixDDvalue.value = userProfileGetModel.customerProfile.gender == "Male" ? "" :;
@@ -134,6 +136,12 @@ class ProfileScreenController extends GetxController {
         lnameController.text = userProfileGetModel.customerProfile.lastName;
         emailController.text = userProfileGetModel.customerProfile.userEmail;
         dateofbrithController.text = userProfileGetModel.customerProfile.dob;
+
+        userProfileGetModel.customerProfile.gender == "1"
+            ? namePrefixDDvalue.value = "Mr."
+        : userProfileGetModel.customerProfile.gender == "2"
+        ? namePrefixDDvalue.value = "Mrs." : namePrefixDDvalue.value = "Miss";
+
         log("getting date is :: ${userProfileGetModel.customerProfile.dob}");
         log("dateofbrithController.text ${dateofbrithController.text}");
         if (userProfileGetModel.customerProfile.dob != "") {
@@ -194,7 +202,7 @@ class ProfileScreenController extends GetxController {
   Future<void> updateUserProfileDetailsFunction() async {
     // if (formKey.currentState!.validate()) {
     String url = ApiUrl.updateUserProfileApi;
-    log(" updateUserProfileDetailsFunction url: $url");
+    log("updateUserProfileDetailsFunction Api url: $url");
 
     try {
       isLoading(true);
@@ -230,6 +238,8 @@ class ProfileScreenController extends GetxController {
           "CustSrNo": UserDetails.customerId.toString(),
           "ProfileImage_Base64": "",
         };
+
+        log('Without Image Body Data : ${jsonEncode(requestMap)}');
 
         log("updateUserProfileDetailsFunction req map : ${UserDetails.customerId}");
         log("updateUserProfileDetailsFunction req map : ${datePassingvalue.value}");
@@ -302,6 +312,8 @@ class ProfileScreenController extends GetxController {
           "CustSrNo": UserDetails.customerId.toString(),
           "ProfileImage_Base64": base64Image,
         };
+
+        log('With Image Body Data : ${jsonEncode(requestMap)}');
 
         log("updateUserProfileDetailsFunction req map : ${UserDetails.customerId}");
         log("updateUserProfileDetailsFunction req map : ${datePassingvalue.value}");
@@ -508,7 +520,11 @@ class ProfileScreenController extends GetxController {
 
   @override
   void onInit() {
-    getUserProfileDetailsFunction();
+    initMethod();
     super.onInit();
+  }
+
+  Future<void> initMethod() async {
+    await getUserProfileDetailsFunction();
   }
 }

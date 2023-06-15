@@ -19,18 +19,7 @@ class SavingSchemeConfirmationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-        // WillPopScope(
-        //   onWillPop: () async {
-        //     CommonWidgets().showBorderSnackBar(
-        //       context: context,
-        //       displayText: "You can not go back from this page.",
-        //     );
-
-        //     // can not go back if false
-        //     return false;
-        //   },
-        Scaffold(
+    return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: AppColors.lightBrownBgColor,
       appBar: AppBar(
@@ -59,7 +48,7 @@ class SavingSchemeConfirmationScreen extends StatelessWidget {
         children: [
           JewellerDetailImageInfoModule(
             imagePath: savingSelectionScreenController.jewellerLogo,
-            schemeName: savingSelectionScreenController.schemeName,
+            schemeName: savingSelectionScreenController.jewellerName,
             schemeTagLine: savingSelectionScreenController.schemeTagLine,
           ),
           SizedBox(height: 2.h),

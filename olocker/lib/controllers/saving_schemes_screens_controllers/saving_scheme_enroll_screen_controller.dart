@@ -15,6 +15,7 @@ class SavingSchemeEnrollScreenController extends GetxController {
   // Getting from Saving Scheme List Screen
   GetSavingSchemeData savingSchemeData = Get.arguments[0];
   String jewellerLogo = Get.arguments[1];
+  String jewellerName = Get.arguments[2];
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -105,7 +106,7 @@ class SavingSchemeEnrollScreenController extends GetxController {
 
     try {
       Map<String, dynamic> bodyData = getBodyData();
-      log('bodyData : $bodyData');
+      log('bodyData : ${jsonEncode(bodyData)}');
 
       http.Response response = await http.post(
         Uri.parse(url),
@@ -134,6 +135,7 @@ class SavingSchemeEnrollScreenController extends GetxController {
             savingSchemeDetails,
             partnerSavingSchemeDetails,
             jewellerLogo,
+            jewellerName,
           ],
         );
 

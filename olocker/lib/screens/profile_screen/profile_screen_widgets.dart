@@ -118,14 +118,14 @@ class DisplayImageDetailsFieldRow extends StatelessWidget {
                               //   ),
                             ))
                           : Container(
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                 color: Colors.black,
                                 shape: BoxShape.circle,
                                 // border: Border.all(
                                 //     color: AppColors.whiteColor, width: 3),
                                 image: DecorationImage(
                                   image: NetworkImage(
-                                    "${ApiUrl.apiImagePath}/images/JewelleryApp/2020/5/9e926966718148acaedc690e4a55d5f8_1.png",
+                                    "${ApiUrl.apiImagePath}${profileScreenController.userApiImageFile}",
                                   ),
                                   fit: BoxFit.cover,
                                 ),
@@ -191,38 +191,41 @@ class NameFieldRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Obx(
-          () => SizedBox(
-            height: 3.8.h,
-            width: 18.w,
-            child: DropdownButton<String>(
-              isDense: true,
-              value: profileScreenController.namePrefixDDvalue.value,
-              alignment: Alignment.center,
-              // hint: Text(
-              //   profileScreenController.namePrefixDDvalue.value,
-              //   style: TextStyle(
-              //     color: AppColors.greyColor,
-              //     fontSize: 11.sp,
-              //     fontWeight: FontWeight.w500,
-              //   ),
-              // ),
-              items: profileScreenController.namePrefixItems
-                  .map((item) => DropdownMenuItem<String>(
-                        value: item,
-                        child: Text(
-                          item,
-                          style: const TextStyle(
-                            fontFamily: "Roboto",
-                            fontSize: 15,
+          () => AbsorbPointer(
+            absorbing: profileScreenController.isEditable.value,
+            child: SizedBox(
+              height: 3.8.h,
+              width: 18.w,
+              child: DropdownButton<String>(
+                isDense: true,
+                value: profileScreenController.namePrefixDDvalue.value,
+                alignment: Alignment.center,
+                // hint: Text(
+                //   profileScreenController.namePrefixDDvalue.value,
+                //   style: TextStyle(
+                //     color: AppColors.greyColor,
+                //     fontSize: 11.sp,
+                //     fontWeight: FontWeight.w500,
+                //   ),
+                // ),
+                items: profileScreenController.namePrefixItems
+                    .map((item) => DropdownMenuItem<String>(
+                          value: item,
+                          child: Text(
+                            item,
+                            style: const TextStyle(
+                              fontFamily: "Roboto",
+                              fontSize: 15,
+                            ),
                           ),
-                        ),
-                      ))
-                  .toList(),
-              onChanged: (val) {
-                if (!profileScreenController.isEditable.value) {
-                  profileScreenController.namePrefixDDvalue.value = val!;
-                }
-              },
+                        ))
+                    .toList(),
+                onChanged: (val) {
+                  if (!profileScreenController.isEditable.value) {
+                    profileScreenController.namePrefixDDvalue.value = val!;
+                  }
+                },
+              ),
             ),
           ),
         ),

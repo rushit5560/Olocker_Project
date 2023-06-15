@@ -22,6 +22,7 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
   SavingSchemeDetails savingSchemeDetails = Get.arguments[3];
   PartnerSavingSchemeDetails partnerSavingSchemeDetails = Get.arguments[4];
   String jewellerLogo = Get.arguments[5];
+  String jewellerName = Get.arguments[6];
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -75,7 +76,8 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
           "Amount": "${savingSchemeDetails.monthlyAmount}",
           "TransactionDate": transDate,
         };
-      } /*else if (paymentTypeEnum == PaymentTypeEnum.visa) {
+      }
+      /*else if (paymentTypeEnum == PaymentTypeEnum.visa) {
         /// handle razorpay events
         ///
         // bodyData = {
@@ -132,6 +134,7 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
             partnerSavingSchemeDetails,
             customerPurchaseSchemeSrNo,
             jewellerLogo,
+            jewellerName,
           ],
         );
 
@@ -160,6 +163,7 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
             savingSchemeDetails,
             partnerSavingSchemeDetails,
             jewellerLogo,
+            jewellerName,
           ],
         );
       }
@@ -304,6 +308,7 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
             partnerSavingSchemeDetails,
             customerPurchaseSchemeSrNo,
             jewellerLogo,
+            jewellerName,
           ],
         );
 
@@ -331,6 +336,8 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
             schemeTagLine,
             savingSchemeDetails,
             partnerSavingSchemeDetails,
+            jewellerLogo,
+            jewellerName,
           ],
         );
       }

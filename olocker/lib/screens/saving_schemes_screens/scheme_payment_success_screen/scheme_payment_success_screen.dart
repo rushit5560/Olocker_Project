@@ -49,8 +49,7 @@ class SchemePaymentSuccessScreen extends StatelessWidget {
           // ),
           title: Text(
             "Make payments",
-                                   style: TextStyleConfig.appbarTextStyle(),
-
+            style: TextStyleConfig.appbarTextStyle(),
           ),
         ),
         bottomNavigationBar: GoBackSavingSchemeButton(),
@@ -59,9 +58,9 @@ class SchemePaymentSuccessScreen extends StatelessWidget {
             children: [
               JewellerDetailImageInfoModule(
                 imagePath: schemePaymentSuccessScreenController.jewellerLogo,
-                schemeName: schemePaymentSuccessScreenController.schemeName,
+                schemeName: schemePaymentSuccessScreenController.jewellerName,
                 schemeTagLine:
-                    schemePaymentSuccessScreenController.schemeTagLine,
+                    schemePaymentSuccessScreenController.schemeName,
               ),
               SizedBox(height: 2.h),
               PaymentDetailsWidget(

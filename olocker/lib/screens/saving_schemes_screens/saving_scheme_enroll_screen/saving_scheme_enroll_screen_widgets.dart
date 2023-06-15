@@ -56,17 +56,18 @@ class MonthlyAmountModule extends StatelessWidget {
                 int tenorAmount =
                     screenController.savingSchemeData.tenor.floor();
 
-                // Getting Mature Amount
-                int matureAmount = fieldAmount * tenorAmount;
-                screenController.maturityAmount.value = matureAmount;
-                log('Mature Amount : ${screenController.maturityAmount.value}');
-                //
-
                 // Calculate Our Contribution
                 var contributionAmount =
                     (fieldAmount / 100) * contributionPercent;
                 screenController.ourContributionAmount.value =
                     contributionAmount.toString();
+                //
+
+                // int contributionValueInInt = int.parse(screenController.ourContributionAmount.value);
+                // Getting Mature Amount
+                int matureAmount = (fieldAmount * tenorAmount);
+                screenController.maturityAmount.value = matureAmount + contributionAmount.round();
+                log('Mature Amount : ${screenController.maturityAmount.value}');
                 //
 
               } else {

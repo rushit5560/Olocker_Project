@@ -191,6 +191,7 @@ class SingleSavingSchemeItem extends StatelessWidget {
                         arguments: [
                           singleScheme,
                           savingSchemesListScreenController.jewellerLogo,
+                          savingSchemesListScreenController.jewellerName,
                         ],
                       );
                     },

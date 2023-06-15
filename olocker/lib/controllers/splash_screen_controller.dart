@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/user_details.dart';
 // import 'package:olocker/main.dart';
@@ -127,6 +128,7 @@ class SplashScreenController extends GetxController {
       log('User Granted Provisional Permission');
     } else {
       log('User declined or has not accepted permission');
+      Geolocator.openAppSettings();
     }
   }
 

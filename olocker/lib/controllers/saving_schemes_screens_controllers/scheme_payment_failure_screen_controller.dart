@@ -11,6 +11,7 @@ class SchemePaymentFailureScreenController extends GetxController {
   SavingSchemeDetails savingSchemeDetails = Get.arguments[3];
   PartnerSavingSchemeDetails partnerSavingSchemeDetails = Get.arguments[4];
   String jewellerLogo = Get.arguments[5];
+  String jewellerName = Get.arguments[6];
 
 
   RxBool isLoading = false.obs;

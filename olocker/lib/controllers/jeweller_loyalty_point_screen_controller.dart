@@ -65,7 +65,11 @@ class JewellerLoyaltyPointScreenController extends GetxController {
 
   @override
   void onInit() {
-    getLoyaltyPointFunction();
+    initMethod();
     super.onInit();
+  }
+
+  Future<void> initMethod() async {
+    await getLoyaltyPointFunction();
   }
 }
