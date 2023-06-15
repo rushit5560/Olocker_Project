@@ -226,7 +226,7 @@ class ProceedToPayButtonModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 140,
+      height: 20.h,
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
       child: Column(
         children: [
@@ -299,6 +299,7 @@ class ProceedToPayButtonModule extends StatelessWidget {
                       savingSelectionScreenController
                           .partnerSavingSchemeDetails,
                       savingSelectionScreenController.jewellerLogo,
+                      savingSelectionScreenController.jewellerName
                     ],
                   );
                 } else {
