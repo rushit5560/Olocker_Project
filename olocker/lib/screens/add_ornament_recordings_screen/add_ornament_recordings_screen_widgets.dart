@@ -596,30 +596,34 @@ class _AddRecordingDetailsFormModuleState
                     ),
                     SizedBox(width: 5.w),
                     ElevatedButton(
-                      onPressed: () {
-                        if (addOrnamentRecordingsController
-                                .selectedActivityTypeName ==
-                            null) {
+                      onPressed: () async {
+                        if (addOrnamentRecordingsController.selectedlocationOfJewellery == null) {
+                          CommonWidgets().showBorderSnackBar(
+                              context: context,
+                              displayText: "Please select location of jewellery type");
+                        } else {
+                          // if (addOrnamentRecordingsController.ornamentRecordingFormKey.currentState!.validate()) {
+                            await addOrnamentRecordingsController.addOrnamentRecordingsFunction();
+                          // }
+                        }
+                        /*if (addOrnamentRecordingsController.selectedActivityTypeName == null) {
                           CommonWidgets().showBorderSnackBar(
                             context: context,
                             displayText: "Please select activity type",
                           );
                         } else {
-                          if (addOrnamentRecordingsController
-                                  .selectedlocationOfJewellery ==
-                              null) {
+                          if (addOrnamentRecordingsController.selectedlocationOfJewellery == null) {
                             CommonWidgets().showBorderSnackBar(
                                 context: context,
-                                displayText:
-                                    "Please select location of jewellery type");
+                                displayText: "Please select location of jewellery type");
                           } else {
                             addOrnamentRecordingsController
                                 .addOrnamentRecordingsFunction();
                           }
-                        }
+                        }*/
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: AppColors.accentColor,
+                        backgroundColor: AppColors.accentColor,
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(24),

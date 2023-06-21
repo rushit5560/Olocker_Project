@@ -131,8 +131,9 @@ class AddOrnamentRecordingsScreenController extends GetxController {
   }
 
   Future<void> addOrnamentRecordingsFunction() async {
-    if (ornamentRecordingFormKey.currentState!.validate()) {
+    // if (ornamentRecordingFormKey.currentState!.validate()) {
       var url = ApiUrl.addTrackingDataApi;
+      log('addOrnamentRecordingsFunction Api URl :$url');
       try {
         isLoading(true);
         Map<String, dynamic> requestMap = {
@@ -158,31 +159,21 @@ class AddOrnamentRecordingsScreenController extends GetxController {
                   ? ""
                   : relevantDocumentkeptController.text,
           "Notes": notesController.text,
-          "RateOfInterest": selectedActivityTypeName!.id == 1
-              ? 0
-              : selectedActivityTypeName!.id == 2
-                  ? 0
-                  : selectedActivityTypeName!.id == 3
-                      ? 0
-                      : selectedActivityTypeName!.id == 5
-                          ? 0
-                          : selectedActivityTypeName!.id == 6
-                              ? 0
-                              : selectedActivityTypeName!.id == 7
-                                  ? 0
-                                  : selectedActivityTypeName!.id == 8
-                                      ? 0
-                                      : int.parse(
-                                          rateOfInterestController.text),
-          "Amountexchange": selectedActivityTypeName!.id == 3
-              ? 0
-              : selectedActivityTypeName!.id == 6
-                  ? 0
-                  : selectedActivityTypeName!.id == 7
-                      ? 0
-                      : selectedActivityTypeName!.id == 8
-                          ? 0
-                          : int.parse(amountController.text),
+        "RateOfInterest": selectedActivityTypeName!.id == 1 ||
+            selectedActivityTypeName!.id == 2 ||
+            selectedActivityTypeName!.id == 3 ||
+            selectedActivityTypeName!.id == 5 ||
+            selectedActivityTypeName!.id == 6 ||
+            selectedActivityTypeName!.id == 7 ||
+            selectedActivityTypeName!.id == 8
+          ? 0
+            : int.parse(rateOfInterestController.text),
+          "Amountexchange": selectedActivityTypeName!.id == 3 ||
+                selectedActivityTypeName!.id == 6 ||
+                selectedActivityTypeName!.id == 7 ||
+                selectedActivityTypeName!.id == 8
+            ? 0
+            : int.parse(amountController.text),
           "CurrentJewelleryLocation": selectedlocationOfJewellery!.id,
           "OtherLocation": selectedlocationOfJewellery!.id == 3
               ? otherLocationOfJewelleryController.text
@@ -229,7 +220,7 @@ class AddOrnamentRecordingsScreenController extends GetxController {
       } finally {
         isLoading(false);
       }
-    }
+    // }
   }
 
 }
