@@ -116,8 +116,8 @@ class ProductDetailsFormModule extends StatelessWidget {
                     unInsuredJewelController.ornamentPurchasedFromController,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.text,
-                validator: (value) =>
-                    FieldValidator().validatePurchasedFrom(value!),
+                // validator: (value) =>
+                //     FieldValidator().validatePurchasedFrom(value!),
                 decoration: InputDecoration(
                   contentPadding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
@@ -176,30 +176,30 @@ class ProductDetailsFormModule extends StatelessWidget {
                 height: 1,
                 thickness: 1,
               ),
-              unInsuredJewelController.isValidate.value
-                  ? unInsuredJewelController
-                              .selectedOrnamentPurchaseDate.value ==
-                          "Select Purchased Date"
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 5),
-                              child: Text(
-                                "Enter Purchased Date",
-                                style: TextStyle(
-                                  fontFamily: "Roboto",
-                                  fontSize: 12,
-                                  color: Colors.red.shade600,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      : const SizedBox()
-                  : const SizedBox(),
+              // unInsuredJewelController.isValidate.value
+              //     ? unInsuredJewelController
+              //                 .selectedOrnamentPurchaseDate.value ==
+              //             "Select Purchased Date"
+              //         ? Row(
+              //             mainAxisAlignment: MainAxisAlignment.start,
+              //             children: [
+              //               Padding(
+              //                 padding: const EdgeInsets.symmetric(
+              //                     horizontal: 15, vertical: 5),
+              //                 child: Text(
+              //                   "Enter Purchased Date",
+              //                   style: TextStyle(
+              //                     fontFamily: "Roboto",
+              //                     fontSize: 12,
+              //                     color: Colors.red.shade600,
+              //                     fontWeight: FontWeight.w400,
+              //                   ),
+              //                 ),
+              //               ),
+              //             ],
+              //           )
+              //         : const SizedBox()
+              //     : const SizedBox(),
               SizedBox(height: 1.h),
               TextFormField(
                 controller:
@@ -207,8 +207,8 @@ class ProductDetailsFormModule extends StatelessWidget {
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) =>
-                    FieldValidator().validatePurchasedPrice(value!),
+                // validator: (value) =>
+                //     FieldValidator().validatePurchasedPrice(value!),
                 decoration: InputDecoration(
                   contentPadding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 5),

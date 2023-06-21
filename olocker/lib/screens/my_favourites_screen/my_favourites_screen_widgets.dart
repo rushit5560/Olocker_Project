@@ -106,8 +106,9 @@ class FavouriteListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log("1111");
     log("single images:  ${ApiUrl.apiImagePath}${singleProd.productDetails.productImageList[0].imageLocation}");
+    log("singleProd.productDetails.price ${singleProd.productDetails.price}");
+    log("singleProd.productDetails.productSku ${singleProd.productDetails.productSku}");
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Stack(
@@ -190,6 +191,7 @@ class FavouriteListItem extends StatelessWidget {
                               color: AppColors.blackTextColor,
                             ),
                           ),
+                          Text(singleProd.productDetails.productSku),
                           SizedBox(height: 0.3.h),
                           Text(
                             singleProd.partnerName,

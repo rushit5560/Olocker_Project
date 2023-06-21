@@ -155,12 +155,12 @@ class HomeScreenController extends GetxController {
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
-      Geolocator.openAppSettings();
+      // Geolocator.openAppSettings();
       isOfflineDeals(false);
 
       if (permission == LocationPermission.denied) {
         permission = await Geolocator.requestPermission();
-        Geolocator.openAppSettings();
+        // Geolocator.openAppSettings();
 
         ScaffoldMessenger.of(Get.context!).showSnackBar(
           const SnackBar(content: Text('Location permissions are denied')),

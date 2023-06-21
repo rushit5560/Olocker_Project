@@ -177,7 +177,7 @@ class ProductDetails {
 
   factory ProductDetails.fromJson(Map<String, dynamic> json) => ProductDetails(
         srNo: json["SrNo"] ?? 0,
-        productSku: json["productsku"] ?? "",
+        productSku: json["ProductSku"] ?? "",
         itemType: json["ItemType"] ?? "",
         itemTypeName: json["ItemTypeName"] ?? "",
         productTypeName: json["ProductTypeName"] ?? "",

@@ -70,7 +70,7 @@ class AddUnInsuredJewelleryScreenController extends GetxController {
     "Cts.",
   ];
 
-  File? jewellerySelectedImageFile;
+  File jewellerySelectedImageFile = File('');
 
   addMetalToMetalsList() {
     if (metalFormKey.currentState!.validate()) {
@@ -126,16 +126,17 @@ class AddUnInsuredJewelleryScreenController extends GetxController {
 
   submitFullForm() async {
     if (productFormKey.currentState!.validate()) {
+      await addOrnamentFunction();
+
       //api call
 
-      if (jewellerySelectedImageFile != null) {
-        await addOrnamentFunction();
-      } else {
-        CommonWidgets().showBorderSnackBar(
-          context: Get.context!,
-          displayText: "Please Upload Jewellery Image.",
-        );
-      }
+      // if (jewellerySelectedImageFile != null) {
+      // } else {
+      //   CommonWidgets().showBorderSnackBar(
+      //     context: Get.context!,
+      //     displayText: "Please Upload Jewellery Image.",
+      //   );
+      // }
     } else {
       log("full form not submitting");
     }
@@ -243,7 +244,6 @@ class AddUnInsuredJewelleryScreenController extends GetxController {
       }
 
       // log("response : ${response.body}");
-
     } catch (e) {
       log('getAllDataAddOrnament Error :$e');
       rethrow;
@@ -257,26 +257,56 @@ class AddUnInsuredJewelleryScreenController extends GetxController {
     log('addOrnamentFunction Api url : $url');
 
     try {
-      List<int> imageBytes = jewellerySelectedImageFile!.readAsBytesSync();
-      String base64Image = base64Encode(imageBytes);
+      Map<String, dynamic> requestMap = {};
 
-      var requestMap = {
-        'CustSrNo': UserDetails.customerId,
-        'name': selectedOrnamentName!.value,
-        'grosswt': ornamentGrossWeightController.text.toString(),
-        'purchased_from': ornamentPurchasedFromController.text.toString(),
-        'purchase_date': selectedOrnamentPurchaseDate.toString(),
-        'purchase_price': ornamentPurchasedPriceController.text.toString(),
-        'ornamentimage': [
-          {
-            "name": "jewelleryImageData",
-            "Base64": base64Image,
-          },
-        ],
-        'metaldetails': metalDataMapList,
-        'stonedetails': stoneDataMapList,
-        'decorativeitem': decoItemsDataMapList,
-      };
+      requestMap.addAll({'CustSrNo': UserDetails.customerId});
+      requestMap.addAll({'name': selectedOrnamentName!.value});
+      requestMap
+          .addAll({'grosswt': ornamentGrossWeightController.text.toString()});
+      requestMap.addAll(
+          {'purchased_from': ornamentPurchasedFromController.text.toString()});
+      requestMap.addAll({
+        'purchase_date':
+            selectedOrnamentPurchaseDate.value == "Select Purchased Date"
+                ? ""
+                : selectedOrnamentPurchaseDate.toString()
+      });
+      requestMap.addAll(
+          {'purchase_price': ornamentPurchasedPriceController.text.toString()});
+      requestMap.addAll({'metaldetails': metalDataMapList});
+      requestMap.addAll({'stonedetails': stoneDataMapList});
+      requestMap.addAll({'decorativeitem': decoItemsDataMapList});
+
+      if (jewellerySelectedImageFile.path.isNotEmpty) {
+        List<int> imageBytes = jewellerySelectedImageFile.readAsBytesSync();
+        String base64Image = base64Encode(imageBytes);
+        requestMap.addAll({
+          'ornamentimage': [
+            {"name": "jewelleryImageData", "Base64": base64Image}
+          ]
+        });
+      }
+
+      /*requestMap = {
+        // 'CustSrNo': UserDetails.customerId,
+        // 'name': selectedOrnamentName!.value,
+        // 'grosswt': ornamentGrossWeightController.text.toString(),
+        // 'purchased_from': ornamentPurchasedFromController.text.toString(),
+        // 'purchase_date':
+        //     selectedOrnamentPurchaseDate.value == "Select Purchased Date"
+        //         ? ""
+        //         : selectedOrnamentPurchaseDate.toString(),
+        // 'purchase_price': ornamentPurchasedPriceController.text.toString(),
+        // 'ornamentimage': [
+        //   {
+        //     "name": "jewelleryImageData",
+        //     "Base64":   base64Image ,
+        //   },
+        // ],
+        // 'metaldetails': metalDataMapList,
+        // 'stonedetails': stoneDataMapList,
+        // 'decorativeitem': decoItemsDataMapList,
+      };*/
 
       log("request body passing is :: ${jsonEncode(requestMap)}");
 
