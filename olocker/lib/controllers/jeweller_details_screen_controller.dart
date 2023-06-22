@@ -302,17 +302,27 @@ class JewellerDetailsScreenController extends GetxController {
 
         if (isSuccessStatus.value) {
           collectionNameList.clear();
+
+          ///  men type
+          bool isMenAvailable = false;
+
           menTypeList.clear();
+
           if (jewelleryTypeModel.productTypeMen.isNotEmpty) {
-            menTypeList
-                .add(ProductTypeItem(name: '', image: ''));
             for (var element in jewelleryTypeModel.productTypeMen) {
               if (element.productCount != 0) {
-
-                // menTypeList.addAll(jewelleryTypeModel.productTypeMen);
-                menTypeList.add(element);
-                for (var element in jewelleryTypeModel.productTypeMen) {
-                  collectionNameList.add(element.name);
+                isMenAvailable = true;
+              }
+            }
+            if (isMenAvailable == true) {
+              menTypeList.add(ProductTypeItem(name: '', image: ''));
+              for (var element in jewelleryTypeModel.productTypeMen) {
+                if (element.productCount != 0) {
+                  // menTypeList.addAll(jewelleryTypeModel.productTypeMen);
+                  menTypeList.add(element);
+                  for (var element in jewelleryTypeModel.productTypeMen) {
+                    collectionNameList.add(element.name);
+                  }
                 }
               }
             }
@@ -324,18 +334,26 @@ class JewellerDetailsScreenController extends GetxController {
             // }
           }
           log('getJewelleryTypeFunction menTypeList : ${menTypeList.length}');
+
+          /// women type
+          bool isWomenAvailable = false;
           womenTypeList.clear();
           if (jewelleryTypeModel.productTypeWomen.isNotEmpty) {
-            womenTypeList
-                .add(ProductTypeItem(name: '', image: ''));
             for (var element in jewelleryTypeModel.productTypeWomen) {
               if (element.productCount != 0) {
+                isWomenAvailable = true;
+              }
+            }
 
-                // womenTypeList.addAll(jewelleryTypeModel.productTypeWomen);
-                womenTypeList.add(element);
-
-                for (var element in jewelleryTypeModel.productTypeWomen) {
-                  collectionNameList.add(element.name);
+            if (isWomenAvailable == true) {
+              womenTypeList.add(ProductTypeItem(name: '', image: ''));
+              for (var element in jewelleryTypeModel.productTypeWomen) {
+                if (element.productCount != 0) {
+                  // womenTypeList.addAll(jewelleryTypeModel.productTypeWomen);
+                  womenTypeList.add(element);
+                  for (var element in jewelleryTypeModel.productTypeWomen) {
+                    collectionNameList.add(element.name);
+                  }
                 }
               }
             }
@@ -347,21 +365,33 @@ class JewellerDetailsScreenController extends GetxController {
             // }
           }
           log('getJewelleryTypeFunction womenTypeList : ${womenTypeList.length}');
+
+          /// Kids type
+          bool isKidsAvailable = false;
           kidsTypeList.clear();
           if (jewelleryTypeModel.productTypeKids.isNotEmpty) {
-            kidsTypeList
-                .add(ProductTypeItem(name: '', image: '' ));
             for (var element in jewelleryTypeModel.productTypeKids) {
               if (element.productCount != 0) {
-
-                // kidsTypeList.addAll(jewelleryTypeModel.productTypeKids);
-                kidsTypeList.add(element);
-
-                for (var element in jewelleryTypeModel.productTypeKids) {
-                  collectionNameList.add(element.name);
-                }
+                isKidsAvailable = true;
               }
             }
+
+            if (isKidsAvailable == true) {
+              kidsTypeList.add(ProductTypeItem(name: '', image: ''));
+              log("kidsTypeList.length ${kidsTypeList.length}");
+              for (var element in jewelleryTypeModel.productTypeKids) {
+                if (element.productCount != 0) {
+                  // kidsTypeList.addAll(jewelleryTypeModel.productTypeKids);
+                  kidsTypeList.add(element);
+                  for (var element in jewelleryTypeModel.productTypeKids) {
+                    collectionNameList.add(element.name);
+                  }
+                }
+              }
+            } else {
+              log('Nothing');
+            }
+
             // kidsTypeList
             //     .add(ProductTypeItem(name: '', image: '', productCount: 0));
             // kidsTypeList.addAll(jewelleryTypeModel.productTypeKids);

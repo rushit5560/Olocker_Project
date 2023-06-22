@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-LoyaltyPointsModel loyaltyPointsModelFromJson(String str) => LoyaltyPointsModel.fromJson(json.decode(str));
+LoyaltyPointsModel loyaltyPointsModelFromJson(String str) =>
+    LoyaltyPointsModel.fromJson(json.decode(str));
 
-String loyaltyPointsModelToJson(LoyaltyPointsModel data) => json.encode(data.toJson());
+String loyaltyPointsModelToJson(LoyaltyPointsModel data) =>
+    json.encode(data.toJson());
 
 class LoyaltyPointsModel {
   LoyaltyPointsModel({
@@ -15,17 +17,19 @@ class LoyaltyPointsModel {
   bool success;
   ErrorInfo errorInfo;
 
-  factory LoyaltyPointsModel.fromJson(Map<String, dynamic> json) => LoyaltyPointsModel(
-    partnerPoint: List<PartnerPoint>.from((json["PartnerPoint"] ?? []).map((x) => PartnerPoint.fromJson(x))),
-    success: json["success"] ?? false,
-    errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
-  );
+  factory LoyaltyPointsModel.fromJson(Map<String, dynamic> json) =>
+      LoyaltyPointsModel(
+        partnerPoint: List<PartnerPoint>.from(
+            (json["PartnerPoint"] ?? []).map((x) => PartnerPoint.fromJson(x))),
+        success: json["success"] ?? false,
+        errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
+      );
 
   Map<String, dynamic> toJson() => {
-    "PartnerPoint": List<dynamic>.from(partnerPoint.map((x) => x.toJson())),
-    "success": success,
-    "error_info": errorInfo.toJson(),
-  };
+        "PartnerPoint": List<dynamic>.from(partnerPoint.map((x) => x.toJson())),
+        "success": success,
+        "error_info": errorInfo.toJson(),
+      };
 }
 
 class ErrorInfo {
@@ -38,22 +42,23 @@ class ErrorInfo {
 
   // int errorType;
   String extraInfo;
+
   // String description;
   // dynamic errorData;
 
   factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
-    // errorType: json["error_type"],
-    extraInfo: json["extra_info"] ?? "",
-    // description: json["description"],
-    // errorData: json["error_data"],
-  );
+        // errorType: json["error_type"],
+        extraInfo: json["extra_info"] ?? "",
+        // description: json["description"],
+        // errorData: json["error_data"],
+      );
 
   Map<String, dynamic> toJson() => {
-    // "error_type": errorType,
-    "extra_info": extraInfo,
-    // "description": description,
-    // "error_data": errorData,
-  };
+        // "error_type": errorType,
+        "extra_info": extraInfo,
+        // "description": description,
+        // "error_data": errorData,
+      };
 }
 
 class PartnerPoint {
@@ -67,6 +72,7 @@ class PartnerPoint {
     required this.partnerSrNo,
     required this.pointsEarnedSummary,
     required this.pointsRedeemedSummary,
+    required this.expirePointModels,
   });
 
   String partner;
@@ -78,30 +84,62 @@ class PartnerPoint {
   String partnerSrNo;
   List<PointsEarnedSummary> pointsEarnedSummary;
   List<PointsRedeemedSummary> pointsRedeemedSummary;
+  List<ExpirePointModel> expirePointModels;
 
   factory PartnerPoint.fromJson(Map<String, dynamic> json) => PartnerPoint(
-    partner: json["Partner"] ?? "",
-    totalPoints: json["TotalPoints"].toString(),
-    valuePerPoint: json["ValuePerPoint"].toString(),
-    totalReedemedPoint: (json["TotalReedemedPoint"] ?? 0).toString(),
-    totalRemainingPoint: json["TotalRemainingPoint"].toString(),
-    logoUrl: json["LogoUrl"] ?? "",
-    partnerSrNo: json["PartnerSrNo"].toString(),
-    pointsEarnedSummary: List<PointsEarnedSummary>.from((json["PointsEarnedSummary"] ?? []).map((x) => PointsEarnedSummary.fromJson(x))),
-    pointsRedeemedSummary: List<PointsRedeemedSummary>.from((json["PointsRedeemedSummary"] ??[ ]).map((x) => PointsRedeemedSummary.fromJson(x))),
-  );
+        partner: json["Partner"] ?? "",
+        totalPoints: json["TotalPoints"].toString(),
+        valuePerPoint: json["ValuePerPoint"].toString(),
+        totalReedemedPoint: (json["TotalReedemedPoint"] ?? 0).toString(),
+        totalRemainingPoint: json["TotalRemainingPoint"].toString(),
+        logoUrl: json["LogoUrl"] ?? "",
+        partnerSrNo: json["PartnerSrNo"].toString(),
+        pointsEarnedSummary: List<PointsEarnedSummary>.from(
+            (json["PointsEarnedSummary"] ?? [])
+                .map((x) => PointsEarnedSummary.fromJson(x))),
+        pointsRedeemedSummary: List<PointsRedeemedSummary>.from(
+            (json["PointsRedeemedSummary"] ?? [])
+                .map((x) => PointsRedeemedSummary.fromJson(x))),
+        expirePointModels: List<ExpirePointModel>.from(
+            (json["expirePointModels"] ?? [])
+                .map((x) => ExpirePointModel.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "Partner": partner,
-    "TotalPoints": totalPoints,
-    "ValuePerPoint": valuePerPoint,
-    "TotalReedemedPoint": totalReedemedPoint,
-    "TotalRemainingPoint": totalRemainingPoint,
-    "LogoUrl": logoUrl,
-    "PartnerSrNo": partnerSrNo,
-    "PointsEarnedSummary": List<dynamic>.from(pointsEarnedSummary.map((x) => x.toJson())),
-    // "PointsRedeemedSummary": List<dynamic>.from(pointsRedeemedSummary.map((x) => x)),
-  };
+        "Partner": partner,
+        "TotalPoints": totalPoints,
+        "ValuePerPoint": valuePerPoint,
+        "TotalReedemedPoint": totalReedemedPoint,
+        "TotalRemainingPoint": totalRemainingPoint,
+        "LogoUrl": logoUrl,
+        "PartnerSrNo": partnerSrNo,
+        "PointsEarnedSummary":
+            List<dynamic>.from(pointsEarnedSummary.map((x) => x.toJson())),
+        "expirePointModels":
+            List<dynamic>.from(expirePointModels.map((x) => x.toJson())),
+        // "PointsRedeemedSummary": List<dynamic>.from(pointsRedeemedSummary.map((x) => x)),
+      };
+}
+
+class ExpirePointModel {
+  String pointExpiryDate;
+  double points;
+
+  ExpirePointModel({
+    required this.pointExpiryDate,
+    required this.points,
+  });
+
+  factory ExpirePointModel.fromJson(Map<String, dynamic> json) =>
+      ExpirePointModel(
+        pointExpiryDate: json["PointExpiryDate"] ?? "",
+        points: json["points"] ?? 0.0,
+      );
+
+  Map<String, dynamic> toJson() => {
+        "PointExpiryDate": pointExpiryDate,
+        "points": points,
+      };
 }
 
 class PointsEarnedSummary {
@@ -117,37 +155,37 @@ class PointsEarnedSummary {
   String creditType;
   String pointExpiryDate;
 
-  factory PointsEarnedSummary.fromJson(Map<String, dynamic> json) => PointsEarnedSummary(
-    points: json["Points"] ?? 0,
-    dateAdded: json["DateAdded"] ?? "",
-    creditType: json["CreditType"] ?? "",
-    pointExpiryDate: json["PointExpiryDate"] ?? "",
-  );
+  factory PointsEarnedSummary.fromJson(Map<String, dynamic> json) =>
+      PointsEarnedSummary(
+        points: json["Points"] ?? 0,
+        dateAdded: json["DateAdded"] ?? "",
+        creditType: json["CreditType"] ?? "",
+        pointExpiryDate: json["PointExpiryDate"] ?? "",
+      );
 
   Map<String, dynamic> toJson() => {
-    "Points": points,
-    "DateAdded": dateAdded,
-    "CreditType": creditType,
-    "PointExpiryDate": pointExpiryDate,
-  };
+        "Points": points,
+        "DateAdded": dateAdded,
+        "CreditType": creditType,
+        "PointExpiryDate": pointExpiryDate,
+      };
 }
 
-
 class PointsRedeemedSummary {
-    String dateRedeemed;
-    int pointsRdeemed;
-    String redeemtionType;
+  String dateRedeemed;
+  int pointsRdeemed;
+  String redeemtionType;
 
-    PointsRedeemedSummary({
-        required this.dateRedeemed,
-        required this.pointsRdeemed,
-        required this.redeemtionType,
-    });
+  PointsRedeemedSummary({
+    required this.dateRedeemed,
+    required this.pointsRdeemed,
+    required this.redeemtionType,
+  });
 
-    factory PointsRedeemedSummary.fromJson(Map<String, dynamic> json) => PointsRedeemedSummary(
+  factory PointsRedeemedSummary.fromJson(Map<String, dynamic> json) =>
+      PointsRedeemedSummary(
         dateRedeemed: json["DateRedeemed"] ?? "",
         pointsRdeemed: json["PointsRdeemed"] ?? 0,
         redeemtionType: json["RedeemtionType"] ?? "",
-    );
-
+      );
 }

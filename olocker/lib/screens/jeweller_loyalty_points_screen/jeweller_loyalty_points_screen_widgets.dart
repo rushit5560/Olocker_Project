@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
@@ -12,279 +14,316 @@ import '../../models/jeweller_loyalty_point_screen_models/loyalty_point_model.da
 class JewellerLoyaltyPointsModule extends StatelessWidget {
   JewellerLoyaltyPointsModule({Key? key}) : super(key: key);
   final screenController = Get.put(JewellerLoyaltyPointScreenController());
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 2.h),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 2.h),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  screenController.loyaltyPoints!.partner,
+                  style: TextStyle(
+                    fontFamily: "Roboto",
+                    color: AppColors.whiteColor,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 50),
+          Stack(
+            clipBehavior: Clip.none,
+            alignment: Alignment.topCenter,
             children: [
-              Text(
-                screenController.loyaltyPoints!.partner,
-                style: TextStyle(
-                  fontFamily: "Roboto",
+              Container(
+                height: screenController.size.height * 0.255,
+                width: double.infinity,
+                decoration: const BoxDecoration(
                   color: AppColors.whiteColor,
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.bold,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: screenController.size.width * 0.24,
+                          width: screenController.size.width * 0.24,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.accentColor,
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.greyColor.withOpacity(0.75),
+                                spreadRadius: 1,
+                                blurRadius: 10,
+                              ),
+                            ],
+                          ),
+                          child: Center(
+                            child: Text(
+                              screenController.loyaltyPoints!.totalPoints
+                                  .toString(),
+                              style: TextStyle(
+                                color: AppColors.whiteColor,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Roboto-Medium",
+                                fontSize: 18.sp,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 1.5.h),
+                        Text(
+                          "total points".toUpperCase(),
+                          style: TextStyle(
+                            // fontFamily: "Roboto-Medium",
+                            fontFamily: "Roboto-Medium",
+                            color: AppColors.darkBlue,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 11.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "redeemed".toUpperCase(),
+                          style: TextStyle(
+                            // fontFamily: "Roboto-Medium",
+                            fontFamily: "Acephimere",
+
+                            color: AppColors.darkBlue,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 11.sp,
+                            height: 1.2,
+                          ),
+                        ),
+                        SizedBox(height: 0.5.h),
+                        Text(
+                          screenController.loyaltyPoints!.totalReedemedPoint
+                              .toString()
+                              .split(".")[0],
+                          style: TextStyle(
+                            // fontFamily: "Roboto-Medium",
+                            fontFamily: "Acephimere",
+                            color: AppColors.accentColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: screenController.size.width * 0.24,
+                          width: screenController.size.width * 0.24,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.accentColor,
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.greyColor.withOpacity(0.75),
+                                spreadRadius: 1,
+                                blurRadius: 10,
+                              ),
+                            ],
+                          ),
+                          child: Center(
+                            child: Text(
+                              screenController
+                                  .loyaltyPoints!.totalRemainingPoint
+                                  .toString(),
+                              style: TextStyle(
+                                fontFamily: "Roboto-Medium",
+                                color: AppColors.whiteColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16.sp,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 1.5.h),
+                        Text(
+                          "remaining".toUpperCase(),
+                          style: TextStyle(
+                            fontFamily: "Roboto-Medium",
+                            color: AppColors.darkBlue,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 11.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ).commonSymmetricPadding(horizontal: 2.w),
+              Positioned(
+                top: -50,
+                child: Container(
+                  height: screenController.size.width * 0.3,
+                  width: screenController.size.width * 0.3,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: AppColors.greyColor, width: 2),
+                    image: DecorationImage(
+                      image: NetworkImage(ApiUrl.apiImagePath +
+                          screenController.loyaltyPoints!.logoUrl),
+                    ),
+                  ),
                 ),
               ),
             ],
           ),
-        ),
-        const SizedBox(height: 50),
-        Stack(
-          clipBehavior: Clip.none,
-          alignment: Alignment.topCenter,
-          children: [
-            Container(
-              height: screenController.size.height * 0.255,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                color: AppColors.whiteColor,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(12),
+          SizedBox(height: 2.h),
+          screenController.loyaltyPoints!.pointsEarnedSummary.isEmpty
+              ? Container()
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Stack(
+                      alignment: Alignment.centerLeft,
+                      children: [
+                        Image.asset(
+                          AppImages.loyaltyPointTitleBGImage,
+                          width: screenController.size.width * 0.70,
+                          height: 35,
+                          fit: BoxFit.fill,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Text(
+                            "Points earned summary",
+                            style: TextStyle(
+                              fontFamily: "Roboto",
+                              color: AppColors.darkBlue,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 2.h),
+                    PointsEarnedSummaryTable(),
+                  ],
+                ),
+
+          SizedBox(height: 1.5.h),
+
+          screenController.loyaltyPoints!.pointsRedeemedSummary.isEmpty
+              ? Container()
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Stack(
+                      alignment: Alignment.centerLeft,
+                      children: [
+                        Image.asset(
+                          AppImages.loyaltyPointTitleBGImage,
+                          width: screenController.size.width * 0.70,
+                          height: 35,
+                          fit: BoxFit.fill,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Text(
+                            "Points reedemed summary",
+                            style: TextStyle(
+                              fontFamily: "Roboto",
+                              color: AppColors.darkBlue,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 2.h),
+                    PointsReedemedSummaryTable()
+                  ],
+                ),
+          // Points Reedemed Module
+          SizedBox(height: 1.5.h),
+
+          screenController.loyaltyPoints!.expirePointModels.isEmpty
+              ? Container()
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Stack(
+                      alignment: Alignment.centerLeft,
+                      children: [
+                        Image.asset(
+                          AppImages.loyaltyPointTitleBGImage,
+                          width: screenController.size.width * 0.70,
+                          height: 35,
+                          fit: BoxFit.fill,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Text(
+                            "Points expired summary",
+                            style: TextStyle(
+                              fontFamily: "Roboto",
+                              color: AppColors.darkBlue,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 2.h),
+                    PointsExpiredSummaryTable(),
+                  ],
+                ),
+          SizedBox(height: 1.5.h),
+          Row(
+            children: [
+              Text(
+                "* Note",
+                style: TextStyle(
+                  fontFamily: "Roboto",
+                  color: AppColors.whiteColor,
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: screenController.size.width * 0.24,
-                        width: screenController.size.width * 0.24,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.accentColor,
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.greyColor.withOpacity(0.75),
-                              spreadRadius: 1,
-                              blurRadius: 10,
-                            ),
-                          ],
-                        ),
-                        child: Center(
-                          child: Text(
-                            screenController.loyaltyPoints!.totalPoints
-                                .toString(),
-                            style: TextStyle(
-                              color: AppColors.whiteColor,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "Roboto-Medium",
-                              fontSize: 18.sp,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 1.5.h),
-                      Text(
-                        "total points".toUpperCase(),
-                        style: TextStyle(
-                          // fontFamily: "Roboto-Medium",
-                          fontFamily: "Roboto-Medium",
-                          color: AppColors.darkBlue,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 11.sp,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        "redeemed".toUpperCase(),
-                        style: TextStyle(
-                          // fontFamily: "Roboto-Medium",
-                          fontFamily: "Acephimere",
-
-                          color: AppColors.darkBlue,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 11.sp,
-                          height: 1.2,
-                        ),
-                      ),
-                      SizedBox(height: 0.5.h),
-                      Text(
-                        screenController.loyaltyPoints!.totalReedemedPoint
-                            .toString()
-                            .split(".")[0],
-                        style: TextStyle(
-                          // fontFamily: "Roboto-Medium",
-                          fontFamily: "Acephimere",
-                          color: AppColors.accentColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13.sp,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: screenController.size.width * 0.24,
-                        width: screenController.size.width * 0.24,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.accentColor,
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.greyColor.withOpacity(0.75),
-                              spreadRadius: 1,
-                              blurRadius: 10,
-                            ),
-                          ],
-                        ),
-                        child: Center(
-                          child: Text(
-                            screenController.loyaltyPoints!.totalRemainingPoint
-                                .toString(),
-                            style: TextStyle(
-                              fontFamily: "Roboto-Medium",
-                              color: AppColors.whiteColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16.sp,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 1.5.h),
-                      Text(
-                        "remaining".toUpperCase(),
-                        style: TextStyle(
-                          fontFamily: "Roboto-Medium",
-                          color: AppColors.darkBlue,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 11.sp,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ).commonSymmetricPadding(horizontal: 2.w),
-            Positioned(
-              top: -50,
-              child: Container(
-                height: screenController.size.width * 0.3,
-                width: screenController.size.width * 0.3,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: AppColors.greyColor, width: 2),
-                  image: DecorationImage(
-                    image: NetworkImage(ApiUrl.apiImagePath +
-                        screenController.loyaltyPoints!.logoUrl),
-                  ),
+              Text(
+                " : 1 Loyalty Point = ${screenController.loyaltyPoints!.valuePerPoint} INR",
+                style: TextStyle(
+                  fontFamily: "Roboto",
+                  color: AppColors.whiteColor,
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.w500,
                 ),
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 2.h),
-        screenController.loyaltyPoints!.pointsEarnedSummary.isEmpty
-            ? Container()
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Stack(
-                    alignment: Alignment.centerLeft,
-                    children: [
-                      Image.asset(
-                        AppImages.loyaltyPointTitleBGImage,
-                        width: screenController.size.width * 0.70,
-                        height: 35,
-                        fit: BoxFit.fill,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          "Points earned summary",
-                          style: TextStyle(
-                            fontFamily: "Roboto",
-                            color: AppColors.darkBlue,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 2.h),
-                  PointsEarnedSummaryTable(),
-                ],
-              ),
-
-        SizedBox(height: 1.5.h),
-
-        screenController.loyaltyPoints!.pointsRedeemedSummary.isEmpty
-            ? Container()
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Stack(
-                    alignment: Alignment.centerLeft,
-                    children: [
-                      Image.asset(
-                        AppImages.loyaltyPointTitleBGImage,
-                        width: screenController.size.width * 0.70,
-                        height: 35,
-                        fit: BoxFit.fill,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          "Points reedemed summary",
-                          style: TextStyle(
-                            fontFamily: "Roboto",
-                            color: AppColors.darkBlue,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 2.h),
-                  PointsReedemedSummaryTable()
-                ],
-              ),
-        // Points Reedemed Module
-
-        SizedBox(height: 1.5.h),
-        Row(
-          children: [
-            Text(
-              "* Note",
-              style: TextStyle(
-                fontFamily: "Roboto",
-                color: AppColors.whiteColor,
-                fontSize: 13.sp,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            Text(
-              " : 1 Loyalty Point = ${screenController.loyaltyPoints!.valuePerPoint} INR",
-              style: TextStyle(
-                fontFamily: "Roboto",
-                color: AppColors.whiteColor,
-                fontSize: 13.sp,
-                fontWeight: FontWeight.w500,
-              ),
-            )
-          ],
-        ).commonOnlyPadding(left: 15),
-      ],
+              )
+            ],
+          ).commonOnlyPadding(left: 15),
+        ],
+      ).commonSymmetricPadding(vertical: 10),
     );
   }
 }
@@ -391,6 +430,153 @@ class PointsEarnedSummaryTable extends StatelessWidget {
         ],
       ),
     ).commonSymmetricPadding(horizontal: 2.w);
+  }
+}
+
+class PointsExpiredSummaryTable extends StatelessWidget {
+  PointsExpiredSummaryTable({Key? key}) : super(key: key);
+
+  final screenController = Get.put(JewellerLoyaltyPointScreenController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 2.w),
+      // padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(
+          Radius.circular(12),
+        ),
+      ),
+      child: Column(
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(12),
+                  topRight: Radius.circular(12),
+                ),
+                child: Image.asset(AppImages.loyaltyTableTitleHeaderBGImage),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "Date",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: "Roboto",
+                          color: AppColors.blackTextColor,
+                          fontSize: 11.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        "Points",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: "Roboto",
+                          color: AppColors.blackTextColor,
+                          fontSize: 11.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: screenController.loyaltyPoints!.expirePointModels.length,
+            itemBuilder: (context, index) {
+              log("screenController.loyaltyPoints!.expirePointModels.length ${screenController.loyaltyPoints!.expirePointModels.length}");
+              var singleExpiredPoint =
+                  screenController.loyaltyPoints!.expirePointModels[index];
+              return SingleExpiredPointTile(
+                singleExpiredPoint: singleExpiredPoint,
+                index: index,
+              );
+            },
+          ),
+        ],
+      ),
+    ).commonSymmetricPadding(horizontal: 2.w);
+  }
+}
+
+class SingleExpiredPointTile extends StatelessWidget {
+  SingleExpiredPointTile(
+      {Key? key, required this.singleExpiredPoint, required this.index})
+      : super(key: key);
+
+  final ExpirePointModel singleExpiredPoint;
+  final int index;
+
+  final screenController = Get.put(JewellerLoyaltyPointScreenController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: index.floor().isEven
+            ? const Color(0xFFE6E6E6)
+            : const Color(0xFFDBDBDB),
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(index ==
+                  screenController.loyaltyPoints!.expirePointModels.length - 1
+              ? 12
+              : 0),
+          bottomRight: Radius.circular(
+            index ==
+                    screenController.loyaltyPoints!.expirePointModels.length - 1
+                ? 12
+                : 0,
+          ),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 8),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Text(
+                singleExpiredPoint.pointExpiryDate.toString(),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: AppColors.blackTextColor,
+                  fontSize: 10.sp,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: "Roboto",
+                ),
+              ),
+            ),
+            Expanded(
+              child: Text(
+                singleExpiredPoint.points.toString(),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: "Roboto",
+                  color: AppColors.blackTextColor,
+                  fontSize: 10.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 

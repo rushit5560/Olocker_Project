@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -227,7 +226,7 @@ class ProfileScreenController extends GetxController {
           "lastname": lnameController.text.toString(),
           "useremail": emailController.text.toString(),
           "Gender": genderValue.toString(),
-          "Salutation": namePrefixDDvalue.value.replaceAll(".", " "),
+          "Salutation": namePrefixDDvalue.value.toString(),
           "Country": "",
           "State": stateController.text.toString(),
           "City": cityController.text.toString(),
@@ -301,7 +300,7 @@ class ProfileScreenController extends GetxController {
           "lastname": lnameController.text.toString(),
           "useremail": emailController.text.toString(),
           "Gender": genderValue.toString(),
-          "Salutation": namePrefixDDvalue.value.replaceAll(".", " "),
+          "Salutation": namePrefixDDvalue.value.toString(),
           "Country": "",
           "State": stateController.text.toString(),
           "City": cityController.text.toString(),

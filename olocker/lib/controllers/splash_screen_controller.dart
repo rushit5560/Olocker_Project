@@ -119,6 +119,7 @@ class SplashScreenController extends GetxController {
       criticalAlert: false,
       provisional: false,
       sound: true,
+
     );
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {

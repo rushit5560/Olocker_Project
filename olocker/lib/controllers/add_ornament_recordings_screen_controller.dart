@@ -137,11 +137,23 @@ class AddOrnamentRecordingsScreenController extends GetxController {
       log('addOrnamentRecordingsFunction Api URl :$url');
       try {
         isLoading(true);
+
+        if(activityDateController.text.trim() == "") {
+          var dateFormat = DateFormat('yyyy/MM/dd');
+
+          var formattedDate = dateFormat.format(DateTime.now());
+          log("selected op date is : : $formattedDate");
+
+          activityDateController.text = formattedDate;
+        }
+
         Map<String, dynamic> requestMap = {
           "CustOraSrNo": custOraSrNo,
           "CustSrNo": UserDetails.customerId,
           "ActivityType": isActivitySelected == false ? "" : "${selectedActivityTypeName!.id}",
+          //
           "ActivityDate": activityDateController.text,
+          //
           "Giventoname": isActivitySelected == false ? "" : selectedActivityTypeName!.id == 8
               ? ""
               : changeAtNameController.text,
@@ -168,13 +180,13 @@ class AddOrnamentRecordingsScreenController extends GetxController {
             selectedActivityTypeName!.id == 7 ||
             selectedActivityTypeName!.id == 8
           ? 0
-            : int.parse(rateOfInterestController.text),
+            : rateOfInterestController.text,
           "Amountexchange": isActivitySelected == false ? "" : selectedActivityTypeName!.id == 3 ||
                 selectedActivityTypeName!.id == 6 ||
                 selectedActivityTypeName!.id == 7 ||
                 selectedActivityTypeName!.id == 8
             ? 0
-            : int.parse(amountController.text),
+            : amountController.text,
           "CurrentJewelleryLocation": selectedlocationOfJewellery!.id,
           "OtherLocation": isActivitySelected == false ? "" : selectedlocationOfJewellery!.id == 3
               ? otherLocationOfJewelleryController.text
@@ -222,6 +234,17 @@ class AddOrnamentRecordingsScreenController extends GetxController {
         isLoading(false);
       }
     // }
+  }
+
+  @override
+  void onInit() {
+   /* var dateFormat = DateFormat('yyyy/MM/dd');
+
+    var formattedDate = dateFormat.format(DateTime.now());
+    log("selected op date is : : $formattedDate");
+
+    activityDateController.text = formattedDate;*/
+    super.onInit();
   }
 
 }

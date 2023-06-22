@@ -1246,14 +1246,6 @@ class JewellerDetailsLoadingShimmer extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                height: 28.h,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: AppColors.greyColor,
-                ),
-              ).commonSymmetricPadding(horizontal: 10),
-              Container(
                 padding: const EdgeInsets.symmetric(vertical: 4),
                 decoration: BoxDecoration(
                   border: Border(
@@ -1348,6 +1340,15 @@ class JewellerDetailsLoadingShimmer extends StatelessWidget {
                   ],
                 ).commonAllSidePadding(10),
               ),
+              Container(
+                height: 28.h,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: AppColors.greyColor,
+                ),
+              ).commonSymmetricPadding(horizontal: 10),
+
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
