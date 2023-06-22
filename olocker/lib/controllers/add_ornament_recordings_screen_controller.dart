@@ -73,6 +73,7 @@ class AddOrnamentRecordingsScreenController extends GetxController {
   ];
 
   FormDDValue? selectedActivityTypeName;
+  bool isActivitySelected = false;
 
   List<FormDDValue> locationOfJewelleryTypeList = [
     FormDDValue(
@@ -139,27 +140,27 @@ class AddOrnamentRecordingsScreenController extends GetxController {
         Map<String, dynamic> requestMap = {
           "CustOraSrNo": custOraSrNo,
           "CustSrNo": UserDetails.customerId,
-          "ActivityType": "${selectedActivityTypeName!.id}",
+          "ActivityType": isActivitySelected == false ? "" : "${selectedActivityTypeName!.id}",
           "ActivityDate": activityDateController.text,
-          "Giventoname": selectedActivityTypeName!.id == 8
+          "Giventoname": isActivitySelected == false ? "" : selectedActivityTypeName!.id == 8
               ? ""
               : changeAtNameController.text,
           "Reasonforexchange":
-              selectedActivityTypeName!.id == 8 ? "" : reasonForController.text,
-          "Weight": selectedActivityTypeName!.id == 5
+          isActivitySelected == false ? "" : selectedActivityTypeName!.id == 8 ? "" : reasonForController.text,
+          "Weight": isActivitySelected == false ? "" : selectedActivityTypeName!.id == 5
               ? ornamentWeightController.text
               : selectedActivityTypeName!.id == 6
                   ? ornamentWeightController.text
                   : selectedActivityTypeName!.id == 7
                       ? ornamentWeightController.text
                       : null,
-          "ReleventDocuments": selectedActivityTypeName!.id == 3
+          "ReleventDocuments": isActivitySelected == false ? "" : selectedActivityTypeName!.id == 3
               ? ""
               : selectedActivityTypeName!.id == 8
                   ? ""
                   : relevantDocumentkeptController.text,
           "Notes": notesController.text,
-        "RateOfInterest": selectedActivityTypeName!.id == 1 ||
+        "RateOfInterest": isActivitySelected == false ? "" : selectedActivityTypeName!.id == 1 ||
             selectedActivityTypeName!.id == 2 ||
             selectedActivityTypeName!.id == 3 ||
             selectedActivityTypeName!.id == 5 ||
@@ -168,14 +169,14 @@ class AddOrnamentRecordingsScreenController extends GetxController {
             selectedActivityTypeName!.id == 8
           ? 0
             : int.parse(rateOfInterestController.text),
-          "Amountexchange": selectedActivityTypeName!.id == 3 ||
+          "Amountexchange": isActivitySelected == false ? "" : selectedActivityTypeName!.id == 3 ||
                 selectedActivityTypeName!.id == 6 ||
                 selectedActivityTypeName!.id == 7 ||
                 selectedActivityTypeName!.id == 8
             ? 0
             : int.parse(amountController.text),
           "CurrentJewelleryLocation": selectedlocationOfJewellery!.id,
-          "OtherLocation": selectedlocationOfJewellery!.id == 3
+          "OtherLocation": isActivitySelected == false ? "" : selectedlocationOfJewellery!.id == 3
               ? otherLocationOfJewelleryController.text
               : ""
         };

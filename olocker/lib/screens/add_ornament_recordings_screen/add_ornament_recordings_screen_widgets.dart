@@ -72,7 +72,7 @@ class _AddRecordingDetailsFormModuleState
                               return DropdownMenuItem<FormDDValue>(
                                 value: activityValue,
                                 child: Text(
-                                  activityValue.textValue,
+                                  activityValue.textValue!,
                                   style: TextStyle(
                                     fontFamily: "Roboto",
                                     fontSize: 11.sp,
@@ -85,6 +85,7 @@ class _AddRecordingDetailsFormModuleState
                             setState(() {
                               addOrnamentRecordingsController
                                   .selectedActivityTypeName = val!;
+                              addOrnamentRecordingsController.isActivitySelected = true;
                             });
                           },
                         ),
@@ -117,7 +118,7 @@ class _AddRecordingDetailsFormModuleState
                               .map((FormDDValue value) {
                             return DropdownMenuItem<FormDDValue>(
                               value: value,
-                              child: Text(value.textValue),
+                              child: Text(value.textValue!),
                             );
                           }).toList(),
                           onChanged: (val) {

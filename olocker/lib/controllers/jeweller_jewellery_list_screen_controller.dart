@@ -30,7 +30,7 @@ class JewellerJewelleryListScreenController extends GetxController {
 
   final ScrollController scrollController = ScrollController();
   RxBool hasMore = true.obs;
-  int pageIndex = 1;
+  int pageIndex = 0;
 
   RxBool hasSearchMore = true.obs;
   int pageSearchIndex = 1;
