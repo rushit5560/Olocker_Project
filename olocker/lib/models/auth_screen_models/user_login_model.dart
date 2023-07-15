@@ -1,40 +1,49 @@
-// To parse this JSON data, do
-//
-//     final userLoginModel = userLoginModelFromJson(jsonString);
 
 import 'dart:convert';
 
 UserLoginModel userLoginModelFromJson(String str) =>
     UserLoginModel.fromJson(json.decode(str));
 
-String userLoginModelToJson(UserLoginModel data) => json.encode(data.toJson());
-
 class UserLoginModel {
+  int statusCode;
+  UserLoginData data;
+
   UserLoginModel({
+    required this.statusCode,
+    required this.data,
+  });
+
+  factory UserLoginModel.fromJson(Map<String, dynamic> json) => UserLoginModel(
+        statusCode: json["statusCode"] ?? 0,
+        data: UserLoginData.fromJson(json["data"] ?? {}),
+      );
+}
+
+class UserLoginData {
+  bool isCustomer;
+  String deviceId;
+  String lastPasswordUpdateDate;
+  int srNo;
+  bool success;
+  ErrorInfo errorInfo;
+
+  UserLoginData({
     required this.isCustomer,
     required this.deviceId,
+    required this.lastPasswordUpdateDate,
+    required this.srNo,
     required this.success,
     required this.errorInfo,
   });
 
-  final bool isCustomer;
-  final String deviceId;
-  final bool success;
-  final ErrorInfo errorInfo;
-
-  factory UserLoginModel.fromJson(Map<String, dynamic> json) => UserLoginModel(
-        isCustomer: json["IsCustomer"] ?? false,
-        deviceId: json["DeviceId"] ?? "",
+  factory UserLoginData.fromJson(Map<String, dynamic> json) => UserLoginData(
+        isCustomer: json["isCustomer"] ?? false,
+        deviceId: json["deviceId"] ?? "",
+        lastPasswordUpdateDate: json["lastPasswordUpdateDate"] ?? "",
+        srNo: json["srNo"] ?? 0,
         success: json["success"] ?? false,
         errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
       );
-
-  Map<String, dynamic> toJson() => {
-        "IsCustomer": isCustomer,
-        "DeviceId": deviceId,
-        "success": success,
-        "error_info": errorInfo.toJson(),
-      };
 }
 
 class ErrorInfo {
@@ -56,11 +65,4 @@ class ErrorInfo {
         description: json["description"] ?? "",
         errorData: json["error_data"] ?? "",
       );
-
-  Map<String, dynamic> toJson() => {
-        "error_type": errorType,
-        "extra_info": extraInfo,
-        "description": description,
-        "error_data": errorData,
-      };
 }

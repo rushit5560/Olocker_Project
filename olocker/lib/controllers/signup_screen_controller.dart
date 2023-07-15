@@ -117,8 +117,8 @@ class SignUpScreenController extends GetxController {
 
       UserLoginModel userLoginModel = UserLoginModel.fromJson(resBody);
 
-      var isSuccessStatus = userLoginModel.success;
-      var isCustomerExist = userLoginModel.isCustomer;
+      var isSuccessStatus = userLoginModel.data.success;
+      var isCustomerExist = userLoginModel.data.isCustomer;
 
       log("checkMobileNumber success  : $isSuccessStatus");
       log("is customer exist : $isCustomerExist");
@@ -139,9 +139,9 @@ class SignUpScreenController extends GetxController {
           behavior: SnackBarBehavior.floating,
           margin: const EdgeInsets.all(8),
           content: Text(
-            userLoginModel.errorInfo.extraInfo.isEmpty
+            userLoginModel.data.errorInfo.extraInfo.isEmpty
                 ? "User Not Registered"
-                : userLoginModel.errorInfo.extraInfo,
+                : userLoginModel.data.errorInfo.extraInfo,
             style: const TextStyle(
               color: AppColors.whiteColor,
             ),
