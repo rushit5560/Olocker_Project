@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class UserPrefsData {
   String customerLoggedInKey = "customerLoggedInKey";
   String customerIdKey = "customerIdKey";
-String locationZipCodeKey="locationZipCodeKey";
+  String locationZipCodeKey = "locationZipCodeKey";
   String customerUserNameKey = "customerUserNameKey";
 
   String customerGenderKey = "customerGenderKey";
@@ -43,6 +43,7 @@ String locationZipCodeKey="locationZipCodeKey";
     required String customerState,
     required String customerCountry,
     required String customerDob,
+    required String deviceId,
   }) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool(customerLoggedInKey, true);
@@ -61,6 +62,7 @@ String locationZipCodeKey="locationZipCodeKey";
     prefs.setString(customerStateKey, customerState);
     prefs.setString(customerCountryKey, customerCountry);
     prefs.setString(customerDOBKey, customerDob);
+    prefs.setString(fcmTokenKey, deviceId);
 
     if (customerDob == "") {
       prefs.setInt(updateProfileCountKey, 0);
@@ -86,7 +88,7 @@ String locationZipCodeKey="locationZipCodeKey";
     UserDetails.customerState = customerState;
     UserDetails.customerCountry = customerCountry;
     UserDetails.customerDob = customerDob;
-
+    UserDetails.deviceId = deviceId;
     UserDetails.customerId = customerId;
     UserDetails.updateProfileCount = prefs.getInt(updateProfileCountKey) ?? 0;
 
@@ -109,6 +111,8 @@ String locationZipCodeKey="locationZipCodeKey";
     log("UserDetails.updateProfileCount ::: ${UserDetails.updateProfileCount}");
 
     log("UserDetails.customerId ::: ${UserDetails.customerId}");
+    log("UserDetails.deviceId ::: ${UserDetails.deviceId}");
+
   }
 
   getCustomerFromPrefs() async {
@@ -223,21 +227,20 @@ String locationZipCodeKey="locationZipCodeKey";
     log('fcmToken : ${prefs.getString(fcmTokenKey)}');
   }
 
-   getCustSrNoPrefs(String customerId) async {
+  getCustSrNoPrefs(String customerId) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(customerIdKey,customerId );
+    prefs.setString(customerIdKey, customerId);
     log('customerIdKey : ${prefs.getString(customerIdKey)}');
   }
-getLocationZipCode(String locationZipCode)async{
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.setString(locationZipCodeKey,locationZipCode );
-  log('locationZipCodeKey : ${prefs.getString(locationZipCode)}');
 
-
-}
-  // Get String Permission
-  // Future<String> getCustSrNoPrefs({required String keyId}) async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   return prefs.getString(keyId) ?? "";
-  // }
+  getLocationZipCode(String locationZipCode) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(locationZipCodeKey, locationZipCode);
+    log('locationZipCodeKey : ${prefs.getString(locationZipCode)}');
+  }
+// Get String Permission
+// Future<String> getCustSrNoPrefs({required String keyId}) async {
+//   SharedPreferences prefs = await SharedPreferences.getInstance();
+//   return prefs.getString(keyId) ?? "";
+// }
 }

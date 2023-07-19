@@ -169,7 +169,7 @@ class IndexScreenController extends GetxController {
 
   Future<void> initMethod() async {
     Timer.periodic(const Duration(seconds: 1), (timer) async {
-      await getNotificationCountFunction();
+      // await getNotificationCountFunction();
       // log('notificationCount 1111: ${notificationCount.value}');
     });
     checkUserDOBData();

@@ -6,7 +6,8 @@ class ApiHeader {
 }
 
 class ApiUrl {
-  static const String apiMainPath = "http://192.168.0.125:2023/";
+  static const String apiMainPath = "http://192.168.29.90:2023/";
+  // https://devappapi.olocker.in/
   // static const String apiMainPath = "http://5.189.147.159:7009/";
 
   // static const String apiImageUrlPath = "https://devappapi.olocker.in/";
@@ -116,7 +117,7 @@ class ApiUrl {
 
   //authentication apis
   static const String userLoginApi = "${apiMainPath}api/User/UserLogin";
-  static const String validateOtpApi = "${apiMainPath}api/user/ValidateOtp/";
+  static const String validateOtpApi = "${apiMainPath}api/user/ValidateOtp";
   static const String checkUserByMobileApi =
       "${apiMainPath}api/User/CheckUserByMobile";
   static const String registerApi = "${apiMainPath}api/User/Register";

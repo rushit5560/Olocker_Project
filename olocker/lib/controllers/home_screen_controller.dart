@@ -72,7 +72,7 @@ class HomeScreenController extends GetxController {
       rethrow;
     }
 
-    await getBannerFunction();
+    // await getBannerFunction();
   }
 
   Future<void> getBannerFunction() async {

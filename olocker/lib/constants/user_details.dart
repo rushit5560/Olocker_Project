@@ -16,7 +16,7 @@ class UserDetails {
   static String customerState = '';
   static String customerCountry = '';
   static String customerDob = '';
-
+static String deviceId='';
   static String customerId = '';
   static int updateProfileCount = 0;
 }

@@ -1,45 +1,93 @@
 // To parse this JSON data, do
 //
 //     final loginResponseModel = loginResponseModelFromJson(jsonString);
+//
+// import 'dart:convert';
+//
+// LoginResponseModel loginResponseModelFromJson(String str) =>
+//     LoginResponseModel.fromJson(json.decode(str));
+//
+// String loginResponseModelToJson(LoginResponseModel data) =>
+//     json.encode(data.toJson());
+//
+// class LoginResponseModel {
+//   LoginResponseModel({
+//     required this.userRequestValidateOtp,
+//     required this.isCustomer,
+//     required this.success,
+//     required this.errorInfo,
+//   });
+//
+//   final List<UserRequestValidateOtp> userRequestValidateOtp;
+//   final bool isCustomer;
+//   final bool success;
+//   final ErrorInfo errorInfo;
+//
+//   factory LoginResponseModel.fromJson(Map<String, dynamic> json) =>
+//       LoginResponseModel(
+//         userRequestValidateOtp: List<UserRequestValidateOtp>.from(
+//             (json["UserRequestValidateOtp"] ?? [])
+//                 .map((x) => UserRequestValidateOtp.fromJson(x))),
+//         isCustomer: json["IsCustomer"] ?? false,
+//         success: json["success"] ?? false,
+//         errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
+//       );
+//
+//   Map<String, dynamic> toJson() => {
+//         "UserRequestValidateOtp":
+//             List<dynamic>.from(userRequestValidateOtp.map((x) => x.toJson())),
+//         "IsCustomer": isCustomer,
+//         "success": success,
+//         "error_info": errorInfo.toJson(),
+//       };
+// }
+//
+//
 
 import 'dart:convert';
 
 LoginResponseModel loginResponseModelFromJson(String str) =>
     LoginResponseModel.fromJson(json.decode(str));
 
-String loginResponseModelToJson(LoginResponseModel data) =>
-    json.encode(data.toJson());
-
 class LoginResponseModel {
+  int statusCode;
+  LoginResponseData data;
+
   LoginResponseModel({
+    required this.statusCode,
+    required this.data,
+  });
+
+  factory LoginResponseModel.fromJson(Map<String, dynamic> json) =>
+      LoginResponseModel(
+        statusCode: json["statusCode"] ?? 0,
+        data: LoginResponseData.fromJson(json["data"] ?? {}),
+      );
+}
+
+class LoginResponseData {
+  List<UserRequestValidateOtp> userRequestValidateOtp;
+  bool isCustomer;
+  bool success;
+  ErrorInfo errorInfo;
+
+  LoginResponseData({
     required this.userRequestValidateOtp,
     required this.isCustomer,
     required this.success,
     required this.errorInfo,
   });
 
-  final List<UserRequestValidateOtp> userRequestValidateOtp;
-  final bool isCustomer;
-  final bool success;
-  final ErrorInfo errorInfo;
-
-  factory LoginResponseModel.fromJson(Map<String, dynamic> json) =>
-      LoginResponseModel(
+  factory LoginResponseData.fromJson(Map<String, dynamic> json) =>
+      LoginResponseData(
         userRequestValidateOtp: List<UserRequestValidateOtp>.from(
-            (json["UserRequestValidateOtp"] ?? [])
-                .map((x) => UserRequestValidateOtp.fromJson(x))),
-        isCustomer: json["IsCustomer"] ?? false,
+            (json["userRequestValidateOtp"] ?? [])
+                    .map((x) => UserRequestValidateOtp.fromJson(x)) ??
+                {}),
+        isCustomer: json["isCustomer"] ?? false,
         success: json["success"] ?? false,
         errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
       );
-
-  Map<String, dynamic> toJson() => {
-        "UserRequestValidateOtp":
-            List<dynamic>.from(userRequestValidateOtp.map((x) => x.toJson())),
-        "IsCustomer": isCustomer,
-        "success": success,
-        "error_info": errorInfo.toJson(),
-      };
 }
 
 class ErrorInfo {
@@ -61,13 +109,6 @@ class ErrorInfo {
         description: json["description"] ?? "",
         errorData: json["error_data"] ?? "",
       );
-
-  Map<String, dynamic> toJson() => {
-        "error_type": errorType,
-        "extra_info": extraInfo,
-        "description": description,
-        "error_data": errorData,
-      };
 }
 
 class UserRequestValidateOtp {
@@ -90,6 +131,9 @@ class UserRequestValidateOtp {
     this.otp,
     required this.custSrNo,
     this.referredByMobileNo,
+    required this.deviceId,
+    required this.lastPasswordUpdateDate,
+    required this.srNo,
   });
 
   final dynamic userName;
@@ -110,47 +154,32 @@ class UserRequestValidateOtp {
   final dynamic otp;
   final String custSrNo;
   final dynamic referredByMobileNo;
+  final String deviceId;
+  final String lastPasswordUpdateDate;
+  final int srNo;
 
   factory UserRequestValidateOtp.fromJson(Map<String, dynamic> json) =>
       UserRequestValidateOtp(
-        userName: json["UserName"] ?? "",
-        password: json["Password"] ?? "",
-        gender: json["Gender"] ?? "",
-        firstName: json["FirstName"] ?? "",
-        lastName: json["LastName"] ?? "",
-        userEmail: json["UserEmail"] ?? "",
-        mobileNo: json["MobileNo"] ?? "",
-        address: json["Address"] ?? "",
-        city: json["City"] ?? "",
-        pin: json["Pin"] ?? "",
-        state: json["State"] ?? "",
-        country: json["Country"] ?? "",
-        dob: json["DOB"] ?? "",
-        profilePic: json["ProfilePic"] ?? "",
-        profilePicLoc: json["ProfilePicLoc"] ?? "",
-        otp: json["OTP"] ?? "",
-        custSrNo: json["CustSrNo"] ?? "",
-        referredByMobileNo: json["ReferredByMobileNo"] ?? "",
+        userName: json["userName"] ?? "",
+        password: json["password"] ?? "",
+        gender: json["gender"] ?? "",
+        firstName: json["firstName"] ?? "",
+        lastName: json["lastName"] ?? "",
+        userEmail: json["userEmail"] ?? "",
+        mobileNo: json["mobileNo"] ?? "",
+        address: json["address"] ?? "",
+        city: json["city"] ?? "",
+        pin: json["pin"] ?? "",
+        state: json["state"] ?? "",
+        country: json["country"] ?? "",
+        dob: json["dob"] ?? "",
+        profilePic: json["profilePic"] ?? "",
+        profilePicLoc: json["profilePicLoc"] ?? "",
+        otp: json["otp"] ?? "",
+        custSrNo: json["custSrNo"] ?? "",
+        referredByMobileNo: json["referredByMobileNo"] ?? "",
+        deviceId: json["deviceId"] ?? "",
+        lastPasswordUpdateDate: json["lastPasswordUpdateDate"] ?? "",
+        srNo: json["srNo"] ?? 0,
       );
-
-  Map<String, dynamic> toJson() => {
-        "UserName": userName,
-        "Password": password,
-        "Gender": gender,
-        "FirstName": firstName,
-        "LastName": lastName,
-        "UserEmail": userEmail,
-        "MobileNo": mobileNo,
-        "Address": address,
-        "City": city,
-        "Pin": pin,
-        "State": state,
-        "Country": country,
-        "DOB": dob,
-        "ProfilePic": profilePic,
-        "ProfilePicLoc": profilePicLoc,
-        "OTP": otp,
-        "CustSrNo": custSrNo,
-        "ReferredByMobileNo": referredByMobileNo,
-      };
 }

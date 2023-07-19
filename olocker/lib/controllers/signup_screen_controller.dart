@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -14,24 +13,22 @@ import 'package:http/http.dart' as http;
 import '../constants/api_url.dart';
 import '../constants/app_colors.dart';
 import '../models/auth_screen_models/register_model.dart';
+import '../models/check_mobile_number_model/check_mobile_number_model.dart';
+// import 'package:dio/dio.dart' as dio;
 
 class SignUpScreenController extends GetxController {
   final size = Get.size;
   UserPrefsData userPrefsData = UserPrefsData();
-
   RxBool isLoading = false.obs;
-
+  // final dioRequest = dio.Dio();
   final apiHeader = ApiHeader();
   String deviceTokenToSendPushNotification = "";
-
   TextEditingController fnameController = TextEditingController();
   TextEditingController lnameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController numberController = TextEditingController();
   TextEditingController codeController = TextEditingController();
-
   final formKey = GlobalKey<FormState>();
-
   RxString namePrefixDDvalue = 'Mr.'.obs;
   var namePrefixItems = [
     'Mr.',
@@ -49,10 +46,15 @@ class SignUpScreenController extends GetxController {
 
     // if (formKey.currentState!.validate()) {
     String url = "${ApiUrl.checkUserByMobileApi}?mobileNo=$mobNumber";
-    log(" checkMobileNumber url: $url");
+    log(" checkMobileNumber url1212: $url");
 
     try {
       isLoading(true);
+      // final dio.Response response = await dioRequest.get(url,
+      // options: dio.Options(
+      //   headers: apiHeader.headers,
+      // ),
+      // );
       http.Response response = await http.get(
         Uri.parse(url),
         headers: apiHeader.headers,
@@ -64,11 +66,14 @@ class SignUpScreenController extends GetxController {
       var resBody = json.decode(response.body);
 
       // registerModel registerModel = registerModel.fromJson(resBody);
+      CheckMobileNumberModel checkMobileNumberModel =
+          CheckMobileNumberModel.fromJson(resBody);
+      // var isSuccessStatus = resBody["success"];
+      // var isCustomerExist = resBody["userMobile"]["isExist"];
+      var isSuccessStatus=checkMobileNumberModel.data.success;
+      var isCustomerExist = checkMobileNumberModel.data.userMobile.isExist;
+      log("isSuccessStatus : $isSuccessStatus");
 
-      var isSuccessStatus = resBody["success"];
-      var isCustomerExist = resBody["UserMobile"]["IsExist"];
-
-      log("checkMobileNumber success  : $isSuccessStatus");
       log("is customer exist : $isCustomerExist");
 
       if (isCustomerExist == true) {
@@ -85,10 +90,11 @@ class SignUpScreenController extends GetxController {
     } catch (e) {
       log("checkMobileNumber Error ::: $e");
       rethrow;
-    } finally {
+    } /*finally {
       isLoading(false);
-    }
-    // }
+    }*/
+
+    isLoading(false);
   }
 
   Future<void> userLoginFunction(BuildContext context) async {
@@ -98,7 +104,7 @@ class SignUpScreenController extends GetxController {
     String mobNumber = numberController.text.toString();
 
     String url = ApiUrl.userLoginApi;
-    log(" checkMobileNumber url: $url");
+    log("checkMobileNumber url: $url");
 
     try {
       var formData = {
@@ -190,7 +196,7 @@ class SignUpScreenController extends GetxController {
 
         RegisterModel registerModel = RegisterModel.fromJson(resBody);
 
-        var isSuccessStatus = registerModel.success;
+        var isSuccessStatus = registerModel.data.success;
 
         log("checkMobileNumber success  : $isSuccessStatus");
 
@@ -205,7 +211,7 @@ class SignUpScreenController extends GetxController {
             behavior: SnackBarBehavior.floating,
             margin: const EdgeInsets.all(8),
             content: Text(
-              "${registerModel.errorInfo.extraInfo} | ${registerModel.errorInfo.description}",
+              "${registerModel.data.errorInfo.extraInfo} | ${registerModel.data.errorInfo.description}",
               style: const TextStyle(
                 color: AppColors.blackColor,
               ),
@@ -262,17 +268,17 @@ class SignUpScreenController extends GetxController {
     }
   }
 
-  // @override
-  // void onInit() {
-  //   getDeviceTokenToSendNotification();
-  //   super.onInit();
-  // }
+// @override
+// void onInit() {
+//   getDeviceTokenToSendNotification();
+//   super.onInit();
+// }
 
-  // Future<void> getDeviceTokenToSendNotification() async {
-  //   log("getDeviceTokenToSendNotification");
-  //   final FirebaseMessaging fcm = FirebaseMessaging.instance;
-  //   final token = await fcm.getToken();
-  //   deviceTokenToSendPushNotification = token.toString();
-  //   await userPrefsData.setFcmInPrefs(deviceTokenToSendPushNotification);
-  // }
+// Future<void> getDeviceTokenToSendNotification() async {
+//   log("getDeviceTokenToSendNotification");
+//   final FirebaseMessaging fcm = FirebaseMessaging.instance;
+//   final token = await fcm.getToken();
+//   deviceTokenToSendPushNotification = token.toString();
+//   await userPrefsData.setFcmInPrefs(deviceTokenToSendPushNotification);
+// }
 }

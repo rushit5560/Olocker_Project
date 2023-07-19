@@ -23,20 +23,21 @@ class MobileNumberScreenController extends GetxController {
   TextEditingController numberController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
-  String deviceTokenToSendPushNotification = "";
   String customerId = "";
   UserPrefsData userPrefsData = UserPrefsData();
 
   ApiHeader apiHeader = ApiHeader();
   RxBool termConditionCheckValue = false.obs;
-
+String mobileNumber="";
+  // String deviceTokenToSendPushNotification = "";
 
   Future<void> userLoginFunction(BuildContext context) async {
-    log("DeviceTokenToSendPushNotification login time: $deviceTokenToSendPushNotification");
+    // final FirebaseMessaging fcm = FirebaseMessaging.instance;
+    // final token = await fcm.getToken();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
     String mobNumber = numberController.text.toString();
-
+    // deviceTokenToSendPushNotification = token.toString();
+    // await userPrefsData.setFcmInPrefs(deviceTokenToSendPushNotification);
     if (formKey.currentState!.validate()) {
       isLoading(true);
       String url = ApiUrl.userLoginApi;
@@ -102,5 +103,18 @@ class MobileNumberScreenController extends GetxController {
   }
 
 
+  Future<void> initMethod() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    mobileNumber =
+        prefs.getString(UserPrefsData().customerMobileNoKey) ?? "";
+    log("mobileNumber: $mobileNumber");
+  }
+
+  @override
+  void onInit() {
+    initMethod();
+    super.onInit();
+  }
   
 }

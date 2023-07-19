@@ -22,7 +22,7 @@ class OtpScreenController extends GetxController {
   RxBool isLoading = false.obs;
 
   final apiHeader = ApiHeader();
-
+  String mobileNumber = "";
   TextEditingController otpController = TextEditingController();
   String deviceTokenToSendPushNotification = "";
   String customerId = "";
@@ -39,9 +39,10 @@ class OtpScreenController extends GetxController {
     try {
       // isLoading(true);
       String url = ApiUrl.userLoginApi;
-      log(" checkMobileNumber url: $url");
+      log("checkMobileNumber url: $url");
       var formData = {
         "MobileNo": mobNumber,
+
       };
 
       log("formdata mobile  is : $formData");
@@ -114,10 +115,10 @@ class OtpScreenController extends GetxController {
   Future<void> validateOtpNumberFunction(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       try {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-
-        String mobileNumber =
-            prefs.getString(UserPrefsData().customerMobileNoKey) ?? "";
+        // SharedPreferences prefs = await SharedPreferences.getInstance();
+        //
+        // String mobileNumber =
+        //     prefs.getString(UserPrefsData().customerMobileNoKey) ?? "";
 
         // Get.to(() => IndexScreen());
         isLoading(true);
@@ -145,57 +146,66 @@ class OtpScreenController extends GetxController {
 
           LoginResponseModel loginModel = LoginResponseModel.fromJson(resBody);
 
-          var isSuccessStatus = loginModel.success;
+          var isSuccessStatus = loginModel.data.success;
 
           log("validateOtpNumberFunction success  : $isSuccessStatus");
 
           if (isSuccessStatus == true) {
             UserPrefsData().setCustomerPrefsData(
-              customerMobileNo:
-                  loginModel.userRequestValidateOtp[0].mobileNo == ""
-                      ? ""
-                      : loginModel.userRequestValidateOtp[0].mobileNo,
-              customerId: loginModel.userRequestValidateOtp[0].custSrNo == ""
-                  ? ""
-                  : loginModel.userRequestValidateOtp[0].custSrNo,
-              customerUsername:
-                  loginModel.userRequestValidateOtp[0].userName == ""
-                      ? ""
-                      : loginModel.userRequestValidateOtp[0].userName,
-              customerFname:
-                  loginModel.userRequestValidateOtp[0].firstName == ""
-                      ? ""
-                      : loginModel.userRequestValidateOtp[0].firstName,
-              customerLname: loginModel.userRequestValidateOtp[0].lastName == ""
-                  ? ""
-                  : loginModel.userRequestValidateOtp[0].lastName,
-              customerEmail:
-                  loginModel.userRequestValidateOtp[0].userEmail == ""
-                      ? ""
-                      : loginModel.userRequestValidateOtp[0].userEmail,
-              customerGender: loginModel.userRequestValidateOtp[0].gender == ""
-                  ? ""
-                  : loginModel.userRequestValidateOtp[0].gender,
-              customerAddress:
-                  loginModel.userRequestValidateOtp[0].address == ""
-                      ? ""
-                      : loginModel.userRequestValidateOtp[0].address,
-              customerCity: loginModel.userRequestValidateOtp[0].city == ""
-                  ? ""
-                  : loginModel.userRequestValidateOtp[0].city,
-              customerPin: loginModel.userRequestValidateOtp[0].pin == ""
-                  ? ""
-                  : loginModel.userRequestValidateOtp[0].pin,
-              customerState: loginModel.userRequestValidateOtp[0].state == ""
-                  ? ""
-                  : loginModel.userRequestValidateOtp[0].state,
-              customerCountry:
-                  loginModel.userRequestValidateOtp[0].country == ""
-                      ? ""
-                      : loginModel.userRequestValidateOtp[0].country,
-              customerDob: loginModel.userRequestValidateOtp[0].dob == ""
-                  ? ""
-                  : loginModel.userRequestValidateOtp[0].dob,
+                customerMobileNo:
+                loginModel.data.userRequestValidateOtp[0].mobileNo == ""
+                    ? ""
+                    : loginModel.data.userRequestValidateOtp[0].mobileNo,
+                customerId:
+                loginModel.data.userRequestValidateOtp[0].custSrNo == ""
+                    ? ""
+                    : loginModel.data.userRequestValidateOtp[0].custSrNo,
+                customerUsername:
+                loginModel.data.userRequestValidateOtp[0].userName == ""
+                    ? ""
+                    : loginModel.data.userRequestValidateOtp[0].userName,
+                customerFname:
+                loginModel.data.userRequestValidateOtp[0].firstName == ""
+                    ? ""
+                    : loginModel.data.userRequestValidateOtp[0].firstName,
+                customerLname:
+                loginModel.data.userRequestValidateOtp[0].lastName == ""
+                    ? ""
+                    : loginModel.data.userRequestValidateOtp[0].lastName,
+                customerEmail:
+                loginModel.data.userRequestValidateOtp[0].userEmail == ""
+                    ? ""
+                    : loginModel.data.userRequestValidateOtp[0].userEmail,
+                customerGender:
+                loginModel.data.userRequestValidateOtp[0].gender == ""
+                    ? ""
+                    : loginModel.data.userRequestValidateOtp[0].gender,
+                customerAddress:
+                loginModel.data.userRequestValidateOtp[0].address == ""
+                    ? ""
+                    : loginModel.data.userRequestValidateOtp[0].address,
+                customerCity: loginModel.data.userRequestValidateOtp[0].city ==
+                    ""
+                    ? ""
+                    : loginModel.data.userRequestValidateOtp[0].city,
+                customerPin: loginModel.data.userRequestValidateOtp[0].pin == ""
+                    ? ""
+                    : loginModel.data.userRequestValidateOtp[0].pin,
+                customerState:
+                loginModel.data.userRequestValidateOtp[0].state == ""
+                    ? ""
+                    : loginModel.data.userRequestValidateOtp[0].state,
+                customerCountry:
+                loginModel.data.userRequestValidateOtp[0].country == ""
+                    ? ""
+                    : loginModel.data.userRequestValidateOtp[0].country,
+                customerDob: loginModel.data.userRequestValidateOtp[0].dob == ""
+                    ? ""
+                    : loginModel.data.userRequestValidateOtp[0].dob,
+                deviceId: loginModel.data.userRequestValidateOtp[0].deviceId ==
+                    "" ? "" : loginModel.data.userRequestValidateOtp[0].deviceId
+
+
             );
 
             await updateDeviceIdFunction();
@@ -206,7 +216,8 @@ class OtpScreenController extends GetxController {
               behavior: SnackBarBehavior.floating,
               margin: const EdgeInsets.all(8),
               content: Text(
-                "${loginModel.errorInfo.extraInfo} | ${loginModel.errorInfo.description}",
+                "${loginModel.data.errorInfo.extraInfo} | ${loginModel.data
+                    .errorInfo.description}",
                 style: const TextStyle(
                   color: AppColors.blackColor,
                 ),
@@ -260,8 +271,8 @@ class OtpScreenController extends GetxController {
       var resBody = json.decode(response.body);
 
       UpdateDeviceIdModel updateDeviceIdModel =
-          UpdateDeviceIdModel.fromJson(resBody);
-      var isSuccessStatus = updateDeviceIdModel.success;
+      UpdateDeviceIdModel.fromJson(resBody);
+      var isSuccessStatus = updateDeviceIdModel.data.success;
       if (isSuccessStatus == true) {
         log("updateDeviceIdFunction Device id updated");
         Get.offAll(() => IndexScreen());
@@ -274,5 +285,19 @@ class OtpScreenController extends GetxController {
     }
     isLoading(true);
     isLoading(false);
+  }
+
+  Future<void> initMethod() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    mobileNumber =
+        prefs.getString(UserPrefsData().customerMobileNoKey) ?? "";
+    log("mobileNumber: $mobileNumber");
+  }
+
+  @override
+  void onInit() {
+    initMethod();
+    super.onInit();
   }
 }
