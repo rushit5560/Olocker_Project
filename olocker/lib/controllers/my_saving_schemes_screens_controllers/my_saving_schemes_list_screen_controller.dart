@@ -11,6 +11,7 @@ import '../../models/my_saving_schemes_models/get_saving_schemes_list_model/get_
 class MySavingSchemesListScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
+  int isStatusCode = 0;
 
   ApiHeader apiHeader = ApiHeader();
 
@@ -36,12 +37,13 @@ class MySavingSchemesListScreenController extends GetxController {
       GetCustomerSchemeslistModel getCustomerSchemeslistModel =
           GetCustomerSchemeslistModel.fromJson(json.decode(response.body));
 
-      isSuccessStatus = getCustomerSchemeslistModel.success.obs;
+      // isSuccessStatus = getCustomerSchemeslistModel.success.obs;
+      isStatusCode = getCustomerSchemeslistModel.statusCode;
 
-      if (isSuccessStatus.value) {
+      if (isStatusCode == 200) {
         getCustomerSchemeslist.clear();
         getCustomerSchemeslist.addAll(
-            getCustomerSchemeslistModel.getCustomerPurchaseSavingSchemeList);
+            getCustomerSchemeslistModel.data.getCustomerPurchaseSavingSchemeList);
         log('getCustomerSchemeslist lentgh is ::: ${getCustomerSchemeslist.length}');
       } else {
         log('getCustomerSavingSchemesListFunction false');

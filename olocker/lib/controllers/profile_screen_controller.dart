@@ -471,8 +471,8 @@ isStatusCode=userProfileGetModel.statusCode;
         context: context,
         builder: (BuildContext bc) {
           return Wrap(children: <Widget>[
-            Column(
-              children: const [
+            const Column(
+              children: [
                 Padding(
                   padding: EdgeInsets.only(left: 25, top: 15, bottom: 15),
                   child: Text(

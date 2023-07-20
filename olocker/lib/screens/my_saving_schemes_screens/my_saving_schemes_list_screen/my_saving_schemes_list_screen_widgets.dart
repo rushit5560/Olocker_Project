@@ -140,18 +140,13 @@ class SingleSchemeItemModule extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: Column(
                   children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          schemeData.partnerName,
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.blackColor,
-                          ),
-                        ),
-                      ],
+                    Text(
+                      schemeData.partnerName,
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.blackColor,
+                      ),
                     ),
                     SizedBox(height: 1.5.h),
                     SavingDetailsTextCustom(
