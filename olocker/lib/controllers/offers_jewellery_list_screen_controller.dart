@@ -12,7 +12,6 @@ import '../models/refer_and_earn_screen_models/get_partner_by_code_model.dart';
 import '../models/user_profile_models/user_profile_get_model.dart';
 import '../widgets/common_widgets.dart';
 
-
 class OffersJewelleryListScreenController extends GetxController {
   // Getting from jeweller details screen
   // String offerName = Get.arguments[0];
@@ -20,12 +19,13 @@ class OffersJewelleryListScreenController extends GetxController {
   String jewellerId = Get.arguments[1];
   List<String> collectionNameList = Get.arguments[2] ?? [];
   SearchCategory searchCategory = Get.arguments[3];
+
   // JewelleryListType jewelleryListType =
   //     Get.arguments[3] ?? JewelleryListType.categoryId;
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
-
+  int statusCode = 0;
   Size size = Get.size;
   ApiHeader apiHeader = ApiHeader();
   RxInt selectedSortingIndex = 0.obs;
@@ -53,16 +53,15 @@ class OffersJewelleryListScreenController extends GetxController {
   RxBool hasSearchMore = true.obs;
   int pageSearchIndex = 1;
 
-
   // SearchField Search Function
   getOfferSearchTextListFunction(String searchText) {
     return searchFieldController.text.trim().isEmpty
         ? collectionNameList
         : collectionNameList.where((element) {
-      String searchListString = element.toLowerCase();
-      String searchTextNew = searchText.toLowerCase();
-      return searchListString.contains(searchTextNew);
-    }).toList();
+            String searchListString = element.toLowerCase();
+            String searchTextNew = searchText.toLowerCase();
+            return searchListString.contains(searchTextNew);
+          }).toList();
   }
 
   // Get Category All Product
@@ -111,11 +110,11 @@ class OffersJewelleryListScreenController extends GetxController {
 
   Future<void> getSearchProductsFunction(String searchName) async {
     isLoading(true);
-    String url = "${ApiUrl.getOfferDetailApi}?OfferId=$offerId&CustomerSrNo=${UserDetails.customerId}";
+    String url =
+        "${ApiUrl.getOfferDetailApi}?OfferId=$offerId&CustomerSrNo=${UserDetails.customerId}";
 
     // "${ApiUrl.getOfferDetailApi}?OfferId=$offerId&CustomerSrNo=${UserDetails.customerId}"
     // "api/Partner/GetOfferDetail?OfferId=$offerId&CustomerSrNo=${UserDetails.customerId}"
-
 
     // if(SearchCategory.collectionType == searchCategory) {
     //   url = "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&CollectionID=$searchName&CustomerId=${UserDetails.customerId}";
@@ -134,7 +133,7 @@ class OffersJewelleryListScreenController extends GetxController {
       log('getOfferDetailListFunction response : ${response.body}');
 
       GetOfferDetailResultModel getOfferDetailResultModel =
-      GetOfferDetailResultModel.fromJson(json.decode(response.body));
+          GetOfferDetailResultModel.fromJson(json.decode(response.body));
       isSuccessStatus = getOfferDetailResultModel.success.obs;
 
       if (isSuccessStatus.value) {
@@ -244,8 +243,6 @@ class OffersJewelleryListScreenController extends GetxController {
     }
   }
 
-  
-
   Future<void> getPartnerByCodeFunction() async {
     // if (formKey.currentState!.validate()) {
     String url = "${ApiUrl.getPartnerByCodeApi}?PartnerCode=$jewellerId";
@@ -305,16 +302,22 @@ class OffersJewelleryListScreenController extends GetxController {
       UserProfileGetModel userProfileGetModel =
           UserProfileGetModel.fromJson(resBody);
 
-      bool isSuccessResult = userProfileGetModel.success;
-
-      if (isSuccessResult) {
+      // bool isSuccessResult = userProfileGetModel.success;
+      statusCode = userProfileGetModel.statusCode;
+      if (statusCode == 200) {
         log("user profile get success");
-        userReferaalCode.value =
-            userProfileGetModel.customerProfile.referralCode;
+        userReferaalCode.value = userProfileGetModel.data.referralCode;
         log("user userReferaalCode :: $userReferaalCode");
       } else {
-        log("user profile get not success");
-        //do nothing
+        if (statusCode == 400) {
+          log("BadRequest");
+        } else if (statusCode == 404) {
+          log("NotFound");
+        } else if (statusCode == 406) {
+          log("NotAcceptable");
+        } else if (statusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log("getUserProfleDetailsFunction Error ::: $e");

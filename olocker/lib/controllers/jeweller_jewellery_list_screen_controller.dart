@@ -27,6 +27,7 @@ class JewellerJewelleryListScreenController extends GetxController {
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
+  int isStatusCode=0;
 
   final ScrollController scrollController = ScrollController();
   RxBool hasMore = true.obs;
@@ -395,16 +396,24 @@ class JewellerJewelleryListScreenController extends GetxController {
       UserProfileGetModel userProfileGetModel =
           UserProfileGetModel.fromJson(resBody);
 
-      bool isSuccessResult = userProfileGetModel.success;
-
-      if (isSuccessResult) {
+      // bool isSuccessResult = userProfileGetModel.success;
+      // statusCode=userProfileGetModel.statusCode;
+      isStatusCode=userProfileGetModel.statusCode;
+      if (isStatusCode==200) {
         log("user profile get success");
         userReferaalCode.value =
-            userProfileGetModel.customerProfile.referralCode;
+            userProfileGetModel.data.referralCode;
         log("user userReferaalCode :: $userReferaalCode");
       } else {
-        log("user profile get not success");
-        //do nothing
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log("getUserProfileDetailsFunction Error ::: $e");

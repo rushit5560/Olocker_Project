@@ -32,7 +32,7 @@ class JewelleryDetailsScreenController extends GetxController {
   RxBool isSuccessStatus = false.obs;
   Size size = Get.size;
   ApiHeader apiHeader = ApiHeader();
-
+int statusCode=0;
   RxInt fullScreenImageCurrentindex = 0.obs;
 
   // PageController fullscreenImageController = PageController();
@@ -331,16 +331,24 @@ class JewelleryDetailsScreenController extends GetxController {
       UserProfileGetModel userProfileGetModel =
           UserProfileGetModel.fromJson(resBody);
 
-      bool isSuccessResult = userProfileGetModel.success;
+      // bool isSuccessResult = userProfileGetModel.success;
+      statusCode=userProfileGetModel.statusCode;
 
-      if (isSuccessResult) {
+      if (statusCode==200) {
         log("user profile get success");
         userReferaalCode.value =
-            userProfileGetModel.customerProfile.referralCode;
+            userProfileGetModel.data.referralCode;
         log("user userReferaalCode :: $userReferaalCode");
       } else {
-        log("user profile get not success");
-        //do nothing
+        if (statusCode == 400) {
+          log("BadRequest");
+        } else if (statusCode == 404) {
+          log("NotFound");
+        } else if (statusCode == 406) {
+          log("NotAcceptable");
+        } else if (statusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log("getUserProfileDetailsFunction Error ::: $e");

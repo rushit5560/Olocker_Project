@@ -37,7 +37,7 @@ class HomeScreenController extends GetxController {
   List<NotificationBanner> bannerList = [];
   UserPrefsData userPrefsData = UserPrefsData();
   RxBool isSuccessResult = false.obs;
-
+  int isStatusCode = 0;
   String cityName = '';
   String stateName = '';
 
@@ -59,11 +59,11 @@ class HomeScreenController extends GetxController {
 
       log('getMyJewellersFunction response.body : ${response.body}');
 
-      isSuccessStatus = myJewellersModel.success.obs;
-
-      if (isSuccessStatus.value) {
+      // isSuccessStatus = myJewellersModel.success.obs;
+      isStatusCode = myJewellersModel.statusCode;
+      if (isStatusCode == 200) {
         myAllJewellersList.clear();
-        myAllJewellersList.addAll(myJewellersModel.addMyJewellerdata);
+        myAllJewellersList.addAll(myJewellersModel.data.jewellerData);
       } else {
         log('getMyJewellersFunction Else');
       }
@@ -71,8 +71,7 @@ class HomeScreenController extends GetxController {
       log('getMyJewellersFunction Error :$e');
       rethrow;
     }
-
-    // await getBannerFunction();
+    await getBannerFunction();
   }
 
   Future<void> getBannerFunction() async {
@@ -86,11 +85,11 @@ class HomeScreenController extends GetxController {
 
       BannerModel bannerModel =
           BannerModel.fromJson(json.decode(response.body));
-      isSuccessStatus = bannerModel.success.obs;
-
-      if (isSuccessStatus.value) {
+      // isSuccessStatus = bannerModel.success.obs;
+      isStatusCode = bannerModel.statusCode;
+      if (isStatusCode == 200) {
         bannerList.clear();
-        bannerList.addAll(bannerModel.notifications);
+        bannerList.addAll(bannerModel.data.notifications);
       } else {
         log('getBannerFunction Else');
       }
@@ -98,6 +97,7 @@ class HomeScreenController extends GetxController {
       log('getBannerFunction Error : $e');
       rethrow;
     }
+    // isLoading(false);
 
     await getSmartDealsOnlineFunction();
   }
@@ -118,13 +118,22 @@ class HomeScreenController extends GetxController {
       SmartDealsOnlineModel smartDealsOnlineModel =
           SmartDealsOnlineModel.fromJson(json.decode(response.body));
 
-      isSuccessStatus = smartDealsOnlineModel.success.obs;
-
-      if (isSuccessStatus.value) {
+      // isSuccessStatus = smartDealsOnlineModel.success.obs;
+      isStatusCode = smartDealsOnlineModel.statusCode;
+      if (isStatusCode == 200) {
         smartDealsOnlineList.clear();
-        smartDealsOnlineList.addAll(smartDealsOnlineModel.vendorDealsList);
+        smartDealsOnlineList.addAll(smartDealsOnlineModel.data.vendorDealsList);
       } else {
         log('getSmartDealsOnline Else');
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log('getSmartDealsOnline Error :$e');
@@ -271,7 +280,8 @@ class HomeScreenController extends GetxController {
   Future<void> getSmartDealsOfflineFunction(
       String cityName, String stateName) async {
     String url =
-        "https://devappapi.olocker.in/api/Partner/GetOffLineDeals?StateName=$stateName&CityName=$cityName&partnerId="
+        // "http://192.168.29.90:2023/api/Partner/GetOfflineDeals?StateName=Maharashtra&CityName=Mumbai&partnerId="
+        "${ApiUrl.apiMainPath}/api/Partner/GetOffLineDeals?StateName=$stateName&CityName=$cityName&partnerId="
         "";
     log('Smart Deals offOnline Api Url : $url');
 
@@ -285,14 +295,24 @@ class HomeScreenController extends GetxController {
       GetOfflineDealsModel getOfflineDealsModel =
           GetOfflineDealsModel.fromJson(json.decode(response.body));
 
-      isSuccessStatus = getOfflineDealsModel.success.obs;
+      // isSuccessStatus = getOfflineDealsModel.success.obs;
+      isStatusCode = getOfflineDealsModel.statusCode;
 
-      if (isSuccessStatus.value) {
+      if (isStatusCode == 200) {
         smartDealsOfflineList.clear();
-        smartDealsOfflineList.addAll(getOfflineDealsModel.vendorDealsList);
+        smartDealsOfflineList.addAll(getOfflineDealsModel.data.vendorDealsList);
         isLocalDataCalled(true);
       } else {
         log('getSmartDealsOfflineFunction Else');
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log('getSmartDealsOfflineFunction Error :$e');
@@ -306,6 +326,7 @@ class HomeScreenController extends GetxController {
   @override
   void onInit() {
     getMyJewellersFunction();
+
     super.onInit();
   }
 }

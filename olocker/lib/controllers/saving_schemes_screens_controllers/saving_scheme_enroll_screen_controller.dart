@@ -19,7 +19,7 @@ class SavingSchemeEnrollScreenController extends GetxController {
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
-
+int isStatusCode=0;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController monthlyAmountFieldController = TextEditingController();
   RxString ourContributionAmount = "".obs;
@@ -71,16 +71,16 @@ class SavingSchemeEnrollScreenController extends GetxController {
 
       CityStateGetModel cityStateGetModel = CityStateGetModel.fromJson(resBody);
 
-      isSuccessStatus.value = cityStateGetModel.success;
+      isStatusCode = cityStateGetModel.statusCode;
 
-      if (isSuccessStatus.value) {
+      if (isStatusCode==200) {
         isLoading(true);
         log("city state get success");
         cityController.clear();
         stateController.clear();
 
-        cityController.text = cityStateGetModel.stateCityDetails.cityName;
-        stateController.text = cityStateGetModel.stateCityDetails.stateName;
+        cityController.text = cityStateGetModel.data.stateCityDetails.cityName;
+        stateController.text = cityStateGetModel.data.stateCityDetails.stateName;
         isLoading(false);
       } else {
         log("getCityStateDetailsByPinFunction not success");

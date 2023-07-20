@@ -1,39 +1,27 @@
-// To parse this JSON data, do
-//
-//     final cityStateGetModel = cityStateGetModelFromJson(jsonString);
-
 import 'dart:convert';
 
-CityStateGetModel cityStateGetModelFromJson(String str) =>
-    CityStateGetModel.fromJson(json.decode(str));
+CityStateGetModel cityStateGetModelFromJson(String str) => CityStateGetModel.fromJson(json.decode(str));
 
-String cityStateGetModelToJson(CityStateGetModel data) =>
-    json.encode(data.toJson());
+String cityStateGetModelToJson(CityStateGetModel data) => json.encode(data.toJson());
 
 class CityStateGetModel {
+  int statusCode;
+  Data data;
+
   CityStateGetModel({
-    required this.stateCityDetails,
-    required this.success,
-    required this.errorInfo,
+    required this.statusCode,
+    required this.data,
   });
 
-  final StateCityDetails stateCityDetails;
-  final bool success;
-  final ErrorInfo errorInfo;
-
-  factory CityStateGetModel.fromJson(Map<String, dynamic> json) =>
-      CityStateGetModel(
-        stateCityDetails:
-            StateCityDetails.fromJson((json["StateCityDetails"] ?? {})),
-        success: json["success"] ?? false,
-        errorInfo: ErrorInfo.fromJson((json["error_info"] ?? {})),
-      );
+  factory CityStateGetModel.fromJson(Map<String, dynamic> json) => CityStateGetModel(
+    statusCode: json["statusCode"] ?? 0,
+    data: Data.fromJson(json["data"] ?? {}),
+  );
 
   Map<String, dynamic> toJson() => {
-        "StateCityDetails": stateCityDetails.toJson(),
-        "success": success,
-        "error_info": errorInfo.toJson(),
-      };
+    "statusCode": statusCode,
+    "data": data.toJson(),
+  };
 }
 
 class ErrorInfo {
@@ -64,7 +52,37 @@ class ErrorInfo {
       };
 }
 
+
+class Data {
+  StateCityDetails stateCityDetails;
+  bool success;
+  ErrorInfo errorInfo;
+
+  Data({
+    required this.stateCityDetails,
+    required this.success,
+    required this.errorInfo,
+  });
+
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+    stateCityDetails: StateCityDetails.fromJson(json["stateCityDetails"] ?? {}),
+    success: json["success"] ?? false,
+    errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "stateCityDetails": stateCityDetails.toJson(),
+    "success": success,
+    "error_info": errorInfo.toJson(),
+  };
+}
+
 class StateCityDetails {
+  int stateId;
+  String stateName;
+  int cityId;
+  String cityName;
+
   StateCityDetails({
     required this.stateId,
     required this.stateName,
@@ -72,23 +90,18 @@ class StateCityDetails {
     required this.cityName,
   });
 
-  final int stateId;
-  final String stateName;
-  final int cityId;
-  final String cityName;
-
-  factory StateCityDetails.fromJson(Map<String, dynamic> json) =>
-      StateCityDetails(
-        stateId: json["StateId"] ?? 0,
-        stateName: json["StateName"] ?? "",
-        cityId: json["CityId"] ?? 0,
-        cityName: json["CityName"] ?? "",
-      );
+  factory StateCityDetails.fromJson(Map<String, dynamic> json) => StateCityDetails(
+    stateId: json["stateId"] ?? 0,
+    stateName: json["stateName"] ?? "",
+    cityId: json["cityId"] ?? 0,
+    cityName: json["cityName"] ?? "",
+  );
 
   Map<String, dynamic> toJson() => {
-        "StateId": stateId,
-        "StateName": stateName,
-        "CityId": cityId,
-        "CityName": cityName,
-      };
+    "stateId": stateId,
+    "stateName": stateName,
+    "cityId": cityId,
+    "cityName": cityName,
+  };
 }
+

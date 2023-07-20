@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
@@ -19,7 +21,9 @@ class AllLoyaltyPointListModule extends StatelessWidget {
       shrinkWrap: true,
       itemBuilder: (context, i) {
         String imgUrl =
-            ApiUrl.apiMainPath + screenController.loyaltyPointList[i].logoUrl;
+            ApiUrl.apiImagePath + screenController.loyaltyPointList[i].logoUrl;
+        log("imgUrl :: $imgUrl");
+
         String redeemedPoint = "";
 
         if (screenController.loyaltyPointList[i].totalReedemedPoint
@@ -92,7 +96,8 @@ class AllLoyaltyPointListModule extends StatelessWidget {
                                         ),
                                         Text(
                                           screenController
-                                              .loyaltyPointList[i].totalPoints,
+                                              .loyaltyPointList[i].totalPoints
+                                              .toString(),
                                           style: TextStyle(
                                             // fontFamily: "Roboto",
                                             color: AppColors.whiteColor,
@@ -152,7 +157,8 @@ class AllLoyaltyPointListModule extends StatelessWidget {
                                         ),
                                         Text(
                                           screenController.loyaltyPointList[i]
-                                              .totalRemainingPoint,
+                                              .totalRemainingPoint
+                                              .toString(),
                                           style: TextStyle(
                                             // fontFamily: "Roboto",
                                             color: AppColors.whiteColor,
@@ -244,7 +250,7 @@ class AllLoyaltyPointsLoadingWidget extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Shimmer.fromColors(
-           baseColor: Colors.grey.shade300,
+        baseColor: Colors.grey.shade300,
         highlightColor: Colors.grey.shade50,
         child: SingleChildScrollView(
           child: Column(

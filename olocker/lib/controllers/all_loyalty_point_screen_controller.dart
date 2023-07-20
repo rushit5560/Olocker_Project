@@ -7,13 +7,13 @@ import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/models/jeweller_loyalty_point_screen_models/loyalty_point_model.dart';
 import '../constants/user_details.dart';
 
-
 class AllLoyaltyPointScreenController extends GetxController {
   RxBool isLoading = false.obs;
-  RxBool isSuccessStatus = false.obs;
+
+  // RxBool isSuccessStatus = false.obs;
 
   Size size = Get.size;
-
+  int isStatusCode = 0;
   ApiHeader apiHeader = ApiHeader();
 
   List<PartnerPoint> loyaltyPointList = [];
@@ -36,11 +36,11 @@ class AllLoyaltyPointScreenController extends GetxController {
 
       LoyaltyPointsModel loyaltyPointsModel =
           LoyaltyPointsModel.fromJson(json.decode(response.body));
-      isSuccessStatus = loyaltyPointsModel.success.obs;
-
-      if (isSuccessStatus.value) {
+      // isSuccessStatus = loyaltyPointsModel.success.obs;
+      isStatusCode = loyaltyPointsModel.statusCode;
+      if (isStatusCode == 200) {
         loyaltyPointList.clear();
-        loyaltyPointList.addAll(loyaltyPointsModel.partnerPoint);
+        loyaltyPointList.addAll(loyaltyPointsModel.data.partnerPoint);
         log('loyaltyPointList : ${loyaltyPointList.length}');
       } else {
         log('getLoyaltyPointFunction Else');

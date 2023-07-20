@@ -11,8 +11,8 @@ class JewellerLoyaltyPointScreenController extends GetxController {
   String jewellerName = Get.arguments[0];
 
   RxBool isLoading = false.obs;
-  RxBool isSuccessStatus = false.obs;
-
+  // RxBool isSuccessStatus = false.obs;
+int isStatusCode=0;
   Size size = Get.size;
 
   ApiHeader apiHeader = ApiHeader();
@@ -37,12 +37,12 @@ class JewellerLoyaltyPointScreenController extends GetxController {
 
       LoyaltyPointsModel loyaltyPointsModel =
           LoyaltyPointsModel.fromJson(json.decode(response.body));
-      isSuccessStatus = loyaltyPointsModel.success.obs;
-
-      if (isSuccessStatus.value) {
-        for (int i = 0; i < loyaltyPointsModel.partnerPoint.length; i++) {
-          if (loyaltyPointsModel.partnerPoint[i].partner == jewellerName) {
-            loyaltyPoints = loyaltyPointsModel.partnerPoint[i];
+      // isSuccessStatus = loyaltyPointsModel.success.obs;
+      isStatusCode=loyaltyPointsModel.statusCode;
+      if (isStatusCode==200) {
+        for (int i = 0; i < loyaltyPointsModel.data.partnerPoint.length; i++) {
+          if (loyaltyPointsModel.data.partnerPoint[i].partner == jewellerName) {
+            loyaltyPoints = loyaltyPointsModel.data.partnerPoint[i];
           }
         }
 

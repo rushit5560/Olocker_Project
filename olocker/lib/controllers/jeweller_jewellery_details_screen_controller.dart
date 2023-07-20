@@ -17,7 +17,9 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
   String partnerSrNo = Get.arguments[0];
   int productSrNo = Get.arguments[1];
   String jewelleryTypeName = Get.arguments[2];
+
   // String productimage = Get.arguments[3];
+  int isStatusCode = 0;
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -198,7 +200,6 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
     }
   }
 
- 
   Future<void> getPartnerByCodeFunction() async {
     // if (formKey.currentState!.validate()) {
     String url = "${ApiUrl.getPartnerByCodeApi}?PartnerCode=$partnerSrNo";
@@ -258,16 +259,22 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
       UserProfileGetModel userProfileGetModel =
           UserProfileGetModel.fromJson(resBody);
 
-      bool isSuccessResult = userProfileGetModel.success;
-
-      if (isSuccessResult) {
+      // bool isSuccessResult = userProfileGetModel.success;
+      isStatusCode = userProfileGetModel.statusCode;
+      if (isStatusCode == 200) {
         log("user profile get success");
-        userReferaalCode.value =
-            userProfileGetModel.customerProfile.referralCode;
+        userReferaalCode.value = userProfileGetModel.data.referralCode;
         log("user userReferaalCode :: $userReferaalCode");
       } else {
-        log("user profile get not success");
-        //do nothing
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log("getUserProfleDetailsFunction Error ::: $e");

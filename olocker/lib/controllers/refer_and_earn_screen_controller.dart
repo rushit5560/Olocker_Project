@@ -20,7 +20,7 @@ class ReferAndEarnScreenController extends GetxController {
 
   RxBool isLoading = false.obs;
   RxBool isSuccessResult = false.obs;
-
+int isStatusCode=0;
   final apiHeader = ApiHeader();
 
   LoyalityPlan? loyalityPlan;
@@ -139,16 +139,23 @@ class ReferAndEarnScreenController extends GetxController {
       UserProfileGetModel userProfileGetModel =
           UserProfileGetModel.fromJson(resBody);
 
-      isSuccessResult.value = userProfileGetModel.success;
+      isStatusCode = userProfileGetModel.statusCode;
 
-      if (isSuccessResult.value) {
+      if (isStatusCode==200) {
         log("user profile get success");
         userReferaalCode.value =
-            userProfileGetModel.customerProfile.referralCode;
+            userProfileGetModel.data.referralCode;
         log("user userReferaalCode Refer code :: $userReferaalCode");
       } else {
-        log("user profile get not success");
-        //do nothing
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log("getUserProfleDetailsFunction Error ::: $e");

@@ -16,15 +16,17 @@ import '../constants/api_url.dart';
 import '../constants/app_colors.dart';
 import '../models/user_profile_models/city_state_get_model.dart';
 import '../models/user_profile_models/user_profile_get_model.dart';
+import '../models/user_profile_models/user_profile_update_model.dart';
 import '../utils/user_prefs_data.dart';
 
 class ProfileScreenController extends GetxController {
   final size = Get.size;
   RxBool isLoading = false.obs;
   RxBool isEditable = false.obs;
-  RxBool isSuccessResult = false.obs;
+  // RxBool isSuccessResult = false.obs;
+  RxInt isSuccessStatusCode = 0.obs;
   RxString userName = "".obs;
-
+  int isStatusCode = 0;
   File? apiGetProfileImage;
   String userApiImageFile = "";
   File? selectedProfileImage;
@@ -37,6 +39,7 @@ class ProfileScreenController extends GetxController {
   TextEditingController cityController = TextEditingController();
   TextEditingController stateController = TextEditingController();
   TextEditingController dateofbrithController = TextEditingController();
+
   // final indexScreenController = Get.put(IndexScreenController());
 
   final formKey = GlobalKey<FormState>();
@@ -119,33 +122,42 @@ class ProfileScreenController extends GetxController {
       UserProfileGetModel userProfileGetModel =
           UserProfileGetModel.fromJson(resBody);
 
-      isSuccessResult.value = userProfileGetModel.success;
-
-      if (isSuccessResult.value) {
+      // isSuccessResult.value = userProfileGetModel.success;
+      isStatusCode = userProfileGetModel.statusCode;
+      if (isStatusCode == 200) {
         log("user profile get success");
 
         isEditable.value = true;
-        apiGetProfileImage = File(ApiUrl.apiImagePath +
-            userProfileGetModel.customerProfile.imageLocation);
-        userApiImageFile = userProfileGetModel.customerProfile.imageLocation;
+        String imgUrl = "${ApiUrl.apiImagePath}/${userProfileGetModel.data.imageLocation}";
+        log('User Profile Image : $imgUrl');
+        apiGetProfileImage =
+            File(ApiUrl.apiImagePath + userProfileGetModel.data.imageLocation);
+        userApiImageFile = userProfileGetModel.data.imageLocation;
 
-        userName.value = userProfileGetModel.customerProfile.firstName;
+        userName.value = userProfileGetModel.data.firstName;
         // namePrefixDDvalue.value = userProfileGetModel.customerProfile.gender == "Male" ? "" :;
-        fnameController.text = userProfileGetModel.customerProfile.firstName;
-        lnameController.text = userProfileGetModel.customerProfile.lastName;
-        emailController.text = userProfileGetModel.customerProfile.userEmail;
-        dateofbrithController.text = userProfileGetModel.customerProfile.dob;
+        fnameController.text = userProfileGetModel.data.firstName;
+        lnameController.text = userProfileGetModel.data.lastName;
+        emailController.text = userProfileGetModel.data.userEmail;
+        // log("userProfileGetModel.data.dob ${userProfileGetModel.data.dob}");
+        DateTime dateTime = DateTime.parse(userProfileGetModel.data.dob);
 
-        userProfileGetModel.customerProfile.gender == "1"
+
+        // log("dateTime $dateTime");
+        String formattedDate = DateFormat('yyyy-MM-dd').format(dateTime);
+        dateofbrithController.text = formattedDate;
+
+        userProfileGetModel.data.gender == "1"
             ? namePrefixDDvalue.value = "Mr."
-        : userProfileGetModel.customerProfile.gender == "2"
-        ? namePrefixDDvalue.value = "Mrs." : namePrefixDDvalue.value = "Miss";
+            : userProfileGetModel.data.gender == "2"
+                ? namePrefixDDvalue.value = "Mrs."
+                : namePrefixDDvalue.value = "Miss";
 
-        log("getting date is :: ${userProfileGetModel.customerProfile.dob}");
+        log("getting date is :: ${userProfileGetModel.data.dob}");
         log("dateofbrithController.text ${dateofbrithController.text}");
-        if (userProfileGetModel.customerProfile.dob != "") {
-          var dateGetPassing = DateFormat("MMM dd, yyyy")
-              .parse(userProfileGetModel.customerProfile.dob);
+        if (userProfileGetModel.data.dob != "") {
+          var dateGetPassing =
+              DateFormat("yyyy-MM-dd").parse(userProfileGetModel.data.dob);
           log("getting formatted date is :: $dateGetPassing");
           var datePassingFormat = DateFormat("d-MM-yyyy");
 
@@ -154,40 +166,48 @@ class ProfileScreenController extends GetxController {
 
         //set user data in prefs data
         prefs.setString(UserPrefsData().customerUserNameKey,
-            userProfileGetModel.customerProfile.firstName);
+            userProfileGetModel.data.firstName);
 
         prefs.setString(UserPrefsData().customerFirstNameKey,
-            userProfileGetModel.customerProfile.firstName);
+            userProfileGetModel.data.firstName);
         prefs.setString(UserPrefsData().customerLastNameKey,
-            userProfileGetModel.customerProfile.lastName);
+            userProfileGetModel.data.lastName);
         prefs.setString(UserPrefsData().customerUserEmailKey,
-            userProfileGetModel.customerProfile.userEmail);
+            userProfileGetModel.data.userEmail);
         prefs.setString(UserPrefsData().customerMobileNoKey,
-            userProfileGetModel.customerProfile.mobileNo);
+            userProfileGetModel.data.mobileNo);
 
         prefs.setString(UserPrefsData().customerAddressKey,
-            userProfileGetModel.customerProfile.address1);
-        prefs.setString(UserPrefsData().customerCityKey,
-            userProfileGetModel.customerProfile.city);
-        prefs.setString(UserPrefsData().customerPinKey,
-            userProfileGetModel.customerProfile.pin);
-        prefs.setString(UserPrefsData().customerStateKey,
-            userProfileGetModel.customerProfile.state);
+            userProfileGetModel.data.address1);
+        prefs.setString(
+            UserPrefsData().customerCityKey, userProfileGetModel.data.city);
+        prefs.setString(
+            UserPrefsData().customerPinKey, userProfileGetModel.data.pin);
+        prefs.setString(
+            UserPrefsData().customerStateKey, userProfileGetModel.data.state);
         prefs.setString(UserPrefsData().customerCountryKey,
-            userProfileGetModel.customerProfile.country);
+            userProfileGetModel.data.country);
         prefs.setString(UserPrefsData().customerDOBKey, datePassingvalue.value);
 
         log("datePassingvalue.value :: ${datePassingvalue.value}");
-        numberController.text = userProfileGetModel.customerProfile.mobileNo;
-        pinCodeController.text = userProfileGetModel.customerProfile.pin;
-        cityController.text = userProfileGetModel.customerProfile.city;
-        stateController.text = userProfileGetModel.customerProfile.state;
-        selectedDobNumber.value = userProfileGetModel.customerProfile.dob == ""
+        numberController.text = userProfileGetModel.data.mobileNo;
+        log("numberController.text ${numberController.text}");
+        pinCodeController.text = userProfileGetModel.data.pin;
+        cityController.text = userProfileGetModel.data.city;
+        stateController.text = userProfileGetModel.data.state;
+        selectedDobNumber.value = userProfileGetModel.data.dob == ""
             ? "Select Date Of Birth"
-            : userProfileGetModel.customerProfile.dob;
+            : userProfileGetModel.data.dob;
       } else {
-        log("user profile get not success");
-        //do nothing
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log("getUserProfileDetailsFunction Error ::: $e");
@@ -226,7 +246,7 @@ class ProfileScreenController extends GetxController {
           "lastname": lnameController.text.toString(),
           "useremail": emailController.text.toString(),
           "Gender": genderValue.toString(),
-          "Salutation": namePrefixDDvalue.value.toString(),
+          "salutation": namePrefixDDvalue.value.toString(),
           "Country": "",
           "State": stateController.text.toString(),
           "City": cityController.text.toString(),
@@ -254,12 +274,12 @@ class ProfileScreenController extends GetxController {
 
         var resBody = jsonDecode(response.body);
 
-        UserProfileGetModel userProfileGetModel =
-            UserProfileGetModel.fromJson(resBody);
+        UpdateProfileModel updateProfileModel =
+        UpdateProfileModel.fromJson(resBody);
 
-        isSuccessResult.value = userProfileGetModel.success;
-
-        if (isSuccessResult.value) {
+        // isSuccessResult.value = userProfileGetModel.success;
+        isStatusCode = updateProfileModel.statusCode;
+        if (isStatusCode == 200) {
           log("updateUserProfileDetailsFunction success");
           log("111");
           // prefs.setString(
@@ -271,7 +291,7 @@ class ProfileScreenController extends GetxController {
           );
           //todo
           await updateProfileUpdateCount();
-          Get.offAll(() => IndexScreen());
+          // Get.offAll(() => IndexScreen());
           // indexScreenController.currentBottomIndex.value = 0;
           // isLoading(true);
           // isLoading(false);
@@ -300,7 +320,7 @@ class ProfileScreenController extends GetxController {
           "lastname": lnameController.text.toString(),
           "useremail": emailController.text.toString(),
           "Gender": genderValue.toString(),
-          "Salutation": namePrefixDDvalue.value.toString(),
+          "salutation": namePrefixDDvalue.value.toString(),
           "Country": "",
           "State": stateController.text.toString(),
           "City": cityController.text.toString(),
@@ -331,9 +351,9 @@ class ProfileScreenController extends GetxController {
         UserProfileGetModel userProfileGetModel =
             UserProfileGetModel.fromJson(resBody);
 
-        isSuccessResult.value = userProfileGetModel.success;
-
-        if (isSuccessResult.value) {
+        // isSuccessResult.value = userProfileGetModel.success;
+isStatusCode=userProfileGetModel.statusCode;
+        if (isStatusCode==200) {
           log("222");
 
           log("updateUserProfileDetailsFunction success");
@@ -345,10 +365,17 @@ class ProfileScreenController extends GetxController {
             displayText: "Profile Updated Successfully.",
           );
           await updateProfileUpdateCount();
-          Get.offAll(() => IndexScreen());
+          // Get.offAll(() => IndexScreen());
         } else {
-          log("updateUserProfileDetailsFunction not success");
-          //do nothing
+          if (isStatusCode == 400) {
+            log("BadRequest");
+          } else if (isStatusCode == 404) {
+            log("NotFound");
+          } else if (isStatusCode == 406) {
+            log("NotAcceptable");
+          } else if (isStatusCode == 417) {
+            log("HttpStatusCode.ExpectationFailed");
+          }
         }
       }
     } catch (e) {
@@ -387,12 +414,12 @@ class ProfileScreenController extends GetxController {
 
       CityStateGetModel cityStateGetModel = CityStateGetModel.fromJson(resBody);
 
-      isSuccessResult.value = cityStateGetModel.success;
+      isSuccessStatusCode.value = cityStateGetModel.statusCode;
 
-      if (isSuccessResult.value) {
+      if (isSuccessStatusCode.value == 200) {
         log("city state get success");
-        cityController.text = cityStateGetModel.stateCityDetails.cityName;
-        stateController.text = cityStateGetModel.stateCityDetails.stateName;
+        cityController.text = cityStateGetModel.data.stateCityDetails.cityName;
+        stateController.text = cityStateGetModel.data.stateCityDetails.stateName;
       } else {
         cityController.clear();
         stateController.clear();
@@ -402,9 +429,9 @@ class ProfileScreenController extends GetxController {
     } catch (e) {
       log("getCityStateDetailsByPinFunction Error ::: $e");
       rethrow;
-    } finally {
-      isLoading(false);
     }
+    // finally {
+      isLoading(false);
     // }
   }
 

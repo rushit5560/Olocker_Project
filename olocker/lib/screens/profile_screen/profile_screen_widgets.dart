@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/controllers/profile_screen_controller.dart';
+import 'package:olocker/utils/extensions.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
@@ -33,30 +34,32 @@ class ProfileDetailsFormModule extends StatelessWidget {
               ? ProfileScreenLoadingWidget()
               : Form(
                   key: profileScreenController.formKey,
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 10),
-                      DisplayImageDetailsFieldRow(),
-                      const SizedBox(height: 20),
-                      NameFieldRow(),
-                      const SizedBox(height: 10),
-                      EmailFieldRow(),
-                      const SizedBox(height: 10),
-                      DobFieldRow(),
-                      const SizedBox(height: 10),
-                      MobileFieldRow(),
-                      const SizedBox(height: 10),
-                      PinCodeFieldRow(),
-                      const SizedBox(height: 10),
-                      CityFieldRow(),
-                      const SizedBox(height: 10),
-                      StateFieldRow(),
-                      const SizedBox(height: 30),
-                      !profileScreenController.isEditable.value
-                          ? SaveProfileButton()
-                          : const SizedBox(),
-                      const SizedBox(height: 20),
-                    ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 10),
+                        DisplayImageDetailsFieldRow(),
+                        const SizedBox(height: 20),
+                        NameFieldRow(),
+                        const SizedBox(height: 10),
+                        EmailFieldRow(),
+                        const SizedBox(height: 10),
+                        DobFieldRow(),
+                        const SizedBox(height: 10),
+                        MobileFieldRow(),
+                        const SizedBox(height: 10),
+                        PinCodeFieldRow(),
+                        const SizedBox(height: 10),
+                        CityFieldRow(),
+                        const SizedBox(height: 10),
+                        StateFieldRow(),
+                        const SizedBox(height: 30),
+                        !profileScreenController.isEditable.value
+                            ? SaveProfileButton()
+                            : const SizedBox(),
+                        const SizedBox(height: 20),
+                      ],
+                    ).commonOnlyPadding(bottom: 20),
                   ),
                 ),
         ),

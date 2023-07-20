@@ -1,6 +1,55 @@
-// To parse this JSON data, do
+// // To parse this JSON data, do
+// //
+// //     final getOfflineDealsModel = getOfflineDealsModelFromJson(jsonString);
 //
-//     final getOfflineDealsModel = getOfflineDealsModelFromJson(jsonString);
+// import 'dart:convert';
+//
+// GetOfflineDealsModel getOfflineDealsModelFromJson(String str) =>
+//     GetOfflineDealsModel.fromJson(json.decode(str));
+//
+// class GetOfflineDealsModel {
+//   List<VendorOfflineDealsList> vendorDealsList;
+//   bool success;
+//   ErrorInfo errorInfo;
+//
+//   GetOfflineDealsModel({
+//     required this.vendorDealsList,
+//     required this.success,
+//     required this.errorInfo,
+//   });
+//
+//   factory GetOfflineDealsModel.fromJson(Map<String, dynamic> json) =>
+//       GetOfflineDealsModel(
+//         vendorDealsList: List<VendorOfflineDealsList>.from(
+//             (json["VendorDealsList"] ?? [])
+//                 .map((x) => VendorOfflineDealsList.fromJson(x))),
+//         success: json["success"] ?? false,
+//         errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
+//       );
+// }
+//
+//
+// class VendorOfflineDealsList {
+//   String category;
+//   String categoryImage;
+//   List<OffLineDeal> offLineDeals;
+//
+//   VendorOfflineDealsList({
+//     required this.category,
+//     required this.categoryImage,
+//     required this.offLineDeals,
+//   });
+//
+//   factory VendorOfflineDealsList.fromJson(Map<String, dynamic> json) =>
+//       VendorOfflineDealsList(
+//         category: json["Category"] ?? "",
+//         categoryImage: json["CategoryImage"] ?? "",
+//         offLineDeals: List<OffLineDeal>.from(
+//             (json["OffLineDeals"] ?? []).map((x) => OffLineDeal.fromJson(x))),
+//       );
+// }
+//
+//
 
 import 'dart:convert';
 
@@ -8,21 +57,37 @@ GetOfflineDealsModel getOfflineDealsModelFromJson(String str) =>
     GetOfflineDealsModel.fromJson(json.decode(str));
 
 class GetOfflineDealsModel {
+  int statusCode;
+  Data data;
+
+  GetOfflineDealsModel({
+    required this.statusCode,
+    required this.data,
+  });
+
+  factory GetOfflineDealsModel.fromJson(Map<String, dynamic> json) =>
+      GetOfflineDealsModel(
+        statusCode: json["statusCode"] ?? 0,
+        data: Data.fromJson(json["data"] ?? {}),
+      );
+}
+
+class Data {
   List<VendorOfflineDealsList> vendorDealsList;
   bool success;
   ErrorInfo errorInfo;
 
-  GetOfflineDealsModel({
+  Data({
     required this.vendorDealsList,
     required this.success,
     required this.errorInfo,
   });
 
-  factory GetOfflineDealsModel.fromJson(Map<String, dynamic> json) =>
-      GetOfflineDealsModel(
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
         vendorDealsList: List<VendorOfflineDealsList>.from(
-            (json["VendorDealsList"] ?? [])
-                .map((x) => VendorOfflineDealsList.fromJson(x))),
+            (json["vendorDealsList"] ?? [])
+                    .map((x) => VendorOfflineDealsList.fromJson(x)) ??
+                {}),
         success: json["success"] ?? false,
         errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
       );
@@ -62,10 +127,10 @@ class VendorOfflineDealsList {
 
   factory VendorOfflineDealsList.fromJson(Map<String, dynamic> json) =>
       VendorOfflineDealsList(
-        category: json["Category"] ?? "",
-        categoryImage: json["CategoryImage"] ?? "",
+        category: json["category"]??"",
+        categoryImage: json["categoryImage"]??"",
         offLineDeals: List<OffLineDeal>.from(
-            (json["OffLineDeals"] ?? []).map((x) => OffLineDeal.fromJson(x))),
+            (json["offLineDeals"]??[]).map((x) => OffLineDeal.fromJson(x))??{}),
       );
 }
 
@@ -123,31 +188,31 @@ class OffLineDeal {
   });
 
   factory OffLineDeal.fromJson(Map<String, dynamic> json) => OffLineDeal(
-        srNo: json["SrNo"] ?? 0,
-        validTillDate: json["ValidTillDate"] ?? "",
-        dealCode: json["DealCode"] ?? "",
-        termsAndCondition: json["TermsAndCondition"] ?? "",
-        pushDealToEndUser: json["PushDealToEndUser"] ?? "",
-        pushDealToRetailer: json["PushDealToRetailer"] ?? "",
-        pushDealToSupplier: json["PushDealToSupplier"] ?? "",
-        isActive: json["IsActive"] ?? false,
-        startDate: json["StartDate"].toString(),
-        discountPercentage: json["DiscountPercentage"] ?? 0.0,
-        discountRs: json["DiscountRs"] ?? 0.0,
-        isCreatedByVendor: json["IsCreatedByVendor"] ?? false,
-        rejecrReason: json["RejecrReason"] ?? "",
-        dealType: json["DealType"] ?? "",
-        vendorName: json["VendorName"] ?? "",
-        dealLocation: json["DealLocation"] ?? "",
-        vendorImageUrl: json["VendorImageUrl"] ?? "",
-        isThirdPartyVendor: json["IsThirdPartyVendor"] ?? false,
-        thirdPartyVendorName: json["ThirdPartyVendorName"] ?? "",
-        couponHeading: json["CouponHeading"] ?? "",
-        isFavoriteDeal: json["IsFavoriteDeal"] ?? false,
-        isExpired: json["Is_Expired"] ?? false,
-        isThirdPartyDeal: json["IsThirdPartyDeal"] ?? false,
+        srNo: json["srNo"] ?? 0,
+        validTillDate: json["validTillDate"] ?? "",
+        dealCode: json["dealCode"] ?? "",
+        termsAndCondition: json["termsAndCondition"] ?? "",
+        pushDealToEndUser: json["pushDealToEndUser"] ?? "",
+        pushDealToRetailer: json["pushDealToRetailer"] ?? "",
+        pushDealToSupplier: json["pushDealToSupplier"] ?? "",
+        isActive: json["isActive"] ?? false,
+        startDate: json["startDate"].toString(),
+        discountPercentage: json["discountPercentage"] ?? 0.0,
+        discountRs: json["discountRs"] ?? 0.0,
+        isCreatedByVendor: json["isCreatedByVendor"] ?? false,
+        rejecrReason: json["rejecrReason"] ?? "",
+        dealType: json["dealType"] ?? "",
+        vendorName: json["vendorName"] ?? "",
+        dealLocation: json["dealLocation"] ?? "",
+        vendorImageUrl: json["vendorImageUrl"] ?? "",
+        isThirdPartyVendor: json["isThirdPartyVendor"] ?? false,
+        thirdPartyVendorName: json["thirdPartyVendorName"] ?? "",
+        couponHeading: json["couponHeading"] ?? "",
+        isFavoriteDeal: json["isFavoriteDeal"] ?? false,
+        isExpired: json["is_Expired"] ?? false,
+        isThirdPartyDeal: json["isThirdPartyDeal"] ?? false,
         imagelist: List<Imagelist>.from(
-            (json["Imagelist"] ?? []).map((x) => Imagelist.fromJson(x))),
+            (json["imagelist"] ?? []).map((x) => Imagelist.fromJson(x))),
       );
 }
 
@@ -161,7 +226,7 @@ class Imagelist {
   });
 
   factory Imagelist.fromJson(Map<String, dynamic> json) => Imagelist(
-        imageType: json["ImageType"] ?? "",
-        imageUrl: json["ImageUrl"] ?? "",
+        imageType: json["imageType"] ?? "",
+        imageUrl: json["imageUrl"] ?? "",
       );
 }
