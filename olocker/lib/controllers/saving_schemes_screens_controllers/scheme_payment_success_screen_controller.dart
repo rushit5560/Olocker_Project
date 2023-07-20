@@ -17,7 +17,7 @@ class SchemePaymentSuccessScreenController extends GetxController {
   int savingSchemeSrNo = Get.arguments[5];
   String jewellerLogo = Get.arguments[6];
   String jewellerName = Get.arguments[7];
-
+int isStatusCode=0;
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
@@ -43,14 +43,23 @@ class SchemePaymentSuccessScreenController extends GetxController {
 
       GetTransactionStatusDetailsModel getTransactionStatusDetailsModel =
           GetTransactionStatusDetailsModel.fromJson(json.decode(response.body));
-      var isSuccessStatus = getTransactionStatusDetailsModel.success.obs;
-
-      if (isSuccessStatus.value) {
-        transactionData = getTransactionStatusDetailsModel.transactions[0];
+      // var isSuccessStatus = getTransactionStatusDetailsModel.success.obs;
+      isStatusCode=getTransactionStatusDetailsModel.statusCode;
+      if (isStatusCode==200) {
+        transactionData = getTransactionStatusDetailsModel.data.transactions[0];
         log('transactionData.customerPurchaseSavingSchemeSrNo : ${transactionData.customerPurchaseSavingSchemeSrNo}');
         log('transactionData.invoiceNo : ${transactionData.invoiceNo}');
       } else {
         log('getTransactionStatusDetailsFunction Else');
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
 
       // log("response : ${response.body}");

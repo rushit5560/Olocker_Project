@@ -14,7 +14,7 @@ class SavingSchemesListScreenController extends GetxController {
   RxBool isSuccessStatus = false.obs;
 
   final size = Get.size;
-
+int isStatusCode=0;
   ApiHeader apiHeader = ApiHeader();
   String jewellerLogo = "";
 
@@ -39,13 +39,13 @@ class SavingSchemesListScreenController extends GetxController {
       GetSavingSchemesListModel getSavingSchemesListModel =
           GetSavingSchemesListModel.fromJson(json.decode(response.body));
 
-      isSuccessStatus = getSavingSchemesListModel.success.obs;
-
-      if (isSuccessStatus.value) {
+      // isSuccessStatus = getSavingSchemesListModel.success.obs;
+      isStatusCode=getSavingSchemesListModel.statusCode;
+      if (isStatusCode==200) {
         getSavingSchemesList.clear();
         getSavingSchemesList
-            .addAll(getSavingSchemesListModel.getSavingSchemeList);
-        jewellerLogo = ApiUrl.apiMainPath + getSavingSchemesListModel.partnerLogo;
+            .addAll(getSavingSchemesListModel.data.getSavingSchemeList);
+        jewellerLogo = ApiUrl.apiMainPath + getSavingSchemesListModel.data.partnerLogo;
         log('jewellerLogo : $jewellerLogo');
         log('getSavingSchemesList ::: ${getSavingSchemesList.length}');
       } else {

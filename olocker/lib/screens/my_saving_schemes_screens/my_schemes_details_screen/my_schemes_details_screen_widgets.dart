@@ -564,7 +564,7 @@ class JewellerCallDetailsModule extends StatelessWidget {
           GestureDetector(
             onTap: () async {
               Uri phoneno = Uri.parse(
-                  "tel:+91 ${mySchemePendingPaymentScreenController.getSavingSchemeData!.mobile.floor()}");
+                  "tel:+91 ${mySchemePendingPaymentScreenController.getSavingSchemeData!.mobile.toString()}");
 
               if (await launchUrl(phoneno)) {
               } else {}

@@ -1,47 +1,99 @@
-// To parse this JSON data, do
+// // To parse this JSON data, do
+// //
+// //     final getSavingSchemesListModel = getSavingSchemesListModelFromJson(jsonString);
 //
-//     final getSavingSchemesListModel = getSavingSchemesListModelFromJson(jsonString);
+// import 'dart:convert';
+//
+// GetSavingSchemesListModel getSavingSchemesListModelFromJson(String str) =>
+//     GetSavingSchemesListModel.fromJson(json.decode(str));
+//
+// String getSavingSchemesListModelToJson(GetSavingSchemesListModel data) =>
+//     json.encode(data.toJson());
+//
+// class GetSavingSchemesListModel {
+//   GetSavingSchemesListModel({
+//     required this.getSavingSchemeList,
+//     // this.getSavingScheme,
+//     required this.success,
+//     required this.errorInfo,
+//     required this.partnerLogo,
+//   });
+//
+//   final List<GetSavingSchemeData> getSavingSchemeList;
+//   // final dynamic getSavingScheme;
+//   final bool success;
+//   final ErrorInfo errorInfo;
+//   String partnerLogo;
+//
+//   factory GetSavingSchemesListModel.fromJson(Map<String, dynamic> json) =>
+//       GetSavingSchemesListModel(
+//         getSavingSchemeList: List<GetSavingSchemeData>.from(
+//             (json["GetSavingSchemeList"] ?? []).map((x) => GetSavingSchemeData.fromJson(x))),
+//         // getSavingScheme: json["GetSavingScheme"],
+//         success: json["success"] ?? false,
+//         errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
+//         partnerLogo: json["PartnerLogo"] ?? "",
+//       );
+//
+//   Map<String, dynamic> toJson() => {
+//         "GetSavingSchemeList":
+//             List<dynamic>.from(getSavingSchemeList.map((x) => x.toJson())),
+//         // "GetSavingScheme": getSavingScheme,
+//         "success": success,
+//         "error_info": errorInfo.toJson(),
+//       };
+// }
+//
+//
+//
+//
 
 import 'dart:convert';
 
 GetSavingSchemesListModel getSavingSchemesListModelFromJson(String str) =>
     GetSavingSchemesListModel.fromJson(json.decode(str));
 
-String getSavingSchemesListModelToJson(GetSavingSchemesListModel data) =>
-    json.encode(data.toJson());
-
 class GetSavingSchemesListModel {
-  GetSavingSchemesListModel({
-    required this.getSavingSchemeList,
-    // this.getSavingScheme,
-    required this.success,
-    required this.errorInfo,
-    required this.partnerLogo,
-  });
+  int statusCode;
+  Data data;
 
-  final List<GetSavingSchemeData> getSavingSchemeList;
-  // final dynamic getSavingScheme;
-  final bool success;
-  final ErrorInfo errorInfo;
-  String partnerLogo;
+  GetSavingSchemesListModel({
+    required this.statusCode,
+    required this.data,
+  });
 
   factory GetSavingSchemesListModel.fromJson(Map<String, dynamic> json) =>
       GetSavingSchemesListModel(
+        statusCode: json["statusCode"] ?? 0,
+        data: Data.fromJson(json["data"] ?? {}),
+      );
+}
+
+class Data {
+  List<GetSavingSchemeData> getSavingSchemeList;
+  String getSavingScheme;
+  String partnerLogo;
+  bool success;
+  ErrorInfo errorInfo;
+
+  Data({
+    required this.getSavingSchemeList,
+    required this.getSavingScheme,
+    required this.partnerLogo,
+    required this.success,
+    required this.errorInfo,
+  });
+
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
         getSavingSchemeList: List<GetSavingSchemeData>.from(
-            (json["GetSavingSchemeList"] ?? []).map((x) => GetSavingSchemeData.fromJson(x))),
-        // getSavingScheme: json["GetSavingScheme"],
+            (json["getSavingSchemeList"] ?? [])
+                    .map((x) => GetSavingSchemeData.fromJson(x)) ??
+                {}),
+        getSavingScheme: json["getSavingScheme"] ?? "",
+        partnerLogo: json["partnerLogo"] ?? "",
         success: json["success"] ?? false,
         errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
-        partnerLogo: json["PartnerLogo"] ?? "",
       );
-
-  Map<String, dynamic> toJson() => {
-        "GetSavingSchemeList":
-            List<dynamic>.from(getSavingSchemeList.map((x) => x.toJson())),
-        // "GetSavingScheme": getSavingScheme,
-        "success": success,
-        "error_info": errorInfo.toJson(),
-      };
 }
 
 class ErrorInfo {
@@ -63,18 +115,12 @@ class ErrorInfo {
         description: json["description"] ?? "",
         errorData: json["error_data"] ?? "",
       );
-
-  Map<String, dynamic> toJson() => {
-        "error_type": errorType,
-        "extra_info": extraInfo,
-        "description": description,
-        "error_data": errorData,
-      };
 }
 
 class GetSavingSchemeData {
   GetSavingSchemeData({
     required this.srNo,
+    required this.partnerSrNo,
     required this.minimumMonthlyAmount,
     required this.tenor,
     required this.yourBenefits,
@@ -102,6 +148,7 @@ class GetSavingSchemeData {
   });
 
   final int srNo;
+  final double partnerSrNo;
   final double minimumMonthlyAmount;
   final double tenor;
   final double yourBenefits;
@@ -114,73 +161,48 @@ class GetSavingSchemeData {
   final String imagePath;
   final bool isActive;
   final double contributionPercent;
+
   // final dynamic freeOnOrnamentPercentage;
   final String schemeName;
   final String schemeTagLine;
-  final dynamic partnerName;
+  final String partnerName;
   final String partnerLogo;
   final String ourContribution;
+
   // final dynamic paymentGatewayApiKey;
   // final dynamic paymentGatewaySecret;
   // final dynamic paymentGatewayType;
   // final dynamic finalAmount;
-  final double mobile;
+  final String mobile;
   final String hOaddress;
 
   factory GetSavingSchemeData.fromJson(Map<String, dynamic> json) =>
       GetSavingSchemeData(
-        srNo: json["SrNo"] ?? 0,
-        minimumMonthlyAmount: (json["MinimumMonthlyAmount"] ?? 0).toDouble(),
+        srNo: json["srNo"] ?? 0,
+        partnerSrNo: (json["partnerSrNo"] ?? 0).toDouble(),
+        minimumMonthlyAmount: (json["minimumMonthlyAmount"] ?? 0).toDouble(),
         tenor: (json["Tenor"] ?? 0).toDouble(),
-        yourBenefits: (json["YourBenefits"] ?? 0).toDouble(),
-        planEndAmount: (json["PlanEndAmount"] ?? 0).toDouble(),
-        usersLimit: (json["UsersLimit"] ?? 0).toDouble(),
-        gracePeriod: (json["GracePeriod"] ?? 0).toDouble(),
-        redeemableInCash: json["RedeemableInCash"] ?? false,
-        redeemableOnline: json["RedeemableOnline"] ?? false,
-        termsAndCondition: json["TermsAndCondition"] ?? "",
-        imagePath: json["ImagePath"] ?? "",
-        isActive: json["IsActive"] ?? false,
-        contributionPercent: (json["ContributionPercent"] ?? 0).toDouble(),
-        // freeOnOrnamentPercentage: json["FreeOnOrnamentPercentage"],
-        schemeName: json["SchemeName"] ?? "",
-        schemeTagLine: json["SchemeTagLine"] ?? "",
-        partnerName: json["PartnerName"] ?? "",
-        partnerLogo: json["PartnerLogo"] ?? "",
-        ourContribution: json["OurContribution"] ?? "",
-        // paymentGatewayApiKey: json["PaymentGatewayApiKey"],
-        // paymentGatewaySecret: json["PaymentGatewaySecret"],
-        // paymentGatewayType: json["PaymentGatewayType"],
-        // finalAmount: json["FinalAmount"],
-        mobile: json["Mobile"] ?? 0.0,
-        hOaddress: json["HOaddress"] ?? "",
+        yourBenefits: (json["yourBenefits"] ?? 0).toDouble(),
+        planEndAmount: (json["planEndAmount"] ?? 0).toDouble(),
+        usersLimit: (json["usersLimit"] ?? 0).toDouble(),
+        gracePeriod: (json["gracePeriod"] ?? 0).toDouble(),
+        redeemableInCash: json["redeemableInCash"] ?? false,
+        redeemableOnline: json["redeemableOnline"] ?? false,
+        termsAndCondition: json["termsAndCondition"] ?? "",
+        imagePath: json["imagePath"] ?? "",
+        isActive: json["isActive"] ?? false,
+        contributionPercent: (json["contributionPercent"] ?? 0).toDouble(),
+        // freeOnOrnamentPercentage: json["freeOnOrnamentPercentage"],
+        schemeName: json["schemeName"] ?? "",
+        schemeTagLine: json["schemeTagLine"] ?? "",
+        partnerName: json["partnerName"] ?? "",
+        partnerLogo: json["partnerLogo"] ?? "",
+        ourContribution: json["ourContribution"] ?? "",
+        // paymentGatewayApiKey: json["paymentGatewayApiKey"],
+        // paymentGatewaySecret: json["paymentGatewaySecret"],
+        // paymentGatewayType: json["paymentGatewayType"],
+        // finalAmount: json["finalAmount"],
+        mobile: json["mobile"] ?? "",
+        hOaddress: json["hOaddress"] ?? "",
       );
-
-  Map<String, dynamic> toJson() => {
-        "SrNo": srNo,
-        "MinimumMonthlyAmount": minimumMonthlyAmount,
-        "Tenor": tenor,
-        "YourBenefits": yourBenefits,
-        "PlanEndAmount": planEndAmount,
-        "UsersLimit": usersLimit,
-        "GracePeriod": gracePeriod,
-        "RedeemableInCash": redeemableInCash,
-        "RedeemableOnline": redeemableOnline,
-        "TermsAndCondition": termsAndCondition,
-        "ImagePath": imagePath,
-        "IsActive": isActive,
-        "ContributionPercent": contributionPercent,
-        // "FreeOnOrnamentPercentage": freeOnOrnamentPercentage,
-        "SchemeName": schemeName,
-        "SchemeTagLine": schemeTagLine,
-        "PartnerName": partnerName,
-        "PartnerLogo": partnerLogo,
-        "OurContribution": ourContribution,
-        // "PaymentGatewayApiKey": paymentGatewayApiKey,
-        // "PaymentGatewaySecret": paymentGatewaySecret,
-        // "PaymentGatewayType": paymentGatewayType,
-        // "FinalAmount": finalAmount,
-        "Mobile": mobile,
-        "HOaddress": hOaddress,
-      };
 }

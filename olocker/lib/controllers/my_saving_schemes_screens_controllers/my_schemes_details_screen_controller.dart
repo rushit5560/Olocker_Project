@@ -27,7 +27,7 @@ class MySchemesDetailsScreenController extends GetxController {
   ApiHeader apiHeader = ApiHeader();
   GetSavingSchemeData? getSavingSchemeData;
   String jewellerLogo = '';
-
+int isStatusCode=0;
   List<TransactionData>? transactionsDataList;
   
   Dio dio = Dio();
@@ -51,11 +51,11 @@ class MySchemesDetailsScreenController extends GetxController {
       GetSavingSchemesListModel getSavingSchemesListModel =
           GetSavingSchemesListModel.fromJson(json.decode(response.body));
 
-      isSuccessStatus = getSavingSchemesListModel.success.obs;
-
-      if (isSuccessStatus.value) {
-        getSavingSchemeData = getSavingSchemesListModel.getSavingSchemeList[0];
-        jewellerLogo = ApiUrl.apiImagePath + getSavingSchemesListModel.partnerLogo;
+      // isSuccessStatus = getSavingSchemesListModel.success.obs;
+      isStatusCode =getSavingSchemesListModel.statusCode;
+      if (isStatusCode==200) {
+        getSavingSchemeData = getSavingSchemesListModel.data.getSavingSchemeList[0];
+        jewellerLogo = ApiUrl.apiImagePath + getSavingSchemesListModel.data.partnerLogo;
         // jewellerLogo = ApiUrl.apiImagePath + getSavingSchemeData!.partnerLogo;
 
         log('getSavingSchemeData schemeName ::: ${getSavingSchemeData!.schemeName}');
@@ -64,6 +64,15 @@ class MySchemesDetailsScreenController extends GetxController {
         // double totalAmount= 
       } else {
         log('getMySavingSchemeDetailsFunction false');
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log('getMySavingSchemeDetailsFunction error:$e');
@@ -92,14 +101,23 @@ class MySchemesDetailsScreenController extends GetxController {
 
       GetTransactionStatusDetailsModel getTransactionStatusDetailsModel =
           GetTransactionStatusDetailsModel.fromJson(json.decode(response.body));
-      var isSuccessStatus = getTransactionStatusDetailsModel.success.obs;
-
-      if (isSuccessStatus.value) {
-        transactionsDataList = getTransactionStatusDetailsModel.transactions;
+      // var isSuccessStatus = getTransactionStatusDetailsModel.success.obs;
+isStatusCode=getTransactionStatusDetailsModel.statusCode;
+      if (isStatusCode==200) {
+        transactionsDataList = getTransactionStatusDetailsModel.data.transactions;
         log('transactionsDataList : ${transactionsDataList!.length}');
         // log('transactionData.invoiceNo : ${transactionData.invoiceNo}');
       } else {
         log('getTransactionsListFunction Else');
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
 
       // log("response : ${response.body}");

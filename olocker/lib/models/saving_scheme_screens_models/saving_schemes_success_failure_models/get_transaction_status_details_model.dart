@@ -1,42 +1,47 @@
-// To parse this JSON data, do
-//
-//     final getTransactionStatusDetailsModel = getTransactionStatusDetailsModelFromJson(jsonString);
+
+
 
 import 'dart:convert';
 
-GetTransactionStatusDetailsModel getTransactionStatusDetailsModelFromJson(
-        String str) =>
-    GetTransactionStatusDetailsModel.fromJson(json.decode(str));
+GetTransactionStatusDetailsModel getTransactionStatusDetailsModelFromJson(String str) => GetTransactionStatusDetailsModel.fromJson(json.decode(str));
 
-String getTransactionStatusDetailsModelToJson(
-        GetTransactionStatusDetailsModel data) =>
-    json.encode(data.toJson());
 
 class GetTransactionStatusDetailsModel {
+  int statusCode;
+  Data data;
+
   GetTransactionStatusDetailsModel({
+    required this.statusCode,
+    required this.data,
+  });
+
+  factory GetTransactionStatusDetailsModel.fromJson(Map<String, dynamic> json) => GetTransactionStatusDetailsModel(
+    statusCode: json["statusCode"]??0,
+    data: Data.fromJson(json["data"]??{}),
+  );
+
+
+}
+
+class Data {
+  List<TransactionData> transactions;
+  bool success;
+  ErrorInfo errorInfo;
+
+  Data({
     required this.transactions,
     required this.success,
     required this.errorInfo,
   });
 
-  final List<TransactionData> transactions;
-  final bool success;
-  final ErrorInfo errorInfo;
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+    transactions: List<TransactionData>.from((json["transactions"] ?? [])
+        .map((x) => TransactionData.fromJson(x))??{}),
+    success: json["success"]??false,
+    errorInfo: ErrorInfo.fromJson(json["error_info"]??{}),
+  );
 
-  factory GetTransactionStatusDetailsModel.fromJson(
-          Map<String, dynamic> json) =>
-      GetTransactionStatusDetailsModel(
-        transactions: List<TransactionData>.from((json["transactions"] ?? [])
-            .map((x) => TransactionData.fromJson(x))),
-        success: json["success"] ?? false,
-        errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
-      );
 
-  Map<String, dynamic> toJson() => {
-        "transactions": List<dynamic>.from(transactions.map((x) => x.toJson())),
-        "success": success,
-        "error_info": errorInfo.toJson(),
-      };
 }
 
 class ErrorInfo {
@@ -44,28 +49,29 @@ class ErrorInfo {
     required this.errorType,
     required this.extraInfo,
     required this.description,
-    this.errorData,
+    required  this.errorData,
   });
 
   final int errorType;
   final String extraInfo;
   final String description;
-  final dynamic errorData;
+  final String errorData;
 
   factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
-        errorType: json["error_type"] ?? 0,
-        extraInfo: json["extra_info"] ?? "",
-        description: json["description"] ?? "",
-        errorData: json["error_data"] ?? "",
-      );
+    errorType: json["error_type"] ?? 0,
+    extraInfo: json["extra_info"] ?? "",
+    description: json["description"] ?? "",
+    errorData: json["error_data"] ?? "",
+  );
 
   Map<String, dynamic> toJson() => {
-        "error_type": errorType,
-        "extra_info": extraInfo,
-        "description": description,
-        "error_data": errorData,
-      };
+    "error_type": errorType,
+    "extra_info": extraInfo,
+    "description": description,
+    "error_data": errorData,
+  };
 }
+
 
 class TransactionData {
   TransactionData({
@@ -102,37 +108,22 @@ class TransactionData {
 
   factory TransactionData.fromJson(Map<String, dynamic> json) =>
       TransactionData(
-        srNo: json["SrNo"] ?? 0,
+        srNo: json["srNo"] ?? 0,
         customerPurchaseSavingSchemeSrNo:
-            json["CustomerPurchaseSavingSchemeSrNo"] ?? 0,
-        transactionUuid: json["TransactionUUID"] ?? "",
-        transactionDate: json["TransactionDate"] ?? "",
-        transactionId: json["TransactionId"] ?? "",
-        transactionStatus: json["TransactionStatus"] ?? "",
-        timeStamp: json["TimeStamp"] ?? "",
-        transactionAmount: json["TransactionAmount"] ?? "",
-        paymentId: json["PaymentId"] ?? "",
-        invoiceNo: json["InvoiceNo"] ?? "",
-        billingDate: json["BillingDate"] ?? "",
-        invoicePath: json["InvoicePath"] ?? "",
-        isOnlinePayment: json["IsOnlinePayment"] ?? "",
-        nextPaymentDate: json["NextPaymentDate"]??"",
+        json["customerPurchaseSavingSchemeSrNo"] ?? 0,
+        transactionUuid: json["transactionUUID"] ?? "",
+        transactionDate: json["transactionDate"] ?? "",
+        transactionId: json["transactionId"] ?? "",
+        transactionStatus: json["transactionStatus"] ?? "",
+        timeStamp: json["timeStamp"] ?? "",
+        transactionAmount: json["transactionAmount"] ?? "",
+        paymentId: json["paymentId"] ?? "",
+        invoiceNo: json["invoiceNo"] ?? "",
+        billingDate: json["billingDate"] ?? "",
+        invoicePath: json["invoicePath"] ?? "",
+        isOnlinePayment: json["isOnlinePayment"] ?? "",
+        nextPaymentDate: json["nextPaymentDate"]??"",
       );
 
-  Map<String, dynamic> toJson() => {
-        "SrNo": srNo,
-        "CustomerPurchaseSavingSchemeSrNo": customerPurchaseSavingSchemeSrNo,
-        "TransactionUUID": transactionUuid,
-        "TransactionDate": transactionDate,
-        "TransactionId": transactionId,
-        "TransactionStatus": transactionStatus,
-        "TimeStamp": timeStamp,
-        "TransactionAmount": transactionAmount,
-        "PaymentId": paymentId,
-        "InvoiceNo": invoiceNo,
-        "BillingDate": billingDate,
-        "InvoicePath": invoicePath,
-        "IsOnlinePayment": isOnlinePayment,
-        "NextPaymentDate": nextPaymentDate,
-      };
 }
+
