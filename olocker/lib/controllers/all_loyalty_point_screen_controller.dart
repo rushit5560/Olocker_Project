@@ -44,6 +44,15 @@ class AllLoyaltyPointScreenController extends GetxController {
         log('loyaltyPointList : ${loyaltyPointList.length}');
       } else {
         log('getLoyaltyPointFunction Else');
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log('getLoyaltyPointFunction Error :$e');

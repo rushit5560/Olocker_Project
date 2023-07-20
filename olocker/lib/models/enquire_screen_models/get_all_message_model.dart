@@ -236,19 +236,19 @@ class GetNotification {
 
   factory GetNotification.fromJson(Map<String, dynamic> json) =>
       GetNotification(
-        srNo: json["SrNo"] ?? 0,
-        partnerSrNo: json["PartnerSrNo"] ?? 0,
-        partnerName: json["PartnerName"] ?? "",
-        customerId: json["CustomerId"] ?? 0,
-        title: json["Title"] ?? "",
-        message: json["Message"] ?? "",
-        sentBy: json["SentBy"] ?? 0,
-        timestamp: DateTime.parse(json["Timestamp"] ?? ""),
-        isRead: json["IsRead"] ?? false,
-        messageType: json["MessageType"] ?? 0,
-        replyMsgId: json["ReplyMsgId"] ?? 0,
-        productId: json["ProductId"] ?? 0,
-        isAdminNotification: json["IsAdminNotification"] ?? false,
+        srNo: json["srNo"] ?? 0,
+        partnerSrNo: json["partnerSrNo"] ?? 0,
+        partnerName: json["partnerName"] ?? "",
+        customerId: json["customerId"] ?? 0,
+        title: json["title"] ?? "",
+        message: json["message"] ?? "",
+        sentBy: json["sentBy"] ?? 0,
+        timestamp: DateTime.parse(json["timestamp"] ?? ""),
+        isRead: json["isRead"] ?? false,
+        messageType: json["messageType"] ?? 0,
+        replyMsgId: json["replyMsgId"] ?? 0,
+        productId: json["productId"] ?? 0,
+        isAdminNotification: json["isAdminNotification"] ?? false,
       );
 
 }

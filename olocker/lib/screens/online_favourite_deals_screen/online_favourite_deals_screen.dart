@@ -55,7 +55,7 @@ class OnlineFavouriteDealsScreen extends StatelessWidget {
                       crossAxisSpacing: 18,
                     ),
                     itemBuilder: (context, i) {
-                      VendorDealsList1 singleDeal =
+                      FavDealList singleDeal =
                           onlineFavouriteDealsScreenController
                               .favouriteDealsList[i];
                       return _onlineDealsGridTile(singleDeal);
@@ -65,7 +65,7 @@ class OnlineFavouriteDealsScreen extends StatelessWidget {
     );
   }
 
-  Widget _onlineDealsGridTile(VendorDealsList1 singleDeal) {
+  Widget _onlineDealsGridTile(FavDealList singleDeal) {
     String imgUrl = singleDeal.categoryImage;
     return GestureDetector(
       onTap: () {

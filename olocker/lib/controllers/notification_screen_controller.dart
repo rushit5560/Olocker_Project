@@ -14,12 +14,10 @@ class NotificationScreenController extends GetxController {
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
-
   RxBool isLoadingMessage = false.obs;
   RxBool isSuccessMessageStatus = false.obs;
   int isStatusCode = 0;
   ApiHeader apiHeader = ApiHeader();
-
   List<GetNotification> getNotificationList = [];
 
   Future<void> getAllNotificationsFunction() async {

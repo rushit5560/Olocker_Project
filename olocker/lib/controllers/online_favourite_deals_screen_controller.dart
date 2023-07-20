@@ -13,8 +13,8 @@ class OnlineFavouriteDealsScreenController extends GetxController {
 
   ApiHeader apiHeader = ApiHeader();
   Size size = Get.size;
-
-  List<VendorDealsList1> favouriteDealsList = [];
+int isStatusCode =0;
+  List<FavDealList> favouriteDealsList = [];
 
   Future<void> getOnlineFavouriteDealsFunction() async {
     isLoading(true);
@@ -30,12 +30,12 @@ class OnlineFavouriteDealsScreenController extends GetxController {
 
       FavouriteOnlineDealsModel smartDealsOnlineModel =
           FavouriteOnlineDealsModel.fromJson(json.decode(response.body));
-      isSuccessStatus = smartDealsOnlineModel.success.obs;
-
-      if (isSuccessStatus.value) {
+      // isSuccessStatus = smartDealsOnlineModel.success.obs;
+      isStatusCode=smartDealsOnlineModel.statusCode;
+      if (isStatusCode==200) {
         favouriteDealsList.clear();
-        favouriteDealsList.addAll(smartDealsOnlineModel.vendorDealsList);
-        log('Length1 : ${smartDealsOnlineModel.vendorDealsList.length}');
+        favouriteDealsList.addAll(smartDealsOnlineModel.data.favDealList);
+        log('Length1 : ${smartDealsOnlineModel.data.favDealList.length}');
         log('Length2 : ${favouriteDealsList.length}');
       } else {
         log('getOnlineFavouriteDealsFunction Else');

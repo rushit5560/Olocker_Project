@@ -420,9 +420,9 @@ class PointsRedeemedSummary {
 
   factory PointsRedeemedSummary.fromJson(Map<String, dynamic> json) =>
       PointsRedeemedSummary(
-        dateRedeemed: json["DateRedeemed "] ?? "",
-        pointsRdeemed: json["PointsRdeemed"] ?? 0,
-        redeemtionType: json["RedeemtionType"] ?? "",
+        dateRedeemed: json["dateRedeemed "] ?? "",
+        pointsRdeemed: json["pointsRdeemed"] ?? 0,
+        redeemtionType: json["redeemtionType"] ?? "",
       );
 }
 
