@@ -36,7 +36,7 @@ class MySchemesDetailsScreenController extends GetxController {
   Future<void> getMySavingSchemeDetailsFunction() async {
     isLoading(true);
 
-    String url = '${ApiUrl.getSavingSchemeDetailsApi}?SrNo=$savingSchemeSrNo';
+    String url = '${ApiUrl.getSavingSchemeDetailsApi}?SrNo=${schemeData.savingSchemeSrNo}';
 
     log('getMySavingSchemeDetailsFunction api url  : $url');
 

@@ -28,8 +28,7 @@ class GetSavingSchemesListModel {
   factory GetSavingSchemesListModel.fromJson(Map<String, dynamic> json) =>
       GetSavingSchemesListModel(
         getSavingSchemeList: List<GetSavingSchemeData>.from(
-            (json["GetSavingSchemeList"] ?? [])
-                .map((x) => GetSavingSchemeData.fromJson(x))),
+            (json["GetSavingSchemeList"] ?? []).map((x) => GetSavingSchemeData.fromJson(x))),
         // getSavingScheme: json["GetSavingScheme"],
         success: json["success"] ?? false,
         errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
