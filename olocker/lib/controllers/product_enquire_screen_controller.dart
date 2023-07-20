@@ -15,7 +15,7 @@ class ProductEnquireScreenController extends GetxController {
   var productSrNo = Get.arguments[1]; // Coming from jewellery details screen
   var notificationSrNo =
       Get.arguments[2]; // Coming from jewellery details screen
-
+  int isStatusCode = 0;
   final size = Get.size;
 
   RxBool isLoading = false.obs;
@@ -59,6 +59,15 @@ class ProductEnquireScreenController extends GetxController {
         log('getJewelleryProductDetailFunction productDetailsData item name is  : ${productDetailsData.itemTypeName}');
       } else {
         log('getJewelleryProductDetailFunction Else');
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log("getProductDetailFunction Error ::: $e");
@@ -74,7 +83,6 @@ class ProductEnquireScreenController extends GetxController {
     log(" sendProductInquiryFunction url: $url");
 
     log("isChatLoading :: ${isChatLoading.value}");
-
 
     try {
       var requestMap = {
@@ -130,6 +138,15 @@ class ProductEnquireScreenController extends GetxController {
         }
       } else {
         log('sendProductInquiryFunction Else');
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log("sendProductInquiryFunction Error ::: $e");
@@ -153,18 +170,16 @@ class ProductEnquireScreenController extends GetxController {
         headers: apiHeader.headers,
       );
       log(' getAllReplyFunction response : ${response.body}');
-      
 
       GetAllMessageModel getAllMessageModel =
           GetAllMessageModel.fromJson(json.decode(response.body));
 
-      isSuccessStatus = getAllMessageModel.success.obs;
-
+      // isSuccessStatus = getAllMessageModel.success.obs;
+      isStatusCode = getAllMessageModel.statusCode;
       if (response.statusCode == 200) {
-        getNotificationList.addAll(getAllMessageModel.getNotification);
+        getNotificationList.addAll(getAllMessageModel.data.getNotification);
 
         log('getAllReplyFunction getNotificationList is  : ${getNotificationList.length}');
-
       } else {
         log('getAllReplyFunction Else');
       }

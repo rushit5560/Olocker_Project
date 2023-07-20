@@ -17,7 +17,7 @@ class NotificationScreenController extends GetxController {
 
   RxBool isLoadingMessage = false.obs;
   RxBool isSuccessMessageStatus = false.obs;
-
+  int isStatusCode = 0;
   ApiHeader apiHeader = ApiHeader();
 
   List<GetNotification> getNotificationList = [];
@@ -38,13 +38,22 @@ class NotificationScreenController extends GetxController {
 
       GetAllMessageModel getAllMessageModel =
           GetAllMessageModel.fromJson(json.decode(response.body));
-      var isSuccessStatus = getAllMessageModel.success.obs;
-
-      if (isSuccessStatus.value) {
-        getNotificationList = getAllMessageModel.getNotification;
+      // var isSuccessStatus = getAllMessageModel.success.obs;
+      isStatusCode = getAllMessageModel.statusCode;
+      if (isStatusCode == 200) {
+        getNotificationList = getAllMessageModel.data.getNotification;
         log('getAllNotificationsFunction ');
       } else {
         log('getAllNotificationsFunction Else');
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log('getAllNotificationsFunction Error :$e');
@@ -109,9 +118,9 @@ class NotificationScreenController extends GetxController {
 
       GetAllMessageModel getAllMessageModel =
           GetAllMessageModel.fromJson(json.decode(response.body));
-      var isSuccessStatus = getAllMessageModel.success.obs;
-
-      if (isSuccessStatus.value) {
+      // var isSuccessStatus = getAllMessageModel.success.obs;
+      isStatusCode = getAllMessageModel.statusCode;
+      if (isStatusCode == 200) {
         showMessageInDialog(messageText: messageText);
         getNotificationList[index].isRead = true;
         isLoading(true);
@@ -121,6 +130,15 @@ class NotificationScreenController extends GetxController {
         log('readMarkUserNotificationApiFunction if case ');
       } else {
         log('readMarkUserNotificationApiFunction Else case');
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log('readMarkUserNotificationApiFunction Error :$e');
