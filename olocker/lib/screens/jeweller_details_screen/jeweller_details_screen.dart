@@ -66,7 +66,7 @@ class JewellerDetailsScreen extends StatelessWidget {
                   .specialFeaturesList.isEmpty
                   ? Container()
                   : JewellerFeaturesModule(),
-              //
+
               // jewellerDetailsScreenController
               //         .announcementOfferList.isEmpty
               //     ? Container()
@@ -124,14 +124,14 @@ class JewellerDetailsScreen extends StatelessWidget {
               //             .bestSellerList.isEmpty
               //         ? Container()
               //         : BestSellersListModule(),
-              //     jewellerDetailsScreenController
-              //             .clientTestimonialsList.isEmpty
-              //         ? Container()
-              //         : CustomerSpeakModule(),
-              //     jewellerDetailsScreenController
-              //             .goldPriceList.isEmpty
-              //         ? Container()
-              //         : GoldPriceModule(),
+                  jewellerDetailsScreenController
+                          .clientTestimonialsList.isEmpty
+                      ? Container()
+                      : CustomerSpeakModule(),
+                  jewellerDetailsScreenController
+                          .goldPriceList.isEmpty
+                      ? Container()
+                      : GoldPriceModule(),
               //   ],
               // ),
               // jewellerDetailsScreenController.hasMore.value

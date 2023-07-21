@@ -23,7 +23,7 @@ class JewellerDetailsScreenController extends GetxController {
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
-  int isStatusCode =0;
+  int isStatusCode = 0;
   Size size = Get.size;
   ApiHeader apiHeader = ApiHeader();
 
@@ -85,8 +85,8 @@ class JewellerDetailsScreenController extends GetxController {
       SpecialFeaturesModel specialFeaturesModel =
           SpecialFeaturesModel.fromJson(json.decode(response.body));
       // isSuccessStatus = specialFeaturesModel.success.obs;
-      isStatusCode=specialFeaturesModel.statusCode;
-      if (isStatusCode==200) {
+      isStatusCode = specialFeaturesModel.statusCode;
+      if (isStatusCode == 200) {
         specialFeaturesList.clear();
         specialFeaturesList.addAll(specialFeaturesModel.data);
         // log('specialFeaturesList : ${specialFeaturesList.length}');
@@ -107,8 +107,11 @@ class JewellerDetailsScreenController extends GetxController {
       rethrow;
     }
 
-    // await getAnnouncementOfferFunction();
-    isLoading(false);
+    /// await getAnnouncementOfferFunction();
+    //  await getBestSellerFunction();
+    await getClientTestimonialsFunction();
+
+    // isLoading(false);
   }
 
   Future<void> getAnnouncementOfferFunction() async {
@@ -139,8 +142,8 @@ class JewellerDetailsScreenController extends GetxController {
       rethrow;
     }
 
-    await getJewelleryPushToAppDataFunction();
-    // isLoading(false);
+    /// await getJewelleryPushToAppDataFunction();
+    isLoading(false);
   }
 
   Future<void> getJewelleryPushToAppDataFunction() async {
@@ -212,8 +215,8 @@ class JewellerDetailsScreenController extends GetxController {
       rethrow;
     }
 
-    await getAboutYourSelfFunction();
-    // isLoading(false);
+    ///  await getAboutYourSelfFunction();
+    isLoading(false);
   }
 
   Future<void> getAboutYourSelfFunction() async {
@@ -284,8 +287,8 @@ class JewellerDetailsScreenController extends GetxController {
         rethrow;
       }
 
-      await getJewelleryTypeFunction();
-      // isLoading(false);
+      ///  await getJewelleryTypeFunction();
+      isLoading(false);
     } else {
       isLoading(false);
     }
@@ -422,8 +425,8 @@ class JewellerDetailsScreenController extends GetxController {
         rethrow;
       }
 
-      await getBestSellerFunction();
-      // isLoading(false);
+      ///  await getBestSellerFunction();
+      isLoading(false);
     } else {
       isLoading(false);
     }
@@ -458,8 +461,8 @@ class JewellerDetailsScreenController extends GetxController {
         rethrow;
       }
 
-      await getClientTestimonialsFunction();
-      // isLoading(false);
+      /// await getClientTestimonialsFunction();
+      isLoading(false);
     } else {
       isLoading(false);
     }
@@ -480,14 +483,25 @@ class JewellerDetailsScreenController extends GetxController {
 
         ClientTestimonialsModel clientTestimonialsModel =
             ClientTestimonialsModel.fromJson(json.decode(response.body));
-        isSuccessStatus = clientTestimonialsModel.success.obs;
+        // isSuccessStatus = clientTestimonialsModel.success.obs;
+        isStatusCode = clientTestimonialsModel.statusCode;
 
-        if (isSuccessStatus.value) {
+        if (isStatusCode == 200) {
           clientTestimonialsList.clear();
-          clientTestimonialsList.addAll(clientTestimonialsModel.testimonials);
+          clientTestimonialsList
+              .addAll(clientTestimonialsModel.data.testimonials);
           log('getClientTestimonialsFunction clientTestimonialsList : ${clientTestimonialsList.length}');
         } else {
           log('getClientTestimonialsFunction Else');
+          if (isStatusCode == 400) {
+            log("BadRequest");
+          } else if (isStatusCode == 404) {
+            log("NotFound");
+          } else if (isStatusCode == 406) {
+            log("NotAcceptable");
+          } else if (isStatusCode == 417) {
+            log("HttpStatusCode.ExpectationFailed");
+          }
         }
       } catch (e) {
         log('getClientTestimonialsFunction Error : $e');
@@ -495,7 +509,7 @@ class JewellerDetailsScreenController extends GetxController {
       }
 
       await getGoldPriceFunction();
-      // isLoading(false);
+      isLoading(false);
     } else {
       isLoading(false);
     }
@@ -516,10 +530,10 @@ class JewellerDetailsScreenController extends GetxController {
 
         GoldPriceModel goldPriceModel =
             GoldPriceModel.fromJson(json.decode(response.body));
-        isSuccessStatus = goldPriceModel.success.obs;
-
-        if (isSuccessStatus.value) {
-          goldPriceList = goldPriceModel.ibjAratesList;
+        // isSuccessStatus = goldPriceModel.success.obs;
+        isStatusCode = goldPriceModel.statusCode;
+        if (isStatusCode == 200) {
+          goldPriceList = goldPriceModel.data.ibjAratesList;
 
           if (goldPriceList.isNotEmpty) {
             for (int i = 0; i < goldPriceList.length; i++) {
@@ -537,6 +551,15 @@ class JewellerDetailsScreenController extends GetxController {
           }
         } else {
           log('getGoldPriceFunction Else');
+          if (isStatusCode == 400) {
+            log("BadRequest");
+          } else if (isStatusCode == 404) {
+            log("NotFound");
+          } else if (isStatusCode == 406) {
+            log("NotAcceptable");
+          } else if (isStatusCode == 417) {
+            log("HttpStatusCode.ExpectationFailed");
+          }
         }
       } catch (e) {
         log('getGoldPriceFunction Error :$e');

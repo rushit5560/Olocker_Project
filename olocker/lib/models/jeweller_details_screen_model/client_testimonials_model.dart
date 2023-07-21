@@ -1,93 +1,68 @@
 import 'dart:convert';
 
-ClientTestimonialsModel clientTestimonialsModelFromJson(String str) => ClientTestimonialsModel.fromJson(json.decode(str));
+import '../error_info_model/error_info_model.dart';
 
-String clientTestimonialsModelToJson(ClientTestimonialsModel data) => json.encode(data.toJson());
+ClientTestimonialsModel clientTestimonialsModelFromJson(String str) =>
+    ClientTestimonialsModel.fromJson(json.decode(str));
 
 class ClientTestimonialsModel {
+  int statusCode;
+  Data data;
+
   ClientTestimonialsModel({
+    required this.statusCode,
+    required this.data,
+  });
+
+  factory ClientTestimonialsModel.fromJson(Map<String, dynamic> json) =>
+      ClientTestimonialsModel(
+        statusCode: json["statusCode"] ?? 0,
+        data: Data.fromJson(json["data"] ?? {}),
+      );
+}
+
+class Data {
+  List<Testimonial> testimonials;
+  bool success;
+  ErrorInfoModel errorInfo;
+
+  Data({
     required this.testimonials,
     required this.success,
     required this.errorInfo,
   });
 
-  List<Testimonial> testimonials;
-  bool success;
-  ErrorInfo errorInfo;
-
-  factory ClientTestimonialsModel.fromJson(Map<String, dynamic> json) => ClientTestimonialsModel(
-    testimonials: List<Testimonial>.from((json["Testimonials"] ?? []).map((x) => Testimonial.fromJson(x ?? {}))),
-    success: json["success"] ?? false,
-    errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "Testimonials": List<dynamic>.from(testimonials.map((x) => x.toJson())),
-    "success": success,
-    "error_info": errorInfo.toJson(),
-  };
-}
-
-class ErrorInfo {
-  ErrorInfo({
-    // this.errorType,
-    required this.extraInfo,
-    // this.description,
-    // this.errorData,
-  });
-
-  // int errorType;
-  String extraInfo;
-  // String description;
-  // dynamic errorData;
-
-  factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
-    // errorType: json["error_type"],
-    extraInfo: json["extra_info"] ?? "",
-    // description: json["description"],
-    // errorData: json["error_data"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    // "error_type": errorType,
-    "extra_info": extraInfo,
-    // "description": description,
-    // "error_data": errorData,
-  };
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+        testimonials: List<Testimonial>.from(
+            (json["testimonials"] ?? []).map((x) => Testimonial.fromJson(x))),
+        success: json["success"] ?? false,
+        errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
+      );
 }
 
 class Testimonial {
+  int srNo;
+  int partnerSrNo;
+  String clientName;
+  String title;
+  String testimonials;
+  String url;
+
   Testimonial({
     required this.srNo,
     required this.partnerSrNo,
     required this.clientName,
     required this.title,
     required this.testimonials,
-    // required this.url,
+    required this.url,
   });
 
-  int srNo;
-  int partnerSrNo;
-  String clientName;
-  String title;
-  String testimonials;
-  // dynamic url;
-
   factory Testimonial.fromJson(Map<String, dynamic> json) => Testimonial(
-    srNo: json["SrNo"] ?? 0,
-    partnerSrNo: json["PartnerSrNo"] ?? 0,
-    clientName: json["ClientName"] ?? "",
-    title: json["Title"] ?? "",
-    testimonials: json["Testimonials"] ?? "",
-    // url: json["Url"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "SrNo": srNo,
-    "PartnerSrNo": partnerSrNo,
-    "ClientName": clientName,
-    "Title": title,
-    "Testimonials": testimonials,
-    // "Url": url,
-  };
+        srNo: json["srNo"] ?? 0,
+        partnerSrNo: json["partnerSrNo"] ?? 0,
+        clientName: json["clientName"] ?? "",
+        title: json["title"] ?? "",
+        testimonials: json["testimonials"] ?? "",
+        url: json["url"] ?? "",
+      );
 }
