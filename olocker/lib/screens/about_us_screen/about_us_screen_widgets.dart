@@ -146,6 +146,7 @@ class ContactDetailsModule extends StatelessWidget {
   Color? color;
   String text;
   Function()? onTap;
+
   ContactDetailsModule({
     Key? key,
     required this.icon,
@@ -186,9 +187,11 @@ class ContactDetailsModule extends StatelessWidget {
 
 class CustemAppbarModule extends StatelessWidget with MyPreferredSizeMixin {
   final aboutUsPageController = Get.find<AboutUsPageController>();
+
   CustemAppbarModule({
     Key? key,
   }) : super(key: key);
+
   @override
   Size get preferredSize => const Size.fromHeight(60);
 
@@ -456,6 +459,7 @@ class TitleAboutModule extends StatelessWidget {
 
   TitleAboutModule({Key? key, required this.text}) : super(key: key);
   final aboutUsPageController = Get.find<AboutUsPageController>();
+
   @override
   Widget build(BuildContext context) {
     return Row(

@@ -66,7 +66,7 @@ class ApiUrl {
 
   //ABOUT US screen apis
   static const String getAboutUsJewellerDetailsApi =
-      "${apiMainPath}api/Partner/GetDetails";
+      "${apiMainPath}api/User/GetDetails";
 
   //notification screen apis\
   static const String getAllNotificationApi =
@@ -149,7 +149,7 @@ class ApiUrl {
       "${apiMainPath}api/Partner/GetIBJARatesByPartnerId";
 
   static const String getAboutYourSelfApi =
-      "${apiMainPath}api/Partner/GetDetails";
+      "${apiMainPath}api/User/GetDetails";
 
   /// Jewellery Details Screen Api's
   static const String getJewelleryDetailApi =

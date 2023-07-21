@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/user_details.dart';
 import 'package:http/http.dart' as http;
@@ -10,15 +11,15 @@ import 'package:olocker/models/personal_loans_screen_model/check_availability_mo
 import 'package:olocker/models/personal_loans_screen_model/emi_schedule_model.dart';
 import 'package:olocker/models/personal_loans_screen_model/upload_emi_document_model.dart';
 import 'package:olocker/widgets/common_widgets.dart';
-
 import '../constants/app_colors.dart';
 import '../screens/index_screen/index_screen.dart';
 
 class PersonalLoansScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
-
+  int isStatusCode = 0;
   RxInt currentStep = 0.obs;
+
   // RxInt textColorStep = 0.obs;
   Size size = Get.size;
   ApiHeader apiHeader = ApiHeader();
@@ -44,6 +45,8 @@ class PersonalLoansScreenController extends GetxController {
   RxString salariedValue = "Salaried".obs;
   RxString homeLoanValue = "no".obs;
   int tempSelectedYear = 0;
+  final DateFormat formatter = DateFormat('yyyy-MM-dd');
+
   String apiDobDate = "";
 
   RxString namePrefixDDValue = 'Mr.'.obs;
@@ -159,12 +162,12 @@ class PersonalLoansScreenController extends GetxController {
     try {
       isLoading(true);
       Map<String, dynamic> bodyData = {
-        "titleid": "$namePrefixNumberValue",
-        "firstname": fnameController.text.trim(),
-        "lastname": lnameController.text.trim(),
-        "dob": apiDobDate,
-        "mobile": mobileNoController.text.trim(),
-        "email": emailController.text.trim().toLowerCase(),
+        // "titleid": "$namePrefixNumberValue",
+        "FirstName": fnameController.text.trim(),
+        "LastName": lnameController.text.trim(),
+        "DOB": apiDobDate,
+        "Mobile": mobileNoController.text.trim(),
+        "Email": emailController.text.trim().toLowerCase(),
         "Pincode": pinCodeController.text.trim(),
         "PANNumber": panCardController.text.trim(),
         "LoanAmount": loanAmount.value.toInt().toString(),
@@ -190,16 +193,16 @@ class PersonalLoansScreenController extends GetxController {
       log('statusCode : ${response.statusCode}');
 
       var resultBody = json.decode(response.body);
-      isSuccessStatus.value = resultBody['success'];
-
-      if (isSuccessStatus.value) {
-        CheckEligibilityModel checkEligibilityModel =
-            CheckEligibilityModel.fromJson(json.decode(response.body));
+      CheckEligibilityModel checkEligibilityModel =
+          CheckEligibilityModel.fromJson(json.decode(response.body));
+      // isSuccessStatus.value = resultBody['success'];
+      isStatusCode = checkEligibilityModel.statusCode;
+      if (isStatusCode == 200) {
         // isSuccessStatus = checkEligibilityModel.success.obs;
 
         emiScheduleList.clear();
-        emiScheduleList.addAll(checkEligibilityModel.emiTenorOptions);
-        emiSrNo = checkEligibilityModel.emiSrNo;
+        emiScheduleList.addAll(checkEligibilityModel.data.emiTenorOptions);
+        emiSrNo = checkEligibilityModel.data.emiSrNo;
         selectedMonth = emiScheduleList[0].tenorMonth;
         selectedEligibleEmiAmount = emiScheduleList[0].emiEligibleAmount;
         log('emiScheduleList : ${emiScheduleList.length}');
@@ -209,13 +212,23 @@ class PersonalLoansScreenController extends GetxController {
       } else {
         log('checkEligibilityFunction Else');
         var resultBody = json.decode(response.body);
+        log("checkEligibilityModel.data.message ${checkEligibilityModel.data.message}");
         CommonWidgets().showBorderSnackBar(
           context: Get.context!,
-          displayText: "${resultBody['error_info']['description']}",
+          displayText: checkEligibilityModel.data.errorInfo.extraInfo,
         );
       }
     } catch (e) {
       log('checkEligibilityFunction Error :$e');
+      if (isStatusCode == 400) {
+        log("BadRequest");
+      } else if (isStatusCode == 404) {
+        log("NotFound");
+      } else if (isStatusCode == 406) {
+        log("NotAcceptable");
+      } else if (isStatusCode == 417) {
+        log("HttpStatusCode.ExpectationFailed");
+      }
       rethrow;
     } finally {
       isLoading(false);

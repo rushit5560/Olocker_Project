@@ -1,3 +1,34 @@
+// import 'dart:convert';
+//
+// import '../error_info_model/error_info_model.dart';
+//
+// AboutDetailsModel aboutDetailsModelFromJson(String str) =>
+//     AboutDetailsModel.fromJson(json.decode(str));
+//
+// class AboutDetailsModel {
+//   AboutDetailsModel({
+//     required this.aboutYourSelf,
+//     required this.ratingGivenByCustomer,
+//     required this.success,
+//     required this.errorInfo,
+//   });
+//
+//   final AboutYourSelf aboutYourSelf;
+//   final bool ratingGivenByCustomer;
+//   final bool success;
+//   final ErrorInfoModel errorInfo;
+//
+//   factory AboutDetailsModel.fromJson(Map<String, dynamic> json) =>
+//       AboutDetailsModel(
+//         aboutYourSelf: AboutYourSelf.fromJson(json["AboutYourSelf"] ?? {}),
+//         ratingGivenByCustomer: json["RatingGivenByCustomer"] ?? false,
+//         success: json["success"] ?? false,
+//         errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
+//       );
+// }
+//
+//
+
 import 'dart:convert';
 
 import '../error_info_model/error_info_model.dart';
@@ -5,28 +36,41 @@ import '../error_info_model/error_info_model.dart';
 AboutDetailsModel aboutDetailsModelFromJson(String str) =>
     AboutDetailsModel.fromJson(json.decode(str));
 
-
 class AboutDetailsModel {
+  int statusCode;
+  Data data;
+
   AboutDetailsModel({
+    required this.statusCode,
+    required this.data,
+  });
+
+  factory AboutDetailsModel.fromJson(Map<String, dynamic> json) =>
+      AboutDetailsModel(
+        statusCode: json["statusCode"] ?? 0,
+        data: Data.fromJson(json["data"] ?? {}),
+      );
+}
+
+class Data {
+  AboutYourSelf aboutYourSelf;
+  bool ratingGivenByCustomer;
+  bool success;
+  ErrorInfoModel errorInfo;
+
+  Data({
     required this.aboutYourSelf,
     required this.ratingGivenByCustomer,
     required this.success,
     required this.errorInfo,
   });
 
-  final AboutYourSelf aboutYourSelf;
-  final bool ratingGivenByCustomer;
-  final bool success;
-  final ErrorInfoModel errorInfo;
-
-  factory AboutDetailsModel.fromJson(Map<String, dynamic> json) =>
-      AboutDetailsModel(
-        aboutYourSelf: AboutYourSelf.fromJson(json["AboutYourSelf"] ?? {}),
-        ratingGivenByCustomer: json["RatingGivenByCustomer"] ?? false,
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+        aboutYourSelf: AboutYourSelf.fromJson(json["aboutYourSelf"] ?? {}),
+        ratingGivenByCustomer: json["ratingGivenByCustomer"] ?? false,
         success: json["success"] ?? false,
         errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
       );
-
 }
 
 class AboutYourSelf {
@@ -56,7 +100,6 @@ class AboutYourSelf {
     required this.displayName,
     required this.ownersName,
     required this.retailerCode,
-    required this.branches,
   });
 
   final int srNo;
@@ -84,65 +127,32 @@ class AboutYourSelf {
   final String displayName;
   final String ownersName;
   final String retailerCode;
-  final List<dynamic> branches;
 
   factory AboutYourSelf.fromJson(Map<String, dynamic> json) => AboutYourSelf(
-        srNo: json["SrNo"] ?? 0,
-        partnerSrNo: json["PartnerSrNo"] ?? 0,
-        aboutShowroom: json["AboutShowroom"] ?? "",
-        showRoomImage1: json["ShowRoomImage1"] ?? "",
-        showRoomImage2: json["ShowRoomImage2"] ?? "",
-        showRoomImage3: json["ShowRoomImage3"] ?? "",
-        ownerImage1: json["OwnerImage1"] ?? "",
-        ownerImage2: json["OwnerImage2"] ?? "",
-        ownerImage3: json["OwnerImage3"] ?? "",
-        owner1: json["Owner1"] ?? "",
-        owner2: json["Owner2"] ?? "",
-        owner3: json["Owner3"] ?? "",
-        firstOwnerDescription: json["FirstOwnerDescription"] ?? "",
-        secondOwnerDescription: json["SecondOwnerDescription"] ?? "",
-        thirdOwnerDescription: json["ThirdOwnerDescription"] ?? "",
-        address: json["Address"] ?? "",
-        contactEmail: json["ContactEmail"] ?? "",
-        contactPhone: json["ContactPhone"] ?? 0,
-        stateName: json["StateName"] ?? "",
-        cityName: json["CityName"] ?? "",
-        partnerLogo: json["PartnerLogo"] ?? "",
-        companyName: json["CompanyName"] ?? "",
-        displayName: json["DisplayName"] ?? "",
-        ownersName: json["OwnersName"] ?? "",
-        retailerCode: json["RetailerCode"] ?? 0,
-        branches: List<dynamic>.from((json["Branches"] ?? []).map((x) => x)),
+        srNo: json["srNo"] ?? 0,
+        partnerSrNo: json["partnerSrNo"] ?? 0,
+        aboutShowroom: json["aboutShowroom"] ?? "",
+        showRoomImage1: json["showRoomImage1"] ?? "",
+        showRoomImage2: json["showRoomImage2"] ?? "",
+        showRoomImage3: json["showRoomImage3"] ?? "",
+        ownerImage1: json["ownerImage1"] ?? "",
+        ownerImage2: json["ownerImage2"] ?? "",
+        ownerImage3: json["ownerImage3"] ?? "",
+        owner1: json["owner1"] ?? "",
+        owner2: json["owner2"] ?? "",
+        owner3: json["owner3"] ?? "",
+        firstOwnerDescription: json["firstOwnerDescription"] ?? "",
+        secondOwnerDescription: json["secondOwnerDescription"] ?? "",
+        thirdOwnerDescription: json["thirdOwnerDescription"] ?? "",
+        address: json["address"] ?? "",
+        contactEmail: json["contactEmail"] ?? "",
+        contactPhone: json["contactPhone"] ?? 0,
+        stateName: json["stateName"] ?? "",
+        cityName: json["cityName"] ?? "",
+        partnerLogo: json["partnerLogo"] ?? "",
+        companyName: json["companyName"] ?? "",
+        displayName: json["displayName"] ?? "",
+        ownersName: json["ownersName"] ?? "",
+        retailerCode: json["retailerCode"] ?? "",
       );
-
-  get sliderImageList => null;
-
-  Map<String, dynamic> toJson() => {
-        "SrNo": srNo,
-        "PartnerSrNo": partnerSrNo,
-        "AboutShowroom": aboutShowroom,
-        "ShowRoomImage1": showRoomImage1,
-        "ShowRoomImage2": showRoomImage2,
-        "ShowRoomImage3": showRoomImage3,
-        "OwnerImage1": ownerImage1,
-        "OwnerImage2": ownerImage2,
-        "OwnerImage3": ownerImage3,
-        "Owner1": owner1,
-        "Owner2": owner2,
-        "Owner3": owner3,
-        "FirstOwnerDescription": firstOwnerDescription,
-        "SecondOwnerDescription": secondOwnerDescription,
-        "ThirdOwnerDescription": thirdOwnerDescription,
-        "Address": address,
-        "ContactEmail": contactEmail,
-        "ContactPhone": contactPhone,
-        "StateName": stateName,
-        "CityName": cityName,
-        "PartnerLogo": partnerLogo,
-        "CompanyName": companyName,
-        "DisplayName": displayName,
-        "OwnersName": ownersName,
-        "RetailerCode": retailerCode,
-        "Branches": List<dynamic>.from(branches.map((x) => x)),
-      };
 }

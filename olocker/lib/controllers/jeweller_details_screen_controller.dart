@@ -107,9 +107,7 @@ class JewellerDetailsScreenController extends GetxController {
       rethrow;
     }
 
-    /// await getAnnouncementOfferFunction();
-    //  await getBestSellerFunction();
-    await getClientTestimonialsFunction();
+    await getAnnouncementOfferFunction();
 
     // isLoading(false);
   }
@@ -128,14 +126,23 @@ class JewellerDetailsScreenController extends GetxController {
 
       AnnouncementOfferModel announcementOfferModel =
           AnnouncementOfferModel.fromJson(json.decode(response.body));
-      isSuccessStatus = announcementOfferModel.success.obs;
-
-      if (isSuccessStatus.value) {
+      // isSuccessStatus = announcementOfferModel.success.obs;
+      isStatusCode = announcementOfferModel.statusCode;
+      if (isStatusCode == 200) {
         announcementOfferList.clear();
-        announcementOfferList.addAll(announcementOfferModel.getPushOffer);
+        announcementOfferList.addAll(announcementOfferModel.data);
         log('announcementOfferList : ${announcementOfferList.length}');
       } else {
         log('getAnnouncementOfferFunction Else');
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log('getAnnouncementOfferFunction Error :$e');
@@ -143,7 +150,8 @@ class JewellerDetailsScreenController extends GetxController {
     }
 
     /// await getJewelleryPushToAppDataFunction();
-    isLoading(false);
+    await getBestSellerFunction();
+    // isLoading(false);
   }
 
   Future<void> getJewelleryPushToAppDataFunction() async {
@@ -234,13 +242,22 @@ class JewellerDetailsScreenController extends GetxController {
 
       AboutYourSelfModel aboutYourSelfModel =
           AboutYourSelfModel.fromJson(json.decode(response.body));
-      isSuccessStatus = aboutYourSelfModel.success.obs;
-
-      if (isSuccessStatus.value) {
-        isFeedbackValue = aboutYourSelfModel.ratingGivenByCustomer.obs;
+      // isSuccessStatus = aboutYourSelfModel.success.obs;
+      isStatusCode = aboutYourSelfModel.statusCode;
+      if (isStatusCode == 200) {
+        isFeedbackValue = aboutYourSelfModel.data.ratingGivenByCustomer.obs;
         log('isFeedbackValue : $isFeedbackValue');
       } else {
         log('getAboutYourSelfFunction Else');
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log('getAboutYourSelfFunction Error :$e');
@@ -435,7 +452,7 @@ class JewellerDetailsScreenController extends GetxController {
   Future<void> getBestSellerFunction() async {
     if (hasMore.value) {
       // isLoading(true);
-      String url = "${ApiUrl.getBestSellerApi}?PartnerId=$jewellerId";
+      String url = "${ApiUrl.getBestSellerApi}?PartnerSrNo=$jewellerId";
       log('getBestSellerFunction Api Url : $url');
 
       try {
@@ -447,22 +464,31 @@ class JewellerDetailsScreenController extends GetxController {
 
         BestSellerModel bestSellerModel =
             BestSellerModel.fromJson(json.decode(response.body));
-        isSuccessStatus = bestSellerModel.success.obs;
-
-        if (isSuccessStatus.value) {
+        // isSuccessStatus = bestSellerModel.success.obs;
+        isStatusCode = bestSellerModel.statusCode;
+        if (isStatusCode == 200) {
           bestSellerList.clear();
-          bestSellerList.addAll(bestSellerModel.favProductList);
+          bestSellerList.addAll(bestSellerModel.data.favProductList);
           log('bestSellerList : ${bestSellerList.length}');
         } else {
           log('getBestSellerFunction Else');
+          if (isStatusCode == 400) {
+            log("BadRequest");
+          } else if (isStatusCode == 404) {
+            log("NotFound");
+          } else if (isStatusCode == 406) {
+            log("NotAcceptable");
+          } else if (isStatusCode == 417) {
+            log("HttpStatusCode.ExpectationFailed");
+          }
         }
       } catch (e) {
         log('getBestSellerFunction Error :$e');
         rethrow;
       }
 
-      /// await getClientTestimonialsFunction();
-      isLoading(false);
+      await getClientTestimonialsFunction();
+      // isLoading(false);
     } else {
       isLoading(false);
     }

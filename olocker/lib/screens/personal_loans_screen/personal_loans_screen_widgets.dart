@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/personal_loans_screen_controller.dart';
@@ -463,9 +464,14 @@ class StepOneFormModule extends StatelessWidget {
                         "${value.day}/${value.month}/${value.year}";
                     // log('value : ${screenController.tempSelectedDate}');
 
-                    screenController.apiDobDate =
-                        "${value.year}-${value.month}-${value.day}";
-
+                    String dateString = "yyyy-MM-dd";
+                    log("dateString $dateString");
+                    DateTime date = DateTime.now();
+                    log("date $date");
+                    String  formattedDate =
+                        DateFormat('yyyy-MM-dd').format(date);
+                    log("formattedDate $formattedDate");
+                    screenController.apiDobDate = formattedDate;
                     screenController.tempSelectedYear = value.year;
                     log('tempSelectedYear :${screenController.tempSelectedYear}');
                   },

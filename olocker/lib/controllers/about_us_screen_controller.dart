@@ -12,7 +12,9 @@ class AboutUsPageController extends GetxController {
   var partnerSrno = Get.arguments[0];
   var jewellerName = Get.arguments[1];
   RxBool isLoading = false.obs;
-  RxBool isSuccessStatus = false.obs;
+
+  // RxBool isSuccessStatus = false.obs;
+  int isStatusCode = 0;
   Size size = Get.size;
   AboutDetailsModel? aboutDetailsModel;
 
@@ -40,10 +42,10 @@ class AboutUsPageController extends GetxController {
 
       AboutDetailsModel aboutDetailsModel =
           AboutDetailsModel.fromJson(jsonDecode(response.body));
-      isSuccessStatus.value = aboutDetailsModel.success;
-
-      if (isSuccessStatus.value) {
-        aboutUsData = aboutDetailsModel.aboutYourSelf;
+      // isSuccessStatus.value = aboutDetailsModel.success;
+      isStatusCode = aboutDetailsModel.statusCode;
+      if (isStatusCode == 200) {
+        aboutUsData = aboutDetailsModel.data.aboutYourSelf;
 
         if (aboutUsData!.owner1 != "") {
           teamMembersList.add(OwnerDetailModel(
@@ -83,6 +85,15 @@ class AboutUsPageController extends GetxController {
         log("aboutUsPageController.sliderImageList. ${sliderImageList.length}");
       } else {
         log("getAboutUsDetailsFunction Else Else");
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log("getAboutUsDetailsFunction Error ::: $e");
