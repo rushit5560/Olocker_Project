@@ -1,10 +1,10 @@
 import 'dart:convert';
 
+import '../error_info_model/error_info_model.dart';
+
 AboutDetailsModel aboutDetailsModelFromJson(String str) =>
     AboutDetailsModel.fromJson(json.decode(str));
 
-String aboutDetailsModelToJson(AboutDetailsModel data) =>
-    json.encode(data.toJson());
 
 class AboutDetailsModel {
   AboutDetailsModel({
@@ -17,22 +17,16 @@ class AboutDetailsModel {
   final AboutYourSelf aboutYourSelf;
   final bool ratingGivenByCustomer;
   final bool success;
-  final ErrorInfo errorInfo;
+  final ErrorInfoModel errorInfo;
 
   factory AboutDetailsModel.fromJson(Map<String, dynamic> json) =>
       AboutDetailsModel(
         aboutYourSelf: AboutYourSelf.fromJson(json["AboutYourSelf"] ?? {}),
         ratingGivenByCustomer: json["RatingGivenByCustomer"] ?? false,
         success: json["success"] ?? false,
-        errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
+        errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
       );
 
-  Map<String, dynamic> toJson() => {
-        "AboutYourSelf": aboutYourSelf.toJson(),
-        "RatingGivenByCustomer": ratingGivenByCustomer,
-        "success": success,
-        "error_info": errorInfo.toJson(),
-      };
 }
 
 class AboutYourSelf {
@@ -150,33 +144,5 @@ class AboutYourSelf {
         "OwnersName": ownersName,
         "RetailerCode": retailerCode,
         "Branches": List<dynamic>.from(branches.map((x) => x)),
-      };
-}
-
-class ErrorInfo {
-  ErrorInfo({
-    required this.errorType,
-    required this.extraInfo,
-    required this.description,
-    this.errorData,
-  });
-
-  final int errorType;
-  final String extraInfo;
-  final String description;
-  final dynamic errorData;
-
-  factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
-        errorType: json["error_type"] ?? 0,
-        extraInfo: json["extra_info"] ?? "",
-        description: json["description"] ?? "",
-        errorData: json["error_data"] ?? "",
-      );
-
-  Map<String, dynamic> toJson() => {
-        "error_type": errorType,
-        "extra_info": extraInfo,
-        "description": description,
-        "error_data": errorData,
       };
 }

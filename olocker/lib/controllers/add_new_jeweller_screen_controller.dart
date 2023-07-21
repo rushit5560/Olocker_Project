@@ -12,8 +12,8 @@ import 'package:olocker/widgets/common_widgets.dart';
 class AddNewJewellerScreenController extends GetxController {
   final size = Get.size;
   RxBool isLoading = false.obs;
-  RxBool isSuccessStatus = false.obs;
-
+  // RxBool isSuccessStatus = false.obs;
+int isStatusCode= 0;
   ApiHeader apiHeader = ApiHeader();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -28,7 +28,7 @@ class AddNewJewellerScreenController extends GetxController {
       isLoading(true);
       String url = ApiUrl.addMyJewellerApi;
       log('addMyJewellerFunction Api Url : $url');
-
+log("UserDetails.customerId ${UserDetails.customerId}");
       try {
         Map<String, dynamic> bodyData = {
           "PartnerId": retailerCodeFieldController.text,
@@ -46,14 +46,15 @@ class AddNewJewellerScreenController extends GetxController {
 
         AddJewellerModel addJewellerModel =
             AddJewellerModel.fromJson(jsonDecode(response.body));
-        isSuccessStatus = addJewellerModel.success.obs;
 
-        if (isSuccessStatus.value) {
+        // isSuccessStatus = addJewellerModel.success.obs;
+        isStatusCode=addJewellerModel.statusCode;
+        if (isStatusCode==200) {
           //todo - Success Snackbar "Jeweller Added"
           CommonWidgets().showBorderSnackBar(
             context: Get.context!,
             displayText:
-                "${addJewellerModel.retailerDetail.retailerName} Added",
+                "${addJewellerModel.data.retailerDetail.retailerName} Added",
           );
 
           Get.back();
@@ -61,13 +62,13 @@ class AddNewJewellerScreenController extends GetxController {
 
           homeScreenController.getMyJewellersFunction();
 
-          log('${addJewellerModel.retailerDetail.retailerName} Added');
+          log('${addJewellerModel.data.retailerDetail.retailerName} Added');
         } else {
           CommonWidgets().showBorderSnackBar(
             context: Get.context!,
-            displayText: addJewellerModel.errorInfo.extraInfo,
+            displayText: addJewellerModel.data.errorInfo.extraInfo,
           );
-          log('addMyJewellerFunction ${addJewellerModel.errorInfo.extraInfo}');
+          log('addMyJewellerFunction ${addJewellerModel.data.errorInfo.extraInfo}');
           // if (addJewellerModel.errorInfo.extraInfo
           //     .toString()
           //     .contains('Jeweller code not found or invalid')) {

@@ -1,5 +1,6 @@
-
 import 'dart:convert';
+
+import '../error_info_model/error_info_model.dart';
 
 UserLoginModel userLoginModelFromJson(String str) =>
     UserLoginModel.fromJson(json.decode(str));
@@ -25,7 +26,7 @@ class UserLoginData {
   String lastPasswordUpdateDate;
   int srNo;
   bool success;
-  ErrorInfo errorInfo;
+  ErrorInfoModel errorInfo;
 
   UserLoginData({
     required this.isCustomer,
@@ -42,27 +43,6 @@ class UserLoginData {
         lastPasswordUpdateDate: json["lastPasswordUpdateDate"] ?? "",
         srNo: json["srNo"] ?? 0,
         success: json["success"] ?? false,
-        errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
-      );
-}
-
-class ErrorInfo {
-  ErrorInfo({
-    required this.errorType,
-    required this.extraInfo,
-    required this.description,
-    this.errorData,
-  });
-
-  final int errorType;
-  final String extraInfo;
-  final String description;
-  final dynamic errorData;
-
-  factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
-        errorType: json["error_type"] ?? 0,
-        extraInfo: json["extra_info"] ?? "",
-        description: json["description"] ?? "",
-        errorData: json["error_data"] ?? "",
+        errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
       );
 }

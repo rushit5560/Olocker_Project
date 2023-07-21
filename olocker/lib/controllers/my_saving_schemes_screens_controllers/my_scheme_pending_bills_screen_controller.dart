@@ -10,8 +10,9 @@ import '../../models/my_saving_schemes_models/get_pending_bills_model/get_pendin
 class MySchemePendingBillsScreenController extends GetxController {
   int customerPurchaseSavingSchemeSrNo = Get.arguments[0];
   RxBool isLoading = false.obs;
-  RxBool isSuccessStatus = false.obs;
 
+  // RxBool isSuccessStatus = false.obs;
+  int isStatusCode = 0;
   ApiHeader apiHeader = ApiHeader();
 
   // static int _len = 20;
@@ -22,13 +23,11 @@ class MySchemePendingBillsScreenController extends GetxController {
   List<GetPendingBillData> selectedPendingBillsList = [];
   RxString selectedAmountTotal = "0.0".obs;
 
-
-
   Future<void> getPendingBillDetailListApiFunction() async {
     String url =
         "${ApiUrl.getPendingBillDetailListApi}?customerPurchaseSavingSchemeSrNo=$customerPurchaseSavingSchemeSrNo";
 
-    log(" getPendingBillDetailListApiFunction url: $url");
+    log("getPendingBillDetailListApiFunction url: $url");
 
     try {
       isLoading(true);
@@ -45,12 +44,13 @@ class MySchemePendingBillsScreenController extends GetxController {
       GetPendingBillsListModel getPendingBillsListModel =
           GetPendingBillsListModel.fromJson(resBody);
 
-      isSuccessStatus.value = getPendingBillsListModel.success;
-
-      if (isSuccessStatus.value) {
+      // isSuccessStatus.value = getPendingBillsListModel.success;
+      isStatusCode = getPendingBillsListModel.statusCode;
+      if (isStatusCode == 200) {
         // isLoading(true);
 
-        getPendingBillsList = getPendingBillsListModel.getPurchaseSavingSchemeList;
+        getPendingBillsList =
+            getPendingBillsListModel.data.getPurchaseSavingSchemeList;
 
         calculateSelectedRecord();
         log("getPendingBillsList len is :: ${getPendingBillsList.length}");
@@ -68,11 +68,11 @@ class MySchemePendingBillsScreenController extends GetxController {
   }
 
   void calculateSelectedRecord() {
-    if(getPendingBillsList.isEmpty) {
+    if (getPendingBillsList.isEmpty) {
       selectedAmountTotal.value = "0.0";
     } else {
       double amount = 0.0;
-      for(int i =0; i < getPendingBillsList.length;i++) {
+      for (int i = 0; i < getPendingBillsList.length; i++) {
         amount = amount + getPendingBillsList[i].installmentAmount;
       }
       selectedAmountTotal.value = amount.toString();

@@ -92,6 +92,15 @@ class HomeScreenController extends GetxController {
         bannerList.addAll(bannerModel.data.notifications);
       } else {
         log('getBannerFunction Else');
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log('getBannerFunction Error : $e');
@@ -228,7 +237,9 @@ class HomeScreenController extends GetxController {
     locationZipCode = place.postalCode.toString();
     stateName = place.administrativeArea.toString();
     cityName = place.locality.toString();
-    await getSmartDealsOfflineFunction(cityName, stateName);
+    String finalCityName = cityName.split(" ").join();
+log("finalCityName $finalCityName");
+    await getSmartDealsOfflineFunction(finalCityName, stateName);
     // await getCityStateDetailsByPinFunction(locationZipCode);
     // await userPrefsData.getLocationZipCode(locationZipCode);
   }
@@ -278,10 +289,10 @@ class HomeScreenController extends GetxController {
   // }
 
   Future<void> getSmartDealsOfflineFunction(
-      String cityName, String stateName) async {
+      String finalCityName, String stateName) async {
     String url =
         // "http://192.168.29.90:2023/api/Partner/GetOfflineDeals?StateName=Maharashtra&CityName=Mumbai&partnerId="
-        "${ApiUrl.apiMainPath}/api/Partner/GetOffLineDeals?StateName=$stateName&CityName=$cityName&partnerId="
+        "${ApiUrl.apiMainPath}/api/Partner/GetOffLineDeals?StateName=$stateName&CityName=$finalCityName&partnerId="
         "";
     log('Smart Deals offOnline Api Url : $url');
 

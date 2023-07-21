@@ -1,54 +1,6 @@
-// // To parse this JSON data, do
-// //
-// //     final getSavingSchemesListModel = getSavingSchemesListModelFromJson(jsonString);
-//
-// import 'dart:convert';
-//
-// GetSavingSchemesListModel getSavingSchemesListModelFromJson(String str) =>
-//     GetSavingSchemesListModel.fromJson(json.decode(str));
-//
-// String getSavingSchemesListModelToJson(GetSavingSchemesListModel data) =>
-//     json.encode(data.toJson());
-//
-// class GetSavingSchemesListModel {
-//   GetSavingSchemesListModel({
-//     required this.getSavingSchemeList,
-//     // this.getSavingScheme,
-//     required this.success,
-//     required this.errorInfo,
-//     required this.partnerLogo,
-//   });
-//
-//   final List<GetSavingSchemeData> getSavingSchemeList;
-//   // final dynamic getSavingScheme;
-//   final bool success;
-//   final ErrorInfo errorInfo;
-//   String partnerLogo;
-//
-//   factory GetSavingSchemesListModel.fromJson(Map<String, dynamic> json) =>
-//       GetSavingSchemesListModel(
-//         getSavingSchemeList: List<GetSavingSchemeData>.from(
-//             (json["GetSavingSchemeList"] ?? []).map((x) => GetSavingSchemeData.fromJson(x))),
-//         // getSavingScheme: json["GetSavingScheme"],
-//         success: json["success"] ?? false,
-//         errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
-//         partnerLogo: json["PartnerLogo"] ?? "",
-//       );
-//
-//   Map<String, dynamic> toJson() => {
-//         "GetSavingSchemeList":
-//             List<dynamic>.from(getSavingSchemeList.map((x) => x.toJson())),
-//         // "GetSavingScheme": getSavingScheme,
-//         "success": success,
-//         "error_info": errorInfo.toJson(),
-//       };
-// }
-//
-//
-//
-//
-
 import 'dart:convert';
+
+import '../../error_info_model/error_info_model.dart';
 
 GetSavingSchemesListModel getSavingSchemesListModelFromJson(String str) =>
     GetSavingSchemesListModel.fromJson(json.decode(str));
@@ -74,7 +26,7 @@ class Data {
   String getSavingScheme;
   String partnerLogo;
   bool success;
-  ErrorInfo errorInfo;
+  ErrorInfoModel errorInfo;
 
   Data({
     required this.getSavingSchemeList,
@@ -92,30 +44,10 @@ class Data {
         getSavingScheme: json["getSavingScheme"] ?? "",
         partnerLogo: json["partnerLogo"] ?? "",
         success: json["success"] ?? false,
-        errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
+        errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
       );
 }
 
-class ErrorInfo {
-  ErrorInfo({
-    required this.errorType,
-    required this.extraInfo,
-    required this.description,
-    this.errorData,
-  });
-
-  final int errorType;
-  final String extraInfo;
-  final String description;
-  final dynamic errorData;
-
-  factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
-        errorType: json["error_type"] ?? 0,
-        extraInfo: json["extra_info"] ?? "",
-        description: json["description"] ?? "",
-        errorData: json["error_data"] ?? "",
-      );
-}
 
 class GetSavingSchemeData {
   GetSavingSchemeData({

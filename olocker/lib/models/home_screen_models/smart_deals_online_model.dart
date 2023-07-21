@@ -218,7 +218,10 @@
 
 import 'dart:convert';
 
-SmartDealsOnlineModel smartDealsOnlineModelFromJson(String str) => SmartDealsOnlineModel.fromJson(json.decode(str));
+import '../error_info_model/error_info_model.dart';
+
+SmartDealsOnlineModel smartDealsOnlineModelFromJson(String str) =>
+    SmartDealsOnlineModel.fromJson(json.decode(str));
 
 class SmartDealsOnlineModel {
   int statusCode;
@@ -229,18 +232,17 @@ class SmartDealsOnlineModel {
     required this.data,
   });
 
-  factory SmartDealsOnlineModel.fromJson(Map<String, dynamic> json) => SmartDealsOnlineModel(
-    statusCode: json["statusCode"]??0,
-    data: Data.fromJson(json["data"]??{}),
-  );
-
-
+  factory SmartDealsOnlineModel.fromJson(Map<String, dynamic> json) =>
+      SmartDealsOnlineModel(
+        statusCode: json["statusCode"] ?? 0,
+        data: Data.fromJson(json["data"] ?? {}),
+      );
 }
 
 class Data {
   List<VendorDealsList> vendorDealsList;
   bool success;
-  ErrorInfo errorInfo;
+  ErrorInfoModel errorInfo;
 
   Data({
     required this.vendorDealsList,
@@ -249,39 +251,14 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    vendorDealsList: List<VendorDealsList>.from((json["vendorDealsList"]??[]).map((x) => VendorDealsList.fromJson(x))??{}),
-    success: json["success"]??false,
-    errorInfo: ErrorInfo.fromJson(json["error_info"]??{}),
-  );
-
-
+        vendorDealsList: List<VendorDealsList>.from(
+            (json["vendorDealsList"] ?? [])
+                    .map((x) => VendorDealsList.fromJson(x)) ??
+                {}),
+        success: json["success"] ?? false,
+        errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
+      );
 }
-
-
-class ErrorInfo {
-  ErrorInfo({
-    required this.errorType,
-    required this.extraInfo,
-    required this.description,
-    required this.errorData,
-  });
-
-  int errorType;
-  String extraInfo;
-  String description;
-  String errorData;
-
-  factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
-    errorType: json["error_type"] ?? 0,
-    extraInfo: json["extra_info"] ?? "",
-    description: json["description"] ?? "",
-    errorData: json["error_data"].toString(),
-  );
-
-
-}
-
-
 
 class VendorDealsList {
   VendorDealsList({
@@ -294,13 +271,13 @@ class VendorDealsList {
   String categoryImage;
   List<OnLineDeal> onLineDeals;
 
-  factory VendorDealsList.fromJson(Map<String, dynamic> json) => VendorDealsList(
-    category: json["category"] ?? "",
-    categoryImage: json["categoryImage"] ?? "",
-    onLineDeals: List<OnLineDeal>.from(json["onLineDeals"].map((x) => OnLineDeal.fromJson(x ?? {}))),
-  );
-
-
+  factory VendorDealsList.fromJson(Map<String, dynamic> json) =>
+      VendorDealsList(
+        category: json["category"] ?? "",
+        categoryImage: json["categoryImage"] ?? "",
+        onLineDeals: List<OnLineDeal>.from(
+            json["onLineDeals"].map((x) => OnLineDeal.fromJson(x ?? {}))),
+      );
 }
 
 class OnLineDeal {
@@ -354,38 +331,36 @@ class OnLineDeal {
   bool isFavoriteDeal;
   bool isExpired;
   bool isThirdPartyDeal;
+
   // List<Imagelist> imagelist;
 
   factory OnLineDeal.fromJson(Map<String, dynamic> json) => OnLineDeal(
-    srNo: json["srNo"] ?? 0,
-    validTillDate: json["validTillDate"].toString(),
-    dealCode: json["dealCode"] ?? "",
-    termsAndCondition: json["termsAndCondition"] ?? "",
-    pushDealToEndUser: json["pushDealToEndUser"] ?? "",
-    pushDealToRetailer: json["pushDealToRetailer"] ?? "",
-    pushDealToSupplier: json["pushDealToSupplier"] ?? "",
-    isActive: json["isActive"] ?? false,
-    startDate: json["startDate"].toString(),
-    discountPercentage: json["discountPercentage"].toString(),
-    discountRs: json["discountRs"].toString(),
-    isCreatedByVendor: json["isCreatedByVendor"] ?? false,
-    rejecrReason: json["rejecrReason"] ?? "",
-    dealType: json["dealType"] ?? "",
-    vendorName: json["vendorName"] ?? "",
-    dealLocation: json["dealLocation"] ?? "",
-    vendorImageUrl: json["vendorImageUrl"] ?? "",
-    isThirdPartyVendor: json["isThirdPartyVendor"] ?? false,
-    thirdPartyVendorName: json["thirdPartyVendorName"].toString(),
-    couponHeading: json["couponHeading"] ?? "",
-    isFavoriteDeal: json["isFavoriteDeal"] ?? false,
-    isExpired: json["is_Expired"] ?? false,
-    isThirdPartyDeal: json["isThirdPartyDeal"] ?? false,
-    // imagelist: List<Imagelist>.from(json["Imagelist"].map((x) => Imagelist.fromJson(x))),
-  );
-
+        srNo: json["srNo"] ?? 0,
+        validTillDate: json["validTillDate"].toString(),
+        dealCode: json["dealCode"] ?? "",
+        termsAndCondition: json["termsAndCondition"] ?? "",
+        pushDealToEndUser: json["pushDealToEndUser"] ?? "",
+        pushDealToRetailer: json["pushDealToRetailer"] ?? "",
+        pushDealToSupplier: json["pushDealToSupplier"] ?? "",
+        isActive: json["isActive"] ?? false,
+        startDate: json["startDate"].toString(),
+        discountPercentage: json["discountPercentage"].toString(),
+        discountRs: json["discountRs"].toString(),
+        isCreatedByVendor: json["isCreatedByVendor"] ?? false,
+        rejecrReason: json["rejecrReason"] ?? "",
+        dealType: json["dealType"] ?? "",
+        vendorName: json["vendorName"] ?? "",
+        dealLocation: json["dealLocation"] ?? "",
+        vendorImageUrl: json["vendorImageUrl"] ?? "",
+        isThirdPartyVendor: json["isThirdPartyVendor"] ?? false,
+        thirdPartyVendorName: json["thirdPartyVendorName"].toString(),
+        couponHeading: json["couponHeading"] ?? "",
+        isFavoriteDeal: json["isFavoriteDeal"] ?? false,
+        isExpired: json["is_Expired"] ?? false,
+        isThirdPartyDeal: json["isThirdPartyDeal"] ?? false,
+        // imagelist: List<Imagelist>.from(json["Imagelist"].map((x) => Imagelist.fromJson(x))),
+      );
 }
-
-
 
 class Imagelist {
   Imagelist({
@@ -397,10 +372,7 @@ class Imagelist {
   String imageUrl;
 
   factory Imagelist.fromJson(Map<String, dynamic> json) => Imagelist(
-    imageType: json["imageType"] ?? "",
-    imageUrl: json["imageUrl"] ?? "",
-  );
-
+        imageType: json["imageType"] ?? "",
+        imageUrl: json["imageUrl"] ?? "",
+      );
 }
-
-

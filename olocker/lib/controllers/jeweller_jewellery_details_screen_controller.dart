@@ -23,7 +23,6 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
-
   ApiHeader apiHeader = ApiHeader();
   Size size = Get.size;
 
@@ -96,14 +95,23 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
 
       SpecialFeaturesModel specialFeaturesModel =
           SpecialFeaturesModel.fromJson(json.decode(response.body));
-      isSuccessStatus = specialFeaturesModel.success.obs;
-
-      if (isSuccessStatus.value) {
+      // isSuccessStatus = specialFeaturesModel.success.obs;
+      isStatusCode=specialFeaturesModel.statusCode;
+      if (isStatusCode==200) {
         specialFeaturesList.clear();
-        specialFeaturesList.addAll(specialFeaturesModel.specialFeature);
+        specialFeaturesList.addAll(specialFeaturesModel.data);
         // log('specialFeaturesList : ${specialFeaturesList.length}');
       } else {
         log('getSpecialFeaturesFunction Else');
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log('getJewellerySpecialFeaturesFunction Error :$e');

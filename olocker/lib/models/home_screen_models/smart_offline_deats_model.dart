@@ -1,57 +1,6 @@
-// // To parse this JSON data, do
-// //
-// //     final getOfflineDealsModel = getOfflineDealsModelFromJson(jsonString);
-//
-// import 'dart:convert';
-//
-// GetOfflineDealsModel getOfflineDealsModelFromJson(String str) =>
-//     GetOfflineDealsModel.fromJson(json.decode(str));
-//
-// class GetOfflineDealsModel {
-//   List<VendorOfflineDealsList> vendorDealsList;
-//   bool success;
-//   ErrorInfo errorInfo;
-//
-//   GetOfflineDealsModel({
-//     required this.vendorDealsList,
-//     required this.success,
-//     required this.errorInfo,
-//   });
-//
-//   factory GetOfflineDealsModel.fromJson(Map<String, dynamic> json) =>
-//       GetOfflineDealsModel(
-//         vendorDealsList: List<VendorOfflineDealsList>.from(
-//             (json["VendorDealsList"] ?? [])
-//                 .map((x) => VendorOfflineDealsList.fromJson(x))),
-//         success: json["success"] ?? false,
-//         errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
-//       );
-// }
-//
-//
-// class VendorOfflineDealsList {
-//   String category;
-//   String categoryImage;
-//   List<OffLineDeal> offLineDeals;
-//
-//   VendorOfflineDealsList({
-//     required this.category,
-//     required this.categoryImage,
-//     required this.offLineDeals,
-//   });
-//
-//   factory VendorOfflineDealsList.fromJson(Map<String, dynamic> json) =>
-//       VendorOfflineDealsList(
-//         category: json["Category"] ?? "",
-//         categoryImage: json["CategoryImage"] ?? "",
-//         offLineDeals: List<OffLineDeal>.from(
-//             (json["OffLineDeals"] ?? []).map((x) => OffLineDeal.fromJson(x))),
-//       );
-// }
-//
-//
-
 import 'dart:convert';
+
+import '../error_info_model/error_info_model.dart';
 
 GetOfflineDealsModel getOfflineDealsModelFromJson(String str) =>
     GetOfflineDealsModel.fromJson(json.decode(str));
@@ -75,7 +24,7 @@ class GetOfflineDealsModel {
 class Data {
   List<VendorOfflineDealsList> vendorDealsList;
   bool success;
-  ErrorInfo errorInfo;
+  ErrorInfoModel errorInfo;
 
   Data({
     required this.vendorDealsList,
@@ -89,28 +38,7 @@ class Data {
                     .map((x) => VendorOfflineDealsList.fromJson(x)) ??
                 {}),
         success: json["success"] ?? false,
-        errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
-      );
-}
-
-class ErrorInfo {
-  int errorType;
-  String extraInfo;
-  String description;
-  String errorData;
-
-  ErrorInfo({
-    required this.errorType,
-    required this.extraInfo,
-    required this.description,
-    required this.errorData,
-  });
-
-  factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
-        errorType: json["error_type"] ?? 0,
-        extraInfo: json["extra_info"] ?? "",
-        description: json["description"] ?? "",
-        errorData: json["error_data"] ?? "",
+        errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
       );
 }
 
@@ -127,10 +55,11 @@ class VendorOfflineDealsList {
 
   factory VendorOfflineDealsList.fromJson(Map<String, dynamic> json) =>
       VendorOfflineDealsList(
-        category: json["category"]??"",
-        categoryImage: json["categoryImage"]??"",
+        category: json["category"] ?? "",
+        categoryImage: json["categoryImage"] ?? "",
         offLineDeals: List<OffLineDeal>.from(
-            (json["offLineDeals"]??[]).map((x) => OffLineDeal.fromJson(x))??{}),
+            (json["offLineDeals"] ?? []).map((x) => OffLineDeal.fromJson(x)) ??
+                {}),
       );
 }
 

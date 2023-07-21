@@ -1,69 +1,44 @@
-// To parse this JSON data, do
-//
-//     final getPendingBillsListModel = getPendingBillsListModelFromJson(jsonString);
-
 import 'dart:convert';
+
+import '../../error_info_model/error_info_model.dart';
 
 GetPendingBillsListModel getPendingBillsListModelFromJson(String str) =>
     GetPendingBillsListModel.fromJson(json.decode(str));
 
-String getPendingBillsListModelToJson(GetPendingBillsListModel data) =>
-    json.encode(data.toJson());
-
 class GetPendingBillsListModel {
+  int statusCode;
+  Data data;
+
   GetPendingBillsListModel({
+    required this.statusCode,
+    required this.data,
+  });
+
+  factory GetPendingBillsListModel.fromJson(Map<String, dynamic> json) =>
+      GetPendingBillsListModel(
+        statusCode: json["statusCode"] ?? 0,
+        data: Data.fromJson(json["data"] ?? {}),
+      );
+}
+
+class Data {
+  final List<GetPendingBillData> getPurchaseSavingSchemeList;
+  bool success;
+  ErrorInfoModel errorInfo;
+
+  Data({
     required this.getPurchaseSavingSchemeList,
     required this.success,
     required this.errorInfo,
   });
 
-  final List<GetPendingBillData> getPurchaseSavingSchemeList;
-  final bool success;
-  final ErrorInfo errorInfo;
-
-  factory GetPendingBillsListModel.fromJson(Map<String, dynamic> json) =>
-      GetPendingBillsListModel(
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
         getPurchaseSavingSchemeList: List<GetPendingBillData>.from(
             (json["GetPurchaseSavingSchemeList"] ?? [])
                 .map((x) => GetPendingBillData.fromJson(x))),
         success: json["success"] ?? false,
-        errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
+        errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
       );
-
-  Map<String, dynamic> toJson() => {
-        "GetPurchaseSavingSchemeList": List<dynamic>.from(
-            getPurchaseSavingSchemeList.map((x) => x.toJson())),
-        "success": success,
-        "error_info": errorInfo.toJson(),
-      };
-}
-
-class ErrorInfo {
-  ErrorInfo({
-    required this.errorType,
-    required this.extraInfo,
-    required this.description,
-    this.errorData,
-  });
-
-  final int errorType;
-  final String extraInfo;
-  final String description;
-  final dynamic errorData;
-
-  factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
-        errorType: json["error_type"] ?? 0,
-        extraInfo: json["extra_info"] ?? "",
-        description: json["description"] ?? "",
-        errorData: json["error_data"] ?? "",
-      );
-
-  Map<String, dynamic> toJson() => {
-        "error_type": errorType,
-        "extra_info": extraInfo,
-        "description": description,
-        "error_data": errorData,
-      };
 }
 
 class GetPendingBillData {
@@ -88,6 +63,7 @@ class GetPendingBillData {
   final double srNo;
   final double customerSrNo;
   final double partnerSavingSchemeSrNo;
+
   // final dynamic folioNo;
   final String startDate;
   final double installmentAmount;
@@ -103,37 +79,20 @@ class GetPendingBillData {
 
   factory GetPendingBillData.fromJson(Map<String, dynamic> json) =>
       GetPendingBillData(
-        srNo: json["SrNo"] ?? 0.0,
-        customerSrNo: json["CustomerSrNo"] ?? 0,
-        partnerSavingSchemeSrNo: json["PartnerSavingSchemeSrNo"] ?? 0,
+        srNo: json["srNo"] ?? 0.0,
+        customerSrNo: json["customerSrNo"] ?? 0,
+        partnerSavingSchemeSrNo: json["partnerSavingSchemeSrNo"] ?? 0,
         // folioNo: json["FolioNo"],
-        startDate: json["StartDate"] ?? "",
-        installmentAmount: json["InstallmentAmount"] ?? 0,
-        maturityDate: json["MaturityDate"] ?? "",
-        finalAmountPayable: json["FinalAmountPayable"] ?? 0,
-        timeStamp: json["TimeStamp"] ?? "",
-        smsReminderDate: json["SmsReminderDate"] ?? "",
-        ourContribution: json["OurContribution"] ?? 0,
-        isPending: json["IsPending"] ?? false,
-        insatllmentDate: json["InsatllmentDate"] ?? "",
-        invoiceNo: json["InvoiceNo"] ?? "",
+        startDate: json["startDate"] ?? "",
+        installmentAmount: json["installmentAmount"] ?? 0,
+        maturityDate: json["maturityDate"] ?? "",
+        finalAmountPayable: json["finalAmountPayable"] ?? 0,
+        timeStamp: json["timeStamp"] ?? "",
+        smsReminderDate: json["smsReminderDate"] ?? "",
+        ourContribution: json["ourContribution"] ?? 0,
+        isPending: json["isPending"] ?? false,
+        insatllmentDate: json["insatllmentDate"] ?? "",
+        invoiceNo: json["invoiceNo"] ?? "",
         isSelected: false,
       );
-
-  Map<String, dynamic> toJson() => {
-        "SrNo": srNo,
-        "CustomerSrNo": customerSrNo,
-        "PartnerSavingSchemeSrNo": partnerSavingSchemeSrNo,
-        // "FolioNo": folioNo,
-        "StartDate": startDate,
-        "InstallmentAmount": installmentAmount,
-        "MaturityDate": maturityDate,
-        "FinalAmountPayable": finalAmountPayable,
-        "TimeStamp": timeStamp,
-        "SmsReminderDate": smsReminderDate,
-        "OurContribution": ourContribution,
-        "IsPending": isPending,
-        "InsatllmentDate": insatllmentDate,
-        "InvoiceNo": invoiceNo,
-      };
 }

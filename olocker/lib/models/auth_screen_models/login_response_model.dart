@@ -1,50 +1,6 @@
-// To parse this JSON data, do
-//
-//     final loginResponseModel = loginResponseModelFromJson(jsonString);
-//
-// import 'dart:convert';
-//
-// LoginResponseModel loginResponseModelFromJson(String str) =>
-//     LoginResponseModel.fromJson(json.decode(str));
-//
-// String loginResponseModelToJson(LoginResponseModel data) =>
-//     json.encode(data.toJson());
-//
-// class LoginResponseModel {
-//   LoginResponseModel({
-//     required this.userRequestValidateOtp,
-//     required this.isCustomer,
-//     required this.success,
-//     required this.errorInfo,
-//   });
-//
-//   final List<UserRequestValidateOtp> userRequestValidateOtp;
-//   final bool isCustomer;
-//   final bool success;
-//   final ErrorInfo errorInfo;
-//
-//   factory LoginResponseModel.fromJson(Map<String, dynamic> json) =>
-//       LoginResponseModel(
-//         userRequestValidateOtp: List<UserRequestValidateOtp>.from(
-//             (json["UserRequestValidateOtp"] ?? [])
-//                 .map((x) => UserRequestValidateOtp.fromJson(x))),
-//         isCustomer: json["IsCustomer"] ?? false,
-//         success: json["success"] ?? false,
-//         errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
-//       );
-//
-//   Map<String, dynamic> toJson() => {
-//         "UserRequestValidateOtp":
-//             List<dynamic>.from(userRequestValidateOtp.map((x) => x.toJson())),
-//         "IsCustomer": isCustomer,
-//         "success": success,
-//         "error_info": errorInfo.toJson(),
-//       };
-// }
-//
-//
-
 import 'dart:convert';
+
+import '../error_info_model/error_info_model.dart';
 
 LoginResponseModel loginResponseModelFromJson(String str) =>
     LoginResponseModel.fromJson(json.decode(str));
@@ -69,7 +25,7 @@ class LoginResponseData {
   List<UserRequestValidateOtp> userRequestValidateOtp;
   bool isCustomer;
   bool success;
-  ErrorInfo errorInfo;
+  ErrorInfoModel errorInfo;
 
   LoginResponseData({
     required this.userRequestValidateOtp,
@@ -86,30 +42,10 @@ class LoginResponseData {
                 {}),
         isCustomer: json["isCustomer"] ?? false,
         success: json["success"] ?? false,
-        errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
+        errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
       );
 }
 
-class ErrorInfo {
-  ErrorInfo({
-    required this.errorType,
-    required this.extraInfo,
-    required this.description,
-    this.errorData,
-  });
-
-  final int errorType;
-  final String extraInfo;
-  final String description;
-  final dynamic errorData;
-
-  factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
-        errorType: json["error_type"] ?? 0,
-        extraInfo: json["extra_info"] ?? "",
-        description: json["description"] ?? "",
-        errorData: json["error_data"] ?? "",
-      );
-}
 
 class UserRequestValidateOtp {
   UserRequestValidateOtp({

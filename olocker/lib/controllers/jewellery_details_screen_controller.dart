@@ -32,7 +32,7 @@ class JewelleryDetailsScreenController extends GetxController {
   RxBool isSuccessStatus = false.obs;
   Size size = Get.size;
   ApiHeader apiHeader = ApiHeader();
-int statusCode=0;
+int isStatusCode=0;
   RxInt fullScreenImageCurrentindex = 0.obs;
 
   // PageController fullscreenImageController = PageController();
@@ -127,14 +127,23 @@ int statusCode=0;
 
       SpecialFeaturesModel specialFeaturesModel =
           SpecialFeaturesModel.fromJson(json.decode(response.body));
-      isSuccessStatus = specialFeaturesModel.success.obs;
-
+      // isSuccessStatus = specialFeaturesModel.success.obs;
+      isStatusCode=specialFeaturesModel.statusCode;
       if (isSuccessStatus.value) {
         specialFeaturesList.clear();
-        specialFeaturesList.addAll(specialFeaturesModel.specialFeature);
+        specialFeaturesList.addAll(specialFeaturesModel.data);
         // log('specialFeaturesList : ${specialFeaturesList.length}');
       } else {
         log('getSpecialFeaturesFunction Else');
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log('getJewellerySpecialFeaturesFunction Error :$e');
@@ -332,21 +341,21 @@ int statusCode=0;
           UserProfileGetModel.fromJson(resBody);
 
       // bool isSuccessResult = userProfileGetModel.success;
-      statusCode=userProfileGetModel.statusCode;
+      isStatusCode=userProfileGetModel.statusCode;
 
-      if (statusCode==200) {
+      if (isStatusCode==200) {
         log("user profile get success");
         userReferaalCode.value =
             userProfileGetModel.data.referralCode;
         log("user userReferaalCode :: $userReferaalCode");
       } else {
-        if (statusCode == 400) {
+        if (isStatusCode == 400) {
           log("BadRequest");
-        } else if (statusCode == 404) {
+        } else if (isStatusCode == 404) {
           log("NotFound");
-        } else if (statusCode == 406) {
+        } else if (isStatusCode == 406) {
           log("NotAcceptable");
-        } else if (statusCode == 417) {
+        } else if (isStatusCode == 417) {
           log("HttpStatusCode.ExpectationFailed");
         }
       }
