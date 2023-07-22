@@ -78,7 +78,7 @@ class JewellerDetailsScreen extends StatelessWidget {
               //         .jewelleryCategoryList.isNotEmpty
               //     ? JewelleryFirstCategoryListModule()
               //     : Container(),
-              // ReferAndJewellerEmiModule(),
+              ReferAndJewellerEmiModule(),
               // jewellerDetailsScreenController
               //         .jewellerysubCategoryList.isNotEmpty
               //     ? JewellerySubCategoryListModule()

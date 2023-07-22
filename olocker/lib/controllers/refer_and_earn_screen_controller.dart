@@ -20,9 +20,8 @@ class ReferAndEarnScreenController extends GetxController {
 
   RxBool isLoading = false.obs;
   RxBool isSuccessResult = false.obs;
-int isStatusCode=0;
+  int isStatusCode = 0;
   final apiHeader = ApiHeader();
-
   LoyalityPlan? loyalityPlan;
   PartnerDetails? partnerDetails;
 
@@ -100,13 +99,22 @@ int isStatusCode=0;
       GetPartnerByCodeModel getPartnerByCodeModel =
           GetPartnerByCodeModel.fromJson(resBody);
 
-      isSuccessResult.value = getPartnerByCodeModel.success;
-
-      if (isSuccessResult.value) {
+      // isSuccessResult.value = getPartnerByCodeModel.success;
+      isStatusCode = getPartnerByCodeModel.statusCode;
+      if (isStatusCode == 200) {
         log("getPartnerByCodeFunction get success");
-        partnerDetails = getPartnerByCodeModel.partner;
+        partnerDetails = getPartnerByCodeModel.data.partner;
       } else {
         log("getPartnerByCodeFunction get not success");
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
         //do nothing
       }
     } catch (e) {
@@ -141,10 +149,9 @@ int isStatusCode=0;
 
       isStatusCode = userProfileGetModel.statusCode;
 
-      if (isStatusCode==200) {
+      if (isStatusCode == 200) {
         log("user profile get success");
-        userReferaalCode.value =
-            userProfileGetModel.data.referralCode;
+        userReferaalCode.value = userProfileGetModel.data.referralCode;
         log("user userReferaalCode Refer code :: $userReferaalCode");
       } else {
         if (isStatusCode == 400) {
@@ -186,18 +193,28 @@ int isStatusCode=0;
       GetLoyalityPlanModel getLoyalityPlanModel =
           GetLoyalityPlanModel.fromJson(resBody);
 
-      var isSuccessResult = getLoyalityPlanModel.success;
+      // var isSuccessResult = getLoyalityPlanModel.success;
+      isStatusCode = getLoyalityPlanModel.statusCode;
 
-      if (isSuccessResult) {
+      if (isStatusCode == 200) {
         log("getLoyalityPlanFunction get success");
 
-        loyalityPlan = getLoyalityPlanModel.loyalityPlan;
+        loyalityPlan = getLoyalityPlanModel.data.loyalityPlan;
       } else {
         log("getLoyalityPlanFunction get not success");
         //do nothing
       }
     } catch (e) {
       log("getLoyalityPlanFunction Error ::: $e");
+      if (isStatusCode == 400) {
+        log("BadRequest");
+      } else if (isStatusCode == 404) {
+        log("NotFound");
+      } else if (isStatusCode == 406) {
+        log("NotAcceptable");
+      } else if (isStatusCode == 417) {
+        log("HttpStatusCode.ExpectationFailed");
+      }
       rethrow;
     } finally {
       // isLoading(false);

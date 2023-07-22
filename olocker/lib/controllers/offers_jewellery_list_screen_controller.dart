@@ -25,7 +25,7 @@ class OffersJewelleryListScreenController extends GetxController {
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
-  int statusCode = 0;
+  int isStatusCode = 0;
   Size size = Get.size;
   ApiHeader apiHeader = ApiHeader();
   RxInt selectedSortingIndex = 0.obs;
@@ -192,6 +192,15 @@ class OffersJewelleryListScreenController extends GetxController {
         }
       } else {
         log('addFavouriteProductFunction Else');
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log('addFavouriteProductFunction Error :$e');
@@ -263,11 +272,11 @@ class OffersJewelleryListScreenController extends GetxController {
       GetPartnerByCodeModel getPartnerByCodeModel =
           GetPartnerByCodeModel.fromJson(resBody);
 
-      bool isSuccessResult = getPartnerByCodeModel.success;
-
-      if (isSuccessResult) {
+      // bool isSuccessResult = getPartnerByCodeModel.success;
+      isStatusCode=getPartnerByCodeModel.statusCode;
+      if (isStatusCode==200) {
         log("getPartnerByCodeFunction get success");
-        partnerDetails = getPartnerByCodeModel.partner;
+        partnerDetails = getPartnerByCodeModel.data.partner;
       } else {
         log("getPartnerByCodeFunction get not success");
         //do nothing
@@ -303,19 +312,19 @@ class OffersJewelleryListScreenController extends GetxController {
           UserProfileGetModel.fromJson(resBody);
 
       // bool isSuccessResult = userProfileGetModel.success;
-      statusCode = userProfileGetModel.statusCode;
-      if (statusCode == 200) {
+      isStatusCode = userProfileGetModel.statusCode;
+      if (isStatusCode == 200) {
         log("user profile get success");
         userReferaalCode.value = userProfileGetModel.data.referralCode;
         log("user userReferaalCode :: $userReferaalCode");
       } else {
-        if (statusCode == 400) {
+        if (isStatusCode == 400) {
           log("BadRequest");
-        } else if (statusCode == 404) {
+        } else if (isStatusCode == 404) {
           log("NotFound");
-        } else if (statusCode == 406) {
+        } else if (isStatusCode == 406) {
           log("NotAcceptable");
-        } else if (statusCode == 417) {
+        } else if (isStatusCode == 417) {
           log("HttpStatusCode.ExpectationFailed");
         }
       }

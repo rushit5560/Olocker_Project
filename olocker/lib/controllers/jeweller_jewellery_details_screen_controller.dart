@@ -96,8 +96,8 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
       SpecialFeaturesModel specialFeaturesModel =
           SpecialFeaturesModel.fromJson(json.decode(response.body));
       // isSuccessStatus = specialFeaturesModel.success.obs;
-      isStatusCode=specialFeaturesModel.statusCode;
-      if (isStatusCode==200) {
+      isStatusCode = specialFeaturesModel.statusCode;
+      if (isStatusCode == 200) {
         specialFeaturesList.clear();
         specialFeaturesList.addAll(specialFeaturesModel.data);
         // log('specialFeaturesList : ${specialFeaturesList.length}');
@@ -228,13 +228,22 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
       GetPartnerByCodeModel getPartnerByCodeModel =
           GetPartnerByCodeModel.fromJson(resBody);
 
-      bool isSuccessResult = getPartnerByCodeModel.success;
-
-      if (isSuccessResult) {
+      // bool isSuccessResult = getPartnerByCodeModel.success;
+      isStatusCode = getPartnerByCodeModel.statusCode;
+      if (isStatusCode == 200) {
         log("getPartnerByCodeFunction get success");
-        partnerDetails = getPartnerByCodeModel.partner;
+        partnerDetails = getPartnerByCodeModel.data.partner;
       } else {
         log("getPartnerByCodeFunction get not success");
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
         //do nothing
       }
     } catch (e) {
