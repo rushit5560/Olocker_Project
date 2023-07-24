@@ -234,9 +234,9 @@ class UnmaturedSchemeDetailsModule extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: Column(
                   children: [
-                    Row(
+                    const Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         // Text(
                         //   schemeData.partnerName,
                         //   style: TextStyle(
@@ -537,8 +537,7 @@ class JewellerCallDetailsModule extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  mySchemePendingPaymentScreenController
-                      .getSavingSchemeData!.schemeName,
+                  mySchemePendingPaymentScreenController.getSavingSchemeData!.schemeName,
                   style: TextStyle(
                     fontSize: 14.sp,
                     color: AppColors.blueDarkColor,
@@ -673,16 +672,8 @@ class TransactionSingleItemModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var dateFormat = DateFormat('dd-MM-yyyy');
-    // var parsedDate = dateFormat.parse(transData.billingDate.trim()).toString();
-    // log("get parsedDate is : : $parsedDate");
-
     var dateFormatSet = DateFormat('dd MMM yyyy');
     var formattedDate = dateFormatSet.format(DateTime.parse(transData.billingDate));
-
-    // selectedOrnamentPurchaseDate.value = formattedDate.replaceAll("-", "/");
-
-    // log("formattedDate is:: $formattedDate");
 
     return Container(
       decoration: BoxDecoration(
@@ -721,8 +712,8 @@ class TransactionSingleItemModule extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: AppColors.accentColor,
-                      fontWeight: FontWeight.normal,
-                      fontSize: 8.5.sp,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 10.sp,
                     ),
                   ),
                   Text(
@@ -730,8 +721,8 @@ class TransactionSingleItemModule extends StatelessWidget {
                         formattedDate.length - 4, formattedDate.length),
                     style: TextStyle(
                       color: AppColors.accentColor,
-                      fontWeight: FontWeight.normal,
-                      fontSize: 8.5.sp,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 10.sp,
                     ),
                   ),
                 ],

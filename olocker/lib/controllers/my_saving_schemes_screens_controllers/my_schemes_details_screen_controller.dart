@@ -48,20 +48,19 @@ int isStatusCode=0;
 
       log("getMySavingSchemeDetailsFunction res body :: ${response.body}");
 
-      /*GetSavingSchemesListModel getSavingSchemesListModel =
+      GetSavingSchemesListModel getSavingSchemesListModel =
           GetSavingSchemesListModel.fromJson(json.decode(response.body));
 
-      // isSuccessStatus = getSavingSchemesListModel.success.obs;
       isStatusCode =getSavingSchemesListModel.statusCode;
       if (isStatusCode==200) {
-        getSavingSchemeData = getSavingSchemesListModel.data.getSavingSchemeList[0];
+        if(getSavingSchemesListModel.data.getSavingSchemeList.isNotEmpty) {
+          getSavingSchemeData = getSavingSchemesListModel.data.getSavingSchemeList[0];
+        }
         jewellerLogo = ApiUrl.apiImagePath + getSavingSchemesListModel.data.partnerLogo;
-        // jewellerLogo = ApiUrl.apiImagePath + getSavingSchemeData!.partnerLogo;
 
         log('getSavingSchemeData schemeName ::: ${getSavingSchemeData!.schemeName}');
         log('getSavingSchemeData mobile no ::: ${getSavingSchemeData!.mobile}');
 
-        // double totalAmount= 
       } else {
         log('getMySavingSchemeDetailsFunction false');
         if (isStatusCode == 400) {
@@ -73,14 +72,16 @@ int isStatusCode=0;
         } else if (isStatusCode == 417) {
           log("HttpStatusCode.ExpectationFailed");
         }
-      }*/
+      }
     } catch (e) {
       log('getMySavingSchemeDetailsFunction error:$e');
       rethrow;
     } finally {
       // isLoading(false);
-      getTransactionsListFunction();
+      await getTransactionsListFunction();
     }
+
+
   }
 
   Future<void> getTransactionsListFunction() async {
