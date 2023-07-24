@@ -245,11 +245,11 @@ class JewelleryDetailModule extends StatelessWidget {
           SizedBox(
             height: 80,
             width: 80,
-            child: screenController.productDetailsData.productImageList.isEmpty
+            child: screenController.productDetailsData.productImageList!.isEmpty
                 ? Container(color: AppColors.greyTextColor)
                 : CachedNetworkImage(
                     imageUrl: ApiUrl.apiImagePath +
-                        screenController.productDetailsData.productImageList[0]
+                        screenController.productDetailsData.productImageList![0]
                             .imageLocation,
                     fit: BoxFit.cover,
                   ),
@@ -268,7 +268,7 @@ class JewelleryDetailModule extends StatelessWidget {
               children: [
                 Text(
                   screenController
-                      .productDetailsData.itemTypeName.capitalizeFirst!,
+                      .productDetailsData.itemTypeName!.capitalizeFirst!,
                   style: TextStyle(
                     fontSize: 12.sp,
                     color: AppColors.blackColor,
@@ -278,7 +278,7 @@ class JewelleryDetailModule extends StatelessWidget {
                 ),
                 SizedBox(height: 0.25.h),
                 Text(
-                  screenController.productDetailsData.description,
+                  screenController.productDetailsData.description!,
                   // "vsdhvfghsd sdbvfsdbs jksdbgvjksdfvbnkjdf kdsbnfvjkdf dfbnvkjdf jksdfnvjkd djfbv dfbkjvb dfjkb fjbv dgfbvbdfbvjdfbvjbdfjhbv dfjhbvjdb",
                   style: TextStyle(
                     fontSize: 8.5.sp,

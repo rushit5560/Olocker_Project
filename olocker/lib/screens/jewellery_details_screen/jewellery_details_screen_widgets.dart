@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,6 @@ import 'package:share_plus/share_plus.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 import 'package:http/http.dart' as http;
-
 import '../../controllers/jewellery_details_screen_controller.dart';
 
 class FavouriteButtonModule extends StatelessWidget {
@@ -141,8 +139,10 @@ class ProductImagesSliderModule extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         fade: 0.45,
 
-        viewportFraction: 0.6, // this is displaying images size
-        scale: 0.35, // this is non displaying images size
+        viewportFraction: 0.6,
+        // this is displaying images size
+        scale: 0.35,
+        // this is non displaying images size
         physics: const BouncingScrollPhysics(),
         indicatorLayout: PageIndicatorLayout.WARM,
 
@@ -153,7 +153,7 @@ class ProductImagesSliderModule extends StatelessWidget {
           margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         ),
 
-        list: jewelleryDetailsController.productDetailsData.productImageList,
+        list: jewelleryDetailsController.productDetailsData.productImageList!,
         builder: (context, data, index) {
           return GestureDetector(
             onTap: () {
@@ -181,7 +181,7 @@ class ProductImagesSliderModule extends StatelessWidget {
                   image: NetworkImage(
                     ApiUrl.apiImagePath +
                         jewelleryDetailsController.productDetailsData
-                            .productImageList[index].imageLocation,
+                            .productImageList![index].imageLocation,
                   ),
                   fit: BoxFit.cover,
                   onError: (obj, st) {
@@ -249,10 +249,9 @@ class ShowFullScreenImagesSliderModule extends StatelessWidget {
             builder: (BuildContext context, int index) {
               return PhotoViewGalleryPageOptions(
                 imageProvider: NetworkImage(
-
                   ApiUrl.apiImagePath +
                       jewelleryDetailsController.productDetailsData
-                          .productImageList[index].imageLocation,
+                          .productImageList![index].imageLocation,
                   // scale: 1,
                 ),
                 errorBuilder: (context, error, stackTrace) {
@@ -271,7 +270,7 @@ class ShowFullScreenImagesSliderModule extends StatelessWidget {
               color: AppColors.whiteColor,
             ),
             itemCount: jewelleryDetailsController
-                .productDetailsData.productImageList.length,
+                .productDetailsData.productImageList!.length,
             loadingBuilder: (context, event) => const Center(
               child: SizedBox(
                 width: 20.0,
@@ -293,10 +292,10 @@ class ShowFullScreenImagesSliderModule extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: jewelleryDetailsController
-                    .productDetailsData.productImageList
+                    .productDetailsData.productImageList!
                     .map((url) {
                   int index = jewelleryDetailsController
-                      .productDetailsData.productImageList
+                      .productDetailsData.productImageList!
                       .indexOf(url);
                   return Container(
                     width: jewelleryDetailsController
@@ -366,7 +365,7 @@ class JewelleryApproxPriceModule extends StatelessWidget {
                   locale: "HI",
                   decimalDigits: 2,
                 ).format(double.parse(
-                  jewelleryDetailController.productDetailsData.price)),
+                  jewelleryDetailController.productDetailsData.price!)),
 
           // "₹${jewelleryDetailController.productDetailsData.price.toString()}",
           style: TextStyle(
@@ -430,40 +429,41 @@ class ProductDescriptionModule extends StatelessWidget {
           ),
           ProductDescRow(
             textTitle: "Stock No",
-            textValue: jewelleryDetailController.productDetailsData.productSku,
+            textValue: jewelleryDetailController.productDetailsData.productSku!,
           ),
-          jewelleryDetailController.productDetailsData.metaldetails.isEmpty
+          jewelleryDetailController.productDetailsData.metaldetails!.isEmpty
               ? const SizedBox()
               : ProductDescRow(
                   textTitle: "Metal",
                   textValue:
-                      "${jewelleryDetailController.productDetailsData.metaldetails[0].metalType}-${jewelleryDetailController.productDetailsData.metaldetails[0].metalPurity}-${double.parse(jewelleryDetailController.productDetailsData.metaldetails[0].metalWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.metaldetails[0].unitMetalWt}",
+                      "${jewelleryDetailController.productDetailsData.metaldetails![0].metalType}-${jewelleryDetailController.productDetailsData.metaldetails![0].metalPurity}-${double.parse(jewelleryDetailController.productDetailsData.metaldetails![0].metalWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.metaldetails![0].unitMetalWt}",
                 ),
-          jewelleryDetailController.productDetailsData.decorativedetails.isEmpty
+          jewelleryDetailController
+                  .productDetailsData.decorativedetails!.isEmpty
               ? const SizedBox()
               : ProductDescRow(
                   textTitle: "Decorative",
                   textValue:
-                      "${jewelleryDetailController.productDetailsData.decorativedetails[0].decorativeItemName} ${double.parse(jewelleryDetailController.productDetailsData.decorativedetails[0].decorativeItemWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.decorativedetails[0].unitDecoItemWt}",
+                      "${jewelleryDetailController.productDetailsData.decorativedetails![0].decorativeItemName} ${double.parse(jewelleryDetailController.productDetailsData.decorativedetails![0].decorativeItemWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.decorativedetails![0].unitDecoItemWt}",
                 ),
-          jewelleryDetailController.productDetailsData.stonedetails.isEmpty
+          jewelleryDetailController.productDetailsData.stonedetails!.isEmpty
               ? const SizedBox()
               : ProductDescRow(
                   textTitle: "Stone",
                   textValue:
-                      "${jewelleryDetailController.productDetailsData.stonedetails[0].stoneName} ${double.parse(jewelleryDetailController.productDetailsData.stonedetails[0].stoneWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.stonedetails[0].unitStoneWt}",
+                      "${jewelleryDetailController.productDetailsData.stonedetails![0].stoneName} ${double.parse(jewelleryDetailController.productDetailsData.stonedetails![0].stoneWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.stonedetails![0].unitStoneWt}",
                 ),
-          jewelleryDetailController.productDetailsData.diamonddetails.isEmpty
+          jewelleryDetailController.productDetailsData.diamonddetails!.isEmpty
               ? const SizedBox()
               : ProductDescRow(
                   textTitle: "Diamond",
                   textValue:
-                      "${jewelleryDetailController.productDetailsData.diamonddetails[0].stoneName} ${double.parse(jewelleryDetailController.productDetailsData.diamonddetails[0].stoneWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.diamonddetails[0].unitStoneWt}",
+                      "${jewelleryDetailController.productDetailsData.diamonddetails![0].stoneName} ${double.parse(jewelleryDetailController.productDetailsData.diamonddetails![0].stoneWt).toStringAsFixed(2)} ${jewelleryDetailController.productDetailsData.diamonddetails![0].unitStoneWt}",
                 ),
           ProductDescRow(
             textTitle: "Status",
             textValue: jewelleryDetailController
-                .productDetailsData.productStatus.capitalizeFirst!,
+                .productDetailsData.productStatus!.capitalizeFirst!,
           ),
           SizedBox(height: 1.h),
         ],

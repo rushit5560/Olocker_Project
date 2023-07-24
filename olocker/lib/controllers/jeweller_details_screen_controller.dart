@@ -149,11 +149,10 @@ class JewellerDetailsScreenController extends GetxController {
       rethrow;
     }
 
-    /// await getJewelleryPushToAppDataFunction();
-    await getBestSellerFunction();
+   await getJewelleryPushToAppDataFunction();
+
     // isLoading(false);
   }
-
   Future<void> getJewelleryPushToAppDataFunction() async {
     isLoading(true);
     String url =
@@ -168,15 +167,15 @@ class JewellerDetailsScreenController extends GetxController {
       log('getJewelleryPushToAppDataFunction response : ${response.body}');
 
       JewelleryCategoryModel jewelleryCategoryModel =
-          JewelleryCategoryModel.fromJson(json.decode(response.body));
-      isSuccessStatus = jewelleryCategoryModel.success.obs;
-
-      if (isSuccessStatus.value) {
+      JewelleryCategoryModel.fromJson(json.decode(response.body));
+      // isSuccessStatus = jewelleryCategoryModel.success.obs;
+isStatusCode=jewelleryCategoryModel.statusCode;
+      if (isStatusCode==200) {
         jewelleryCategoryList.clear();
 
         // jewelleryCategoryList.addAll(jewelleryCategoryModel.getPushCollection);
 //
-        for (var element in jewelleryCategoryModel.getPushCollection) {
+        for (var element in jewelleryCategoryModel.data.getPushCollection) {
           if (element.productCount != 0) {
             log("jewelleryCategoryList element.productCount ${element.productCount}");
             // jewelleryCategoryList.addAll(jewelleryCategoryModel.getPushCollection);
@@ -194,14 +193,14 @@ class JewellerDetailsScreenController extends GetxController {
         }
         log("jewellerysubCategoryList.length ${jewellerysubCategoryList.length}");
 
-        if (jewelleryCategoryModel.getPushOffer.isNotEmpty) {
-          for (int i = 0; i < jewelleryCategoryModel.getPushOffer.length; i++) {
-            var singleItem = jewelleryCategoryModel.getPushOffer[i];
+        if (jewelleryCategoryModel.data.getPushOffer.isNotEmpty) {
+          for (int i = 0; i < jewelleryCategoryModel.data.getPushOffer.length; i++) {
+            var singleItem = jewelleryCategoryModel.data.getPushOffer[i];
             announcementOfferList.add(GetPushOfferItem(
-              srNo: singleItem.srNo,
+              srNo: singleItem.srNo.toString(),
               name: singleItem.name,
               imageurl: singleItem.imageurl,
-              pushSortOrder: singleItem.pushSortOrder,
+              pushSortOrder: singleItem.pushSortOrder.toString(),
               isClickable: true,
             ));
             // jewelleryCategoryModel.getPushOffer
@@ -223,8 +222,8 @@ class JewellerDetailsScreenController extends GetxController {
       rethrow;
     }
 
-    ///  await getAboutYourSelfFunction();
-    isLoading(false);
+    await getAboutYourSelfFunction();
+    // isLoading(false);
   }
 
   Future<void> getAboutYourSelfFunction() async {
@@ -273,6 +272,8 @@ class JewellerDetailsScreenController extends GetxController {
   }
 
   // This 5 Function api calling in 2nd Phase
+
+
   Future<void> getNewArrivalFunction() async {
     if (hasMore.value) {
       // isLoading(true);
@@ -288,12 +289,12 @@ class JewellerDetailsScreenController extends GetxController {
 
         JewelleryCategoryModel jewelleryCategoryModel =
             JewelleryCategoryModel.fromJson(json.decode(response.body));
-        isSuccessStatus = jewelleryCategoryModel.success.obs;
-
-        if (isSuccessStatus.value) {
+        // isSuccessStatus = jewelleryCategoryModel.success.obs;
+isStatusCode=jewelleryCategoryModel.statusCode;
+        if (isStatusCode==200) {
           newArrivalList.clear();
 
-          newArrivalList.addAll(jewelleryCategoryModel.getPushCollection);
+          newArrivalList.addAll(jewelleryCategoryModel.data.getPushCollection);
 
           log('newArrivalList : ${newArrivalList.length}');
         } else {
@@ -304,8 +305,8 @@ class JewellerDetailsScreenController extends GetxController {
         rethrow;
       }
 
-      ///  await getJewelleryTypeFunction();
-      isLoading(false);
+        await getJewelleryTypeFunction();
+      // isLoading(false);
     } else {
       isLoading(false);
     }
@@ -442,8 +443,8 @@ class JewellerDetailsScreenController extends GetxController {
         rethrow;
       }
 
-      ///  await getBestSellerFunction();
-      isLoading(false);
+       await getBestSellerFunction();
+      // isLoading(false);
     } else {
       isLoading(false);
     }
@@ -535,7 +536,7 @@ class JewellerDetailsScreenController extends GetxController {
       }
 
       await getGoldPriceFunction();
-      isLoading(false);
+      // isLoading(false);
     } else {
       isLoading(false);
     }

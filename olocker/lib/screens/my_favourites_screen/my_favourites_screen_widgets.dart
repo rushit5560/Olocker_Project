@@ -106,9 +106,9 @@ class FavouriteListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log("single images:  ${ApiUrl.apiImagePath}${singleProd.productDetails.productImageList[0].imageLocation}");
+    // log("single images:  ${ApiUrl.apiImagePath}${singleProd.productDetails.productImageList[0].imageLocation}");
     log("singleProd.productDetails.price ${singleProd.productDetails.price}");
-    log("singleProd.productDetails.productSku ${singleProd.productDetails.productSku}");
+    // log("singleProd.productDetails.productSku ${singleProd.productDetails.productSku}");
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Stack(

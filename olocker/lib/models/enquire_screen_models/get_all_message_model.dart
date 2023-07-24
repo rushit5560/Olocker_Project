@@ -131,13 +131,12 @@
 //       };
 // }
 //
-
-
-
 import 'dart:convert';
 
-GetAllMessageModel getAllMessageModelFromJson(String str) => GetAllMessageModel.fromJson(json.decode(str));
+import '../error_info_model/error_info_model.dart';
 
+GetAllMessageModel getAllMessageModelFromJson(String str) =>
+    GetAllMessageModel.fromJson(json.decode(str));
 
 class GetAllMessageModel {
   int statusCode;
@@ -148,18 +147,17 @@ class GetAllMessageModel {
     required this.data,
   });
 
-  factory GetAllMessageModel.fromJson(Map<String, dynamic> json) => GetAllMessageModel(
-    statusCode: json["statusCode"],
-    data: Data.fromJson(json["data"]),
-  );
-
-
+  factory GetAllMessageModel.fromJson(Map<String, dynamic> json) =>
+      GetAllMessageModel(
+        statusCode: json["statusCode"] ?? 0,
+        data: Data.fromJson(json["data"] ?? {}),
+      );
 }
 
 class Data {
   List<GetNotification> getNotification;
   bool success;
-  ErrorInfo errorInfo;
+  ErrorInfoModel errorInfo;
 
   Data({
     required this.getNotification,
@@ -168,40 +166,12 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    getNotification: List<GetNotification>.from(
-        (json["GetNotification"] ?? [])
-            .map((x) => GetNotification.fromJson(x))),
-    success: json["success"],
-    errorInfo: ErrorInfo.fromJson(json["error_info"]),
-  );
-
-
+        getNotification: List<GetNotification>.from(
+            (json["getNotification"] ?? []).map((x) => x)),
+        success: json["success"] ?? false,
+        errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
+      );
 }
-
-class ErrorInfo {
-  ErrorInfo({
-    required this.errorType,
-    required this.extraInfo,
-    required this.description,
-   required this.errorData,
-  });
-
-  final int errorType;
-  final String extraInfo;
-  final String description;
-  final String errorData;
-
-  factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
-    errorType: json["error_type"] ?? 0,
-    extraInfo: json["extra_info"] ?? "",
-    description: json["description"] ?? "",
-    errorData: json["error_data"] ?? "",
-  );
-
-
-}
-
-
 
 class GetNotification {
   GetNotification({
@@ -250,6 +220,4 @@ class GetNotification {
         productId: json["productId"] ?? 0,
         isAdminNotification: json["isAdminNotification"] ?? false,
       );
-
 }
-

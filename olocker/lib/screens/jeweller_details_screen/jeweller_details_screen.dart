@@ -11,7 +11,7 @@ import 'jeweller_details_screen_widgets.dart';
 class JewellerDetailsScreen extends StatelessWidget {
   JewellerDetailsScreen({Key? key}) : super(key: key);
   final jewellerDetailsScreenController =
-  Get.put(JewellerDetailsScreenController());
+      Get.put(JewellerDetailsScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class JewellerDetailsScreen extends StatelessWidget {
         leading: IconButton(
           onPressed: () => Get.back(),
           icon:
-          const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor),
+              const Icon(Icons.arrow_back_ios, color: AppColors.blackTextColor),
         ),
         title: Text(
           '${jewellerDetailsScreenController.jewellerName}',
@@ -33,7 +33,7 @@ class JewellerDetailsScreen extends StatelessWidget {
           IconButton(
             onPressed: () {
               Get.to(
-                    () => MyInquiriesListScreen(),
+                () => MyInquiriesListScreen(),
                 arguments: [
                   jewellerDetailsScreenController.jewellerId,
                 ],
@@ -47,7 +47,7 @@ class JewellerDetailsScreen extends StatelessWidget {
         ],
       ),
       body: Obx(
-            () => /*jewellerDetailsScreenController.isSpecialFeaturesLoading.value  ||
+        () => /*jewellerDetailsScreenController.isSpecialFeaturesLoading.value  ||
                 jewellerDetailsScreenController.isAnnouncementOfferLoading.value  ||
                 jewellerDetailsScreenController.isJewelleryPushToAppDataLoading.value  ||
                 jewellerDetailsScreenController.isJewelleryTypeLoading.value  ||
@@ -55,94 +55,94 @@ class JewellerDetailsScreen extends StatelessWidget {
                 jewellerDetailsScreenController.isTestimonialLoading.value  ||
                 jewellerDetailsScreenController.isGoldPriceLoading.value  ||
                 jewellerDetailsScreenController.isAboutYourSelfLoading.value  ||*/
-        jewellerDetailsScreenController.isLoading.value
-            ? JewellerDetailsLoadingShimmer()
-            : SingleChildScrollView(
-          controller:
-          jewellerDetailsScreenController.scrollController,
-          child: Column(
-            children: [
-              jewellerDetailsScreenController
-                  .specialFeaturesList.isEmpty
-                  ? Container()
-                  : JewellerFeaturesModule(),
+            jewellerDetailsScreenController.isLoading.value
+                ? JewellerDetailsLoadingShimmer()
+                : SingleChildScrollView(
+                    controller:
+                        jewellerDetailsScreenController.scrollController,
+                    child: Column(
+                      children: [
+                        jewellerDetailsScreenController
+                                .specialFeaturesList.isEmpty
+                            ? Container()
+                            : JewellerFeaturesModule(),
 
-              jewellerDetailsScreenController
-                      .announcementOfferList.isEmpty
-                  ? Container()
-                  : JewellerBannerModule(),
+                        jewellerDetailsScreenController
+                                .announcementOfferList.isEmpty
+                            ? Container()
+                            : JewellerBannerModule(),
 
-              FourFunctionalModule(),
-              // // JewelleryFirstCategoryListModule(),
-              // jewellerDetailsScreenController
-              //         .jewelleryCategoryList.isNotEmpty
-              //     ? JewelleryFirstCategoryListModule()
-              //     : Container(),
-              ReferAndJewellerEmiModule(),
-              // jewellerDetailsScreenController
-              //         .jewellerysubCategoryList.isNotEmpty
-              //     ? JewellerySubCategoryListModule()
-              //     : Container(),
+                        FourFunctionalModule(),
+                        JewelleryFirstCategoryListModule(),
+                        jewellerDetailsScreenController
+                                .jewelleryCategoryList.isNotEmpty
+                            ? JewelleryFirstCategoryListModule()
+                            : Container(),
+                        ReferAndJewellerEmiModule(),
+                        jewellerDetailsScreenController
+                                .jewellerysubCategoryList.isNotEmpty
+                            ? JewellerySubCategoryListModule()
+                            : Container(),
 
-              /// Below all module in 2nd phase
-              // Column(
-              //   children: [
-              //     jewellerDetailsScreenController
-              //             .newArrivalList.isEmpty
-              //         ? Container()
-              //         : NewArrivalListModule(),
-              //     jewellerDetailsScreenController
-              //             .womenTypeList.isEmpty
-              //         ? Container()
-              //         : MenWomenJewelleryListModule(
-              //             headerName: "WOMEN'S JEWELLERY",
-              //             headerBgColor: AppColors.darkPeachColor,
-              //             bgImage: AppImages.womenJewelleryImage,
-              //             typeList: jewellerDetailsScreenController
-              //                 .womenTypeList,
-              //           ),
-              //     jewellerDetailsScreenController.menTypeList.isEmpty
-              //         ? Container()
-              //         : MenWomenJewelleryListModule(
-              //             headerName: "MEN'S JEWELLERY",
-              //             headerBgColor: AppColors.darkCoffeeColor,
-              //             bgImage: AppImages.menJewelleryImage,
-              //             typeList: jewellerDetailsScreenController
-              //                 .menTypeList,
-              //           ),
-              //     jewellerDetailsScreenController.kidsTypeList.isEmpty
-              //         ? Container()
-              //         : MenWomenJewelleryListModule(
-              //             headerName: "KID'S JEWELLERY",
-              //             headerBgColor:
-              //                 AppColors.lightNewCoffeeColor,
-              //             bgImage: AppImages.kidsJewelleryImage,
-              //             typeList: jewellerDetailsScreenController
-              //                 .kidsTypeList,
-              //           ),
-                  jewellerDetailsScreenController
-                          .bestSellerList.isEmpty
-                      ? Container()
-                      : BestSellersListModule(),
-                  jewellerDetailsScreenController
-                          .clientTestimonialsList.isEmpty
-                      ? Container()
-                      : CustomerSpeakModule(),
-                  jewellerDetailsScreenController
-                          .goldPriceList.isEmpty
-                      ? Container()
-                      : GoldPriceModule(),
-              //   ],
-              // ),
-              // jewellerDetailsScreenController.hasMore.value
-              //     // ? JewellerDetailsLoadingShimmer()
-              //     ? const CircularProgressIndicator()
-              //         .commonAllSidePadding(15)
-              //     : Container(),
-              // const SizedBox(height: 20),
-            ],
-          ),
-        ),
+                        /// Below all module in 2nd phase
+                        Column(
+                          children: [
+                            jewellerDetailsScreenController
+                                    .newArrivalList.isEmpty
+                                ? Container()
+                                : NewArrivalListModule(),
+                            jewellerDetailsScreenController
+                                    .womenTypeList.isEmpty
+                                ? Container()
+                                : MenWomenJewelleryListModule(
+                                    headerName: "WOMEN'S JEWELLERY",
+                                    headerBgColor: AppColors.darkPeachColor,
+                                    bgImage: AppImages.womenJewelleryImage,
+                                    typeList: jewellerDetailsScreenController
+                                        .womenTypeList,
+                                  ),
+                            jewellerDetailsScreenController.menTypeList.isEmpty
+                                ? Container()
+                                : MenWomenJewelleryListModule(
+                                    headerName: "MEN'S JEWELLERY",
+                                    headerBgColor: AppColors.darkCoffeeColor,
+                                    bgImage: AppImages.menJewelleryImage,
+                                    typeList: jewellerDetailsScreenController
+                                        .menTypeList,
+                                  ),
+                            jewellerDetailsScreenController.kidsTypeList.isEmpty
+                                ? Container()
+                                : MenWomenJewelleryListModule(
+                                    headerName: "KID'S JEWELLERY",
+                                    headerBgColor:
+                                        AppColors.lightNewCoffeeColor,
+                                    bgImage: AppImages.kidsJewelleryImage,
+                                    typeList: jewellerDetailsScreenController
+                                        .kidsTypeList,
+                                  ),
+                            jewellerDetailsScreenController
+                                    .bestSellerList.isEmpty
+                                ? Container()
+                                : BestSellersListModule(),
+                            jewellerDetailsScreenController
+                                    .clientTestimonialsList.isEmpty
+                                ? Container()
+                                : CustomerSpeakModule(),
+                            jewellerDetailsScreenController
+                                    .goldPriceList.isEmpty
+                                ? Container()
+                                : GoldPriceModule(),
+                          ],
+                        ),
+                        jewellerDetailsScreenController.hasMore.value
+                            // ? JewellerDetailsLoadingShimmer()
+                            ? const CircularProgressIndicator()
+                                .commonAllSidePadding(15)
+                            : Container(),
+                        const SizedBox(height: 20),
+                      ],
+                    ),
+                  ),
       ),
     );
   }

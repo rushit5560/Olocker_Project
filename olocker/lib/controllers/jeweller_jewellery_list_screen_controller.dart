@@ -27,7 +27,7 @@ class JewellerJewelleryListScreenController extends GetxController {
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
-  int isStatusCode=0;
+  int isStatusCode = 0;
 
   final ScrollController scrollController = ScrollController();
   RxBool hasMore = true.obs;
@@ -47,6 +47,7 @@ class JewellerJewelleryListScreenController extends GetxController {
   RxBool isSearchOn = false.obs;
 
   final List<SearchProductListDatum> mainJewelleryList = [];
+
 // List<SearchProductListDatum> jewelleryList = [];
   // List<SearchProductListDatum> get jewelleryList => mainJewelleryList;
 
@@ -95,11 +96,12 @@ class JewellerJewelleryListScreenController extends GetxController {
 
         AllJewelleryModel allJewelleryModel =
             AllJewelleryModel.fromJson(json.decode(response.body));
-        isSuccessStatus = allJewelleryModel.success.obs;
-
-        if (isSuccessStatus.value) {
+        // isSuccessStatus = allJewelleryModel.success.obs;
+        isStatusCode = allJewelleryModel.statusCode;
+        if (isStatusCode == 200) {
           searchJewelleryList.clear();
-          searchJewelleryList.addAll(allJewelleryModel.searchProductListData);
+          searchJewelleryList
+              .addAll(allJewelleryModel.data.searchProductListData);
 
           log('getSearchProductsFunction : ${searchJewelleryList.length}');
         } else {
@@ -141,15 +143,16 @@ class JewellerJewelleryListScreenController extends GetxController {
 
         AllJewelleryModel allJewelleryModel =
             AllJewelleryModel.fromJson(json.decode(response.body));
-        isSuccessStatus = allJewelleryModel.success.obs;
-
-        if (isSuccessStatus.value) {
+        // isSuccessStatus = allJewelleryModel.success.obs;
+        isStatusCode = allJewelleryModel.statusCode;
+        if (isStatusCode == 200) {
           // _jewelleryList.clear();
           // _jewelleryList.addAll(allJewelleryModel.searchProductListData);
-          if (allJewelleryModel.searchProductListData.isEmpty) {
+          if (allJewelleryModel.data.searchProductListData.isEmpty) {
             hasMore = false.obs;
           } else {
-            mainJewelleryList.addAll(allJewelleryModel.searchProductListData);
+            mainJewelleryList
+                .addAll(allJewelleryModel.data.searchProductListData);
             List<SearchProductListDatum> withPriceList = [];
             List<SearchProductListDatum> withoutPriceList = [];
 
@@ -185,7 +188,7 @@ class JewellerJewelleryListScreenController extends GetxController {
             mainJewelleryList.addAll(withPriceList);
             mainJewelleryList.addAll(withoutPriceList);
 
-            if (allJewelleryModel.searchProductListData.length < 20) {
+            if (allJewelleryModel.data.searchProductListData.length < 20) {
               hasMore = false.obs;
             }
           }
@@ -236,11 +239,11 @@ class JewellerJewelleryListScreenController extends GetxController {
 
       if (response.statusCode == 200) {
         // if (isSuccessStatus.value) {
-          CommonWidgets().showBorderSnackBar(
-            context: Get.context!,
-            displayText: "Item Added to favourites.",
-          );
-          singleProduct.isFav = true;
+        CommonWidgets().showBorderSnackBar(
+          context: Get.context!,
+          displayText: "Item Added to favourites.",
+        );
+        singleProduct.isFav = true;
         // }
       } else {
         log('addFavouriteProductFunction Else');
@@ -275,14 +278,14 @@ class JewellerJewelleryListScreenController extends GetxController {
 
       if (response.statusCode == 200) {
         // if (isSuccessStatus.value) {
-          CommonWidgets().showBorderSnackBar(
-            context: Get.context!,
-            displayText: "Item Removed from favourites.",
-          );
+        CommonWidgets().showBorderSnackBar(
+          context: Get.context!,
+          displayText: "Item Removed from favourites.",
+        );
 
-          /// Remove favourite button change in previous screen list
-          singleProduct.isFav = false;
-          // getFavouriteProductFunction();
+        /// Remove favourite button change in previous screen list
+        singleProduct.isFav = false;
+        // getFavouriteProductFunction();
         // }
       } else {
         log('addFavouriteProductFunction Else');
@@ -357,8 +360,8 @@ class JewellerJewelleryListScreenController extends GetxController {
           GetPartnerByCodeModel.fromJson(resBody);
 
       // bool isSuccessResult = getPartnerByCodeModel.success;
-      isStatusCode=getPartnerByCodeModel.statusCode;
-      if (isStatusCode==200) {
+      isStatusCode = getPartnerByCodeModel.statusCode;
+      if (isStatusCode == 200) {
         log("getPartnerByCodeFunction get success");
         partnerDetails = getPartnerByCodeModel.data.partner;
       } else {
@@ -377,7 +380,8 @@ class JewellerJewelleryListScreenController extends GetxController {
     } catch (e) {
       log("getPartnerByCodeFunction Error ::: $e");
       rethrow;
-    } /*finally {
+    }
+    /*finally {
       getUserProfileDetailsFunction();
       // isLoading(false);
     }*/
@@ -407,11 +411,10 @@ class JewellerJewelleryListScreenController extends GetxController {
 
       // bool isSuccessResult = userProfileGetModel.success;
       // statusCode=userProfileGetModel.statusCode;
-      isStatusCode=userProfileGetModel.statusCode;
-      if (isStatusCode==200) {
+      isStatusCode = userProfileGetModel.statusCode;
+      if (isStatusCode == 200) {
         log("user profile get success");
-        userReferaalCode.value =
-            userProfileGetModel.data.referralCode;
+        userReferaalCode.value = userProfileGetModel.data.referralCode;
         log("user userReferaalCode :: $userReferaalCode");
       } else {
         if (isStatusCode == 400) {

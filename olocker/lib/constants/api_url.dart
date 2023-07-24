@@ -37,8 +37,8 @@ class ApiUrl {
       "${apiMainPath}api/User/GetFavDeals";
 
   //saving schemes screeen apis
-  static const String getParterSavinSchemeApi =
-      "${apiMainPath}api/User/GetParterSavinScheme";
+  static const String getParterSavingSchemeApi =
+      "${apiMainPath}api/User/GetParterSavingScheme";
   static const String getSavingSchemeDetailsApi =
       "${apiMainPath}api/User/GetSavingSchemeDetails";
   static const String addEnrollSavingSchemeApi =
@@ -152,8 +152,8 @@ class ApiUrl {
       "${apiMainPath}api/User/GetDetails";
 
   /// Jewellery Details Screen Api's
-  static const String getJewelleryDetailApi =
-      "${apiMainPath}api/User/GetProductDetail";
+  // static const String getJewelleryDetailApi =
+  //     "${apiMainPath}api/User/GetProductDetail";
   static const String getOfferJewelleryDetailApi =
       "${apiMainPath}api/User/GetProductDetail";
   static const String removeFavProductApi =

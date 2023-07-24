@@ -466,10 +466,10 @@ class StepOneFormModule extends StatelessWidget {
 
                     String dateString = "yyyy-MM-dd";
                     log("dateString $dateString");
-                    DateTime date = DateTime.now();
-                    log("date $date");
+                    // DateTime date = DateTime.now();
+                    // log("date $date");
                     String  formattedDate =
-                        DateFormat('yyyy-MM-dd').format(date);
+                        DateFormat('yyyy-MM-dd').format(value);
                     log("formattedDate $formattedDate");
                     screenController.apiDobDate = formattedDate;
                     screenController.tempSelectedYear = value.year;

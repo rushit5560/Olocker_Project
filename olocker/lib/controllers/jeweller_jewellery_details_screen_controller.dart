@@ -54,16 +54,16 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
       GetOfferFavouriteVendorModel getJewelleryDetailModel =
           GetOfferFavouriteVendorModel.fromJson(json.decode(response.body));
 
-      isSuccessStatus = getJewelleryDetailModel.success.obs;
+      // isSuccessStatus = getJewelleryDetailModel.success.obs;
+      isStatusCode= getJewelleryDetailModel.statusCode;
+      if (isStatusCode == 200) {
+        productDetailsData = getJewelleryDetailModel.data.productDetailsData;
 
-      if (response.statusCode == 200) {
-        productDetailsData = getJewelleryDetailModel.getProductModel;
-
-        if (getJewelleryDetailModel.errorInfo.description
+        if (getJewelleryDetailModel.data.errorInfo.description
             .contains("Product data not found.")) {
           CommonWidgets().showBorderSnackBar(
             context: Get.context!,
-            displayText: getJewelleryDetailModel.errorInfo.description,
+            displayText: getJewelleryDetailModel.data.errorInfo.description,
           );
         }
 
@@ -189,12 +189,12 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
 
       if (response.statusCode == 200) {
         // if (isSuccessStatus.value) {
-          CommonWidgets().showBorderSnackBar(
-            context: Get.context!,
-            displayText: "Item Removed from favourites.",
-          );
+        CommonWidgets().showBorderSnackBar(
+          context: Get.context!,
+          displayText: "Item Removed from favourites.",
+        );
 
-          productDetailsData.isFav = false;
+        productDetailsData.isFav = false;
         // }
       } else {
         log('addFavouriteProductFunction Else');

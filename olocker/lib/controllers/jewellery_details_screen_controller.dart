@@ -10,6 +10,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../models/jeweller_details_screen_model/special_features_model.dart';
 import '../models/jewellery_details_screen_model/get_jewellery_detail_model.dart';
+import '../models/jewellery_details_screen_model/get_offer_jewellery_detail_model.dart';
 import '../models/refer_and_earn_screen_models/get_partner_by_code_model.dart';
 import '../models/user_profile_models/user_profile_get_model.dart';
 import 'jeweller_jewellery_list_screen_controller.dart';
@@ -36,8 +37,9 @@ class JewelleryDetailsScreenController extends GetxController {
   RxInt fullScreenImageCurrentindex = 0.obs;
 
   // PageController fullscreenImageController = PageController();
+  GetProductModel productDetailsData = GetProductModel();
 
-  late ProductDetailsData productDetailsData;
+  // late ProductDetailsData productDetailsData;
   List<SpecialFeatureItem> specialFeaturesList = [];
 
   PartnerDetails? partnerDetails;
@@ -71,9 +73,12 @@ class JewelleryDetailsScreenController extends GetxController {
 
   Future<void> getJewelleryProductDetailFunction() async {
     isLoading(true);
-    String url =
-        "${ApiUrl.getJewelleryDetailApi}?partnerSrNo=$partnerSrNo&productSrno=$productSrNo";
-
+    // String url =
+    //     "${ApiUrl.getJewelleryDetailApi}?partnerSrNo=$partnerSrNo&productSrno=$productSrNo";
+    String url = "${ApiUrl.getOfferJewelleryDetailApi}"
+        "?productSrno=$productSrNo"
+    "&Customerno=${UserDetails.customerId}"
+        "&partnerSrNo=$partnerSrNo";
     log('getJewelleryProductDetailFunction Api Url :: $url');
 
     try {
@@ -83,19 +88,21 @@ class JewelleryDetailsScreenController extends GetxController {
       );
       log(' getJewelleryProductDetailFunction  response : ${response.body}');
 
-      GetJewelleryDetailModel getJewelleryDetailModel =
-          GetJewelleryDetailModel.fromJson(json.decode(response.body));
 
-      isSuccessStatus = getJewelleryDetailModel.success.obs;
+      GetOfferFavouriteVendorModel getJewelleryDetailModel =
+      GetOfferFavouriteVendorModel.fromJson(json.decode(response.body));
+
+      // isSuccessStatus = getJewelleryDetailModel.success.obs;
+      isStatusCode= getJewelleryDetailModel.statusCode;
 
       if (response.statusCode == 200) {
-        productDetailsData = getJewelleryDetailModel.productDetailsData;
+        productDetailsData = getJewelleryDetailModel.data.productDetailsData;
 
-        if (getJewelleryDetailModel.errorInfo.description
+        if (getJewelleryDetailModel.data.errorInfo.description
             .contains("Product data not found.")) {
           CommonWidgets().showBorderSnackBar(
             context: Get.context!,
-            displayText: getJewelleryDetailModel.errorInfo.description,
+            displayText: getJewelleryDetailModel.data.errorInfo.description,
           );
         }
 

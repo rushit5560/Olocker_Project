@@ -4,73 +4,50 @@
 
 import 'dart:convert';
 
+import 'package:olocker/models/error_info_model/error_info_model.dart';
+
 UploadEmiDocumentModel uploadEmiDocumentModelFromJson(String str) =>
     UploadEmiDocumentModel.fromJson(json.decode(str));
 
-// String uploadEmiDocumentModelToJson(UploadEmiDocumentModel data) =>
-//     json.encode(data.toJson());
-
 class UploadEmiDocumentModel {
+  int statusCode;
+  Data data;
+
   UploadEmiDocumentModel({
+    required this.statusCode,
+    required this.data,
+  });
+
+  factory UploadEmiDocumentModel.fromJson(Map<String, dynamic> json) =>
+      UploadEmiDocumentModel(
+        statusCode: json["statusCode"] ?? 0,
+        data: Data.fromJson(json["data"] ?? {}),
+      );
+}
+
+class Data {
+  int emiSrNo;
+  String emiTenorOptions;
+  String loanApplicationId;
+  String message;
+  bool success;
+  ErrorInfoModel errorInfo;
+
+  Data({
     required this.emiSrNo,
-    // this.emiTenorOptions,
-    // this.loanApplicationId,
+    required this.emiTenorOptions,
+    required this.loanApplicationId,
     required this.message,
     required this.success,
     required this.errorInfo,
   });
 
-  final int emiSrNo;
-  // final dynamic emiTenorOptions;
-  // final dynamic loanApplicationId;
-  final String message;
-  final bool success;
-  final ErrorInfo errorInfo;
-
-  factory UploadEmiDocumentModel.fromJson(Map<String, dynamic> json) =>
-      UploadEmiDocumentModel(
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
         emiSrNo: json["emiSrNo"] ?? 0,
-        // emiTenorOptions: json["EMITenorOptions"],
-        // loanApplicationId: json["LoanApplicationId"],
-        message: json["Message"] ?? "",
+        emiTenorOptions: json["emiTenorOptions"] ?? "",
+        loanApplicationId: json["loanApplicationId"] ?? "",
+        message: json["message"] ?? "",
         success: json["success"] ?? false,
-        errorInfo: ErrorInfo.fromJson((json["error_info"] ?? {})),
+        errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
       );
-
-  // Map<String, dynamic> toJson() => {
-  //       "emiSrNo": emiSrNo,
-  //       // "EMITenorOptions": emiTenorOptions,
-  //       // "LoanApplicationId": loanApplicationId,
-  //       "Message": message,
-  //       "success": success,
-  //       "error_info": errorInfo.toJson(),
-      // };
-}
-
-class ErrorInfo {
-  ErrorInfo({
-    required this.errorType,
-    required this.extraInfo,
-    required this.description,
-    required this.errorData,
-  });
-
-  final int errorType;
-  final String extraInfo;
-  final String description;
-  final String errorData;
-
-  factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
-        errorType: json["error_type"] ?? 0,
-        extraInfo: json["extra_info"] ?? "",
-        description: json["description"] ?? "",
-        errorData: json["error_data"] ?? "",
-      );
-
-  // Map<String, dynamic> toJson() => {
-  //       "error_type": errorType,
-  //       "extra_info": extraInfo,
-  //       "description": description,
-  //       "error_data": errorData,
-  //     };
 }

@@ -21,6 +21,7 @@ class JewellerJewelleryDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return WillPopScope(
       onWillPop: () {
         myFavouritesScreenController.getFavouriteProductsFunction();
@@ -63,7 +64,7 @@ class JewellerJewelleryDetailsScreen extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                           jewellerJewelleryDetailsScreenController
-                                  .productDetailsData.productimages!.isEmpty
+                                  .productDetailsData.productImageList!.isEmpty
                               ? Center(
                                   child: Text(
                                     "No Product Images Available",

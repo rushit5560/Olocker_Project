@@ -9,8 +9,6 @@ import 'favourites_model.dart';
 CategorizeFavProductsModel categorizeFavProductsModelFromJson(String str) =>
     CategorizeFavProductsModel.fromJson(json.decode(str));
 
-String categorizeFavProductsModelToJson(CategorizeFavProductsModel data) =>
-    json.encode(data.toJson());
 
 class CategorizeFavProductsModel {
   CategorizeFavProductsModel({
@@ -25,10 +23,7 @@ class CategorizeFavProductsModel {
             json["products"].map((x) => CategorizedProduct.fromJson(x))),
       );
 
-  Map<String, dynamic> toJson() => {
-        "products":
-            List<CategorizedProduct>.from(products.map((x) => x.toJson())),
-      };
+
 }
 
 class CategorizedProduct {
@@ -47,9 +42,5 @@ class CategorizedProduct {
             json["FavProductsList"].map((x) => FavProduct.fromJson(x))),
       );
 
-  Map<String, dynamic> toJson() => {
-        "ItemTypeName": itemTypeName,
-        "FavProductsList":
-            List<FavProduct>.from(favProductsList.map((x) => x.toJson())),
-      };
+
 }

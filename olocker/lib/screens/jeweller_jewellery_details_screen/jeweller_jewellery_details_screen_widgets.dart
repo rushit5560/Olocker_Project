@@ -44,16 +44,16 @@ class JewellerProductImagesSliderModule extends StatelessWidget {
           margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         ),
 
-        list: jewelleryDetailsController.productDetailsData.productimages!,
+        list: jewelleryDetailsController.productDetailsData.productImageList!,
         builder: (context, data, index) {
           // ignore: prefer_interpolation_to_compose_strings
           var singleImage = ApiUrl.apiImagePath +
               jewelleryDetailsController
-                  .productDetailsData.productimages![index].imageLocation
+                  .productDetailsData.productImageList![index].imageLocation
                   .replaceAll(r'\', "/") +
               "/" +
               jewelleryDetailsController
-                  .productDetailsData.productimages![index].imageName;
+                  .productDetailsData.productImageList![index].imageName;
 
           log("singleImage path si :: $singleImage");
           return GestureDetector(
@@ -162,7 +162,7 @@ class ShowFullScreenImagesSliderModule extends StatelessWidget {
             },
             builder: (BuildContext context, int index) {
               var singleImage =
-                  "${ApiUrl.apiImagePath}${jewelleryDetailsController.productDetailsData.productimages![index].imageLocation.replaceAll(r'\', "/")}/${jewelleryDetailsController.productDetailsData.productimages![index].imageName}";
+                  "${ApiUrl.apiImagePath}${jewelleryDetailsController.productDetailsData.productImageList![index].imageLocation.replaceAll(r'\', "/")}/${jewelleryDetailsController.productDetailsData.productImageList![index].imageName}";
               return PhotoViewGalleryPageOptions(
                 imageProvider: NetworkImage(
                   singleImage,
@@ -187,7 +187,7 @@ class ShowFullScreenImagesSliderModule extends StatelessWidget {
               color: AppColors.whiteColor,
             ),
             itemCount: jewelleryDetailsController
-                .productDetailsData.productimages!.length,
+                .productDetailsData.productImageList!.length,
             loadingBuilder: (context, event) => const Center(
               child: SizedBox(
                 width: 20.0,
@@ -209,10 +209,10 @@ class ShowFullScreenImagesSliderModule extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: jewelleryDetailsController
-                    .productDetailsData.productimages!
+                    .productDetailsData.productImageList!
                     .map((url) {
                   int index = jewelleryDetailsController
-                      .productDetailsData.productimages!
+                      .productDetailsData.productImageList!
                       .indexOf(url);
                   return Container(
                     width: jewelleryDetailsController
@@ -273,6 +273,8 @@ class JewellerFavouriteButtonModule extends StatelessWidget {
               ? await jewelleryDetailsController
                   .removeFavouriteProductFunction()
               : await jewelleryDetailsController.addFavouriteProductFunction();
+          log("jewelleryDetailsController.productDetailsData.isFav 111:  ${jewelleryDetailsController.productDetailsData.isFav}");
+
         },
         child: Container(
           decoration: const BoxDecoration(
@@ -308,7 +310,7 @@ class JewellerShareButtonModule extends StatelessWidget {
         onTap: () async {
           log("share 22");
           String imgUrl = ApiUrl.apiImagePath +
-              jewelleryDetailsController.productDetailsData.productimages
+              jewelleryDetailsController.productDetailsData.productImageList
                   .toString();
 
           final imagePath = Uri.parse(imgUrl);
@@ -435,7 +437,7 @@ class JewellerProductDescriptionModule extends StatelessWidget {
           ),
           ProductDescRow(
             textTitle: "Stock No",
-            textValue: jewelleryDetailController.productDetailsData.productsku!,
+            textValue: jewelleryDetailController.productDetailsData.productSku!,
           ),
           jewelleryDetailController.productDetailsData.metaldetails!.isEmpty
               ? const SizedBox()

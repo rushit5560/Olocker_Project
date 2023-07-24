@@ -9,6 +9,7 @@ import 'package:olocker/constants/user_details.dart';
 import 'package:olocker/models/enquire_screen_models/get_all_message_model.dart';
 import '../models/enquire_screen_models/send_message_model.dart';
 import '../models/jewellery_details_screen_model/get_jewellery_detail_model.dart';
+import '../models/jewellery_details_screen_model/get_offer_jewellery_detail_model.dart';
 
 class ProductEnquireScreenController extends GetxController {
   var partnerSrNo = Get.arguments[0]; // Coming from jewellery details screen
@@ -25,7 +26,9 @@ class ProductEnquireScreenController extends GetxController {
   TextEditingController sendMsgController = TextEditingController();
 
   ApiHeader apiHeader = ApiHeader();
-  late ProductDetailsData productDetailsData;
+  // late ProductDetailsData productDetailsData;
+  GetProductModel productDetailsData = GetProductModel();
+
 
   RxInt replyMsgId = 0.obs;
   RxInt threadMsgId = 0.obs;
@@ -36,9 +39,13 @@ class ProductEnquireScreenController extends GetxController {
       DateFormat("E, d MMM yyyy  HH:mm:ss aa").format(DateTime.now());
 
   Future<void> getProductDetailFunction() async {
-    String url =
-        "${ApiUrl.getJewelleryDetailApi}?partnerSrNo=$partnerSrNo&productSrno=$productSrNo";
-    log(" getProductDetailFunction url: $url");
+    // String url =
+    //     "${ApiUrl.getJewelleryDetailApi}?partnerSrNo=$partnerSrNo&productSrno=$productSrNo";
+    String url = "${ApiUrl.getOfferJewelleryDetailApi}"
+        "?productSrno=$productSrNo"
+    "&Customerno=${UserDetails.customerId}"
+        "&partnerSrNo=$partnerSrNo";
+    log("getProductDetailFunction url: $url");
 
     try {
       isLoading(true);
@@ -48,13 +55,14 @@ class ProductEnquireScreenController extends GetxController {
       );
       log(' getJewelleryProductDetailFunction  response : ${response.body}');
 
-      GetJewelleryDetailModel getJewelleryDetailModel =
-          GetJewelleryDetailModel.fromJson(json.decode(response.body));
+      GetOfferFavouriteVendorModel getJewelleryDetailModel =
+      GetOfferFavouriteVendorModel.fromJson(json.decode(response.body));
 
-      isSuccessStatus = getJewelleryDetailModel.success.obs;
 
-      if (response.statusCode == 200) {
-        productDetailsData = getJewelleryDetailModel.productDetailsData;
+      // isSuccessStatus = getJewelleryDetailModel.success.obs;
+isStatusCode=getJewelleryDetailModel.statusCode;
+      if (isStatusCode == 200) {
+        productDetailsData = getJewelleryDetailModel.data.productDetailsData;
 
         log('getJewelleryProductDetailFunction productDetailsData item name is  : ${productDetailsData.itemTypeName}');
       } else {
@@ -177,7 +185,8 @@ class ProductEnquireScreenController extends GetxController {
 
       // isSuccessStatus = getAllMessageModel.success.obs;
       isStatusCode = getAllMessageModel.statusCode;
-      if (response.statusCode == 200) {
+
+      if (isStatusCode == 200) {
         getNotificationList.addAll(getAllMessageModel.data.getNotification);
 
         log('getAllReplyFunction getNotificationList is  : ${getNotificationList.length}');

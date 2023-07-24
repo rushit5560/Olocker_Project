@@ -13,8 +13,7 @@ class MyFavouritesScreenController extends GetxController {
 
   // final String partnerSRno = Get.arguments[0];
   var jewellerId = Get.arguments[0]; // Coming From Home Screen Jeweller List
-
-
+  int isStatusCode = 0;
   RxBool isLoading = false.obs;
 
   List<FavProduct> favouriteProductsList = [];
@@ -26,7 +25,8 @@ class MyFavouritesScreenController extends GetxController {
 
   Future<void> getFavouriteProductsFunction() async {
     // String url = "${ApiUrl.getFavProductApi}?customerId=${UserDetails.customerId}&PartnerSRno=$partnerSRno";
-    String url = "${ApiUrl.getFavProductApi}?customerId=${UserDetails.customerId}";
+    String url =
+        "${ApiUrl.getFavProductApi}?customerId=${UserDetails.customerId}";
     log("getFavouriteProducts Api Url : $url");
 
     try {
@@ -35,17 +35,18 @@ class MyFavouritesScreenController extends GetxController {
         Uri.parse(url),
         headers: apiHeader.headers,
       );
+      log('getFavouriteProducts response.body is  : ${response.body}');
+
 
       FavouritesModel favouritesModel =
           FavouritesModel.fromJson(json.decode(response.body));
 
-      log('getFavouriteProducts response.body is  : ${response.body}');
-      var isSuccessStatus = favouritesModel.success.obs;
-
-      if (isSuccessStatus.value) {
+      // var isSuccessStatus = favouritesModel.success.obs;
+      isStatusCode = favouritesModel.statusCode;
+      if (isStatusCode == 200) {
         favouriteProductsList.clear();
         categorizedProductsList.clear();
-        favouriteProductsList = favouritesModel.favProduct;
+        favouriteProductsList = favouritesModel.data.favProduct;
         log('getFavouriteProducts list count is  : ${favouriteProductsList.length}');
 
         List<FavProduct> demoFavProdList = [];
@@ -114,7 +115,7 @@ class MyFavouritesScreenController extends GetxController {
       log('deleteFavouriteProductFunction response.body is  : ${response.body}');
       // var isSuccessStatus = resBody["success"];
 
-      if (response.statusCode==200) {
+      if (response.statusCode == 200) {
         log('deleteFavouriteProductFunction  if success');
         CommonWidgets().showBorderSnackBar(
           context: Get.context!,

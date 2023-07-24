@@ -258,8 +258,9 @@ class PersonalLoansScreenController extends GetxController {
 
       EmiScheduleModel emiScheduleModel =
           EmiScheduleModel.fromJson(json.decode(response.body));
-      isSuccessStatus = emiScheduleModel.success.obs;
-      if (isSuccessStatus.value) {
+      // isSuccessStatus = emiScheduleModel.success.obs;
+      isStatusCode = emiScheduleModel.statusCode;
+      if (isStatusCode == 200) {
         currentStep.value++;
         log("currentStep.value is :: ${currentStep.value}");
       } else {
@@ -302,19 +303,20 @@ class PersonalLoansScreenController extends GetxController {
         headers: apiHeader.headers,
       );
 
-      log("uploadEmiDocumentsFunction api response body :: ${response.body}");
+      // log("uploadEmiDocumentsFunction api response body :: $requestMap");
       log("uploadEmiDocumentsFunction api response st code :: ${response.statusCode}");
 
       var resBody = jsonDecode(response.body);
-      isSuccessStatus.value = resBody['success'];
+      // isSuccessStatus.value = resBody['success'];
 
       // isSuccessStatus.value = uploadEmiDocumentModel.success;
-      if (isSuccessStatus.value) {
-        UploadEmiDocumentModel uploadEmiDocumentModel =
-            UploadEmiDocumentModel.fromJson(resBody);
-        log('uploadEmiDocumentsFunction success call ::: ${uploadEmiDocumentModel.message}');
+      UploadEmiDocumentModel uploadEmiDocumentModel =
+          UploadEmiDocumentModel.fromJson(resBody);
+      isStatusCode = uploadEmiDocumentModel.statusCode;
+      if (isStatusCode == 200) {
+        log('uploadEmiDocumentsFunction success call ::: ${uploadEmiDocumentModel.data.message}');
         CustomAlertDialog().showAlertDialog(
-          textContent: uploadEmiDocumentModel.message,
+          textContent: uploadEmiDocumentModel.data.message,
           context: Get.context!,
           onYesTap: () {
             Get.offAll(() => IndexScreen());
@@ -333,7 +335,7 @@ class PersonalLoansScreenController extends GetxController {
         var resultBody = json.decode(response.body);
         CommonWidgets().showBorderSnackBar(
           context: Get.context!,
-          displayText: "${resultBody['error_info']['description']}",
+          displayText: uploadEmiDocumentModel.data.errorInfo.description,
         );
       }
     } catch (e) {
