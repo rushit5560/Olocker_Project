@@ -9,7 +9,7 @@ class CommonWidgets {
     required BuildContext context,
     required String displayText,
   }) {
-    log('Snackbar Inner');
+
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         behavior: SnackBarBehavior.floating,

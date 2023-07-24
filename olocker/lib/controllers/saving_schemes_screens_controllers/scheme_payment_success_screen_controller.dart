@@ -30,7 +30,6 @@ int isStatusCode=0;
     String url =
         "${ApiUrl.getCustomerSavingTransactions}?SavingSchemeSrNo=$savingSchemeSrNo";
 
-    // 10047";
     log('getTransactionStatusDetailsFunction Api url : $url');
 
     try {
@@ -74,10 +73,7 @@ int isStatusCode=0;
 
   @override
   void onInit() {
-    // TODO: implement onInit
-
     getTransactionStatusDetailsFunction();
-
     super.onInit();
   }
 }

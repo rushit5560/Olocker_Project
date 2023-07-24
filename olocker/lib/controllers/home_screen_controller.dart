@@ -12,7 +12,6 @@ import 'package:olocker/models/home_screen_models/banner_model.dart';
 import 'package:olocker/models/home_screen_models/my_jewellers_model.dart';
 import 'package:olocker/models/home_screen_models/smart_deals_online_model.dart';
 import '../models/home_screen_models/smart_offline_deats_model.dart';
-import '../models/user_profile_models/city_state_get_model.dart';
 import '../utils/user_prefs_data.dart';
 
 class HomeScreenController extends GetxController {

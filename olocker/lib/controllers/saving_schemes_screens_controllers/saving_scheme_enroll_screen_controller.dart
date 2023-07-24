@@ -19,7 +19,8 @@ class SavingSchemeEnrollScreenController extends GetxController {
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
-int isStatusCode=0;
+  int isStatusCode = 0;
+
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController monthlyAmountFieldController = TextEditingController();
   RxString ourContributionAmount = "".obs;
@@ -118,14 +119,13 @@ int isStatusCode=0;
 
       AddEnrollSavingSchemeModel addEnrollSavingSchemeModel =
           AddEnrollSavingSchemeModel.fromJson(json.decode(response.body));
-      isSuccessStatus.value = addEnrollSavingSchemeModel.success;
-      log('isSuccessStatus : ${isSuccessStatus.value}');
+      isStatusCode = addEnrollSavingSchemeModel.statusCode;
+      // log('isSuccessStatus : ${isSuccessStatus.value}');
 
-      if (isSuccessStatus.value) {
-        savingSchemeDetails = addEnrollSavingSchemeModel.savingSchemeDetails;
+      if (isStatusCode == 200) {
+        savingSchemeDetails = addEnrollSavingSchemeModel.data.savingSchemeDetails;
 
-        partnerSavingSchemeDetails =
-            addEnrollSavingSchemeModel.partnerSavingSchemeDetails;
+        partnerSavingSchemeDetails = addEnrollSavingSchemeModel.data.partnerSavingSchemeDetails;
         Get.to(
           () => SavingSchemeConfirmationScreen(),
           arguments: [
@@ -139,26 +139,17 @@ int isStatusCode=0;
           ],
         );
 
-        // Get.to(
-        //   () => SavingSchemesExplainerScreen(),
-        //   arguments: [
-        //     savingSchemeData,
-        //     monthlyAmountFieldController.text.trim().toString(),
-        //     ourContributionAmount.value,
-        //     maturityAmount.value.toString(),
-        //   ],
-        // );
 
       } else {
-        if (addEnrollSavingSchemeModel.errorInfo.description.contains(
+        if (addEnrollSavingSchemeModel.data.errorInfo.description.contains(
             "Customer not found matching with email address and mobile number")) {
           CommonWidgets().showBorderSnackBar(
               context: Get.context!,
-              displayText: addEnrollSavingSchemeModel.errorInfo.description);
+              displayText: addEnrollSavingSchemeModel.data.errorInfo.description);
         } else {
           CommonWidgets().showBorderSnackBar(
             context: Get.context!,
-            displayText: addEnrollSavingSchemeModel.errorInfo.extraInfo,
+            displayText: addEnrollSavingSchemeModel.data.errorInfo.extraInfo,
           );
         }
       }

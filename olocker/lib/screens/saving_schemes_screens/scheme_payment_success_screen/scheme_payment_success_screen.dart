@@ -76,7 +76,7 @@ class SchemePaymentSuccessScreen extends StatelessWidget {
                     .partnerSavingSchemeDetails.endDate,
               ),
               SizedBox(height: 2.h),
-              PaymentSuccessDetailsModule()
+              PaymentSuccessDetailsModule(),
             ],
           ).commonAllSidePadding(12),
         ),

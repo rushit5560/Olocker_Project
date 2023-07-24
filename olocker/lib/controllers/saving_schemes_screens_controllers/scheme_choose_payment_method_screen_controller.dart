@@ -25,7 +25,8 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
   String jewellerName = Get.arguments[6];
 
   RxBool isLoading = false.obs;
-  RxBool isSuccessStatus = false.obs;
+  // RxBool isSuccessStatus = false.obs;
+  int isSuccessCode = 0;
 
   int customerPurchaseSchemeSrNo = 0;
 
@@ -92,7 +93,7 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
       else {
         bodyData = {
           "PaymentId": savingSchemeDetails.paymentId,
-          "TransUuid": 0,
+          "TransUuid": "0",
           "TransactionId": "0",
           "PaymentStatus": "AUTHORISED",
           "Amount": "${savingSchemeDetails.monthlyAmount}",
@@ -112,12 +113,12 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
 
       PaymentSchemeResultModel paymentSchemeResultModel =
           PaymentSchemeResultModel.fromJson(json.decode(response.body));
-      isSuccessStatus.value = paymentSchemeResultModel.success;
-      log('isSuccessStatus : ${isSuccessStatus.value}');
+      isSuccessCode = paymentSchemeResultModel.statusCode;
+      // log('isSuccessStatus : ${isSuccessStatus.value}');
 
-      if (isSuccessStatus.value) {
+      if (isSuccessCode == 200) {
         customerPurchaseSchemeSrNo =
-            paymentSchemeResultModel.customerPurchaseSavingSchemeSrNo;
+            paymentSchemeResultModel.data.customerPurchaseSavingSchemeSrNo;
 
         CommonWidgets().showBorderSnackBar(
           context: Get.context!,
@@ -286,12 +287,12 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
 
       PaymentSchemeResultModel paymentSchemeResultModel =
           PaymentSchemeResultModel.fromJson(json.decode(response.body));
-      isSuccessStatus.value = paymentSchemeResultModel.success;
-      log('razorPayPaymentSuccessFunction isSuccessStatus : ${isSuccessStatus.value}');
+      isSuccessCode = paymentSchemeResultModel.statusCode;
+      // log('razorPayPaymentSuccessFunction isSuccessStatus : ${isSuccessStatus.value}');
 
-      if (isSuccessStatus.value) {
+      if (isSuccessCode == 200) {
         customerPurchaseSchemeSrNo =
-            paymentSchemeResultModel.customerPurchaseSavingSchemeSrNo;
+            paymentSchemeResultModel.data.customerPurchaseSavingSchemeSrNo;
 
         CommonWidgets().showBorderSnackBar(
           context: Get.context!,
@@ -312,22 +313,7 @@ class SchemeChoosePaymentMethodScreenController extends GetxController {
           ],
         );
 
-        //passing this data to success
-        // String schemeImagePath = Get.arguments[0];
-        // String schemeName = Get.arguments[1];
-        // String schemeTagLine = Get.arguments[2];
-        // SavingSchemeDetails savingSchemeDetails = Get.arguments[3];
-        // PartnerSavingSchemeDetails partnerSavingSchemeDetails = Get.arguments[4];
-        // int savingSchemeSrNo = Get.arguments[5];
       } else {
-        // if (paymentSchemeResultModel.errorInfo.description.contains(
-        //     "Customer not found matching with email address and mobile number")) {
-        // }
-        // CommonWidgets().showBorderSnackBar(
-        //   context: Get.context!,
-        //   displayText: paymentSchemeResultModel.errorInfo.description,
-        // );
-
         Get.to(
           () => SchemePaymentFailureScreen(),
           arguments: [

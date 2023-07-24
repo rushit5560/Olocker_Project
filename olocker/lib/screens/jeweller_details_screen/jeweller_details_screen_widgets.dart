@@ -1025,11 +1025,8 @@ class CustomerSpeakModule extends StatelessWidget {
             : CarouselSlider.builder(
                 itemCount: screenController.clientTestimonialsList.length,
                 itemBuilder: (context, i, realIndex) {
-                  log("screenController.clientTestimonialsList.length22 ${screenController.clientTestimonialsList.length}");
 
-                  log("222");
-                  Testimonial singleItem =
-                      screenController.clientTestimonialsList[i];
+                  Testimonial singleItem = screenController.clientTestimonialsList[i];
                   return _customerSpeakListTile(singleItem);
                 },
                 options: CarouselOptions(

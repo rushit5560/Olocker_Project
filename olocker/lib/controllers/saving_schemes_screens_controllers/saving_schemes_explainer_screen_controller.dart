@@ -11,7 +11,7 @@ class SavingSchemesExplainerScreenController extends GetxController {
   var savingSchemeSrNo = Get.arguments;
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
-int isStatusCode=0;
+  int isStatusCode=0;
   final size = Get.size;
 
   ApiHeader apiHeader = ApiHeader();
@@ -58,9 +58,11 @@ int isStatusCode=0;
     } catch (e) {
       log('getSavingSchemeDetailsFunction error:$e');
       rethrow;
-    } finally {
+    } /*finally {
       isLoading(false);
-    }
+    }*/
+
+    isLoading(false);
   }
 
   @override

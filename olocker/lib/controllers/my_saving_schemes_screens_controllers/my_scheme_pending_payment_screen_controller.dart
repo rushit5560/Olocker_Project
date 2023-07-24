@@ -57,7 +57,7 @@ class MySchemePendingPaymentScreenController extends GetxController {
         savingSchemeBodyList.add(
           {
             "savingSchemeSrNo": item.srNo.floor().toString(),
-            "TransUuid": 0,
+            "TransUuid": "0",
             "TransactionId": "0",
             "PaymentStatus": "AUTHORISED",
             "Amount": "${item.installmentAmount.floor()}",
@@ -78,10 +78,9 @@ class MySchemePendingPaymentScreenController extends GetxController {
         body: jsonEncode(bodyData),
       );
 
-      log('makePaymentsApiFunction res body is :${response.body}');
+      log('makePaymentsApiFunction res body is :${jsonEncode(response.body)}');
 
-      EmiPaymentResultModel emiPaymentResultModel =
-          EmiPaymentResultModel.fromJson(json.decode(response.body));
+      /*EmiPaymentResultModel emiPaymentResultModel = EmiPaymentResultModel.fromJson(json.decode(response.body));
       isSuccessStatus.value = emiPaymentResultModel.success;
       log('makePaymentsApiFunction isSuccessStatus : ${isSuccessStatus.value}');
 
@@ -113,7 +112,7 @@ class MySchemePendingPaymentScreenController extends GetxController {
         Get.to(
           () => MySchemePaymentFailureScreen(),
         );
-      }
+      }*/
     } catch (e) {
       log('makePaymentsApiFunction Error : $e');
       rethrow;

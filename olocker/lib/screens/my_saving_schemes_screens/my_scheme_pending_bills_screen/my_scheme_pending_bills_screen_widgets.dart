@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -189,19 +191,9 @@ class SinglePendingItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var dateFormat = DateFormat('dd-MM-yyyy');
-
-    var parsedDate =
-        dateFormat.parse(singlePendingItem.insatllmentDate.trim()).toString();
-
-    // log("get parsedDate is : : $parsedDate");
 
     var dateFormatSet = DateFormat('dd MMM yyyy');
-    var formattedDate = dateFormatSet.format(DateTime.parse(parsedDate));
-
-    // selectedOrnamentPurchaseDate.value = formattedDate.replaceAll("-", "/");
-
-    // log("formattedDate is:: $formattedDate");
+    var formattedDate = dateFormatSet.format(DateTime.parse(singlePendingItem.insatllmentDate));
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),

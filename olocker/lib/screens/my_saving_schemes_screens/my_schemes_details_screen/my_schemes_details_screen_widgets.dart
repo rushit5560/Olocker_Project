@@ -673,14 +673,12 @@ class TransactionSingleItemModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var dateFormat = DateFormat('dd-MM-yyyy');
-
-    var parsedDate = dateFormat.parse(transData.billingDate.trim()).toString();
-
+    // var dateFormat = DateFormat('dd-MM-yyyy');
+    // var parsedDate = dateFormat.parse(transData.billingDate.trim()).toString();
     // log("get parsedDate is : : $parsedDate");
 
     var dateFormatSet = DateFormat('dd MMM yyyy');
-    var formattedDate = dateFormatSet.format(DateTime.parse(parsedDate));
+    var formattedDate = dateFormatSet.format(DateTime.parse(transData.billingDate));
 
     // selectedOrnamentPurchaseDate.value = formattedDate.replaceAll("-", "/");
 

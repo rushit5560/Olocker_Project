@@ -2,8 +2,9 @@ import 'dart:convert';
 
 import '../../error_info_model/error_info_model.dart';
 
-GetSavingSchemesListModel getSavingSchemesListModelFromJson(String str) =>
-    GetSavingSchemesListModel.fromJson(json.decode(str));
+GetSavingSchemesListModel getSavingSchemesListModelFromJson(String str) => GetSavingSchemesListModel.fromJson(json.decode(str));
+
+String getSavingSchemesListModelToJson(GetSavingSchemesListModel data) => json.encode(data.toJson());
 
 class GetSavingSchemesListModel {
   int statusCode;
@@ -14,12 +15,19 @@ class GetSavingSchemesListModel {
     required this.data,
   });
 
-  factory GetSavingSchemesListModel.fromJson(Map<String, dynamic> json) =>
-      GetSavingSchemesListModel(
-        statusCode: json["statusCode"] ?? 0,
-        data: Data.fromJson(json["data"] ?? {}),
-      );
+  factory GetSavingSchemesListModel.fromJson(Map<String, dynamic> json) => GetSavingSchemesListModel(
+    statusCode: json["statusCode"] ?? 0,
+    data: Data.fromJson(json["data"] ?? {}),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "statusCode": statusCode,
+    // "data": data.toJson(),
+  };
 }
+
+
+
 
 class Data {
   List<GetSavingSchemeData> getSavingSchemeList;
@@ -47,7 +55,6 @@ class Data {
         errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
       );
 }
-
 
 class GetSavingSchemeData {
   GetSavingSchemeData({
@@ -113,7 +120,7 @@ class GetSavingSchemeData {
         srNo: json["srNo"] ?? 0,
         partnerSrNo: (json["partnerSrNo"] ?? 0).toDouble(),
         minimumMonthlyAmount: (json["minimumMonthlyAmount"] ?? 0).toDouble(),
-        tenor: (json["Tenor"] ?? 0).toDouble(),
+        tenor: (json["tenor"] ?? 0).toDouble(),
         yourBenefits: (json["yourBenefits"] ?? 0).toDouble(),
         planEndAmount: (json["planEndAmount"] ?? 0).toDouble(),
         usersLimit: (json["usersLimit"] ?? 0).toDouble(),

@@ -120,13 +120,11 @@ class SingleBillShowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var dateFormat = DateFormat('dd-MM-yyyy');
-
-    var parsedDate =
-        dateFormat.parse(pendingBillData.insatllmentDate.trim()).toString();
+    // var dateFormat = DateFormat('dd-MM-yyyy');
+    // var parsedDate = dateFormat.parse(pendingBillData.insatllmentDate.trim()).toString();
 
     var dateFormatSet = DateFormat('dd MMM yyyy');
-    var formattedDate = dateFormatSet.format(DateTime.parse(parsedDate));
+    var formattedDate = dateFormatSet.format(DateTime.parse(pendingBillData.insatllmentDate));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

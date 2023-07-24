@@ -6,6 +6,7 @@ import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/screens/saving_schemes_screens/saving_schemes_explainer_screen/saving_schemes_explainer_screen_widgets.dart';
 import 'package:olocker/utils/appbar_style.dart';
 import 'package:sizer/sizer.dart';
+import '../../../constants/app_images.dart';
 import '../../../controllers/saving_schemes_screens_controllers/saving_schemes_explainer_screen_controller.dart';
 
 class SavingSchemesExplainerScreen extends StatelessWidget {
@@ -63,6 +64,12 @@ class SavingSchemesExplainerScreen extends StatelessWidget {
                                         .size.height *
                                     0.25,
                                 width: double.infinity,
+                                errorWidget: (ctx, str, strace) {
+                                  return Image.asset(
+                                    AppImages.noLogoImage,
+                                    fit: BoxFit.cover,
+                                  );
+                                },
                               ),
                             ),
                             Padding(

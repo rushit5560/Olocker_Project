@@ -48,7 +48,7 @@ int isStatusCode=0;
 
       log("getMySavingSchemeDetailsFunction res body :: ${response.body}");
 
-      GetSavingSchemesListModel getSavingSchemesListModel =
+      /*GetSavingSchemesListModel getSavingSchemesListModel =
           GetSavingSchemesListModel.fromJson(json.decode(response.body));
 
       // isSuccessStatus = getSavingSchemesListModel.success.obs;
@@ -73,7 +73,7 @@ int isStatusCode=0;
         } else if (isStatusCode == 417) {
           log("HttpStatusCode.ExpectationFailed");
         }
-      }
+      }*/
     } catch (e) {
       log('getMySavingSchemeDetailsFunction error:$e');
       rethrow;

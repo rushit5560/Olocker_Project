@@ -214,7 +214,7 @@ class PaymentSuccessDetailsModule extends StatelessWidget {
                   ),
                   SizedBox(height: 3.h),
                   Text(
-                    "Next installment date : ${screenController.transactionData.billingDate.split(" ")[0]}",
+                    "Next installment date : ${screenController.transactionData.nextPaymentDate.split(" ")[0]}",
                     style: TextStyle(
                       fontSize: 11.sp,
                       color: AppColors.blackColor,

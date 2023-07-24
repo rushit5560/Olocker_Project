@@ -39,18 +39,16 @@ class MySchemePendingBillsScreenController extends GetxController {
       log("getPendingBillDetailListApiFunction st code is : ${response.statusCode}");
       log("getPendingBillDetailListApiFunction res body : ${response.body}");
 
-      var resBody = jsonDecode(response.body);
+      // var resBody = jsonDecode(response.body);
 
-      GetPendingBillsListModel getPendingBillsListModel =
-          GetPendingBillsListModel.fromJson(resBody);
+      GetPendingBillsListModel getPendingBillsListModel = GetPendingBillsListModel.fromJson(json.decode(response.body));
 
       // isSuccessStatus.value = getPendingBillsListModel.success;
       isStatusCode = getPendingBillsListModel.statusCode;
       if (isStatusCode == 200) {
         // isLoading(true);
 
-        getPendingBillsList =
-            getPendingBillsListModel.data.getPurchaseSavingSchemeList;
+        getPendingBillsList = getPendingBillsListModel.data.getPurchaseSavingSchemeList;
 
         calculateSelectedRecord();
         log("getPendingBillsList len is :: ${getPendingBillsList.length}");

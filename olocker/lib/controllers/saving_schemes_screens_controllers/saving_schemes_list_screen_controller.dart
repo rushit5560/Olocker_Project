@@ -24,14 +24,13 @@ int isStatusCode=0;
   Future<void> getSavingSchemesListFunction() async {
     isLoading(true);
 
-    String url = '${ApiUrl.getParterSavinSchemeApi}?partnerSrNo=$jewellerId';
+    String url = '${ApiUrl.getParterSavingSchemeApi}?partnerSrNo=$jewellerId';
     // String url = '${ApiUrl.getParterSavinSchemeApi}?partnerSrNo=575';
     log('getSavingSchemesListFunction api url  : $url');
 
     try {
       http.Response response = await http.get(
         Uri.parse(url),
-        headers: apiHeader.headers,
       );
 
       log("getSavingSchemesListFunction res body :: ${response.body}");
