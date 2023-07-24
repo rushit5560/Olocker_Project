@@ -112,9 +112,9 @@ class MyFavouritesScreenController extends GetxController {
       var resBody = jsonDecode(response.body);
 
       log('deleteFavouriteProductFunction response.body is  : ${response.body}');
-      var isSuccessStatus = resBody["success"];
+      // var isSuccessStatus = resBody["success"];
 
-      if (isSuccessStatus) {
+      if (response.statusCode==200) {
         log('deleteFavouriteProductFunction  if success');
         CommonWidgets().showBorderSnackBar(
           context: Get.context!,

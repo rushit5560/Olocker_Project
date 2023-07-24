@@ -180,16 +180,16 @@ class OffersJewelleryListScreenController extends GetxController {
 
       var resBody = jsonDecode(response.body);
 
-      isSuccessStatus.value = resBody["success"];
+      // isSuccessStatus.value = resBody["success"];
 
       if (response.statusCode == 200) {
-        if (isSuccessStatus.value) {
+        // if (isSuccessStatus.value) {
           CommonWidgets().showBorderSnackBar(
             context: Get.context!,
             displayText: "Item Added to favourites.",
           );
           singleProduct.isFav = true;
-        }
+        // }
       } else {
         log('addFavouriteProductFunction Else');
         if (isStatusCode == 400) {
@@ -227,10 +227,10 @@ class OffersJewelleryListScreenController extends GetxController {
       log('removeFavouriteProductFunction response : ${response.body}');
       var resBody = jsonDecode(response.body);
 
-      isSuccessStatus.value = resBody["success"];
+      // isSuccessStatus.value = resBody["success"];
 
       if (response.statusCode == 200) {
-        if (isSuccessStatus.value) {
+        // if (isSuccessStatus.value) {
           CommonWidgets().showBorderSnackBar(
             context: Get.context!,
             displayText: "Item Removed from favourites.",
@@ -239,7 +239,7 @@ class OffersJewelleryListScreenController extends GetxController {
           /// Remove favourite button change in previous screen list
           singleProduct.isFav = false;
           // getFavouriteProductFunction();
-        }
+        // }
       } else {
         log('addFavouriteProductFunction Else');
       }

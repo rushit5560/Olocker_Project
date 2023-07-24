@@ -1,53 +1,41 @@
+// To parse this JSON data, do
+//
+//     final addFeedbackFormModel = addFeedbackFormModelFromJson(jsonString);
+
 import 'dart:convert';
 
-AddFeedbackFormModel addFeedbackFormModelFromJson(String str) => AddFeedbackFormModel.fromJson(json.decode(str));
+import '../error_info_model/error_info_model.dart';
 
-String addFeedbackFormModelToJson(AddFeedbackFormModel data) => json.encode(data.toJson());
+AddFeedbackFormModel addFeedbackFormModelFromJson(String str) =>
+    AddFeedbackFormModel.fromJson(json.decode(str));
 
 class AddFeedbackFormModel {
+  int statusCode;
+  Data data;
+
   AddFeedbackFormModel({
+    required this.statusCode,
+    required this.data,
+  });
+
+  factory AddFeedbackFormModel.fromJson(Map<String, dynamic> json) =>
+      AddFeedbackFormModel(
+        statusCode: json["statusCode"] ?? false,
+        data: Data.fromJson(json["data"] ?? {}),
+      );
+}
+
+class Data {
+  bool success;
+  ErrorInfoModel errorInfo;
+
+  Data({
     required this.success,
     required this.errorInfo,
   });
 
-  bool success;
-  ErrorInfo errorInfo;
-
-  factory AddFeedbackFormModel.fromJson(Map<String, dynamic> json) => AddFeedbackFormModel(
-    success: json["success"] ?? false,
-    errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "success": success,
-    "error_info": errorInfo.toJson(),
-  };
-}
-
-class ErrorInfo {
-  ErrorInfo({
-    // this.errorType,
-    required this.extraInfo,
-    required this.description,
-    // this.errorData,
-  });
-
-  // int errorType;
-  String extraInfo;
-  String description;
-  // dynamic errorData;
-
-  factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
-    // errorType: json["error_type"],
-    extraInfo: json["extra_info"] ?? "",
-    description: json["description"] ?? "",
-    // errorData: json["error_data"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    // "error_type": errorType,
-    "extra_info": extraInfo,
-    "description": description,
-    // "error_data": errorData,
-  };
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+        success: json["success"] ?? false,
+        errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
+      );
 }

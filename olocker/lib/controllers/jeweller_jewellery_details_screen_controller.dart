@@ -39,9 +39,9 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
     log("getJewellerJewelleryProductDetailFunction PartnerSrNo:: $partnerSrNo");
     isLoading(true);
     String url = "${ApiUrl.getOfferJewelleryDetailApi}"
-        "?ProductId=$productSrNo"
+        "?productSrno=$productSrNo"
         "&Customerno=${UserDetails.customerId}"
-        "&PartnerId=$partnerSrNo";
+        "&partnerSrNo=$partnerSrNo";
     log('getJewelleryProductDetailFunction Api Url :: $url');
 
     try {
@@ -145,18 +145,18 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
       log('addFavouriteProductFunction response : ${response.body}');
 
       var resBody = jsonDecode(response.body);
-
-      isSuccessStatus.value = resBody["success"];
-
+      // isSuccessStatus.value = resBody["success"];
+      //
       if (response.statusCode == 200) {
-        if (isSuccessStatus.value) {
-          CommonWidgets().showBorderSnackBar(
-            context: Get.context!,
-            displayText: "Item Added to favourites.",
-          );
+        log("response.statusCode : ${response.statusCode}");
+        // if (isSuccessStatus.value) {
+        CommonWidgets().showBorderSnackBar(
+          context: Get.context!,
+          displayText: "Item Added to favourites.",
+        );
 
-          productDetailsData.isFav = true;
-        }
+        productDetailsData.isFav = true;
+        // }
       } else {
         log('addFavouriteProductFunction Else');
       }
@@ -185,17 +185,17 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
       log('removeFavouriteProductFunction response : ${response.body}');
       var resBody = jsonDecode(response.body);
 
-      isSuccessStatus.value = resBody["success"];
+      // isSuccessStatus.value = resBody["success"];
 
       if (response.statusCode == 200) {
-        if (isSuccessStatus.value) {
+        // if (isSuccessStatus.value) {
           CommonWidgets().showBorderSnackBar(
             context: Get.context!,
             displayText: "Item Removed from favourites.",
           );
 
           productDetailsData.isFav = false;
-        }
+        // }
       } else {
         log('addFavouriteProductFunction Else');
       }

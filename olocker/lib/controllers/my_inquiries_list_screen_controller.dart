@@ -9,13 +9,14 @@ import '../models/enquire_screen_models/get_all_inquiries_list_model.dart';
 
 class MyInquiriesListScreenController extends GetxController {
   var partnerSrNo = Get.arguments[0];
+
   // List<JewellerData> allJewellersList = Get.arguments[1];
 
   final size = Get.size;
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
   RxInt activeIndex = 0.obs;
-
+  int isStatusCode = 0;
   ApiHeader apiHeader = ApiHeader();
 
   List<GetInquiryNotification> getInquiryNotificationList = [];
@@ -23,7 +24,7 @@ class MyInquiriesListScreenController extends GetxController {
   Future<void> getAllInquiriesListFunction() async {
     String url =
         "${ApiUrl.getAllInquiresApi}?customerId=${UserDetails.customerId}&partnerSrNo=$partnerSrNo";
-    log(" getAllInquiriesListFunction url: $url");
+    log("getAllInquiriesListFunction url: $url");
 
     try {
       isLoading(true);
@@ -36,15 +37,24 @@ class MyInquiriesListScreenController extends GetxController {
       GetAllInquiriesListModel getAllInquiriesListModel =
           GetAllInquiriesListModel.fromJson(json.decode(response.body));
 
-      isSuccessStatus = getAllInquiriesListModel.success.obs;
-
-      if (response.statusCode == 200) {
+      // isSuccessStatus = getAllInquiriesListModel.success.obs;
+      isStatusCode = getAllInquiriesListModel.statusCode;
+      if (isStatusCode == 200) {
         getInquiryNotificationList =
-            getAllInquiriesListModel.getInquiryNotification;
+            getAllInquiriesListModel.data.getInquiryNotification;
 
         log('getAllInquiriesListFunction getInquiryNotificationList len is  : ${getInquiryNotificationList.length}');
       } else {
         log('getAllInquiriesListFunction Else');
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log("getAllInquiriesListFunction Error ::: $e");

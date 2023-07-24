@@ -1,69 +1,44 @@
-// To parse this JSON data, do
-//
-//     final getAllInquiriesListModel = getAllInquiriesListModelFromJson(jsonString);
-
 import 'dart:convert';
+
+import '../error_info_model/error_info_model.dart';
 
 GetAllInquiriesListModel getAllInquiriesListModelFromJson(String str) =>
     GetAllInquiriesListModel.fromJson(json.decode(str));
 
-String getAllInquiriesListModelToJson(GetAllInquiriesListModel data) =>
-    json.encode(data.toJson());
-
 class GetAllInquiriesListModel {
+  int statusCode;
+  Data data;
+
   GetAllInquiriesListModel({
+    required this.statusCode,
+    required this.data,
+  });
+
+  factory GetAllInquiriesListModel.fromJson(Map<String, dynamic> json) =>
+      GetAllInquiriesListModel(
+        statusCode: json["statusCode"] ?? 0,
+        data: Data.fromJson(json["data"] ?? {}),
+      );
+}
+
+class Data {
+  List<GetInquiryNotification> getInquiryNotification;
+  bool success;
+  ErrorInfoModel errorInfo;
+
+  Data({
     required this.getInquiryNotification,
     required this.success,
     required this.errorInfo,
   });
 
-  final List<GetInquiryNotification> getInquiryNotification;
-  final bool success;
-  final ErrorInfo errorInfo;
-
-  factory GetAllInquiriesListModel.fromJson(Map<String, dynamic> json) =>
-      GetAllInquiriesListModel(
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
         getInquiryNotification: List<GetInquiryNotification>.from(
-            (json["GetInquiryNotification"] ?? [])
+            (json["getInquiryNotification"] ?? [])
                 .map((x) => GetInquiryNotification.fromJson(x))),
         success: json["success"] ?? false,
-        errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
+        errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
       );
-
-  Map<String, dynamic> toJson() => {
-        "GetInquiryNotification":
-            List<dynamic>.from(getInquiryNotification.map((x) => x.toJson())),
-        "success": success,
-        "error_info": errorInfo.toJson(),
-      };
-}
-
-class ErrorInfo {
-  ErrorInfo({
-    required this.errorType,
-    required this.extraInfo,
-    required this.description,
-    this.errorData,
-  });
-
-  final int errorType;
-  final String extraInfo;
-  final String description;
-  final dynamic errorData;
-
-  factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
-        errorType: json["error_type"] ?? 0,
-        extraInfo: json["extra_info"] ?? "",
-        description: json["description"] ?? "",
-        errorData: json["error_data"] ?? "",
-      );
-
-  Map<String, dynamic> toJson() => {
-        "error_type": errorType,
-        "extra_info": extraInfo,
-        "description": description,
-        "error_data": errorData,
-      };
 }
 
 class GetInquiryNotification {
@@ -105,40 +80,21 @@ class GetInquiryNotification {
 
   factory GetInquiryNotification.fromJson(Map<String, dynamic> json) =>
       GetInquiryNotification(
-        srNo: json["SrNo"] ?? 0,
-        partnerSrNo: json["PartnerSrNo"] ?? 0,
-        customerId: json["CustomerId"] ?? 0,
-        title: json["Title"] ?? "",
-        message: json["Message"] ?? "",
-        sentBy: json["SentBy"] ?? 0,
-        timestamp: DateTime.parse(json["Timestamp"] ?? ""),
-        isRead: json["IsRead"] ?? false,
-        messageType: json["MessageType"] ?? 0,
-        replyMsgId: json["ReplyMsgId"] ?? 0,
-        productId: json["ProductId"] ?? 0,
-        itemName: json["ItemName"] ?? "",
-        itemDesc: json["ItemDesc"] ?? "",
-        productsPrice: json["ProductsPrice"] ?? 0.0,
-        imgeUrl: json["ImgeUrl"] ?? "",
-        itemType: json["ItemType"] ?? "",
+        srNo: json["srNo"] ?? 0,
+        partnerSrNo: json["partnerSrNo"] ?? 0,
+        customerId: json["customerId"] ?? 0,
+        title: json["title"] ?? "",
+        message: json["message"] ?? "",
+        sentBy: json["sentBy"] ?? 0,
+        timestamp: DateTime.parse(json["timestamp"] ?? ""),
+        isRead: json["isRead"] ?? false,
+        messageType: json["messageType"] ?? 0,
+        replyMsgId: json["replyMsgId"] ?? 0,
+        productId: json["productId"] ?? 0,
+        itemName: json["itemName"] ?? "",
+        itemDesc: json["itemDesc"] ?? "",
+        productsPrice: json["productsPrice"] ?? 0.0,
+        imgeUrl: json["imgeUrl"] ?? "",
+        itemType: json["itemType"] ?? "",
       );
-
-  Map<String, dynamic> toJson() => {
-        "SrNo": srNo,
-        "PartnerSrNo": partnerSrNo,
-        "CustomerId": customerId,
-        "Title": title,
-        "Message": message,
-        "SentBy": sentBy,
-        "Timestamp": timestamp.toIso8601String(),
-        "IsRead": isRead,
-        "MessageType": messageType,
-        "ReplyMsgId": replyMsgId,
-        "ProductId": productId,
-        "ItemName": itemName,
-        "ItemDesc": itemDesc,
-        "ProductsPrice": productsPrice,
-        "ImgeUrl": imgeUrl,
-        "ItemType": itemType,
-      };
 }

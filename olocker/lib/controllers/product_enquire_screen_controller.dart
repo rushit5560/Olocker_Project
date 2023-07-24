@@ -104,11 +104,12 @@ class ProductEnquireScreenController extends GetxController {
       SendMessageModel sendMessageModel =
           SendMessageModel.fromJson(json.decode(response.body));
 
-      isSuccessStatus = sendMessageModel.success.obs;
+      // isSuccessStatus = sendMessageModel.success.obs;
+      isStatusCode=sendMessageModel.statusCode;
 
       if (response.statusCode == 200) {
-        threadMsgId.value = sendMessageModel.threadId;
-        replyMsgId.value = sendMessageModel.msgId;
+        // threadMsgId.value = sendMessageModel.data.threadId;
+        replyMsgId.value = sendMessageModel.data.replyMsgId;
         // notificationSrNo.value = sendMessageModel.msgId;
         getNotificationList.add(
           GetNotification(

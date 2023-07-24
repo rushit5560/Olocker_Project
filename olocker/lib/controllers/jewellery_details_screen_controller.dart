@@ -32,7 +32,7 @@ class JewelleryDetailsScreenController extends GetxController {
   RxBool isSuccessStatus = false.obs;
   Size size = Get.size;
   ApiHeader apiHeader = ApiHeader();
-int isStatusCode=0;
+  int isStatusCode = 0;
   RxInt fullScreenImageCurrentindex = 0.obs;
 
   // PageController fullscreenImageController = PageController();
@@ -128,7 +128,7 @@ int isStatusCode=0;
       SpecialFeaturesModel specialFeaturesModel =
           SpecialFeaturesModel.fromJson(json.decode(response.body));
       // isSuccessStatus = specialFeaturesModel.success.obs;
-      isStatusCode=specialFeaturesModel.statusCode;
+      isStatusCode = specialFeaturesModel.statusCode;
       if (isSuccessStatus.value) {
         specialFeaturesList.clear();
         specialFeaturesList.addAll(specialFeaturesModel.data);
@@ -178,20 +178,20 @@ int isStatusCode=0;
 
       var resBody = jsonDecode(response.body);
 
-      isSuccessStatus.value = resBody["success"];
+      // isSuccessStatus.value = resBody["success"];
 
       if (response.statusCode == 200) {
-        if (isSuccessStatus.value) {
-          CommonWidgets().showBorderSnackBar(
-            context: Get.context!,
-            displayText: "Item Added to favourites.",
-          );
+        // if (isSuccessStatus.value) {
+        CommonWidgets().showBorderSnackBar(
+          context: Get.context!,
+          displayText: "Item Added to favourites.",
+        );
 
-          /// Add favourite button change in previous screen list
-          jewellerJewelleryListScreenController
-              .mainJewelleryList[indexOfThisProduct].isFav = true;
-          // getFavouriteProductFunction();
-        }
+        /// Add favourite button change in previous screen list
+        jewellerJewelleryListScreenController
+            .mainJewelleryList[indexOfThisProduct].isFav = true;
+        // getFavouriteProductFunction();
+        // }
       } else {
         log('addFavouriteProductFunction Else');
       }
@@ -219,10 +219,10 @@ int isStatusCode=0;
       log('removeFavouriteProductFunction response : ${response.body}');
       var resBody = jsonDecode(response.body);
 
-      isSuccessStatus.value = resBody["success"];
+      // isSuccessStatus.value = resBody["success"];
 
       if (response.statusCode == 200) {
-        if (isSuccessStatus.value) {
+        // if (isSuccessStatus.value) {
           CommonWidgets().showBorderSnackBar(
             context: Get.context!,
             displayText: "Item Removed from favourites.",
@@ -232,7 +232,7 @@ int isStatusCode=0;
           jewellerJewelleryListScreenController
               .mainJewelleryList[indexOfThisProduct].isFav = false;
           // getFavouriteProductFunction();
-        }
+        // }
       } else {
         log('addFavouriteProductFunction Else');
       }
@@ -279,8 +279,6 @@ int isStatusCode=0;
     }
   }
 
-
-
   Future<void> getPartnerByCodeFunction() async {
     // if (formKey.currentState!.validate()) {
     String url = "${ApiUrl.getPartnerByCodeApi}?PartnerCode=$partnerSrNo";
@@ -302,8 +300,8 @@ int isStatusCode=0;
           GetPartnerByCodeModel.fromJson(resBody);
 
       // bool isSuccessResult = getPartnerByCodeModel.success;
-      isStatusCode=getPartnerByCodeModel.statusCode;
-      if (isStatusCode==200) {
+      isStatusCode = getPartnerByCodeModel.statusCode;
+      if (isStatusCode == 200) {
         log("getPartnerByCodeFunction get success");
         partnerDetails = getPartnerByCodeModel.data.partner;
       } else {
@@ -350,12 +348,11 @@ int isStatusCode=0;
           UserProfileGetModel.fromJson(resBody);
 
       // bool isSuccessResult = userProfileGetModel.success;
-      isStatusCode=userProfileGetModel.statusCode;
+      isStatusCode = userProfileGetModel.statusCode;
 
-      if (isStatusCode==200) {
+      if (isStatusCode == 200) {
         log("user profile get success");
-        userReferaalCode.value =
-            userProfileGetModel.data.referralCode;
+        userReferaalCode.value = userProfileGetModel.data.referralCode;
         log("user userReferaalCode :: $userReferaalCode");
       } else {
         if (isStatusCode == 400) {

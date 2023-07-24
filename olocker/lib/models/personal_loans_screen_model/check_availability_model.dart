@@ -132,7 +132,7 @@ class Data {
   int emiSrNo;
   List<EmiTenorOption> emiTenorOptions;
   String loanApplicationId;
-  String  message;
+  String message;
   bool success;
   ErrorInfoModel errorInfo;
 

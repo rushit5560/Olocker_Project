@@ -155,7 +155,7 @@ class ApiUrl {
   static const String getJewelleryDetailApi =
       "${apiMainPath}api/User/GetProductDetail";
   static const String getOfferJewelleryDetailApi =
-      "${apiMainPath}api/Partner/GetProductDetail";
+      "${apiMainPath}api/User/GetProductDetail";
   static const String removeFavProductApi =
       "${apiMainPath}api/User/RemoveFavProduct";
   static const String addFavProductApi = "${apiMainPath}api/User/AddFavProduct";

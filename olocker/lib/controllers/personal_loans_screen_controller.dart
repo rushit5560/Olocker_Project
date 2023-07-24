@@ -174,11 +174,11 @@ class PersonalLoansScreenController extends GetxController {
         "EmploymentType": salariedValue.value,
         "NetSalaryMonthly": monthlyIncomeController.text.trim(),
         "EMIAmountPaid": currentTotalEmiController.text.trim(),
-        "IPAddr": "",
+        "IPAddr": "demoip",
         "UserSrNo": UserDetails.customerId,
         "NameOfEmployer": employerNameController.text.trim(),
         "BankName": whichBankController.text.trim(),
-        "IsHomeLoan": homeLoanValue.value == "yes" ? "true" : "false"
+        "IsHomeLoan": homeLoanValue.value == "yes" ? true : false
       };
 
       log('BodyData : $bodyData');
@@ -188,18 +188,14 @@ class PersonalLoansScreenController extends GetxController {
         body: jsonEncode(bodyData),
         headers: apiHeader.headers,
       );
-
-      log('response : ${response.body}');
-      log('statusCode : ${response.statusCode}');
-
-      var resultBody = json.decode(response.body);
+      // log("jsonEncode(bodyData) ${jsonEncode(bodyData)}");
+      log('response1111 : ${response.body}');
+      log('statusCode2222 : ${response.statusCode}');
       CheckEligibilityModel checkEligibilityModel =
           CheckEligibilityModel.fromJson(json.decode(response.body));
-      // isSuccessStatus.value = resultBody['success'];
       isStatusCode = checkEligibilityModel.statusCode;
       if (isStatusCode == 200) {
-        // isSuccessStatus = checkEligibilityModel.success.obs;
-
+        log('Success');
         emiScheduleList.clear();
         emiScheduleList.addAll(checkEligibilityModel.data.emiTenorOptions);
         emiSrNo = checkEligibilityModel.data.emiSrNo;
@@ -212,11 +208,12 @@ class PersonalLoansScreenController extends GetxController {
       } else {
         log('checkEligibilityFunction Else');
         var resultBody = json.decode(response.body);
-        log("checkEligibilityModel.data.message ${checkEligibilityModel.data.message}");
-        CommonWidgets().showBorderSnackBar(
-          context: Get.context!,
-          displayText: checkEligibilityModel.data.errorInfo.extraInfo,
-        );
+        log('Else result code resultBody : $resultBody');
+        // log("checkEligibilityModel.data.message ${checkEligibilityModel.data.message}");
+        // CommonWidgets().showBorderSnackBar(
+        //   context: Get.context!,
+        //   displayText: checkEligibilityModel.data.message,
+        // );
       }
     } catch (e) {
       log('checkEligibilityFunction Error :$e');

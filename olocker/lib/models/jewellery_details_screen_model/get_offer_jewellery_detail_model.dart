@@ -421,3 +421,301 @@ class Diamonddetail {
         // "StoneChargeableAmount": stoneChargeableAmount,
       };
 }
+
+// To parse this JSON data, do
+//
+//     final getOfferFavouriteVendorModel = getOfferFavouriteVendorModelFromJson(jsonString);
+//
+// import 'dart:convert';
+//
+// import 'package:olocker/models/error_info_model/error_info_model.dart';
+//
+// GetOfferFavouriteVendorModel getOfferFavouriteVendorModelFromJson(String str) =>
+//     GetOfferFavouriteVendorModel.fromJson(json.decode(str));
+//
+// class GetOfferFavouriteVendorModel {
+//   int statusCode;
+//   Data data;
+//
+//   GetOfferFavouriteVendorModel({
+//     required this.statusCode,
+//     required this.data,
+//   });
+//
+//   factory GetOfferFavouriteVendorModel.fromJson(Map<String, dynamic> json) =>
+//       GetOfferFavouriteVendorModel(
+//         statusCode: json["statusCode"] ?? 0,
+//         data: Data.fromJson(json["data"] ?? {}),
+//       );
+// }
+//
+// class Data {
+//   GetProductModel getProductModel;
+//   bool success;
+//   ErrorInfoModel errorInfo;
+//
+//   Data({
+//     required this.getProductModel,
+//     required this.success,
+//     required this.errorInfo,
+//   });
+//
+//   factory Data.fromJson(Map<String, dynamic> json) => Data(
+//         getProductModel:
+//             GetProductModel.fromJson(json["productDetailsData"] ?? {}),
+//         success: json["success"] ?? false,
+//         errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
+//       );
+// }
+//
+// class GetProductModel {
+//   int? srNo;
+//   String? productSku;
+//   String? itemType;
+//   String? itemTypeName;
+//   String? productTypeName;
+//   String? partnerName;
+//   String? description;
+//   String? weight;
+//   String? width;
+//   String? height;
+//   String? length;
+//   String? breadth;
+//   String? size;
+//   String? unitWidth;
+//   String? unitHeight;
+//   String? unitLength;
+//   String? unitBreadth;
+//   String? unitSize;
+//   bool? tryBeforeBuy;
+//   String? price;
+//   String? gst;
+//   String? fullPayment;
+//   String? advancePayment;
+//   String? productStatus;
+//   String? estimateDeliveryDays;
+//   bool? isFav;
+//   int? favId;
+//   List<Productimage>? productImageList;
+//   List<SimilarProduct>? similarProductList;
+//   List<Metaldetail>? metaldetails;
+//   List<Decorativedetail>? decorativedetails;
+//   List<Stonedetail>? stonedetails;
+//   List<Diamonddetail>? diamonddetails;
+//
+//   GetProductModel({
+//     this.srNo,
+//     this.productSku,
+//     this.itemType,
+//     this.itemTypeName,
+//     this.productTypeName,
+//     this.partnerName,
+//     this.description,
+//     this.weight,
+//     this.width,
+//     this.height,
+//     this.length,
+//     this.breadth,
+//     this.size,
+//     this.unitWidth,
+//     this.unitHeight,
+//     this.unitLength,
+//     this.unitBreadth,
+//     this.unitSize,
+//     this.tryBeforeBuy,
+//     this.price,
+//     this.gst,
+//     this.fullPayment,
+//     this.advancePayment,
+//     this.productStatus,
+//     this.estimateDeliveryDays,
+//     this.favId,
+//     this.isFav,
+//     this.productImageList,
+//     this.similarProductList,
+//     this.metaldetails,
+//     this.decorativedetails,
+//     this.stonedetails,
+//     this.diamonddetails,
+//   });
+//
+//   factory GetProductModel.fromJson(Map<String, dynamic> json) =>
+//       GetProductModel(
+//         srNo: json["srNo"] ?? 0,
+//         productSku: json["productSku"] ?? "",
+//         itemType: json["itemType"] ?? "",
+//         itemTypeName: json["itemTypeName"] ?? "",
+//         productTypeName: json["productTypeName"] ?? "",
+//         partnerName: json["partnerName"] ?? "",
+//         description: json["description"] ?? "",
+//         weight: json["weight"] ?? "",
+//         width: json["width"] ?? "",
+//         height: json["height"] ?? "",
+//         length: json["length"] ?? "",
+//         breadth: json["breadth"] ?? "",
+//         size: json["size"] ?? "",
+//         unitWidth: json["unitWidth"] ?? "",
+//         unitHeight: json["unitHeight"] ?? "",
+//         unitLength: json["unitLength"] ?? "",
+//         unitBreadth: json["unitBreadth"] ?? "",
+//         unitSize: json["unitSize"] ?? "",
+//         tryBeforeBuy: json["tryBeforeBuy"] ?? "",
+//         price: json["price"] ?? "",
+//         gst: json["gst"] ?? "",
+//         fullPayment: json["fullPayment"] ?? "",
+//         advancePayment: json["advancePayment"] ?? "",
+//         productStatus: json["productStatus"] ?? "",
+//         estimateDeliveryDays: json["estimateDeliveryDays"] ?? "",
+//         isFav: json["isFav"] ?? false,
+//         favId: json["favId"] ?? 0,
+//         productImageList: List<Productimage>.from(
+//             (json["productimages"] ?? []).map((x) => Productimage.fromJson(x))),
+//         similarProductList: List<SimilarProduct>.from(
+//             (json["similarProductList"] ?? []).map((x) => x)),
+//         metaldetails: List<Metaldetail>.from(
+//             (json["metaldetails"] ?? []).map((x) => Metaldetail.fromJson(x))),
+//         decorativedetails: List<Decorativedetail>.from(
+//             (json["decorativedetails"] ?? [])
+//                 .map((x) => Decorativedetail.fromJson(x))),
+//         stonedetails: List<Stonedetail>.from(
+//             (json["stonedetails"] ?? []).map((x) => Stonedetail.fromJson(x))),
+//         diamonddetails: List<Diamonddetail>.from((json["diamonddetails"] ?? [])
+//             .map((x) => Diamonddetail.fromJson(x))),
+//       );
+// }
+//
+// class Diamonddetail {
+//   String stoneName;
+//   String stoneWt;
+//   String unitStoneWt;
+//   String stoneShape;
+//   String stoneQuality;
+//   String stoneChargeableAmount;
+//
+//   Diamonddetail({
+//     required this.stoneName,
+//     required this.stoneWt,
+//     required this.unitStoneWt,
+//     required this.stoneShape,
+//     required this.stoneQuality,
+//     required this.stoneChargeableAmount,
+//   });
+//
+//   factory Diamonddetail.fromJson(Map<String, dynamic> json) => Diamonddetail(
+//         stoneName: json["stoneName"] ?? "",
+//         stoneWt: json["stoneWt"] ?? "",
+//         unitStoneWt: json["unitStoneWt"] ?? "",
+//         stoneShape: json["stoneShape"] ?? "",
+//         stoneQuality: json["stoneQuality"] ?? "",
+//         stoneChargeableAmount: json["stoneChargeableAmount"] ?? "",
+//       );
+// }
+//
+// class Productimage {
+//   Productimage({
+//     required this.imageName,
+//     required this.imageLocation,
+//   });
+//
+//   String imageName;
+//   String imageLocation;
+//
+//   factory Productimage.fromJson(Map<String, dynamic> json) => Productimage(
+//         imageName: json["imageName"] ?? "",
+//         imageLocation: json["imageLocation"] ?? "",
+//       );
+// }
+//
+// class Metaldetail {
+//   String metalWt;
+//   String unitMetalWt;
+//   String metalType;
+//   String metalPurity;
+//   bool isHallmarked;
+//
+//   Metaldetail({
+//     required this.metalWt,
+//     required this.unitMetalWt,
+//     required this.metalType,
+//     required this.metalPurity,
+//     required this.isHallmarked,
+//   });
+//
+//   factory Metaldetail.fromJson(Map<String, dynamic> json) => Metaldetail(
+//         metalWt: json["metalWt"] ?? "",
+//         unitMetalWt: json["unitMetalWt"] ?? "",
+//         metalType: json["metalType"] ?? "",
+//         metalPurity: json["metalPurity"] ?? "",
+//         isHallmarked: json["isHallmarked"] ?? false,
+//       );
+// }
+//
+// class Decorativedetail {
+//   Decorativedetail({
+//     required this.decorativeItemName,
+//     required this.decorativeItemWt,
+//     required this.unitDecoItemWt,
+//     // this.decorativeChargeableAmount,
+//   });
+//
+//   final String decorativeItemName;
+//   final String decorativeItemWt;
+//   final String unitDecoItemWt;
+//
+//   // final dynamic decorativeChargeableAmount;
+//
+//   factory Decorativedetail.fromJson(Map<String, dynamic> json) =>
+//       Decorativedetail(
+//         decorativeItemName: json["decorativeItemName"] ?? "",
+//         decorativeItemWt: json["decorativeItemWt"] ?? "",
+//         unitDecoItemWt: json["unitDecoItemWt"] ?? "",
+//         // decorativeChargeableAmount: json["DecorativeChargeableAmount"] ,
+//       );
+// }
+//
+// class SimilarProduct {
+//   SimilarProduct({
+//     required this.srNo,
+//     required this.name,
+//     required this.price,
+//     required this.productImage,
+//     // this.decorativeChargeableAmount,
+//   });
+//
+//   final int srNo;
+//   final String name;
+//
+//   final String price;
+//
+//   final String productImage;
+//
+//   // final dynamic decorativeChargeableAmount;
+//
+//   factory SimilarProduct.fromJson(Map<String, dynamic> json) => SimilarProduct(
+//         srNo: json["srNo"] ?? 0,
+//         name: json["name"] ?? "",
+//         price: json["price"] ?? "",
+//         productImage: json["productImage"] ?? "",
+//       );
+// }
+//
+// class Stonedetail {
+//   String stoneName;
+//   String stoneWt;
+//   String unitStoneWt;
+//   String stoneChargeableAmount;
+//
+//   Stonedetail({
+//     required this.stoneName,
+//     required this.stoneWt,
+//     required this.unitStoneWt,
+//     required this.stoneChargeableAmount,
+//   });
+//
+//   factory Stonedetail.fromJson(Map<String, dynamic> json) => Stonedetail(
+//         stoneName: json["stoneName"] ?? "",
+//         stoneWt: json["stoneWt"] ?? "",
+//         unitStoneWt: json["unitStoneWt"] ?? "",
+//         stoneChargeableAmount: json["stoneChargeableAmount"] ?? "",
+//       );
+// }

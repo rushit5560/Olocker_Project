@@ -12,8 +12,9 @@ import 'package:olocker/widgets/common_widgets.dart';
 class AddNewJewellerScreenController extends GetxController {
   final size = Get.size;
   RxBool isLoading = false.obs;
+
   // RxBool isSuccessStatus = false.obs;
-int isStatusCode= 0;
+  int isStatusCode = 0;
   ApiHeader apiHeader = ApiHeader();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -28,7 +29,7 @@ int isStatusCode= 0;
       isLoading(true);
       String url = ApiUrl.addMyJewellerApi;
       log('addMyJewellerFunction Api Url : $url');
-log("UserDetails.customerId ${UserDetails.customerId}");
+      log("UserDetails.customerId ${UserDetails.customerId}");
       try {
         Map<String, dynamic> bodyData = {
           "PartnerId": retailerCodeFieldController.text,
@@ -48,8 +49,8 @@ log("UserDetails.customerId ${UserDetails.customerId}");
             AddJewellerModel.fromJson(jsonDecode(response.body));
 
         // isSuccessStatus = addJewellerModel.success.obs;
-        isStatusCode=addJewellerModel.statusCode;
-        if (isStatusCode==200) {
+        isStatusCode = addJewellerModel.statusCode;
+        if (isStatusCode == 200) {
           //todo - Success Snackbar "Jeweller Added"
           CommonWidgets().showBorderSnackBar(
             context: Get.context!,
@@ -64,10 +65,13 @@ log("UserDetails.customerId ${UserDetails.customerId}");
 
           log('${addJewellerModel.data.retailerDetail.retailerName} Added');
         } else {
-          CommonWidgets().showBorderSnackBar(
-            context: Get.context!,
-            displayText: addJewellerModel.data.errorInfo.extraInfo,
-          );
+          if (isStatusCode == 404) {
+            CommonWidgets().showBorderSnackBar(
+              context: Get.context!,
+              displayText: addJewellerModel.message,
+            );
+          }
+
           log('addMyJewellerFunction ${addJewellerModel.data.errorInfo.extraInfo}');
           // if (addJewellerModel.errorInfo.extraInfo
           //     .toString()

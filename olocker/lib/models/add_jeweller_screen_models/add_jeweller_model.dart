@@ -128,8 +128,8 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    retailerDetail: RetailerDetail.fromJson(json["retailerDetail"]??[]),
-    success: json["success"]??"",
+    retailerDetail: RetailerDetail.fromJson(json["retailerDetail"]??{}),
+    success: json["success"]??false,
     errorInfo: ErrorInfoModel.fromJson(json["error_info"]??{}),
   );
 

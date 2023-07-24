@@ -13,7 +13,7 @@ class JewellerFeedbackScreenController extends GetxController {
   var jewellerId = Get.arguments; // Getting from Jeweller Details screen
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
-
+  int isStatusCode = 0;
   final jewellerDetailsScreenController =
       Get.find<JewellerDetailsScreenController>();
 
@@ -41,33 +41,43 @@ class JewellerFeedbackScreenController extends GetxController {
 
       FeedbackFormModel feedbackFormModel =
           FeedbackFormModel.fromJson(json.decode(response.body));
-      isSuccessStatus = feedbackFormModel.success.obs;
-
-      if (isSuccessStatus.value) {
+      // isSuccessStatus = feedbackFormModel.success.obs;
+      isStatusCode = feedbackFormModel.statusCode;
+      if (isStatusCode == 200) {
         feedBackFormList.clear();
-        feedBackFormList.addAll(feedbackFormModel.ratingQuestionList);
+        feedBackFormList.addAll(feedbackFormModel.data.ratingQuestionList);
         // log('feedBackFormList : ${feedBackFormList.length}');
 
         for (int i = 0; i < feedBackFormList.length; i++) {
           finalFeedBackAnsList.add([]);
 
-          if (feedbackFormModel.ratingQuestionList[i].questionType ==
+          if (feedbackFormModel.data.ratingQuestionList[i].questionType ==
               "RadioButton") {
             finalFeedBackAnsList[i] = [
-              feedbackFormModel.ratingQuestionList[i].answer[0].questionAnswer
+              feedbackFormModel
+                  .data.ratingQuestionList[i].answer[0].questionAnswer
             ];
           }
           // This is only for update ui
           radioButtonValueList.add(
-              feedbackFormModel.ratingQuestionList[i].answer.isEmpty
+              feedbackFormModel.data.ratingQuestionList[i].answer.isEmpty
                   ? ""
                   : feedbackFormModel
-                      .ratingQuestionList[i].answer[0].questionAnswer);
+                      .data.ratingQuestionList[i].answer[0].questionAnswer);
         }
 
         log('finalFeedBackAnsList : $finalFeedBackAnsList');
       } else {
         log('getFeedbackFormFunction Else');
+        if (isStatusCode == 400) {
+          log("BadRequest");
+        } else if (isStatusCode == 404) {
+          log("NotFound");
+        } else if (isStatusCode == 406) {
+          log("NotAcceptable");
+        } else if (isStatusCode == 417) {
+          log("HttpStatusCode.ExpectationFailed");
+        }
       }
     } catch (e) {
       log('getFeedbackFormFunction Error :$e');
@@ -100,9 +110,9 @@ class JewellerFeedbackScreenController extends GetxController {
 
       AddFeedbackFormModel addFeedbackFormModel =
           AddFeedbackFormModel.fromJson(json.decode(response.body));
-      isSuccessStatus = addFeedbackFormModel.success.obs;
-
-      if (isSuccessStatus.value) {
+      // isSuccessStatus = addFeedbackFormModel.success.obs;
+      isStatusCode = addFeedbackFormModel.statusCode;
+      if (isStatusCode == 200) {
         jewellerDetailsScreenController.isFeedbackValue = true.obs;
         Get.back();
         CommonWidgets().showBorderSnackBar(
@@ -113,7 +123,7 @@ class JewellerFeedbackScreenController extends GetxController {
         log('setFeedbackFormFunction Else');
         CommonWidgets().showBorderSnackBar(
           context: Get.context!,
-          displayText: addFeedbackFormModel.errorInfo.description,
+          displayText: addFeedbackFormModel.data.errorInfo.description,
         );
       }
     } catch (e) {
