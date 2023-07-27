@@ -56,7 +56,7 @@ class ProductDetailsFormModule extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 2.h),
-              DropdownButtonFormField<SingleItemDetail>(
+              DropdownButtonFormField<DecoItemDetail>(
                 isExpanded: true,
                 // value: "SELECT PRODUCT NAME",
                 value: unInsuredJewelController.selectedOrnamentName,
@@ -80,8 +80,8 @@ class ProductDetailsFormModule extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
                 items: unInsuredJewelController.ornamentTypeNameList
-                    .map((SingleItemDetail prodName) {
-                  return DropdownMenuItem<SingleItemDetail>(
+                    .map((DecoItemDetail prodName) {
+                  return DropdownMenuItem<DecoItemDetail>(
                     value: prodName,
                     child: Text(prodName.value),
                   );
@@ -278,7 +278,7 @@ class MetalDetailsFormModule extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 2.h),
-                    DropdownButtonFormField<SingleItemDetail>(
+                    DropdownButtonFormField<DecoItemDetail>(
                       isExpanded: true,
                       value: unInsuredJewelController.selectedMetalName,
                       validator: (value) =>
@@ -301,8 +301,8 @@ class MetalDetailsFormModule extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                       ),
                       items: unInsuredJewelController.metalTypesList
-                          .map((SingleItemDetail metalType) {
-                        return DropdownMenuItem<SingleItemDetail>(
+                          .map((DecoItemDetail metalType) {
+                        return DropdownMenuItem<DecoItemDetail>(
                           value: metalType,
                           child: Text(metalType.value),
                         );
@@ -312,7 +312,7 @@ class MetalDetailsFormModule extends StatelessWidget {
                       },
                     ),
                     SizedBox(height: 1.h),
-                    DropdownButtonFormField<SingleItemDetail>(
+                    DropdownButtonFormField<DecoItemDetail>(
                       isExpanded: true,
                       value: unInsuredJewelController.selectedMetalPurity,
                       validator: (value) =>
@@ -335,8 +335,8 @@ class MetalDetailsFormModule extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                       ),
                       items: unInsuredJewelController.metalPurityList
-                          .map((SingleItemDetail purityValue) {
-                        return DropdownMenuItem<SingleItemDetail>(
+                          .map((DecoItemDetail purityValue) {
+                        return DropdownMenuItem<DecoItemDetail>(
                           value: purityValue,
                           child: Text(purityValue.value),
                         );
@@ -528,7 +528,7 @@ class StoneDetailsFormModule extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 2.h),
-                    DropdownButtonFormField<SingleItemDetail>(
+                    DropdownButtonFormField<DecoItemDetail>(
                       isExpanded: true,
                       value: unInsuredJewelController.selectedStoneName,
                       decoration: InputDecoration(
@@ -549,8 +549,8 @@ class StoneDetailsFormModule extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                       ),
                       items: unInsuredJewelController.stoneDetailsList
-                          .map((SingleItemDetail stoneName) {
-                        return DropdownMenuItem<SingleItemDetail>(
+                          .map((DecoItemDetail stoneName) {
+                        return DropdownMenuItem<DecoItemDetail>(
                           value: stoneName,
                           child: Text(stoneName.value),
                         );
@@ -774,7 +774,7 @@ class DecorativeItemDetailsFormModule extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 2.h),
-                    DropdownButtonFormField<SingleItemDetail>(
+                    DropdownButtonFormField<DecoItemDetail>(
                       isExpanded: true,
                       value: unInsuredJewelController.selectedDecoItemName,
                       decoration: InputDecoration(
@@ -795,8 +795,8 @@ class DecorativeItemDetailsFormModule extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                       ),
                       items: unInsuredJewelController.decoItemsDetailsList
-                          .map((SingleItemDetail decoItem) {
-                        return DropdownMenuItem<SingleItemDetail>(
+                          .map((DecoItemDetail decoItem) {
+                        return DropdownMenuItem<DecoItemDetail>(
                           value: decoItem,
                           child: Text(decoItem.value),
                         );

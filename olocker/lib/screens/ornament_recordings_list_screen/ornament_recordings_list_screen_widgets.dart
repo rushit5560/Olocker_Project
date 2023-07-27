@@ -66,7 +66,7 @@ class OrnamentDetailsModule extends StatelessWidget {
               ),
               // const SizedBox(width: 20),
               Text(
-                ornamentRecordingsController.trackingDetail!.itemName,
+                ornamentRecordingsController.trackingDetail[0].itemName,
                 style: TextStyle(
                   // fontFamily: "Roboto",
                   fontFamily: "",
@@ -76,7 +76,7 @@ class OrnamentDetailsModule extends StatelessWidget {
               ),
               const SizedBox(width: 20),
               Text(
-                ornamentRecordingsController.trackingDetail!.grossWt,
+                ornamentRecordingsController.trackingDetail[0].grossWt,
                 style: TextStyle(
                   fontFamily: "Roboto",
                   color: AppColors.greyColor,
@@ -301,7 +301,7 @@ class OrnamentRecordingsListLoadingWidget extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Shimmer.fromColors(
-       baseColor: Colors.grey.shade300,
+        baseColor: Colors.grey.shade300,
         highlightColor: Colors.grey.shade50,
         child: SingleChildScrollView(
           child: Column(

@@ -6,16 +6,15 @@ import '../constants/api_url.dart';
 import '../constants/user_details.dart';
 import '../models/jewellery_models/jewellery_portfolio_get_model.dart';
 
-
 class MyJewelleryPortFolioScreenController extends GetxController {
   final size = Get.size;
 
   RxBool isLoading = false.obs;
   RxBool isSuccessResult = false.obs;
-
+  int isStatusCode = 0;
   List<InsuredOrnament> insuredOrnamentsList = [];
-  List<InsuredOrnament> unInsuredOrnamentsList = [];
-  List<InsuredOrnament> totalJewelleryPortfolioList = [];
+  List<UnInsuredOrnament> unInsuredOrnamentsList = [];
+  List<TotalJewelleryPortfolio> totalJewelleryPortfolioList = [];
 
   ApiHeader apiHeader = ApiHeader();
 
@@ -35,19 +34,21 @@ class MyJewelleryPortFolioScreenController extends GetxController {
       log("getJewelleryPortFolioDetailsFunction st code is : ${response.statusCode}");
       log("getJewelleryPortFolioDetailsFunction res body : ${response.body}");
 
-      var resBody = jsonDecode(response.body);
+      // var resBody = jsonDecode(response.body);
 
-      JewelleryPortFolioGetModel jewelleryPortFolioGetModel =
-          JewelleryPortFolioGetModel.fromJson(resBody);
+      JewelleryPortFolioGetModel jewelleryPortFolioGetModel = JewelleryPortFolioGetModel.fromJson(json.decode(response.body));
 
-      isSuccessResult.value = jewelleryPortFolioGetModel.success;
-
-      if (isSuccessResult.value) {
+      // isSuccessResult.value = jewelleryPortFolioGetModel.success;
+      isStatusCode = jewelleryPortFolioGetModel.statusCode;
+      if (isStatusCode == 200) {
         log("getJewelleryPortFolioDetailsFunction get success");
-        totalJewelleryPortfolioList =
-            jewelleryPortFolioGetModel.totalJewelleryPortfolio;
-        insuredOrnamentsList = jewelleryPortFolioGetModel.insuredOrnaments;
-        unInsuredOrnamentsList = jewelleryPortFolioGetModel.unInsuredOrnaments;
+        totalJewelleryPortfolioList = jewelleryPortFolioGetModel.data.totalJewelleryPortfolio;
+        insuredOrnamentsList = jewelleryPortFolioGetModel.data.insuredOrnaments;
+        unInsuredOrnamentsList = jewelleryPortFolioGetModel.data.unInsuredOrnaments;
+
+        log('totalJewelleryPortfolioList Length Inner : ${totalJewelleryPortfolioList.length}');
+        log('insuredOrnamentsList Length Inner : ${insuredOrnamentsList.length}');
+        log('unInsuredOrnamentsList Length Inner : ${unInsuredOrnamentsList.length}');
       } else {
         log("getJewelleryPortFolioDetailsFunction get not success");
         //do nothing

@@ -7,6 +7,7 @@ import 'package:olocker/screens/ornament_recordings_list_screen/ornament_recordi
 import 'package:olocker/utils/appbar_style.dart';
 
 import 'package:olocker/utils/extensions.dart';
+
 class OrnamentRecordingsListScreen extends StatelessWidget {
   OrnamentRecordingsListScreen({Key? key}) : super(key: key);
   final ornamentRecordingsListScreenController =
@@ -50,7 +51,10 @@ class OrnamentRecordingsListScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          OrnamentDetailsModule(),
+                          ornamentRecordingsListScreenController
+                                  .trackingDetail.isEmpty
+                              ? Container()
+                              : OrnamentDetailsModule(),
                           const SizedBox(height: 20),
                           AddRecordingButton(),
                           const SizedBox(height: 20),

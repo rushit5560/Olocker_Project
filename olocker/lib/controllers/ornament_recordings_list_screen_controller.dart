@@ -15,11 +15,14 @@ class OrnamentRecordingsListScreenController extends GetxController {
   final coiNumber = Get.arguments[2];
 
   RxBool isLoading = false.obs;
-
+  int isStatusCode = 0;
   ApiHeader apiHeader = ApiHeader();
 
   List<OrnamentHistoryDetail> ornamentHistoryDetailList = [];
-  TrackingDetail? trackingDetail;
+  List<TrackingDetail> trackingDetail=[];
+
+  // TrackingDetail? trackingDetail;
+
   Future<void> getOrnamentRecordingsListFunction() async {
     String url =
         "${ApiUrl.getOrnamentTrackingApi}?customerId=${UserDetails.customerId}&OrnamentSrNo=$ornamentSrNo&CustOraSrNo=$customerOraSrNo";
@@ -41,13 +44,14 @@ class OrnamentRecordingsListScreenController extends GetxController {
 
       GetOrnamentRecordingsModel getOrnamentRecordingsModel =
           GetOrnamentRecordingsModel.fromJson(resBody);
-
-      if (response.statusCode == 200) {
+      isStatusCode = getOrnamentRecordingsModel.statusCode;
+      if (isStatusCode == 200) {
         log("getOrnamentRecordingsListFunction get success");
 
         ornamentHistoryDetailList =
-            getOrnamentRecordingsModel.ornamentHistoryDetails;
-        trackingDetail = getOrnamentRecordingsModel.trackingDetails[0];
+            getOrnamentRecordingsModel.data.ornamentHistoryDetails;
+        trackingDetail = getOrnamentRecordingsModel.data.trackingDetails;
+        log("getOrnamentRecordingsModel.data.trackingDetails ${getOrnamentRecordingsModel.data.trackingDetails}");
       } else {
         log("getOrnamentRecordingsListFunction not success");
         //do nothing

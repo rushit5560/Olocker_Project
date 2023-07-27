@@ -73,14 +73,14 @@ class JewellerDetailsScreenController extends GetxController {
   Future<void> getSpecialFeaturesFunction() async {
     isLoading(true);
     String url = "${ApiUrl.getSpecialFeaturesApi}?PartnerSrNo=$jewellerId";
-    log('getSpecialFeaturesFunction Api Url :$url');
+    // log('getSpecialFeaturesFunction Api Url :$url');
 
     try {
       http.Response response = await http.get(
         Uri.parse(url),
         headers: apiHeader.headers,
       );
-      log('getSpecialFeaturesFunction response : ${response.body}');
+      // log('getSpecialFeaturesFunction response : ${response.body}');
 
       SpecialFeaturesModel specialFeaturesModel =
           SpecialFeaturesModel.fromJson(json.decode(response.body));
@@ -89,6 +89,7 @@ class JewellerDetailsScreenController extends GetxController {
       if (isStatusCode == 200) {
         specialFeaturesList.clear();
         specialFeaturesList.addAll(specialFeaturesModel.data);
+
         // log('specialFeaturesList : ${specialFeaturesList.length}');
       } else {
         log('getSpecialFeaturesFunction Else');
@@ -149,10 +150,11 @@ class JewellerDetailsScreenController extends GetxController {
       rethrow;
     }
 
-   await getJewelleryPushToAppDataFunction();
+    await getJewelleryPushToAppDataFunction();
 
     // isLoading(false);
   }
+
   Future<void> getJewelleryPushToAppDataFunction() async {
     isLoading(true);
     String url =
@@ -167,10 +169,10 @@ class JewellerDetailsScreenController extends GetxController {
       log('getJewelleryPushToAppDataFunction response : ${response.body}');
 
       JewelleryCategoryModel jewelleryCategoryModel =
-      JewelleryCategoryModel.fromJson(json.decode(response.body));
+          JewelleryCategoryModel.fromJson(json.decode(response.body));
       // isSuccessStatus = jewelleryCategoryModel.success.obs;
-isStatusCode=jewelleryCategoryModel.statusCode;
-      if (isStatusCode==200) {
+      isStatusCode = jewelleryCategoryModel.statusCode;
+      if (isStatusCode == 200) {
         jewelleryCategoryList.clear();
 
         // jewelleryCategoryList.addAll(jewelleryCategoryModel.getPushCollection);
@@ -194,7 +196,9 @@ isStatusCode=jewelleryCategoryModel.statusCode;
         log("jewellerysubCategoryList.length ${jewellerysubCategoryList.length}");
 
         if (jewelleryCategoryModel.data.getPushOffer.isNotEmpty) {
-          for (int i = 0; i < jewelleryCategoryModel.data.getPushOffer.length; i++) {
+          for (int i = 0;
+              i < jewelleryCategoryModel.data.getPushOffer.length;
+              i++) {
             var singleItem = jewelleryCategoryModel.data.getPushOffer[i];
             announcementOfferList.add(GetPushOfferItem(
               srNo: singleItem.srNo.toString(),
@@ -273,7 +277,6 @@ isStatusCode=jewelleryCategoryModel.statusCode;
 
   // This 5 Function api calling in 2nd Phase
 
-
   Future<void> getNewArrivalFunction() async {
     if (hasMore.value) {
       // isLoading(true);
@@ -290,8 +293,8 @@ isStatusCode=jewelleryCategoryModel.statusCode;
         JewelleryCategoryModel jewelleryCategoryModel =
             JewelleryCategoryModel.fromJson(json.decode(response.body));
         // isSuccessStatus = jewelleryCategoryModel.success.obs;
-isStatusCode=jewelleryCategoryModel.statusCode;
-        if (isStatusCode==200) {
+        isStatusCode = jewelleryCategoryModel.statusCode;
+        if (isStatusCode == 200) {
           newArrivalList.clear();
 
           newArrivalList.addAll(jewelleryCategoryModel.data.getPushCollection);
@@ -305,7 +308,7 @@ isStatusCode=jewelleryCategoryModel.statusCode;
         rethrow;
       }
 
-        await getJewelleryTypeFunction();
+      await getJewelleryTypeFunction();
       // isLoading(false);
     } else {
       isLoading(false);
@@ -329,9 +332,10 @@ isStatusCode=jewelleryCategoryModel.statusCode;
 
         JewelleryTypeModel jewelleryTypeModel =
             JewelleryTypeModel.fromJson(json.decode(response.body));
-        isSuccessStatus = jewelleryTypeModel.success.obs;
-
-        if (isSuccessStatus.value) {
+        // isSuccessStatus = jewelleryTypeModel.success.obs;
+        isStatusCode = jewelleryTypeModel.statusCode;
+        if (isStatusCode == 200) {
+          log("isStatusCode $isStatusCode");
           collectionNameList.clear();
 
           ///  men type
@@ -339,19 +343,19 @@ isStatusCode=jewelleryCategoryModel.statusCode;
 
           menTypeList.clear();
 
-          if (jewelleryTypeModel.productTypeMen.isNotEmpty) {
-            for (var element in jewelleryTypeModel.productTypeMen) {
+          if (jewelleryTypeModel.data.productTypeMen.isNotEmpty) {
+            for (var element in jewelleryTypeModel.data.productTypeMen) {
               if (element.productCount != 0) {
                 isMenAvailable = true;
               }
             }
             if (isMenAvailable == true) {
               menTypeList.add(ProductTypeItem(name: '', image: ''));
-              for (var element in jewelleryTypeModel.productTypeMen) {
+              for (var element in jewelleryTypeModel.data.productTypeMen) {
                 if (element.productCount != 0) {
                   // menTypeList.addAll(jewelleryTypeModel.productTypeMen);
                   menTypeList.add(element);
-                  for (var element in jewelleryTypeModel.productTypeMen) {
+                  for (var element in jewelleryTypeModel.data.productTypeMen) {
                     collectionNameList.add(element.name);
                   }
                 }
@@ -363,14 +367,14 @@ isStatusCode=jewelleryCategoryModel.statusCode;
             // for (var element in jewelleryTypeModel.productTypeMen) {
             //   collectionNameList.add(element.name);
             // }
+            log('getJewelleryTypeFunction menTypeList : ${menTypeList.length}');
           }
-          log('getJewelleryTypeFunction menTypeList : ${menTypeList.length}');
 
           /// women type
           bool isWomenAvailable = false;
           womenTypeList.clear();
-          if (jewelleryTypeModel.productTypeWomen.isNotEmpty) {
-            for (var element in jewelleryTypeModel.productTypeWomen) {
+          if (jewelleryTypeModel.data.productTypeWomen.isNotEmpty) {
+            for (var element in jewelleryTypeModel.data.productTypeWomen) {
               if (element.productCount != 0) {
                 isWomenAvailable = true;
               }
@@ -378,11 +382,12 @@ isStatusCode=jewelleryCategoryModel.statusCode;
 
             if (isWomenAvailable == true) {
               womenTypeList.add(ProductTypeItem(name: '', image: ''));
-              for (var element in jewelleryTypeModel.productTypeWomen) {
+              for (var element in jewelleryTypeModel.data.productTypeWomen) {
                 if (element.productCount != 0) {
                   // womenTypeList.addAll(jewelleryTypeModel.productTypeWomen);
                   womenTypeList.add(element);
-                  for (var element in jewelleryTypeModel.productTypeWomen) {
+                  for (var element
+                      in jewelleryTypeModel.data.productTypeWomen) {
                     collectionNameList.add(element.name);
                   }
                 }
@@ -394,14 +399,14 @@ isStatusCode=jewelleryCategoryModel.statusCode;
             // for (var element in jewelleryTypeModel.productTypeWomen) {
             //   collectionNameList.add(element.name);
             // }
+            log('getJewelleryTypeFunction womenTypeList : ${womenTypeList.length}');
           }
-          log('getJewelleryTypeFunction womenTypeList : ${womenTypeList.length}');
 
           /// Kids type
           bool isKidsAvailable = false;
           kidsTypeList.clear();
-          if (jewelleryTypeModel.productTypeKids.isNotEmpty) {
-            for (var element in jewelleryTypeModel.productTypeKids) {
+          if (jewelleryTypeModel.data.productTypeKids.isNotEmpty) {
+            for (var element in jewelleryTypeModel.data.productTypeKids) {
               if (element.productCount != 0) {
                 isKidsAvailable = true;
               }
@@ -410,11 +415,11 @@ isStatusCode=jewelleryCategoryModel.statusCode;
             if (isKidsAvailable == true) {
               kidsTypeList.add(ProductTypeItem(name: '', image: ''));
               log("kidsTypeList.length ${kidsTypeList.length}");
-              for (var element in jewelleryTypeModel.productTypeKids) {
+              for (var element in jewelleryTypeModel.data.productTypeKids) {
                 if (element.productCount != 0) {
                   // kidsTypeList.addAll(jewelleryTypeModel.productTypeKids);
                   kidsTypeList.add(element);
-                  for (var element in jewelleryTypeModel.productTypeKids) {
+                  for (var element in jewelleryTypeModel.data.productTypeKids) {
                     collectionNameList.add(element.name);
                   }
                 }
@@ -429,9 +434,9 @@ isStatusCode=jewelleryCategoryModel.statusCode;
             // for (var element in jewelleryTypeModel.productTypeKids) {
             //   collectionNameList.add(element.name);
             // }
+            log("collectionNameList Length :${collectionNameList.length}");
           }
 
-          log("collectionNameList Length :${collectionNameList.length}");
           for (var element in collectionNameList) {
             log('collectionNameList : $element');
           }
@@ -443,7 +448,7 @@ isStatusCode=jewelleryCategoryModel.statusCode;
         rethrow;
       }
 
-       await getBestSellerFunction();
+      await getBestSellerFunction();
       // isLoading(false);
     } else {
       isLoading(false);

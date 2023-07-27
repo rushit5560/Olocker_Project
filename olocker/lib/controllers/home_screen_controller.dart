@@ -291,7 +291,7 @@ log("finalCityName $finalCityName");
       String finalCityName, String stateName) async {
     String url =
         // "http://192.168.29.90:2023/api/Partner/GetOfflineDeals?StateName=Maharashtra&CityName=Mumbai&partnerId="
-        "${ApiUrl.apiMainPath}/api/Partner/GetOffLineDeals?StateName=$stateName&CityName=$finalCityName&partnerId="
+        "${ApiUrl.apiMainPath}api/Partner/GetOffLineDeals?StateName=$stateName&CityName=$finalCityName&partnerId="
         "";
     log('Smart Deals offOnline Api Url : $url');
 
@@ -312,6 +312,7 @@ log("finalCityName $finalCityName");
         smartDealsOfflineList.clear();
         smartDealsOfflineList.addAll(getOfflineDealsModel.data.vendorDealsList);
         isLocalDataCalled(true);
+
       } else {
         log('getSmartDealsOfflineFunction Else');
         if (isStatusCode == 400) {

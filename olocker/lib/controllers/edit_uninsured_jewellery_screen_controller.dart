@@ -16,19 +16,18 @@ import '../models/jewellery_models/get_ornament_details_model.dart';
 import '../models/portfolio_screen_models/get_all_data_ornament_model.dart';
 import '../widgets/common_widgets.dart';
 
-
 class EditUnInsuredJewelleryScreenController extends GetxController {
   final size = Get.size;
   final String ornamentSrNo = Get.arguments[0];
 
   RxBool isLoading = false.obs;
   RxBool isValidate = false.obs;
-
+  int isStatusCode = 0;
   ApiHeader apiHeader = ApiHeader();
 
   //ornament text controller
   final productFormKey = GlobalKey<FormState>();
-  SingleItemDetail? selectedOrnamentName;
+  DecoItemDetail? selectedOrnamentName;
   RxString selectedOrnamentPurchaseDate = "Select Purchased Date".obs;
   TextEditingController ornamentGrossWeightController = TextEditingController();
   TextEditingController ornamentPurchasedFromController =
@@ -37,23 +36,23 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
       TextEditingController();
   TextEditingController ornamentPurchasedPriceController =
       TextEditingController();
-  List<SingleItemDetail> ornamentTypeNameList = [];
+  List<DecoItemDetail> ornamentTypeNameList = [];
 
   //metal text controller
   final metalFormKey = GlobalKey<FormState>();
-  SingleItemDetail? selectedMetalName;
-  SingleItemDetail? selectedMetalPurity;
+  DecoItemDetail? selectedMetalName;
+  DecoItemDetail? selectedMetalPurity;
   TextEditingController metalWeightController = TextEditingController();
-  List<SingleItemDetail> metalTypesList = [];
-  List<SingleItemDetail> metalPurityList = [];
+  List<DecoItemDetail> metalTypesList = [];
+  List<DecoItemDetail> metalPurityList = [];
   List<Map<String, dynamic>> metalDataMapList = [];
 
   //stone text controller
   final stoneFormKey = GlobalKey<FormState>();
-  SingleItemDetail? selectedStoneName;
+  DecoItemDetail? selectedStoneName;
   TextEditingController stoneWeightController = TextEditingController();
   RxString selectedStoneUnitOfWeight = "Gms.".obs;
-  List<SingleItemDetail> stoneDetailsList = [];
+  List<DecoItemDetail> stoneDetailsList = [];
   List<Map<String, dynamic>> stoneDataMapList = [];
   List<String> stoneWeightUnitList = [
     "Gms.",
@@ -62,10 +61,10 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
 
   //decorative item text controller
   final decoItemFormKey = GlobalKey<FormState>();
-  SingleItemDetail? selectedDecoItemName;
+  DecoItemDetail? selectedDecoItemName;
   TextEditingController decoItemWeightController = TextEditingController();
   RxString selectedDecoItemUnitOfWeight = "Gms.".obs;
-  List<SingleItemDetail> decoItemsDetailsList = [];
+  List<DecoItemDetail> decoItemsDetailsList = [];
   List<Map<String, dynamic>> decoItemsDataMapList = [];
   List<String> decoItemsWeightUnitList = [
     "Gms.",
@@ -191,9 +190,9 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
 
       GetAddDataOrnamentModel getAddDataOrnamentModel =
           GetAddDataOrnamentModel.fromJson(json.decode(response.body));
-      var isSuccessStatus = getAddDataOrnamentModel.success.obs;
-
-      if (isSuccessStatus.value) {
+      // var isSuccessStatus = getAddDataOrnamentModel.success.obs;
+      isStatusCode = getAddDataOrnamentModel.statusCode;
+      if (isStatusCode == 200) {
         ornamentTypeNameList.clear();
         metalTypesList.clear();
         metalPurityList.clear();
@@ -201,35 +200,41 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
         decoItemsDetailsList.clear();
 
         //assigning ornamentTypeNameList data
-        selectedOrnamentName = getAddDataOrnamentModel.productDetails[0];
+        selectedOrnamentName = getAddDataOrnamentModel.data.productDetails[0];
         for (int i = 0;
-            i < getAddDataOrnamentModel.productDetails.length;
+            i < getAddDataOrnamentModel.data.productDetails.length;
             i++) {
-          ornamentTypeNameList = getAddDataOrnamentModel.productDetails;
+          ornamentTypeNameList = getAddDataOrnamentModel.data.productDetails;
         }
 
-        selectedMetalName = getAddDataOrnamentModel.metalTypes[0];
+        selectedMetalName = getAddDataOrnamentModel.data.metalTypes[0];
         //assigning metalTypesList and metalPurityList data
-        for (int i = 0; i < getAddDataOrnamentModel.metalTypes.length; i++) {
-          metalTypesList = getAddDataOrnamentModel.metalTypes;
+        for (int i = 0;
+            i < getAddDataOrnamentModel.data.metalTypes.length;
+            i++) {
+          metalTypesList = getAddDataOrnamentModel.data.metalTypes;
         }
-        selectedMetalPurity = getAddDataOrnamentModel.metalPurity[0];
-        for (int i = 0; i < getAddDataOrnamentModel.metalPurity.length; i++) {
-          metalPurityList = getAddDataOrnamentModel.metalPurity;
+        selectedMetalPurity = getAddDataOrnamentModel.data.metalPurity[0];
+        for (int i = 0;
+            i < getAddDataOrnamentModel.data.metalPurity.length;
+            i++) {
+          metalPurityList = getAddDataOrnamentModel.data.metalPurity;
         }
 
-        selectedStoneName = getAddDataOrnamentModel.stoneDetails[0];
+        selectedStoneName = getAddDataOrnamentModel.data.stoneDetails[0];
         //assigning stoneDetailsList data
-        for (int i = 0; i < getAddDataOrnamentModel.stoneDetails.length; i++) {
-          stoneDetailsList = getAddDataOrnamentModel.stoneDetails;
+        for (int i = 0;
+            i < getAddDataOrnamentModel.data.stoneDetails.length;
+            i++) {
+          stoneDetailsList = getAddDataOrnamentModel.data.stoneDetails;
         }
 
-        selectedDecoItemName = getAddDataOrnamentModel.decorativeItemDetails[0];
+        selectedDecoItemName = getAddDataOrnamentModel.data.decoItemDetails[0];
         //assigning decoItemsDetailsList data
         for (int i = 0;
-            i < getAddDataOrnamentModel.decorativeItemDetails.length;
+            i < getAddDataOrnamentModel.data.decoItemDetails.length;
             i++) {
-          decoItemsDetailsList = getAddDataOrnamentModel.decorativeItemDetails;
+          decoItemsDetailsList = getAddDataOrnamentModel.data.decoItemDetails;
         }
         // favouriteDealsList.addAll(smartDealsOnlineModel.vendorDealsList);
         // log('Length1 : ${smartDealsOnlineModel.vendorDealsList.length}');
@@ -239,7 +244,6 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
       }
 
       // log("response : ${response.body}");
-
     } catch (e) {
       log('getAllDataAddOrnament Error :$e');
       rethrow;
@@ -265,27 +269,29 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
 
       GetOrnamentDetailsModel getOrnamentDetailsModel =
           GetOrnamentDetailsModel.fromJson(jsonDecode(response.body));
-      var isSuccessStatus = getOrnamentDetailsModel.success;
-
-      if (isSuccessStatus) {
+      // var isSuccessStatus = getOrnamentDetailsModel.success;
+      isStatusCode = getOrnamentDetailsModel.statusCode;
+      if (isStatusCode == 200) {
         // log("ornament name is a :: ${getOrnamentDetailsModel.name}");
 
         for (int i = 0; i < ornamentTypeNameList.length; i++) {
-          if (ornamentTypeNameList[i].value == getOrnamentDetailsModel.name) {
+          if (ornamentTypeNameList[i].value ==
+              getOrnamentDetailsModel.data.name) {
             selectedOrnamentName = ornamentTypeNameList[i];
           }
         }
 
-        ornamentGrossWeightController.text = getOrnamentDetailsModel.grosswt;
+        ornamentGrossWeightController.text =
+            getOrnamentDetailsModel.data.grosswt;
         ornamentPurchasedFromController.text =
-            getOrnamentDetailsModel.purchasedFrom;
+            getOrnamentDetailsModel.data.purchasedFrom;
 
-        log("getOrnamentDetailsModel.purchaseDate :: ${getOrnamentDetailsModel.purchaseDate}");
+        log("getOrnamentDetailsModel.purchaseDate :: ${getOrnamentDetailsModel.data.purchaseDate}");
 
         var dateFormat = DateFormat('dd-MM-yyyy');
 
         var parsedDate = dateFormat
-            .parse(getOrnamentDetailsModel.purchaseDate.trim())
+            .parse(getOrnamentDetailsModel.data.purchaseDate.trim())
             .toString();
 
         // log("get parsedDate is : : $parsedDate");
@@ -299,41 +305,44 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
         // selectedOrnamentPurchaseDate.value =
         //     getOrnamentDetailsModel.purchaseDate.toString().split(" ")[0];
         ornamentPurchasedPriceController.text =
-            getOrnamentDetailsModel.purchasePrice.toString().split(".")[0];
+            getOrnamentDetailsModel.data.purchasePrice.toString().split(".")[0];
+        log('ornamentPurchasedPriceController ::${ornamentPurchasedPriceController.text}');
         apiJewelleryImageFile = File(ApiUrl.apiImagePath +
-            getOrnamentDetailsModel.ornamentimage.path);
+            getOrnamentDetailsModel.data.ornamentimage.path);
 
-        if (getOrnamentDetailsModel.metaldetails != []) {
+        if (getOrnamentDetailsModel.data.metaldetails != []) {
           for (int i = 0;
-              i < getOrnamentDetailsModel.metaldetails.length;
+              i < getOrnamentDetailsModel.data.metaldetails.length;
               i++) {
             metalDataMapList.add({
               "netmetalweight":
-                  getOrnamentDetailsModel.metaldetails[i].netmetalweight,
-              "metaltype": getOrnamentDetailsModel.metaldetails[i].metaltype,
-              "purity": getOrnamentDetailsModel.metaldetails[i].purity
+                  getOrnamentDetailsModel.data.metaldetails[i].netmetalweight,
+              "metaltype":
+                  getOrnamentDetailsModel.data.metaldetails[i].metaltype,
+              "purity": getOrnamentDetailsModel.data.metaldetails[i].purity
             });
           }
         }
-        if (getOrnamentDetailsModel.stonedetails != []) {
+        if (getOrnamentDetailsModel.data.stonedetails != []) {
           for (int i = 0;
-              i < getOrnamentDetailsModel.stonedetails.length;
+              i < getOrnamentDetailsModel.data.stonedetails.length;
               i++) {
             stoneDataMapList.add({
-              "name": getOrnamentDetailsModel.stonedetails[i].name,
-              "wt": getOrnamentDetailsModel.stonedetails[i].wt,
-              "unitofwt": getOrnamentDetailsModel.stonedetails[i].unitofwt
+              "name": getOrnamentDetailsModel.data.stonedetails[i].name,
+              "wt": getOrnamentDetailsModel.data.stonedetails[i].wt,
+              "unitofwt": getOrnamentDetailsModel.data.stonedetails[i].unitofwt
             });
           }
         }
-        if (getOrnamentDetailsModel.decorativeitem != []) {
+        if (getOrnamentDetailsModel.data.decorativeitem != []) {
           for (int i = 0;
-              i < getOrnamentDetailsModel.decorativeitem.length;
+              i < getOrnamentDetailsModel.data.decorativeitem.length;
               i++) {
             decoItemsDataMapList.add({
-              "name": getOrnamentDetailsModel.decorativeitem[i].name,
-              "wt": getOrnamentDetailsModel.decorativeitem[i].wt,
-              "unitofwt": getOrnamentDetailsModel.decorativeitem[i].unitofwt,
+              "name": getOrnamentDetailsModel.data.decorativeitem[i].name,
+              "wt": getOrnamentDetailsModel.data.decorativeitem[i].wt,
+              "unitofwt":
+                  getOrnamentDetailsModel.data.decorativeitem[i].unitofwt,
             });
           }
         }
@@ -361,12 +370,14 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
 
     try {
       var requestMap = {
-        'CustSrNo': UserDetails.customerId,
+        'custsrno': UserDetails.customerId,
         'name': selectedOrnamentName!.value,
         'grosswt': ornamentGrossWeightController.text.toString(),
         'purchased_from': ornamentPurchasedFromController.text.toString(),
         'purchase_date': selectedOrnamentPurchaseDate.toString(),
-        'purchase_price': ornamentPurchasedPriceController.text.toString(),
+        'purchase_price': ornamentPurchasedPriceController.text.trim() == ""
+            ? "0"
+            : ornamentPurchasedPriceController.text.trim(),
         'ornamentimage': jewellerySelectedImageFile == null
             ? []
             : [
@@ -377,7 +388,7 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
         'decorativeitem': decoItemsDataMapList,
         "OrnamentSrNo": ornamentSrNo,
       };
-
+      log("ornamentPurchasedPriceController.text.toString() ${ornamentPurchasedPriceController.text.toString()}");
       log("request body passing is :: ${jsonEncode(requestMap)}");
 
       http.Response response = await http.post(
@@ -391,10 +402,10 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
 
       AddOrnamentResponseModel addOrnamentResponseModel =
           AddOrnamentResponseModel.fromJson(jsonDecode(response.body));
-      var isSuccessStatus = addOrnamentResponseModel.success;
-
-      if (isSuccessStatus) {
-        log("CustOraSrNo is a :: ${addOrnamentResponseModel.data.custOraSrNo}");
+      // var isSuccessStatus = addOrnamentResponseModel.success;
+      isStatusCode = addOrnamentResponseModel.statusCode;
+      if (isStatusCode == 200) {
+        // log("CustOraSrNo is a :: ${addOrnamentResponseModel.data.custOraSrNo}");
         CommonWidgets().showBorderSnackBar(
           context: Get.context!,
           displayText: 'Jewellery Updated Successfully.',

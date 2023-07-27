@@ -7,12 +7,14 @@ class ApiHeader {
 
 class ApiUrl {
   static const String apiMainPath = "http://192.168.29.90:2023/";
+
   // https://devappapi.olocker.in/
   // static const String apiMainPath = "http://5.189.147.159:7009/";
 
   // static const String apiImageUrlPath = "https://devappapi.olocker.in/";
 
   static const String apiImagePath = "https://demo.olocker.in";
+
   //release image api path
   // static const String apiImagePath = "https://www.olocker.in";
 
@@ -113,6 +115,7 @@ class ApiUrl {
 
   //favourites apis
   static const String getFavProductApi = "${apiMainPath}api/User/GetFavProduct";
+
   // static const String deleteFavProductApi = "${apiMainPath}api/User/RemoveFavProduct";
 
   //authentication apis
@@ -148,8 +151,7 @@ class ApiUrl {
   static const String getGoldPriceApi =
       "${apiMainPath}api/Partner/GetIBJARatesByPartnerId";
 
-  static const String getAboutYourSelfApi =
-      "${apiMainPath}api/User/GetDetails";
+  static const String getAboutYourSelfApi = "${apiMainPath}api/User/GetDetails";
 
   /// Jewellery Details Screen Api's
   // static const String getJewelleryDetailApi =

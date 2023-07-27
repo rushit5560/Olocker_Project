@@ -23,10 +23,11 @@ class AddUnInsuredJewelleryScreenController extends GetxController {
   RxBool isValidate = false.obs;
 
   ApiHeader apiHeader = ApiHeader();
+  int isStatusCode = 0;
 
   //ornament text controller
   final productFormKey = GlobalKey<FormState>();
-  SingleItemDetail? selectedOrnamentName;
+  DecoItemDetail? selectedOrnamentName;
   RxString selectedOrnamentPurchaseDate = "Select Purchased Date".obs;
   TextEditingController ornamentGrossWeightController = TextEditingController();
   TextEditingController ornamentPurchasedFromController =
@@ -35,23 +36,23 @@ class AddUnInsuredJewelleryScreenController extends GetxController {
       TextEditingController();
   TextEditingController ornamentPurchasedPriceController =
       TextEditingController();
-  List<SingleItemDetail> ornamentTypeNameList = [];
+  List<DecoItemDetail> ornamentTypeNameList = [];
 
   //metal text controller
   final metalFormKey = GlobalKey<FormState>();
-  SingleItemDetail? selectedMetalName;
-  SingleItemDetail? selectedMetalPurity;
+  DecoItemDetail? selectedMetalName;
+  DecoItemDetail? selectedMetalPurity;
   TextEditingController metalWeightController = TextEditingController();
-  List<SingleItemDetail> metalTypesList = [];
-  List<SingleItemDetail> metalPurityList = [];
+  List<DecoItemDetail> metalTypesList = [];
+  List<DecoItemDetail> metalPurityList = [];
   List<Map<String, dynamic>> metalDataMapList = [];
 
   //stone text controller
   final stoneFormKey = GlobalKey<FormState>();
-  SingleItemDetail? selectedStoneName;
+  DecoItemDetail? selectedStoneName;
   TextEditingController stoneWeightController = TextEditingController();
   RxString selectedStoneUnitOfWeight = "Gms.".obs;
-  List<SingleItemDetail> stoneDetailsList = [];
+  List<DecoItemDetail> stoneDetailsList = [];
   List<Map<String, dynamic>> stoneDataMapList = [];
   List<String> stoneWeightUnitList = [
     "Gms.",
@@ -60,10 +61,10 @@ class AddUnInsuredJewelleryScreenController extends GetxController {
 
   //decorativve item text controller
   final decoItemFormKey = GlobalKey<FormState>();
-  SingleItemDetail? selectedDecoItemName;
+  DecoItemDetail? selectedDecoItemName;
   TextEditingController decoItemWeightController = TextEditingController();
   RxString selectedDecoItemUnitOfWeight = "Gms.".obs;
-  List<SingleItemDetail> decoItemsDetailsList = [];
+  List<DecoItemDetail> decoItemsDetailsList = [];
   List<Map<String, dynamic>> decoItemsDataMapList = [];
   List<String> decoItemsWeightUnitList = [
     "Gms.",
@@ -196,9 +197,9 @@ class AddUnInsuredJewelleryScreenController extends GetxController {
 
       GetAddDataOrnamentModel getAddDataOrnamentModel =
           GetAddDataOrnamentModel.fromJson(json.decode(response.body));
-      var isSuccessStatus = getAddDataOrnamentModel.success.obs;
-
-      if (isSuccessStatus.value) {
+      // var isSuccessStatus = getAddDataOrnamentModel.success.obs;
+      isStatusCode = getAddDataOrnamentModel.statusCode;
+      if (isStatusCode == 200) {
         ornamentTypeNameList.clear();
         metalTypesList.clear();
         metalPurityList.clear();
@@ -206,35 +207,41 @@ class AddUnInsuredJewelleryScreenController extends GetxController {
         decoItemsDetailsList.clear();
 
         //asigning ornamentTypeNameList data
-        selectedOrnamentName = getAddDataOrnamentModel.productDetails[0];
+        selectedOrnamentName = getAddDataOrnamentModel.data.productDetails[0];
         for (int i = 0;
-            i < getAddDataOrnamentModel.productDetails.length;
+            i < getAddDataOrnamentModel.data.productDetails.length;
             i++) {
-          ornamentTypeNameList = getAddDataOrnamentModel.productDetails;
+          ornamentTypeNameList = getAddDataOrnamentModel.data.productDetails;
         }
 
-        selectedMetalName = getAddDataOrnamentModel.metalTypes[0];
+        selectedMetalName = getAddDataOrnamentModel.data.metalTypes[0];
         //asigning metalTypesList and metalPurityList data
-        for (int i = 0; i < getAddDataOrnamentModel.metalTypes.length; i++) {
-          metalTypesList = getAddDataOrnamentModel.metalTypes;
+        for (int i = 0;
+            i < getAddDataOrnamentModel.data.metalTypes.length;
+            i++) {
+          metalTypesList = getAddDataOrnamentModel.data.metalTypes;
         }
-        selectedMetalPurity = getAddDataOrnamentModel.metalPurity[0];
-        for (int i = 0; i < getAddDataOrnamentModel.metalPurity.length; i++) {
-          metalPurityList = getAddDataOrnamentModel.metalPurity;
+        selectedMetalPurity = getAddDataOrnamentModel.data.metalPurity[0];
+        for (int i = 0;
+            i < getAddDataOrnamentModel.data.metalPurity.length;
+            i++) {
+          metalPurityList = getAddDataOrnamentModel.data.metalPurity;
         }
 
-        selectedStoneName = getAddDataOrnamentModel.stoneDetails[0];
+        selectedStoneName = getAddDataOrnamentModel.data.stoneDetails[0];
         //asigning stoneDetailsList data
-        for (int i = 0; i < getAddDataOrnamentModel.stoneDetails.length; i++) {
-          stoneDetailsList = getAddDataOrnamentModel.stoneDetails;
+        for (int i = 0;
+            i < getAddDataOrnamentModel.data.stoneDetails.length;
+            i++) {
+          stoneDetailsList = getAddDataOrnamentModel.data.stoneDetails;
         }
 
-        selectedDecoItemName = getAddDataOrnamentModel.decorativeItemDetails[0];
+        selectedDecoItemName = getAddDataOrnamentModel.data.decoItemDetails[0];
         //asigning decoItemsDetailsList data
         for (int i = 0;
-            i < getAddDataOrnamentModel.decorativeItemDetails.length;
+            i < getAddDataOrnamentModel.data.decoItemDetails.length;
             i++) {
-          decoItemsDetailsList = getAddDataOrnamentModel.decorativeItemDetails;
+          decoItemsDetailsList = getAddDataOrnamentModel.data.decoItemDetails;
         }
         // favouriteDealsList.addAll(smartDealsOnlineModel.vendorDealsList);
         // log('Length1 : ${smartDealsOnlineModel.vendorDealsList.length}');
@@ -272,7 +279,7 @@ class AddUnInsuredJewelleryScreenController extends GetxController {
                 : selectedOrnamentPurchaseDate.toString()
       });
       requestMap.addAll(
-          {'purchase_price': ornamentPurchasedPriceController.text.toString()});
+          {'purchase_price': ornamentPurchasedPriceController.text.toString().trim().isEmpty ? "0" : ornamentPurchasedPriceController.text.toString().trim()});
       requestMap.addAll({'metaldetails': metalDataMapList});
       requestMap.addAll({'stonedetails': stoneDataMapList});
       requestMap.addAll({'decorativeitem': decoItemsDataMapList});
@@ -321,10 +328,11 @@ class AddUnInsuredJewelleryScreenController extends GetxController {
 
       AddOrnamentResponseModel addOrnamentResponseModel =
           AddOrnamentResponseModel.fromJson(jsonDecode(response.body));
-      var isSuccessStatus = addOrnamentResponseModel.success;
+      // var isSuccessStatus = addOrnamentResponseModel.success;
+      isStatusCode = addOrnamentResponseModel.statusCode;
 
-      if (isSuccessStatus) {
-        log("CustOraSrNo is a :: ${addOrnamentResponseModel.data.custOraSrNo}");
+      if (isStatusCode == 200) {
+        // log("CustOraSrNo is a :: ${addOrnamentResponseModel.data.custOraSrNo}");
         CommonWidgets().showBorderSnackBar(
             context: Get.context!, displayText: 'Successfully Add Jewellery');
 

@@ -87,10 +87,10 @@ class JewellerDetailsScreen extends StatelessWidget {
                         /// Below all module in 2nd phase
                         Column(
                           children: [
-                            jewellerDetailsScreenController
-                                    .newArrivalList.isEmpty
-                                ? Container()
-                                : NewArrivalListModule(),
+                            // jewellerDetailsScreenController
+                            //         .newArrivalList.isEmpty
+                            //     ? Container()
+                            //     : NewArrivalListModule(),
                             jewellerDetailsScreenController
                                     .womenTypeList.isEmpty
                                 ? Container()

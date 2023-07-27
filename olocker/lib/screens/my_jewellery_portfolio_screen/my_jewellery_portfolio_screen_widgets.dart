@@ -12,8 +12,7 @@ import '../../controllers/my_jewellery_portfolio_controller.dart';
 class TotalJewelleryPortfolioModule extends StatelessWidget {
   TotalJewelleryPortfolioModule({Key? key}) : super(key: key);
 
-  final jewellPortFolioController =
-      Get.find<MyJewelleryPortFolioScreenController>();
+  final jewellPortFolioController = Get.find<MyJewelleryPortFolioScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +46,11 @@ class TotalJewelleryPortfolioModule extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 15),
-          DetailsRowWidget(
-            titleText: "Number of Items",
-            valueText:
-                "${jewellPortFolioController.totalJewelleryPortfolioList[0].noofItems}",
-          ),
+          // DetailsRowWidget(
+          //   titleText: "Number of Items",
+          //   valueText:
+          //       "${jewellPortFolioController.totalJewelleryPortfolioList[0].noofItems}",
+          // ),
           const SizedBox(height: 15),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,13 +65,18 @@ class TotalJewelleryPortfolioModule extends StatelessWidget {
                 ),
               ),
               Text(
-                NumberFormat.currency(
+                "${jewellPortFolioController.totalJewelleryPortfolioList[0].insuredInputValue}",
+                /*NumberFormat.currency(
                   symbol: '₹ ',
                   locale: "HI",
                   decimalDigits: 2,
-                ).format(double.parse(jewellPortFolioController
+                ).format(
+                    // double.parse(
+                    jewellPortFolioController
                     .totalJewelleryPortfolioList[0].insuredInputValue
-                    .toString())),
+
+                    // )
+                ),*/
                 style: TextStyle(
                   fontFamily: "Roboto",
                   color: AppColors.greyDarkColor,
@@ -193,11 +197,11 @@ class MyInsuredJewelleryModule extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 15),
-          DetailsRowWidget(
-            titleText: "Number of Items",
-            valueText:
-                "${jewellPortFolioController.insuredOrnamentsList[0].noofItems}",
-          ),
+          // DetailsRowWidget(
+          //   titleText: "Number of Items",
+          //   valueText:
+          //       "${jewellPortFolioController.insuredOrnamentsList[0].noofItems}",
+          // ),
           const SizedBox(height: 15),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

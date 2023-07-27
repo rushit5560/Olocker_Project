@@ -28,14 +28,14 @@ class JewelleryCategoryModel {
 class Data {
   List<GetPushCollectionItem> getPushCollection;
   List<GetPushOffer> getPushOffer;
-  List<dynamic> getPushSubCategory;
+  // List<dynamic> getPushSubCategory;
   bool success;
   ErrorInfoModel errorInfo;
 
   Data({
     required this.getPushCollection,
     required this.getPushOffer,
-    required this.getPushSubCategory,
+    // required this.getPushSubCategory,
     required this.success,
     required this.errorInfo,
   });
@@ -46,8 +46,8 @@ class Data {
                 .map((x) => GetPushCollectionItem.fromJson(x))),
         getPushOffer: List<GetPushOffer>.from(
             (json["getPushOffer"] ?? []).map((x) => GetPushOffer.fromJson(x))),
-        getPushSubCategory:
-            List<dynamic>.from(json["getPushSubCategory"].map((x) => x)),
+        // getPushSubCategory:
+        //     List<dynamic>.from(json["getPushSubCategory"].map((x) => x)),
         success: json["success"] ?? false,
         errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
       );

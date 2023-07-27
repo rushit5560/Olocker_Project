@@ -18,21 +18,21 @@ class MyUnInsuredJewelleryScreenController extends GetxController {
   List<UnInsuredOrnament> getOrnamentList = [];
 
   ApiHeader apiHeader = ApiHeader();
-
+int isStatusCode=0;
   File? jewellerySelectedImageFile;
 
   Future<void> getMyUnInsuredAllJewelleryFunction() async {
-    String url = ApiUrl.getAllUnInsuredOrnamentApi;
+    String url = "${ApiUrl.getAllUnInsuredOrnamentApi}?CustSrNo=${UserDetails.customerId}";
     log("getMyUnInsuredAllJewelleryFunction Api Url : $url");
 
     try {
       isLoading(true);
-      var requestMap = {
-        "CustSrNo": UserDetails.customerId,
-      };
-      http.Response response = await http.post(
+      // var requestMap = {
+      //   "CustSrNo": UserDetails.customerId,
+      // };
+      http.Response response = await http.get(
         Uri.parse(url),
-        body: jsonEncode(requestMap),
+        // body: jsonEncode(requestMap),
         headers: apiHeader.headers,
       );
 
@@ -42,12 +42,12 @@ class MyUnInsuredJewelleryScreenController extends GetxController {
       GetUnInsuredOrnamentModel getUnInsuredOrnamentModel =
           GetUnInsuredOrnamentModel.fromJson(json.decode(response.body));
 
-      var isSuccessStatus = getUnInsuredOrnamentModel.success.obs;
-
-      if (isSuccessStatus.value) {
+      // var isSuccessStatus = getUnInsuredOrnamentModel.success.obs;
+      isStatusCode=getUnInsuredOrnamentModel.statusCode;
+      if (isStatusCode==200) {
         // favouriteProductsList = favouritesModel.favProduct;
-        getOrnamentList = getUnInsuredOrnamentModel.unInsuredOrnament;
-        log('getMyUnInsuredAllJewelleryFunction list is  : ${getUnInsuredOrnamentModel.unInsuredOrnament.length.toString()}');
+        getOrnamentList = getUnInsuredOrnamentModel.data.unInsuredOrnament;
+        log('getMyUnInsuredAllJewelleryFunction list is  : ${getUnInsuredOrnamentModel.data.unInsuredOrnament.length.toString()}');
       } else {
         // CommonWidgets().showBorderSnackBar(
         //   context: Get.context!,
