@@ -125,8 +125,8 @@ import 'dart:convert';
 
 import '../error_info_model/error_info_model.dart';
 
-
-JewelleryPortFolioGetModel jewelleryPortFolioGetModelFromJson(String str) => JewelleryPortFolioGetModel.fromJson(json.decode(str));
+JewelleryPortFolioGetModel jewelleryPortFolioGetModelFromJson(String str) =>
+    JewelleryPortFolioGetModel.fromJson(json.decode(str));
 
 // String jewelleryPortFolioGetModelToJson(JewelleryPortFolioGetModel data) => json.encode(data.toJson());
 
@@ -139,12 +139,13 @@ class JewelleryPortFolioGetModel {
     required this.data,
   });
 
-  factory JewelleryPortFolioGetModel.fromJson(Map<String, dynamic> json) => JewelleryPortFolioGetModel(
-    statusCode: json["statusCode"] ?? 0,
-    data: Data.fromJson(json["data"] ?? {}),
-  );
+  factory JewelleryPortFolioGetModel.fromJson(Map<String, dynamic> json) =>
+      JewelleryPortFolioGetModel(
+        statusCode: json["statusCode"] ?? 0,
+        data: Data.fromJson(json["data"] ?? {}),
+      );
 
-  /*Map<String, dynamic> toJson() => {
+/*Map<String, dynamic> toJson() => {
     "statusCode": statusCode,
     // "data": data.toJson(),
   };*/
@@ -166,13 +167,18 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    insuredOrnaments: List<InsuredOrnament>.from((json["insuredOrnaments"] ?? []).map((x) => InsuredOrnament.fromJson(x))),
-    unInsuredOrnaments: List<UnInsuredOrnament>.from((json["unInsuredOrnaments"] ?? []).map((x) => UnInsuredOrnament.fromJson(x))),
-    totalJewelleryPortfolio: List<TotalJewelleryPortfolio>.from((json["totalJewelleryPortfolio"] ?? []).map((x) => TotalJewelleryPortfolio.fromJson(x))),
-    success: json["success"] ?? false,
-    errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
-  );
-
+        insuredOrnaments: List<InsuredOrnament>.from(
+            (json["insuredOrnaments"] ?? [])
+                .map((x) => InsuredOrnament.fromJson(x))),
+        unInsuredOrnaments: List<UnInsuredOrnament>.from(
+            (json["unInsuredOrnaments"] ?? [])
+                .map((x) => UnInsuredOrnament.fromJson(x))),
+        totalJewelleryPortfolio: List<TotalJewelleryPortfolio>.from(
+            (json["totalJewelleryPortfolio"] ?? [])
+                .map((x) => TotalJewelleryPortfolio.fromJson(x))),
+        success: json["success"] ?? false,
+        errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
+      );
 }
 
 class InsuredOrnament {
@@ -188,14 +194,13 @@ class InsuredOrnament {
     required this.gainLoss,
   });
 
-  factory InsuredOrnament.fromJson(Map<String, dynamic> json) => InsuredOrnament(
-    noofItems: json["noofItems"] ?? 0,
-    insuredValue: json["insuredValue"] ?? 0,
-    marketValue: json["marketValue"] ?? 0,
-    gainLoss: json["gainLoss"] ?? "",
-  );
-
-
+  factory InsuredOrnament.fromJson(Map<String, dynamic> json) =>
+      InsuredOrnament(
+        noofItems: json["noofItems"] ?? 0,
+        insuredValue: json["insuredValue"] ?? 0,
+        marketValue: json["marketValue"] ?? 0,
+        gainLoss: json["gainLoss"] ?? "",
+      );
 }
 
 class UnInsuredOrnament {
@@ -211,14 +216,13 @@ class UnInsuredOrnament {
     required this.gainLoss,
   });
 
-  factory UnInsuredOrnament.fromJson(Map<String, dynamic> json) => UnInsuredOrnament(
-    noofItems: json["noofItems"] ?? 0,
-    inputValue: json["inputValue"] ?? 0,
-    marketValue: (json["marketValue"] ?? 0).toString(),
-    gainLoss: json["gainLoss"] ?? "",
-  );
-
-
+  factory UnInsuredOrnament.fromJson(Map<String, dynamic> json) =>
+      UnInsuredOrnament(
+        noofItems: json["noofItems"] ?? 0,
+        inputValue: json["inputValue"] ?? 0,
+        marketValue: (json["marketValue"] ?? 0).toString(),
+        gainLoss: json["gainLoss"] ?? "",
+      );
 }
 
 class TotalJewelleryPortfolio {
@@ -234,17 +238,14 @@ class TotalJewelleryPortfolio {
     required this.gainLoss,
   });
 
-  factory TotalJewelleryPortfolio.fromJson(Map<String, dynamic> json) => TotalJewelleryPortfolio(
-    noofItems: json["noofItems"] ?? 0,
-    insuredInputValue: (json["insuredInputValue"] ?? 0.0).toString(),
-    marketValue: (json["marketValue"] ?? 0.0).toString(),
-    gainLoss: json["gainLoss"] ?? "",
-  );
-
+  factory TotalJewelleryPortfolio.fromJson(Map<String, dynamic> json) =>
+      TotalJewelleryPortfolio(
+        noofItems: json["noofItems"] ?? 0,
+        insuredInputValue: (json["insuredInputValue"] ?? 0.0).toString(),
+        marketValue: (json["marketValue"] ?? 0.0).toString(),
+        gainLoss: json["gainLoss"] ?? "",
+      );
 }
-
-
-
 
 /*class InsuredOrnament {
   String noofItems;
@@ -273,4 +274,3 @@ class TotalJewelleryPortfolio {
   );
 
 }*/
-

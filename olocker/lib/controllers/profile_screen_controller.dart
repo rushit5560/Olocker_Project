@@ -128,8 +128,8 @@ class ProfileScreenController extends GetxController {
         log("user profile get success");
 
         isEditable.value = true;
-        String imgUrl = "${ApiUrl.apiImagePath}/${userProfileGetModel.data.imageLocation}";
-        log('User Profile Image : $imgUrl');
+        // String imgUrl = "${ApiUrl.apiImagePath}/${userProfileGetModel.data.imageLocation}";
+        // log('User Profile Image : $imgUrl');
         apiGetProfileImage =
             File(ApiUrl.apiImagePath + userProfileGetModel.data.imageLocation);
         userApiImageFile = userProfileGetModel.data.imageLocation;
