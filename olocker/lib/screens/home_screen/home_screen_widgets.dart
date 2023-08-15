@@ -190,7 +190,7 @@ class MyJewellersListModule extends StatelessWidget {
 
   Widget _jewellerListTile(JewellerData jewellerData) {
     String imgUrl = ApiUrl.apiImagePath + jewellerData.logoFileName;
-    log("jewellerData.logoFileName :: $imgUrl");
+    // log("jewellerData.logoFileName :: $imgUrl");
     return GestureDetector(
       onTap: () {
         Get.to(() => JewellerDetailsScreen(), arguments: [

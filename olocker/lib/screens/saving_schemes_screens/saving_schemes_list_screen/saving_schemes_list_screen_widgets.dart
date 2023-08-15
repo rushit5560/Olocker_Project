@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,9 +23,8 @@ class BannerPageViewModule extends StatelessWidget {
     return CarouselSlider.builder(
       itemCount: savingSchemesListScreenController.getSavingSchemesList.length,
       itemBuilder: (context, i, realIndex) {
-        // String imgUrl = ApiUrl.apiMainPath +
-        //     screenController.announcementOfferList[i].imageurl;
-        // log("image url :: ${ApiUrl.apiImagePath + savingSchemesListScreenController.getSavingSchemesList[i].imagePath}");
+        String imgUrl = ApiUrl.apiImagePath + savingSchemesListScreenController.getSavingSchemesList[i].imagePath;
+        // log('imgUrl imgUrl :$imgUrl');
         return Container(
           height: savingSchemesListScreenController.size.height * 0.25,
           width: double.infinity,
@@ -39,9 +40,7 @@ class BannerPageViewModule extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: CachedNetworkImage(
-                imageUrl: ApiUrl.apiImagePath +
-                    savingSchemesListScreenController
-                        .getSavingSchemesList[i].imagePath,
+                imageUrl: imgUrl,
                 fit: BoxFit.cover,
                 height: savingSchemesListScreenController.size.height * 0.25,
                 width: double.infinity,

@@ -259,16 +259,13 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
     log('getOrnamentDetailFunction Api url : $url');
 
     try {
-      http.Response response = await http.get(
-        Uri.parse(url),
-        headers: apiHeader.headers,
-      );
+      http.Response response =
+          await http.get(Uri.parse(url), headers: apiHeader.headers);
 
       log('getOrnamentDetailFunction response stcode :: ${response.statusCode}');
       log("getOrnamentDetailFunction res body :: ${response.body}");
 
-      GetOrnamentDetailsModel getOrnamentDetailsModel =
-          GetOrnamentDetailsModel.fromJson(jsonDecode(response.body));
+      GetOrnamentDetailsModel getOrnamentDetailsModel = GetOrnamentDetailsModel.fromJson(jsonDecode(response.body));
       // var isSuccessStatus = getOrnamentDetailsModel.success;
       isStatusCode = getOrnamentDetailsModel.statusCode;
       if (isStatusCode == 200) {
@@ -281,29 +278,28 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
           }
         }
 
-        ornamentGrossWeightController.text =
-            getOrnamentDetailsModel.data.grosswt;
-        ornamentPurchasedFromController.text =
-            getOrnamentDetailsModel.data.purchasedFrom;
+        log('getOrnamentDetailsModel.data.grosswt :${getOrnamentDetailsModel.data.grosswt}');
+
+        ornamentGrossWeightController.text = getOrnamentDetailsModel.data.grosswt;
+        ornamentPurchasedFromController.text = getOrnamentDetailsModel.data.purchasedFrom;
 
         log("getOrnamentDetailsModel.purchaseDate :: ${getOrnamentDetailsModel.data.purchaseDate}");
 
-        var dateFormat = DateFormat('dd-MM-yyyy');
+        if(getOrnamentDetailsModel.data.purchaseDate != "") {
+          var dateFormat = DateFormat('dd-MM-yyyy');
 
-        var parsedDate = dateFormat
-            .parse(getOrnamentDetailsModel.data.purchaseDate.trim())
-            .toString();
+          var parsedDate = dateFormat.parse(getOrnamentDetailsModel.data.purchaseDate.trim()).toString();
 
-        // log("get parsedDate is : : $parsedDate");
+          var dateFormatSet = DateFormat('dd-MM-yyyy');
+          var formattedDate = dateFormatSet.format(DateTime.parse(parsedDate));
 
-        var dateFormatSet = DateFormat('dd-MM-yyyy');
-        var formattedDate = dateFormatSet.format(DateTime.parse(parsedDate));
-
-        selectedOrnamentPurchaseDate.value = formattedDate.replaceAll("-", "/");
-        log("selectedOrnamentPurchaseDate.value is : : ${selectedOrnamentPurchaseDate.value}");
+          selectedOrnamentPurchaseDate.value = formattedDate.replaceAll("-", "/");
+          log("selectedOrnamentPurchaseDate.value is : : ${selectedOrnamentPurchaseDate.value}");
+        }
 
         // selectedOrnamentPurchaseDate.value =
         //     getOrnamentDetailsModel.purchaseDate.toString().split(" ")[0];
+
         ornamentPurchasedPriceController.text =
             getOrnamentDetailsModel.data.purchasePrice.toString().split(".")[0];
         log('ornamentPurchasedPriceController ::${ornamentPurchasedPriceController.text}');
@@ -539,9 +535,7 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     getAllDataAddOrnamentFunction();
-
     super.onInit();
   }
 }

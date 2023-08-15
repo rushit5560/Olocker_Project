@@ -110,8 +110,8 @@ class ProductDetailsFormModule extends StatelessWidget {
                     unInsuredJewelController.ornamentPurchasedFromController,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.text,
-                validator: (value) =>
-                    FieldValidator().validatePurchasedFrom(value!),
+                // validator: (value) =>
+                //     FieldValidator().validatePurchasedFrom(value!),
                 decoration: InputDecoration(
                   contentPadding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
@@ -167,7 +167,7 @@ class ProductDetailsFormModule extends StatelessWidget {
                 height: 1,
                 thickness: 1,
               ),
-              unInsuredJewelController.isValidate.value
+              /*unInsuredJewelController.isValidate.value
                   ? unInsuredJewelController
                               .selectedOrnamentPurchaseDate.value ==
                           "Select Purchased Date"
@@ -189,7 +189,7 @@ class ProductDetailsFormModule extends StatelessWidget {
                           ],
                         )
                       : const SizedBox()
-                  : const SizedBox(),
+                  : const SizedBox(),*/
               SizedBox(height: 1.h),
               TextFormField(
                 controller:
@@ -197,8 +197,8 @@ class ProductDetailsFormModule extends StatelessWidget {
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) =>
-                    FieldValidator().validatePurchasedPrice(value!),
+                // validator: (value) =>
+                //     FieldValidator().validatePurchasedPrice(value!),
                 decoration: InputDecoration(
                   contentPadding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
@@ -952,7 +952,7 @@ class UploadImageFileFormModule extends StatelessWidget {
                         fit: BoxFit.cover,
                       )
                     : Image.network(
-                        "unInsuredJewelController.apiJewelleryImageFile!.path",
+                        unInsuredJewelController.apiJewelleryImageFile!.path,
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) {
                           return Container(

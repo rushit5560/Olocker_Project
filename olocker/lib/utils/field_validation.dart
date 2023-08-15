@@ -59,6 +59,20 @@ class FieldValidator {
     }
   }
 
+  String? signUpValidateEmail(String value) {
+    if (value.isEmpty) {
+      return null;
+    } else {
+      if (!isNumeric(value) &&
+          !RegExp(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+              .hasMatch(value)) {
+        return "Invalid email.";
+      } else {
+        return null;
+      }
+    }
+  }
+
   String? validateRetailerCodeNumber(String value) {
     if (value.isEmpty) {
       return 'Retailer code is required.';

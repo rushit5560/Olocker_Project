@@ -72,9 +72,11 @@ class DisplayImageDetailsFieldRow extends StatelessWidget {
   DisplayImageDetailsFieldRow({Key? key}) : super(key: key);
 
   final profileScreenController = Get.find<ProfileScreenController>();
+
   @override
   Widget build(BuildContext context) {
-    String userProfileImage = "${ApiUrl.apiProfileImagePath}${profileScreenController.userApiImageFile}";
+    String userProfileImage =
+        "${ApiUrl.apiProfileImagePath}${profileScreenController.userApiImageFile}";
 
     return Obx(
       () => Row(
@@ -375,51 +377,33 @@ class DobFieldRow extends StatelessWidget {
           ),
           SizedBox(width: 2.w),
           Expanded(
-              child: AbsorbPointer(
-            absorbing: profileScreenController.isEditable.value,
-            child: TextFormField(
-              readOnly: true,
-              controller: profileScreenController.dateofbrithController,
-              // maxLength: 10,
-              style: TextStyle(
-                color: AppColors.darkBlue,
-                fontFamily: "Roboto",
-                fontSize: 11.sp,
-                fontWeight: FontWeight.w400,
-              ),
-              onTap: () {
-                profileScreenController.showDatePicker(context);
-              },
-              decoration: InputDecoration(
-                isDense: true,
-                hintText: "Enter DOB",
-                hintStyle: TextStyle(
-                  color: AppColors.greyColor,
-                  fontSize: 11.sp,
+            child: AbsorbPointer(
+              absorbing: profileScreenController.isEditable.value,
+              child: TextFormField(
+                readOnly: true,
+                controller: profileScreenController.dateofbrithController,
+                // maxLength: 10,
+                style: TextStyle(
+                  color: AppColors.darkBlue,
                   fontFamily: "Roboto",
+                  fontSize: 11.sp,
+                  fontWeight: FontWeight.w400,
+                ),
+                onTap: () {
+                  profileScreenController.showDatePicker(context);
+                },
+                decoration: InputDecoration(
+                  isDense: true,
+                  hintText: "Enter DOB",
+                  hintStyle: TextStyle(
+                    color: AppColors.greyColor,
+                    fontSize: 11.sp,
+                    fontFamily: "Roboto",
+                  ),
                 ),
               ),
             ),
-          )
-
-              //  AbsorbPointer(
-              //   absorbing: profileScreenController.isEditable.value,
-              //   child: GestureDetector(
-              //     onTap: () {
-              //       profileScreenController.showDatePicker(context);
-              //     },
-              //     child: Text(
-              //       profileScreenController.selectedDobNumber.value,
-              //       style: TextStyle(
-              //         color: AppColors.darkBlue,
-              //         fontFamily: "Roboto",
-              //         fontSize: 11.sp,
-              //         fontWeight: FontWeight.w400,
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              ),
+          ),
         ],
       ),
     );

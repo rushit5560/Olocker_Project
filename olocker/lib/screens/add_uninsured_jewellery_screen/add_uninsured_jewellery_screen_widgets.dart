@@ -934,8 +934,7 @@ class DecorativeItemDetailsFormModule extends StatelessWidget {
                                     ),
                                     Expanded(
                                       child: Text(
-                                        unInsuredJewelController
-                                                .decoItemsDataMapList[index]
+                                        unInsuredJewelController.decoItemsDataMapList[index]
                                             ["unitofwt"],
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
@@ -945,11 +944,8 @@ class DecorativeItemDetailsFormModule extends StatelessWidget {
                                     ),
                                     GestureDetector(
                                       onTap: () {
-                                        unInsuredJewelController
-                                            .isLoading(true);
-                                        unInsuredJewelController
-                                            .decoItemsDataMapList
-                                            .removeAt(index);
+                                        unInsuredJewelController.isLoading(true);
+                                        unInsuredJewelController.decoItemsDataMapList.removeAt(index);
                                         log("decoItems map list is :: ${unInsuredJewelController.decoItemsDataMapList.toString()}");
                                         unInsuredJewelController
                                             .isLoading(false);
@@ -1002,11 +998,10 @@ class UploadImageFileFormModule extends StatelessWidget {
               SizedBox(
                 height: unInsuredJewelController.size.height * 0.15,
                 width: unInsuredJewelController.size.width * 0.4,
-                child: unInsuredJewelController.jewellerySelectedImageFile ==
-                        null
-                    ? Image.asset("assets/images/select-image.png")
+                child: unInsuredJewelController.jewellerySelectedImageFile.path.isEmpty
+                    ? Image.asset(AppImages.noLogoImage)
                     : Image.file(
-                        unInsuredJewelController.jewellerySelectedImageFile!,
+                        unInsuredJewelController.jewellerySelectedImageFile,
                         fit: BoxFit.cover,
                       ),
               ),

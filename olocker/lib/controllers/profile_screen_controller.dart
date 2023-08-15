@@ -140,7 +140,8 @@ class ProfileScreenController extends GetxController {
         DateTime dateTime = DateTime.parse(userProfileGetModel.data.dob);
         initialDate = dateTime;
 
-        String formattedDate = DateFormat('yyyy-MM-dd').format(dateTime);
+        var dateFormat = DateFormat('MMM dd yyyy');
+        var formattedDate = dateFormat.format(dateTime);
         dateofbrithController.text = formattedDate;
 
         userProfileGetModel.data.gender == "1"
@@ -155,7 +156,7 @@ class ProfileScreenController extends GetxController {
           var dateGetPassing =
               DateFormat("yyyy-MM-dd").parse(userProfileGetModel.data.dob);
           log("getting formatted date is :: $dateGetPassing");
-          var datePassingFormat = DateFormat("d-MM-yyyy");
+          var datePassingFormat = DateFormat("yyyy-MM-d");
 
           datePassingvalue.value = datePassingFormat.format(dateGetPassing);
         }
@@ -271,8 +272,7 @@ class ProfileScreenController extends GetxController {
 
         var resBody = jsonDecode(response.body);
 
-        UpdateProfileModel updateProfileModel =
-        UpdateProfileModel.fromJson(resBody);
+        UpdateProfileModel updateProfileModel = UpdateProfileModel.fromJson(resBody);
 
         // isSuccessResult.value = userProfileGetModel.success;
         isStatusCode = updateProfileModel.statusCode;

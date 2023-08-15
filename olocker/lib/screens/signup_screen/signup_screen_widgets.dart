@@ -227,7 +227,7 @@ class EmailField extends StatelessWidget {
             child: TextFormField(
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
-              // validator: (value) => FieldValidator().validateEmail(value!),
+              validator: (value) => FieldValidator().signUpValidateEmail(value!),
               controller: signUpScreenController.emailController,
               decoration: InputDecoration(
                 isDense: true,
