@@ -60,9 +60,8 @@ class OnlineDealsDetailsScreenController extends GetxController {
       );
       log('addOnlineDealInFavouriteFunction res body is :: ${response.body}');
 
-      InsertFavouriteDealModel insertFavouriteDealModel =
-          InsertFavouriteDealModel.fromJson(json.decode(response.body));
-      isSuccessStatus = insertFavouriteDealModel.success.obs;
+      InsertFavouriteDealModel insertFavouriteDealModel = InsertFavouriteDealModel.fromJson(json.decode(response.body));
+      isSuccessStatus = insertFavouriteDealModel.data.success.obs;
 
       if (isSuccessStatus.value) {
         log('Insert Favourite Deal Success');
@@ -77,6 +76,10 @@ class OnlineDealsDetailsScreenController extends GetxController {
         multiStateButtonController.setButtonState = activateSuccess;
       } else {
         log('addOnlineDealInFavouriteFunction Else');
+        CommonWidgets().showBorderSnackBar(
+          context: Get.context!,
+          displayText: insertFavouriteDealModel.data.errorInfo.extraInfo,
+        );
       }
     } catch (e) {
       log('addOnlineDealInFavouriteFunction Error :$e');
@@ -91,5 +94,6 @@ class OnlineDealsDetailsScreenController extends GetxController {
     if (onLineDealDetails.isFavoriteDeal == true) {
       multiStateButtonController.setButtonState = activateSuccess;
     }
+    log('onLineDealDetails :${onLineDealDetails.srNo}');
   }
 }

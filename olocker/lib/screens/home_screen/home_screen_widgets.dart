@@ -256,9 +256,9 @@ class BannerModule extends StatelessWidget {
   }
 
   Widget _imageModule(NotificationBanner singleBanner) {
-    String imgUrl = ApiUrl.apiImagePath +
-        singleBanner.imageLocation +
-        singleBanner.imageName;
+    String imgUrl = ApiUrl.apiImagePath  + singleBanner.imageLocation + singleBanner.imageName;
+    // log('Banner Image :$imgUrl');
+
     return CachedNetworkImage(
       imageUrl: imgUrl,
       fit: BoxFit.cover,

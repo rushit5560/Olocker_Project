@@ -209,7 +209,7 @@ class JewellerBannerModule extends StatelessWidget {
   }
 
   Widget _imageModule({required GetPushOfferItem singleOffer}) {
-    String imgUrl = ApiUrl.apiMainPath + singleOffer.imageurl;
+    String imgUrl = ApiUrl.apiImagePath + singleOffer.imageurl;
     return GestureDetector(
       onTap: () {
         if (singleOffer.isClickable == true) {
@@ -419,7 +419,7 @@ class NewArrivalListModule extends StatelessWidget {
               () => JewellerJewelleryListScreen(),
               arguments: [
                 screenController.newArrivalList[i].name,
-                screenController.newArrivalList[i].srNo,
+                screenController.newArrivalList[i].srNo.toString(),
                 screenController.jewellerId.toString(),
                 JewelleryListType.categoryId,
                 screenController.collectionNameList,
@@ -460,15 +460,14 @@ class JewelleryFirstCategoryListModule extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, i) {
-        String imgUrl = ApiUrl.apiMainPath +
-            screenController.jewelleryCategoryList[i].imageurl;
+        String imgUrl = ApiUrl.apiImagePath + screenController.jewelleryCategoryList[i].imageurl;
         return GestureDetector(
           onTap: () {
             Get.to(
               () => JewellerJewelleryListScreen(),
               arguments: [
                 screenController.jewelleryCategoryList[i].name,
-                screenController.jewelleryCategoryList[i].srNo,
+                screenController.jewelleryCategoryList[i].srNo.toString(),
                 screenController.jewellerId.toString(),
                 JewelleryListType.categoryId,
                 screenController.collectionNameList,
@@ -505,9 +504,9 @@ class JewellerySubCategoryListModule extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, i) {
-        String imgUrl = ApiUrl.apiMainPath +
+        String imgUrl = ApiUrl.apiImagePath +
             screenController.jewellerysubCategoryList[i].imageurl;
-        log("screenController.jewellerysubCategoryList.imgUrl 222222 ${imgUrl}");
+        log("screenController.jewellerysubCategoryList.imgUrl 222222 $imgUrl");
 
         return GestureDetector(
           onTap: () {
@@ -515,7 +514,7 @@ class JewellerySubCategoryListModule extends StatelessWidget {
               () => JewellerJewelleryListScreen(),
               arguments: [
                 screenController.jewellerysubCategoryList[i].name,
-                screenController.jewellerysubCategoryList[i].srNo,
+                screenController.jewellerysubCategoryList[i].srNo.toString(),
                 screenController.jewellerId.toString(),
                 JewelleryListType.categoryId,
                 screenController.collectionNameList,

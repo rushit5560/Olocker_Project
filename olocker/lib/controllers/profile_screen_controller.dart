@@ -7,8 +7,6 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/user_details.dart';
-import 'package:olocker/controllers/index_screen_controller.dart';
-import 'package:olocker/screens/index_screen/index_screen.dart';
 import 'package:olocker/widgets/common_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -18,6 +16,8 @@ import '../models/user_profile_models/city_state_get_model.dart';
 import '../models/user_profile_models/user_profile_get_model.dart';
 import '../models/user_profile_models/user_profile_update_model.dart';
 import '../utils/user_prefs_data.dart';
+
+
 
 class ProfileScreenController extends GetxController {
   final size = Get.size;
@@ -30,6 +30,7 @@ class ProfileScreenController extends GetxController {
   File? apiGetProfileImage;
   String userApiImageFile = "";
   File? selectedProfileImage;
+  DateTime initialDate = DateTime.now();
 
   TextEditingController fnameController = TextEditingController();
   TextEditingController lnameController = TextEditingController();
@@ -69,12 +70,12 @@ class ProfileScreenController extends GetxController {
               height: size.height * 0.32,
               child: CupertinoDatePicker(
                   mode: CupertinoDatePickerMode.date,
-                  initialDateTime: DateTime.now(),
+                  initialDateTime: initialDate,
                   minimumYear: 1940,
                   maximumYear: DateTime.now().year,
                   onDateTimeChanged: (val) {
                     // 03/11/2019 date format
-                    var datePassingFormat = DateFormat('dd-MM-yyyy');
+                    var datePassingFormat = DateFormat('yyyy-MM-d');
                     var dateFormat = DateFormat('MMM dd yyyy');
 
                     datePassingvalue.value = datePassingFormat.format(val);
@@ -83,6 +84,7 @@ class ProfileScreenController extends GetxController {
 
                     selectedDobNumber.value = formattedDate;
                     dateofbrithController.text = selectedDobNumber.value;
+                    initialDate = val;
                   }),
             ),
             // Close the modal
@@ -118,9 +120,9 @@ class ProfileScreenController extends GetxController {
       log("getUserProfileDetailsFunction res body : ${response.body}");
 
       var resBody = jsonDecode(response.body);
+      log('resBody :${jsonEncode(resBody)}');
 
-      UserProfileGetModel userProfileGetModel =
-          UserProfileGetModel.fromJson(resBody);
+      UserProfileGetModel userProfileGetModel = UserProfileGetModel.fromJson(resBody);
 
       // isSuccessResult.value = userProfileGetModel.success;
       isStatusCode = userProfileGetModel.statusCode;
@@ -128,22 +130,16 @@ class ProfileScreenController extends GetxController {
         log("user profile get success");
 
         isEditable.value = true;
-        // String imgUrl = "${ApiUrl.apiImagePath}/${userProfileGetModel.data.imageLocation}";
-        // log('User Profile Image : $imgUrl');
-        apiGetProfileImage =
-            File(ApiUrl.apiImagePath + userProfileGetModel.data.imageLocation);
+        apiGetProfileImage = File(ApiUrl.apiImagePath + userProfileGetModel.data.imageLocation);
         userApiImageFile = userProfileGetModel.data.imageLocation;
 
         userName.value = userProfileGetModel.data.firstName;
-        // namePrefixDDvalue.value = userProfileGetModel.customerProfile.gender == "Male" ? "" :;
         fnameController.text = userProfileGetModel.data.firstName;
         lnameController.text = userProfileGetModel.data.lastName;
         emailController.text = userProfileGetModel.data.userEmail;
-        // log("userProfileGetModel.data.dob ${userProfileGetModel.data.dob}");
         DateTime dateTime = DateTime.parse(userProfileGetModel.data.dob);
+        initialDate = dateTime;
 
-
-        // log("dateTime $dateTime");
         String formattedDate = DateFormat('yyyy-MM-dd').format(dateTime);
         dateofbrithController.text = formattedDate;
 
@@ -219,6 +215,7 @@ class ProfileScreenController extends GetxController {
   }
 
   Future<void> updateUserProfileDetailsFunction() async {
+    log('Selected Date format New New : ${datePassingvalue.value}');
     // if (formKey.currentState!.validate()) {
     String url = ApiUrl.updateUserProfileApi;
     log("updateUserProfileDetailsFunction Api url: $url");
@@ -258,9 +255,9 @@ class ProfileScreenController extends GetxController {
           "ProfileImage_Base64": "",
         };
 
-        log('Without Image Body Data : ${jsonEncode(requestMap)}');
+        // log('Without Image Body Data : ${jsonEncode(requestMap)}');
 
-        log("updateUserProfileDetailsFunction req map : ${UserDetails.customerId}");
+        // log("updateUserProfileDetailsFunction req map : ${UserDetails.customerId}");
         log("updateUserProfileDetailsFunction req map : ${datePassingvalue.value}");
 
         http.Response response = await http.post(

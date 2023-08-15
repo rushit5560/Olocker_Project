@@ -60,6 +60,7 @@ class JewelleryGridviewModule extends StatelessWidget {
 
   Widget _jewelleryListTile(SearchProductListDatum singleItem, int i) {
     String imgUrl = ApiUrl.apiImagePath + singleItem.productImage;
+    log('imgUrl Grid :$imgUrl');
     return GestureDetector(
       onTap: () {
         Get.to(

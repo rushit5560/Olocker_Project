@@ -128,7 +128,7 @@ isStatusCode=getJewelleryDetailModel.statusCode;
             messageType: 1,
             partnerName: "",
             partnerSrNo: int.parse(partnerSrNo.toString()),
-            productId: productSrNo,
+            productId: int.parse(productSrNo.toString()),
             replyMsgId: threadMsgId.value,
             sentBy: 0,
             srNo: 0,

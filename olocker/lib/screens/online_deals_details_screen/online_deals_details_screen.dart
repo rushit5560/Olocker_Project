@@ -10,8 +10,7 @@ import 'online_deals_details_screen_widgets.dart';
 
 class OnlineDealsDetailsScreen extends StatelessWidget {
   OnlineDealsDetailsScreen({Key? key}) : super(key: key);
-  final onlineDealsDetailsScreenController =
-      Get.put(OnlineDealsDetailsScreenController());
+  final onlineDealsDetailsScreenController = Get.put(OnlineDealsDetailsScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -36,30 +35,24 @@ class OnlineDealsDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HtmlContentViewer(
-              htmlContent: onlineDealsDetailsScreenController
-                  .onLineDealDetails.termsAndCondition,
-
-              urlLauncherDelegate: (url) {
-                return launchUrl(
-                  Uri.parse(url.toString()),
-                );
-              },
-              // shrinkWrap: true,
-              // onLinkTap: (url, attributes, element) {
-              //   launchUrl(
-              //     Uri.parse(url.toString()),
-              //   );
-              // },
-              // onLinkTap: (url, context, attributes, element) {
-              //   // var url = Uri.parse(url);
-              //    launchUrl(Uri.parse(url.toString()));
-              //   // if (await canLaunchUrl(Uri.parse(url.toString()))) {
-              //   // } else {
-              //   //   throw 'Could not launch $url';
-              //   // }
-              // },
-            ),
+            onlineDealsDetailsScreenController
+                        .onLineDealDetails.termsAndCondition ==
+                    ""
+                ? const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("No Terms & Condition"),
+                    ],
+                  )
+                : HtmlContentViewer(
+                    htmlContent: onlineDealsDetailsScreenController
+                        .onLineDealDetails.termsAndCondition,
+                    urlLauncherDelegate: (url) {
+                      return launchUrl(
+                        Uri.parse(url.toString()),
+                      );
+                    },
+                  ),
             SizedBox(height: 5.h),
             ActivateDealButtonModule(),
             SizedBox(height: 5.h),

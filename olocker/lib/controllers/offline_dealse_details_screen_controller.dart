@@ -64,7 +64,7 @@ class OfflineDealsDetailsScreenController extends GetxController {
 
       InsertFavouriteDealModel insertFavouriteDealModel =
       InsertFavouriteDealModel.fromJson(json.decode(response.body));
-      isSuccessStatus = insertFavouriteDealModel.success.obs;
+      isSuccessStatus = insertFavouriteDealModel.data.success.obs;
 
       if (isSuccessStatus.value) {
         log('Insert Favourite Deal Success');

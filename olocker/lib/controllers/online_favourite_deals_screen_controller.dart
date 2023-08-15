@@ -13,7 +13,7 @@ class OnlineFavouriteDealsScreenController extends GetxController {
 
   ApiHeader apiHeader = ApiHeader();
   Size size = Get.size;
-int isStatusCode =0;
+  int isStatusCode = 0;
   List<FavDealList> favouriteDealsList = [];
 
   Future<void> getOnlineFavouriteDealsFunction() async {
@@ -27,6 +27,7 @@ int isStatusCode =0;
         Uri.parse(url),
         headers: apiHeader.headers,
       );
+      log('response121212 :${response.body}');
 
       FavouriteOnlineDealsModel smartDealsOnlineModel =
           FavouriteOnlineDealsModel.fromJson(json.decode(response.body));

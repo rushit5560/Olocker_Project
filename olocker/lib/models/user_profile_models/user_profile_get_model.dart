@@ -196,6 +196,7 @@ class UserProfileGetData {
   String mobileNo;
   String safegoldId;
   String salutation;
+  // String imageurl;
 
   UserProfileGetData({
     required this.custSrNo,
@@ -216,6 +217,7 @@ class UserProfileGetData {
     required this.mobileNo,
     required this.safegoldId,
     required this.salutation,
+    // required this.imageurl,
   });
 
   factory UserProfileGetData.fromJson(Map<String, dynamic> json) =>
@@ -238,5 +240,6 @@ class UserProfileGetData {
         mobileNo: json["mobileNo"] ?? "",
         safegoldId: json["safegoldId"] ?? "",
         salutation: json["salutation"] ?? "",
+        // imageurl: json["imageurl"] ?? "",
       );
 }

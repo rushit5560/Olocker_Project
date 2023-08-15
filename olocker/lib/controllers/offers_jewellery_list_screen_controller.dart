@@ -70,8 +70,7 @@ class OffersJewelleryListScreenController extends GetxController {
     String url = "";
 
     // if (jewelleryListType == JewelleryListType.categoryId) {
-    url =
-        "${ApiUrl.getOfferDetailApi}?OfferId=$offerId&CustomerSrNo=${UserDetails.customerId}";
+    url = "${ApiUrl.getOfferDetailApi}?OfferId=$offerId&CustomerSrNo=${UserDetails.customerId}";
     // } else {
     //   url =
     //       "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$jewelleryCategoryId";
@@ -85,8 +84,7 @@ class OffersJewelleryListScreenController extends GetxController {
       );
       log('getOfferDetailListFunction response : ${response.body}');
 
-      GetOfferDetailResultModel getOfferDetailResultModel =
-          GetOfferDetailResultModel.fromJson(json.decode(response.body));
+      GetOfferDetailResultModel getOfferDetailResultModel = GetOfferDetailResultModel.fromJson(json.decode(response.body));
       isSuccessStatus = getOfferDetailResultModel.success.obs;
 
       if (isSuccessStatus.value) {
@@ -110,8 +108,7 @@ class OffersJewelleryListScreenController extends GetxController {
 
   Future<void> getSearchProductsFunction(String searchName) async {
     isLoading(true);
-    String url =
-        "${ApiUrl.getOfferDetailApi}?OfferId=$offerId&CustomerSrNo=${UserDetails.customerId}";
+    String url = "${ApiUrl.getOfferDetailApi}?OfferId=$offerId&CustomerSrNo=${UserDetails.customerId}";
 
     // "${ApiUrl.getOfferDetailApi}?OfferId=$offerId&CustomerSrNo=${UserDetails.customerId}"
     // "api/Partner/GetOfferDetail?OfferId=$offerId&CustomerSrNo=${UserDetails.customerId}"

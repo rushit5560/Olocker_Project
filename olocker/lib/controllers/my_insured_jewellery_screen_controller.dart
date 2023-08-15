@@ -24,20 +24,19 @@ class MyInsuredJewelleryScreenController extends GetxController {
   File? jewellerySelectedImageFile;
 
   Future<void> getMyInsuredAllJewelleryFunction() async {
-    String url = ApiUrl.getAllInsuredOrnamentApi;
+    String url = "${ApiUrl.getAllInsuredOrnamentApi}?CustSrNo=${UserDetails.customerId}";
     log("getMyInsuredAllJewelleryFunction Api Url : $url");
 
     try {
       isLoading(true);
-      var requestMap = {
-        // "CustSrNo": "939308",
+      /*var requestMap = {
         "CustSrNo": UserDetails.customerId,
-      };
+      };*/
 
-      log("requestMap : $requestMap");
-      http.Response response = await http.post(
+      // log("requestMap : $requestMap");
+      http.Response response = await http.get(
         Uri.parse(url),
-        body: jsonEncode(requestMap),
+        // body: jsonEncode(requestMap),
         headers: apiHeader.headers,
       );
 
@@ -247,7 +246,6 @@ class MyInsuredJewelleryScreenController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     getMyInsuredAllJewelleryFunction();
     super.onInit();
   }

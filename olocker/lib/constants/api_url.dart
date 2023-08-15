@@ -8,11 +8,11 @@ class ApiHeader {
 class ApiUrl {
   static const String apiMainPath = "http://5.189.147.159:7013/";
 
+  static const String apiImagePath = "https://devappapi.olocker.in/";
+  // static const String apiImagePath = "https://www.olocker.in/";
 
-  static const String apiImagePath = "https://demo.olocker.in";
+  static const String apiProfileImagePath = "${apiMainPath}ProfileImage/";
 
-  //release image api path
-  // static const String apiImagePath = "https://www.olocker.in";
 
   // Home Screen Api
   static const String myJewellersApi = "${apiMainPath}api/user/GetMyJewellers";

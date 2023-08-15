@@ -132,14 +132,13 @@ class JewelleryDetailsScreenController extends GetxController {
       );
       log('getJewellerySpecialFeaturesFunction response :: ${response.body}');
 
-      SpecialFeaturesModel specialFeaturesModel =
-          SpecialFeaturesModel.fromJson(json.decode(response.body));
+      SpecialFeaturesModel specialFeaturesModel = SpecialFeaturesModel.fromJson(json.decode(response.body));
       // isSuccessStatus = specialFeaturesModel.success.obs;
       isStatusCode = specialFeaturesModel.statusCode;
-      if (isSuccessStatus.value) {
+      if (isStatusCode == 200) {
         specialFeaturesList.clear();
         specialFeaturesList.addAll(specialFeaturesModel.data);
-        // log('specialFeaturesList : ${specialFeaturesList.length}');
+        log('specialFeaturesList : ${specialFeaturesList.length}');
       } else {
         log('getSpecialFeaturesFunction Else');
         if (isStatusCode == 400) {

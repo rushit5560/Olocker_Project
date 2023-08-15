@@ -188,7 +188,7 @@ class PersonalLoansScreenController extends GetxController {
         body: jsonEncode(bodyData),
         headers: apiHeader.headers,
       );
-      // log("jsonEncode(bodyData) ${jsonEncode(bodyData)}");
+      log("jsonEncode(bodyData) ${jsonEncode(bodyData)}");
       log('response1111 : ${response.body}');
       log('statusCode2222 : ${response.statusCode}');
       CheckEligibilityModel checkEligibilityModel =

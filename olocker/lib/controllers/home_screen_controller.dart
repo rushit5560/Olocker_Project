@@ -15,6 +15,7 @@ import '../models/home_screen_models/smart_offline_deats_model.dart';
 import '../utils/user_prefs_data.dart';
 
 class HomeScreenController extends GetxController {
+
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
@@ -81,6 +82,7 @@ class HomeScreenController extends GetxController {
     try {
       http.Response response =
           await http.get(Uri.parse(url), headers: apiHeader.headers);
+      log('Home Screen Banner Response :${response.body}');
 
       BannerModel bannerModel =
           BannerModel.fromJson(json.decode(response.body));

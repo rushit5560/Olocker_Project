@@ -73,14 +73,14 @@ class JewellerDetailsScreenController extends GetxController {
   Future<void> getSpecialFeaturesFunction() async {
     isLoading(true);
     String url = "${ApiUrl.getSpecialFeaturesApi}?PartnerSrNo=$jewellerId";
-    // log('getSpecialFeaturesFunction Api Url :$url');
+    log('getSpecialFeaturesFunction Api Url :$url');
 
     try {
       http.Response response = await http.get(
         Uri.parse(url),
         headers: apiHeader.headers,
       );
-      // log('getSpecialFeaturesFunction response : ${response.body}');
+      log('getSpecialFeaturesFunction response : ${response.body}');
 
       SpecialFeaturesModel specialFeaturesModel =
           SpecialFeaturesModel.fromJson(json.decode(response.body));
@@ -277,7 +277,8 @@ class JewellerDetailsScreenController extends GetxController {
 
   // This 5 Function api calling in 2nd Phase
 
-  Future<void> getNewArrivalFunction() async {
+  // Now - This function not use any place
+  /*Future<void> getNewArrivalFunction() async {
     if (hasMore.value) {
       // isLoading(true);
       String url = "${ApiUrl.getNewArrivalApi}?PartnerSrNo=$jewellerId";
@@ -313,7 +314,7 @@ class JewellerDetailsScreenController extends GetxController {
     } else {
       isLoading(false);
     }
-  }
+  }*/
 
   Future<void> getJewelleryTypeFunction(
       {jewellerDetailsScroll = JewellerDetailsScroll.stopScroll}) async {
@@ -520,8 +521,7 @@ class JewellerDetailsScreenController extends GetxController {
 
         if (isStatusCode == 200) {
           clientTestimonialsList.clear();
-          clientTestimonialsList
-              .addAll(clientTestimonialsModel.data.testimonials);
+          clientTestimonialsList.addAll(clientTestimonialsModel.data.testimonials);
           log('getClientTestimonialsFunction clientTestimonialsList : ${clientTestimonialsList.length}');
         } else {
           log('getClientTestimonialsFunction Else');

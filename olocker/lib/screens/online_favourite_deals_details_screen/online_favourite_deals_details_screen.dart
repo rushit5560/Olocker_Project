@@ -33,10 +33,19 @@ class OnlineFavouriteDealsDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HtmlContentViewer(
-             htmlContent : onlineFavouriteDealsDetailsScreenController
-                  .favDealsDetails.termsAndCondition,
-            ),
+            onlineFavouriteDealsDetailsScreenController
+                        .favDealsDetails.termsAndCondition ==
+                    ""
+                ? const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("No Terms & Condition"),
+                    ],
+                  )
+                : HtmlContentViewer(
+                    htmlContent: onlineFavouriteDealsDetailsScreenController
+                        .favDealsDetails.termsAndCondition,
+                  ),
             SizedBox(
               height: onlineFavouriteDealsDetailsScreenController.size.height *
                   0.01.h,

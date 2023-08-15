@@ -6,6 +6,8 @@ import 'package:olocker/controllers/online_favourite_deals_details_screen_contro
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../widgets/common_widgets.dart';
+
 class FavouriteActivateDealButtonModule extends StatelessWidget {
   FavouriteActivateDealButtonModule({Key? key}) : super(key: key);
   final onlineFavouriteDealsDetailsScreenController =
@@ -18,15 +20,10 @@ class FavouriteActivateDealButtonModule extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () async {
-            // await onlineFavouriteDealsDetailsScreenController.addOnlineDealInFavouriteFunction();
-            Clipboard.setData(ClipboardData(
-                text: onlineFavouriteDealsDetailsScreenController
-                    .favDealsDetails.dealCode));
-            const snackBar = SnackBar(
-              content: Text('Successful copied'),
-              behavior: SnackBarBehavior.floating,
+            Clipboard.setData(
+              ClipboardData(text: onlineFavouriteDealsDetailsScreenController.favDealsDetails.dealCode),
             );
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            CommonWidgets().showBorderSnackBar(context: Get.context!, displayText: "Successfully Copied.");
           },
           child: Container(
             decoration: BoxDecoration(

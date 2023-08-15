@@ -74,6 +74,8 @@ class DisplayImageDetailsFieldRow extends StatelessWidget {
   final profileScreenController = Get.find<ProfileScreenController>();
   @override
   Widget build(BuildContext context) {
+    String userProfileImage = "${ApiUrl.apiProfileImagePath}${profileScreenController.userApiImageFile}";
+
     return Obx(
       () => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -127,9 +129,7 @@ class DisplayImageDetailsFieldRow extends StatelessWidget {
                                 // border: Border.all(
                                 //     color: AppColors.whiteColor, width: 3),
                                 image: DecorationImage(
-                                  image: NetworkImage(
-                                    "${ApiUrl.apiImagePath}${profileScreenController.userApiImageFile}",
-                                  ),
+                                  image: NetworkImage(userProfileImage),
                                   fit: BoxFit.cover,
                                 ),
                               ),

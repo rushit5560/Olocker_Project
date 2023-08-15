@@ -5,24 +5,44 @@ InsertFavouriteDealModel insertFavouriteDealModelFromJson(String str) => InsertF
 String insertFavouriteDealModelToJson(InsertFavouriteDealModel data) => json.encode(data.toJson());
 
 class InsertFavouriteDealModel {
+  int statusCode;
+  Data data;
+
   InsertFavouriteDealModel({
+    required this.statusCode,
+    required this.data,
+  });
+
+  factory InsertFavouriteDealModel.fromJson(Map<String, dynamic> json) => InsertFavouriteDealModel(
+    statusCode: json["statusCode"] ?? 0,
+    data: Data.fromJson(json["data"] ?? {}),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "statusCode": statusCode,
+    "data": data.toJson(),
+  };
+}
+
+class Data {
+  int srno;
+  bool success;
+  ErrorInfo errorInfo;
+
+  Data({
     required this.srno,
     required this.success,
     required this.errorInfo,
   });
 
-  int srno;
-  bool success;
-  ErrorInfo errorInfo;
-
-  factory InsertFavouriteDealModel.fromJson(Map<String, dynamic> json) => InsertFavouriteDealModel(
-    srno: json["Srno"] ?? 0,
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+    srno: json["srno"] ?? 0,
     success: json["success"] ?? false,
     errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
   );
 
   Map<String, dynamic> toJson() => {
-    "Srno": srno,
+    "srno": srno,
     "success": success,
     "error_info": errorInfo.toJson(),
   };
