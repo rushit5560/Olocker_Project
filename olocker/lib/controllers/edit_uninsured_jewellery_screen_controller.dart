@@ -285,30 +285,45 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
 
         log("getOrnamentDetailsModel.purchaseDate :: ${getOrnamentDetailsModel.data.purchaseDate}");
 
-        if(getOrnamentDetailsModel.data.purchaseDate != "") {
-          String purDate = getOrnamentDetailsModel.data.purchaseDate.split(" ")[0];
-          log('purDate :$purDate');
-          var dateFormat = DateFormat('dd-MM-yyyy');
+        if(getOrnamentDetailsModel.data.purchaseDate.toString() != "") {
+          String purchasedDate = getOrnamentDetailsModel.data.purchaseDate.split(" ")[0];
+
+          List<String> dateList = purchasedDate.toString().split("/");
+          for(int i=0; i < dateList.length; i++) {
+            log('dateList :${dateList[i]}');
+          }
+          selectedOrnamentPurchaseDate.value = "${dateList[1]}/${dateList[0]}/${dateList[2]}";
+          // DateTime purchasedDate = DateTime.parse(getOrnamentDetailsModel.data.purchaseDate.split(" ")[0]);
+          // String outputDate = "${purchasedDate.day}/${purchasedDate.month}/${purchasedDate.year}";
+          // var outputDate = DateFormat("dd/MM/yyyy").parse(purchasedDate.toString());
+          // log('outputDate :$outputDate');
+
+          // String purDate = getOrnamentDetailsModel.data.purchaseDate.split(" ")[0];
 
 
-          var parsedDate = dateFormat.parse(purDate.trim()).toString();
+          // DateTime finalDate = DateTime.parse(getOrnamentDetailsModel.data.purchaseDate.toString());
+          // log('Final Date : ${finalDate.day}/${finalDate.month}/${finalDate.year}');
+
+          // log('purDate :$purDate');
+          // var dateFormat = DateFormat('dd-MM-yyyy');
+          // var parsedDate = dateFormat.parse(purDate);
+
+          // var parsedDate = dateFormat.parse(purDate.trim()).toString();
 
           // var dateFormatSet = DateFormat('dd-MM-yyyy');
           // var formattedDate = dateFormatSet.format(DateTime.parse(parsedDate));
 
           // selectedOrnamentPurchaseDate.value = formattedDate.replaceAll("-", "/");
-          selectedOrnamentPurchaseDate.value = parsedDate;
+          // selectedOrnamentPurchaseDate.value = "${finalDate.day}/${finalDate.month}/${finalDate.year}";
           log("selectedOrnamentPurchaseDate.value is : : ${selectedOrnamentPurchaseDate.value}");
         }
 
         // selectedOrnamentPurchaseDate.value =
         //     getOrnamentDetailsModel.purchaseDate.toString().split(" ")[0];
 
-        ornamentPurchasedPriceController.text =
-            getOrnamentDetailsModel.data.purchasePrice.toString().split(".")[0];
+        ornamentPurchasedPriceController.text = getOrnamentDetailsModel.data.purchasePrice.toString().split(".")[0];
         log('ornamentPurchasedPriceController ::${ornamentPurchasedPriceController.text}');
-        apiJewelleryImageFile = File(ApiUrl.apiImagePath +
-            getOrnamentDetailsModel.data.ornamentimage.path);
+        apiJewelleryImageFile = File(ApiUrl.apiImagePath + getOrnamentDetailsModel.data.ornamentimage.path);
 
         if (getOrnamentDetailsModel.data.metaldetails != []) {
           for (int i = 0;
