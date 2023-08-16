@@ -280,7 +280,7 @@ class Data {
         grosswt: json["grosswt"] ?? "",
         hallmarked: json["hallmarked"] ?? "",
         purchasedFrom: json["purchased_from"] ?? "",
-        purchaseDate: json["purchase_date"] ?? "",
+        purchaseDate: (json["purchase_date"] ?? "").toString(),
         occasion: json["occasion"] ?? "",
         purchasePrice: json["purchase_price"] ?? 0,
         purchasePriceLessGst: json["purchase_price_less_gst"] ?? 0,
