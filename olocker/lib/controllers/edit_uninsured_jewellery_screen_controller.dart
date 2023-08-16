@@ -186,7 +186,7 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
         headers: apiHeader.headers,
       );
 
-      log("getAllDataAddOrnament res body :: ${response.body}");
+      // log("getAllDataAddOrnament res body :: ${response.body}");
 
       GetAddDataOrnamentModel getAddDataOrnamentModel =
           GetAddDataOrnamentModel.fromJson(json.decode(response.body));
@@ -255,7 +255,7 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
 
   Future<void> getOrnamentDetailFunction() async {
     isLoading(true);
-    String url = "${ApiUrl.getOrnamentDetailApi}?UserOraSrNo=$ornamentSrNo";
+    String url = "${ApiUrl.getOrnamentDetailApi}?Id=$ornamentSrNo";
     log('getOrnamentDetailFunction Api url : $url');
 
     try {
@@ -286,14 +286,18 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
         log("getOrnamentDetailsModel.purchaseDate :: ${getOrnamentDetailsModel.data.purchaseDate}");
 
         if(getOrnamentDetailsModel.data.purchaseDate != "") {
+          String purDate = getOrnamentDetailsModel.data.purchaseDate.split(" ")[0];
+          log('purDate :$purDate');
           var dateFormat = DateFormat('dd-MM-yyyy');
 
-          var parsedDate = dateFormat.parse(getOrnamentDetailsModel.data.purchaseDate.trim()).toString();
 
-          var dateFormatSet = DateFormat('dd-MM-yyyy');
-          var formattedDate = dateFormatSet.format(DateTime.parse(parsedDate));
+          var parsedDate = dateFormat.parse(purDate.trim()).toString();
 
-          selectedOrnamentPurchaseDate.value = formattedDate.replaceAll("-", "/");
+          // var dateFormatSet = DateFormat('dd-MM-yyyy');
+          // var formattedDate = dateFormatSet.format(DateTime.parse(parsedDate));
+
+          // selectedOrnamentPurchaseDate.value = formattedDate.replaceAll("-", "/");
+          selectedOrnamentPurchaseDate.value = parsedDate;
           log("selectedOrnamentPurchaseDate.value is : : ${selectedOrnamentPurchaseDate.value}");
         }
 

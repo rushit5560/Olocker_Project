@@ -65,7 +65,14 @@ class TotalJewelleryPortfolioModule extends StatelessWidget {
                 ),
               ),
               Text(
-                "${jewellPortFolioController.totalJewelleryPortfolioList[0].insuredInputValue}",
+                NumberFormat.currency(
+                  symbol: '₹ ',
+                  locale: "HI",
+                  decimalDigits: 2,
+                ).format(double.parse(jewellPortFolioController
+                    .insuredOrnamentsList[0].insuredValue
+                    .toString())),
+                // "${jewellPortFolioController.totalJewelleryPortfolioList[0].insuredInputValue}",
                 /*NumberFormat.currency(
                   symbol: '₹ ',
                   locale: "HI",

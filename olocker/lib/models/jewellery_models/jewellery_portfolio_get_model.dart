@@ -205,7 +205,7 @@ class InsuredOrnament {
 
 class UnInsuredOrnament {
   int noofItems;
-  int inputValue;
+  double inputValue;
   String marketValue;
   String gainLoss;
 
@@ -219,7 +219,7 @@ class UnInsuredOrnament {
   factory UnInsuredOrnament.fromJson(Map<String, dynamic> json) =>
       UnInsuredOrnament(
         noofItems: json["noofItems"] ?? 0,
-        inputValue: json["inputValue"] ?? 0,
+        inputValue: json["inputValue"] ?? 0.0,
         marketValue: (json["marketValue"] ?? 0).toString(),
         gainLoss: json["gainLoss"] ?? "",
       );
