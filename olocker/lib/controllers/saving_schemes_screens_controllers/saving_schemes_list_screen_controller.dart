@@ -44,8 +44,8 @@ int isStatusCode=0;
         getSavingSchemesList.clear();
         getSavingSchemesList
             .addAll(getSavingSchemesListModel.data.getSavingSchemeList);
-        jewellerLogo = ApiUrl.apiMainPath + getSavingSchemesListModel.data.partnerLogo;
-        log('jewellerLogo : $jewellerLogo');
+        jewellerLogo = ApiUrl.apiImagePath + getSavingSchemesListModel.data.partnerLogo;
+        log('jewellerLogo1234 : $jewellerLogo');
         log('getSavingSchemesList ::: ${getSavingSchemesList.length}');
       } else {
         log('getSavingSchemesListFunction false');

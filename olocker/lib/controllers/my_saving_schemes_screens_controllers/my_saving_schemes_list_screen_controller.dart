@@ -38,8 +38,8 @@ class MySavingSchemesListScreenController extends GetxController {
 
       if (isStatusCode == 200) {
         getCustomerSchemeslist.clear();
-        getCustomerSchemeslist.addAll(
-            getCustomerSchemeslistModel.data.getCustomerPurchaseSavingSchemeList);
+        getCustomerSchemeslist.addAll(getCustomerSchemeslistModel.data.getCustomerPurchaseSavingSchemeList);
+        getCustomerSchemeslist = getCustomerSchemeslist.reversed.toList();
         log('getCustomerSchemeslist lentgh is ::: ${getCustomerSchemeslist.length}');
       } else {
         log('getCustomerSavingSchemesListFunction false');

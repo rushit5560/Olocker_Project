@@ -70,7 +70,8 @@ class OffersJewelleryListScreenController extends GetxController {
     String url = "";
 
     // if (jewelleryListType == JewelleryListType.categoryId) {
-    url = "${ApiUrl.getOfferDetailApi}?OfferId=$offerId&CustomerSrNo=${UserDetails.customerId}";
+    url = "${ApiUrl.getOfferDetailApi}?OfferId=$offerId";
+    //getOfferDetailListFunction Api Url
     // } else {
     //   url =
     //       "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$jewelleryCategoryId";
@@ -85,12 +86,13 @@ class OffersJewelleryListScreenController extends GetxController {
       log('getOfferDetailListFunction response : ${response.body}');
 
       GetOfferDetailResultModel getOfferDetailResultModel = GetOfferDetailResultModel.fromJson(json.decode(response.body));
-      isSuccessStatus = getOfferDetailResultModel.success.obs;
+      isStatusCode=getOfferDetailResultModel.statusCode;
 
-      if (isSuccessStatus.value) {
+
+      if (isStatusCode==200) {
         offerDetailResultModeldata = getOfferDetailResultModel;
         _jewelleryList.clear();
-        _jewelleryList.addAll(getOfferDetailResultModel.getProduct);
+        _jewelleryList.addAll(getOfferDetailResultModel.data.getProduct);
 
         // _jewelleryList.
         log('getOfferDetailListFunction _jewelleryList : ${_jewelleryList.length}');
@@ -131,12 +133,13 @@ class OffersJewelleryListScreenController extends GetxController {
 
       GetOfferDetailResultModel getOfferDetailResultModel =
           GetOfferDetailResultModel.fromJson(json.decode(response.body));
-      isSuccessStatus = getOfferDetailResultModel.success.obs;
 
-      if (isSuccessStatus.value) {
+      isStatusCode=getOfferDetailResultModel.statusCode;
+
+      if (isStatusCode==200) {
         offerDetailResultModeldata = getOfferDetailResultModel;
         searchJewelleryList.clear();
-        searchJewelleryList.addAll(getOfferDetailResultModel.getProduct);
+        searchJewelleryList.addAll(getOfferDetailResultModel.data.getProduct);
 
         // _jewelleryList.
         log('getOfferDetailListFunction _jewelleryList : ${_jewelleryList.length}');

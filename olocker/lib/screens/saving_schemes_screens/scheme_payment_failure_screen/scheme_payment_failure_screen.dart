@@ -20,13 +20,12 @@ class SchemePaymentFailureScreen extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () => Get.back(),
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
         ),
         title: Text(
           'Make Payments',
-                                  style: TextStyleConfig.appbarTextStyle(),
-
+          style: TextStyleConfig.appbarTextStyle(),
         ),
       ),
       bottomNavigationBar: TryAnotherPaymentMethodButton(),
@@ -41,16 +40,11 @@ class SchemePaymentFailureScreen extends StatelessWidget {
             ),
             SizedBox(height: 1.h),
             PaymentDetailsWidget(
-              monthlyAmount: schemePaymentFailureScreenController
-                  .savingSchemeDetails.monthlyAmount,
-              maturityAmount: schemePaymentFailureScreenController
-                  .savingSchemeDetails.maturityAmount,
-              tenure: schemePaymentFailureScreenController
-                  .savingSchemeDetails.tenure,
-              startDateTime: schemePaymentFailureScreenController
-                  .partnerSavingSchemeDetails.startDate,
-              endDateTime: schemePaymentFailureScreenController
-                  .partnerSavingSchemeDetails.endDate,
+              monthlyAmount: schemePaymentFailureScreenController.savingSchemeDetails.monthlyAmount,
+              maturityAmount: schemePaymentFailureScreenController.savingSchemeDetails.maturityAmount,
+              tenure: schemePaymentFailureScreenController.savingSchemeDetails.tenure,
+              startDateTime: schemePaymentFailureScreenController.partnerSavingSchemeDetails.startDate,
+              endDateTime: schemePaymentFailureScreenController.partnerSavingSchemeDetails.endDate,
             ),
             SizedBox(height: 2.h),
             // SencoGoldContainer(),

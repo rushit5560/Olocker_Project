@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -19,6 +21,7 @@ class JewellerDetailImageInfoModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log('imagePath :$imagePath');
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       width: double.infinity,

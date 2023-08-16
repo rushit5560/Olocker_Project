@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
@@ -6,6 +8,8 @@ import 'package:olocker/controllers/online_deals_list_screen_controller.dart';
 import 'package:olocker/screens/online_deals_details_screen/online_deals_details_screen.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../constants/api_url.dart';
 
 class PinkBackgroundImageModule extends StatelessWidget {
   PinkBackgroundImageModule({Key? key}) : super(key: key);
@@ -74,6 +78,8 @@ class AllDealsListModule extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, i) {
+        final imagePath=ApiUrl.apiImagePath+screenController.singleDealList.categoryImage.replaceAll(r'\', "/");
+        log("imagePath :: $imagePath");
         return GestureDetector(
           onTap: () => Get.to(
             () => OnlineDealsDetailsScreen(),
@@ -156,7 +162,7 @@ class AllDealsListModule extends StatelessWidget {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                               image: NetworkImage(
-                                screenController.singleDealList.categoryImage,
+                                imagePath,
                               ),
                             ),
                           ),

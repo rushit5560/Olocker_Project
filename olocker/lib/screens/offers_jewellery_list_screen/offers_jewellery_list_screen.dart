@@ -38,7 +38,7 @@ class OffersJewelleryListScreen extends StatelessWidget {
           () => offersJewelleryListScreenController.isLoading.value
               ? Container()
               : Text(
-                  "${offersJewelleryListScreenController.offerDetailResultModeldata!.offerType}",
+                  offersJewelleryListScreenController.offerDetailResultModeldata!.data.offerType,
                   style: TextStyleConfig.appbarTextStyle(),
                 ),
         ),

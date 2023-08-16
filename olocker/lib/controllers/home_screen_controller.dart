@@ -292,7 +292,7 @@ log("finalCityName $finalCityName");
   Future<void> getSmartDealsOfflineFunction(
       String finalCityName, String stateName) async {
     String url =
-        // "http://192.168.29.90:2023/api/Partner/GetOfflineDeals?StateName=Maharashtra&CityName=Mumbai&partnerId="
+        // "http://5.189.147.159:7013/api/Partner/GetOfflineDeals?StateName=Maharashtra&CityName=Mumbai&partnerId="
         "${ApiUrl.apiMainPath}api/Partner/GetOffLineDeals?StateName=$stateName&CityName=$finalCityName&partnerId="
         "";
     log('Smart Deals offOnline Api Url : $url');

@@ -446,7 +446,8 @@ class OnlineDealsListModule extends StatelessWidget {
   }
 
   Widget _onlineDealsListTile(VendorDealsList vendorDeals) {
-    String imgUrl = vendorDeals.categoryImage;
+    String imgUrl =ApiUrl.apiImagePath+ vendorDeals.categoryImage.replaceAll(r'\', "/");
+    log("ONLINE dealse imgUrl $imgUrl");
     return GestureDetector(
       onTap: () {
         Get.to(

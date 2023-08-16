@@ -17,6 +17,7 @@ class AddOrnamentRecordingsScreenController extends GetxController {
   final custOraSrNo = Get.arguments[0];
 
   RxBool isLoading = false.obs;
+  RxInt isSuccessStatusCode = 0.obs;
 
   ApiHeader apiHeader = ApiHeader();
 
@@ -165,7 +166,7 @@ class AddOrnamentRecordingsScreenController extends GetxController {
                   ? ornamentWeightController.text
                   : selectedActivityTypeName!.id == 7
                       ? ornamentWeightController.text
-                      : null,
+                      : 0,
           "ReleventDocuments": isActivitySelected == false ? "" : selectedActivityTypeName!.id == 3
               ? ""
               : selectedActivityTypeName!.id == 8
@@ -199,21 +200,26 @@ class AddOrnamentRecordingsScreenController extends GetxController {
           body: jsonEncode(requestMap),
         );
 
+        log("jsonEncode(requestMap): ${jsonEncode(requestMap)}");
         log("addOrnamentRecordingsFunction st code is : ${response.statusCode}");
         log("addOrnamentRecordingsFunction res body : ${response.body}");
 
-        final recordingsListController =
-            Get.find<OrnamentRecordingsListScreenController>();
+        Map<String, dynamic> apiResponse = json.decode(response.body);
+        log("Status Code :${apiResponse["statusCode"]}");
+
+        isSuccessStatusCode.value = apiResponse["statusCode"];
+
+        final recordingsListController = Get.find<OrnamentRecordingsListScreenController>();
         // var resBody = jsonDecode(response.body);
 
         // AddRecordingResponseModel addRecordingResponseModel =
         //     AddRecordingResponseModel.fromJson(resBody);
 
-        if (response.statusCode == 200) {
+        if (isSuccessStatusCode.value == 200) {
           log("addOrnamentRecordingsFunction get success");
 
           Get.back();
-          recordingsListController.getOrnamentRecordingsListFunction();
+          await recordingsListController.getOrnamentRecordingsListFunction();
 
           CommonWidgets().showBorderSnackBar(
             context: Get.context!,

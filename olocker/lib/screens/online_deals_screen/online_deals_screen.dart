@@ -10,6 +10,8 @@ import 'package:olocker/utils/appbar_style.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../constants/api_url.dart';
+
 class OnlineDealsScreen extends StatelessWidget {
   OnlineDealsScreen({Key? key}) : super(key: key);
   final onlineDealsScreenController = Get.put(OnlineDealsScreenController());
@@ -71,7 +73,8 @@ class OnlineDealsScreen extends StatelessWidget {
   }
 
   Widget _onlineDealsGridTile(VendorDealsList singleDeal) {
-    String imgUrl = singleDeal.categoryImage;
+    String imgUrl = ApiUrl.apiImagePath+singleDeal.categoryImage;
+    // String imgUrl =ApiUrl.apiImagePath+ vendorDeals.categoryImage.replaceAll(r'\', "/");
     return GestureDetector(
       onTap: () {
         Get.to(() => OnlineDealsListScreen(), arguments: singleDeal);
