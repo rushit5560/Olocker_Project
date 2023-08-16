@@ -50,11 +50,11 @@ class JewellerProductImagesSliderModule extends StatelessWidget {
           var singleImage = ApiUrl.apiImagePath +
               jewelleryDetailsController
                   .productDetailsData.productImageList![index].imageLocation
-                  .replaceAll(r'\', "/") +
-              "/" +
+                  .replaceAll(r'\', "/") ;
+             /* + "/" +
               jewelleryDetailsController
                   .productDetailsData.productImageList![index].imageName;
-
+*/
           log("singleImage path si :: $singleImage");
           return GestureDetector(
             onTap: () {

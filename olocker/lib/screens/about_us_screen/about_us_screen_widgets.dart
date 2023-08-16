@@ -97,18 +97,20 @@ class AboutUsDetailsModule extends StatelessWidget {
           SizedBox(height: 1.h),
           TitleAboutModule(text: "Contact Details"),
           SizedBox(height: 1.h),
-          ContactDetailsModule(
-            icon: Icons.email_outlined,
-            text: aboutUsPageController.aboutUsData!.contactEmail,
-            onTap: () async {
-              String email = Uri.encodeComponent(
-                  aboutUsPageController.aboutUsData!.contactEmail);
-              Uri mail = Uri.parse("mailto:$email");
+          aboutUsPageController.aboutUsData!.contactEmail == ""
+              ? const SizedBox()
+              : ContactDetailsModule(
+                  icon: Icons.email_outlined,
+                  text: aboutUsPageController.aboutUsData!.contactEmail,
+                  onTap: () async {
+                    String email = Uri.encodeComponent(
+                        aboutUsPageController.aboutUsData!.contactEmail);
+                    Uri mail = Uri.parse("mailto:$email");
 
-              if (await launchUrl(mail)) {
-              } else {}
-            },
-          ),
+                    if (await launchUrl(mail)) {
+                    } else {}
+                  },
+                ),
           SizedBox(height: 1.h),
           aboutUsPageController.aboutUsData!.contactPhone == ""
               ? const SizedBox()
@@ -125,11 +127,13 @@ class AboutUsDetailsModule extends StatelessWidget {
                   },
                 ),
           SizedBox(height: 1.h),
-          ContactDetailsModule(
-            icon: Icons.location_on_outlined,
-            text: aboutUsPageController.aboutUsData!.address,
-            onTap: () {},
-          ),
+          aboutUsPageController.aboutUsData!.address == ""
+              ? const SizedBox()
+              : ContactDetailsModule(
+                  icon: Icons.location_on_outlined,
+                  text: aboutUsPageController.aboutUsData!.address,
+                  onTap: () {},
+                ),
           SizedBox(height: 1.h),
           TitleAboutModule(text: 'Showroom Gallery'),
           SizedBox(height: 2.h),
