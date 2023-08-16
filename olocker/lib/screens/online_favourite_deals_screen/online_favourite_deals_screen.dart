@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +11,8 @@ import 'package:olocker/screens/online_favourite_deals_screen/online_favourite_d
 import 'package:olocker/utils/appbar_style.dart';
 import 'package:olocker/utils/extensions.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../constants/api_url.dart';
 
 class OnlineFavouriteDealsScreen extends StatelessWidget {
   OnlineFavouriteDealsScreen({Key? key}) : super(key: key);
@@ -66,7 +70,8 @@ class OnlineFavouriteDealsScreen extends StatelessWidget {
   }
 
   Widget _onlineDealsGridTile(FavDealList singleDeal) {
-    String imgUrl = singleDeal.categoryImage;
+    String imgUrl =ApiUrl.apiImagePath+ singleDeal.categoryImage.replaceAll(r'\', '/');
+    log("imgUrl imgUrl: $imgUrl");
     return GestureDetector(
       onTap: () {
         Get.to(

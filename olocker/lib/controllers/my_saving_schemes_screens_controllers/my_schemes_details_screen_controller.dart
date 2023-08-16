@@ -25,7 +25,13 @@ class MySchemesDetailsScreenController extends GetxController {
   GetCustomerPurchaseSavingSchemeData schemeData = Get.arguments[1];
 
   ApiHeader apiHeader = ApiHeader();
-  GetSavingSchemeData? getSavingSchemeData;
+  // GetSavingSchemeData? getSavingSchemeData;
+
+  RxString savingSchemeName = "".obs;
+  RxString savingSchemeTagline = "".obs;
+  RxString savingSchemeMobile = "".obs;
+
+
   String jewellerLogo = '';
 int isStatusCode=0;
   List<TransactionData>? transactionsDataList;
@@ -54,12 +60,15 @@ int isStatusCode=0;
       isStatusCode =getSavingSchemesListModel.statusCode;
       if (isStatusCode==200) {
         if(getSavingSchemesListModel.data.getSavingSchemeList.isNotEmpty) {
-          getSavingSchemeData = getSavingSchemesListModel.data.getSavingSchemeList[0];
+          // getSavingSchemeData = getSavingSchemesListModel.data.getSavingSchemeList[0];
+          savingSchemeName.value = getSavingSchemesListModel.data.getSavingSchemeList[0].schemeName;
+          savingSchemeTagline.value = getSavingSchemesListModel.data.getSavingSchemeList[0].schemeTagLine;
+          savingSchemeMobile.value = getSavingSchemesListModel.data.getSavingSchemeList[0].mobile;
         }
         jewellerLogo = ApiUrl.apiImagePath + getSavingSchemesListModel.data.partnerLogo;
 
-        log('getSavingSchemeData schemeName ::: ${getSavingSchemeData!.schemeName}');
-        log('getSavingSchemeData mobile no ::: ${getSavingSchemeData!.mobile}');
+        // log('getSavingSchemeData schemeName ::: ${getSavingSchemeData!.schemeName}');
+        // log('getSavingSchemeData mobile no ::: ${getSavingSchemeData!.mobile}');
 
       } else {
         log('getMySavingSchemeDetailsFunction false');

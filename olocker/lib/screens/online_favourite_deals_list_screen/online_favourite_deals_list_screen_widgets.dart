@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/constants/app_images.dart';
 import 'package:olocker/controllers/online_favourite_deals_list_screen_controller.dart';
@@ -75,6 +76,7 @@ class AllFavDealsListModule extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, i) {
+        final imagePath=ApiUrl.apiImagePath+screenController.singleDealList.categoryImage;
         return GestureDetector(
           onTap: () => Get.to(
             () => OnlineFavouriteDealsDetailsScreen(),
@@ -156,7 +158,7 @@ class AllFavDealsListModule extends StatelessWidget {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                               image: NetworkImage(
-                                screenController.singleDealList.categoryImage,
+                                imagePath,
                               ),
                             ),
                           ),

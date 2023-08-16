@@ -23,6 +23,7 @@ class MySchemePendingPaymentScreenController extends GetxController {
   ApiHeader apiHeader = ApiHeader();
   PaymentTypeEnum paymentTypeEnum = PaymentTypeEnum.paytm;
   final razorpay = Razorpay();
+  int isStatusCode = 0;
 
   RxInt customerPurchaseSchemeSrNo = 0.obs;
   RxString getPaymentId = "".obs;
@@ -78,16 +79,17 @@ class MySchemePendingPaymentScreenController extends GetxController {
         body: jsonEncode(bodyData),
       );
 
-      log('makePaymentsApiFunction res body is :${jsonEncode(response.body)}');
+      log('makePaymentsApiFunction res body is :${response.body}');
 
-      /*EmiPaymentResultModel emiPaymentResultModel = EmiPaymentResultModel.fromJson(json.decode(response.body));
-      isSuccessStatus.value = emiPaymentResultModel.success;
+      EmiPaymentResultModel emiPaymentResultModel = EmiPaymentResultModel.fromJson(jsonDecode(response.body));
+      isStatusCode = emiPaymentResultModel.statusCode;
+
       log('makePaymentsApiFunction isSuccessStatus : ${isSuccessStatus.value}');
 
-      if (isSuccessStatus.value) {
-        getPaymentId.value = emiPaymentResultModel.paymentId;
+      if (isStatusCode==200) {
+        getPaymentId.value = emiPaymentResultModel.data.paymentId;
         customerPurchaseSchemeSrNo.value =
-            emiPaymentResultModel.customerPurchaseSavingSchemeNo;
+            emiPaymentResultModel.data.customerPurchaseSavingSchemeNo;
 
         CommonWidgets().showBorderSnackBar(
           context: Get.context!,
@@ -112,7 +114,7 @@ class MySchemePendingPaymentScreenController extends GetxController {
         Get.to(
           () => MySchemePaymentFailureScreen(),
         );
-      }*/
+      }
     } catch (e) {
       log('makePaymentsApiFunction Error : $e');
       rethrow;
@@ -168,13 +170,14 @@ class MySchemePendingPaymentScreenController extends GetxController {
 
       EmiPaymentResultModel emiPaymentResultModel =
           EmiPaymentResultModel.fromJson(json.decode(response.body));
-      isSuccessStatus.value = emiPaymentResultModel.success;
+      isStatusCode = emiPaymentResultModel.statusCode;
+
       log('razorPayAfterPaymentApiFunction isSuccessStatus : ${isSuccessStatus.value}');
 
-      if (isSuccessStatus.value) {
-        getPaymentId.value = emiPaymentResultModel.paymentId;
+      if (isStatusCode==200) {
+        getPaymentId.value = emiPaymentResultModel.data.paymentId;
         customerPurchaseSchemeSrNo.value =
-            emiPaymentResultModel.customerPurchaseSavingSchemeNo;
+            emiPaymentResultModel.data.customerPurchaseSavingSchemeNo;
 
         CommonWidgets().showBorderSnackBar(
           context: Get.context!,

@@ -537,7 +537,7 @@ class JewellerCallDetailsModule extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  mySchemePendingPaymentScreenController.getSavingSchemeData!.schemeName,
+                  mySchemePendingPaymentScreenController.savingSchemeName.value,
                   style: TextStyle(
                     fontSize: 14.sp,
                     color: AppColors.blueDarkColor,
@@ -546,8 +546,7 @@ class JewellerCallDetailsModule extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  mySchemePendingPaymentScreenController
-                      .getSavingSchemeData!.schemeTagLine,
+                  mySchemePendingPaymentScreenController.savingSchemeTagline.value,
                   maxLines: 2,
                   style: TextStyle(
                     fontSize: 10.sp,
@@ -563,7 +562,7 @@ class JewellerCallDetailsModule extends StatelessWidget {
           GestureDetector(
             onTap: () async {
               Uri phoneno = Uri.parse(
-                  "tel:+91 ${mySchemePendingPaymentScreenController.getSavingSchemeData!.mobile.toString()}");
+                  "tel:+91 ${mySchemePendingPaymentScreenController.savingSchemeMobile.value}");
 
               if (await launchUrl(phoneno)) {
               } else {}
