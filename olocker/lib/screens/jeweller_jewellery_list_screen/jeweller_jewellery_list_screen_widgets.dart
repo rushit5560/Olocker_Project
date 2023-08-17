@@ -509,7 +509,7 @@ class JewelleryListScreenLoadingWidget extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ).commonOnlyPadding(top: 20);
   }
 }
 

@@ -812,7 +812,8 @@ class BestSellersListModule extends StatelessWidget {
             screenController.jewellerId.toString(),
             singleItem.srNo,
             singleItem.itemName,
-            singleItem.productImage
+            singleItem.productImage,
+            singleItem.productImage,
           ],
         );
       },
@@ -1408,6 +1409,6 @@ class JewellerDetailsLoadingShimmer extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ).commonOnlyPadding(top: 20);
   }
 }

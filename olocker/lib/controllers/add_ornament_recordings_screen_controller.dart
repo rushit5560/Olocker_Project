@@ -41,11 +41,11 @@ class AddOrnamentRecordingsScreenController extends GetxController {
   List<FormDDValue> selectActivityTypeList = [
     FormDDValue(
       id: 1,
-      textValue: "Ornament Exchanged",
+      textValue: "Ornament Exchanged",//
     ),
     FormDDValue(
       id: 2,
-      textValue: "Ornament Gifted",
+      textValue: "Ornament Gifted",//
     ),
     FormDDValue(
       id: 3,
@@ -53,11 +53,11 @@ class AddOrnamentRecordingsScreenController extends GetxController {
     ),
     FormDDValue(
       id: 4,
-      textValue: "Ornament Issued to Pawnbroker",
+      textValue: "Ornament Issued to Pawnbroker",//
     ),
     FormDDValue(
       id: 5,
-      textValue: "Ornament Melted Destroyed",
+      textValue: "Ornament Melted Destroyed",//
     ),
     FormDDValue(
       id: 6,
@@ -182,10 +182,11 @@ class AddOrnamentRecordingsScreenController extends GetxController {
             selectedActivityTypeName!.id == 8
           ? 0
             : rateOfInterestController.text,
-          "Amountexchange": isActivitySelected == false ? "" : selectedActivityTypeName!.id == 3 ||
-                selectedActivityTypeName!.id == 6 ||
-                selectedActivityTypeName!.id == 7 ||
-                selectedActivityTypeName!.id == 8
+          "Amountexchange": isActivitySelected == false ? "" :
+                selectedActivityTypeName!.id == 1 ||
+                selectedActivityTypeName!.id == 2 ||
+                selectedActivityTypeName!.id == 4 ||
+                selectedActivityTypeName!.id == 5
             ? 0
             : amountController.text,
           "CurrentJewelleryLocation": selectedlocationOfJewellery!.id,

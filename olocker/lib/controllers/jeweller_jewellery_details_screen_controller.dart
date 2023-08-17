@@ -18,7 +18,7 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
   int productSrNo = Get.arguments[1];
   String jewelleryTypeName = Get.arguments[2];
 
-  // String productimage = Get.arguments[3];
+  String productImage = Get.arguments[3];
   int isStatusCode = 0;
 
   RxBool isLoading = false.obs;

@@ -32,8 +32,10 @@ class JewellerProductImagesSliderModule extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         fade: 0.45,
 
-        viewportFraction: 0.6, // this is displaying images size
-        scale: 0.35, // this is non displaying images size
+        viewportFraction: 0.6,
+        // this is displaying images size
+        scale: 0.35,
+        // this is non displaying images size
         physics: const BouncingScrollPhysics(),
         indicatorLayout: PageIndicatorLayout.WARM,
 
@@ -50,8 +52,8 @@ class JewellerProductImagesSliderModule extends StatelessWidget {
           var singleImage = ApiUrl.apiImagePath +
               jewelleryDetailsController
                   .productDetailsData.productImageList![index].imageLocation
-                  .replaceAll(r'\', "/") ;
-             /* + "/" +
+                  .replaceAll(r'\', "/");
+          /* + "/" +
               jewelleryDetailsController
                   .productDetailsData.productImageList![index].imageName;
 */
@@ -274,7 +276,6 @@ class JewellerFavouriteButtonModule extends StatelessWidget {
                   .removeFavouriteProductFunction()
               : await jewelleryDetailsController.addFavouriteProductFunction();
           log("jewelleryDetailsController.productDetailsData.isFav 111:  ${jewelleryDetailsController.productDetailsData.isFav}");
-
         },
         child: Container(
           decoration: const BoxDecoration(
@@ -307,7 +308,7 @@ class JewellerShareButtonModule extends StatelessWidget {
       right: 15,
       top: 10,
       child: GestureDetector(
-        onTap: () async {
+        /* onTap: () async {
           log("share 22");
           String imgUrl = ApiUrl.apiImagePath +
               jewelleryDetailsController.productDetailsData.productImageList
@@ -319,12 +320,16 @@ class JewellerShareButtonModule extends StatelessWidget {
           final temp = await getTemporaryDirectory();
           final path = '${temp.path}/image.jpg';
           File(path).writeAsBytesSync(bytes);
+          log("path : $path");
           String shareText =
-              '''I loved this beautiful jewellery from ${jewelleryDetailsController.partnerDetails!.partnerName.capitalize!} on olocker app. 
-    You must download this app to witness their excellent jewellery collections, get fabulous deals & 
-    rewards too. Click here https://olocker.in/DetectOS.aspx and use my referral 
+              '''I loved this beautiful jewellery from ${jewelleryDetailsController.partnerDetails!.partnerName.capitalize!} on olocker app.
+    You must download this app to witness their excellent jewellery collections, get fabulous deals &
+    rewards too. Click here https://olocker.in/DetectOS.aspx and use my referral
     code ${jewelleryDetailsController.userReferaalCode.value}-${jewelleryDetailsController.partnerDetails!.partnerId} on ENTER CODE space on Sign up page https://www.olocker.in/''';
+
+          log("shareText $shareText");
           try {
+            log("shareTextshareTextshareText");
             await Share.shareFiles(
               [path],
               text: shareText,
@@ -333,6 +338,33 @@ class JewellerShareButtonModule extends StatelessWidget {
             // Handle the exception or show an error message
             print('Error sharing image: $e');
           }
+        },*/
+        onTap: () async {
+          String imgUrl =
+              ApiUrl.apiImagePath + jewelleryDetailsController.productImage;
+          final imagePath = Uri.parse(imgUrl);
+          final res = await http.get(imagePath);
+          final bytes = res.bodyBytes;
+          final temp = await getTemporaryDirectory();
+          final path = '${temp.path}/image.jpg';
+          File(path).writeAsBytesSync(bytes);
+
+          String shareText =
+              '''I loved this beautiful jewellery from ${jewelleryDetailsController.partnerDetails!.partnerName.capitalize!} on olocker app. 
+    You must download this app to witness their excellent jewellery collections, get fabulous deals & 
+    rewards too. Click here https://olocker.in/DetectOS.aspx and use my referral 
+    code ${jewelleryDetailsController.userReferaalCode.value}-${jewelleryDetailsController.partnerDetails!.partnerId} on ENTER CODE space on Sign up page https://www.olocker.in/''';
+          try {
+            await Share.shareFiles(
+              text: shareText,
+              [path],
+            );
+          } catch (e) {
+            // Handle the exception or show an error message
+            print('Error sharing image: $e');
+          }
+
+          // await jewelleryDetailsController.shareJewelleryReferFriend();
         },
         child: Container(
           decoration: const BoxDecoration(

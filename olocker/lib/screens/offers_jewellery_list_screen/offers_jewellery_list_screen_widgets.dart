@@ -49,6 +49,7 @@ class OfferJewelleryGridviewModule extends StatelessWidget {
             screenController.jewellerId.toString(),
             singleItem.productSrNo,
             singleItem.productName,
+            singleItem.productImage,
           ],
         )!
             .then((value) async {
@@ -313,6 +314,7 @@ class OfferSearchJewelleryGridviewModule extends StatelessWidget {
             screenController.jewellerId.toString(),
             singleItem.productSrNo,
             singleItem.productName,
+            singleItem.productImage,
           ],
         )!
             .then((value) async {

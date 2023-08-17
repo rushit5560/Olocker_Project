@@ -392,6 +392,7 @@ class SliderModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("aboutUsPageController.sliderImageList.length ${aboutUsPageController.sliderImageList.length}");
     return aboutUsPageController.sliderImageList.isEmpty
         ? const Center(
             child: Text("No Showroom Images"),
@@ -428,6 +429,7 @@ class SliderModule extends StatelessWidget {
                   children: aboutUsPageController.sliderImageList.map((url) {
                     int index =
                         aboutUsPageController.sliderImageList.indexOf(url);
+                    log("indexindex $index");
                     return Container(
                       width: aboutUsPageController.currentIndex.value == index
                           ? 16

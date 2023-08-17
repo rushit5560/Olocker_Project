@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -39,8 +41,7 @@ class JewelleryListItem extends StatelessWidget {
 
   final int index;
 
-  final unInsuredJewelleryController =
-      Get.find<MyUnInsuredJewelleryScreenController>();
+  final unInsuredJewelleryController = Get.find<MyUnInsuredJewelleryScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +51,10 @@ class JewelleryListItem extends StatelessWidget {
     // final imagepath = "${ApiUrl.apiImagePath}$imageUrl";
 
     // log("imag path :: $imagepath");
+
+    // String imgUrl = ApiUrl.apiImagePath + unInsuredJewelleryController.getOrnamentList[index].url;
+    String imgUrl = ApiUrl.apiMainPath + unInsuredJewelleryController.getOrnamentList[index].url.replaceAll(r"~", "");
+    log('imgUrl11 $index :$imgUrl');
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
       child: Stack(
@@ -242,6 +247,7 @@ class JewelleryListItem extends StatelessWidget {
               ],
             ),
           ),
+          // Image module
           Align(
             alignment: Alignment.centerLeft,
             child: Container(
@@ -262,8 +268,7 @@ class JewelleryListItem extends StatelessWidget {
                     Radius.circular(200),
                   ),
                   child: Image.network(
-                    ApiUrl.apiImagePath +
-                        unInsuredJewelleryController.getOrnamentList[index].url
+                    imgUrl
                             .toString()
                             .replaceFirst("~", ""),
                     fit: BoxFit.cover,

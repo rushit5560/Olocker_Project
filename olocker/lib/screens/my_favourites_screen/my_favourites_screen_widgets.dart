@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
 import 'package:olocker/screens/jeweller_jewellery_details_screen/jeweller_jewellery_details_screen.dart';
+import 'package:olocker/utils/extensions.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 import '../../controllers/my_favourites_controller.dart';
@@ -289,12 +290,15 @@ class FavouriteListItem extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     log("singleProd.partnerSrNo :${singleProd.partnerSrNo}");
+                    log("imagesfav : ${singleProd.productDetails.productImageList[0].imageLocation.replaceAll(r'\', "/")}");
+
                     Get.to(
                       () => JewellerJewelleryDetailsScreen(),
                       arguments: [
                         singleProd.partnerSrNo.toString(),
                         singleProd.productDetails.srNo,
                         singleProd.productDetails.itemTypeName,
+                        singleProd.productDetails.productImageList[0].imageLocation.replaceAll(r'\', "/"),
                         // index,
                       ],
                     );
@@ -403,6 +407,6 @@ class MyFavouritesJewelleryLoadingWidget extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ).commonOnlyPadding(top: 20);
   }
 }
