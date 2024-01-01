@@ -107,6 +107,7 @@ class OtpScreenController extends GetxController {
       // isLoading(false);
     } catch (e) {
       log("checkMobileNumber Error ::: $e");
+      isLoading(false);
       rethrow;
     }
     // }

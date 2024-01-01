@@ -97,6 +97,7 @@ String mobileNumber="";
         // await updateDeviceIdFunction();
       } catch (e) {
         log("checkMobileNumber Error ::: $e");
+        isLoading(false);
         rethrow;
       }
     }
@@ -116,5 +117,5 @@ String mobileNumber="";
     initMethod();
     super.onInit();
   }
-  
+
 }

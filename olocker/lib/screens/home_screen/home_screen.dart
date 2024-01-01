@@ -9,7 +9,7 @@ import 'home_screen_widgets.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
- const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -17,7 +17,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final homeScreenController = Get.put(HomeScreenController());
-
 
 // @override
 //   void initState() {
@@ -35,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 // //forground state
 //     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
 //       LocalNotificationService.showNotificationOnForeground(message);
-  
+
 //       setState(() {
 //         message.notification!.hashCode;
 //         message.notification!.title;
@@ -79,7 +78,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(height: 2.h),
                       MyJewellersListModule(),
                       SizedBox(height: homeScreenController.size.height * 0.02),
-                      BannerModule(),
+                      homeScreenController.bannerList.isEmpty
+                          ? Container()
+                          : BannerModule(),
                       const SizedBox(height: 5),
                       SmartDealsModule(),
                       SizedBox(height: 2.h),

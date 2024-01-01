@@ -34,7 +34,7 @@ class CheckMobileNumberData {
 
   factory CheckMobileNumberData.fromJson(Map<String, dynamic> json) =>
       CheckMobileNumberData(
-        userMobile: UserMobile.fromJson(json["userMobile"] ?? {}),
+        userMobile: UserMobile.fromJson(json["UserMobile"] ?? {}),
         success: json["success"] ?? false,
         errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
       );
@@ -52,8 +52,8 @@ class UserMobile {
   });
 
   factory UserMobile.fromJson(Map<String, dynamic> json) => UserMobile(
-        mobileNo: json["mobileNo"] ?? "",
-        customerId: json["customerId"] ?? "",
-        isExist: json["isExist"] ?? false,
+        mobileNo: json["MobileNo"] ?? "",
+        customerId: json["CustomerId"] ?? "",
+        isExist: json["IsExist"] ?? false,
       );
 }

@@ -89,6 +89,7 @@ class SignUpScreenController extends GetxController {
       }
     } catch (e) {
       log("checkMobileNumber Error ::: $e");
+      isLoading(false);
       rethrow;
     } /*finally {
       isLoading(false);
@@ -157,6 +158,7 @@ class SignUpScreenController extends GetxController {
       }
     } catch (e) {
       log("checkMobileNumber Error ::: $e");
+      isLoading(false);
       rethrow;
     }
   }
@@ -224,6 +226,7 @@ class SignUpScreenController extends GetxController {
         isLoading(false);
       } catch (e) {
         log("checkMobileNumber Error ::: $e");
+        isLoading(false);
         rethrow;
       }
     }

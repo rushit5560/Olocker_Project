@@ -10,12 +10,12 @@ class MyInsuredJewelleryScreen extends StatelessWidget {
   MyInsuredJewelleryScreen({Key? key}) : super(key: key);
 
   final myInsuredJewelleryScreenController =
-      Get.put(MyInsuredJewelleryScreenController());
+  Get.put(MyInsuredJewelleryScreenController());
 
   final myJewelleryPortFolioScreenController =
-      Get.lazyPut(() => MyJewelleryPortFolioScreenController(), fenix: true);
+  Get.lazyPut(() => MyJewelleryPortFolioScreenController(), fenix: true);
   final myJewelleryPortFolioController =
-      Get.find<MyJewelleryPortFolioScreenController>();
+  Get.find<MyJewelleryPortFolioScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -46,31 +46,32 @@ class MyInsuredJewelleryScreen extends StatelessWidget {
           backgroundColor: AppColors.whiteColor,
         ),
         body: Obx(
-          () => myInsuredJewelleryScreenController.isLoading.value
+              () =>
+          myInsuredJewelleryScreenController.isLoading.value
               ? InsuredLoadingWidget()
               : SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 10),
-                      myInsuredJewelleryScreenController
-                              .getInsuredOrnamentList.isEmpty
-                          ? const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 100),
-                              child: Center(
-                                child: Text(
-                                  "No Insured Jewellery Available",
-                                  style: TextStyle(
-                                    color: AppColors.whiteColor,
-                                  ),
-                                ),
-                              ),
-                            )
-                          : InsuredJewelleryListModule(),
-                      const SizedBox(height: 10),
-                    ],
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                const SizedBox(height: 10),
+                myInsuredJewelleryScreenController
+                    .getInsuredOrnamentList.isEmpty
+                    ? const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 100),
+                  child: Center(
+                    child: Text(
+                      "No Insured Jewellery Available",
+                      style: TextStyle(
+                        color: AppColors.whiteColor,
+                      ),
+                    ),
                   ),
-                ),
+                )
+                    : InsuredJewelleryListModule(),
+                const SizedBox(height: 10),
+              ],
+            ),
+          ),
         ),
       ),
     );

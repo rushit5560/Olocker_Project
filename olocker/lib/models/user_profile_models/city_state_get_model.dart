@@ -1,8 +1,7 @@
 import 'dart:convert';
 
-CityStateGetModel cityStateGetModelFromJson(String str) => CityStateGetModel.fromJson(json.decode(str));
-
-String cityStateGetModelToJson(CityStateGetModel data) => json.encode(data.toJson());
+CityStateGetModel cityStateGetModelFromJson(String str) =>
+    CityStateGetModel.fromJson(json.decode(str));
 
 class CityStateGetModel {
   int statusCode;
@@ -13,15 +12,11 @@ class CityStateGetModel {
     required this.data,
   });
 
-  factory CityStateGetModel.fromJson(Map<String, dynamic> json) => CityStateGetModel(
-    statusCode: json["statusCode"] ?? 0,
-    data: Data.fromJson(json["data"] ?? {}),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "statusCode": statusCode,
-    "data": data.toJson(),
-  };
+  factory CityStateGetModel.fromJson(Map<String, dynamic> json) =>
+      CityStateGetModel(
+        statusCode: json["statusCode"] ?? 0,
+        data: Data.fromJson(json["data"] ?? {}),
+      );
 }
 
 class ErrorInfo {
@@ -52,7 +47,6 @@ class ErrorInfo {
       };
 }
 
-
 class Data {
   StateCityDetails stateCityDetails;
   bool success;
@@ -65,22 +59,17 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    stateCityDetails: StateCityDetails.fromJson(json["stateCityDetails"] ?? {}),
-    success: json["success"] ?? false,
-    errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "stateCityDetails": stateCityDetails.toJson(),
-    "success": success,
-    "error_info": errorInfo.toJson(),
-  };
+        stateCityDetails:
+            StateCityDetails.fromJson(json["StateCityDetails"] ?? {}),
+        success: json["success"] ?? false,
+        errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
+      );
 }
 
 class StateCityDetails {
-  int stateId;
+  String stateId;
   String stateName;
-  int cityId;
+  String cityId;
   String cityName;
 
   StateCityDetails({
@@ -90,18 +79,11 @@ class StateCityDetails {
     required this.cityName,
   });
 
-  factory StateCityDetails.fromJson(Map<String, dynamic> json) => StateCityDetails(
-    stateId: json["stateId"] ?? 0,
-    stateName: json["stateName"] ?? "",
-    cityId: json["cityId"] ?? 0,
-    cityName: json["cityName"] ?? "",
-  );
-
-  Map<String, dynamic> toJson() => {
-    "stateId": stateId,
-    "stateName": stateName,
-    "cityId": cityId,
-    "cityName": cityName,
-  };
+  factory StateCityDetails.fromJson(Map<String, dynamic> json) =>
+      StateCityDetails(
+        stateId: json["StateId"] ?? "",
+        stateName: json["StateName"] ?? "",
+        cityId: json["CityId"] ?? "",
+        cityName: json["CityName"] ?? "",
+      );
 }
-

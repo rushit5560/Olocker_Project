@@ -7,19 +7,22 @@ class ApiHeader {
 
 class ApiUrl {
   static const String apiMainPath = "http://5.189.147.159:7013/";
+  static const String apiMainUrl = "http://192.168.0.211:80/";
+
+  // static const String apiMainPath = "https://devappapi.olocker.in/";
 
   static const String apiImagePath = "https://devappapi.olocker.in/";
+
   // static const String apiImagePath = "https://www.olocker.in/";
 
   static const String apiProfileImagePath = "${apiMainPath}ProfileImage/";
-
 
   // Home Screen Api
   static const String myJewellersApi = "${apiMainPath}api/user/GetMyJewellers";
   static const String smartDealsOnlineApi =
       "${apiMainPath}api/user/GetOnlineDeals";
   static const String bannerApi =
-      "${apiMainPath}api/User/GetGraphicalNotifications";
+      "${apiMainUrl}api/user/GetGraphicalNotifications";
   static const String addMyJewellerApi = "${apiMainPath}api/User/AddMyJeweller";
 
   // Index Screen Api
@@ -60,7 +63,7 @@ class ApiUrl {
   static const String updateUserProfileApi =
       "${apiMainPath}api/User/UpdateProfile";
   static const String getCityStateByPincodeApi =
-      "${apiMainPath}api/User/GetCityStateByPincode";
+      "${apiMainUrl}api/User/GetCityStateByPincode";
 
   //ABOUT US screen apis
   static const String getAboutUsJewellerDetailsApi =
@@ -115,10 +118,10 @@ class ApiUrl {
   // static const String deleteFavProductApi = "${apiMainPath}api/User/RemoveFavProduct";
 
   //authentication apis
-  static const String userLoginApi = "${apiMainPath}api/User/UserLogin";
-  static const String validateOtpApi = "${apiMainPath}api/user/ValidateOtp";
+  static const String userLoginApi = "${apiMainUrl}api/User/UserLogin";
+  static const String validateOtpApi = "${apiMainUrl}api/User/ValidateOtp";
   static const String checkUserByMobileApi =
-      "${apiMainPath}api/User/CheckUserByMobile";
+      "${apiMainUrl}api/User/CheckUserByMobile";
   static const String registerApi = "${apiMainPath}api/User/Register";
 
   static const String checkEligibilityApi =

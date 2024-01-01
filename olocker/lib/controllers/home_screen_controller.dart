@@ -91,6 +91,7 @@ class HomeScreenController extends GetxController {
       if (isStatusCode == 200) {
         bannerList.clear();
         bannerList.addAll(bannerModel.data.notifications);
+        log("bannerList ${bannerList.length}");
       } else {
         log('getBannerFunction Else');
         if (isStatusCode == 400) {
