@@ -281,7 +281,7 @@ class JewellerDetailsScreenController extends GetxController {
   /*Future<void> getNewArrivalFunction() async {
     if (hasMore.value) {
       // isLoading(true);
-      String url = "${ApiUrl.getNewArrivalApi}?PartnerSrNo=$jewellerId";
+      String url = "${ApiUrl.getNewArrivalApi}?partnerSrNo=$jewellerId";
       log('getNewArrivalFunction Api Url :$url');
 
       try {

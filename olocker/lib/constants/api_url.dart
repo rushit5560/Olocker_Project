@@ -141,7 +141,7 @@ class ApiUrl {
   static const String getJewelleryGetPushToAppDataApi =
       "${apiMainPath}api/Partner/GetPushToAppData";
   static const String getNewArrivalApi =
-      "${apiMainPath}api/Partner/GetPushToAppCollections";
+      "${apiMainUrl}api/Partner/GetPushToAppCollections";
   static const String getJewelleryTypeApi =
       "${apiMainPath}api/Partner/GetUniqueList";
   static const String getBestSellerApi =
