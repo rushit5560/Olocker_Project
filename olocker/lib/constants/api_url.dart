@@ -7,20 +7,21 @@ class ApiHeader {
 
 class ApiUrl {
   static const String apiMainPath = "http://5.189.147.159:7013/";
-  static const String apiMainUrl = "http://192.168.0.211:80/";
+  static const String apiMainUrl = "https://b2capp.olocker.in/";
 
   // static const String apiMainPath = "https://devappapi.olocker.in/";
-
   static const String apiImagePath = "https://devappapi.olocker.in/";
 
   // static const String apiImagePath = "https://www.olocker.in/";
-
   static const String apiProfileImagePath = "${apiMainPath}ProfileImage/";
 
   // Home Screen Api
-  static const String myJewellersApi = "${apiMainPath}api/user/GetMyJewellers";
+
+  static const String myJewellersApi = "${apiMainUrl}api/user/GetMyJewellers";
   static const String smartDealsOnlineApi =
-      "${apiMainPath}api/user/GetOnlineDeals";
+      "${apiMainUrl}api/user/GetOnlineDeals";
+  static const String smartDealsOffOnlineApi =
+      "${apiMainUrl}api/Partner/GetOfflineDeals";
   static const String bannerApi =
       "${apiMainUrl}api/user/GetGraphicalNotifications";
   static const String addMyJewellerApi = "${apiMainPath}api/User/AddMyJeweller";
@@ -35,7 +36,7 @@ class ApiUrl {
 
   // Online Deal Favourite Screen Api
   static const String getCustomerFavouriteDealsApi =
-      "${apiMainPath}api/User/GetFavDeals";
+      "${apiMainUrl}api/user/GetFavDeals";
 
   //saving schemes screeen apis
   static const String getParterSavingSchemeApi =
@@ -59,7 +60,7 @@ class ApiUrl {
 
   // profile Screen Api
   static const String getUserProfileApi =
-      "${apiMainPath}api/User/GetUserProfile";
+      "${apiMainUrl}api/User/GetUserProfile";
   static const String updateUserProfileApi =
       "${apiMainPath}api/User/UpdateProfile";
   static const String getCityStateByPincodeApi =
@@ -71,7 +72,7 @@ class ApiUrl {
 
   //notification screen apis\
   static const String getAllNotificationApi =
-      "${apiMainPath}api/User/GetAllNotification";
+      "${apiMainUrl}api/User/GetAllNotification";
   static const String readMarkUserNotificationApi =
       "${apiMainPath}api/User/ReadMarkUserNotification";
 
@@ -108,7 +109,7 @@ class ApiUrl {
 
   // refer and earn screen apis
   static const String getPartnerByCodeApi =
-      "${apiMainPath}api/Partner/GetPartnerByCode";
+      "${apiMainUrl}api/Partner/GetPartnerByCode";
   static const String getLoyalityPlanApi =
       "${apiMainPath}api/Partner/GetLoyalityPlan";
 
@@ -122,7 +123,7 @@ class ApiUrl {
   static const String validateOtpApi = "${apiMainUrl}api/User/ValidateOtp";
   static const String checkUserByMobileApi =
       "${apiMainUrl}api/User/CheckUserByMobile";
-  static const String registerApi = "${apiMainPath}api/User/Register";
+  static const String registerApi = "${apiMainUrl}api/User/Register";
 
   static const String checkEligibilityApi =
       "${apiMainPath}api/Partner/CheckEMIEligibility";
@@ -132,7 +133,7 @@ class ApiUrl {
 
   /// Jeweller Details Screen Api's
   static const String getSpecialFeaturesApi =
-      "${apiMainPath}api/Partner/GetSpecialFeatures";
+      "${apiMainUrl}api/Partner/GetSpecialFeatures";
   static const String getAnnouncementOfferApi =
       "${apiMainPath}api/Partner/GetAnnouncementOffer";
   static const String getOfferDetailApi =
@@ -146,9 +147,9 @@ class ApiUrl {
   static const String getBestSellerApi =
       "${apiMainPath}api/Partner/GetBestSellerProducts";
   static const String getClientTestimonialsApi =
-      "${apiMainPath}api/Partner/GetClientTestimonials";
+      "${apiMainUrl}api/Partner/GetClientTestimonials";
   static const String getGoldPriceApi =
-      "${apiMainPath}api/Partner/GetIBJARatesByPartnerId";
+      "${apiMainUrl}api/Partner/GetIBJARatesByPartnerId";
 
   static const String getAboutYourSelfApi = "${apiMainPath}api/User/GetDetails";
 
@@ -159,26 +160,17 @@ class ApiUrl {
       "${apiMainPath}api/User/GetProductDetail";
   static const String removeFavProductApi =
       "${apiMainPath}api/User/RemoveFavProduct";
-  static const String addFavProductApi = "${apiMainPath}api/User/AddFavProduct";
+  static const String addFavProductApi = "${apiMainUrl}api/User/AddFavProduct";
 
   /// Enquire Screen Api's
   static const String sendProductInquiryApi =
       "${apiMainPath}api/User/SendProductInquiry";
   static const String getNotificationAllReplyApi =
-      "${apiMainPath}api/Partner/GetNotificationAllReply";
+      "${apiMainUrl}api/Partner/GetNotificationAllReply";
   static const String getAllInquiresApi =
       "${apiMainPath}api/User/GetAllInquires";
 
-  // static const String getJewelleryCategoryApi =
-  //     "${apiMainPath}api/Partner/GetPushToAppData";
-  // static const String getJewelleryTypeApi =
-  //     "${apiMainPath}api/Partner/GetUniqueList";
-  // static const String getBestSellerApi =
-  //     "${apiMainPath}api/Partner/GetBestSellerProducts";
-  // static const String getClientTestimonialsApi =
-  //     "${apiMainPath}api/Partner/GetClientTestimonials";
-  // static const String getGoldPriceApi =
-  //     "${apiMainPath}api/Partner/GetIBJARatesByPartnerId";
+
 
   static const String getFeedbackFormApi =
       "${apiMainPath}api/Partner/GetRatingQuestions";

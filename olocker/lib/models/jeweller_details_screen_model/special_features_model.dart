@@ -146,12 +146,12 @@ class SpecialFeatureItem {
   });
 
   factory SpecialFeatureItem.fromJson(Map<String, dynamic> json) => SpecialFeatureItem(
-        srNo: json["srNo"] ?? 0,
-        partnerSrNo: json["partnerSrNo"] ?? 0,
-        feature: json["feature"] ?? "",
-        featureId: json["featureId"] ?? 0,
-        percentage: (json["percentage"] ?? 0).toString(),
-        totalDays: (json["totalDays"] ?? 0).toString(),
-        iconUrl: json["iconURL"] ?? "",
+        srNo: json["SrNo"] ?? 0,
+        partnerSrNo: json["PartnerSrNo"] ?? 0,
+        feature: json["Feature"] ?? "",
+        featureId: json["FeatureId"] ?? 0,
+        percentage: (json["Percentage"] ?? 0).toString(),
+        totalDays: (json["TotalDays"] ?? 0).toString(),
+        iconUrl: json["IconURL"] ?? "",
       );
 }

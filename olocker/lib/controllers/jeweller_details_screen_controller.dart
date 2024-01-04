@@ -504,7 +504,7 @@ class JewellerDetailsScreenController extends GetxController {
   Future<void> getClientTestimonialsFunction() async {
     if (hasMore.value) {
       // isLoading(true);
-      String url = "${ApiUrl.getClientTestimonialsApi}?PartnerSrno=$jewellerId";
+      String url = "${ApiUrl.getClientTestimonialsApi}?partnerSrNo=$jewellerId";
       log('getClientTestimonialsFunction Api Url :$url');
 
       try {

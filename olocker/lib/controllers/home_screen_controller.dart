@@ -15,7 +15,6 @@ import '../models/home_screen_models/smart_offline_deats_model.dart';
 import '../utils/user_prefs_data.dart';
 
 class HomeScreenController extends GetxController {
-
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
@@ -69,6 +68,7 @@ class HomeScreenController extends GetxController {
       }
     } catch (e) {
       log('getMyJewellersFunction Error :$e');
+      isLoading(false);
       rethrow;
     }
     await getBannerFunction();
@@ -106,6 +106,7 @@ class HomeScreenController extends GetxController {
       }
     } catch (e) {
       log('getBannerFunction Error : $e');
+      isLoading(false);
       rethrow;
     }
     // isLoading(false);
@@ -148,6 +149,7 @@ class HomeScreenController extends GetxController {
       }
     } catch (e) {
       log('getSmartDealsOnline Error :$e');
+      isLoading(false);
       rethrow;
     }
 
@@ -164,8 +166,10 @@ class HomeScreenController extends GetxController {
     if (!serviceEnabled) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(
         const SnackBar(
-            content: Text(
-                'Location services are disabled. Please enable the services')),
+          content: Text(
+            'Location services are disabled. Please enable the services',
+          ),
+        ),
       );
       isOfflineDeals(false);
 
@@ -183,7 +187,9 @@ class HomeScreenController extends GetxController {
         // Geolocator.openAppSettings();
 
         ScaffoldMessenger.of(Get.context!).showSnackBar(
-          const SnackBar(content: Text('Location permissions are denied')),
+          const SnackBar(
+            content: Text('Location permissions are denied'),
+          ),
         );
         isOfflineDeals(false);
 
@@ -201,13 +207,13 @@ class HomeScreenController extends GetxController {
         ),
       );
       isOfflineDeals(false);
-
       Geolocator.openAppSettings();
       getLocationPermission = false.obs;
       return getLocationPermission.value;
     }
     Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
+      desiredAccuracy: LocationAccuracy.high,
+    );
     await getAddressFromlatLog(position);
     /*streamSubscription =
         Geolocator.getPositionStream().listen((Position position) {
@@ -240,7 +246,7 @@ class HomeScreenController extends GetxController {
     stateName = place.administrativeArea.toString();
     cityName = place.locality.toString();
     String finalCityName = cityName.split(" ").join();
-log("finalCityName $finalCityName");
+    log("finalCityName $finalCityName");
     await getSmartDealsOfflineFunction(finalCityName, stateName);
     // await getCityStateDetailsByPinFunction(locationZipCode);
     // await userPrefsData.getLocationZipCode(locationZipCode);
@@ -294,7 +300,7 @@ log("finalCityName $finalCityName");
       String finalCityName, String stateName) async {
     String url =
         // "http://5.189.147.159:7013/api/Partner/GetOfflineDeals?StateName=Maharashtra&CityName=Mumbai&partnerId="
-        "${ApiUrl.apiMainPath}api/Partner/GetOffLineDeals?StateName=$stateName&CityName=$finalCityName&partnerId="
+        "${ApiUrl.smartDealsOffOnlineApi}?StateName=$stateName&CityName=$finalCityName&partnerId="
         "";
     log('Smart Deals offOnline Api Url : $url');
 
@@ -315,7 +321,6 @@ log("finalCityName $finalCityName");
         smartDealsOfflineList.clear();
         smartDealsOfflineList.addAll(getOfflineDealsModel.data.vendorDealsList);
         isLocalDataCalled(true);
-
       } else {
         log('getSmartDealsOfflineFunction Else');
         if (isStatusCode == 400) {
@@ -330,6 +335,7 @@ log("finalCityName $finalCityName");
       }
     } catch (e) {
       log('getSmartDealsOfflineFunction Error :$e');
+      isLoading(false);
       rethrow;
     }
     // isLoading(true);

@@ -85,7 +85,7 @@ class JewellerJewelleryListScreenController extends GetxController {
         url =
             "${ApiUrl.getJewellerJewelleriesApi}?PartnerSrNo=$jewellerId&ProductType=$searchName&CustomerId=${UserDetails.customerId}&PageIndex=$pageSearchIndex";
       }
-      log('Url : $url');
+      log('getJewellerJewelleriesApi Url : $url');
 
       try {
         http.Response response = await http.get(
@@ -341,7 +341,7 @@ class JewellerJewelleryListScreenController extends GetxController {
 
   Future<void> getPartnerByCodeFunction() async {
     // if (formKey.currentState!.validate()) {
-    String url = "${ApiUrl.getPartnerByCodeApi}?PartnerCode=$jewellerId";
+    String url = "${ApiUrl.getPartnerByCodeApi}?partnerCode=$jewellerId";
     log("getPartnerByCodeFunction url: $url");
 
     try {

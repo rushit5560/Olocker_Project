@@ -63,13 +63,13 @@ class JewellerData {
   });
 
   factory JewellerData.fromJson(Map<String, dynamic> json) => JewellerData(
-        customerName: json["customerName"] ?? "",
-        logoFileName: json["logoFileName"] ?? "",
-        companyName: json["companyName"] ?? "",
-        ownersName: json["ownersName"] ?? "",
-        registrationDate: json["registrationDate"] ?? "",
-        activationDate: json["activationDate"] ?? "",
-        paymentMode: json["paymentMode"] ?? "",
-        partnerSrNo: json["partnerSrNo"] ?? "",
+        customerName: json["CustomerName"] ?? "",
+        logoFileName: json["LogoFileName"] ?? "",
+        companyName: json["CompanyName"] ?? "",
+        ownersName: json["OwnersName"] ?? "",
+        registrationDate: json["RegistrationDate"] ?? "",
+        activationDate: json["ActivationDate"] ?? "",
+        paymentMode: json["PaymentMode"] ?? "",
+        partnerSrNo: json["PartnerSrNo"] ??0,
       );
 }

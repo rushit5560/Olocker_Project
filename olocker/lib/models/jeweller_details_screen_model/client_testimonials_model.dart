@@ -58,11 +58,11 @@ class Testimonial {
   });
 
   factory Testimonial.fromJson(Map<String, dynamic> json) => Testimonial(
-        srNo: json["srNo"] ?? 0,
-        partnerSrNo: json["partnerSrNo"] ?? 0,
-        clientName: json["clientName"] ?? "",
-        title: json["title"] ?? "",
-        testimonials: json["testimonials"] ?? "",
-        url: json["url"] ?? "",
+        srNo: json["SrNo"] ?? 0,
+        partnerSrNo: json["PartnerSrNo"] ?? 0,
+        clientName: json["ClientName"] ?? "",
+        title: json["Title"] ?? "",
+        testimonials: json["Testimonials"] ?? "",
+        url: json["Url"] ?? "",
       );
 }

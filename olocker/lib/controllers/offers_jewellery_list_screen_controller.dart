@@ -55,13 +55,15 @@ class OffersJewelleryListScreenController extends GetxController {
 
   // SearchField Search Function
   getOfferSearchTextListFunction(String searchText) {
-    return searchFieldController.text.trim().isEmpty
+    return searchFieldController.text
+        .trim()
+        .isEmpty
         ? collectionNameList
         : collectionNameList.where((element) {
-            String searchListString = element.toLowerCase();
-            String searchTextNew = searchText.toLowerCase();
-            return searchListString.contains(searchTextNew);
-          }).toList();
+      String searchListString = element.toLowerCase();
+      String searchTextNew = searchText.toLowerCase();
+      return searchListString.contains(searchTextNew);
+    }).toList();
   }
 
   // Get Category All Product
@@ -85,17 +87,19 @@ class OffersJewelleryListScreenController extends GetxController {
       );
       log('getOfferDetailListFunction response : ${response.body}');
 
-      GetOfferDetailResultModel getOfferDetailResultModel = GetOfferDetailResultModel.fromJson(json.decode(response.body));
-      isStatusCode=getOfferDetailResultModel.statusCode;
+      GetOfferDetailResultModel getOfferDetailResultModel = GetOfferDetailResultModel
+          .fromJson(json.decode(response.body));
+      isStatusCode = getOfferDetailResultModel.statusCode;
 
 
-      if (isStatusCode==200) {
+      if (isStatusCode == 200) {
         offerDetailResultModeldata = getOfferDetailResultModel;
         _jewelleryList.clear();
         _jewelleryList.addAll(getOfferDetailResultModel.data.getProduct);
 
         // _jewelleryList.
-        log('getOfferDetailListFunction _jewelleryList : ${_jewelleryList.length}');
+        log('getOfferDetailListFunction _jewelleryList : ${_jewelleryList
+            .length}');
       } else {
         log('getOfferDetailListFunction Else');
       }
@@ -110,7 +114,9 @@ class OffersJewelleryListScreenController extends GetxController {
 
   Future<void> getSearchProductsFunction(String searchName) async {
     isLoading(true);
-    String url = "${ApiUrl.getOfferDetailApi}?OfferId=$offerId&CustomerSrNo=${UserDetails.customerId}";
+    String url = "${ApiUrl
+        .getOfferDetailApi}?OfferId=$offerId&CustomerSrNo=${UserDetails
+        .customerId}";
 
     // "${ApiUrl.getOfferDetailApi}?OfferId=$offerId&CustomerSrNo=${UserDetails.customerId}"
     // "api/Partner/GetOfferDetail?OfferId=$offerId&CustomerSrNo=${UserDetails.customerId}"
@@ -132,17 +138,18 @@ class OffersJewelleryListScreenController extends GetxController {
       log('getOfferDetailListFunction response : ${response.body}');
 
       GetOfferDetailResultModel getOfferDetailResultModel =
-          GetOfferDetailResultModel.fromJson(json.decode(response.body));
+      GetOfferDetailResultModel.fromJson(json.decode(response.body));
 
-      isStatusCode=getOfferDetailResultModel.statusCode;
+      isStatusCode = getOfferDetailResultModel.statusCode;
 
-      if (isStatusCode==200) {
+      if (isStatusCode == 200) {
         offerDetailResultModeldata = getOfferDetailResultModel;
         searchJewelleryList.clear();
         searchJewelleryList.addAll(getOfferDetailResultModel.data.getProduct);
 
         // _jewelleryList.
-        log('getOfferDetailListFunction _jewelleryList : ${_jewelleryList.length}');
+        log('getOfferDetailListFunction _jewelleryList : ${_jewelleryList
+            .length}');
       } else {
         log('getOfferDetailListFunction Else');
       }
@@ -160,9 +167,7 @@ class OffersJewelleryListScreenController extends GetxController {
       {required String productSrNo, required GetProduct singleProduct}) async {
     // isLoading(true);
     String url = "${ApiUrl.addFavProductApi}?Id=$productSrNo";
-
     log('addFavouriteProductFunction Api Url :: $url');
-
     try {
       var requestMap = {
         "CustomerId": UserDetails.customerId,
@@ -177,18 +182,15 @@ class OffersJewelleryListScreenController extends GetxController {
         body: jsonEncode(requestMap),
       );
       log('addFavouriteProductFunction response : ${response.body}');
-
       var resBody = jsonDecode(response.body);
-
       // isSuccessStatus.value = resBody["success"];
-
       if (response.statusCode == 200) {
         // if (isSuccessStatus.value) {
-          CommonWidgets().showBorderSnackBar(
-            context: Get.context!,
-            displayText: "Item Added to favourites.",
-          );
-          singleProduct.isFav = true;
+        CommonWidgets().showBorderSnackBar(
+          context: Get.context!,
+          displayText: "Item Added to favourites.",
+        );
+        singleProduct.isFav = true;
         // }
       } else {
         log('addFavouriteProductFunction Else');
@@ -231,14 +233,14 @@ class OffersJewelleryListScreenController extends GetxController {
 
       if (response.statusCode == 200) {
         // if (isSuccessStatus.value) {
-          CommonWidgets().showBorderSnackBar(
-            context: Get.context!,
-            displayText: "Item Removed from favourites.",
-          );
+        CommonWidgets().showBorderSnackBar(
+          context: Get.context!,
+          displayText: "Item Removed from favourites.",
+        );
 
-          /// Remove favourite button change in previous screen list
-          singleProduct.isFav = false;
-          // getFavouriteProductFunction();
+        /// Remove favourite button change in previous screen list
+        singleProduct.isFav = false;
+        // getFavouriteProductFunction();
         // }
       } else {
         log('addFavouriteProductFunction Else');
@@ -270,11 +272,11 @@ class OffersJewelleryListScreenController extends GetxController {
       var resBody = jsonDecode(response.body);
 
       GetPartnerByCodeModel getPartnerByCodeModel =
-          GetPartnerByCodeModel.fromJson(resBody);
+      GetPartnerByCodeModel.fromJson(resBody);
 
       // bool isSuccessResult = getPartnerByCodeModel.success;
-      isStatusCode=getPartnerByCodeModel.statusCode;
-      if (isStatusCode==200) {
+      isStatusCode = getPartnerByCodeModel.statusCode;
+      if (isStatusCode == 200) {
         log("getPartnerByCodeFunction get success");
         partnerDetails = getPartnerByCodeModel.data.partner;
       } else {
@@ -309,7 +311,7 @@ class OffersJewelleryListScreenController extends GetxController {
       var resBody = jsonDecode(response.body);
 
       UserProfileGetModel userProfileGetModel =
-          UserProfileGetModel.fromJson(resBody);
+      UserProfileGetModel.fromJson(resBody);
 
       // bool isSuccessResult = userProfileGetModel.success;
       isStatusCode = userProfileGetModel.statusCode;

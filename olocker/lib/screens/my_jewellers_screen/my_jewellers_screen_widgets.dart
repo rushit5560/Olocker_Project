@@ -45,8 +45,8 @@ class BannerSliderModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Stack(
+    return /*Obx(
+      () =>*/ Stack(
         alignment: Alignment.bottomRight,
         children: [
           CarouselSlider.builder(
@@ -103,8 +103,8 @@ class BannerSliderModule extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
+      );
+    // );
   }
 
   Widget _imageModule(NotificationBanner singleBanner) {

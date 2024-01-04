@@ -55,10 +55,10 @@ class IbjAratesList {
   int pm;
 
   factory IbjAratesList.fromJson(Map<String, dynamic> json) => IbjAratesList(
-        srNo: json["srNo"] ?? 0,
-        date: json["date"].toString(),
-        metal: json["metal"] ?? "",
-        purity: json["purity"] ?? 0,
-        pm: json["pm"] ?? 0,
+        srNo: json["SrNo"] ?? 0,
+        date: json["Date"].toString(),
+        metal: json["Metal"] ?? "",
+        purity: json["Purity"] ?? 0,
+        pm: json["PM"] ?? 0,
       );
 }

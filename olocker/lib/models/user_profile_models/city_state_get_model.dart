@@ -67,9 +67,9 @@ class Data {
 }
 
 class StateCityDetails {
-  String stateId;
+  int stateId;
   String stateName;
-  String cityId;
+  int cityId;
   String cityName;
 
   StateCityDetails({
@@ -81,9 +81,9 @@ class StateCityDetails {
 
   factory StateCityDetails.fromJson(Map<String, dynamic> json) =>
       StateCityDetails(
-        stateId: json["StateId"] ?? "",
+        stateId: json["StateId"] ??0 ,
         stateName: json["StateName"] ?? "",
-        cityId: json["CityId"] ?? "",
+        cityId: json["CityId"] ?? 0,
         cityName: json["CityName"] ?? "",
       );
 }

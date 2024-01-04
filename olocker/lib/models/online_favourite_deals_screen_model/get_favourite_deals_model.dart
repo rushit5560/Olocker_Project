@@ -72,10 +72,10 @@ class FavDealList {
   });
 
   factory FavDealList.fromJson(Map<String, dynamic> json) => FavDealList(
-        category: json["category"] ?? "",
-        categoryImage: json["categoryImage"] ?? "",
+        category: json["Category"] ?? "",
+        categoryImage: json["CategoryImage"] ?? "",
         onLineDeals: List<OnLineDealFav>.from(
-            (json["onLineDeals"] ?? []).map((x) => OnLineDealFav.fromJson(x)) ??
+            (json["OnLineDeals"] ?? []).map((x) => OnLineDealFav.fromJson(x)) ??
                 {}),
       );
 }
@@ -135,29 +135,29 @@ class OnLineDealFav {
   // List<Imagelist> imagelist;
 
   factory OnLineDealFav.fromJson(Map<String, dynamic> json) => OnLineDealFav(
-        srNo: json["srNo"] ?? 0,
-        validTillDate: json["validTillDate"].toString(),
-        dealCode: json["dealCode"] ?? "",
-        termsAndCondition: json["termsAndCondition"] ?? "",
-        pushDealToEndUser: json["pushDealToEndUser"] ?? "",
-        pushDealToRetailer: json["pushDealToRetailer"] ?? "",
-        pushDealToSupplier: json["pushDealToSupplier"] ?? "",
-        isActive: json["isActive"] ?? false,
-        startDate: json["startDate"].toString(),
-        discountPercentage: json["discountPercentage"].toString(),
-        discountRs: json["discountRs"].toString(),
-        isCreatedByVendor: json["isCreatedByVendor"] ?? false,
-        rejecrReason: json["rejecrReason"] ?? "",
-        dealType: json["dealType"] ?? "",
-        vendorName: json["vendorName"] ?? "",
-        dealLocation: json["dealLocation"] ?? "",
-        vendorImageUrl: json["vendorImageUrl"] ?? "",
-        isThirdPartyVendor: json["isThirdPartyVendor"] ?? false,
-        thirdPartyVendorName: json["thirdPartyVendorName"].toString(),
-        couponHeading: json["couponHeading"] ?? "",
-        isFavoriteDeal: json["isFavoriteDeal"] ?? false,
-        isExpired: json["is_Expired"] ?? false,
-        isThirdPartyDeal: json["isThirdPartyDeal"] ?? false,
+        srNo: json["SrNo"] ?? 0,
+        validTillDate: json["ValidTillDate"].toString(),
+        dealCode: json["DealCode"] ?? "",
+        termsAndCondition: json["TermsAndCondition"] ?? "",
+        pushDealToEndUser: json["PushDealToEndUser"] ?? "",
+        pushDealToRetailer: json["PushDealToRetailer"] ?? "",
+        pushDealToSupplier: json["PushDealToSupplier"] ?? "",
+        isActive: json["IsActive"] ?? false,
+        startDate: json["StartDate"].toString(),
+        discountPercentage: json["DiscountPercentage"].toString(),
+        discountRs: json["DiscountRs"].toString(),
+        isCreatedByVendor: json["IsCreatedByVendor"] ?? false,
+        rejecrReason: json["RejecrReason"] ?? "",
+        dealType: json["DealType"] ?? "",
+        vendorName: json["VendorName"] ?? "",
+        dealLocation: json["DealLocation"] ?? "",
+        vendorImageUrl: json["VendorImageUrl"] ?? "",
+        isThirdPartyVendor: json["IsThirdPartyVendor"] ?? false,
+        thirdPartyVendorName: json["ThirdPartyVendorName"].toString(),
+        couponHeading: json["CouponHeading"] ?? "",
+        isFavoriteDeal: json["IsFavoriteDeal"] ?? false,
+        isExpired: json["Is_Expired"] ?? false,
+        isThirdPartyDeal: json["IsThirdPartyDeal"] ?? false,
         // imagelist: List<Imagelist>.from(json["Imagelist"].map((x) => Imagelist.fromJson(x))),
       );
 }
