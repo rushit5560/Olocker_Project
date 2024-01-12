@@ -168,14 +168,14 @@ class Data {
             (json["productDetails"] ?? []).map((x) =>
                 DecoItemDetail.fromJson(x))),
         metalTypes: List<DecoItemDetail>.from(
-            (json["metalTypes"] ?? []).map((x) => DecoItemDetail.fromJson(x))),
+            (json["MetalTypes"] ?? []).map((x) => DecoItemDetail.fromJson(x))),
         metalPurity: List<DecoItemDetail>.from(
-            (json["metalPurity"] ?? []).map((x) => DecoItemDetail.fromJson(x))),
+            (json["MetalPurity"] ?? []).map((x) => DecoItemDetail.fromJson(x))),
         stoneDetails: List<DecoItemDetail>.from(
-            (json["stoneDetails"] ?? []).map((x) =>
+            (json["StoneDetails"] ?? []).map((x) =>
                 DecoItemDetail.fromJson(x))),
         decoItemDetails: List<DecoItemDetail>.from(
-            (json["decoItemDetails"] ?? []).map((x) =>
+            (json["DecoItemDetails"] ?? []).map((x) =>
                 DecoItemDetail.fromJson(x))),
         success: json["success"] ?? false,
         errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),

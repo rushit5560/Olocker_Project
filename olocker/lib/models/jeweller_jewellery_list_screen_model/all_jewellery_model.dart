@@ -38,7 +38,7 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         searchProductListData: List<SearchProductListDatum>.from(
-            (json["searchProductListData"] ?? [])
+            (json["SearchProductListData"] ?? [])
                 .map((x) => SearchProductListDatum.fromJson(x))),
         success: json["success"] ?? false,
         errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),

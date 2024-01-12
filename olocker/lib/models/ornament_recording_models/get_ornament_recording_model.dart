@@ -194,7 +194,7 @@ class Data {
             (json["ornamentHistoryDetails"] ?? [])
                 .map((x) => OrnamentHistoryDetail.fromJson(x))),
         trackingDetails: List<TrackingDetail>.from(
-            (json["TrackingDetails"] ?? [])
+            (json["trackingDetails"] ?? [])
                 .map((x) => TrackingDetail.fromJson(x))),
         success: json["success"] ?? false,
         errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
@@ -224,14 +224,14 @@ class OrnamentHistoryDetail {
 
   factory OrnamentHistoryDetail.fromJson(Map<String, dynamic> json) =>
       OrnamentHistoryDetail(
-        srNo: json["srNo"] ?? 0,
-        custOraSrNo: json["custOraSrNo"] ?? 0,
-        custSrNo: json["custSrNo"] ?? 0,
-        activity: json["activity"] ?? "",
-        details: json["details"] ?? "",
-        notes: json["notes"] ?? "",
-        ornamentLocation: json["ornamentLocation"] ?? "",
-        date: json["date"] ?? "",
+        srNo: json["SrNo"] ?? 0,
+        custOraSrNo: json["CustOraSrNo"] ?? 0,
+        custSrNo: json["CustSrNo"] ?? 0,
+        activity: json["Activity"] ?? "",
+        details: json["Activity"] ?? "",
+        notes: json["Notes"] ?? "",
+        ornamentLocation: json["OrnamentLocation"] ?? "",
+        date: json["Date"] ?? "",
       );
 }
 
@@ -249,9 +249,9 @@ class TrackingDetail {
   final String grossWt;
 
   factory TrackingDetail.fromJson(Map<String, dynamic> json) => TrackingDetail(
-        userOraSrNo: json["userOraSrNo"] ?? 0,
-        oid: json["oID"] ?? "",
-        itemName: json["itemName"] ?? "",
-        grossWt: json["grossWt"] ?? "",
+        userOraSrNo: json["UserOraSrNo"] ?? 0,
+        oid: json["OID"] ?? "",
+        itemName: json["ItemName"] ?? "",
+        grossWt: json["GrossWt"] ?? "",
       );
 }

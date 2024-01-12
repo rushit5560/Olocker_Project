@@ -77,7 +77,7 @@ class JewelleryDetailsScreenController extends GetxController {
     //     "${ApiUrl.getJewelleryDetailApi}?partnerSrNo=$partnerSrNo&productSrno=$productSrNo";
     String url = "${ApiUrl.getOfferJewelleryDetailApi}"
         "?productSrno=$productSrNo"
-    "&Customerno=${UserDetails.customerId}"
+        "&Customerno=${UserDetails.customerId}"
         "&partnerSrNo=$partnerSrNo";
     log('getJewelleryProductDetailFunction Api Url :: $url');
 
@@ -88,12 +88,11 @@ class JewelleryDetailsScreenController extends GetxController {
       );
       log(' getJewelleryProductDetailFunction  response : ${response.body}');
 
-
       GetOfferFavouriteVendorModel getJewelleryDetailModel =
-      GetOfferFavouriteVendorModel.fromJson(json.decode(response.body));
+          GetOfferFavouriteVendorModel.fromJson(json.decode(response.body));
 
       // isSuccessStatus = getJewelleryDetailModel.success.obs;
-      isStatusCode= getJewelleryDetailModel.statusCode;
+      isStatusCode = getJewelleryDetailModel.statusCode;
 
       if (response.statusCode == 200) {
         productDetailsData = getJewelleryDetailModel.data.productDetailsData;
@@ -132,7 +131,8 @@ class JewelleryDetailsScreenController extends GetxController {
       );
       log('getJewellerySpecialFeaturesFunction response :: ${response.body}');
 
-      SpecialFeaturesModel specialFeaturesModel = SpecialFeaturesModel.fromJson(json.decode(response.body));
+      SpecialFeaturesModel specialFeaturesModel =
+          SpecialFeaturesModel.fromJson(json.decode(response.body));
       // isSuccessStatus = specialFeaturesModel.success.obs;
       isStatusCode = specialFeaturesModel.statusCode;
       if (isStatusCode == 200) {
@@ -229,15 +229,15 @@ class JewelleryDetailsScreenController extends GetxController {
 
       if (response.statusCode == 200) {
         // if (isSuccessStatus.value) {
-          CommonWidgets().showBorderSnackBar(
-            context: Get.context!,
-            displayText: "Item Removed from favourites.",
-          );
+        CommonWidgets().showBorderSnackBar(
+          context: Get.context!,
+          displayText: "Item Removed from favourites.",
+        );
 
-          /// Remove favourite button change in previous screen list
-          jewellerJewelleryListScreenController
-              .mainJewelleryList[indexOfThisProduct].isFav = false;
-          // getFavouriteProductFunction();
+        /// Remove favourite button change in previous screen list
+        jewellerJewelleryListScreenController
+            .mainJewelleryList[indexOfThisProduct].isFav = false;
+        // getFavouriteProductFunction();
         // }
       } else {
         log('addFavouriteProductFunction Else');
@@ -286,9 +286,9 @@ class JewelleryDetailsScreenController extends GetxController {
   }
 
   Future<void> getPartnerByCodeFunction() async {
-    // if (formKey.currentState!.validate()) {
+    // if (formKey.currentState!.validate()) {a
     String url = "${ApiUrl.getPartnerByCodeApi}?PartnerCode=$partnerSrNo";
-    log(" getPartnerByCodeFunction url: $url");
+    log("getPartnerByCodeFunction url: $url");
 
     try {
       isLoading(true);

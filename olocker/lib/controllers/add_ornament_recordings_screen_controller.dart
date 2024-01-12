@@ -134,7 +134,7 @@ class AddOrnamentRecordingsScreenController extends GetxController {
 
   Future<void> addOrnamentRecordingsFunction() async {
     // if (ornamentRecordingFormKey.currentState!.validate()) {
-      var url = ApiUrl.addTrackingDataApi;
+      var url = ApiUrl. addTrackingDataApi;
       log('addOrnamentRecordingsFunction Api URl :$url');
       try {
         isLoading(true);

@@ -183,7 +183,7 @@ class SignUpScreenController extends GetxController {
           // "DeviceMacId": deviceTokenToSendPushNotification,
         };
 
-        log("checkMobileNumber formdata passing is : $formData");
+        log("checkMobileNumber format passing is : $formData");
 
         http.Response response = await http.post(
           Uri.parse(url),

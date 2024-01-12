@@ -34,7 +34,7 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         productDetailsData:
-            GetProductModel.fromJson(json["productDetailsData"] ?? {}),
+            GetProductModel.fromJson(json["ProductDetailsData"] ?? {}),
         success: json["success"] ?? false,
         errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
       );
@@ -116,33 +116,33 @@ class GetProductModel {
 
   factory GetProductModel.fromJson(Map<String, dynamic> json) =>
       GetProductModel(
-        srNo: json["srNo"] ?? 0,
-        productSku: json["productSku"] ?? "",
-        itemType: json["itemType"] ?? "",
-        itemTypeName: json["itemTypeName"] ?? "",
-        productTypeName: json["productTypeName"] ?? "",
-        partnerName: json["partnerName"] ?? "",
-        description: json["description"] ?? "",
-        weight: json["weight"] ?? "",
-        width: json["width"] ?? "",
-        height: json["height"] ?? "",
-        length: json["length"] ?? "",
-        breadth: json["breadth"] ?? "",
-        size: json["size"] ?? "",
-        unitWidth: json["unitWidth"] ?? "",
-        unitHeight: json["unitHeight"] ?? "",
-        unitLength: json["unitLength"] ?? "",
-        unitBreadth: json["unitBreadth"] ?? "",
-        unitSize: json["unitSize"] ?? "",
-        tryBeforeBuy: json["tryBeforeBuy"] ?? false,
-        price: json["price"] ?? "",
-        gst: json["gst"] ?? "",
-        fullPayment: json["fullPayment"] ?? "",
-        advancePayment: json["advancePayment"] ?? "",
-        productStatus: json["productStatus"] ?? "",
-        estimateDeliveryDays: json["estimateDeliveryDays"] ?? "",
+        srNo: json["SrNo"] ?? 0,
+        productSku: json["ProductSku"] ?? "",
+        itemType: json["ItemType"] ?? "",
+        itemTypeName: json["ItemTypeName"] ?? "",
+        productTypeName: json["ProductTypeName"] ?? "",
+        partnerName: json["PartnerName"] ?? "",
+        description: json["Description"] ?? "",
+        weight: json["Weight"] ?? "",
+        width: json["Width"] ?? "",
+        height: json["Height"] ?? "",
+        length: json["Length"] ?? "",
+        breadth: json["Breadth"] ?? "",
+        size: json["Size"] ?? "",
+        unitWidth: json["UnitWidth"] ?? "",
+        unitHeight: json["UnitHeight"] ?? "",
+        unitLength: json["UnitLength"] ?? "",
+        unitBreadth: json["UnitBreadth"] ?? "",
+        unitSize: json["UnitSize"] ?? "",
+        tryBeforeBuy: json["TryBeforeBuy"] ?? false,
+        price: json["Price"] ?? "",
+        gst: json["GST"] ?? "",
+        fullPayment: json["FullPayment"] ?? "",
+        advancePayment: json["AdvancePayment"] ?? "",
+        productStatus: json["ProductStatus"] ?? "",
+        estimateDeliveryDays: json["EstimateDeliveryDays"] ?? "",
         productImageList: List<ProductImageList>.from(
-            (json["productImageList"] ?? [])
+            (json["ProductImageList"] ?? [])
                 .map((x) => ProductImageList.fromJson(x))),
         collectionIdList: List<CollectionId>.from(
             (json["collection_ids"] ?? []).map((x) => Productimage.fromJson(x))),
@@ -203,12 +203,12 @@ class Diamonddetail {
   });
 
   factory Diamonddetail.fromJson(Map<String, dynamic> json) => Diamonddetail(
-        stoneName: json["stoneName"] ?? "",
-        stoneWt: json["stoneWt"] ?? "",
-        unitStoneWt: json["unitStoneWt"] ?? "",
-        stoneShape: json["stoneShape"] ?? "",
-        stoneQuality: json["stoneQuality"] ?? "",
-        stoneChargeableAmount: json["stoneChargeableAmount"] ?? "",
+        stoneName: json["StoneName"] ?? "",
+        stoneWt: json["StoneWt"] ?? "",
+        unitStoneWt: json["UnitStoneWt"] ?? "",
+        stoneShape: json["StoneShape"] ?? "",
+        stoneQuality: json["StoneQuality"] ?? "",
+        stoneChargeableAmount: json["StoneChargeableAmount"] ?? "",
       );
 }
 
@@ -239,9 +239,9 @@ class ProductImageList {
   });
 
   factory ProductImageList.fromJson(Map<String, dynamic> json) => ProductImageList(
-    srNo: json["srNo"] ?? 0,
-    imageName: json["imageName"] ?? "",
-    imageLocation: json["imageLocation"] ?? "",
+    srNo: json["SrNo"] ?? 0,
+    imageName: json["ImageName"] ?? "",
+    imageLocation: json["ImageLocation"] ?? "",
   );
 
   Map<String, dynamic> toJson() => {
@@ -267,10 +267,10 @@ class Metaldetail {
   });
 
   factory Metaldetail.fromJson(Map<String, dynamic> json) => Metaldetail(
-        metalWt: json["metalWt"] ?? "",
-        unitMetalWt: json["unitMetalWt"] ?? "",
-        metalType: json["metalType"] ?? "",
-        metalPurity: json["metalPurity"] ?? "",
+        metalWt: json["MetalWt"] ?? "",
+        unitMetalWt: json["UnitMetalWt"] ?? "",
+        metalType: json["MetalType"] ?? "",
+        metalPurity: json["MetalPurity"] ?? "",
         isHallmarked: json["isHallmarked"] ?? false,
       );
 }
@@ -289,10 +289,10 @@ class Stonedetail {
   });
 
   factory Stonedetail.fromJson(Map<String, dynamic> json) => Stonedetail(
-        stoneName: json["stoneName"] ?? "",
-        stoneWt: json["stoneWt"] ?? "",
-        unitStoneWt: json["unitStoneWt"] ?? "",
-        stoneChargeableAmount: json["stoneChargeableAmount"] ?? "",
+        stoneName: json["StoneName"] ?? "",
+        stoneWt: json["StoneWt"] ?? "",
+        unitStoneWt: json["UnitStoneWt"] ?? "",
+        stoneChargeableAmount: json["StoneChargeableAmount"] ?? "",
       );
 }
 

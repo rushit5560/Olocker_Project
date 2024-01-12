@@ -24,7 +24,7 @@ class GetInsuredOrnamentModel {
   factory GetInsuredOrnamentModel.fromJson(Map<String, dynamic> json) =>
       GetInsuredOrnamentModel(
         insuredOrnament: List<InsuredOrnament>.from(
-            (json["InsuredOrnament"] ?? [])
+            (json["insuredOrnament"] ?? [])
                 .map((x) => InsuredOrnament.fromJson(x))),
         success: json["success"] ?? false,
         errorInfo: ErrorInfo.fromJson((json["error_info"] ?? {})),

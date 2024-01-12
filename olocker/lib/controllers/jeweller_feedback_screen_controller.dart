@@ -29,7 +29,7 @@ class JewellerFeedbackScreenController extends GetxController {
   // Get Feedback Form From Api
   Future<void> getFeedbackFormFunction() async {
     isLoading(true);
-    String url = "${ApiUrl.getFeedbackFormApi}?PartnerSrno=$jewellerId";
+    String url = "${ApiUrl.getFeedbackFormApi}?partnerSrno=$jewellerId";
     log('getFeedbackFormFunction Api Url : $url');
 
     try {

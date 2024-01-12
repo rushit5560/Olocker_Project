@@ -44,9 +44,9 @@ class RegisterData {
   factory RegisterData.fromJson(Map<String, dynamic> json) => RegisterData(
         userRegistration:
             UserRegistration.fromJson(json["userRegistration"] ?? {}),
-        safeGoldSrno: json["safeGoldSrno"] ?? 0,
+        safeGoldSrno: json["SafeGoldSrno"] ?? 0,
         safeGoldTxnId: json["safeGoldTxnId"] ?? 0,
-        isSageGoldGift: json["isSageGoldGift"] ?? false,
+        isSageGoldGift: json["IsSageGoldGift"] ?? false,
         recieverId: json["reciever_id"] ?? 0,
         success: json["success"] ?? false,
         errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),

@@ -23,9 +23,7 @@ class PersonalLoansScreenController extends GetxController {
   // RxInt textColorStep = 0.obs;
   Size size = Get.size;
   ApiHeader apiHeader = ApiHeader();
-
   GlobalKey<FormState> stepOneFormKey = GlobalKey<FormState>();
-
   TextEditingController fnameController = TextEditingController();
   TextEditingController lnameController = TextEditingController();
   TextEditingController dobController = TextEditingController();
@@ -146,7 +144,6 @@ class PersonalLoansScreenController extends GetxController {
   String selectedEligibleEmiAmount = "";
   List<EmiTenorOption> emiScheduleList = [];
   int selectedListItem = 0;
-
   File panCardFile = File('');
   File aadhaarCardFile = File('');
   File addressProofFile = File('');
@@ -158,7 +155,6 @@ class PersonalLoansScreenController extends GetxController {
   Future<void> checkEligibilityFunction() async {
     String url = ApiUrl.checkEligibilityApi;
     log('Check Eligibility Api Url : $url');
-
     try {
       isLoading(true);
       Map<String, dynamic> bodyData = {
@@ -180,9 +176,7 @@ class PersonalLoansScreenController extends GetxController {
         "BankName": whichBankController.text.trim(),
         "IsHomeLoan": homeLoanValue.value == "yes" ? true : false
       };
-
       log('BodyData : $bodyData');
-
       http.Response response = await http.post(
         Uri.parse(url),
         body: jsonEncode(bodyData),

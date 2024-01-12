@@ -71,17 +71,17 @@ class PartnerPoint {
   });
 
   factory PartnerPoint.fromJson(Map<String, dynamic> json) => PartnerPoint(
-        partner: json["partner"] ?? "",
-        totalPoints: (json["totalPoints"] ?? 0).toString(),
-        valuePerPoint: (json["valuePerPoint"] ?? 0.0 ?? 0).toString(),
-        totalReedemedPoint: (json["totalReedemedPoint"] ?? 0).toString(),
-        totalRemainingPoint: (json["totalRemainingPoint"] ?? 0).toString(),
+        partner: json["Partner"] ?? "",
+        totalPoints: (json["TotalPoints"] ?? 0).toString(),
+        valuePerPoint: (json["ValuePerPoint"] ?? 0.0 ?? 0).toString(),
+        totalReedemedPoint: (json["TotalReedemedPoint"] ?? 0).toString(),
+        totalRemainingPoint: (json["TotalRemainingPoint"] ?? 0).toString(),
         totalExpirePoint: json["totalExpirePoint"] ?? 0,
-        logoUrl: json["logoUrl"] ?? "",
+        logoUrl: json["LogoUrl"] ?? "",
         expirePoint: (json["expirePoint"] ?? 0).toString(),
-        partnerSrNo: (json["partnerSrNo"] ?? 0).toString(),
+        partnerSrNo: (json["PartnerSrNo"] ?? 0).toString(),
         pointsEarnedSummary: List<PointsEarnedSummary>.from(
-            (json["pointsEarnedSummary"] ?? [])
+            (json["PointsEarnedSummary"] ?? [])
                     .map((x) => PointsEarnedSummary.fromJson(x)) ??
                 {}),
         pointsRedeemedSummary: List<PointsRedeemedSummary>.from(
@@ -106,7 +106,7 @@ class ExpirePointModel {
 
   factory ExpirePointModel.fromJson(Map<String, dynamic> json) =>
       ExpirePointModel(
-        pointExpiryDate: json["pointExpiryDate"] ?? "",
+        pointExpiryDate: json["PointExpiryDate"] ?? "",
         points: (json["points"] ?? 0.0 ?? 0).toString(),
       );
 }
@@ -124,9 +124,9 @@ class PointsRedeemedSummary {
 
   factory PointsRedeemedSummary.fromJson(Map<String, dynamic> json) =>
       PointsRedeemedSummary(
-        dateRedeemed: json["dateRedeemed "] ?? "",
-        pointsRdeemed: json["pointsRdeemed"] ?? 0,
-        redeemtionType: json["redeemtionType"] ?? "",
+        dateRedeemed: json["DateRedeemed "] ?? "",
+        pointsRdeemed: json["PointsRdeemed"] ?? 0,
+        redeemtionType: json["RedeemtionType"] ?? "",
       );
 }
 
@@ -146,8 +146,8 @@ class PointsEarnedSummary {
   factory PointsEarnedSummary.fromJson(Map<String, dynamic> json) =>
       PointsEarnedSummary(
         points: json["points"] ?? 0,
-        dateAdded: json["dateAdded"] ?? "",
-        creditType: json["creditType"] ?? "",
-        pointExpiryDate: json["pointExpiryDate"] ?? "",
+        dateAdded: json["DateAdded"] ?? "",
+        creditType: json["CreditType"] ?? "",
+        pointExpiryDate: json["PointExpiryDate"] ?? "",
       );
 }

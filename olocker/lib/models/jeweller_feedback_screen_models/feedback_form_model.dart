@@ -147,7 +147,7 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         ratingQuestionList: List<RatingQuestionList>.from(
-            (json["ratingQuestionList"] ?? [])
+            (json["RatingQuestionList"] ?? [])
                 .map((x) => RatingQuestionList.fromJson(x))),
         success: json["success"] ?? false,
         errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
@@ -169,11 +169,11 @@ class RatingQuestionList {
 
   factory RatingQuestionList.fromJson(Map<String, dynamic> json) =>
       RatingQuestionList(
-        srNo: json["srNo"] ?? 0,
-        question: json["question"] ?? "",
-        questionType: json["questionType"] ?? "",
+        srNo: json["SrNo"] ?? 0,
+        question: json["Question"] ?? "",
+        questionType: json["QuestionType"] ?? "",
         answer: List<Answer>.from(
-            (json["answer"] ?? []).map((x) => Answer.fromJson(x))),
+            (json["Answer"] ?? []).map((x) => Answer.fromJson(x))),
       );
 }
 
@@ -189,8 +189,8 @@ class Answer {
   bool isSelected;
 
   factory Answer.fromJson(Map<String, dynamic> json) => Answer(
-        srNo: json["srNo"] ?? 0,
-        questionAnswer: json["questionAnswer"] ?? "",
+        srNo: json["SrNo"] ?? 0,
+        questionAnswer: json["QuestionAnswer"] ?? "",
         isSelected: false,
       );
 }

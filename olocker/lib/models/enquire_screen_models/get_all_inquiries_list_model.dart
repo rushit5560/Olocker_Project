@@ -34,7 +34,7 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         getInquiryNotification: List<GetInquiryNotification>.from(
-            (json["getInquiryNotification"] ?? [])
+            (json["GetInquiryNotification"] ?? [])
                 .map((x) => GetInquiryNotification.fromJson(x))),
         success: json["success"] ?? false,
         errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
@@ -80,21 +80,21 @@ class GetInquiryNotification {
 
   factory GetInquiryNotification.fromJson(Map<String, dynamic> json) =>
       GetInquiryNotification(
-        srNo: json["srNo"] ?? 0,
-        partnerSrNo: json["partnerSrNo"] ?? 0,
-        customerId: json["customerId"] ?? 0,
-        title: json["title"] ?? "",
-        message: json["message"] ?? "",
-        sentBy: json["sentBy"] ?? 0,
-        timestamp: DateTime.parse(json["timestamp"] ?? ""),
-        isRead: json["isRead"] ?? false,
-        messageType: json["messageType"] ?? 0,
-        replyMsgId: json["replyMsgId"] ?? 0,
-        productId: json["productId"] ?? 0,
-        itemName: json["itemName"] ?? "",
-        itemDesc: json["itemDesc"] ?? "",
-        productsPrice: json["productsPrice"] ?? 0.0,
-        imgeUrl: json["imgeUrl"] ?? "",
-        itemType: json["itemType"] ?? "",
+        srNo: json["SrNo"] ?? 0,
+        partnerSrNo: json["PartnerSrNo"] ?? 0,
+        customerId: json["CustomerId"] ?? 0,
+        title: json["Title"] ?? "",
+        message: json["Message"] ?? "",
+        sentBy: json["SentBy"] ?? 0,
+        timestamp: DateTime.parse(json["Timestamp"] ?? ""),
+        isRead: json["IsRead"] ?? false,
+        messageType: json["MessageType"] ?? 0,
+        replyMsgId: json["ReplyMsgId"] ?? 0,
+        productId: json["ProductId"] ?? 0,
+        itemName: json["ItemName"] ?? "",
+        itemDesc: json["ItemDesc"] ?? "",
+        productsPrice: json["ProductsPrice"] ?? 0.0,
+        imgeUrl: json["ImgeUrl"] ?? "",
+        itemType: json["ItemType"] ?? "",
       );
 }

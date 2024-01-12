@@ -66,7 +66,6 @@ class MySchemePaymentSuccessScreenController extends GetxController {
       rethrow;
     } finally {
       isLoading(false);
-      
     }
   }
 

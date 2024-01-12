@@ -9,9 +9,7 @@ import '../constants/user_details.dart';
 
 class AllLoyaltyPointScreenController extends GetxController {
   RxBool isLoading = false.obs;
-
   // RxBool isSuccessStatus = false.obs;
-
   Size size = Get.size;
   int isStatusCode = 0;
   ApiHeader apiHeader = ApiHeader();
@@ -26,7 +24,6 @@ class AllLoyaltyPointScreenController extends GetxController {
     // ${UserDetails.customerId}";
 
     log('getLoyaltyPointFunction Api Url : $url');
-
     try {
       http.Response response = await http.get(
         Uri.parse(url),

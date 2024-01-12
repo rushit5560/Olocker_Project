@@ -41,10 +41,7 @@ class ProductEnquireScreenController extends GetxController {
   Future<void> getProductDetailFunction() async {
     // String url =
     //     "${ApiUrl.getJewelleryDetailApi}?partnerSrNo=$partnerSrNo&productSrno=$productSrNo";
-    String url = "${ApiUrl.getOfferJewelleryDetailApi}"
-        "?productSrno=$productSrNo"
-    "&Customerno=${UserDetails.customerId}"
-        "&partnerSrNo=$partnerSrNo";
+    String url = "${ApiUrl.getOfferJewelleryDetailApi}?partnerSrNo=$productSrNo&productSrno=${UserDetails.customerId}&customerno=$partnerSrNo";
     log("getProductDetailFunction url: $url");
 
     try {

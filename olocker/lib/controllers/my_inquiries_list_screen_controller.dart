@@ -32,7 +32,7 @@ class MyInquiriesListScreenController extends GetxController {
         Uri.parse(url),
         headers: apiHeader.headers,
       );
-      log(' getAllInquiriesListFunction response : ${response.body}');
+      log('getAllInquiriesListFunction response : ${response.body}');
 
       GetAllInquiriesListModel getAllInquiriesListModel =
           GetAllInquiriesListModel.fromJson(json.decode(response.body));

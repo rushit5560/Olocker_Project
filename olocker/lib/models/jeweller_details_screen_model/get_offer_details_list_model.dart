@@ -83,7 +83,7 @@ class GetOfferDetailResultModel {
         "GetProduct": List<dynamic>.from(getProduct.map((x) => x.toJson())),
         "success": success,
         "error_info": errorInfo.toJson(),
-      };*//*
+      };*/ /*
 
 }
 
@@ -113,7 +113,7 @@ class ErrorInfo {
         "extra_info": extraInfo,
         "description": description,
         "error_data": errorData,
-      };*//*
+      };*/ /*
 
 }
 
@@ -196,7 +196,7 @@ class GetProduct {
         "ProductImage": productImage,
         "TryBeforeBuy": tryBeforeBuy,
         "IsFav": isFav,
-      };*//*
+      };*/ /*
 
 }
 
@@ -217,12 +217,10 @@ class MetalPurity {
 }
 */
 
-
-
 import 'dart:convert';
 
-GetOfferDetailResultModel getOfferDetailResultModelFromJson(String str) => GetOfferDetailResultModel.fromJson(json.decode(str));
-
+GetOfferDetailResultModel getOfferDetailResultModelFromJson(String str) =>
+    GetOfferDetailResultModel.fromJson(json.decode(str));
 
 class GetOfferDetailResultModel {
   int statusCode;
@@ -233,12 +231,11 @@ class GetOfferDetailResultModel {
     required this.data,
   });
 
-  factory GetOfferDetailResultModel.fromJson(Map<String, dynamic> json) => GetOfferDetailResultModel(
-    statusCode: json["statusCode"],
-    data: GetOfferDetailResultData.fromJson(json["data"]),
-  );
-
-
+  factory GetOfferDetailResultModel.fromJson(Map<String, dynamic> json) =>
+      GetOfferDetailResultModel(
+        statusCode: json["statusCode"],
+        data: GetOfferDetailResultData.fromJson(json["data"]),
+      );
 }
 
 class GetOfferDetailResultData {
@@ -278,27 +275,23 @@ class GetOfferDetailResultData {
 
   factory GetOfferDetailResultData.fromJson(Map<String, dynamic> json) =>
       GetOfferDetailResultData(
-        offerId: json["offerId"] ?? 0,
-        partnerSrNo: json["partnerSrNo"] ?? 0,
-        offerType: json["offerType"] ?? "",
-        fromDate: json["fromDate"] ?? "",
-        toDate: json["toDate"] ?? "",
-        dealType: json["dealType"] ?? "",
-        discountPer: json["discountPer"] ?? 0,
-        discountAmt: json["discountAmt"] ?? 0,
-        discountQty: json["discountQty"] ?? 0,
-        dealDescription: json["dealDescription"] ?? "",
+        offerId: json["OfferId"] ?? 0,
+        partnerSrNo: json["PartnerSrNo"] ?? 0,
+        offerType: json["OfferType"] ?? "",
+        fromDate: json["FromDate"] ?? "",
+        toDate: json["ToDate"] ?? "",
+        dealType: json["DealType"] ?? "",
+        discountPer: json["DiscountPer"] ?? 0,
+        discountAmt: json["DiscountAmt"] ?? 0,
+        discountQty: json["DiscountQty"] ?? 0,
+        dealDescription: json["DealDescription"] ?? "",
         offerName: json["offerName"] ?? "",
-        creativeImage: json["creativeImage"] ?? false,
+        creativeImage: json["CreativeImage"] ?? false,
         getProduct: List<GetProduct>.from(
-            (json["getProduct"] ?? []).map((x) => GetProduct.fromJson(x))),
+            (json["GetProduct"] ?? []).map((x) => GetProduct.fromJson(x))),
         success: json["success"] ?? false,
         errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
       );
-
-
-
-
 }
 
 class ErrorInfo {
@@ -315,11 +308,11 @@ class ErrorInfo {
   final dynamic errorData;
 
   factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
-    errorType: json["error_type"] ?? 0,
-    extraInfo: json["extra_info"] ?? "",
-    description: json["description"] ?? "",
-    errorData: json["error_data"] ?? "",
-  );
+        errorType: json["error_type"] ?? 0,
+        extraInfo: json["extra_info"] ?? "",
+        description: json["description"] ?? "",
+        errorData: json["error_data"] ?? "",
+      );
 
   Map<String, dynamic> toJson() => {
         "error_type": errorType,
@@ -327,7 +320,6 @@ class ErrorInfo {
         "description": description,
         "error_data": errorData,
       };
-
 }
 
 class GetProduct {
@@ -360,6 +352,7 @@ class GetProduct {
   final String productName;
   final List<MetalPurity> metalPurities;
   final String productType;
+
   // final dynamic height;
   // final dynamic width;
   // final dynamic size;
@@ -370,28 +363,27 @@ class GetProduct {
   int favId;
 
   factory GetProduct.fromJson(Map<String, dynamic> json) => GetProduct(
-        categoryName: json["categoryName"] ?? "",
-        subCategoryName: json["subCategoryName"] ?? "",
-        productSrNo: json["productSrNo"] ?? 0,
-        itemDescription: json["itemDescription"] ?? "",
-        productsPrice: json["productsPrice"] ?? "",
-        stockNo: json["stockNo"] ?? "",
-        productName: json["productName"] ?? "",
+        categoryName: json["CategoryName"] ?? "",
+        subCategoryName: json["SubCategoryName"] ?? "",
+        productSrNo: json["ProductSrNo"] ?? 0,
+        itemDescription: json["ItemDescription"] ?? "",
+        productsPrice: json["ProductsPrice"] ?? "",
+        stockNo: json["StockNo"] ?? "",
+        productName: json["ProductName"] ?? "",
         metalPurities: List<MetalPurity>.from(
-            (json["metalPurities"] ?? []).map((x) => MetalPurity.fromJson(x))),
-        productType: json["productType"] ?? "",
+            (json["MetalPurities"] ?? []).map((x) => MetalPurity.fromJson(x))),
+        productType: json["ProductType"] ?? "",
         // height: json["Height"],
         // width: json["Width"],
         // size: json["Size"],
-        brandCollection: json["brandCollection"] ?? "",
-        productImage: json["productImage"] ?? "",
-        tryBeforeBuy: json["tryBeforeBuy"] ?? false,
+        brandCollection: json["BrandCollection"] ?? "",
+        productImage: json["ProductImage"] ?? "",
+        tryBeforeBuy: json["TryBeforeBuy"] ?? false,
         isFav: json["IsFav"] ?? false,
         favId: json["FavId"] ?? 0,
       );
-
-
 }
+
 class MetalPurity {
   MetalPurity({
     required this.metalPurity,
@@ -400,10 +392,10 @@ class MetalPurity {
   final String metalPurity;
 
   factory MetalPurity.fromJson(Map<String, dynamic> json) => MetalPurity(
-    metalPurity: json["MetalPurity"] ?? "",
-  );
+        metalPurity: json["MetalPurity"] ?? "",
+      );
 
   Map<String, dynamic> toJson() => {
-    "MetalPurity": metalPurity,
-  };
+        "MetalPurity": metalPurity,
+      };
 }

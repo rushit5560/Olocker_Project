@@ -108,20 +108,20 @@ class TransactionData {
 
   factory TransactionData.fromJson(Map<String, dynamic> json) =>
       TransactionData(
-        srNo: json["srNo"] ?? 0,
+        srNo: json["SrNo"] ?? 0,
         customerPurchaseSavingSchemeSrNo:
-        json["customerPurchaseSavingSchemeSrNo"] ?? 0,
-        transactionUuid: json["transactionUUID"] ?? "",
-        transactionDate: json["transactionDate"] ?? "",
-        transactionId: json["transactionId"] ?? "",
-        transactionStatus: json["transactionStatus"] ?? "",
-        timeStamp: json["timeStamp"] ?? "",
-        transactionAmount: json["transactionAmount"] ?? "",
-        paymentId: json["paymentId"] ?? "",
-        invoiceNo: json["invoiceNo"] ?? "",
-        billingDate: json["billingDate"] ?? "",
-        invoicePath: json["invoicePath"] ?? "",
-        isOnlinePayment: json["isOnlinePayment"] ?? "",
+        json["CustomerPurchaseSavingSchemeSrNo"] ?? 0,
+        transactionUuid: json["TransactionUUID"] ?? "",
+        transactionDate: json["TransactionDate"] ?? "",
+        transactionId: json["TransactionId"] ?? "",
+        transactionStatus: json["TransactionStatus"] ?? "",
+        timeStamp: json["TimeStamp"] ?? "",
+        transactionAmount: json["TransactionAmount"] ?? "",
+        paymentId: json["PaymentId"] ?? "",
+        invoiceNo: json["InvoiceNo"] ?? "",
+        billingDate: json["BillingDate"] ?? "",
+        invoicePath: json["InvoicePath"] ?? "",
+        isOnlinePayment: json["IsOnlinePayment"] ?? "",
         nextPaymentDate: json["nextPaymentDate"]??"",
       );
 

@@ -38,7 +38,7 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    getPurchaseSavingSchemeList: List<GetPendingBillData>.from((json["getPurchaseSavingSchemeList"] ?? []).map((x) => GetPendingBillData.fromJson(x ?? {}))),
+    getPurchaseSavingSchemeList: List<GetPendingBillData>.from((json["GetPurchaseSavingSchemeList"] ?? []).map((x) => GetPendingBillData.fromJson(x ?? {}))),
     success: json["success"] ?? false,
     errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
   );
