@@ -116,7 +116,7 @@ class GetProductModel {
 
   factory GetProductModel.fromJson(Map<String, dynamic> json) =>
       GetProductModel(
-        srNo: json["SrNo"] ?? 0,
+        srNo: json["srNo"] ?? 0,
         productSku: json["ProductSku"] ?? "",
         itemType: json["ItemType"] ?? "",
         itemTypeName: json["ItemTypeName"] ?? "",

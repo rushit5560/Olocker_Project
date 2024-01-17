@@ -224,14 +224,14 @@ class OrnamentHistoryDetail {
 
   factory OrnamentHistoryDetail.fromJson(Map<String, dynamic> json) =>
       OrnamentHistoryDetail(
-        srNo: json["SrNo"] ?? 0,
-        custOraSrNo: json["CustOraSrNo"] ?? 0,
-        custSrNo: json["CustSrNo"] ?? 0,
-        activity: json["Activity"] ?? "",
-        details: json["Activity"] ?? "",
-        notes: json["Notes"] ?? "",
-        ornamentLocation: json["OrnamentLocation"] ?? "",
-        date: json["Date"] ?? "",
+        srNo: json["srNo"] ?? 0,
+        custOraSrNo: json["custOraSrNo"] ?? 0,
+        custSrNo: json["custSrNo"] ?? 0,
+        activity: json["activity"] ?? "",
+        details: json["details"] ?? "",
+        notes: json["notes"] ?? "",
+        ornamentLocation: json["ornamentLocation"] ?? "",
+        date: json["date"] ?? "",
       );
 }
 

@@ -206,7 +206,7 @@ class ErrorInfo {
   factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
     errorType: json["error_type"] ?? 0,
     extraInfo: json["extra_info"] ?? "",
-    description: json["description"] ?? "",
+    description: json["Description"] ?? "",
     errorData: json["error_data"] ?? "",
   );
 

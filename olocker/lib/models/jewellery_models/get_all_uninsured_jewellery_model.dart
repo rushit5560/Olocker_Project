@@ -224,7 +224,7 @@ class UnInsuredOrnament {
     hallmarked: json["hallmarked"]??"",
     wasInsured:json["wasInsured"]??"",
     url: json["url"]??"",
-    occassion: json["occassion"??""],
+    occassion: json["occassion"]??"",
     ornamentImagesSrNo: json["ornamentImagesSrNo"]??"",
     oranamentsPrice: json["oranamentsPrice"]??"",
     purchaseDate: json["purchaseDate"]??"",
