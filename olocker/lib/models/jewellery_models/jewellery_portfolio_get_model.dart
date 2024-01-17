@@ -168,13 +168,13 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         insuredOrnaments: List<InsuredOrnament>.from(
-            (json["insuredOrnaments"] ?? [])
+            (json["InsuredOrnaments"] ?? [])
                 .map((x) => InsuredOrnament.fromJson(x))),
         unInsuredOrnaments: List<UnInsuredOrnament>.from(
-            (json["unInsuredOrnaments"] ?? [])
+            (json["UnInsuredOrnaments"] ?? [])
                 .map((x) => UnInsuredOrnament.fromJson(x))),
         totalJewelleryPortfolio: List<TotalJewelleryPortfolio>.from(
-            (json["totalJewelleryPortfolio"] ?? [])
+            (json["TotalJewelleryPortfolio"] ?? [])
                 .map((x) => TotalJewelleryPortfolio.fromJson(x))),
         success: json["success"] ?? false,
         errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
@@ -196,10 +196,10 @@ class InsuredOrnament {
 
   factory InsuredOrnament.fromJson(Map<String, dynamic> json) =>
       InsuredOrnament(
-        noofItems: json["noofItems"] ?? 0,
-        insuredValue: json["insuredValue"] ?? 0,
-        marketValue: json["marketValue"] ?? 0,
-        gainLoss: json["gainLoss"] ?? "",
+        noofItems: json["NoofItems"] ?? 0,
+        insuredValue: json["InsuredValue"] ?? 0,
+        marketValue: json["MarketValue"] ?? 0,
+        gainLoss: json["GainLoss"] ?? "",
       );
 }
 
