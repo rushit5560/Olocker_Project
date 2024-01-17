@@ -1,6 +1,6 @@
 // To parse this JSON data, do
 //
-//     final getOfflineDealsModel = getOfflineDealsModelFromJson(jsonString);
+//     final updateProfileModel = updateProfileModelFromJson(jsonString);
 
 import 'dart:convert';
 
@@ -35,7 +35,7 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        userProfile: UserProfile.fromJson(json["userProfile"] ?? []),
+        userProfile: UserProfile.fromJson(json["UserProfile"] ?? {}),
         success: json["success"] ?? false,
         errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
       );
@@ -58,12 +58,11 @@ class ErrorInfo {
         errorType: json["error_type"] ?? 0,
         extraInfo: json["extra_info"] ?? "",
         description: json["description"] ?? "",
-        errorData: json["error_data"] ?? "",
+        errorData: json["error_data "] ?? "",
       );
 }
 
 class UserProfile {
-  String salutation;
   String firstName;
   String lastName;
   String userEmail;
@@ -76,12 +75,11 @@ class UserProfile {
   String dob;
   String ipAddr;
   String custSrNo;
-  int whatYouLikeToDo;
+  String whatYouLikeToDo;
   String imageurl;
-  String safegoldId;
+  String salutation;
 
   UserProfile({
-    required this.salutation,
     required this.firstName,
     required this.lastName,
     required this.userEmail,
@@ -96,11 +94,10 @@ class UserProfile {
     required this.custSrNo,
     required this.whatYouLikeToDo,
     required this.imageurl,
-    required this.safegoldId,
+    required this.salutation,
   });
 
   factory UserProfile.fromJson(Map<String, dynamic> json) => UserProfile(
-        salutation: json["Salutation"] ?? "",
         firstName: json["FirstName"] ?? "",
         lastName: json["LastName"] ?? "",
         userEmail: json["UserEmail"] ?? "",
@@ -110,11 +107,11 @@ class UserProfile {
         city: json["City"] ?? "",
         pin: json["Pin"] ?? "",
         address1: json["Address1"] ?? "",
-        dob: json["Dob"] ?? DateTime.now().toString(),
-        ipAddr: json["IpAddr"] ?? "",
+        dob: json["DOB"] ?? "",
+        ipAddr: json["IPAddr"] ?? "",
         custSrNo: json["CustSrNo"] ?? "",
-        whatYouLikeToDo: json["WhatYouLikeToDo"] ?? 0,
+        whatYouLikeToDo: json["WhatYouLikeToDo"] ?? "",
         imageurl: json["Imageurl"] ?? "",
-        safegoldId: json["SafegoldId"] ?? "",
+        salutation: json["Salutation"] ?? "",
       );
 }
