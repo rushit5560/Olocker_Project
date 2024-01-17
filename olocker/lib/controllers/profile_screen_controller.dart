@@ -137,6 +137,7 @@ class ProfileScreenController extends GetxController {
         fnameController.text = userProfileGetModel.data.firstName;
         lnameController.text = userProfileGetModel.data.lastName;
         emailController.text = userProfileGetModel.data.userEmail;
+        log("emailController.text ${emailController.text}");
         DateTime dateTime = DateTime.parse(userProfileGetModel.data.dob);
         initialDate = dateTime;
 
@@ -161,31 +162,31 @@ class ProfileScreenController extends GetxController {
           datePassingvalue.value = datePassingFormat.format(dateGetPassing);
         }
 
-        //set user data in prefs data
+       /* //set user data in prefs data
         prefs.setString(UserPrefsData().customerUserNameKey,
             userProfileGetModel.data.firstName);
 
         prefs.setString(UserPrefsData().customerFirstNameKey,
-            userProfileGetModel.data.firstName);
+            fnameController.text);
         prefs.setString(UserPrefsData().customerLastNameKey,
-            userProfileGetModel.data.lastName);
+            lnameController.text);
         prefs.setString(UserPrefsData().customerUserEmailKey,
-            userProfileGetModel.data.userEmail);
+            emailController.text);
         prefs.setString(UserPrefsData().customerMobileNoKey,
-            userProfileGetModel.data.mobileNo);
+            numberController.text);
 
         prefs.setString(UserPrefsData().customerAddressKey,
             userProfileGetModel.data.address1);
         prefs.setString(
-            UserPrefsData().customerCityKey, userProfileGetModel.data.city);
+            UserPrefsData().customerCityKey, cityController.text);
         prefs.setString(
-            UserPrefsData().customerPinKey, userProfileGetModel.data.pin);
+            UserPrefsData().customerPinKey, pinCodeController.text);
         prefs.setString(
-            UserPrefsData().customerStateKey, userProfileGetModel.data.state);
+            UserPrefsData().customerStateKey, stateController.text);
         prefs.setString(UserPrefsData().customerCountryKey,
             userProfileGetModel.data.country);
         prefs.setString(UserPrefsData().customerDOBKey, datePassingvalue.value);
-
+*/
         log("datePassingvalue.value :: ${datePassingvalue.value}");
         numberController.text = userProfileGetModel.data.mobileNo;
         log("numberController.text ${numberController.text}");
@@ -256,7 +257,7 @@ class ProfileScreenController extends GetxController {
           "ProfileImage_Base64": "",
         };
 
-        // log('Without Image Body Data : ${jsonEncode(requestMap)}');
+        log('Without Image Body Data : ${jsonEncode(requestMap)}');
 
         // log("updateUserProfileDetailsFunction req map : ${UserDetails.customerId}");
         log("updateUserProfileDetailsFunction req map : ${datePassingvalue.value}");
