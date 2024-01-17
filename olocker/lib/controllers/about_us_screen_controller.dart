@@ -97,6 +97,7 @@ class AboutUsPageController extends GetxController {
       }
     } catch (e) {
       log("getAboutUsDetailsFunction Error ::: $e");
+      rethrow;
     } finally {
       isLoading(false);
     }

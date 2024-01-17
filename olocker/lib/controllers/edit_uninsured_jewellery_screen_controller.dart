@@ -265,7 +265,8 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
       log('getOrnamentDetailFunction response stcode :: ${response.statusCode}');
       log("getOrnamentDetailFunction res body :: ${response.body}");
 
-      GetOrnamentDetailsModel getOrnamentDetailsModel = GetOrnamentDetailsModel.fromJson(jsonDecode(response.body));
+      GetOrnamentDetailsModel getOrnamentDetailsModel =
+          GetOrnamentDetailsModel.fromJson(jsonDecode(response.body));
       // var isSuccessStatus = getOrnamentDetailsModel.success;
       isStatusCode = getOrnamentDetailsModel.statusCode;
       if (isStatusCode == 200) {
@@ -280,26 +281,29 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
 
         log('getOrnamentDetailsModel.data.grosswt :${getOrnamentDetailsModel.data.grosswt}');
 
-        ornamentGrossWeightController.text = getOrnamentDetailsModel.data.grosswt;
-        ornamentPurchasedFromController.text = getOrnamentDetailsModel.data.purchasedFrom;
+        ornamentGrossWeightController.text =
+            getOrnamentDetailsModel.data.grosswt;
+        ornamentPurchasedFromController.text =
+            getOrnamentDetailsModel.data.purchasedFrom;
 
         log("getOrnamentDetailsModel.purchaseDate :: ${getOrnamentDetailsModel.data.purchaseDate}");
 
-        if(getOrnamentDetailsModel.data.purchaseDate.toString() != "") {
-          String purchasedDate = getOrnamentDetailsModel.data.purchaseDate.split(" ")[0];
+        if (getOrnamentDetailsModel.data.purchaseDate.toString() != "") {
+          String purchasedDate =
+              getOrnamentDetailsModel.data.purchaseDate.split(" ")[0];
 
           List<String> dateList = purchasedDate.toString().split("/");
-          for(int i=0; i < dateList.length; i++) {
+          for (int i = 0; i < dateList.length; i++) {
             log('dateList :${dateList[i]}');
           }
-          selectedOrnamentPurchaseDate.value = "${dateList[1]}/${dateList[0]}/${dateList[2]}";
+          selectedOrnamentPurchaseDate.value =
+              "${dateList[1]}/${dateList[0]}/${dateList[2]}";
           // DateTime purchasedDate = DateTime.parse(getOrnamentDetailsModel.data.purchaseDate.split(" ")[0]);
           // String outputDate = "${purchasedDate.day}/${purchasedDate.month}/${purchasedDate.year}";
           // var outputDate = DateFormat("dd/MM/yyyy").parse(purchasedDate.toString());
           // log('outputDate :$outputDate');
 
           // String purDate = getOrnamentDetailsModel.data.purchaseDate.split(" ")[0];
-
 
           // DateTime finalDate = DateTime.parse(getOrnamentDetailsModel.data.purchaseDate.toString());
           // log('Final Date : ${finalDate.day}/${finalDate.month}/${finalDate.year}');
@@ -321,9 +325,11 @@ class EditUnInsuredJewelleryScreenController extends GetxController {
         // selectedOrnamentPurchaseDate.value =
         //     getOrnamentDetailsModel.purchaseDate.toString().split(" ")[0];
 
-        ornamentPurchasedPriceController.text = getOrnamentDetailsModel.data.purchasePrice.toString().split(".")[0];
+        ornamentPurchasedPriceController.text =
+            getOrnamentDetailsModel.data.purchasePrice.toString().split(".")[0];
         log('ornamentPurchasedPriceController ::${ornamentPurchasedPriceController.text}');
-        apiJewelleryImageFile = File(ApiUrl.apiImagePath + getOrnamentDetailsModel.data.ornamentimage.path);
+        apiJewelleryImageFile = File(ApiUrl.apiImagePath +
+            getOrnamentDetailsModel.data.ornamentimage.path);
 
         if (getOrnamentDetailsModel.data.metaldetails != []) {
           for (int i = 0;

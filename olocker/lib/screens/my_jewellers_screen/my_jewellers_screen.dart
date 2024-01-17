@@ -47,10 +47,14 @@ class MyJewellersScreen extends StatelessWidget {
           // const BackGroundModule(),
           Column(
             children: [
-              BannerSliderModule(),
-              Expanded(
-                child: AllJewellersListModule(),
-              ),
+              myJewellersScreenController.bannerList.isEmpty
+                  ? Container()
+                  : BannerSliderModule(),
+              myJewellersScreenController.allJewellersList.isEmpty
+                  ? Container()
+                  : Expanded(
+                      child: AllJewellersListModule(),
+                    ),
             ],
           ),
         ],

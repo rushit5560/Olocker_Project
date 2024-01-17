@@ -1,34 +1,3 @@
-// import 'dart:convert';
-//
-// import '../error_info_model/error_info_model.dart';
-//
-// AboutDetailsModel aboutDetailsModelFromJson(String str) =>
-//     AboutDetailsModel.fromJson(json.decode(str));
-//
-// class AboutDetailsModel {
-//   AboutDetailsModel({
-//     required this.aboutYourSelf,
-//     required this.ratingGivenByCustomer,
-//     required this.success,
-//     required this.errorInfo,
-//   });
-//
-//   final AboutYourSelf aboutYourSelf;
-//   final bool ratingGivenByCustomer;
-//   final bool success;
-//   final ErrorInfoModel errorInfo;
-//
-//   factory AboutDetailsModel.fromJson(Map<String, dynamic> json) =>
-//       AboutDetailsModel(
-//         aboutYourSelf: AboutYourSelf.fromJson(json["AboutYourSelf"] ?? {}),
-//         ratingGivenByCustomer: json["RatingGivenByCustomer"] ?? false,
-//         success: json["success"] ?? false,
-//         errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
-//       );
-// }
-//
-//
-
 import 'dart:convert';
 
 import '../error_info_model/error_info_model.dart';
@@ -66,7 +35,7 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        aboutYourSelf: AboutYourSelf.fromJson(json["aboutYourSelf"] ?? {}),
+        aboutYourSelf: AboutYourSelf.fromJson(json["AboutYourSelf"] ?? {}),
         ratingGivenByCustomer: json["ratingGivenByCustomer"] ?? false,
         success: json["success"] ?? false,
         errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
@@ -129,30 +98,30 @@ class AboutYourSelf {
   final String retailerCode;
 
   factory AboutYourSelf.fromJson(Map<String, dynamic> json) => AboutYourSelf(
-        srNo: json["srNo"] ?? 0,
-        partnerSrNo: json["partnerSrNo"] ?? 0,
-        aboutShowroom: json["aboutShowroom"] ?? "",
-        showRoomImage1: json["showRoomImage1"] ?? "",
-        showRoomImage2: json["showRoomImage2"] ?? "",
-        showRoomImage3: json["showRoomImage3"] ?? "",
-        ownerImage1: json["ownerImage1"] ?? "",
-        ownerImage2: json["ownerImage2"] ?? "",
+        srNo: json["SrNo"] ?? 0,
+        partnerSrNo: json["PartnerSrNo"] ?? 0,
+        aboutShowroom: json["AboutShowroom"] ?? "",
+        showRoomImage1: json["ShowRoomImage1"] ?? "",
+        showRoomImage2: json["ShowRoomImage2"] ?? "",
+        showRoomImage3: json["ShowRoomImage3"] ?? "",
+        ownerImage1: json["OwnerImage1"] ?? "",
+        ownerImage2: json["OwnerImage2"] ?? "",
         ownerImage3: json["ownerImage3"] ?? "",
-        owner1: json["owner1"] ?? "",
-        owner2: json["owner2"] ?? "",
+        owner1: json["Owner1"] ?? "",
+        owner2: json["Owner2"] ?? "",
         owner3: json["owner3"] ?? "",
-        firstOwnerDescription: json["firstOwnerDescription"] ?? "",
-        secondOwnerDescription: json["secondOwnerDescription"] ?? "",
+        firstOwnerDescription: json["FirstOwnerDescription"] ?? "",
+        secondOwnerDescription: json["SecondOwnerDescription"] ?? "",
         thirdOwnerDescription: json["thirdOwnerDescription"] ?? "",
-        address: json["address"] ?? "",
-        contactEmail: json["contactEmail"] ?? "",
-        contactPhone: json["contactPhone"] ?? 0,
-        stateName: json["stateName"] ?? "",
-        cityName: json["cityName"] ?? "",
-        partnerLogo: json["partnerLogo"] ?? "",
-        companyName: json["companyName"] ?? "",
-        displayName: json["displayName"] ?? "",
-        ownersName: json["ownersName"] ?? "",
-        retailerCode: json["retailerCode"] ?? "",
+        address: json["Address"] ?? "",
+        contactEmail: json["ContactEmail"] ?? "",
+        contactPhone: json["ContactPhone"] ?? 0,
+        stateName: json["StateName"] ?? "",
+        cityName: json["CityName"] ?? "",
+        partnerLogo: json["PartnerLogo"] ?? "",
+        companyName: json["CompanyName"] ?? "",
+        displayName: json["DisplayName"] ?? "",
+        ownersName: json["OwnersName"] ?? "",
+        retailerCode: json["RetailerCode"] ?? "",
       );
 }

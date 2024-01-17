@@ -264,8 +264,8 @@ class ProductTypeItem {
 
   factory ProductTypeItem.fromJson(Map<String, dynamic> json) =>
       ProductTypeItem(
-        name: json["name"] ?? "",
-        image: json["image"] ?? "",
-        productCount: json["productCount"] ?? 0,
+        name: json["Name"] ?? "",
+        image: json["Image"] ?? "",
+        productCount: json["count"] ?? 0,
       );
 }

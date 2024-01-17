@@ -252,7 +252,7 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         vendorDealsList: List<VendorDealsList>.from(
-            (json["VendorDealsList"] ?? [])
+            (json["vendorDealsList"] ?? [])
                     .map((x) => VendorDealsList.fromJson(x)) ??
                 {}),
         success: json["success"] ?? false,
@@ -276,7 +276,7 @@ class VendorDealsList {
         category: json["Category"] ?? "",
         categoryImage: json["CategoryImage"] ?? "",
         onLineDeals: List<OnLineDeal>.from(
-            json["OnLineDeals"].map((x) => OnLineDeal.fromJson(x ?? {}))),
+            json["onlineDeal"].map((x) => OnLineDeal.fromJson(x ?? {}))),
       );
 }
 

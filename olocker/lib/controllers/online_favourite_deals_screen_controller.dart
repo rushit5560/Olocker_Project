@@ -39,12 +39,14 @@ class OnlineFavouriteDealsScreenController extends GetxController {
         log('Length1 : ${smartDealsOnlineModel.data.favDealList.length}');
         log('Length2 : ${favouriteDealsList.length}');
       } else {
+        isLoading(false);
         log('getOnlineFavouriteDealsFunction Else');
       }
 
       // log("response : ${response.body}");
     } catch (e) {
       log('getOnlineFavouriteDealsFunction Error :$e');
+      isLoading(false);
       rethrow;
     }
     isLoading(false);
