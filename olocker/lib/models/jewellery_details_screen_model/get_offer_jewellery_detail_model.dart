@@ -116,7 +116,7 @@ class GetProductModel {
 
   factory GetProductModel.fromJson(Map<String, dynamic> json) =>
       GetProductModel(
-        srNo: json["srNo"] ?? 0,
+        srNo: json["SrNo"] ?? 0,
         productSku: json["ProductSku"] ?? "",
         itemType: json["ItemType"] ?? "",
         itemTypeName: json["ItemTypeName"] ?? "",
@@ -145,7 +145,7 @@ class GetProductModel {
             (json["ProductImageList"] ?? [])
                 .map((x) => ProductImageList.fromJson(x))),
         collectionIdList: List<CollectionId>.from(
-            (json["collection_ids"] ?? []).map((x) => Productimage.fromJson(x))),
+            (json["Collection_ids"] ?? []).map((x) => Productimage.fromJson(x))),
         subcategoryId: List<SubcategoryId>.from((json["subcategory_ids"] ?? [])
             .map((x) => SubcategoryId.fromJson(x))),
         metaldetails: List<Metaldetail>.from(
@@ -244,11 +244,7 @@ class ProductImageList {
     imageLocation: json["ImageLocation"] ?? "",
   );
 
-  Map<String, dynamic> toJson() => {
-    "srNo": srNo,
-    "imageName": imageName,
-    "imageLocation": imageLocation,
-  };
+
 }
 
 class Metaldetail {

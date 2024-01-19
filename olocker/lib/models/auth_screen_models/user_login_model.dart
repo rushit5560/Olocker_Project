@@ -27,6 +27,7 @@ class UserLoginData {
   int srNo;
   bool success;
   ErrorInfoModel errorInfo;
+  String otp;
 
   UserLoginData({
     required this.isCustomer,
@@ -35,6 +36,7 @@ class UserLoginData {
     required this.srNo,
     required this.success,
     required this.errorInfo,
+    required this.otp,
   });
 
   factory UserLoginData.fromJson(Map<String, dynamic> json) => UserLoginData(
@@ -44,5 +46,6 @@ class UserLoginData {
         srNo: json["srNo"] ?? 0,
         success: json["success"] ?? false,
         errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
+        otp: json["otp"] ?? "",
       );
 }

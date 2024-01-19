@@ -14,6 +14,7 @@ import '../constants/user_details.dart';
 import '../models/auth_screen_models/login_response_model.dart';
 import '../models/auth_screen_models/user_login_model.dart';
 import '../models/update_device_id_model/update_device_id_model.dart';
+import '../screens/otp_screen/otp_screen.dart';
 import '../utils/user_prefs_data.dart';
 
 class OtpScreenController extends GetxController {
@@ -67,7 +68,17 @@ class OtpScreenController extends GetxController {
 
       if (isCustomerExist == true) {
         log("mobile number is verified");
-        var snackBar = const SnackBar(
+        Get.snackbar(
+          "OTP",
+          userLoginModel.data.otp,
+          snackPosition:
+          SnackPosition.TOP, // Optional: Specify the position
+          duration: const Duration(seconds: 3), // Optional: Specify the duration
+          backgroundColor:
+          Colors.grey[800], // Optional: Specify the background color
+          colorText: Colors.white,
+        );
+    /*    var snackBar = const SnackBar(
           backgroundColor: AppColors.whiteColor,
           elevation: 8,
           behavior: SnackBarBehavior.floating,
@@ -78,11 +89,11 @@ class OtpScreenController extends GetxController {
               color: AppColors.blackColor,
             ),
           ),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        );*/
+        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
         // prefs.setString(
         //     UserPrefsData().customerMobileNoKey, numberController.text);
-        // Get.off(() => OtpScreen());
+        Get.off(() => OtpScreen());
       } else {
         log("mobile number is new");
         final snackBar = SnackBar(

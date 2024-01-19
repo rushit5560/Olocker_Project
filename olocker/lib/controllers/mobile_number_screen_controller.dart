@@ -28,7 +28,7 @@ class MobileNumberScreenController extends GetxController {
 
   ApiHeader apiHeader = ApiHeader();
   RxBool termConditionCheckValue = false.obs;
-String mobileNumber="";
+  String mobileNumber = "";
   // String deviceTokenToSendPushNotification = "";
 
   Future<void> userLoginFunction(BuildContext context) async {
@@ -71,6 +71,18 @@ String mobileNumber="";
           log("mobile number is verfied");
           prefs.setString(
               UserPrefsData().customerMobileNoKey, numberController.text);
+          log("userLoginModel.data.otp ${userLoginModel.data.otp}");
+
+          Get.snackbar(
+            "OTP",
+            userLoginModel.data.otp,
+            snackPosition:
+                SnackPosition.TOP, // Optional: Specify the position
+            duration: const Duration(seconds: 3), // Optional: Specify the duration
+            backgroundColor:
+                Colors.grey[800], // Optional: Specify the background color
+            colorText: Colors.white,
+          );
           Get.off(() => OtpScreen());
         } else {
           log("mobile number is new");
@@ -103,12 +115,10 @@ String mobileNumber="";
     }
   }
 
-
   Future<void> initMethod() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    mobileNumber =
-        prefs.getString(UserPrefsData().customerMobileNoKey) ?? "";
+    mobileNumber = prefs.getString(UserPrefsData().customerMobileNoKey) ?? "";
     log("mobileNumber: $mobileNumber");
   }
 
@@ -117,5 +127,4 @@ String mobileNumber="";
     initMethod();
     super.onInit();
   }
-
 }

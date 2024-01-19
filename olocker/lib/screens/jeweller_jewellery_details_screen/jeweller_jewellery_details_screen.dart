@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
@@ -21,7 +23,6 @@ class JewellerJewelleryDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return WillPopScope(
       onWillPop: () {
         myFavouritesScreenController.getFavouriteProductsFunction();

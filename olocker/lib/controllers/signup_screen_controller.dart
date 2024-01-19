@@ -20,6 +20,7 @@ class SignUpScreenController extends GetxController {
   final size = Get.size;
   UserPrefsData userPrefsData = UserPrefsData();
   RxBool isLoading = false.obs;
+
   // final dioRequest = dio.Dio();
   final apiHeader = ApiHeader();
   String deviceTokenToSendPushNotification = "";
@@ -70,7 +71,7 @@ class SignUpScreenController extends GetxController {
           CheckMobileNumberModel.fromJson(resBody);
       // var isSuccessStatus = resBody["success"];
       // var isCustomerExist = resBody["userMobile"]["isExist"];
-      var isSuccessStatus=checkMobileNumberModel.data.success;
+      var isSuccessStatus = checkMobileNumberModel.data.success;
       var isCustomerExist = checkMobileNumberModel.data.userMobile.isExist;
       log("isSuccessStatus : $isSuccessStatus");
 
@@ -80,6 +81,10 @@ class SignUpScreenController extends GetxController {
         log("mobile number is verfied");
         prefs.setString(
             UserPrefsData().customerMobileNoKey, numberController.text);
+        SnackBar(
+          content: Text(checkMobileNumberModel.data.otp),
+          duration: const Duration(seconds: 5),
+        );
         // commonWidgets.showBorderSnackBar(context: Get.context!, displayText: "User Is Already Registered");
         // ignore: use_build_context_synchronously
         await userLoginFunction(context);
@@ -91,7 +96,8 @@ class SignUpScreenController extends GetxController {
       log("checkMobileNumber Error ::: $e");
       isLoading(false);
       rethrow;
-    } /*finally {
+    }
+    /*finally {
       isLoading(false);
     }*/
 
@@ -134,7 +140,7 @@ class SignUpScreenController extends GetxController {
         log("mobile number is verified");
         prefs.setString(
             UserPrefsData().customerMobileNoKey, numberController.text);
-        // Get.back();
+        Get.back();
         CommonWidgets().showBorderSnackBar(
             context: Get.context!, displayText: "User Is Already Registered");
         Get.off(() => OtpScreen());

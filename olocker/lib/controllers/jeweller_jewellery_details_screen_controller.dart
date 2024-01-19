@@ -56,9 +56,10 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
 
       // isSuccessStatus = getJewelleryDetailModel.success.obs;
       isStatusCode= getJewelleryDetailModel.statusCode;
+      log("isStatusCode $isStatusCode");
       if (isStatusCode == 200) {
         productDetailsData = getJewelleryDetailModel.data.productDetailsData;
-
+log("productDetailsData.productImageList ${productDetailsData.productImageList!.length}");
         if (getJewelleryDetailModel.data.errorInfo.description
             .contains("Product data not found.")) {
           CommonWidgets().showBorderSnackBar(
@@ -84,14 +85,14 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
     // isLoading(true);
     String url = "${ApiUrl.getSpecialFeaturesApi}?partnerSrNo=$partnerSrNo";
 
-    log('getJewellerySpecialFeaturesFunction Api Url :: $url');
+    // log('getJewellerySpecialFeaturesFunction Api Url :: $url');
 
     try {
       http.Response response = await http.get(
         Uri.parse(url),
         headers: apiHeader.headers,
       );
-      log('getJewellerySpecialFeaturesFunction response :: ${response.body}');
+      // log('getJewellerySpecialFeaturesFunction response :: ${response.body}');
 
       SpecialFeaturesModel specialFeaturesModel =
           SpecialFeaturesModel.fromJson(json.decode(response.body));
@@ -210,8 +211,9 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
 
   Future<void> getPartnerByCodeFunction() async {
     // if (formKey.currentState!.validate()) {
-    String url = "${ApiUrl.getPartnerByCodeApi}?PartnerCode=$partnerSrNo";
-    log(" getPartnerByCodeFunction url: $url");
+    String url = "${ApiUrl.getPartnerByCodeApi}?partnerCode=$partnerSrNo";
+    // String url = "${ApiUrl.getPartnerByCodeApi}?PartnerCode=1002132";
+    // log(" getPartnerByCodeFunction url: $url");
 
     try {
       isLoading(true);
@@ -220,8 +222,8 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
         headers: apiHeader.headers,
       );
 
-      log("getPartnerByCodeFunction st code is : ${response.statusCode}");
-      log("getPartnerByCodeFunction res body : ${response.body}");
+      // log("getPartnerByCodeFunction st code is : ${response.statusCode}");
+      // log("getPartnerByCodeFunction res body : ${response.body}");
 
       var resBody = jsonDecode(response.body);
 
@@ -259,7 +261,7 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
   Future<void> getUserProfileDetailsFunction() async {
     String url =
         "${ApiUrl.getUserProfileApi}?customerId=${UserDetails.customerId}";
-    log(" getUserProfleDetailsFunction url: $url");
+    // log(" getUserProfleDetailsFunction url: $url");
 
     try {
       isLoading(true);
@@ -268,8 +270,8 @@ class JewellerJewelleryDetailsScreenController extends GetxController {
         headers: apiHeader.headers,
       );
 
-      log("getUserProfleDetailsFunction st code is : ${response.statusCode}");
-      log("getUserProfleDetailsFunction res body : ${response.body}");
+      // log("getUserProfleDetailsFunction st code is : ${response.statusCode}");
+      // log("getUserProfleDetailsFunction res body : ${response.body}");
 
       var resBody = jsonDecode(response.body);
 

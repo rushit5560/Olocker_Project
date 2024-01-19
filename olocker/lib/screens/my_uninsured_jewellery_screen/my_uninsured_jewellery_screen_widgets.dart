@@ -53,7 +53,7 @@ class JewelleryListItem extends StatelessWidget {
     // log("imag path :: $imagepath");
 
     // String imgUrl = ApiUrl.apiImagePath + unInsuredJewelleryController.getOrnamentList[index].url;
-    String imgUrl = ApiUrl.apiMainPath + unInsuredJewelleryController.getOrnamentList[index].url.replaceAll(r"~", "");
+    String imgUrl = ApiUrl.apiMainUrl + unInsuredJewelleryController.getOrnamentList[index].url.replaceAll(r"~", "");
     log('imgUrl11 $index :$imgUrl');
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 3),

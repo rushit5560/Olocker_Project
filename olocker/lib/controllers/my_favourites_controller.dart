@@ -27,6 +27,8 @@ class MyFavouritesScreenController extends GetxController {
     // String url = "${ApiUrl.getFavProductApi}?customerId=${UserDetails.customerId}&PartnerSRno=$partnerSRno";
     String url =
         "${ApiUrl.getFavProductApi}?CustomerId=${UserDetails.customerId}";
+    // String url =
+    //     "${ApiUrl.getFavProductApi}?CustomerId=1002132";
     log("getFavouriteProducts Api Url : $url");
 
     try {
@@ -37,9 +39,9 @@ class MyFavouritesScreenController extends GetxController {
       );
       log('getFavouriteProducts response.body is  : ${response.body}');
 
-
-      FavouritesModel favouritesModel =
-          FavouritesModel.fromJson(json.decode(response.body));
+      FavouritesModel favouritesModel = FavouritesModel.fromJson(
+        json.decode(response.body),
+      );
 
       // var isSuccessStatus = favouritesModel.success.obs;
       isStatusCode = favouritesModel.statusCode;

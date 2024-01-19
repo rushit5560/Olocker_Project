@@ -287,7 +287,7 @@ class JewelleryDetailsScreenController extends GetxController {
 
   Future<void> getPartnerByCodeFunction() async {
     // if (formKey.currentState!.validate()) {a
-    String url = "${ApiUrl.getPartnerByCodeApi}?PartnerCode=$partnerSrNo";
+    String url = "${ApiUrl.getPartnerByCodeApi}?partnerCode=$partnerSrNo";
     log("getPartnerByCodeFunction url: $url");
 
     try {

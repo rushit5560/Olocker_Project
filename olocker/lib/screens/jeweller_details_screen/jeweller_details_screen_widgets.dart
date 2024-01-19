@@ -412,7 +412,7 @@ class NewArrivalListModule extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, i) {
         String imgUrl =
-            ApiUrl.apiMainPath + screenController.newArrivalList[i].imageurl;
+            ApiUrl.apiMainUrl + screenController.newArrivalList[i].imageurl;
         return GestureDetector(
           onTap: () {
             Get.to(

@@ -25,11 +25,15 @@ class CheckMobileNumberData {
   UserMobile userMobile;
   bool success;
   ErrorInfoModel errorInfo;
+    String otp;
+    String deviceId;
 
   CheckMobileNumberData({
     required this.userMobile,
     required this.success,
     required this.errorInfo,
+    required this.deviceId,
+    required this.otp,
   });
 
   factory CheckMobileNumberData.fromJson(Map<String, dynamic> json) =>
@@ -37,6 +41,8 @@ class CheckMobileNumberData {
         userMobile: UserMobile.fromJson(json["UserMobile"] ?? {}),
         success: json["success"] ?? false,
         errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
+        deviceId: json["deviceId"] ?? "",
+        otp: json["otp"] ?? "",
       );
 }
 

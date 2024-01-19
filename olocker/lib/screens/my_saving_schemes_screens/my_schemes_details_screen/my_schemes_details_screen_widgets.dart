@@ -770,7 +770,7 @@ class TransactionSingleItemModule extends StatelessWidget {
             GestureDetector(
               onTap: () async {
                 //todo - download file
-                String url = "${ApiUrl.apiMainPath}${transData.invoicePath}";
+                String url = "${ApiUrl.apiMainUrl}${transData.invoicePath}";
                 // String url = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
                 log('url : $url');
                 await WebUrlLauncher().launchPdfInBrowser(url);
