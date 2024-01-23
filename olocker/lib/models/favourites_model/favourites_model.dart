@@ -1,6 +1,8 @@
-import 'dart:convert';
+// To parse this JSON data, do
+//
+//     final favouritesModel = favouritesModelFromJson(jsonString);
 
-import '../error_info_model/error_info_model.dart';
+import 'dart:convert';
 
 FavouritesModel favouritesModelFromJson(String str) =>
     FavouritesModel.fromJson(json.decode(str));
@@ -24,7 +26,7 @@ class FavouritesModel {
 class Data {
   List<FavProduct> favProduct;
   bool success;
-  ErrorInfoModel errorInfo;
+  ErrorInfo errorInfo;
 
   Data({
     required this.favProduct,
@@ -33,216 +35,305 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    favProduct: List<FavProduct>.from((json["favProduct"]??[]).map((x) => FavProduct.fromJson(x))),
-    success: json["success"]??false,
-    errorInfo: ErrorInfoModel.fromJson(json["error_info"]??{}),
-  );
+        favProduct: List<FavProduct>.from(
+            (json["favProduct"] ?? []).map((x) => FavProduct.fromJson(x))),
+        success: json["success"] ?? false,
+        errorInfo: ErrorInfo.fromJson(json["error_info"] ?? {}),
+      );
+}
+
+class ErrorInfo {
+  int errorType;
+  String extraInfo;
+  String description;
+
+  // dynamic errorData;
+
+  ErrorInfo({
+    required this.errorType,
+    required this.extraInfo,
+    required this.description,
+    // required this.errorData,
+  });
+
+  factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
+        errorType: json["error_type"] ?? 0,
+        extraInfo: json["extra_info"] ?? "",
+        description: json["description"] ?? "",
+        // errorData: json["error_data "],
+      );
 }
 
 class FavProduct {
+  int id;
+  int customerId;
+  int product;
+  String dateAdded;
+  String partnerId;
+  bool isSupplierProduct;
+  int partnerSrNo;
+  String partnerName;
+  ProductDetails productDetails;
+
   FavProduct({
     required this.id,
-    required this.product,
-    required this.isSupplierProduct,
-    required this.partnerName,
-    required this.partnerSrNo,
     required this.customerId,
+    required this.product,
     required this.dateAdded,
+    required this.partnerId,
+    required this.isSupplierProduct,
+    required this.partnerSrNo,
+    required this.partnerName,
     required this.productDetails,
   });
 
-  final int id;
-  final int product;
-  final bool isSupplierProduct;
-  final String partnerName;
-  final int partnerSrNo;
-  final int customerId;
-  final String dateAdded;
-  final ProductDetails productDetails;
-
   factory FavProduct.fromJson(Map<String, dynamic> json) => FavProduct(
         id: json["Id"] ?? 0,
-        product: json["Product"] ?? 0,
-        isSupplierProduct: json["IsSupplierProduct"] ?? false,
-        partnerName: json["PartnerName"] ?? "",
-        partnerSrNo: json["PartnerSrNo"] ?? 0,
         customerId: json["CustomerId"] ?? 0,
+        product: json["Product"] ?? 0,
         dateAdded: json["DateAdded"] ?? "",
+        partnerId: json["PartnerId"] ?? "",
+        isSupplierProduct: json["IsSupplierProduct"] ?? false,
+        partnerSrNo: json["PartnerSrNo"] ?? 0,
+        partnerName: json["PartnerName"] ?? "",
         productDetails: ProductDetails.fromJson(json["ProductDetails"] ?? {}),
       );
 }
 
 class ProductDetails {
+  ProductDetailsData productDetailsData;
+
   ProductDetails({
-    required this.srNo,
-    required this.productSku,
-    required this.itemType,
-    required this.itemTypeName,
-    required this.productTypeName,
-    required this.partnerName,
-    required this.description,
-    required this.weight,
-    this.width,
-    this.height,
-    this.length,
-    this.breadth,
-    this.size,
-    this.unitWidth,
-    this.unitHeight,
-    this.unitLength,
-    this.unitBreadth,
-    this.unitSize,
-    required this.tryBeforeBuy,
-    required this.price,
-    required this.gst,
-    required this.fullPayment,
-    required this.advancePayment,
-    required this.productStatus,
-    this.estimateDeliveryDays,
-    required this.productImageList,
-    required this.similarProductList,
-    required this.metaldetails,
-    required this.decorativedetails,
-    required this.stonedetails,
-    required this.diamonddetails,
+    required this.productDetailsData,
   });
 
-  final int srNo;
-  final String productSku;
-  final String itemType;
-  final String itemTypeName;
-  final String productTypeName;
-  final String partnerName;
-  final String description;
-  final String weight;
-  final dynamic width;
-  final dynamic height;
-  final dynamic length;
-  final dynamic breadth;
-  final dynamic size;
-  final dynamic unitWidth;
-  final dynamic unitHeight;
-  final dynamic unitLength;
-  final dynamic unitBreadth;
-  final dynamic unitSize;
-  final bool tryBeforeBuy;
-  final String price;
-  final String gst;
-  final String fullPayment;
-  final String advancePayment;
-  final String productStatus;
-  final dynamic estimateDeliveryDays;
-  final List<ProductImageList> productImageList;
-  final List<SimilarProductList> similarProductList;
-  final List<Metaldetail> metaldetails;
-  final List<dynamic> decorativedetails;
-  final List<Stonedetail> stonedetails;
-  final List<Diamonddetail> diamonddetails;
-
   factory ProductDetails.fromJson(Map<String, dynamic> json) => ProductDetails(
+        productDetailsData:
+            ProductDetailsData.fromJson(json["ProductDetailsData"] ?? {}),
+      );
+}
+
+class ProductDetailsData {
+  int srNo;
+  String productSku;
+  String itemTypeName;
+  String? partnerName;
+  String itemType;
+  String productTypeName;
+  String description;
+  String weight;
+
+  // dynamic width;
+  // dynamic height;
+  // dynamic length;
+  // dynamic breadth;
+  // dynamic size;
+  // dynamic unitWidth;
+  // dynamic unitHeight;
+  // dynamic unitLength;
+  // dynamic unitBreadth;
+  // dynamic unitSize;
+  String gst;
+  String price;
+  String fullPayment;
+  String advancePayment;
+  bool tryBeforeBuy;
+  String supplierSrNo;
+
+  // dynamic estimateDeliveryDays;
+  String productStatus;
+  List<Metaldetail> metaldetails;
+
+  // List<dynamic> decorativedetails;
+  List<Stonedetail> stonedetails;
+  List<Diamonddetail> diamonddetails;
+  List<ProductImageList> productImageList;
+
+  // List<dynamic> similarProductList;
+  bool success;
+
+  ProductDetailsData({
+    required this.srNo,
+    required this.productSku,
+    required this.itemTypeName,
+    required this.partnerName,
+    required this.itemType,
+    required this.productTypeName,
+    required this.description,
+    required this.weight,
+    // required this.width,
+    // required this.height,
+    // required this.length,
+    // required this.breadth,
+    // required this.size,
+    // required this.unitWidth,
+    // required this.unitHeight,
+    // required this.unitLength,
+    // required this.unitBreadth,
+    // required this.unitSize,
+    required this.gst,
+    required this.price,
+    required this.fullPayment,
+    required this.advancePayment,
+    required this.tryBeforeBuy,
+    required this.supplierSrNo,
+    // required this.estimateDeliveryDays,
+    required this.productStatus,
+    required this.metaldetails,
+    // required this.decorativedetails,
+    required this.stonedetails,
+    required this.diamonddetails,
+    required this.productImageList,
+    // required this.similarProductList,
+    required this.success,
+  });
+
+  factory ProductDetailsData.fromJson(Map<String, dynamic> json) =>
+      ProductDetailsData(
         srNo: json["SrNo"] ?? 0,
         productSku: json["ProductSku"] ?? "",
-        itemType: json["ItemType"] ?? "",
         itemTypeName: json["ItemTypeName"] ?? "",
-        productTypeName: json["ProductTypeName"] ?? "",
         partnerName: json["PartnerName"] ?? "",
+        itemType: json["ItemType"] ?? "",
+        productTypeName: json["ProductTypeName"] ?? "",
         description: json["Description"] ?? "",
         weight: json["Weight"] ?? "",
-        width: json["Width"] ?? "",
-        height: json["Height"] ?? "",
-        length: json["Length"] ?? "",
-        breadth: json["Breadth"] ?? "",
-        size: json["Size"] ?? "",
-        unitWidth: json["UnitWidth"] ?? "",
-        unitHeight: json["UnitHeight"] ?? "",
-        unitLength: json["UnitLength"] ?? "",
-        unitBreadth: json["UnitBreadth"] ?? "",
-        unitSize: json["UnitSize"] ?? "",
-        tryBeforeBuy: json["TryBeforeBuy"] ?? false,
-        price: json["Price"] ?? "0.0",
+        // width: json["Width"],
+        // height: json["Height"],
+        // length: json["Length"],
+        // breadth: json["Breadth"],
+        // size: json["Size"],
+        // unitWidth: json["UnitWidth"],
+        // unitHeight: json["UnitHeight"],
+        // unitLength: json["UnitLength"],
+        // unitBreadth: json["UnitBreadth"],
+        // unitSize: json["UnitSize"],
         gst: json["GST"] ?? "",
+        price: json["Price"] ?? "",
         fullPayment: json["FullPayment"] ?? "",
         advancePayment: json["AdvancePayment"] ?? "",
+        tryBeforeBuy: json["TryBeforeBuy"] ?? "",
+        supplierSrNo: json["SupplierSrNo"] ?? "",
+        // estimateDeliveryDays: json["EstimateDeliveryDays"],
         productStatus: json["ProductStatus"] ?? "",
-        estimateDeliveryDays: json["EstimateDeliveryDays"] ?? "",
-        productImageList: List<ProductImageList>.from(
-            (json["ProductImageList"] ?? [])
-                .map((x) => ProductImageList.fromJson(x))),
-        similarProductList: List<SimilarProductList>.from(
-            (json["SimilarProductList"] ?? [])
-                .map((x) => SimilarProductList.fromJson(x))),
         metaldetails: List<Metaldetail>.from(
             (json["metaldetails"] ?? []).map((x) => Metaldetail.fromJson(x))),
-        decorativedetails:
-            List<dynamic>.from((json["decorativedetails"] ?? []).map((x) => x)),
+        // decorativedetails: List<dynamic>.from(json["decorativedetails"].map((x) => x)),
         stonedetails: List<Stonedetail>.from(
             (json["stonedetails"] ?? []).map((x) => Stonedetail.fromJson(x))),
         diamonddetails: List<Diamonddetail>.from((json["diamonddetails"] ?? [])
             .map((x) => Diamonddetail.fromJson(x))),
+        productImageList: List<ProductImageList>.from(
+            (json["ProductImageList"] ?? [])
+                .map((x) => ProductImageList.fromJson(x))),
+        // similarProductList: List<dynamic>.from(json["SimilarProductList"].map((x) => x)),
+        success: json["success"],
       );
 }
 
 class Diamonddetail {
+  int srNo;
+  String productSrNo;
   String stoneName;
+
+  // dynamic stoneProperties;
   String stoneWt;
   String unitStoneWt;
-  dynamic stoneShape;
-  dynamic stoneQuality;
+
+  // dynamic stoneCnt;
+  // dynamic isStoneCertified;
+  // dynamic stoneCertificateNo;
+  // dynamic stoneCertificateDate;
+  // dynamic stoneCertifiedBy;
+  String timestamp;
   String stoneChargeableAmount;
 
+  // dynamic stoneQuality;
+  // dynamic stoneShape;
+  String isDiamond;
+
   Diamonddetail({
+    required this.srNo,
+    required this.productSrNo,
     required this.stoneName,
+    // required this.stoneProperties,
     required this.stoneWt,
     required this.unitStoneWt,
-    this.stoneShape,
-    this.stoneQuality,
+    // required this.stoneCnt,
+    // required this.isStoneCertified,
+    // required this.stoneCertificateNo,
+    // required this.stoneCertificateDate,
+    // required this.stoneCertifiedBy,
+    required this.timestamp,
     required this.stoneChargeableAmount,
+    // required this.stoneQuality,
+    // required this.stoneShape,
+    required this.isDiamond,
   });
 
   factory Diamonddetail.fromJson(Map<String, dynamic> json) => Diamonddetail(
+        srNo: json["SrNo"] ?? 0,
+        productSrNo: json["ProductSrNo"] ?? "",
         stoneName: json["StoneName"] ?? "",
+        // stoneProperties: json["StoneProperties"],
         stoneWt: json["StoneWt"] ?? "",
         unitStoneWt: json["UnitStoneWt"] ?? "",
-        stoneShape: json["StoneShape"] ?? "",
-        stoneQuality: json["StoneQuality"] ?? "",
+        // stoneCnt: json["StoneCnt"],
+        // isStoneCertified: json["isStoneCertified"],
+        // stoneCertificateNo: json["StoneCertificateNo"],
+        // stoneCertificateDate: json["StoneCertificateDate"],
+        // stoneCertifiedBy: json["StoneCertifiedBy"],
+        timestamp: json["Timestamp"] ?? "",
         stoneChargeableAmount: json["StoneChargeableAmount"] ?? "",
+        // stoneQuality: json["StoneQuality"],
+        // stoneShape: json["StoneShape"],
+        isDiamond: json["isDiamond"] ?? "",
       );
 }
 
 class Metaldetail {
+  int srNo;
+  String productSrNo;
+  String metalWt;
+  String unitMetalWt;
+  String metalType;
+  String metalPurity;
+  String timestamp;
+  bool isHallmarked;
+
   Metaldetail({
+    required this.srNo,
+    required this.productSrNo,
     required this.metalWt,
     required this.unitMetalWt,
     required this.metalType,
     required this.metalPurity,
+    required this.timestamp,
     required this.isHallmarked,
   });
 
-  final String metalWt;
-  final String unitMetalWt;
-  final String metalType;
-  final String metalPurity;
-  final bool isHallmarked;
-
   factory Metaldetail.fromJson(Map<String, dynamic> json) => Metaldetail(
+        srNo: json["SrNo"] ?? 0,
+        productSrNo: json["ProductSrNo"] ?? "",
         metalWt: json["MetalWt"] ?? "",
         unitMetalWt: json["UnitMetalWt"] ?? "",
         metalType: json["MetalType"] ?? "",
         metalPurity: json["MetalPurity"] ?? "",
-        isHallmarked: json["isHallmarked"] ?? false,
+        timestamp: json["Timestamp"] ?? "",
+        isHallmarked: json["isHallmarked"] ?? "",
       );
 }
 
 class ProductImageList {
+  int srNo;
+  String imageName;
+  String imageLocation;
+
   ProductImageList({
     required this.srNo,
     required this.imageName,
     required this.imageLocation,
   });
-
-  final int srNo;
-  final String imageName;
-  final String imageLocation;
 
   factory ProductImageList.fromJson(Map<String, dynamic> json) =>
       ProductImageList(
@@ -252,45 +343,62 @@ class ProductImageList {
       );
 }
 
-class SimilarProductList {
-  SimilarProductList({
-    required this.srNo,
-    required this.name,
-    required this.price,
-    required this.productImage,
-  });
-
-  final int srNo;
-  final String name;
-  final String price;
-  final String productImage;
-
-  factory SimilarProductList.fromJson(Map<String, dynamic> json) =>
-      SimilarProductList(
-        srNo: json["SrNo"] ?? 0,
-        name: json["Name"] ?? "",
-        price: json["Price"] ?? "",
-        productImage: json["ProductImage"] ?? "",
-      );
-}
-
 class Stonedetail {
+  int srNo;
+  String productSrNo;
+  String stoneName;
+
+  // dynamic stoneProperties;
+  String stoneWt;
+  String unitStoneWt;
+
+  // dynamic stoneCnt;
+  // dynamic isStoneCertified;
+  // dynamic stoneCertificateNo;
+  // dynamic stoneCertificateDate;
+  // dynamic stoneCertifiedBy;
+  String timestamp;
+  String stoneChargeableAmount;
+
+  // dynamic stoneQuality;
+  // dynamic stoneShape;
+  // dynamic isDiamond;
+
   Stonedetail({
+    required this.srNo,
+    required this.productSrNo,
     required this.stoneName,
+    // required this.stoneProperties,
     required this.stoneWt,
     required this.unitStoneWt,
+    // required this.stoneCnt,
+    // required this.isStoneCertified,
+    // required this.stoneCertificateNo,
+    // required this.stoneCertificateDate,
+    // required this.stoneCertifiedBy,
+    required this.timestamp,
     required this.stoneChargeableAmount,
+    // required this.stoneQuality,
+    // required this.stoneShape,
+    // required this.isDiamond,
   });
 
-  final String stoneName;
-  final String stoneWt;
-  final String unitStoneWt;
-  final String stoneChargeableAmount;
-
   factory Stonedetail.fromJson(Map<String, dynamic> json) => Stonedetail(
+        srNo: json["SrNo"] ?? 0,
+        productSrNo: json["ProductSrNo"] ?? "",
         stoneName: json["StoneName"] ?? "",
+        // stoneProperties: json["StoneProperties"],
         stoneWt: json["StoneWt"] ?? "",
         unitStoneWt: json["UnitStoneWt"] ?? "",
+        // stoneCnt: json["StoneCnt"],
+        // isStoneCertified: json["isStoneCertified"],
+        // stoneCertificateNo: json["StoneCertificateNo"],
+        // stoneCertificateDate: json["StoneCertificateDate"],
+        // stoneCertifiedBy: json["StoneCertifiedBy"],
+        timestamp: json["Timestamp"] ?? "",
         stoneChargeableAmount: json["StoneChargeableAmount"] ?? "",
+        // stoneQuality: json["StoneQuality"],
+        // stoneShape: json["StoneShape"],
+        // isDiamond: json["isDiamond"],
       );
 }

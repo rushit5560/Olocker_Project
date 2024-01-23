@@ -10,6 +10,7 @@ import 'package:olocker/screens/jeweller_jewellery_details_screen/jeweller_jewel
 import 'package:olocker/utils/extensions.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
+
 import '../../controllers/my_favourites_controller.dart';
 import '../../models/favourites_model/categorize_fav_products_model.dart';
 import '../../models/favourites_model/favourites_model.dart';
@@ -108,7 +109,10 @@ class FavouriteListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // log("single images:  ${ApiUrl.apiImagePath}${singleProd.productDetails.productImageList[0].imageLocation}");
-    log("singleProd.productDetails.price ${singleProd.productDetails.price}");
+    // log("singleProd.productDetails.price ${singleProd.productDetails.productDetailsData.price}");
+    // log("singleProd.productDetails.price adada ${favouritesController.favouriteProductsList[index].productDetails.productDetailsData.price}");
+    log("image path ${ApiUrl.apiImagePath}${singleProd.productDetails.productDetailsData.productImageList[0].imageLocation.replaceAll(r'\', "/")}");
+
     // log("singleProd.productDetails.productSku ${singleProd.productDetails.productSku}");
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
@@ -144,7 +148,8 @@ class FavouriteListItem extends StatelessWidget {
                         children: [
                           const SizedBox(height: 10),
                           Text(
-                            singleProd.productDetails.itemTypeName,
+                            singleProd
+                                .productDetails.productDetailsData.itemTypeName,
                             style: TextStyle(
                               fontFamily: "Roboto",
                               fontSize: 10.sp,
@@ -170,7 +175,7 @@ class FavouriteListItem extends StatelessWidget {
                           SizedBox(height: 0.3.h),
 
                           Text(
-                            singleProd.productDetails.price
+                            singleProd.productDetails.productDetailsData.price
                                     .toString()
                                     .contains("PRICE ON REQUEST")
                                 ? "PRICE ON REQUEST"
@@ -178,10 +183,10 @@ class FavouriteListItem extends StatelessWidget {
                                     symbol: '₹ ',
                                     locale: "HI",
                                     decimalDigits: 2,
-                                  ).format(
-                                    double.parse(favouritesController
+                                  ).format(double.parse(favouritesController
                                     .favouriteProductsList[index]
                                     .productDetails
+                                    .productDetailsData
                                     .price)),
                             // singleProd
                             //     .productDetails.price,
@@ -192,7 +197,8 @@ class FavouriteListItem extends StatelessWidget {
                               color: AppColors.blackTextColor,
                             ),
                           ),
-                          Text(singleProd.productDetails.productSku),
+                          Text(singleProd
+                              .productDetails.productDetailsData.productSku),
                           SizedBox(height: 0.3.h),
                           Text(
                             singleProd.partnerName,
@@ -237,10 +243,11 @@ class FavouriteListItem extends StatelessWidget {
                   Radius.circular(60),
                 ),
                 child: CachedNetworkImage(
-                  imageUrl: singleProd.productDetails.productImageList.isEmpty
+                  imageUrl: singleProd.productDetails.productDetailsData
+                          .productImageList.isEmpty
                       // : "${ApiUrl.apiImagePath}${singleProd.productDetails.productImageList[0].imageLocation.replaceAll(r'\', "/")}/${singleProd.productDetails.productImageList[0].imageName}",
                       ? "https://demo.olocker.in/images/ProductImages/2021/9/kdnl2428343_1.jpg"
-                      : "${ApiUrl.apiImagePath}${singleProd.productDetails.productImageList[0].imageLocation.replaceAll(r'\', "/")}",
+                      : "${ApiUrl.apiImagePath}${singleProd.productDetails.productDetailsData.productImageList[0].imageLocation.replaceAll(r'\', "/")}",
                   fit: BoxFit.cover,
                   placeholder: (context, url) {
                     return Center(
@@ -290,15 +297,18 @@ class FavouriteListItem extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     log("singleProd.partnerSrNo :${singleProd.partnerSrNo}");
-                    log("imagesfav : ${singleProd.productDetails.productImageList[0].imageLocation.replaceAll(r'\', "/")}");
+                    log("imagesfav : ${singleProd.productDetails.productDetailsData.productImageList[0].imageLocation.replaceAll(r'\', "/")}");
 
                     Get.to(
                       () => JewellerJewelleryDetailsScreen(),
                       arguments: [
                         singleProd.partnerSrNo.toString(),
-                        singleProd.productDetails.srNo,
-                        singleProd.productDetails.itemTypeName,
-                        singleProd.productDetails.productImageList[0].imageLocation.replaceAll(r'\', "/"),
+                        singleProd.productDetails.productDetailsData.srNo,
+                        singleProd
+                            .productDetails.productDetailsData.itemTypeName,
+                        singleProd.productDetails.productDetailsData
+                            .productImageList[0].imageLocation
+                            .replaceAll(r'\', "/"),
                         // index,
                       ],
                     );

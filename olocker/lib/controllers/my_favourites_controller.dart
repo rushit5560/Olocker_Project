@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:olocker/models/favourites_model/favourites_model.dart';
 import 'package:olocker/widgets/common_widgets.dart';
+
 import '../constants/api_url.dart';
 import '../constants/user_details.dart';
 import '../models/favourites_model/categorize_fav_products_model.dart';
@@ -53,20 +55,19 @@ class MyFavouritesScreenController extends GetxController {
 
         List<FavProduct> demoFavProdList = [];
         for (var item in favouriteProductsList) {
-          if (jewelCatStringslist.contains(item.productDetails.itemTypeName)) {
+          if (jewelCatStringslist.contains(item.productDetails.productDetailsData.itemTypeName)) {
             demoFavProdList.add(item);
           } else {
-            jewelCatStringslist.add(item.productDetails.itemTypeName);
+            jewelCatStringslist.add(item.productDetails.productDetailsData.itemTypeName);
             demoFavProdList.add(item);
           }
         }
         for (var element in jewelCatStringslist) {
           String typeName = "";
-
           List<FavProduct> typeProductsList = [];
           // log("jewelCatString is :: $element");
           for (var single in demoFavProdList) {
-            if (element == single.productDetails.itemTypeName) {
+            if (element == single.productDetails.productDetailsData.itemTypeName) {
               log("if the $element is same");
               typeName = element;
               if (single != null) {

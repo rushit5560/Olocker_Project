@@ -440,6 +440,8 @@ class JewellerProductDescriptionModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    log("jewelleryDetailController.productDetailsData.productSku! ${jewelleryDetailController.productDetailsData.productSku!}");
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),

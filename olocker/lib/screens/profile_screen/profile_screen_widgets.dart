@@ -76,7 +76,7 @@ class DisplayImageDetailsFieldRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String userProfileImage =
-        "${ApiUrl.apiProfileImagePath}${profileScreenController.userApiImageFile}";
+        "${ApiUrl.apiMainUrl}${profileScreenController.userApiImageFile}";
 
     return Obx(
       () => Row(

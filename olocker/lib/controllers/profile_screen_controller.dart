@@ -17,12 +17,11 @@ import '../models/user_profile_models/user_profile_get_model.dart';
 import '../models/user_profile_models/user_profile_update_model.dart';
 import '../utils/user_prefs_data.dart';
 
-
-
 class ProfileScreenController extends GetxController {
   final size = Get.size;
   RxBool isLoading = false.obs;
   RxBool isEditable = false.obs;
+
   // RxBool isSuccessResult = false.obs;
   RxInt isSuccessStatusCode = 0.obs;
   RxString userName = "".obs;
@@ -122,7 +121,8 @@ class ProfileScreenController extends GetxController {
       var resBody = jsonDecode(response.body);
       log('resBody :${jsonEncode(resBody)}');
 
-      UserProfileGetModel userProfileGetModel = UserProfileGetModel.fromJson(resBody);
+      UserProfileGetModel userProfileGetModel =
+          UserProfileGetModel.fromJson(resBody);
 
       // isSuccessResult.value = userProfileGetModel.success;
       isStatusCode = userProfileGetModel.statusCode;
@@ -130,9 +130,15 @@ class ProfileScreenController extends GetxController {
         log("user profile get success");
 
         isEditable.value = true;
-        apiGetProfileImage = File(ApiUrl.apiImagePath + userProfileGetModel.data.imageLocation);
-        userApiImageFile = userProfileGetModel.data.imageLocation;
+        String path = userProfileGetModel.data.imageLocation;
 
+        List<String> parts = path.split("public//");
+
+        apiGetProfileImage =
+            File(ApiUrl.apiMainUrl + userProfileGetModel.data.imageLocation);
+        userApiImageFile = parts.last;
+
+        log("userApiImageFile $userApiImageFile");
         userName.value = userProfileGetModel.data.firstName;
         fnameController.text = userProfileGetModel.data.firstName;
         lnameController.text = userProfileGetModel.data.lastName;
@@ -162,7 +168,7 @@ class ProfileScreenController extends GetxController {
           datePassingvalue.value = datePassingFormat.format(dateGetPassing);
         }
 
-       /* //set user data in prefs data
+        /* //set user data in prefs data
         prefs.setString(UserPrefsData().customerUserNameKey,
             userProfileGetModel.data.firstName);
 
@@ -273,7 +279,8 @@ class ProfileScreenController extends GetxController {
 
         var resBody = jsonDecode(response.body);
 
-        UpdateProfileModel updateProfileModel = UpdateProfileModel.fromJson(resBody);
+        UpdateProfileModel updateProfileModel =
+            UpdateProfileModel.fromJson(resBody);
 
         // isSuccessResult.value = userProfileGetModel.success;
         isStatusCode = updateProfileModel.statusCode;
@@ -350,8 +357,8 @@ class ProfileScreenController extends GetxController {
             UserProfileGetModel.fromJson(resBody);
 
         // isSuccessResult.value = userProfileGetModel.success;
-isStatusCode=userProfileGetModel.statusCode;
-        if (isStatusCode==200) {
+        isStatusCode = userProfileGetModel.statusCode;
+        if (isStatusCode == 200) {
           log("222");
 
           log("updateUserProfileDetailsFunction success");
@@ -417,7 +424,8 @@ isStatusCode=userProfileGetModel.statusCode;
       if (isSuccessStatusCode.value == 200) {
         log("city state get success");
         cityController.text = cityStateGetModel.data.stateCityDetails.cityName;
-        stateController.text = cityStateGetModel.data.stateCityDetails.stateName;
+        stateController.text =
+            cityStateGetModel.data.stateCityDetails.stateName;
       } else {
         cityController.clear();
         stateController.clear();
@@ -429,7 +437,7 @@ isStatusCode=userProfileGetModel.statusCode;
       rethrow;
     }
     // finally {
-      isLoading(false);
+    isLoading(false);
     // }
   }
 
