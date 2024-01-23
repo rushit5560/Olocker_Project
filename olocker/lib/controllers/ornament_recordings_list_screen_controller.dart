@@ -24,8 +24,10 @@ class OrnamentRecordingsListScreenController extends GetxController {
   // TrackingDetail? trackingDetail;
 
   Future<void> getOrnamentRecordingsListFunction() async {
+    log("coiNumber $coiNumber");
+
     String url =
-        "${ApiUrl.getOrnamentTrackingApi}?customerId=${UserDetails.customerId}&OrnamentSrNo=$ornamentSrNo&CustOraSrNo=$customerOraSrNo";
+        "${ApiUrl.getOrnamentTrackingApi}?CustOraSrNo=$customerOraSrNo&UserOraSrNo=$ornamentSrNo&CustSrNo=$coiNumber";
     // String url =
     //     "${ApiUrl.getOrnamentTrackingApi}?customerId=939308&OrnamentSrNo=$ornamentSrNo&CustOraSrNo=$customerOraSrNo";
 
@@ -68,7 +70,6 @@ class OrnamentRecordingsListScreenController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-
     getOrnamentRecordingsListFunction();
   }
 }

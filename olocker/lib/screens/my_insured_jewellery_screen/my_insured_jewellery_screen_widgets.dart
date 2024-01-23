@@ -293,12 +293,14 @@ class JewelleryListItem extends StatelessWidget {
                               primary: AppColors.whiteColor,
                             ),
                             onPressed: () {
+                              log("insuredItem.srNo ${insuredItem.srNo}");
+
                               Get.to(
                                 () => OrnamentRecordingsListScreen(),
                                 arguments: [
                                   insuredItem.srNo,
                                   insuredItem.custOraSrNo,
-                                  insuredItem.coi,
+                                  insuredItem.custSrNo,
                                 ],
                               );
                             },

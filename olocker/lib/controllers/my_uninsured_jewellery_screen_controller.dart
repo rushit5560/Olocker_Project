@@ -81,7 +81,7 @@ int isStatusCode=0;
       // requestMap["Base64"]
 
       log("ornamentSrNo is :: $ornamentSrNo");
-      // log("updateImageOfJewelleryFunction api req body :: $requestMap");
+      log("updateImageOfJewelleryFunction api req body :: $requestMap");
       http.Response response = await http.post(
         Uri.parse(url),
         body: jsonEncode(requestMap),

@@ -55,7 +55,7 @@ class OrnamentDetailsModule extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  ornamentRecordingsController.coiNumber,
+                  ornamentRecordingsController.coiNumber.toString(),
                   style: TextStyle(
                     // fontFamily: "Roboto",
                     fontFamily: "",

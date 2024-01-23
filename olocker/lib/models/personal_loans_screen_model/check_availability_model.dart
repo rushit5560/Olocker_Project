@@ -148,9 +148,9 @@ class Data {
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         emiSrNo: json["emiSrNo"] ?? 0,
         emiTenorOptions: List<EmiTenorOption>.from(
-            (json["emiTenorOptions"] ?? [])
+            (json["EMITenorOptions"] ?? [])
                 .map((x) => EmiTenorOption.fromJson(x))),
-        loanApplicationId: json["loanApplicationId"] ?? "",
+        loanApplicationId: json["LoanApplicationId  "] ?? "",
         message: json["message"] ?? "",
         success: json["success"] ?? false,
         errorInfo: ErrorInfoModel.fromJson(json["error_info"] ?? {}),
@@ -173,10 +173,10 @@ class EmiTenorOption {
   String emiEligibleAmount;
 
   factory EmiTenorOption.fromJson(Map<String, dynamic> json) => EmiTenorOption(
-        tenorMonth: (json["tenorMonth"] ?? 0).toString(),
-        emiMonthly: json["emiMonthly"].toString(),
-        emiMonthlyLow: json["emiMonthlyLow"].toString(),
-        emiMonthlyHigh: json["emiMonthlyHigh"].toString(),
-        emiEligibleAmount: (json["emiEligibleAmount"] ?? 0).toString(),
+        tenorMonth: (json["TenorMonth"] ?? 0).toString(),
+        emiMonthly: json["EMIMonthly"].toString(),
+        emiMonthlyLow: json["EMIMonthlyLow"].toString(),
+        emiMonthlyHigh: json["EMIMonthlyHigh"].toString(),
+        emiEligibleAmount: (json["EMIEligibleAmount"] ?? 0).toString(),
       );
 }

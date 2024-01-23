@@ -161,7 +161,7 @@ class PersonalLoansScreenController extends GetxController {
         // "titleid": "$namePrefixNumberValue",
         "FirstName": fnameController.text.trim(),
         "LastName": lnameController.text.trim(),
-        "DOB": apiDobDate,
+        "DOB": /*apiDobDate*/dobController.text,
         "Mobile": mobileNoController.text.trim(),
         "Email": emailController.text.trim().toLowerCase(),
         "Pincode": pinCodeController.text.trim(),
@@ -176,7 +176,7 @@ class PersonalLoansScreenController extends GetxController {
         "BankName": whichBankController.text.trim(),
         "IsHomeLoan": homeLoanValue.value == "yes" ? true : false
       };
-      log('BodyData : $bodyData');
+      log('checkEligibilityFunction BodyData : ${jsonEncode(bodyData)}');
       http.Response response = await http.post(
         Uri.parse(url),
         body: jsonEncode(bodyData),
@@ -270,7 +270,7 @@ class PersonalLoansScreenController extends GetxController {
 
   /// Upload Document Api Function - Step 3
   Future<void> uploadEmiDocumentsFunction() async {
-    String url = ApiUrl.uploadDocumentApi;
+      String url = ApiUrl.uploadDocumentApi;
     log('Upload Emi Documents Api Url : $url');
 
     try {
