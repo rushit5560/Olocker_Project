@@ -476,3 +476,4 @@ class JewellerJewelleryListScreenController extends GetxController {
     isLoading(false);
   }
 }
+

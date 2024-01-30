@@ -80,6 +80,7 @@ class AllDealsListModule extends StatelessWidget {
       itemBuilder: (context, i) {
         final imagePath=ApiUrl.apiImagePath+screenController.singleDealList.categoryImage.replaceAll(r'\', "/");
         log("imagePath :: $imagePath");
+        log("screenController.singleDealList :: ${screenController.singleDealList.onLineDeals[i].couponHeading}");
         return GestureDetector(
           onTap: () => Get.to(
             () => OnlineDealsDetailsScreen(),

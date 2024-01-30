@@ -7,4 +7,5 @@ class OnlineDealsListScreenController extends GetxController {
 
   Size size = Get.size;
 
+
 }

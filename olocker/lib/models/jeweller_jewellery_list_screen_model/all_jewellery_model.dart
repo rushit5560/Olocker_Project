@@ -46,13 +46,13 @@ class Data {
 }
 
 class SearchProductListDatum {
-  String productSrNo;
+  int productSrNo;
   String productsPrice;
   String productName;
   String supplierSrNo;
   String productImage;
   bool isFav;
-  int id;
+  String id;
 
   SearchProductListDatum({
     required this.productSrNo,
@@ -66,12 +66,12 @@ class SearchProductListDatum {
 
   factory SearchProductListDatum.fromJson(Map<String, dynamic> json) =>
       SearchProductListDatum(
-        productSrNo: json["productSrNo"] ?? "",
-        productsPrice: json["productsPrice"] ?? "",
-        productName: json["productName"] ?? "",
-        supplierSrNo: json["supplierSrNo"] ?? "",
-        productImage: json["productImage"] ?? "",
-        isFav: json["isFav"] ?? false,
-        id: json["id"] ?? 0,
+        productSrNo: json["ProductSrNo"] ?? 0,
+        productsPrice: json["ProductsPrice"] ?? "",
+        productName: json["ProductName"] ?? "",
+        supplierSrNo: json["SupplierSrNo"] ?? "",
+        productImage: json["ProductImage"] ?? "",
+        isFav: json["IsFav"] ?? false,
+        id: json["Id"] ?? "",
       );
 }

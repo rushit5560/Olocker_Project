@@ -1,16 +1,18 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/user_details.dart';
-import 'package:http/http.dart' as http;
 import 'package:olocker/models/personal_loans_screen_model/check_availability_model.dart';
 import 'package:olocker/models/personal_loans_screen_model/emi_schedule_model.dart';
 import 'package:olocker/models/personal_loans_screen_model/upload_emi_document_model.dart';
 import 'package:olocker/widgets/common_widgets.dart';
+
 import '../constants/app_colors.dart';
 import '../screens/index_screen/index_screen.dart';
 

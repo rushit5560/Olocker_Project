@@ -115,7 +115,7 @@ class JewellerDetailsScreenController extends GetxController {
 
   Future<void> getAnnouncementOfferFunction() async {
     isLoading(true);
-    String url = "${ApiUrl.getAnnouncementOfferApi}?PartnerSrNo=$jewellerId";
+    String url = "${ApiUrl.getAnnouncementOfferApi}?partnerSrno=$jewellerId";
     log('getAnnouncementOfferFunction Api Url :$url');
 
     try {
@@ -158,7 +158,7 @@ class JewellerDetailsScreenController extends GetxController {
   Future<void> getJewelleryPushToAppDataFunction() async {
     isLoading(true);
     String url =
-        "${ApiUrl.getJewelleryGetPushToAppDataApi}?PartnerSrNo=$jewellerId";
+        "${ApiUrl.getJewelleryGetPushToAppDataApi}?partnerSrno=$jewellerId";
     log('getJewelleryPushToAppDataFunction Api Url :$url');
 
     try {
@@ -182,6 +182,7 @@ class JewellerDetailsScreenController extends GetxController {
             log("jewelleryCategoryList element.productCount ${element.productCount}");
             // jewelleryCategoryList.addAll(jewelleryCategoryModel.getPushCollection);
             jewelleryCategoryList.add(element);
+            log("jewelleryCategoryList ${jewelleryCategoryList.length}");
           }
         }
 

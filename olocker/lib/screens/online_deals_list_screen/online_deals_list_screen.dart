@@ -47,10 +47,9 @@ class OnlineDealsListScreen extends StatelessWidget {
                 children: [
                   AllDealsHeaderModule(),
                   SizedBox(
-                      height: onlineDealsListScreenController.size.height *
-                          0.001.h),
-                  onlineDealsListScreenController
-                          .singleDealList.onLineDeals.isEmpty
+                    height: onlineDealsListScreenController.size.height * 0.001.h,
+                  ),
+                  onlineDealsListScreenController.singleDealList.onLineDeals.isEmpty
                       ? const Padding(
                           padding: EdgeInsets.symmetric(vertical: 100),
                           child: Center(

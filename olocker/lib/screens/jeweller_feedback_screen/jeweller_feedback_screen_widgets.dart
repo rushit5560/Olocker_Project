@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/app_colors.dart';
@@ -19,7 +18,7 @@ class FeedbackScreenLoadingWidget extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Shimmer.fromColors(
-         baseColor: Colors.grey.shade300,
+        baseColor: Colors.grey.shade300,
         highlightColor: Colors.grey.shade50,
         child: SingleChildScrollView(
           child: Column(
@@ -68,6 +67,7 @@ class FeedbackScreenLoadingWidget extends StatelessWidget {
 class RadioButtonListModule extends StatelessWidget {
   final RatingQuestionList singleItem;
   final int index;
+
   RadioButtonListModule({
     Key? key,
     required this.singleItem,
@@ -258,6 +258,7 @@ class TextFieldModule extends StatelessWidget {
   final RatingQuestionList singleItem;
   final int index;
   final String text;
+
   TextFieldModule({
     Key? key,
     required this.singleItem,
@@ -332,17 +333,19 @@ class FeedbackSubmitButtonModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        log("feedback");
+        log("feedback 00");
         screenController.allDataValid = true.obs;
 
         for (int i = 0; i < screenController.finalFeedBackAnsList.length; i++) {
+          log("feedback 11");
           if (screenController.finalFeedBackAnsList[i].toString() == "[]") {
+            log("feedback 111111");
             screenController.allDataValid = false.obs;
           }
         }
 
         if (screenController.allDataValid.value) {
-          log("feedback 111");
+          log("feedback 22");
 
           await screenController.setFeedbackFormFunction();
         } else {

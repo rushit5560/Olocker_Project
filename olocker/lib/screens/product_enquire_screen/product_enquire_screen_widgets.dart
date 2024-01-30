@@ -248,7 +248,7 @@ class JewelleryDetailModule extends StatelessWidget {
             child: screenController.productDetailsData.productImageList!.isEmpty
                 ? Container(color: AppColors.greyTextColor)
                 : CachedNetworkImage(
-                    imageUrl: ApiUrl.apiImagePath +
+                    imageUrl: ApiUrl.apiMainUrl +
                         screenController.productDetailsData.productImageList![0]
                             .imageLocation,
                     fit: BoxFit.cover,

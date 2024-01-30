@@ -71,15 +71,15 @@ class AboutUsPageController extends GetxController {
 
         if (aboutUsData!.showRoomImage1 != "") {
           sliderImageList.add(
-              "https://devappapi.olocker.in${aboutUsData!.showRoomImage1}");
+              "${ApiUrl.apiMainUrl}${aboutUsData!.showRoomImage1}");
         }
         if (aboutUsData!.showRoomImage2 != "") {
           sliderImageList.add(
-              "https://devappapi.olocker.in${aboutUsData!.showRoomImage2}");
+              "${ApiUrl.apiMainUrl}${aboutUsData!.showRoomImage2}");
         }
         if (aboutUsData!.showRoomImage3 != "") {
           sliderImageList.add(
-              "https://devappapi.olocker.in${aboutUsData!.showRoomImage3}");
+              "${ApiUrl.apiMainUrl}${aboutUsData!.showRoomImage3}");
         }
 
         log("aboutUsPageController.sliderImageList. ${sliderImageList.length}");

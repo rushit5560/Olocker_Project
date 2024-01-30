@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -66,7 +68,9 @@ class OnlineDealsScreen extends StatelessWidget {
               itemBuilder: (context, i) {
                 VendorDealsList singleDeal =
                     onlineDealsScreenController.smartDealsOnlineList[i];
+                log("singleDeal ${singleDeal.onLineDeals[i].couponHeading}");
                 return _onlineDealsGridTile(singleDeal);
+
               },
             ).commonAllSidePadding(10),
     );
@@ -74,10 +78,12 @@ class OnlineDealsScreen extends StatelessWidget {
 
   Widget _onlineDealsGridTile(VendorDealsList singleDeal) {
     String imgUrl = ApiUrl.apiImagePath+singleDeal.categoryImage;
+    log("imgUrl $imgUrl");
     // String imgUrl =ApiUrl.apiImagePath+ vendorDeals.categoryImage.replaceAll(r'\', "/");
     return GestureDetector(
       onTap: () {
         Get.to(() => OnlineDealsListScreen(), arguments: singleDeal);
+
       },
       child: Container(
         decoration: BoxDecoration(

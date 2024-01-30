@@ -1,9 +1,11 @@
 import 'dart:developer';
 import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:olocker/constants/api_url.dart';
 import 'package:olocker/constants/app_colors.dart';
@@ -11,7 +13,6 @@ import 'package:olocker/controllers/jeweller_jewellery_list_screen_controller.da
 import 'package:olocker/models/jeweller_jewellery_list_screen_model/all_jewellery_model.dart';
 import 'package:olocker/screens/jewellery_details_screen/jewellery_details_screen.dart';
 import 'package:olocker/utils/extensions.dart';
-import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shimmer/shimmer.dart';
@@ -37,7 +38,6 @@ class JewelleryGridviewModule extends StatelessWidget {
       itemBuilder: (context, i) {
         SearchProductListDatum singleItem =
             screenController.mainJewelleryList[i];
-
         if (i < screenController.mainJewelleryList.length) {
           return _jewelleryListTile(singleItem, i);
         } else {
@@ -225,21 +225,17 @@ class JewelleryGridviewModule extends StatelessWidget {
                       // ),
                       GestureDetector(
                         onTap: () async {
-                          log("share 11");
-
                           final imagePath = Uri.parse(imgUrl);
                           final res = await http.get(imagePath);
                           final bytes = res.bodyBytes;
                           final temp = await getTemporaryDirectory();
                           final path = '${temp.path}/image.jpg';
                           File(path).writeAsBytesSync(bytes);
-
                           String text =
                               '''I loved this beautiful jewellery from ${screenController.partnerDetails!.partnerName.capitalize!} on olocker app.
                           You must download this app to witness their excellent jewellery collections, get fabulous deals &
                           rewards too. Click here https://olocker.in/DetectOS.aspx and use my referral
                           code ${screenController.userReferaalCode.value}-${screenController.partnerDetails!.partnerId} on ENTER CODE space on Sign up page https://www.olocker.in/''';
-
                           try {
                             await Share.shareFiles(
                               [path],
@@ -247,10 +243,8 @@ class JewelleryGridviewModule extends StatelessWidget {
                             );
                           } catch (e) {
                             // Handle the exception or show an error message
-                            print('Error sharing image: $e');
+                            log('Error sharing image: $e');
                           }
-
-                          log("share 22");
                         },
                         child: Icon(
                           Icons.share_rounded,

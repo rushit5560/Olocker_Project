@@ -1,6 +1,3 @@
-// To parse this JSON data, do
-//
-//     final jewelleryCategoryModel = jewelleryCategoryModelFromJson(jsonString);
 
 import 'dart:convert';
 
@@ -76,14 +73,14 @@ class GetPushCollectionItem {
 
   factory GetPushCollectionItem.fromJson(Map<String, dynamic> json) =>
       GetPushCollectionItem(
-        srNo: json["srNo"] ?? 0,
-        name: json["name"] ?? "",
-        title: json["title"] ?? "",
-        description: json["description"] ?? "",
-        isActive: json["isActive"] ?? false,
-        pushSortOrder: json["pushSortOrder"] ?? 0,
-        imageurl: json["imageurl"] ?? "",
-        productCount: json["productCount"] ?? 0,
+        srNo: json["SrNo"] ?? 0,
+        name: json["Name"] ?? "",
+        title: json["Title"] ?? "",
+        description: json["Description"] ?? "",
+        isActive: json["IsActive"] ?? false,
+        pushSortOrder: json["PushSortOrder"] ?? 0,
+        imageurl: json["Imageurl"] ?? "",
+        productCount: json["ProductCount"] ?? 0,
       );
 }
 
@@ -103,10 +100,10 @@ class GetPushOffer {
   });
 
   factory GetPushOffer.fromJson(Map<String, dynamic> json) => GetPushOffer(
-        srNo: json["srNo"] ?? 0,
-        name: json["name"] ?? "",
-        pushSortOrder: json["pushSortOrder"] ?? 0,
-        imageurl: json["imageurl"] ?? "",
-        description: json["description"] ?? "",
+        srNo: json["SrNo"] ?? 0,
+        name: json["Name"] ?? "",
+        pushSortOrder: json["PushSortOrder"] ?? 0,
+        imageurl: json["Imageurl"] ?? "",
+        description: json["Description"] ?? "",
       );
 }
