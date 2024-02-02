@@ -87,7 +87,7 @@ class GetSavingSchemeData {
   });
 
   final int srNo;
-  final double partnerSrNo;
+  final int partnerSrNo;
   final double minimumMonthlyAmount;
   final double tenor;
   final double yourBenefits;
@@ -117,9 +117,9 @@ class GetSavingSchemeData {
 
   factory GetSavingSchemeData.fromJson(Map<String, dynamic> json) =>
       GetSavingSchemeData(
-        srNo: json["SrNo"] ?? 0,
+        srNo: int.parse(json["SrNo"].toString()),
         partnerSrNo: (json["PartnerSrNo"] ?? 0).toDouble(),
-        minimumMonthlyAmount: (json["MinimumMonthlyAmount"] ?? 0).toDouble(),
+        minimumMonthlyAmount: double.parse(json["MinimumMonthlyAmount"].toString()),
         tenor: (json["Tenor"] ?? 0).toDouble(),
         yourBenefits: (json["YourBenefits"] ?? 0).toDouble(),
         planEndAmount: (json["PlanEndAmount"] ?? 0).toDouble(),
@@ -130,7 +130,7 @@ class GetSavingSchemeData {
         termsAndCondition: json["TermsAndCondition"] ?? "",
         imagePath: json["ImagePath"] ?? "",
         isActive: json["IsActive"] ?? false,
-        contributionPercent: (json["ContributionPercent"] ?? 0).toDouble(),
+        contributionPercent: double.parse(json["ContributionPercent"].toString()),
         // freeOnOrnamentPercentage: json["freeOnOrnamentPercentage"],
         schemeName: json["SchemeName"] ?? "",
         schemeTagLine: json["SchemeTagLine"] ?? "",
