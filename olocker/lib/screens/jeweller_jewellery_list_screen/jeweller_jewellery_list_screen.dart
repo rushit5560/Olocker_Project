@@ -47,7 +47,7 @@ class JewellerJewelleryListScreen extends StatelessWidget {
             IconButton(
               onPressed: () {
                 jewellerJewelleryListScreenController.isSearchOn.value =
-                    !jewellerJewelleryListScreenController.isSearchOn.value;
+                !jewellerJewelleryListScreenController.isSearchOn.value;
                 log('${jewellerJewelleryListScreenController.isSearchOn.value}');
               },
               icon: const Icon(
@@ -63,10 +63,12 @@ class JewellerJewelleryListScreen extends StatelessWidget {
                     jewellerJewelleryListScreenController.jewellerId.toString(),
                   ],
                 )!
-                    .then((value) async {
-                  await jewellerJewelleryListScreenController
-                      .getAllJewelleryListFunction();
-                });
+                    .then(
+                  (value) async {
+                    await jewellerJewelleryListScreenController
+                        .getAllJewelleryListFunction();
+                  },
+                );
               },
               icon: const Icon(
                 Icons.favorite_outline_rounded,

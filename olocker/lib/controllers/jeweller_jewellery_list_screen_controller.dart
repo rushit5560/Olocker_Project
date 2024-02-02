@@ -63,11 +63,13 @@ class JewellerJewelleryListScreenController extends GetxController {
   getSearchTextListFunction(String searchText) {
     return searchFieldController.text.trim().isEmpty
         ? collectionNameList
-        : collectionNameList.where((element) {
-            String searchListString = element.toLowerCase();
-            String searchTextNew = searchText.toLowerCase();
-            return searchListString.contains(searchTextNew);
-          }).toList();
+        : collectionNameList.where(
+            (element) {
+              String searchListString = element.toLowerCase();
+              String searchTextNew = searchText.toLowerCase();
+              return searchListString.contains(searchTextNew);
+            },
+          ).toList();
   }
 
   Future<void> getSearchProductsFunction(String searchName) async {
@@ -476,4 +478,3 @@ class JewellerJewelleryListScreenController extends GetxController {
     isLoading(false);
   }
 }
-
