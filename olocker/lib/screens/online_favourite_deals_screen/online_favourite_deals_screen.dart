@@ -72,6 +72,7 @@ class OnlineFavouriteDealsScreen extends StatelessWidget {
   Widget _onlineDealsGridTile(FavDealList singleDeal) {
     String imgUrl =ApiUrl.apiImagePath+ singleDeal.categoryImage.replaceAll(r'\', '/');
     log("imgUrl imgUrl: $imgUrl");
+    log("singleDeal.category: ${singleDeal.category}");
     return GestureDetector(
       onTap: () {
         Get.to(

@@ -4,7 +4,6 @@ import '../../error_info_model/error_info_model.dart';
 
 GetSavingSchemesListModel getSavingSchemesListModelFromJson(String str) => GetSavingSchemesListModel.fromJson(json.decode(str));
 
-String getSavingSchemesListModelToJson(GetSavingSchemesListModel data) => json.encode(data.toJson());
 
 class GetSavingSchemesListModel {
   int statusCode;
@@ -20,10 +19,7 @@ class GetSavingSchemesListModel {
     data: Data.fromJson(json["data"] ?? {}),
   );
 
-  Map<String, dynamic> toJson() => {
-    "statusCode": statusCode,
-    // "data": data.toJson(),
-  };
+
 }
 
 
@@ -90,7 +86,7 @@ class GetSavingSchemeData {
   final int partnerSrNo;
   final double minimumMonthlyAmount;
   final double tenor;
-  final double yourBenefits;
+  final int yourBenefits;
   final double planEndAmount;
   final double usersLimit;
   final double gracePeriod;
@@ -117,11 +113,11 @@ class GetSavingSchemeData {
 
   factory GetSavingSchemeData.fromJson(Map<String, dynamic> json) =>
       GetSavingSchemeData(
-        srNo: int.parse(json["SrNo"].toString()),
-        partnerSrNo: (json["PartnerSrNo"] ?? 0).toDouble(),
+        srNo: json["SrNo"]??0,
+        partnerSrNo: json["PartnerSrNo"]??0,
         minimumMonthlyAmount: double.parse(json["MinimumMonthlyAmount"].toString()),
         tenor: (json["Tenor"] ?? 0).toDouble(),
-        yourBenefits: (json["YourBenefits"] ?? 0).toDouble(),
+        yourBenefits: json["YourBenefits"] ?? 0,
         planEndAmount: (json["PlanEndAmount"] ?? 0).toDouble(),
         usersLimit: (json["UsersLimit"] ?? 0).toDouble(),
         gracePeriod: (json["GracePeriod"] ?? 0).toDouble(),

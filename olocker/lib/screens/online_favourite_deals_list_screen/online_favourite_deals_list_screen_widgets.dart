@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:olocker/constants/api_url.dart';
@@ -77,6 +79,8 @@ class AllFavDealsListModule extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, i) {
         final imagePath=ApiUrl.apiImagePath+screenController.singleDealList.categoryImage;
+        log("================${screenController
+            .singleDealList.onLineDeals[i].couponHeading}");
         return GestureDetector(
           onTap: () => Get.to(
             () => OnlineFavouriteDealsDetailsScreen(),
