@@ -189,8 +189,8 @@ class MyJewellersListModule extends StatelessWidget {
   }
 
   Widget _jewellerListTile(JewellerData jewellerData) {
-    String imgUrl = ApiUrl.apiImagePath + jewellerData.logoFileName;
-    // log("jewellerData.logoFileName :: $imgUrl");
+    // String imgUrl = ApiUrl.apiImagePath + jewellerData.logoFileName;
+    log("jewellerData.logoFileName :: ${jewellerData.logoFileName}");
     return GestureDetector(
       onTap: () {
         Get.to(() => JewellerDetailsScreen(), arguments: [
@@ -208,7 +208,7 @@ class MyJewellersListModule extends StatelessWidget {
               border: Border.all(color: Colors.grey.shade300, width: 2),
               // color: AppColors.greyColor,
               image: DecorationImage(
-                image: NetworkImage(imgUrl),
+                image: NetworkImage(jewellerData.logoFileName),
                 fit: BoxFit.fill,
                 onError: (exception, stackTrace) {
                   Container(
